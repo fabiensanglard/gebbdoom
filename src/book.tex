@@ -1,0 +1,68 @@
+\documentclass[8pt]{book}
+
+% All styles and package and commands are defined here.
+% This allow to have one preambule used in all |/subfile| .
+\usepackage{mystyle}
+
+\begin{document}
+
+
+\def\GE{} % Title
+\def\BB{} % Title
+\title{\GE \BB}
+
+\def\Me{Fabien Sanglard} % Title
+\author\Me
+
+\definecolor{title_white}{rgb}{1,1,1}
+\definecolor{title_grey}{rgb}{0.6,0.6,0.6}
+       
+\def\Version{0.1}
+
+    \blankpage
+    \blankpage
+    %Cover page
+    \subfile{cover}
+    
+    
+
+    \renewcommand{\rmdefault}{cmss} 
+    \renewcommand{\familydefault}{\sfdefault}
+    
+    % Table of content
+    \addtolength{\cftsecnumwidth}{10pt}
+    
+    \cleardoublepage % Make toc appear on right side.
+    
+    \subfile{thanks}
+
+    \cleardoublepage % Make toc appear on right side.
+
+    \setcounter{secnumdepth}{3} % toc is 2 level deep.
+    
+    \tableofcontents
+    
+    \pagebreak
+    \chapter*{Preface}
+      \subfile{preface}
+    \addcontentsline{toc}{subsection}{Preface}
+    \chapter{Introduction}
+      \subfile{introduction}
+    \chapter{Environment}
+      \subfile{environment}
+    \chapter{Team}
+      \subfile{team}    
+    \chapter{Software}
+      \subfile{software}    
+    \chapter{Sequels}
+      \subfile{sequels}    
+    \chapter{Ports}        
+      \subfile{ports}    
+    \appendix
+    \appendixpage
+      \subfile{appendix}    
+    \cleartoleftpage % Make sure back cover is on a "back" page
+    \subfile{cover_back}
+    \blankpage
+    \blankpage
+\end{document}

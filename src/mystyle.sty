@@ -1,0 +1,247 @@
+  \ProvidesPackage{mystyle}
+
+  % provides a way to compile sections of a document using the same preamble as the main document.
+  \usepackage{subfiles}
+
+  % Set the dimensions of the pages.
+  \usepackage[margin=1in]{geometry}
+  %\usepackage{calc}
+  \setlength\paperwidth{7.5in}
+  \setlength\paperheight{9.25in}
+ \setlength\textwidth{5.2in}
+ \setlength\textheight{7.2in}
+  %\setlength\oddsidemargin{(\paperwidth-\textwidth)/2 - 2in}
+  %\setlength\topmargin{(\paperheight-\textheight -\headheight-\headsep-\footskip)/2 - 1in}
+
+  %Header is clear, but the footer contains the page number in the center.
+  %\pagestyle{plain} Using fancyhdr instead
+
+   % FONT FAMILY
+   % \rmdefault, selects a roman font family
+   % \sfdefault selects a sans serif font family
+   % \ttdefault selects a monospaced
+   \renewcommand{\familydefault}{\sfdefault}
+
+   % ptm = Times New Roman
+   % garamond
+   % cmss
+   \renewcommand{\rmdefault}{cmss}
+
+   % Reduces interspace in list of elements (\begin{compactitem})
+   %\usepackage{paralist}
+   % Note: using itemize instead
+
+% Remove all indentaion for pargraphs.
+\setlength\parindent{0pt}
+
+\newcommand{\codeword}[1]{\texttt{#1}}
+\newcommand{\cw}[1]{\texttt{#1}}
+\newcommand{\quotes}[1]{``#1''}
+\newcommand{\note}[1]{\par\color{red}\#\#\#\#\##1\color{black}\\ \par}
+
+% Create space filters images with bilinear sampling which messes up the small sprites 
+% to compensate I added a path to use 300dpi assets which are nearest upsampled sprites.
+
+\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots/#1} }
+\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2} }
+
+%\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1} }
+%\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} }
+
+% Allow to include urls in pdf
+\usepackage[pdftex]{hyperref}
+
+
+
+\newcommand{\bu}[1]{\textbf{\underline{#1}}}
+%fancyvrb to make verbatim box with colors
+
+%for histograms
+\usepackage{pgfplots}
+\pgfplotsset{
+  compat=newest,
+  xlabel near ticks,
+  ylabel near ticks
+}
+
+
+% for appendix
+\usepackage[toc,page]{appendix}
+
+% so figure are really where i want them.
+\usepackage{float}
+
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %allow center column
+
+\usepackage{booktabs}
+
+\usepackage{textpos}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usetikzlibrary{calc}
+\usetikzlibrary{shadows} %include images can get a nice drop shadow
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage{fancyvrb}
+\usepackage{relsize}
+
+
+
+\usetikzlibrary{backgrounds}
+\makeatletter
+
+\tikzset{%
+  fancy quotes/.style={
+    text width=\fq@width pt,
+    align=justify,
+    inner sep=1em,
+    anchor=north west,
+    minimum width=\textwidth,
+  },
+  fancy quotes width/.initial={.8\textwidth},
+  fancy quotes marks/.style={
+    scale=8,
+    text=white,
+    inner sep=0pt,
+  },
+  fancy quotes opening/.style={
+    fancy quotes marks,
+  },
+  fancy quotes closing/.style={
+    fancy quotes marks,
+  },
+  fancy quotes background/.style={
+    show background rectangle,
+    inner frame xsep=0pt,
+    background rectangle/.style={
+      fill=gray!25,
+      rounded corners,
+    },
+  }
+}
+
+\newenvironment{fancyquotes}[1][]{%
+\noindent
+\tikzpicture[fancy quotes background]
+\node[fancy quotes opening,anchor=north west] (fq@ul) at (0,0) {\tiny ``};
+\tikz@scan@one@point\pgfutil@firstofone(fq@ul.east)
+\pgfmathsetmacro{\fq@width}{\textwidth - 3*\pgf@x}
+\node[fancy quotes,#1] (fq@txt) at (fq@ul.north west) \bgroup}
+{\egroup;
+\node[overlay,fancy quotes closing,anchor=east] at (fq@txt.south east) {\tiny ''};
+\endtikzpicture}
+
+%Nice header with pages numbers
+\usepackage{fancyhdr}
+% Make page number appear on botton right
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[EL]{\thepage}
+\fancyfoot[OR]{\thepage}
+
+%For pretty equations
+\usepackage{amsmath}
+
+%For pretty source code
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegwhite}{rgb}{1,1,1}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.9,0.9,0.9}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour}, 
+    %basicstyle=\scriptsize,
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    basicstyle=\ttfamily,
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                                   
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    frame=single,
+    tabsize=2,
+    xleftmargin=0in,
+    morekeywords={NULL, true, false, boolean},
+}
+ 
+\lstset{style=mystyle}
+
+
+% To fix table of content spacing 
+\usepackage{tocloft}
+%\usepackage[tocflat]{tocstyle}
+%\usetocstyle{standard}
+
+%\usepackage{framed} %To be able to close listing frame on page breaks.
+
+%For front page.
+\usepackage{pagecolor}
+\usepackage{graphicx} %to resize title
+\usepackage{setspace} %for vertical spacing in title (\setstretch)
+
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[
+ skipabove=10pt,skipbelow=10pt,
+ middlelinewidth=1pt,
+firstextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);},
+secondextra={\draw[dashed,line width=1pt,xshift=-1pt] (O|-P) -- (P);},
+middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,line width=1pt,xshift=-1pt] (O|-P) -- (P);}
+]{breakable_box}
+
+% To make last page an even number
+\usepackage{scrextend}
+\newcommand{\OpenNewPageIfNeeded}{%
+  \ifthispageodd{%
+    \newpage
+    \null
+  }{%
+  }%
+}
+\AtEndDocument{\OpenNewPageIfNeeded}
+
+
+%Prevent latex from vertical justifing
+\raggedbottom
+
+%for shadow box
+\usepackage{fancybox, graphicx}
+
+%make footnote stick to the bottom of the page
+\usepackage[bottom]{footmisc}
+
+% To make floating images
+\usepackage{wrapfig}
+
+% For nice 1/2 signs.
+\usepackage{units}
+
+% Remove figure number in figure captions.
+\usepackage{caption2}
+\captionlabelfalse
+
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+% adjustbox package which allows you to add alignment keys to \includegraphics
+% \usepackage{adjustbox}
