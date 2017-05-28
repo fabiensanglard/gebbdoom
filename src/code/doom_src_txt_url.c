@@ -1,0 +1,1 @@
+ftp://ftp.idsoftware.com/idstuff/source/doomsrc.txt
