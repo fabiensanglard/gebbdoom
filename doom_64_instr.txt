@@ -1,0 +1,10 @@
+DOOM uses 64 bit multiplications as part of their fixed point arithmetic.
+No, it uses 16.16 fixed point and 32 bit arithmetic. The fixed_t type is just a typedef of int.
+The 486 didn't have 64 bit instructions. What it did have was a 32 bit multiply that produced a 64 bit result (in two 32 bit registers), and a nifty shift instruction which could shift one 32 bit register "into" another, in effect performing a 64 bit shift. So what the (long long) cast in the FixedMul routine is doing is telling the compiler to generate code to perform a 64 bit shift operation on the result of a*b.
+In pseudo assembler (been a while since I did any x86 programming...)
+movl eax, a         # 32 bits
+movl ebx, b         # 32 bits
+imul eax, ebx       # 64 bit result is now in edx:eax
+shrd eax, edx, 16   # shifts eax right by 16 and fills the most significant bits from edx
+movl result, eax    # 32 bit result
+Total time for this function is probably less than 50 cycles (imul is 13-42 cycles depending on input).
