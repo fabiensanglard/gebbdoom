@@ -10,3 +10,33 @@ Romero broke the engine.\\
 \scode{doom_src_txt_url.c}
 \scode{doom_src_zip_url.c}
 \section{Architecture}
+
+
+Source: "http://5years.doomworld.com/"
+Why wasn't Doom coded in C++?
+ 
+I believe the reason was because DOOM was our first game that used a DOS Extender and there were no C++ compilers available at that time that used DOS Extenders.  Another reason could have been because we were doing all the code on NeXT computers under NEXTSTEP and there was no C++ compiler, only Objective-C.  We would compile and link the code (typed on the NeXT systems) on the Intel systems and then run the game.
+
+
+
+
+comp.sys.next.advocacy ›
+DOOM: NeXTstep's Most Successful App
+
+The NeXT version does not have the full  
+feature polish that the dos version has, just because we can't spare  
+the time for it.  It's basically the same thing, though.
+
+The way our development works is that I write the entire game in  
+portable ansi C, then have different hardware abstraction files for  
+NEXTSTEP, dos, X, windows, etc.  The tools can be NS specific, because  
+we don't need to provide them for anyone else (the two companies we are  
+working with on DOOM style games are now NS converts).
+
+Our biggest mistake during DOOM development was the contracting of an  
+outside party to do dos sound drivers.  Because we had this black box  
+functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.   
+All future work will be entirely developed under NS, with only DMA  
+buffer flipping being the hardware layer.  We will probably also run  
+midi under NS for music (which will be dynamically tuned to the game  
+situation in Quake).
