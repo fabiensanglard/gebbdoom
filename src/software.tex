@@ -5,17 +5,18 @@ First window ever.\\
 Romero broke the engine.\\
 
 \section{Source Code}
-\scode{pc_main.c}
+\ccode{pc_main.c}
 
-\scode{doom_src_txt_url.c}
-\scode{doom_src_zip_url.c}
+\tcode{doom_src_txt_url.c}
+\tcode{doom_src_zip_url.c}
 \section{Architecture}
 
 
-Source: "http://5years.doomworld.com/"
-Why wasn't Doom coded in C++?
- 
-I believe the reason was because DOOM was our first game that used a DOS Extender and there were no C++ compilers available at that time that used DOS Extenders.  Another reason could have been because we were doing all the code on NeXT computers under NEXTSTEP and there was no C++ compiler, only Objective-C.  We would compile and link the code (typed on the NeXT systems) on the Intel systems and then run the game.
+\fq{
+Why wasn't Doom coded in C++?\\
+\par 
+I believe the reason was because DOOM was our first game that used a DOS Extender and there were no C++ compilers available at that time that used DOS Extenders.  Another reason could have been because we were doing all the code on NeXT computers under NEXTSTEP and there was no C++ compiler, only Objective-C.  We would compile and link the code (typed on the NeXT systems) on the Intel systems and then run the game.}
+{- John Romero}
 
 
 
@@ -23,6 +24,7 @@ I believe the reason was because DOOM was our first game that used a DOS Extende
 comp.sys.next.advocacy ›
 DOOM: NeXTstep's Most Successful App
 
+\fq{
 The NeXT version does not have the full  
 feature polish that the dos version has, just because we can't spare  
 the time for it.  It's basically the same thing, though.
@@ -39,4 +41,10 @@ functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.
 All future work will be entirely developed under NS, with only DMA  
 buffer flipping being the hardware layer.  We will probably also run  
 midi under NS for music (which will be dynamically tuned to the game  
-situation in Quake).
+situation in Quake).}
+{- John Carmack}
+
+\section{Three Screen Mode}
+
+\section{Audio}
+Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.

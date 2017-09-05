@@ -42,11 +42,18 @@
 % Create space filters images with bilinear sampling which messes up the small sprites 
 % to compensate I added a path to use 300dpi assets which are nearest upsampled sprites.
 
-\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots/#1} }
-\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2} }
+\newcommand{ \fullimage}[1]{               \includegraphics[width=\textwidth]{screenshots/#1}                         }
+\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots/#1} \caption{#2}\end{figure}}
+\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
 
 %\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1} }
+%\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots_300dpi/#1} \caption{#2}\end{figure}}
 %\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} }
+
+
+\newcommand{\ccode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage} }
+\newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
+\newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
 
 % Allow to include urls in pdf
 \usepackage[pdftex]{hyperref}
@@ -131,6 +138,10 @@
 {\egroup;
 \node[overlay,fancy quotes closing,anchor=east] at (fq@txt.south east) {\tiny ''};
 \endtikzpicture}
+
+\newcommand{\fq}[2]{\begin{fancyquotes}#1\\\par\textbf{#2}\end{fancyquotes}}
+
+
 
 %Nice header with pages numbers
 \usepackage{fancyhdr}
@@ -228,8 +239,8 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \usepackage{units}
 
 % Remove figure number in figure captions.
-\usepackage{caption2}
-\captionlabelfalse
+\usepackage{caption}
+%\captionlabelfalse
 
 \usepackage{afterpage}
 \newcommand\blankpage{%
@@ -243,7 +254,22 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
   \ifodd\value{page}\hbox{}\newpage\fi
 }
 
-\newcommand{\scode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage} }
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 
 % adjustbox package which allows you to add alignment keys to \includegraphics
 % \usepackage{adjustbox}
+
+% Make caption text bold and italic:
+%\usepackage[format=plain, labelfont={bf,it}, textfont=it]{caption}
+\usepackage[format=plain, labelfont={bf,it}]{caption}
+
+% Magic trick from https://tex.stackexchange.com/questions/299/how-to-get-long-texttt-sections-to-break
+% LaTEX I hate you so much. I despise you. Die. You POS.
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+  \hyphenchar\font=`\-% allowing hyphenation
+}
