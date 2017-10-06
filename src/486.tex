@@ -1,62 +1,49 @@
 \section{The Intel 486}
+Announced in 1989, the i486-25Mhz was a performance evolution which addressed all bottleneck of the 386 and shipped with an integrating FPU \footnote{Floating Point Unit}. Intel did not originally planned on two flavors (SX and DX) but manufacturing issues lead to producing 486 units with malfunctioning FPUs. Instead of throwing these away, Intel sold them at a discounted price. That is how PC builder could choose between a 486-SX and a 486-DX. In practice all video games used ony fixed point arithmetic, leaving the FPU unused. Therefore, a 486-SX offered the same performance as a 486-DX which made the former a good deal. Still, priced at \$950\footnote{\$950 is \$1,920 in 2017, adjusted to inflation.} for the DX 
+and \$258\footnote{InfoWorld Apr 29, 1991.}\footnote{\$258 in 1991 is \$469.20 in 2017, adjusted to inflation.} for the SX, few could afford Intel's beast.\\
+\par
+On top of its price, the i486 had to face internal competition from an other CPU manufactured by Intel, the i860. The i860 relied on an heavily pipelined superscaler architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which rendered it incompatible with the i386 instruction set. It heavily relied on compiler ability to 
+
 \par
 Checkout \cw{https://en.wikipedia.org/wiki/NEAT\_chipset} for details of motherboard.\\
+
+Intel i860 vs Intel i486\\
+\par
+\fq{...We now had two very powerful chips that we were introducing at just about the same time: the 486, largely based on cisc technology and compatible with all the pc software, and the i860, based on risc technology, which was very fast but compatible with nothing. we didn't know what to do. so we introduced both, figuring we'd let the marketplace decide. however, things were not that simple. supporting a microprocessor architecture with all the necessary computer-related products --- software, sales, and technical support --- takes enormous resources. even a company like Intel had to strain to do an adequate job with just one architecture. and now we had two different and competing efforts, each demanding more and more internal resources. development projects have a tendency to want to grow like the proverbial mustard seed. the fight for resources and for marketing attention (for example, when meeting with the customer, which processor should we highlight) led to internal debates that were fierce enough to tear apart our microprocessor organization. meanwhile, our equivocation caused our customers to wonder what Intel really stood for, the 486 or i860?}{Andy Grove, "Only the paranoid survive".}
+\par
+\cfullimage{i860.png}{The Intel i860.}
+\par
+\cfullimage{i860_arch.png}{The Intel i860.}
+\par
+\cfullimage{i486DX.png}{The Intel 486 1.2 millions transistors.}
+\par
+Ultimately, the combined difficulty of the i860, the performance/backward compatibility, and Intel picking a favorite proved too much for the i860 to survive. For games it means studios were going to write games for DOS and the 486.
+
+\trivia{Amusingly, the i860 would still play a part in Doom's development since it was used on NextDimension boards.}
+
+\subsection{Floating Point Unit}
+The i386 was able to talk to an i387 located on the motherboard. Requests and responses had to transition on the bus and incurred four CPU cycles of overhead. For the i486, Intel decided to integrate the i487 FPU in the same die and improved performance by a factor 2.\\
+\par
+TODO: Drawing
 \par
 
-\cfullimage{PX486P3/b-486-px486p3}{}
-\cfullimage{PX486P3/px486p3_drawing}{}
-\section{Intel 486}
-By may 1992, the Intel 386 was being replaced by a new version, the 486. The increase in operatin frequency was substancial for the high end model running at 50Mhz but most 486 ran at the same speed at the 386: 25Mhz and 33Mhz. The revolutionary design of the CPU.\\
-\fullimage{i486DX.png}
+TODO: Verify with 387/487 description
+
+
+
+
 \par
 \begin{figure}[H]
 \centering
-  \begin{tikzpicture}[font=\small]
-    \begin{axis}[
-      width=1.0\textwidth,
-      height=0.6\textwidth,
-      ybar,
-      bar width=20pt,
-      ylabel={MIPS},
-      ymin=0,
-      ytick=\empty,
-      xtick=data,
-      axis x line=bottom,
-      axis y line=left,
-      enlarge x limits=0.11,
-      symbolic x coords={386 16Mhz,386 25Mhz,386 33Mhz,486 25Mhz,486 33Mhz,486 50Mhz},
-      xticklabel style={anchor=base,yshift=-\baselineskip},
-      nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
-    ]
-      \addplot[fill=black!20,draw=black] coordinates {
-        (386 16Mhz,4)
-        (386 25Mhz,6)
-        (386 33Mhz,8)
-        (486 25Mhz,15)
-        (486 33Mhz,20)
-        (486 50Mhz,30)
-      };
-    \end{axis}
-   
-   \end{tikzpicture}
-   \caption{Comparison\protect\footnotemark of CPUs with MIPS \protect\footnotemark.}
- \end{figure}
-\footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Floating Point Unit}
-
+\begin{tabularx}{\textwidth}{ X  X X  X  X}
+  \toprule
+  \textbf{CPU} & \textbf{FADD} & \textbf{FMUL} & \textbf{FDIV} &\textbf{FXCH} \\ \bottomrule
+Intel 387 & 23-34 & 29-57   & 88-91 & 18 \\
+Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
+\end{tabularx}
+\caption{FPU performance: 387 vs 487.}
+\label{perf_summary}
+\end{figure}
 
 \subsection{Pipeline}
 
@@ -137,4 +124,46 @@ Bla
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 
+Zero-wait state.\\
+DRAM vs SRAM\\
+Cache hit percentage from ISA book.\\
 four-way set-associative write back.\\
+
+
+\subsection{Performance \& Price}
+By may 1992, the Intel 386 was being replaced by a new version, the 486. The increase in operatin frequency was substancial for the high end model running at 50Mhz but most 486 ran at the same speed at the 386: 25Mhz and 33Mhz. The revolutionary design of the CPU.\\
+
+\par
+\begin{figure}[H]
+\centering
+  \begin{tikzpicture}[font=\small]
+    \begin{axis}[
+      width=1.0\textwidth,
+      height=0.6\textwidth,
+      ybar,
+      bar width=20pt,
+      ylabel={MIPS},
+      ymin=0,
+      ytick=\empty,
+      xtick=data,
+      axis x line=bottom,
+      axis y line=left,
+      enlarge x limits=0.11,
+      symbolic x coords={386 16Mhz,386 25Mhz,386 33Mhz,486 25Mhz,486 33Mhz,486 50Mhz},
+      xticklabel style={anchor=base,yshift=-\baselineskip},
+      nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
+    ]
+      \addplot[fill=black!20,draw=black] coordinates {
+        (386 16Mhz,4)
+        (386 25Mhz,6)
+        (386 33Mhz,8)
+        (486 25Mhz,15)
+        (486 33Mhz,20)
+        (486 50Mhz,30)
+      };
+    \end{axis}
+   
+   \end{tikzpicture}
+   \caption{Comparison\protect\footnotemark of CPUs with MIPS \protect\footnotemark.}
+ \end{figure}
+\footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}

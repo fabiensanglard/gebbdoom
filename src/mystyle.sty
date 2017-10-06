@@ -44,7 +44,8 @@
 
 \newcommand{ \fullimage}[1]{               \includegraphics[width=\textwidth]{screenshots/#1}                         }
 \newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots/#1} \caption{#2}\end{figure}}
-\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
+\newcommand{ \scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
+\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots/#2} \caption{#3}\end{figure}}
 
 %\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1} }
 %\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots_300dpi/#1} \caption{#2}\end{figure}}
@@ -62,6 +63,8 @@
 
 \newcommand{\bu}[1]{\textbf{\underline{#1}}}
 %fancyvrb to make verbatim box with colors
+
+\newcommand{\trivia}[1]{\bu{Trivia :} #1}
 
 %for histograms
 \usepackage{pgfplots}
@@ -139,7 +142,7 @@
 \node[overlay,fancy quotes closing,anchor=east] at (fq@txt.south east) {\tiny ''};
 \endtikzpicture}
 
-\newcommand{\fq}[2]{\begin{fancyquotes}#1\\\par\textbf{#2}\end{fancyquotes}}
+\newcommand{\fq}[2]{\begin{fancyquotes}#1\\\par--- \textbf{#2}\end{fancyquotes}}
 
 
 

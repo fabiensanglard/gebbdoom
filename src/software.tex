@@ -4,14 +4,15 @@
 First window ever.\\
 Romero broke the engine.\\
 
-\section{Source Code}
+\section{Source Code First Contact}
 \ccode{pc_main.c}
 
 \tcode{doom_src_txt_url.c}
 \tcode{doom_src_zip_url.c}
 \section{Architecture}
 
-
+\fullimage{SCREEN00.png}
+\par
 \fq{
 Why wasn't Doom coded in C++?\\
 \par 
@@ -48,3 +49,6 @@ situation in Quake).}
 
 \section{Audio}
 Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.
+
+\section{Network}
+The networking code was completely rewritten in v1.2. The networking component was stripped out of the main executable and into separate IPXSETUP.EXE and SERSETUP.EXE drivers. Using networked PCs, it is possible to extend the game's field of view over three monitors. The player needs to set up a network game on the center PC, then the left and right PCs must launch with the -left and -right parameters. 
