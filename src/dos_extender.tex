@@ -5,6 +5,6 @@ the CPU is switched to Protected Mode\footnote{Some driver implementation relied
 \par
 \textbf{\underline{Trivia :}} Switching from Real Mode to Protected Mode is easy, you only need to set the Control Register bit 0 to 1. It can be done with 6 instructions:
 \par
-\lstinputlisting[ language={[x86masm]Assembler}]{code/switch_to_protected_mode.asm}
+\acode{switch_to_protected_mode.asm}
 \par
 However, switching back from Protected Mode to Real Mode is impossible on a 286 since Intel designers never envisioned this would be needed. As a result the only way is to issue a reset instruction \cw{HALT} to the CPU which can take milliseconds to execute. The 386 does not have this problem since it recognizes correctly when \cw{CR0} bit 1 is set back to 0.

@@ -34,11 +34,24 @@
     \addtolength{\cftsecnumwidth}{10pt}
     
     \cleardoublepage % Make toc appear on right side.
-    
-    \subfile{thanks}
+
+
+
+    \chapter*{Copyright}
+       \subfile{copyright}    
+
+    \chapter*{Acknowledgment}
+      \addcontentsline{toc}{chapter}{Acknowledgment}
+      \subfile{acknowledgment}
+
+  
+
+    \chapter*{Foreword}
+      \addcontentsline{toc}{chapter}{Foreword}
+      \subfile{foreword}
 
     \cleardoublepage % Make toc appear on right side.
-
+    
     \setcounter{secnumdepth}{3} % toc is 2 level deep.
     
     \tableofcontents
@@ -81,7 +94,7 @@
       \subfile{software_arch}
       \subfile{modding}
 
-    \chapter{Sequels}
+    \chapter{Game Engine Usage}
       \subfile{sequels}   
 
     \chapter{Ports}        
