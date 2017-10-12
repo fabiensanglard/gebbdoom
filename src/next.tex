@@ -2,20 +2,47 @@
 After leaving Apple in 1985, Steve Jobs founded a new company called NeXT, Inc. which unveiled its first product, the NeXT Computer, at a gala event in 1988. The NeXT combined powerful hardware and software in ways that had never been done before. First, NeXT based its machine on the Motorola 68030 processor running at a screaming 25 Mhz and coupled it with the first built-in Digital Signal Processor.  NeXT's system software was designed to rival the best offerings of the Macintosh and PC: NeXT used the rock-solid UNIX operating system and added its own elegant, proprietary graphical user interface.  NeXT was also the first computer company to ship a built-in 256 MB magneto-optical storage medium.  Boasting a high-resolution display, built-in Ethernet, CD-quality sound, and multimedia e-mail, the NeXT Computer was packaged in a stunning one-foot by one-foot black magnesium cube.\\
 \par
 
+\fq{Why do I care so much about NeXT computers? Because we at id Software developed the groundbreaking titles DOOM and Quake on the NeXTSTEP 3.3 OS running on a variety of hardware for about 4 years. I still remember the wonderful time I had coding DoomEd and QuakeEd in Objective-C; there was nothing like it before and there still is no environment quite like it even today.\\
+\par
+When id Software was stationed in Madison, Wisconsin during the winter of 1991, most of us were gone for the Christmas holiday - except John Carmack. John's present, which he bought with \$11,000 of his own money, procured by walking through the snow and ice to remove from the bank, arrived during the holiday and he spent the whole time learning as much as he could about the computer and started working on vector quantization algorithms for compressing graphics. His test graphic was a 256-color screen from King's Quest 5. After his research was done it was agreed that the entire company needed to develop our next game on NeXTSTEP.\\
+\par
+id's first NeXT hardware was all black - both Cubes and Stations. We upgraded through the years to the Turbo model then to other hardware like the HP Gecko and then Intel hardware at the end. We were building fat binaries of the tools for all 3 processors in the office - one .app file that had code for all 3 processors in it and executed the right code depending on which machine you ran it on. All our data was stored on a Novell 3.11 server and we constantly used the NeXTSTEP Novell gateway object to transparently copy our files to and from the server as if it was a local NTFS drive. This was back in 1993!\\
+\par
+In fact, with the superpower of NeXTSTEP, one of the earliest incarnations of DoomEd had Carmack in his office, me in my office, DoomEd running on both our computers and both of us editing one map together at the same time. I could see John moving entities around on my screen as I drew new walls. Shared memory spaces and distributed objects. Pure magic.\\
+\par
+We wrote all of DOOM and Quake's code on NeXTSTEP. We debugged the code in NeXTSTEP with DOOM and Quake's 320x200 VGA screen drawing in a little Interceptor window while the rest of the screen was used for debugging code. When all the code ran without bugs we cross-compiled it for the Intel processor on NeXTSTEP then turned over to our Intel DOS computers, copied the EXE and just ran the game. The DOS4GW DOS-Extender loaded up and the game ran. It was that easy.}{}
+
+\fq{
+One funny and strange note: I'm left-handed but while using NeXTSTEP I used a right-hand mouse. Then when I ran the game on my DOS computer I switched hands and played left-handed. Windows is not yet hardcore enough for me to switch to right-handed mice.\\
+\par
+I'll bet you didn't know that DOOM, DOOM II and Quake weren't the only games developed on NeXTSTEP. When I got Raven Software to agree to develop Heretic for us I had them buy several Epson NeXT computers (Intel based) and I flew up to Madison, WI to get them all set up and teach them how to develop the game with our tools and engine. It was a great time I'll never forget - seeing their team get excited about the power of the new environment and that they got the game developed and released in under a year. They signed on for another title and developed Hexen on NeXTSTEP as well.\\
+\par
+Back at home base we were busy with the beginnings of Quake - developed on NeXTSTEP of course but we also had another game that we were having developed using our tools and tech by Rogue Entertainment - the super fun, one of a kind, action RPG that was Strife. Unfortunately most people hadn't heard of the game because the publisher we sold the game to went out of business upon its launch. If you can find this game you should really play it - it's quite a ride.\\
+\par
+As I was leaving id Software in August 1996 the move to the Windows 32 platform was underway. John Carmack was porting our QuakeEd editor over to Win32 and preparing for a NeXT-less future. Several short months later NeXT made their fateful move over to Apple and a new era was begun as Steve Jobs set about changing the future. Again.\\
+\par
+Up to that point I had spent 15 years of my life working on computers that Steve Jobs was involved in bringing to the world. First the Apple II+, then the IIe, the IIgs and finally NeXT. Maybe someday I'll get one of those kickass iMacs.}{John Romero, rome.ro, December 20, 2006}
+
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ X  c  X  c  c}
+\begin{tabularx}{\textwidth}{ L{1.7}  R{0.3}  R{1.4}  R{0.8}  R{0.8}}
   \toprule
   \textbf{Name} &  \textbf{Year} & \textbf{Specs} & \textbf{Price} & \textbf{Price (2018)}	 \\
   \toprule 
-   Next Computer           & 1990 & 68030 25 Mhz & \$6,500 & f \\
-   NeXTCube 030            &      & 68030 25 Mhz & e & f \\
-   NeXTCube 040            &      & 68040 25 Mhz & e & f \\
-   NeXTCube Turbo          &      & 68040 33 Mhz & e & f \\
-   NeXTDimension           &      & i860  XX Mhz & e & f \\
-   NeXTStation Turbo       &      & 68040 33 Mhz & e & f \\
-   NeXTStation Color       &      & 68040 25 Mhz & e & f \\
-   NeXTStation Color Turbo &      & 68040 33 Mhz & e & f \\
+   NeXT Computer           & 1989 & 68030 25 Mhz & \$6,500 & f \\
+\toprule 
+   NeXTStation             & 1990 & 68040 25 Mhz & \$4,995 & \$9,157 \\
+
+   NeXTCube                & 1990 & 68040 25 Mhz & \$10,000 & \$18,332 \\
+   NeXTDimension           & 1990 & i860  33 Mhz & \$3,995 & \$7,552.53 \\
+
+\toprule 
+   NeXTCube Turbo          & 1992 & 68040 33 Mhz & e & f \\
+   NextStation Turbo       & 1992 & 68040 33 Mhz & \$6,500 & \$11,916 \\
+   NeXTStation Color       & 1992 & 68040 25 Mhz & \$7,995 & \$14,656 \\
+   NeXTStation Color Turbo & 1992 & 68040 33 Mhz & e & f \\
    \toprule
 \end{tabularx}
 \caption{Next products over the years.}
