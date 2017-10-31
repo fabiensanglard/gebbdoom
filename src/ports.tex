@@ -4,8 +4,10 @@ Doom was ported to Windows for Microsoft by Gabe Newell. TOOD: Interview him ?!
 \section{Super Nintendo (1995)}
 Super FX 2 chip.
 \section{Playstation 1 (1995)}
+How PSX renders doom: https://www.youtube.com/watch?time\_continue=58\&v=MS9MGSm4gng\\
+\par
 \section{3DO (1996)}
-Rebecca Heineman. \fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
+\fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
 \par
 Uh... No...\\
 \par
@@ -24,3 +26,37 @@ The vertical walls were drawn with strips using the cell engine. However, the ce
 I had to write my own string.h ANSI C library because the one 3DO supplied with their compiler had bugs! string.h??? How can you screw that up!?!?! They did! I spent a day writing all of the functions I needed in ARM 6 assembly.}{Rebecca Ann Heineman}
 \section{Game Boy Advance (2001)}
 \section{Saturn}
+https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
+\par
+JIMSDOOM.WAD, obviously named after Jim Bagley.\\
+The wad is a 1:1 copy of PSXDOOM.WAD\\
+John Carmack shut down their original plan to use a hardware-accelerated renderer\\
+\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
+See author comments: https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/?page=2\#comment-1580057\\
+\fullimage{affine_texture_mapping/post_far.png}\\
+\fullimage{affine_texture_mapping/post_near.png}\\
+\par
+\fullimage{affine_texture_mapping/door.png}\\
+\par
+\fullimage{affine_texture_mapping/hallway.png}\\
+\par
+\begin{minipage}{\textwidth}
+\scaledimage{0.4}{affine_texture_mapping/tex_perp_pc_repeat_nearest_replace.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_perp_no_pc_repeat_nearest_replace.png}\\
+\par
+
+\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace.png}\\
+\par
+
+\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace_sharp.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace.png}\\
+\par
+\end{minipage}
+\par
+Explanation:\\
+\par
+\fullimage{affine_texture_mapping/affine2.png}
+There are solutions to this:\\
+\par
+\fullimage{affine_texture_mapping/subdivision_sample.png}

@@ -10,7 +10,8 @@ Romero broke the engine.\\
 \tcode{doom_src_txt_url.c}
 \tcode{doom_src_zip_url.c}
 \section{Architecture}
-
+TOOD: Flamegraph on linux. Also do it on NextStep with gdb: http://poormansprofiler.org/\\
+TOOD: Measure doom speedup due to ASM with DoomPC\\
 \fullimage{SCREEN00.png}
 \par
 \fq{
@@ -46,7 +47,12 @@ situation in Quake).}
 {- John Carmack}
 
 \section{Three Screen Mode}
-
+\section{Door}
+Door code to make them open horizontally.
+\section{Texture Mapping}
+Persepctive correct was too expensive. But since only one axis had to be corrected, there was a way to get away with fast affine texture mapping.\\
+https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
+\par
 \section{Audio}
 Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.
 

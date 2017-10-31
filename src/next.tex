@@ -41,6 +41,16 @@ MegaDisplay: 1120 x 832 at 92 DPI (just shy of a true Megapixel at 931,840 total
 \fullimage{next/NeXTcube_motherboard.png}
 \par
 
+\begin{figure}[H]
+\centering
+\scaledimage{1}{68030_blueprint.png}
+\end{figure}
+\par
+\begin{figure}[H]
+\centering
+\scaledimage{1}{68030_layout.png}
+\end{figure}
+
 
 The only issue really was the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at \$6,500 and the optical drive which was great for backup was too slow for runtime made the "optional" \$3,500  SCSI hard-drive mandatory, pushing the price to \$10,000.\\
 \par
@@ -68,7 +78,7 @@ History of models produced by Next over the years\footnote{Source: kevra.org (Co
    NeXTCube Turbo          & 1992 & 68040 33 Mhz & \$10,000 & \$18,121 \\
    NextStation Turbo       & 1992 & 68040 33 Mhz & \$5995 & \$11,932 \\
    
-   NeXTStation Color Turbo & 1992 & 68040 33 Mhz & \$8995 & \$17,904 \\
+   NeXTStation Turbo Color & 1992 & 68040 33 Mhz & \$8995 & \$17,904 \\
    \toprule
 \end{tabularx}
 \caption{Next products over the years.}
@@ -97,6 +107,21 @@ dual screen
 
 \fq{There is one specification change. NeXT has eliminated the C-Cube Microsystems CL-550 JPEG chip from NeXTdimension. This is because our supplier, C-Cube Microsystems, has failed to deliver chips that meet their specifications.}{Felipe\_Fuster\at NeXT.COM}
 
+\fq{The NeXTdimension ran a custom kernel which was designed to do soft realtime management of multiple threads within a single address space, provide demand paged virtual memory, and provide a source-compatible Mach API subset and full Mach messaging interface, along with a minimal UNIX system call API, just enough to implement the RenderMan back end and the PostScript device layer. The kernel was called "Graphics aCcelerator Kernel, or "GaCK". Yes, this was a jape at the funny capitalization of the company name. It was not Mach, or BSD, or Minix, or Linux.}{M Paquette}
+
+
+\bu{Display PostScript and the NeXTdimension board}\\ 
+\par
+\fq{The Display PostScript system can be (very broadly) broken into two pieces, the PostScript interpreter and the device. The interpreter processes the language, and passes marking, imaging, and (in the NeXT version) compositing directions to the device layer.\\ 
+\par
+The device layer takes the high level marking, imaging, and compositing operations and (eventually) converts these to bitmap level operations. The Display PostScript system spends the majority of it's time down here.\\ 
+\par
+In the case of the NeXTdimension board, the device layer is implemented on the NeXTdimension board. Marking, imaging, and compositing operations are asynchronously transmitted to the NeXTdimension for processing while additional PostScript is interpreted on the 68K processor. A good degree of parallelism is achieved in normal operation. The NXPing() AppKit call is interpreted by the Display PostScript system as a request to synchronize the NeXTdimension, PostScript interpreter, and app, and will not return until PostScript rendering is complete on the NeXTdimension.\\}{M Paquette} 
+
+\bu{Quick Renderman and the NeXTdimension board}\\
+\par 
+\fq{
+Renderman uses a similar architecture. The 3DKit and RI C binding reside on the m68k (otherwise you couldn't link with them). Depending on the setup of the Renderman context, a RIB stream can be spooled to Photorealistic Renderman running on the host CPU (the m68K for black hardware), or to a Quick Renderman implementation loaded on demand into the Window Server. The Quick Renderman implementation in the Window Server may then, if the target window is on a NeXTdimension, forward the rendering operations to a Quick Renderman context running on the NeXTdimension board.}{M Paquette} 
 
 
 \section{NeXTStation}
@@ -212,3 +237,5 @@ As I was leaving id Software in August 1996 the move to the Windows 32 platform 
 \par
 Up to that point I had spent 15 years of my life working on computers that Steve Jobs was involved in bringing to the world. First the Apple II+, then the IIe, the IIgs and finally NeXT. Maybe someday I'll get one of those kickass iMacs.}{John Romero, rome.ro, December 20, 2006}
 
+\section{Previous}
+NeXT gave unprecedented access to photographer Doug Menuez from 1986 to 1988. He collected more than 250,000 photographs. 
