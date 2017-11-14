@@ -1,0 +1,54 @@
+\section{Audio System (DMX)}
+
+
+Wolfenstein had four back ends:
+\begin{enumerate}
+\item SoundBlaster sound card.
+\item PC Speaker
+\item Disney Sound Sounce
+\item AdLib
+\end{enumerate}
+
+In 1992 the audio ecosystem had gotten even more fragmented. Frustration can be seen in the source code, in \cw{i\_sound.c} where can be found the following comment:\\
+\par
+\ccode{whypcssucks.c}
+\par
+At a time before Microsoft harnessed all vendors under DirectSound API in 1995, games studio had to code an audio backend for each card they wanted to support. To lighten the workload id decided to license DMX audio library written by Paul J. Radek.\\
+\par
+\begin{enumerate}
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\end{enumerate}
+
+DMX offloaded dealing with hardware bugs as Paul Radek described:
+
+\fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transfering only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benifit of sample smoothing from the GF1.//
+\par
+Sorry, but that's the way it has to be :(//
+}
+{Paul Radek, Digital Expressions, Inc.}
+\par
+In retrospect John Carmack regretted using DMX because it led to issues when open sourcing the game engine (it is unknown if Paul Radek was unwilling to open source DMX or if id software was unwilling to negociate with him).\\
+\par
+Judging by usenet message posted by John Romero, it sounds like relationship between Radek and id software were tense:\\
+\par
+\fq{Hey, everybody!  Thanks a lot for downloading DOOM II -- that's really "cool".   
+We love it when we send evaluation copies to magazine editors and some piece of  
+shit uploads the thing.  The DOOM II out there is the master copy we sent to GT  
+Interactive, our distributor.  If your GUS sound doesn't work, it's probably  
+because your IRQ is > 7.  Our sound code dork broke part of the sound support  
+while he was "expanding" it, so IRQs > 7 don't work, Pro Audio Spectrum owners  
+now have to run their SB-emulation driver (no more native support), etc.  The  
+sound guy is a real shithead.  All these fuckups are in v1.666 as well --  
+sorry.  We have NO time to wait and hope that sound-dork fixes these problems,  
+as he's demonstrated in the past year and a half that he's incompetent.}{John Romero\footnote{alt.games.doom}}
+
+\section{Sound Propagation}
+How did it work? Looks like they had sectors which could block sound. Use Romero quote p29 in Scarydarkfast\\
+\par
+\fq{We used sound zones in Wolfenstein 3D as another way to alert enemies to your presence. In DOOM, we did the same thing but used sectors as the conduits of audio travel. This was a really important part of making the game scary, as sound could leak all over the place and alert demons. You might see lots of little sector pipes that connect sectors together just to alert monsters—sectors that you’d never see because we put them way up high in the corner of a room. So, we paid a lot of attention to the sound flooding.}{John Romero}
+

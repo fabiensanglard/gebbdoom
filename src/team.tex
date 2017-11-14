@@ -1,4 +1,5 @@
-Doom development started around XXX. While 
+The development of Doom started as soon as id Software shipped Wolfenstein 3D in May, 1992. While a part of the team worked on Wolfenstein 3D Hint Manual and Spear of Destiny (using the same game engine), an other part went into research mode. The result was Shadowcaster engine which introduced diminished lightning and floor/ceiling texturing. Given the time constraints, and the scope of what they were attemtping to do, the team of four almost tripled in size.\\
+\par
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ X  X  X  }
@@ -8,45 +9,34 @@ Doom development started around XXX. While
    John Carmack & 22 &  Programming\\
    John Romero & 26 &  Programming\\
    Adrian Carmack & 23 &  Artist\\
-   Tom Hall & 29 &  Creative Director\\
+   Tom Hall\protect\footnotemark  & 29 &  Creative Director\\
    Jay Wilbur & 31 &  Business\\
-   Kevin Cloud\protect\footnotemark & 28 &  Computer Artist\\
-   Donna Jackson & ?? & id's Mom\\
-     \toprule
-\end{tabularx}
-\caption{id Software at the start of Doom development.}\label{fig:Id Software team}
-\end{figure}
-\par
-Due to creative differences, Tom Halls left id around XXX. Six people were hired. Blabl blab
- \begin{figure}[H]
-\centering  
-\begin{tabularx}{\textwidth}{ X  X  X  }
-  \toprule
-  \textbf{Name} &  \textbf{Age} & \textbf{Occupation} \\
-  \toprule 
-   Dave Taylor & ?? & Programming\\
+   Kevin Cloud& 28 &  Computer Artist\\
+   Donna Jackson & 55 & id's Mom\\   
+   Dave Taylor & 24 & Programming\\
    Sandy Petersen & 39 & Designer\\
-   Shawn Green & ?? & Software Support\\
+   Shawn Green & 28 & Software Support\\
    American McGee & 22 & Tech Support\\
-   Paul Radek & 28 & ??\\
-   Gregor Punchatz & 27 & Artist\\
+   Paul Radek & 28 & DMX Audio library\\
+   Gregor Punchatz & 27 & Artist, clay models\\
+
      \toprule
 \end{tabularx}
 \caption{id Software recruits for Doom.}\label{fig:Id Software team}
 \end{figure}
-
+\footnotetext{Due to creative differences, Tom Hall left the project after two months. He went to Apogee/3D Realms.}
 \trivia{Gregor is the son of Don Ivan Punchatz, who created the Doom package art and logo.}\\
 \par
 
 \trivia{The credit screen evolved with each beta version of Doom. Notice how NeXT computer were originally credited, witnessing how important the development machine were to id. In version 1.25, Michael Abrash (who would only join id for Quake) was credited due to the quality of his article in XXX and Graphic Black Book ???.}\\
 \par
-\cscaledimage{0.9}{credits/DoomCREDIT10.png}{v1.0}
+\cscaledimage{0.92}{credits/DoomCREDIT10.png}{v1.0}
 \par
-\cscaledimage{0.9}{credits/DoomCREDIT19.png}{v1.1 to v1.9}
+\cscaledimage{0.92}{credits/DoomCREDIT19.png}{v1.1 to v1.9}
 \par
-\cscaledimage{0.9}{credits/DoomCREDIT125.png}{v1.25}
+\cscaledimage{0.92}{credits/DoomCREDIT125.png}{v1.25}
 \par
-\cscaledimage{0.9}{credits/DoomCREDITUD.png}{Ultimate Doom}
+\cscaledimage{0.92}{credits/DoomCREDITUD.png}{Ultimate Doom}
 \par
 \par
 \begin{minipage}{1.0\textwidth}
@@ -57,9 +47,9 @@ Due to creative differences, Tom Halls left id around XXX. Six people were hired
 
 
 
-% One cool page :) !
+% First good page in the whole book :) !
 \begin{minipage}{.6\textwidth}
-In January of 1995, Electronic Games magazine ran a serie of three articles for the released of Doom II. An opportunity to gather all members of id team in the group photo shown above. In the back row, left to right: Kevin Cloud, American Mcgee, John Carmack, Adrian Carmack, Sandy Petersen. Front row: Dave Taylor, John Romero and Shawn Green.\\
+In January of 1995, Electronic Games magazine ran a series of three articles for the release of Doom II. An opportunity to gather all members of id team in the group photo shown above. In the back row, left to right: Kevin Cloud, American Mcgee, John Carmack, Adrian Carmack, Sandy Petersen. Front row: Dave Taylor, John Romero and Shawn Green.\\
 \par
 The plank in the photo is in fact John Romero's office door. The hole in it is the making of John Carmack involving what John Romero is holding in the photo on the right.\\
 \end{minipage}
@@ -73,22 +63,15 @@ The plank in the photo is in fact John Romero's office door. The hole in it is t
 \fq{Well, Romero's doom jammed one day. He was in his office and was trapped in there,
 and we couldn't get the door open. It was after-hours, so we couldn't call building
 maintenance, and we were all standing around trying to figure out what to do, when
-it occured to me and I said, "You know, I do have a batle axe in my office."\\
+it occurred to me and I said, "You know, I do have a batle axe in my office."\\
 \par
 Yes, this thing really works.}{John Carmack}
 \end{minipage}
 
 
 
-\section{Organization}
-\par
-TODO: Map
-\par
-\fullimage{palette.png}
-\par
-\fullimage{colormap.png}
+\section{Location}
 
-\par
 
  Town East Tower in Mesquite, near Big Billy Barren's Used Cars and Sheplers Western Store. The black cube.
 \par
@@ -106,6 +89,15 @@ TODO: Map
 \end{figure}
 \par
 
+
+\section{Timeline}
+\par
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{drawings/timeline.pdf}
+\end{figure}
+\par
+
 \section{DoomED}
 \fullimage{doomed/DoomEd.png}
 \par
@@ -116,7 +108,7 @@ TODO: Map
 \tcode{map.txt}
 
 \section{doombsp}
-\cw{doombsp} processes output from DoomED (XXX files) into XXX, XXX, and XXX. It was released very shorty after Doom shareware on April, 6th 1994. It is a small code base which was critical to the modding community since it enabled enthousiast to compile and inject their own maps into Doom.\\
+\cw{doombsp} processes output from DoomED (XXX files) into XXX, XXX, and XXX. It was released very shorty after Doom shareware on April, 6th 1994. It is a small code base which was critical to the modding community since it enabled enthusiast to compile and inject their own maps into Doom.\\
 \par
 \tcode{cloc_doombsp.txt}
 \par
@@ -126,6 +118,16 @@ Trivia: WAD was coined by Tom Halls. "Where's all the data?".
 Screenshots running:\\
 \par
 
+
+\section{Graphic Assets}
+\par
+TODO: Map
+\par
+\fullimage{palette.png}
+\par
+\scaledimage{0.17}{COLORMAP.png}
+
+\par
 \section{Backgrounds}
 bla
 
