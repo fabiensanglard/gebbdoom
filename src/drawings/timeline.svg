@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.71293035"
-     inkscape:cx="610.95833"
-     inkscape:cy="462.93685"
+     inkscape:zoom="0.48494117"
+     inkscape:cx="282.79204"
+     inkscape:cy="493.46407"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -515,8 +515,8 @@
          y="399.05176"
          style="font-size:27.5px">MAR</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 46.578411,567.85465 205.053579,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.9968524px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 47.867227,567.85465 203.764763,0"
        id="path4521-2-4-5"
        inkscape:connector-curvature="0" />
     <text
@@ -579,14 +579,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="85.864563"
-       y="598.95038"
+       x="91.326996"
+       y="679.38751"
        id="text4793-7"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4795-4"
-         x="85.864563"
-         y="598.95038">v0.4 RELEASE</tspan></text>
+         x="91.326996"
+         y="679.38751">v0.4 RELEASE</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -876,26 +876,27 @@
          x="508.3074"
          y="84.50367">WOLF3D ATARI LYNX</tspan></text>
     <rect
-       style="fill:#d3d3d3;fill-opacity:0.66350708;stroke:#000000;stroke-width:1.94321585;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#d3d3d3;fill-opacity:0.66350708;stroke:#000000;stroke-width:1.82900011;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5043-6-6"
-       width="205.07787"
-       height="105.47795"
-       x="507.09119"
-       y="402.8544" />
+       width="205.76218"
+       height="88.118835"
+       x="48.078678"
+       y="568.28412" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="546.76178"
-       y="458.24188"
+       style="font-style:normal;font-weight:normal;font-size:17.51082993px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="88.086395"
+       y="624.14905"
        id="text4793-2-2-9-7-9"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/fabiensanglard/Desktop/timeline.png"
        inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300"><tspan
+       inkscape:export-ydpi="300"
+       transform="scale(1.0006303,0.99937013)"><tspan
          sodipodi:role="line"
          id="tspan4795-44-65-5-6-7"
-         x="546.76178"
-         y="458.24188">WOLF3D SNES</tspan></text>
+         x="88.086395"
+         y="624.14905">WOLF3D SNES</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -929,5 +930,35 @@
          x="88.831116"
          y="500.29987"
          id="tspan5326-6">STARTS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="282.53296"
+       y="235.54919"
+       id="text4793-2-2-5-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4795-44-65-0-5"
+         x="282.53296"
+         y="235.54919">MOVE </tspan><tspan
+         sodipodi:role="line"
+         x="282.53296"
+         y="257.42419"
+         id="tspan4316">FROM MADISON, WI</tspan><tspan
+         sodipodi:role="line"
+         x="282.53296"
+         y="279.29919"
+         id="tspan4314">TO     MESQUITE, TX</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="300.33759"
+       y="955.22412"
+       id="text4977-5-3-1-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4979-86-1-5-2"
+         x="300.33759"
+         y="955.22412">WITH DEATHMATCH</tspan></text>
   </g>
 </svg>
