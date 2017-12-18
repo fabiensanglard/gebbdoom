@@ -22,7 +22,7 @@ std::string epilogue = R"(
 )";
 
 void SVGRenderer::generateSVGHeader(std::ofstream &os, Map &map) {
-    constexpr int kpadding = 50;
+    constexpr int kpadding = 130;
     constexpr int kwidth = 900;
 
     AABB &aabb = map.boundingBox();
@@ -57,6 +57,7 @@ void SVGRenderer::generateSVGHeader(std::ofstream &os, Map &map) {
 void SVGRenderer::render(MapReader::Maps maps) {
     for (Map *map : maps) {
         renderMap(*map);
+        break;
     }
 }
 
@@ -66,6 +67,7 @@ void SVGRenderer::renderMap(Map &map) {
     renderSegs(map);
     renderSubSectors(map);
     renderNodesAndSubSectors(map);
+    renderBlockmap(map);
 }
 
 
@@ -217,10 +219,16 @@ void SVGRenderer::renderNodesAndSubSectors(Map &map) {
 
     for (Polygon polygon : map.implicitSubSectors()) {
         int r, g, b;
-        int randomColor = rand();
-        r = randomColor >> 24 % 200;
-        g = (randomColor >> 16) & 0xFF;
-        b = (randomColor >> 8) & 0xFF;
+        int randomColor = rand() % 6 + 1;
+        r = ((randomColor & 4) >> 2) * 255;
+        g = ((randomColor & 2) >> 1) * 255;
+        b = ((randomColor & 1) >> 0) * 255;
+
+        float f = 0.15; // desaturate by f%
+        float L = 0.3 * r + 0.6 * g + 0.1 * b;
+        int new_r = r + f * (L - r);
+        int new_g = g + f * (L - g);
+        int new_b = b + f * (L - b);
 
         outputFile << "<polygon points=\"";
         for (Point point : polygon.points()) {
@@ -229,39 +237,74 @@ void SVGRenderer::renderNodesAndSubSectors(Map &map) {
             outputFile << -point.y;
             outputFile << " ";
         }
-//        outputFile << "\" fill=\"transparent\" stroke=\"black\">"
-        outputFile << "\" style=\"fill:"
-                   << "rgb("
-                   << r
-                   << ","
-                   << g
-                   << ","
-                   << b
-                   << ")\"/>"
+        outputFile << "\" fill=\"rgb(" << new_r << "," << new_g << "," << new_b << ")\""
+                << " stroke=\"rgb(" << 70 << "," << 70 << "," << 70 << ")"
+                   << "\" stroke-width=\"10\" stroke-linecap=\"round\" />"
                    << std::endl;
     }
 
-//    Node node = map.nodes().at(map.nodes().size() -1 ) ;
-//        outputFile << "<line x1=\"" << node.start.x
-//                   << "\" y1=\"" << -node.start.y
-//                   << "\" x2=\"" << node.end.x
-//                   << "\" y2=\"" << -node.end.y
-//                   << "\" stroke-width=\""
-//                   << 10
-//                   << "\" marker-end=\"url(#arrow)\" stroke=\"black\"/>"
-//                   << std::endl;
-    for (Node node : map.nodes()) {
-        break;
-        outputFile << "<line x1=\"" << node.start.x
-                   << "\" y1=\"" << -node.start.y
-                   << "\" x2=\"" << node.end.x
-                   << "\" y2=\"" << -node.end.y
+    outputFile << epilogue << std::endl;
+    outputFile.close();
+}
+
+void SVGRenderer::renderBlockmap(Map &map) {
+    std::ostringstream str;
+    str << "E" << map.episode() << "M" << map.id() << "_blockmap.svg";
+    std::string filename = str.str();
+    std::ofstream outputFile(filename);
+
+    generateSVGHeader(outputFile, map);
+    BlockMap& bm = map.getBlockmap();
+
+    for(int16_t row=0 ; row <= bm.numRows ; row++ ) {
+        outputFile << "<line x1=\"" <<   bm.origin.x
+                   << "\" y1=\""    << -(bm.origin.y + row * 128)
+                   << "\" x2=\""    <<   bm.origin.x + bm.numColumns * 128
+                   << "\" y2=\""  <<   -(bm.origin.y + row * 128)
                    << "\" stroke-width=\""
-                   << 10
+                   << 2
                    << "\" stroke=\"black\"/>"
                    << std::endl;
     }
 
+    for(int16_t column=0 ; column <= bm.numColumns; column++ ) {
+        outputFile << "<line x1=\"" <<  (bm.origin.x + column * 128)
+                   << "\" y1=\""    << -bm.origin.y
+                   << "\" x2=\""    <<  (bm.origin.x + column * 128)
+                   << "\" y2=\""    << -(bm.origin.y + bm.numRows * 128)
+                   << "\" stroke-width=\""
+                   << 2
+                   << "\" stroke=\"black\"/>"
+                   << std::endl;
+    }
+
+    for (LineDef side : map.lines()) {
+        outputFile << "<line x1=\"" << side.start.x
+                   << "\" y1=\"" << -side.start.y
+                   << "\" x2=\"" << side.end.x
+                   << "\" y2=\"" << -side.end.y
+                   << "\" stroke-width=\""
+                   << 7
+                   << "\" stroke=\"black\" marker-end=\"url(#arrow)\" />"
+                   << std::endl;
+
+        outputFile << "    <circle cx=\""
+                   << side.start.x
+                   << "\" cy=\""
+                   << -side.start.y
+                   << "\" r=\""
+                   << 10
+                   << "\"/>";
+
+        outputFile << "    <circle cx=\""
+                   << side.end.x
+                   << "\" cy=\""
+                   << -side.end.y
+                   << "\" r=\""
+                   << 10
+                   << "\"/>"
+                   << std::endl;
+    }
     outputFile << epilogue << std::endl;
     outputFile.close();
 }

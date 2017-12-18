@@ -3,6 +3,9 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <excludeRoots>
+      <file path="$PROJECT_DIR$/DOOM.WAD" />
+      <file path="$PROJECT_DIR$/DOOM2.WAD" />
+      <file path="$PROJECT_DIR$/TNT.WAD" />
       <file path="$PROJECT_DIR$/cmake-build-debug" />
       <file path="$PROJECT_DIR$/cmake-build-debug/CMakeFiles" />
     </excludeRoots>

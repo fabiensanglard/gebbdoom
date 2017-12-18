@@ -55,6 +55,21 @@ struct SubSectorEntry {
     uint16_t segStartId;
 };
 
+struct BlockmapHeader {
+    short origin_x;
+    short origin_y;
+    short numColumns;
+    short numRows;
+};
+
+struct ThingEntry {
+    short x;
+    short y;
+    short angle;
+    short type;
+    short flags;
+};
+
 void Map::parseNodes(Lump &lump) {
     assert(!strncmp(lump.name().c_str(), "NODES", 5));
     size_t numNodes = lump.size() / 28;
@@ -79,6 +94,7 @@ void Map::parseLineDefs(Lump &lump) {
     for (int i = 0; i < numLinesDefs; i++) {
         Point start = mVertices.at(entry->fromId);
         Point end = mVertices.at(entry->toId);
+
         mLinesDegs.push_back({start, end});
         entry++;
     }
@@ -141,6 +157,62 @@ void Map::parseSegs(Lump &lump) {
 
 void Map::parseBlockMap(Lump &lump) {
     assert(!strncmp(lump.name().c_str(), "BLOCKMAP", 8));
+    BlockmapHeader *header = (BlockmapHeader *) lump.payload();
+    mBlockMap.origin.x = header->origin_x;
+    mBlockMap.origin.y = header->origin_y;
+    mBlockMap.numColumns = header->numColumns;
+    mBlockMap.numRows = header->numRows;
+
+    size_t numBlocks = header->numColumns * header->numRows;
+    uint16_t *blockOffsetRover = (uint16_t *) (lump.payload() + 8);
+    for (int i = 0; i < numBlocks; i++) {
+        uint16_t offset = *blockOffsetRover;
+        std::vector<uint16_t> lines;
+        // Read list of lines belonging to this block
+        uint16_t *blockReader = ((uint16_t *) lump.payload()) + offset;
+        assert(*blockReader == 0x0000);
+        blockReader++;
+        while (*blockReader != 0xFFFF) {
+            lines.push_back(*blockReader);
+            blockReader++;
+        }
+        assert(*blockReader == 0xFFFF);
+        mBlockMap.blocks.push_back(std::move(lines));
+        blockOffsetRover++;
+    }
+    return;
+    for (int16_t row = 0; row < mBlockMap.numRows; row++) {
+        for (int16_t column = 0; column < mBlockMap.numColumns; column++) {
+            std::vector<uint16_t> &blocks = mBlockMap.blocks.at(row * mBlockMap.numColumns + column);
+            for (auto index : blocks) {
+                // Create clipping lines
+                Point clipStart = {mBlockMap.origin.x + column * 128, mBlockMap.origin.y + row * 128};
+                Point clipEnd = {clipStart.x + 128, clipStart.y + 128};
+                Plan vleft( {clipStart.x, clipStart.y}, {clipStart.x, clipEnd.y});
+                Plan vright({  clipEnd.x, clipStart.y}, {  clipEnd.x, clipEnd.y});
+                Plan hbotton({clipStart.x, clipStart.y}, {clipEnd.x, clipStart.y});
+                Plan hltop(  {clipStart.x, clipEnd.y}, {clipEnd.x, clipEnd.y});
+
+                // Clip lines int segments with all four clipping lines.
+
+                LineDef line = mLinesDegs.at(index);
+                Seg splittedLineLeft;
+                Seg splittedLineRight;
+                spliLine(line.start, line.end, vleft, splittedLineLeft, splittedLineRight);
+                mBlockMap.segs[row * mBlockMap.numColumns + column].push_back(splittedLineRight);
+
+                spliLine(line.start, line.end, vright, splittedLineLeft, splittedLineRight);
+                mBlockMap.segs[row * mBlockMap.numColumns + column].push_back(splittedLineLeft);
+
+                spliLine(line.start, line.end, hbotton, splittedLineLeft, splittedLineRight);
+                mBlockMap.segs[row * mBlockMap.numColumns + column].push_back(splittedLineLeft);
+
+                spliLine(line.start, line.end, hltop, splittedLineLeft, splittedLineRight);
+                mBlockMap.segs[row * mBlockMap.numColumns + column].push_back(splittedLineRight);
+            }
+        }
+    }
+
 }
 
 void Map::parseRejects(Lump &lump) {
@@ -153,6 +225,17 @@ void Map::parseSectors(Lump &lump) {
 
 void Map::parseThings(Lump &lump) {
     assert(!strncmp(lump.name().c_str(), "THINGS", 6));
+    size_t numThings = lump.size() / 10;
+    ThingEntry *entry = reinterpret_cast<ThingEntry *>(lump.payload());
+    for (int i = 0; i < numThings; i++) {
+        Thing thing;
+        thing.position.x = entry->x;
+        thing.position.y = entry->y;
+        thing.angle = entry->angle;
+        thing.type = entry->type;
+        thing.flags = entry->flags;
+        mThings.push_back(thing);
+    }
 }
 
 void Map::setId(int i) {
@@ -270,6 +353,35 @@ void Map::visitNodeR(Node &node, Polygon &polygon) {
     } else {
         uint16_t nodeId = node.right;
         visitNodeR(mNodes.at(nodeId), rightSubPolygon);
+    }
+}
+
+void Map::spliLine(Point &start, Point &end, Plan &plan, Seg &left, Seg &right) {
+    left = {0,0};
+    right = {0,0};
+    Plan::Side sideStart = plan.side(start);
+    Plan::Side sideEnd = plan.side(end);
+    if (sideEnd == Plan::Side::OnPlan) {
+        left = {start, end};
+        right = {start, end};
+        return;
+    }
+
+    if (sideStart == sideEnd) {
+        if (sideStart == Plan::Side::Left) {
+            left = {start, end};
+        } else {
+            right = {start, end};
+        }
+        return;
+    }
+
+    Point intersection = plan.findIntersection(start, end);
+
+    if (sideEnd == Plan::Side::Left) {
+        left = {start, intersection};
+    } else {
+        right = {intersection, end};
     }
 }
 

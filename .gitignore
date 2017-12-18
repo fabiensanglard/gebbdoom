@@ -11,3 +11,6 @@ output\*
 *.lot
 *.out
 *.toc
+**/*.o
+**/.idea
+**/*.WAD

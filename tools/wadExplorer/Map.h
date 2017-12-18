@@ -32,6 +32,7 @@ struct Seg {
     Point end;
 };
 
+using Segs = std::vector<Seg>;
 class SubSector {
 public:
     SubSector() = default;
@@ -44,7 +45,6 @@ public:
         mSegs.push_back(seg);
     }
 
-    using Segs = std::vector<Seg>;
     Segs& segs() {
         return mSegs;
     }
@@ -70,6 +70,12 @@ struct AABB {
 class Plan {
 public:
     Plan(Point& start, Point& end) {
+        mStart = start;
+        mEnd = end;
+        mDelta.x = end.x - start.x;
+        mDelta.y = end.y - start.y;
+    }
+    Plan(Point&& start, Point&& end) {
         mStart = start;
         mEnd = end;
         mDelta.x = end.x - start.x;
@@ -148,6 +154,21 @@ private:
     std::vector<Point> mPoints;
 };
 
+struct BlockMap {
+    Point origin;
+    short numRows;
+    short numColumns;
+    std::vector<std::vector<uint16_t>> blocks;
+    std::vector<std::vector<Seg>> segs;
+};
+
+struct Thing {
+    Point position;
+    short type;
+    short angle;
+    short flags;
+};
+
 class Map {
 public:
     void parseNodes(Lump& lump);
@@ -207,9 +228,18 @@ public:
         return mBoundingBox;
     }
 
+    using Things = std::vector<Thing>;
+    Things& getThings() {
+        return mThings;
+    };
+
+    BlockMap& getBlockmap() {
+        return mBlockMap;
+    }
 
     void buildImplicitSubSectors();
 private:
+    Things mThings;
     AABB mBoundingBox;
     Vertices mVertices;
     Lines mLinesDegs;
@@ -220,11 +250,15 @@ private:
     int mEpisode;
     int mId;
 
+    BlockMap mBlockMap;
+
     void visitNodeR(Node& node, Polygon& polygon);
 
     void splitPolygon(Plan& plan, Polygon& sector, Polygon& left, Polygon& right);
 
     void clipPolygon(Polygon &tclipped, Polygon& polygon, Segs &plans);
+
+    void spliLine(Point &point, Point &anEnd, Plan &plan, Seg &left, Seg &right);
 };
 
 

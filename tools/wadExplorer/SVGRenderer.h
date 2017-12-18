@@ -29,6 +29,8 @@ private:
 
 public:
     void renderNodesAndSubSectors(Map &map);
+
+    void renderBlockmap(Map &map);
 };
 
 
