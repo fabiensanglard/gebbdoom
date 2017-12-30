@@ -14,5 +14,5 @@ set(SOURCE_FILES
         MapReader.cpp
         MapReader.h
         SVGRenderer.cpp
-        SVGRenderer.h)
+        SVGRenderer.h Things.h Things.cpp)
 add_executable(wadExplorer ${SOURCE_FILES})

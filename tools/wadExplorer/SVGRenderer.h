@@ -27,10 +27,14 @@ private:
 
     void renderSubSectors(Map &map);
 
+    void renderBluePrint(Map &map);
+
 public:
     void renderNodesAndSubSectors(Map &map);
 
     void renderBlockmap(Map &map);
+
+    void renderBspTree(Map &map);
 };
 
 

@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/wadExplorer.dir/Map.cpp.o"
   "CMakeFiles/wadExplorer.dir/MapReader.cpp.o"
   "CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o"
+  "CMakeFiles/wadExplorer.dir/Things.cpp.o"
   "wadExplorer.pdb"
   "wadExplorer"
 )

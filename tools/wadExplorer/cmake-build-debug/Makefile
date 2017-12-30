@@ -231,6 +231,33 @@ SVGRenderer.cpp.s:
 	$(MAKE) -f CMakeFiles/wadExplorer.dir/build.make CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.s
 .PHONY : SVGRenderer.cpp.s
 
+Things.o: Things.cpp.o
+
+.PHONY : Things.o
+
+# target to build an object file
+Things.cpp.o:
+	$(MAKE) -f CMakeFiles/wadExplorer.dir/build.make CMakeFiles/wadExplorer.dir/Things.cpp.o
+.PHONY : Things.cpp.o
+
+Things.i: Things.cpp.i
+
+.PHONY : Things.i
+
+# target to preprocess a source file
+Things.cpp.i:
+	$(MAKE) -f CMakeFiles/wadExplorer.dir/build.make CMakeFiles/wadExplorer.dir/Things.cpp.i
+.PHONY : Things.cpp.i
+
+Things.s: Things.cpp.s
+
+.PHONY : Things.s
+
+# target to generate assembly for a file
+Things.cpp.s:
+	$(MAKE) -f CMakeFiles/wadExplorer.dir/build.make CMakeFiles/wadExplorer.dir/Things.cpp.s
+.PHONY : Things.cpp.s
+
 WadArchive.o: WadArchive.cpp.o
 
 .PHONY : WadArchive.o
@@ -306,6 +333,9 @@ help:
 	@echo "... SVGRenderer.o"
 	@echo "... SVGRenderer.i"
 	@echo "... SVGRenderer.s"
+	@echo "... Things.o"
+	@echo "... Things.i"
+	@echo "... Things.s"
 	@echo "... WadArchive.o"
 	@echo "... WadArchive.i"
 	@echo "... WadArchive.s"

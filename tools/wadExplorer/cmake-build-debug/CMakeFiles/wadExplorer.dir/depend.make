@@ -22,7 +22,11 @@ CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../Map.h
 CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../MapReader.h
 CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../SVGRenderer.cpp
 CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../SVGRenderer.h
+CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../Things.h
 CMakeFiles/wadExplorer.dir/SVGRenderer.cpp.o: ../WadArchive.h
+
+CMakeFiles/wadExplorer.dir/Things.cpp.o: ../Things.cpp
+CMakeFiles/wadExplorer.dir/Things.cpp.o: ../Things.h
 
 CMakeFiles/wadExplorer.dir/WadArchive.cpp.o: ../Lump.h
 CMakeFiles/wadExplorer.dir/WadArchive.cpp.o: ../WadArchive.cpp

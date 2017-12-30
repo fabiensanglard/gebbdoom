@@ -37,6 +37,8 @@ private:
     Lump& getNextLump(WadArchive::Lumps& lumps) {
         return lumps.at(mCursor++);
     }
+
+    void parseMap(int episode, int id, WadArchive::Lumps& lumps);
 };
 
 

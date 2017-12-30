@@ -6,11 +6,31 @@
 #define WADEXPLORER_MAP_H
 
 #include <vector>
+#include <cmath>
 #include "Lump.h"
 
 struct Point {
     int16_t x;
     int16_t y;
+
+    Point() {}
+    Point(int16_t inX, int16_t inY) : x(inX), y(inY) {}
+
+    void rotate(float degree) {
+        float radianAngle = degree * 2 * 3.1415 / 360;
+        int16_t newX = cos(radianAngle) * x - sin(radianAngle) * y;
+        int16_t newY = sin(radianAngle) * x - cos(radianAngle) * y;
+        x = newX;
+        y = newY;
+    }
+
+    Point substract(Point &point) {
+        return Point(x - point.x, y - point.y);
+    }
+
+    Point multiply(double d) {
+        return Point(x * d, y * d);
+    }
 };
 
 struct Node {
@@ -21,15 +41,42 @@ struct Node {
     int16_t right;
 };
 
+#define LINE_FLAG_SECRET (1 << 5)
+#define LINE_FLAG_BLOCK_SOUND (1 << 6)
+
 struct LineDef {
     Point start;
     Point end;
+    int16_t leftSideId;
+    int16_t rightSideId;
+    int16_t flags;
+
+    bool isOneSided() {
+        return leftSideId == -1;
+    }
+
+    bool hasFlag(size_t flag) {
+        return (flags & flag) == flag;
+    }
+
+    bool isSecret() {
+        return hasFlag(LINE_FLAG_SECRET);
+    }
+
+    bool isBlockSound() {
+        return hasFlag(LINE_FLAG_BLOCK_SOUND);
+    }
+
 };
 
 
 struct Seg {
     Point start;
     Point end;
+
+    bool isEmpty() {
+        return start.x == end.x && start.y == end.y;
+    }
 };
 
 using Segs = std::vector<Seg>;
@@ -92,14 +139,15 @@ public:
        Point pointDelta = {mStart.x - point.x, mStart.y - point.y};
        float length = mDelta.x * pointDelta.y - mDelta.y * pointDelta.x;
        if (length > 0) {
-           return Left;
-       } else if (length < 0) {
            return Right;
+       } else if (length < 0) {
+           return Left;
        }
        return OnPlan;
     }
 
     // Source: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection#Given_two_points_on_each_line
+    // Used when we know there is an intersection.
     Point findIntersection(Point& start, Point& end) {
         // U
         float x1 = mStart.x;
@@ -122,7 +170,44 @@ public:
         return intersection;
     }
 
+    // https://gamedev.stackexchange.com/questions/44720/line-intersection-from-parametric-equation
+    bool findSegIntersection(Point& start, Point& end, Point& intersection) {
+        // Plan         = a+t.b
+        // Polygon Edge = c+u.d
 
+        float cx = start.x;
+        float cy = start.y;
+        float dx = end.x - start.x;
+        float dy = end.y - start.y;
+
+        float ax = mStart.x;
+        float ay = mStart.y;
+        float bx = mDelta.x;
+        float by = mDelta.y;
+
+        float demoninator = (dx * by-dy * bx);
+
+        // Parallel, so no intersection
+        if (demoninator < 0.001 && demoninator > -0.001)
+            return false;
+
+        float u=(bx * (cy-ay) + by * (ax-cx))/demoninator;
+
+        // No intersection
+        if (u <0 || u > 1)
+            return  false;
+
+        intersection = {start.x + u * (end.x - start.x), start.y + u * (end.y - start.y)};
+        return true;
+    }
+
+    Point& start() {
+        return mStart;
+    }
+
+    Point& end() {
+        return mEnd;
+    }
 private:
     Point mStart;
     Point mEnd;
@@ -158,16 +243,29 @@ struct BlockMap {
     Point origin;
     short numRows;
     short numColumns;
-    std::vector<std::vector<uint16_t>> blocks;
+    std::vector<std::vector<uint16_t>> blocksLines;
     std::vector<std::vector<Seg>> segs;
 };
 
 struct Thing {
     Point position;
     short type;
+    // 0 is east, 90 is north, 180 is west, 270 is south. This value is only used for monsters, player
+    // starts, deathmatch starts, and teleporter landing spots. Other
+    // things look the same from all directions. Values are rounded to
+    // the nearest 45 degree angle, so if the value is 80, it will actually face 90 - north.
     short angle;
     short flags;
 };
+
+struct Splitter {
+    Point start;
+    Point end;
+    int depth;
+    Plan plan;
+    Polygon polygon;
+};
+
 
 class Map {
 public:
@@ -221,7 +319,7 @@ public:
 
     using Polygons = std::vector<Polygon>;
     Polygons& implicitSubSectors() {
-        return mImplicitSubectors;
+        return mImplicitSubsectors;
     }
 
     AABB& boundingBox() {
@@ -238,6 +336,15 @@ public:
     }
 
     void buildImplicitSubSectors();
+
+    using Splitters = std::vector<Splitter>;
+    Splitters& splitters() {
+        return mSplitters;
+    }
+
+    size_t bspMaxDepth() {
+        return mBspMaxDepth;
+    }
 private:
     Things mThings;
     AABB mBoundingBox;
@@ -246,19 +353,25 @@ private:
     Segs mSegs;
     Nodes mNodes;
     SubSectors mSubSectors;
-    Polygons mImplicitSubectors;
+    Polygons mImplicitSubsectors;
     int mEpisode;
     int mId;
 
     BlockMap mBlockMap;
 
-    void visitNodeR(Node& node, Polygon& polygon);
+    void visitNodeR(Node& node, Polygon& polygon, size_t depth = 0);
 
     void splitPolygon(Plan& plan, Polygon& sector, Polygon& left, Polygon& right);
 
     void clipPolygon(Polygon &tclipped, Polygon& polygon, Segs &plans);
 
-    void spliLine(Point &point, Point &anEnd, Plan &plan, Seg &left, Seg &right);
+    void spliLine(Point point, Point anEnd, Plan &plan, Seg &left, Seg &right);
+
+    Splitters mSplitters;
+
+    void buildSplitter(Plan &plan, Polygon &polygon, size_t depth);
+
+    size_t mBspMaxDepth = 0;
 };
 
 

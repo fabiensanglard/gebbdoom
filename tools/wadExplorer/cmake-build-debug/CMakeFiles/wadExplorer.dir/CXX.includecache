@@ -21,6 +21,8 @@ assert.h
 -
 iostream
 -
+cfloat
+-
 Map.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Map.h
 SVGRenderer.h
@@ -28,6 +30,8 @@ SVGRenderer.h
 
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Map.h
 vector
+-
+cmath
 -
 Lump.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Lump.h
@@ -57,12 +61,26 @@ Map.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Map.h
 MapReader.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/MapReader.h
+Things.h
+/Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Things.h
 
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/SVGRenderer.h
 Map.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Map.h
 MapReader.h
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/MapReader.h
+
+/Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Things.cpp
+Things.h
+/Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Things.h
+
+/Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/Things.h
+cstdint
+-
+unordered_map
+-
+string
+-
 
 /Users/fabiensanglard/Desktop/gebbdoom/tools/wadExplorer/WadArchive.cpp
 WadArchive.h

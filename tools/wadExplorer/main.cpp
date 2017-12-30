@@ -20,7 +20,7 @@ size_t getFilesize(const char* filename) {
 //int fd;
 //size_t filesize;
 
-uint8_t* openArchive(const char* filepath) {
+WadArchive&& openArchive(const char* filepath) {
 
     size_t filesize = getFilesize(filepath);
 
@@ -30,31 +30,20 @@ uint8_t* openArchive(const char* filepath) {
     //Execute mmap
     void* wad = mmap(NULL, filesize, PROT_READ, MAP_PRIVATE, fd, 0);
 
-    return static_cast<uint8_t*>(wad);
+    return WadArchive(static_cast<uint8_t*>(wad), filesize);
 }
 
-//void closeArchive(void* wad) {
-//    //Cleanup
+void closeArchive(void* wad) {
+    //Cleanup
 //    int rc = munmap(wad, filesize);
 //    assert(rc == 0);
 //    close(fd);
-//}
+}
 
 int main(int argc, char** argv) {
 
-//    Point planStart = {-5, 0};
-//    Point planEnd = {5,0};
-//    Plan p(planStart, planEnd);
-//    Point start = {2, 1};
-//    Point end = {2,-1};
-//    Point intersection = p.findIntersection(start, end);
-//    assert(intersection.x == 2);
-//    assert(intersection.y == 0);
-
-    uint8_t* wad = openArchive(argv[1]);
-
-    WadArchive archive;
-    archive.parse(wad);
+    WadArchive archive = openArchive(argv[1]);
+    archive.parse();
 
     MapReader mapReader;
     mapReader.parse(archive.lumps());
