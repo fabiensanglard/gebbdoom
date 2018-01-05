@@ -1,0 +1,983 @@
+<svg width="900" height="553" preserveAspectRatio="none" viewBox="-898 1918 4836 3076"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="2" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,4 L5,3 z" fill="#f00" />
+    </marker>
+  </defs>
+
+<line x1="1088" y1="3680" x2="1024" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="1088" cy="3680" r="10"/>    <circle cx="1024" cy="3680" r="10"/>
+<line x1="1024" y1="3680" x2="1024" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="1024" cy="3680" r="10"/>    <circle cx="1024" cy="3648" r="10"/>
+<line x1="1088" y1="3648" x2="1088" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="1088" cy="3648" r="10"/>    <circle cx="1088" cy="3680" r="10"/>
+<line x1="1152" y1="3648" x2="1088" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="1152" cy="3648" r="10"/>    <circle cx="1088" cy="3648" r="10"/>
+<line x1="1024" y1="3648" x2="960" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="1024" cy="3648" r="10"/>    <circle cx="960" cy="3648" r="10"/>
+<line x1="1280" y1="3552" x2="1152" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="1280" cy="3552" r="10"/>    <circle cx="1152" cy="3648" r="10"/>
+<line x1="960" y1="3648" x2="832" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="960" cy="3648" r="10"/>    <circle cx="832" cy="3552" r="10"/>
+<line x1="1344" y1="3552" x2="1280" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3552" r="10"/>    <circle cx="1280" cy="3552" r="10"/>
+<line x1="832" y1="3552" x2="704" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="832" cy="3552" r="10"/>    <circle cx="704" cy="3552" r="10"/>
+<line x1="896" y1="3392" x2="928" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="896" cy="3392" r="10"/>    <circle cx="928" cy="3392" r="10"/>
+<line x1="928" y1="3392" x2="928" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="928" cy="3392" r="10"/>    <circle cx="928" cy="3360" r="10"/>
+<line x1="928" y1="3360" x2="896" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="928" cy="3360" r="10"/>    <circle cx="896" cy="3360" r="10"/>
+<line x1="896" y1="3360" x2="896" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="896" cy="3360" r="10"/>    <circle cx="896" cy="3392" r="10"/>
+<line x1="1184" y1="3392" x2="1216" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="1184" cy="3392" r="10"/>    <circle cx="1216" cy="3392" r="10"/>
+<line x1="1216" y1="3392" x2="1216" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="1216" cy="3392" r="10"/>    <circle cx="1216" cy="3360" r="10"/>
+<line x1="1216" y1="3360" x2="1184" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="1216" cy="3360" r="10"/>    <circle cx="1184" cy="3360" r="10"/>
+<line x1="1184" y1="3360" x2="1184" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="1184" cy="3360" r="10"/>    <circle cx="1184" cy="3392" r="10"/>
+<line x1="896" y1="3072" x2="896" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="896" cy="3072" r="10"/>    <circle cx="896" cy="3104" r="10"/>
+<line x1="896" y1="3104" x2="928" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="896" cy="3104" r="10"/>    <circle cx="928" cy="3104" r="10"/>
+<line x1="928" y1="3104" x2="928" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="928" cy="3104" r="10"/>    <circle cx="928" cy="3072" r="10"/>
+<line x1="928" y1="3072" x2="896" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="928" cy="3072" r="10"/>    <circle cx="896" cy="3072" r="10"/>
+<line x1="1216" y1="3072" x2="1184" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="1216" cy="3072" r="10"/>    <circle cx="1184" cy="3072" r="10"/>
+<line x1="1184" y1="3072" x2="1184" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="1184" cy="3072" r="10"/>    <circle cx="1184" cy="3104" r="10"/>
+<line x1="1184" y1="3104" x2="1216" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="1184" cy="3104" r="10"/>    <circle cx="1216" cy="3104" r="10"/>
+<line x1="1216" y1="3104" x2="1216" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="1216" cy="3104" r="10"/>    <circle cx="1216" cy="3072" r="10"/>
+<line x1="1344" y1="3264" x2="1344" y2="3360" stroke-width="7" stroke="red" />
+    <circle cx="1344" cy="3264" r="10"/>    <circle cx="1344" cy="3360" r="10"/>
+<line x1="1344" y1="3200" x2="1344" y2="3264" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3200" r="10"/>    <circle cx="1344" cy="3264" r="10"/>
+<line x1="1344" y1="2880" x2="1344" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="2880" r="10"/>    <circle cx="1344" cy="3104" r="10"/>
+<line x1="1344" y1="3104" x2="1344" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="1344" cy="3104" r="10"/>    <circle cx="1344" cy="3200" r="10"/>
+<line x1="1376" y1="3200" x2="1376" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="1376" cy="3200" r="10"/>    <circle cx="1376" cy="3104" r="10"/>
+<line x1="1376" y1="3360" x2="1376" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="1376" cy="3360" r="10"/>    <circle cx="1376" cy="3264" r="10"/>
+<line x1="1344" y1="3264" x2="1376" y2="3264" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3264" r="10"/>    <circle cx="1376" cy="3264" r="10"/>
+<line x1="1376" y1="3360" x2="1344" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3360" r="10"/>    <circle cx="1344" cy="3360" r="10"/>
+<line x1="1376" y1="3200" x2="1344" y2="3200" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3200" r="10"/>    <circle cx="1344" cy="3200" r="10"/>
+<line x1="1344" y1="3104" x2="1376" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3104" r="10"/>    <circle cx="1376" cy="3104" r="10"/>
+<line x1="1376" y1="3264" x2="1376" y2="3200" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3264" r="10"/>    <circle cx="1376" cy="3200" r="10"/>
+<line x1="1376" y1="3104" x2="1376" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3104" r="10"/>    <circle cx="1376" cy="2944" r="10"/>
+<line x1="1184" y1="3392" x2="928" y2="3392" stroke-width="7" stroke="red" />
+    <circle cx="1184" cy="3392" r="10"/>    <circle cx="928" cy="3392" r="10"/>
+<line x1="1344" y1="3360" x2="1216" y2="3392" stroke-width="7" stroke="red" />
+    <circle cx="1344" cy="3360" r="10"/>    <circle cx="1216" cy="3392" r="10"/>
+<line x1="1216" y1="3072" x2="1344" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="1216" cy="3072" r="10"/>    <circle cx="1344" cy="3104" r="10"/>
+<line x1="704" y1="2944" x2="832" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="704" cy="2944" r="10"/>    <circle cx="832" cy="2944" r="10"/>
+<line x1="832" y1="2944" x2="968" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="832" cy="2944" r="10"/>    <circle cx="968" cy="2880" r="10"/>
+<line x1="968" y1="2880" x2="1216" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="968" cy="2880" r="10"/>    <circle cx="1216" cy="2880" r="10"/>
+<line x1="1376" y1="2944" x2="1472" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="2944" r="10"/>    <circle cx="1472" cy="2880" r="10"/>
+<line x1="1528" y1="3680" x2="1376" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="1528" cy="3680" r="10"/>    <circle cx="1376" cy="3648" r="10"/>
+<line x1="1672" y1="3744" x2="1528" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="1672" cy="3744" r="10"/>    <circle cx="1528" cy="3680" r="10"/>
+<line x1="1088" y1="3648" x2="1024" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="1088" cy="3648" r="10"/>    <circle cx="1024" cy="3648" r="10"/>
+<line x1="928" y1="3104" x2="1184" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="928" cy="3104" r="10"/>    <circle cx="1184" cy="3104" r="10"/>
+<line x1="1184" y1="3360" x2="928" y2="3360" stroke-width="7" stroke="red" />
+    <circle cx="1184" cy="3360" r="10"/>    <circle cx="928" cy="3360" r="10"/>
+<line x1="928" y1="3360" x2="928" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="928" cy="3360" r="10"/>    <circle cx="928" cy="3104" r="10"/>
+<line x1="896" y1="3360" x2="896" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="896" cy="3360" r="10"/>    <circle cx="896" cy="3104" r="10"/>
+<line x1="928" y1="3072" x2="1184" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="928" cy="3072" r="10"/>    <circle cx="1184" cy="3072" r="10"/>
+<line x1="704" y1="3552" x2="704" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="704" cy="3552" r="10"/>    <circle cx="704" cy="3360" r="10"/>
+<line x1="704" y1="3104" x2="704" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="704" cy="3104" r="10"/>    <circle cx="704" cy="2944" r="10"/>
+<line x1="704" y1="3104" x2="704" y2="3360" stroke-width="7" stroke="red" />
+    <circle cx="704" cy="3104" r="10"/>    <circle cx="704" cy="3360" r="10"/>
+<line x1="512" y1="3328" x2="512" y2="3304" stroke-width="7" stroke="black" />
+    <circle cx="512" cy="3328" r="10"/>    <circle cx="512" cy="3304" r="10"/>
+<line x1="512" y1="3160" x2="512" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="512" cy="3160" r="10"/>    <circle cx="512" cy="3136" r="10"/>
+<line x1="512" y1="3136" x2="680" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="512" cy="3136" r="10"/>    <circle cx="680" cy="3104" r="10"/>
+<line x1="680" y1="3104" x2="704" y2="3104" stroke-width="7" stroke="black" />
+    <circle cx="680" cy="3104" r="10"/>    <circle cx="704" cy="3104" r="10"/>
+<line x1="704" y1="3360" x2="680" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="704" cy="3360" r="10"/>    <circle cx="680" cy="3360" r="10"/>
+<line x1="680" y1="3360" x2="512" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="680" cy="3360" r="10"/>    <circle cx="512" cy="3328" r="10"/>
+<line x1="496" y1="3160" x2="496" y2="3304" stroke-width="7" stroke="red" />
+    <circle cx="496" cy="3160" r="10"/>    <circle cx="496" cy="3304" r="10"/>
+<line x1="512" y1="3304" x2="496" y2="3304" stroke-width="7" stroke="black" />
+    <circle cx="512" cy="3304" r="10"/>    <circle cx="496" cy="3304" r="10"/>
+<line x1="496" y1="3160" x2="512" y2="3160" stroke-width="7" stroke="black" />
+    <circle cx="496" cy="3160" r="10"/>    <circle cx="512" cy="3160" r="10"/>
+<line x1="496" y1="3304" x2="496" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="496" cy="3304" r="10"/>    <circle cx="496" cy="3328" r="10"/>
+<line x1="496" y1="3328" x2="448" y2="3456" stroke-width="7" stroke="black" />
+    <circle cx="496" cy="3328" r="10"/>    <circle cx="448" cy="3456" r="10"/>
+<line x1="448" y1="3456" x2="128" y2="3456" stroke-width="7" stroke="black" />
+    <circle cx="448" cy="3456" r="10"/>    <circle cx="128" cy="3456" r="10"/>
+<line x1="128" y1="3008" x2="448" y2="3008" stroke-width="7" stroke="black" />
+    <circle cx="128" cy="3008" r="10"/>    <circle cx="448" cy="3008" r="10"/>
+<line x1="496" y1="3136" x2="496" y2="3160" stroke-width="7" stroke="black" />
+    <circle cx="496" cy="3136" r="10"/>    <circle cx="496" cy="3160" r="10"/>
+<line x1="448" y1="3008" x2="496" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="448" cy="3008" r="10"/>    <circle cx="496" cy="3136" r="10"/>
+<line x1="128" y1="3264" x2="160" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="128" cy="3264" r="10"/>    <circle cx="160" cy="3264" r="10"/>
+<line x1="160" y1="3264" x2="192" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="160" cy="3264" r="10"/>    <circle cx="192" cy="3264" r="10"/>
+<line x1="192" y1="3264" x2="224" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="192" cy="3264" r="10"/>    <circle cx="224" cy="3264" r="10"/>
+<line x1="224" y1="3264" x2="256" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="224" cy="3264" r="10"/>    <circle cx="256" cy="3264" r="10"/>
+<line x1="256" y1="3264" x2="288" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3264" r="10"/>    <circle cx="288" cy="3264" r="10"/>
+<line x1="288" y1="3264" x2="320" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="288" cy="3264" r="10"/>    <circle cx="320" cy="3264" r="10"/>
+<line x1="320" y1="3264" x2="320" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3264" r="10"/>    <circle cx="320" cy="3200" r="10"/>
+<line x1="320" y1="3200" x2="288" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3200" r="10"/>    <circle cx="288" cy="3200" r="10"/>
+<line x1="288" y1="3200" x2="256" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="288" cy="3200" r="10"/>    <circle cx="256" cy="3200" r="10"/>
+<line x1="256" y1="3200" x2="224" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3200" r="10"/>    <circle cx="224" cy="3200" r="10"/>
+<line x1="224" y1="3200" x2="192" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="224" cy="3200" r="10"/>    <circle cx="192" cy="3200" r="10"/>
+<line x1="192" y1="3200" x2="160" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="192" cy="3200" r="10"/>    <circle cx="160" cy="3200" r="10"/>
+<line x1="160" y1="3200" x2="128" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="160" cy="3200" r="10"/>    <circle cx="128" cy="3200" r="10"/>
+<line x1="160" y1="3264" x2="160" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="160" cy="3264" r="10"/>    <circle cx="160" cy="3200" r="10"/>
+<line x1="192" y1="3264" x2="192" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="192" cy="3264" r="10"/>    <circle cx="192" cy="3200" r="10"/>
+<line x1="224" y1="3264" x2="224" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="224" cy="3264" r="10"/>    <circle cx="224" cy="3200" r="10"/>
+<line x1="256" y1="3264" x2="256" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3264" r="10"/>    <circle cx="256" cy="3200" r="10"/>
+<line x1="288" y1="3264" x2="288" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="288" cy="3264" r="10"/>    <circle cx="288" cy="3200" r="10"/>
+<line x1="128" y1="3264" x2="128" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="128" cy="3264" r="10"/>    <circle cx="128" cy="3200" r="10"/>
+<line x1="128" y1="3200" x2="64" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="128" cy="3200" r="10"/>    <circle cx="64" cy="3072" r="10"/>
+<line x1="64" y1="3072" x2="128" y2="3008" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="3072" r="10"/>    <circle cx="128" cy="3008" r="10"/>
+<line x1="128" y1="3456" x2="64" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="128" cy="3456" r="10"/>    <circle cx="64" cy="3392" r="10"/>
+<line x1="64" y1="3392" x2="128" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="64" cy="3392" r="10"/>    <circle cx="128" cy="3264" r="10"/>
+<line x1="64" y1="3392" x2="48" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="3392" r="10"/>    <circle cx="48" cy="3392" r="10"/>
+<line x1="48" y1="3392" x2="-64" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="48" cy="3392" r="10"/>    <circle cx="-64" cy="3328" r="10"/>
+<line x1="-64" y1="3136" x2="48" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="-64" cy="3136" r="10"/>    <circle cx="48" cy="3072" r="10"/>
+<line x1="48" y1="3072" x2="64" y2="3072" stroke-width="7" stroke="black" />
+    <circle cx="48" cy="3072" r="10"/>    <circle cx="64" cy="3072" r="10"/>
+<line x1="-256" y1="3328" x2="-320" y2="3296" stroke-width="7" stroke="black" />
+    <circle cx="-256" cy="3328" r="10"/>    <circle cx="-320" cy="3296" r="10"/>
+<line x1="-320" y1="3168" x2="-256" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="-320" cy="3168" r="10"/>    <circle cx="-256" cy="3136" r="10"/>
+<line x1="-128" y1="3120" x2="-128" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="-128" cy="3120" r="10"/>    <circle cx="-128" cy="3136" r="10"/>
+<line x1="-256" y1="3136" x2="-256" y2="3120" stroke-width="7" stroke="black" />
+    <circle cx="-256" cy="3136" r="10"/>    <circle cx="-256" cy="3120" r="10"/>
+<line x1="-256" y1="3344" x2="-256" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="-256" cy="3344" r="10"/>    <circle cx="-256" cy="3328" r="10"/>
+<line x1="-128" y1="3328" x2="-128" y2="3344" stroke-width="7" stroke="black" />
+    <circle cx="-128" cy="3328" r="10"/>    <circle cx="-128" cy="3344" r="10"/>
+<line x1="-320" y1="3296" x2="-336" y2="3296" stroke-width="7" stroke="black" />
+    <circle cx="-320" cy="3296" r="10"/>    <circle cx="-336" cy="3296" r="10"/>
+<line x1="-336" y1="3168" x2="-320" y2="3168" stroke-width="7" stroke="black" />
+    <circle cx="-336" cy="3168" r="10"/>    <circle cx="-320" cy="3168" r="10"/>
+<line x1="-256" y1="3120" x2="-336" y2="3120" stroke-width="7" stroke="black" />
+    <circle cx="-256" cy="3120" r="10"/>    <circle cx="-336" cy="3120" r="10"/>
+<line x1="-336" y1="3120" x2="-336" y2="3168" stroke-width="7" stroke="black" />
+    <circle cx="-336" cy="3120" r="10"/>    <circle cx="-336" cy="3168" r="10"/>
+<line x1="-336" y1="3296" x2="-336" y2="3344" stroke-width="7" stroke="black" />
+    <circle cx="-336" cy="3296" r="10"/>    <circle cx="-336" cy="3344" r="10"/>
+<line x1="-336" y1="3344" x2="-256" y2="3344" stroke-width="7" stroke="black" />
+    <circle cx="-336" cy="3344" r="10"/>    <circle cx="-256" cy="3344" r="10"/>
+<line x1="-128" y1="3344" x2="-96" y2="3344" stroke-width="7" stroke="black" />
+    <circle cx="-128" cy="3344" r="10"/>    <circle cx="-96" cy="3344" r="10"/>
+<line x1="-96" y1="3344" x2="64" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="-96" cy="3344" r="10"/>    <circle cx="64" cy="3520" r="10"/>
+<line x1="-96" y1="3120" x2="-128" y2="3120" stroke-width="7" stroke="black" />
+    <circle cx="-96" cy="3120" r="10"/>    <circle cx="-128" cy="3120" r="10"/>
+<line x1="64" y1="2944" x2="-96" y2="3120" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="2944" r="10"/>    <circle cx="-96" cy="3120" r="10"/>
+<line x1="-64" y1="3136" x2="-64" y2="3328" stroke-width="7" stroke="red" />
+    <circle cx="-64" cy="3136" r="10"/>    <circle cx="-64" cy="3328" r="10"/>
+<line x1="-128" y1="3328" x2="-256" y2="3328" stroke-width="7" stroke="red" />
+    <circle cx="-128" cy="3328" r="10"/>    <circle cx="-256" cy="3328" r="10"/>
+<line x1="-256" y1="3344" x2="-128" y2="3344" stroke-width="7" stroke="red" />
+    <circle cx="-256" cy="3344" r="10"/>    <circle cx="-128" cy="3344" r="10"/>
+<line x1="-256" y1="3136" x2="-128" y2="3136" stroke-width="7" stroke="red" />
+    <circle cx="-256" cy="3136" r="10"/>    <circle cx="-128" cy="3136" r="10"/>
+<line x1="-128" y1="3120" x2="-256" y2="3120" stroke-width="7" stroke="red" />
+    <circle cx="-128" cy="3120" r="10"/>    <circle cx="-256" cy="3120" r="10"/>
+<line x1="-320" y1="3296" x2="-320" y2="3168" stroke-width="7" stroke="red" />
+    <circle cx="-320" cy="3296" r="10"/>    <circle cx="-320" cy="3168" r="10"/>
+<line x1="-336" y1="3168" x2="-336" y2="3296" stroke-width="7" stroke="red" />
+    <circle cx="-336" cy="3168" r="10"/>    <circle cx="-336" cy="3296" r="10"/>
+<line x1="64" y1="2816" x2="64" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="2816" r="10"/>    <circle cx="64" cy="2944" r="10"/>
+<line x1="64" y1="3520" x2="64" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="3520" r="10"/>    <circle cx="64" cy="3648" r="10"/>
+<line x1="64" y1="3648" x2="-640" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="64" cy="3648" r="10"/>    <circle cx="-640" cy="3648" r="10"/>
+<line x1="-640" y1="3648" x2="-768" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="-640" cy="3648" r="10"/>    <circle cx="-768" cy="3520" r="10"/>
+<line x1="-768" y1="3520" x2="-768" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="-768" cy="3520" r="10"/>    <circle cx="-768" cy="2944" r="10"/>
+<line x1="-768" y1="2944" x2="-640" y2="2816" stroke-width="7" stroke="black" />
+    <circle cx="-768" cy="2944" r="10"/>    <circle cx="-640" cy="2816" r="10"/>
+<line x1="-640" y1="2816" x2="64" y2="2816" stroke-width="7" stroke="black" />
+    <circle cx="-640" cy="2816" r="10"/>    <circle cx="64" cy="2816" r="10"/>
+<line x1="64" y1="3648" x2="-640" y2="3520" stroke-width="7" stroke="red" />
+    <circle cx="64" cy="3648" r="10"/>    <circle cx="-640" cy="3520" r="10"/>
+<line x1="-640" y1="3520" x2="-640" y2="2944" stroke-width="7" stroke="red" />
+    <circle cx="-640" cy="3520" r="10"/>    <circle cx="-640" cy="2944" r="10"/>
+<line x1="-640" y1="2944" x2="64" y2="2816" stroke-width="7" stroke="red" />
+    <circle cx="-640" cy="2944" r="10"/>    <circle cx="64" cy="2816" r="10"/>
+<line x1="-128" y1="3136" x2="-88" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="-128" cy="3136" r="10"/>    <circle cx="-88" cy="3136" r="10"/>
+<line x1="-88" y1="3136" x2="-64" y2="3136" stroke-width="7" stroke="black" />
+    <circle cx="-88" cy="3136" r="10"/>    <circle cx="-64" cy="3136" r="10"/>
+<line x1="-64" y1="3328" x2="-88" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="-64" cy="3328" r="10"/>    <circle cx="-88" cy="3328" r="10"/>
+<line x1="-88" y1="3328" x2="-128" y2="3328" stroke-width="7" stroke="black" />
+    <circle cx="-88" cy="3328" r="10"/>    <circle cx="-128" cy="3328" r="10"/>
+<line x1="256" y1="3136" x2="320" y2="3136" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3136" r="10"/>    <circle cx="320" cy="3136" r="10"/>
+<line x1="320" y1="3136" x2="320" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3136" r="10"/>    <circle cx="320" cy="3072" r="10"/>
+<line x1="320" y1="3072" x2="256" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3072" r="10"/>    <circle cx="256" cy="3072" r="10"/>
+<line x1="256" y1="3072" x2="256" y2="3136" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3072" r="10"/>    <circle cx="256" cy="3136" r="10"/>
+<line x1="256" y1="3392" x2="320" y2="3392" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3392" r="10"/>    <circle cx="320" cy="3392" r="10"/>
+<line x1="320" y1="3392" x2="320" y2="3328" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3392" r="10"/>    <circle cx="320" cy="3328" r="10"/>
+<line x1="320" y1="3328" x2="256" y2="3328" stroke-width="7" stroke="red" />
+    <circle cx="320" cy="3328" r="10"/>    <circle cx="256" cy="3328" r="10"/>
+<line x1="256" y1="3328" x2="256" y2="3392" stroke-width="7" stroke="red" />
+    <circle cx="256" cy="3328" r="10"/>    <circle cx="256" cy="3392" r="10"/>
+<line x1="1216" y1="2880" x2="1248" y2="2528" stroke-width="7" stroke="black" />
+    <circle cx="1216" cy="2880" r="10"/>    <circle cx="1248" cy="2528" r="10"/>
+<line x1="1384" y1="2592" x2="1344" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="1384" cy="2592" r="10"/>    <circle cx="1344" cy="2880" r="10"/>
+<line x1="1472" y1="2560" x2="1384" y2="2592" stroke-width="7" stroke="black" />
+    <circle cx="1472" cy="2560" r="10"/>    <circle cx="1384" cy="2592" r="10"/>
+<line x1="1248" y1="2528" x2="1472" y2="2432" stroke-width="7" stroke="black" />
+    <circle cx="1248" cy="2528" r="10"/>    <circle cx="1472" cy="2432" r="10"/>
+<line x1="1344" y1="2880" x2="1216" y2="2880" stroke-width="7" stroke="red" />
+    <circle cx="1344" cy="2880" r="10"/>    <circle cx="1216" cy="2880" r="10"/>
+<line x1="1472" y1="2432" x2="1472" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="1472" cy="2432" r="10"/>    <circle cx="1472" cy="2560" r="10"/>
+<line x1="1536" y1="2432" x2="1536" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="1536" cy="2432" r="10"/>    <circle cx="1536" cy="2560" r="10"/>
+<line x1="1552" y1="2560" x2="1552" y2="2432" stroke-width="7" stroke="red" />
+    <circle cx="1552" cy="2560" r="10"/>    <circle cx="1552" cy="2432" r="10"/>
+<line x1="1536" y1="2560" x2="1472" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="1536" cy="2560" r="10"/>    <circle cx="1472" cy="2560" r="10"/>
+<line x1="1472" y1="2432" x2="1536" y2="2432" stroke-width="7" stroke="black" />
+    <circle cx="1472" cy="2432" r="10"/>    <circle cx="1536" cy="2432" r="10"/>
+<line x1="1536" y1="2432" x2="1552" y2="2432" stroke-width="7" stroke="black" />
+    <circle cx="1536" cy="2432" r="10"/>    <circle cx="1552" cy="2432" r="10"/>
+<line x1="1552" y1="2560" x2="1536" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="1552" cy="2560" r="10"/>    <circle cx="1536" cy="2560" r="10"/>
+<line x1="1664" y1="2560" x2="1552" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2560" r="10"/>    <circle cx="1552" cy="2560" r="10"/>
+<line x1="1552" y1="2432" x2="1664" y2="2432" stroke-width="7" stroke="black" />
+    <circle cx="1552" cy="2432" r="10"/>    <circle cx="1664" cy="2432" r="10"/>
+<line x1="2736" y1="3648" x2="2488" y2="3744" stroke-width="7" stroke="black" />
+    <circle cx="2736" cy="3648" r="10"/>    <circle cx="2488" cy="3744" r="10"/>
+<line x1="2488" y1="3744" x2="2240" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2488" cy="3744" r="10"/>    <circle cx="2240" cy="3776" r="10"/>
+<line x1="1984" y1="3776" x2="1672" y2="3744" stroke-width="7" stroke="black" />
+    <circle cx="1984" cy="3776" r="10"/>    <circle cx="1672" cy="3744" r="10"/>
+<line x1="1856" y1="2880" x2="1920" y2="2920" stroke-width="7" stroke="red" />
+    <circle cx="1856" cy="2880" r="10"/>    <circle cx="1920" cy="2920" r="10"/>
+<line x1="1520" y1="3168" x2="1672" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="1520" cy="3168" r="10"/>    <circle cx="1672" cy="3104" r="10"/>
+<line x1="1672" y1="3104" x2="1896" y2="3104" stroke-width="7" stroke="red" />
+    <circle cx="1672" cy="3104" r="10"/>    <circle cx="1896" cy="3104" r="10"/>
+<line x1="1896" y1="3104" x2="2040" y2="3144" stroke-width="7" stroke="red" />
+    <circle cx="1896" cy="3104" r="10"/>    <circle cx="2040" cy="3144" r="10"/>
+<line x1="2040" y1="3144" x2="2128" y2="3272" stroke-width="7" stroke="red" />
+    <circle cx="2040" cy="3144" r="10"/>    <circle cx="2128" cy="3272" r="10"/>
+<line x1="2128" y1="3272" x2="2064" y2="3408" stroke-width="7" stroke="red" />
+    <circle cx="2128" cy="3272" r="10"/>    <circle cx="2064" cy="3408" r="10"/>
+<line x1="2064" y1="3408" x2="1784" y2="3448" stroke-width="7" stroke="red" />
+    <circle cx="2064" cy="3408" r="10"/>    <circle cx="1784" cy="3448" r="10"/>
+<line x1="1784" y1="3448" x2="1544" y2="3384" stroke-width="7" stroke="red" />
+    <circle cx="1784" cy="3448" r="10"/>    <circle cx="1544" cy="3384" r="10"/>
+<line x1="1544" y1="3384" x2="1520" y2="3168" stroke-width="7" stroke="red" />
+    <circle cx="1544" cy="3384" r="10"/>    <circle cx="1520" cy="3168" r="10"/>
+<line x1="2752" y1="2784" x2="2624" y2="2784" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="2784" r="10"/>    <circle cx="2624" cy="2784" r="10"/>
+<line x1="2520" y1="2560" x2="2752" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2520" cy="2560" r="10"/>    <circle cx="2752" cy="2560" r="10"/>
+<line x1="2752" y1="2560" x2="2944" y2="2656" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="2560" r="10"/>    <circle cx="2944" cy="2656" r="10"/>
+<line x1="2880" y1="2912" x2="2880" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="2880" cy="2912" r="10"/>    <circle cx="2880" cy="2880" r="10"/>
+<line x1="3048" y1="2880" x2="3048" y2="2944" stroke-width="7" stroke="black" />
+    <circle cx="3048" cy="2880" r="10"/>    <circle cx="3048" cy="2944" r="10"/>
+<line x1="2752" y1="3048" x2="2752" y2="2912" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3048" r="10"/>    <circle cx="2752" cy="2912" r="10"/>
+<line x1="2752" y1="3584" x2="2752" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3584" r="10"/>    <circle cx="2752" cy="3360" r="10"/>
+<line x1="2736" y1="3360" x2="2736" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="2736" cy="3360" r="10"/>    <circle cx="2736" cy="3648" r="10"/>
+<line x1="2752" y1="3360" x2="2736" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3360" r="10"/>    <circle cx="2736" cy="3360" r="10"/>
+<line x1="3048" y1="2944" x2="3304" y2="3040" stroke-width="7" stroke="black" />
+    <circle cx="3048" cy="2944" r="10"/>    <circle cx="3304" cy="3040" r="10"/>
+<line x1="3136" y1="3072" x2="3304" y2="3040" stroke-width="7" stroke="red" />
+    <circle cx="3136" cy="3072" r="10"/>    <circle cx="3304" cy="3040" r="10"/>
+<line x1="3112" y1="3360" x2="2944" y2="3536" stroke-width="7" stroke="red" />
+    <circle cx="3112" cy="3360" r="10"/>    <circle cx="2944" cy="3536" r="10"/>
+<line x1="2816" y1="3232" x2="3112" y2="3360" stroke-width="7" stroke="red" />
+    <circle cx="2816" cy="3232" r="10"/>    <circle cx="3112" cy="3360" r="10"/>
+<line x1="3280" y1="3320" x2="2984" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="3280" cy="3320" r="10"/>    <circle cx="2984" cy="3200" r="10"/>
+<line x1="2976" y1="3072" x2="2816" y2="3232" stroke-width="7" stroke="red" />
+    <circle cx="2976" cy="3072" r="10"/>    <circle cx="2816" cy="3232" r="10"/>
+<line x1="2984" y1="3200" x2="3136" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="2984" cy="3200" r="10"/>    <circle cx="3136" cy="3072" r="10"/>
+<line x1="3264" y1="3616" x2="3072" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="3264" cy="3616" r="10"/>    <circle cx="3072" cy="3648" r="10"/>
+<line x1="2944" y1="3648" x2="2752" y2="3584" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="3648" r="10"/>    <circle cx="2752" cy="3584" r="10"/>
+<line x1="3072" y1="3648" x2="3072" y2="4000" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="3648" r="10"/>    <circle cx="3072" cy="4000" r="10"/>
+<line x1="2944" y1="3776" x2="2944" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="3776" r="10"/>    <circle cx="2944" cy="3648" r="10"/>
+<line x1="2752" y1="2784" x2="2944" y2="2656" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="2784" r="10"/>    <circle cx="2944" cy="2656" r="10"/>
+<line x1="2752" y1="3360" x2="2944" y2="3536" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="3360" r="10"/>    <circle cx="2944" cy="3536" r="10"/>
+<line x1="2944" y1="3536" x2="3072" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="2944" cy="3536" r="10"/>    <circle cx="3072" cy="3648" r="10"/>
+<line x1="2752" y1="3048" x2="3048" y2="2880" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="3048" r="10"/>    <circle cx="3048" cy="2880" r="10"/>
+<line x1="2944" y1="3536" x2="2752" y2="3584" stroke-width="7" stroke="red" />
+    <circle cx="2944" cy="3536" r="10"/>    <circle cx="2752" cy="3584" r="10"/>
+<line x1="3104" y1="3552" x2="3280" y2="3320" stroke-width="7" stroke="red" />
+    <circle cx="3104" cy="3552" r="10"/>    <circle cx="3280" cy="3320" r="10"/>
+<line x1="3264" y1="3616" x2="3104" y2="3552" stroke-width="7" stroke="red" />
+    <circle cx="3264" cy="3616" r="10"/>    <circle cx="3104" cy="3552" r="10"/>
+<line x1="3352" y1="3568" x2="3264" y2="3616" stroke-width="7" stroke="black" />
+    <circle cx="3352" cy="3568" r="10"/>    <circle cx="3264" cy="3616" r="10"/>
+<line x1="3472" y1="3432" x2="3408" y2="3432" stroke-width="7" stroke="red" />
+    <circle cx="3472" cy="3432" r="10"/>    <circle cx="3408" cy="3432" r="10"/>
+<line x1="3408" y1="3432" x2="3312" y2="3496" stroke-width="7" stroke="red" />
+    <circle cx="3408" cy="3432" r="10"/>    <circle cx="3312" cy="3496" r="10"/>
+<line x1="3312" y1="3496" x2="3352" y2="3568" stroke-width="7" stroke="red" />
+    <circle cx="3312" cy="3496" r="10"/>    <circle cx="3352" cy="3568" r="10"/>
+<line x1="2240" y1="3776" x2="2208" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="2240" cy="3776" r="10"/>    <circle cx="2208" cy="3680" r="10"/>
+<line x1="2208" y1="3680" x2="2176" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="2208" cy="3680" r="10"/>    <circle cx="2176" cy="3680" r="10"/>
+<line x1="2016" y1="3680" x2="1984" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2016" cy="3680" r="10"/>    <circle cx="1984" cy="3776" r="10"/>
+<line x1="2048" y1="3680" x2="2016" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3680" r="10"/>    <circle cx="2016" cy="3680" r="10"/>
+<line x1="2176" y1="3776" x2="2176" y2="3808" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3776" r="10"/>    <circle cx="2176" cy="3808" r="10"/>
+<line x1="2176" y1="3808" x2="2176" y2="3840" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3808" r="10"/>    <circle cx="2176" cy="3840" r="10"/>
+<line x1="2048" y1="3808" x2="2048" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3808" r="10"/>    <circle cx="2048" cy="3776" r="10"/>
+<line x1="2048" y1="3840" x2="2048" y2="3808" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3840" r="10"/>    <circle cx="2048" cy="3808" r="10"/>
+<line x1="2048" y1="3872" x2="2048" y2="3840" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3872" r="10"/>    <circle cx="2048" cy="3840" r="10"/>
+<line x1="2048" y1="3904" x2="2048" y2="3872" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3904" r="10"/>    <circle cx="2048" cy="3872" r="10"/>
+<line x1="2176" y1="3840" x2="2176" y2="3872" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3840" r="10"/>    <circle cx="2176" cy="3872" r="10"/>
+<line x1="2176" y1="3872" x2="2176" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3872" r="10"/>    <circle cx="2176" cy="3904" r="10"/>
+<line x1="2240" y1="4096" x2="2112" y2="4032" stroke-width="7" stroke="black" />
+    <circle cx="2240" cy="4096" r="10"/>    <circle cx="2112" cy="4032" r="10"/>
+<line x1="2176" y1="3680" x2="2048" y2="3680" stroke-width="7" stroke="red" />
+    <circle cx="2176" cy="3680" r="10"/>    <circle cx="2048" cy="3680" r="10"/>
+<line x1="2048" y1="3776" x2="2176" y2="3776" stroke-width="7" stroke="red" />
+    <circle cx="2048" cy="3776" r="10"/>    <circle cx="2176" cy="3776" r="10"/>
+<line x1="2048" y1="3808" x2="2176" y2="3808" stroke-width="7" stroke="red" />
+    <circle cx="2048" cy="3808" r="10"/>    <circle cx="2176" cy="3808" r="10"/>
+<line x1="2048" y1="3840" x2="2176" y2="3840" stroke-width="7" stroke="red" />
+    <circle cx="2048" cy="3840" r="10"/>    <circle cx="2176" cy="3840" r="10"/>
+<line x1="2048" y1="3872" x2="2176" y2="3872" stroke-width="7" stroke="red" />
+    <circle cx="2048" cy="3872" r="10"/>    <circle cx="2176" cy="3872" r="10"/>
+<line x1="2048" y1="3904" x2="2176" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2048" cy="3904" r="10"/>    <circle cx="2176" cy="3904" r="10"/>
+<line x1="2240" y1="4096" x2="2240" y2="3968" stroke-width="7" stroke="red" />
+    <circle cx="2240" cy="4096" r="10"/>    <circle cx="2240" cy="3968" r="10"/>
+<line x1="2368" y1="3968" x2="2368" y2="4096" stroke-width="7" stroke="red" />
+    <circle cx="2368" cy="3968" r="10"/>    <circle cx="2368" cy="4096" r="10"/>
+<line x1="2880" y1="3776" x2="2880" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2880" cy="3776" r="10"/>    <circle cx="2880" cy="3904" r="10"/>
+<line x1="2848" y1="3776" x2="2848" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2848" cy="3776" r="10"/>    <circle cx="2848" cy="3904" r="10"/>
+<line x1="2816" y1="3776" x2="2816" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2816" cy="3776" r="10"/>    <circle cx="2816" cy="3904" r="10"/>
+<line x1="2784" y1="3776" x2="2784" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2784" cy="3776" r="10"/>    <circle cx="2784" cy="3904" r="10"/>
+<line x1="2752" y1="3776" x2="2752" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="3776" r="10"/>    <circle cx="2752" cy="3904" r="10"/>
+<line x1="2688" y1="3776" x2="2720" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2688" cy="3776" r="10"/>    <circle cx="2720" cy="3904" r="10"/>
+<line x1="2632" y1="3792" x2="2688" y2="3920" stroke-width="7" stroke="red" />
+    <circle cx="2632" cy="3792" r="10"/>    <circle cx="2688" cy="3920" r="10"/>
+<line x1="2632" y1="3792" x2="2688" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2632" cy="3792" r="10"/>    <circle cx="2688" cy="3776" r="10"/>
+<line x1="2720" y1="3904" x2="2688" y2="3920" stroke-width="7" stroke="black" />
+    <circle cx="2720" cy="3904" r="10"/>    <circle cx="2688" cy="3920" r="10"/>
+<line x1="2688" y1="3776" x2="2752" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2688" cy="3776" r="10"/>    <circle cx="2752" cy="3776" r="10"/>
+<line x1="2752" y1="3776" x2="2784" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3776" r="10"/>    <circle cx="2784" cy="3776" r="10"/>
+<line x1="2784" y1="3776" x2="2816" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2784" cy="3776" r="10"/>    <circle cx="2816" cy="3776" r="10"/>
+<line x1="2816" y1="3776" x2="2848" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2816" cy="3776" r="10"/>    <circle cx="2848" cy="3776" r="10"/>
+<line x1="2848" y1="3776" x2="2880" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2848" cy="3776" r="10"/>    <circle cx="2880" cy="3776" r="10"/>
+<line x1="2880" y1="3904" x2="2848" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2880" cy="3904" r="10"/>    <circle cx="2848" cy="3904" r="10"/>
+<line x1="2848" y1="3904" x2="2816" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2848" cy="3904" r="10"/>    <circle cx="2816" cy="3904" r="10"/>
+<line x1="2816" y1="3904" x2="2784" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2816" cy="3904" r="10"/>    <circle cx="2784" cy="3904" r="10"/>
+<line x1="2784" y1="3904" x2="2752" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2784" cy="3904" r="10"/>    <circle cx="2752" cy="3904" r="10"/>
+<line x1="2752" y1="3904" x2="2720" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3904" r="10"/>    <circle cx="2720" cy="3904" r="10"/>
+<line x1="2880" y1="3776" x2="2912" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2880" cy="3776" r="10"/>    <circle cx="2912" cy="3776" r="10"/>
+<line x1="2912" y1="3904" x2="2880" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="3904" r="10"/>    <circle cx="2880" cy="3904" r="10"/>
+<line x1="2944" y1="3904" x2="2912" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="3904" r="10"/>    <circle cx="2912" cy="3904" r="10"/>
+<line x1="2912" y1="3776" x2="2944" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="3776" r="10"/>    <circle cx="2944" cy="3776" r="10"/>
+<line x1="2944" y1="3904" x2="2944" y2="3776" stroke-width="7" stroke="red" />
+    <circle cx="2944" cy="3904" r="10"/>    <circle cx="2944" cy="3776" r="10"/>
+<line x1="2912" y1="3776" x2="2912" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="2912" cy="3776" r="10"/>    <circle cx="2912" cy="3904" r="10"/>
+<line x1="2944" y1="4000" x2="2944" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="4000" r="10"/>    <circle cx="2944" cy="3904" r="10"/>
+<line x1="2736" y1="3648" x2="2240" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="2736" cy="3648" r="10"/>    <circle cx="2240" cy="3648" r="10"/>
+<line x1="2240" y1="3648" x2="1984" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="2240" cy="3648" r="10"/>    <circle cx="1984" cy="3648" r="10"/>
+<line x1="1984" y1="3648" x2="1376" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="3648" r="10"/>    <circle cx="1376" cy="3648" r="10"/>
+<line x1="1984" y1="3648" x2="1984" y2="3776" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="3648" r="10"/>    <circle cx="1984" cy="3776" r="10"/>
+<line x1="2240" y1="3776" x2="2240" y2="3648" stroke-width="7" stroke="red" />
+    <circle cx="2240" cy="3776" r="10"/>    <circle cx="2240" cy="3648" r="10"/>
+<line x1="2688" y1="3920" x2="2672" y2="3920" stroke-width="7" stroke="black" />
+    <circle cx="2688" cy="3920" r="10"/>    <circle cx="2672" cy="3920" r="10"/>
+<line x1="2672" y1="3920" x2="2368" y2="4096" stroke-width="7" stroke="black" />
+    <circle cx="2672" cy="3920" r="10"/>    <circle cx="2368" cy="4096" r="10"/>
+<line x1="2368" y1="3968" x2="2616" y2="3792" stroke-width="7" stroke="black" />
+    <circle cx="2368" cy="3968" r="10"/>    <circle cx="2616" cy="3792" r="10"/>
+<line x1="2616" y1="3792" x2="2632" y2="3792" stroke-width="7" stroke="black" />
+    <circle cx="2616" cy="3792" r="10"/>    <circle cx="2632" cy="3792" r="10"/>
+<line x1="2176" y1="3904" x2="2176" y2="3920" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3904" r="10"/>    <circle cx="2176" cy="3920" r="10"/>
+<line x1="2176" y1="3920" x2="2240" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3920" r="10"/>    <circle cx="2240" cy="3968" r="10"/>
+<line x1="2112" y1="4032" x2="2048" y2="3920" stroke-width="7" stroke="black" />
+    <circle cx="2112" cy="4032" r="10"/>    <circle cx="2048" cy="3920" r="10"/>
+<line x1="2048" y1="3920" x2="2048" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3920" r="10"/>    <circle cx="2048" cy="3904" r="10"/>
+<line x1="2752" y1="3048" x2="2976" y2="3072" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="3048" r="10"/>    <circle cx="2976" cy="3072" r="10"/>
+<line x1="2880" y1="2880" x2="2752" y2="2800" stroke-width="7" stroke="black" />
+    <circle cx="2880" cy="2880" r="10"/>    <circle cx="2752" cy="2800" r="10"/>
+<line x1="2752" y1="2800" x2="2752" y2="2784" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="2800" r="10"/>    <circle cx="2752" cy="2784" r="10"/>
+<line x1="2944" y1="2656" x2="2960" y2="2656" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="2656" r="10"/>    <circle cx="2960" cy="2656" r="10"/>
+<line x1="2960" y1="2656" x2="3048" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="2960" cy="2656" r="10"/>    <circle cx="3048" cy="2880" r="10"/>
+<line x1="3400" y1="3152" x2="3472" y2="3432" stroke-width="7" stroke="black" />
+    <circle cx="3400" cy="3152" r="10"/>    <circle cx="3472" cy="3432" r="10"/>
+<line x1="3472" y1="3432" x2="3448" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="3472" cy="3432" r="10"/>    <circle cx="3448" cy="3520" r="10"/>
+<line x1="3448" y1="3520" x2="3352" y2="3568" stroke-width="7" stroke="red" />
+    <circle cx="3448" cy="3520" r="10"/>    <circle cx="3352" cy="3568" r="10"/>
+<line x1="2240" y1="2920" x2="2272" y2="3008" stroke-width="7" stroke="black" />
+    <circle cx="2240" cy="2920" r="10"/>    <circle cx="2272" cy="3008" r="10"/>
+<line x1="2272" y1="3008" x2="2432" y2="3112" stroke-width="7" stroke="black" />
+    <circle cx="2272" cy="3008" r="10"/>    <circle cx="2432" cy="3112" r="10"/>
+<line x1="2432" y1="3112" x2="2736" y2="3112" stroke-width="7" stroke="black" />
+    <circle cx="2432" cy="3112" r="10"/>    <circle cx="2736" cy="3112" r="10"/>
+<line x1="2736" y1="3112" x2="2752" y2="3112" stroke-width="7" stroke="black" />
+    <circle cx="2736" cy="3112" r="10"/>    <circle cx="2752" cy="3112" r="10"/>
+<line x1="2752" y1="3360" x2="2752" y2="3112" stroke-width="7" stroke="red" />
+    <circle cx="2752" cy="3360" r="10"/>    <circle cx="2752" cy="3112" r="10"/>
+<line x1="2736" y1="3112" x2="2736" y2="3360" stroke-width="7" stroke="red" />
+    <circle cx="2736" cy="3112" r="10"/>    <circle cx="2736" cy="3360" r="10"/>
+<line x1="2752" y1="3112" x2="2752" y2="3048" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="3112" r="10"/>    <circle cx="2752" cy="3048" r="10"/>
+<line x1="3200" y1="4128" x2="3328" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="3200" cy="4128" r="10"/>    <circle cx="3328" cy="4128" r="10"/>
+<line x1="2688" y1="4128" x2="2816" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="2688" cy="4128" r="10"/>    <circle cx="2816" cy="4128" r="10"/>
+<line x1="2816" y1="4128" x2="2856" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="2816" cy="4128" r="10"/>    <circle cx="2856" cy="4160" r="10"/>
+<line x1="2912" y1="4160" x2="2912" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4160" r="10"/>    <circle cx="2912" cy="4128" r="10"/>
+<line x1="3104" y1="4128" x2="3104" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4128" r="10"/>    <circle cx="3104" cy="4160" r="10"/>
+<line x1="3160" y1="4160" x2="3200" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="3160" cy="4160" r="10"/>    <circle cx="3200" cy="4128" r="10"/>
+<line x1="3104" y1="4352" x2="3104" y2="4384" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4352" r="10"/>    <circle cx="3104" cy="4384" r="10"/>
+<line x1="3104" y1="4384" x2="3160" y2="4384" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4384" r="10"/>    <circle cx="3160" cy="4384" r="10"/>
+<line x1="3160" y1="4384" x2="3160" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="3160" cy="4384" r="10"/>    <circle cx="3160" cy="4352" r="10"/>
+<line x1="2856" y1="4352" x2="2856" y2="4384" stroke-width="7" stroke="black" />
+    <circle cx="2856" cy="4352" r="10"/>    <circle cx="2856" cy="4384" r="10"/>
+<line x1="2856" y1="4384" x2="2912" y2="4384" stroke-width="7" stroke="black" />
+    <circle cx="2856" cy="4384" r="10"/>    <circle cx="2912" cy="4384" r="10"/>
+<line x1="2912" y1="4384" x2="2912" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4384" r="10"/>    <circle cx="2912" cy="4352" r="10"/>
+<line x1="2856" y1="4160" x2="2888" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="2856" cy="4160" r="10"/>    <circle cx="2888" cy="4160" r="10"/>
+<line x1="2888" y1="4160" x2="2912" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="2888" cy="4160" r="10"/>    <circle cx="2912" cy="4160" r="10"/>
+<line x1="3160" y1="4352" x2="3128" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="3160" cy="4352" r="10"/>    <circle cx="3128" cy="4352" r="10"/>
+<line x1="3128" y1="4352" x2="3104" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="3128" cy="4352" r="10"/>    <circle cx="3104" cy="4352" r="10"/>
+<line x1="3104" y1="4160" x2="3128" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4160" r="10"/>    <circle cx="3128" cy="4160" r="10"/>
+<line x1="3128" y1="4160" x2="3160" y2="4160" stroke-width="7" stroke="black" />
+    <circle cx="3128" cy="4160" r="10"/>    <circle cx="3160" cy="4160" r="10"/>
+<line x1="2912" y1="4352" x2="2888" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4352" r="10"/>    <circle cx="2888" cy="4352" r="10"/>
+<line x1="2888" y1="4352" x2="2856" y2="4352" stroke-width="7" stroke="black" />
+    <circle cx="2888" cy="4352" r="10"/>    <circle cx="2856" cy="4352" r="10"/>
+<line x1="2888" y1="4352" x2="2888" y2="4320" stroke-width="7" stroke="red" />
+    <circle cx="2888" cy="4352" r="10"/>    <circle cx="2888" cy="4320" r="10"/>
+<line x1="2888" y1="4320" x2="2888" y2="4192" stroke-width="7" stroke="red" />
+    <circle cx="2888" cy="4320" r="10"/>    <circle cx="2888" cy="4192" r="10"/>
+<line x1="2888" y1="4192" x2="2888" y2="4160" stroke-width="7" stroke="red" />
+    <circle cx="2888" cy="4192" r="10"/>    <circle cx="2888" cy="4160" r="10"/>
+<line x1="3128" y1="4320" x2="3128" y2="4352" stroke-width="7" stroke="red" />
+    <circle cx="3128" cy="4320" r="10"/>    <circle cx="3128" cy="4352" r="10"/>
+<line x1="3128" y1="4160" x2="3128" y2="4192" stroke-width="7" stroke="red" />
+    <circle cx="3128" cy="4160" r="10"/>    <circle cx="3128" cy="4192" r="10"/>
+<line x1="3128" y1="4192" x2="3128" y2="4320" stroke-width="7" stroke="red" />
+    <circle cx="3128" cy="4192" r="10"/>    <circle cx="3128" cy="4320" r="10"/>
+<line x1="3328" y1="4544" x2="3072" y2="4544" stroke-width="7" stroke="black" />
+    <circle cx="3328" cy="4544" r="10"/>    <circle cx="3072" cy="4544" r="10"/>
+<line x1="2944" y1="4544" x2="2688" y2="4544" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="4544" r="10"/>    <circle cx="2688" cy="4544" r="10"/>
+<line x1="3072" y1="4544" x2="3072" y2="4608" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="4544" r="10"/>    <circle cx="3072" cy="4608" r="10"/>
+<line x1="2944" y1="4608" x2="2944" y2="4544" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="4608" r="10"/>    <circle cx="2944" cy="4544" r="10"/>
+<line x1="2912" y1="4160" x2="3104" y2="4160" stroke-width="7" stroke="red" />
+    <circle cx="2912" cy="4160" r="10"/>    <circle cx="3104" cy="4160" r="10"/>
+<line x1="3104" y1="4352" x2="2912" y2="4352" stroke-width="7" stroke="red" />
+    <circle cx="3104" cy="4352" r="10"/>    <circle cx="2912" cy="4352" r="10"/>
+<line x1="3072" y1="4000" x2="2944" y2="4000" stroke-width="7" stroke="red" />
+    <circle cx="3072" cy="4000" r="10"/>    <circle cx="2944" cy="4000" r="10"/>
+<line x1="2688" y1="4544" x2="2688" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="2688" cy="4544" r="10"/>    <circle cx="2688" cy="4128" r="10"/>
+<line x1="3328" y1="4128" x2="3328" y2="4544" stroke-width="7" stroke="black" />
+    <circle cx="3328" cy="4128" r="10"/>    <circle cx="3328" cy="4544" r="10"/>
+<line x1="2856" y1="4352" x2="2856" y2="4160" stroke-width="7" stroke="red" />
+    <circle cx="2856" cy="4352" r="10"/>    <circle cx="2856" cy="4160" r="10"/>
+<line x1="3160" y1="4160" x2="3160" y2="4352" stroke-width="7" stroke="red" />
+    <circle cx="3160" cy="4160" r="10"/>    <circle cx="3160" cy="4352" r="10"/>
+<line x1="2944" y1="4544" x2="3072" y2="4544" stroke-width="7" stroke="red" />
+    <circle cx="2944" cy="4544" r="10"/>    <circle cx="3072" cy="4544" r="10"/>
+<line x1="3072" y1="4608" x2="3040" y2="4608" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="4608" r="10"/>    <circle cx="3040" cy="4608" r="10"/>
+<line x1="2976" y1="4608" x2="2944" y2="4608" stroke-width="7" stroke="black" />
+    <circle cx="2976" cy="4608" r="10"/>    <circle cx="2944" cy="4608" r="10"/>
+<line x1="2976" y1="4632" x2="2976" y2="4608" stroke-width="7" stroke="black" />
+    <circle cx="2976" cy="4632" r="10"/>    <circle cx="2976" cy="4608" r="10"/>
+<line x1="3040" y1="4608" x2="3040" y2="4632" stroke-width="7" stroke="black" />
+    <circle cx="3040" cy="4608" r="10"/>    <circle cx="3040" cy="4632" r="10"/>
+<line x1="3040" y1="4632" x2="3040" y2="4648" stroke-width="7" stroke="black" />
+    <circle cx="3040" cy="4632" r="10"/>    <circle cx="3040" cy="4648" r="10"/>
+<line x1="3040" y1="4648" x2="3040" y2="4672" stroke-width="7" stroke="black" />
+    <circle cx="3040" cy="4648" r="10"/>    <circle cx="3040" cy="4672" r="10"/>
+<line x1="2976" y1="4672" x2="2976" y2="4648" stroke-width="7" stroke="black" />
+    <circle cx="2976" cy="4672" r="10"/>    <circle cx="2976" cy="4648" r="10"/>
+<line x1="2976" y1="4648" x2="2976" y2="4632" stroke-width="7" stroke="black" />
+    <circle cx="2976" cy="4648" r="10"/>    <circle cx="2976" cy="4632" r="10"/>
+<line x1="2976" y1="4648" x2="3040" y2="4648" stroke-width="7" stroke="red" />
+    <circle cx="2976" cy="4648" r="10"/>    <circle cx="3040" cy="4648" r="10"/>
+<line x1="3040" y1="4632" x2="2976" y2="4632" stroke-width="7" stroke="red" />
+    <circle cx="3040" cy="4632" r="10"/>    <circle cx="2976" cy="4632" r="10"/>
+<line x1="3040" y1="4672" x2="3104" y2="4672" stroke-width="7" stroke="black" />
+    <circle cx="3040" cy="4672" r="10"/>    <circle cx="3104" cy="4672" r="10"/>
+<line x1="2912" y1="4672" x2="2976" y2="4672" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4672" r="10"/>    <circle cx="2976" cy="4672" r="10"/>
+<line x1="3104" y1="4672" x2="3104" y2="4864" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4672" r="10"/>    <circle cx="3104" cy="4864" r="10"/>
+<line x1="2912" y1="4864" x2="2912" y2="4800" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4864" r="10"/>    <circle cx="2912" cy="4800" r="10"/>
+<line x1="2912" y1="4800" x2="2912" y2="4736" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4800" r="10"/>    <circle cx="2912" cy="4736" r="10"/>
+<line x1="2912" y1="4736" x2="2912" y2="4672" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4736" r="10"/>    <circle cx="2912" cy="4672" r="10"/>
+<line x1="3104" y1="4864" x2="2912" y2="4864" stroke-width="7" stroke="black" />
+    <circle cx="3104" cy="4864" r="10"/>    <circle cx="2912" cy="4864" r="10"/>
+<line x1="2976" y1="4672" x2="3040" y2="4672" stroke-width="7" stroke="red" />
+    <circle cx="2976" cy="4672" r="10"/>    <circle cx="3040" cy="4672" r="10"/>
+<line x1="2944" y1="4016" x2="2944" y2="4000" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="4016" r="10"/>    <circle cx="2944" cy="4000" r="10"/>
+<line x1="3072" y1="4000" x2="3072" y2="4016" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="4000" r="10"/>    <circle cx="3072" cy="4016" r="10"/>
+<line x1="2912" y1="4128" x2="2944" y2="4032" stroke-width="7" stroke="black" />
+    <circle cx="2912" cy="4128" r="10"/>    <circle cx="2944" cy="4032" r="10"/>
+<line x1="2944" y1="4032" x2="2944" y2="4016" stroke-width="7" stroke="black" />
+    <circle cx="2944" cy="4032" r="10"/>    <circle cx="2944" cy="4016" r="10"/>
+<line x1="3072" y1="4016" x2="3072" y2="4032" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="4016" r="10"/>    <circle cx="3072" cy="4032" r="10"/>
+<line x1="3072" y1="4032" x2="3104" y2="4128" stroke-width="7" stroke="black" />
+    <circle cx="3072" cy="4032" r="10"/>    <circle cx="3104" cy="4128" r="10"/>
+<line x1="3072" y1="4016" x2="2944" y2="4016" stroke-width="7" stroke="red" />
+    <circle cx="3072" cy="4016" r="10"/>    <circle cx="2944" cy="4016" r="10"/>
+<line x1="2944" y1="4032" x2="3072" y2="4032" stroke-width="7" stroke="red" />
+    <circle cx="2944" cy="4032" r="10"/>    <circle cx="3072" cy="4032" r="10"/>
+<line x1="3024" y1="4592" x2="2992" y2="4592" stroke-width="7" stroke="red" />
+    <circle cx="3024" cy="4592" r="10"/>    <circle cx="2992" cy="4592" r="10"/>
+<line x1="2992" y1="4600" x2="3024" y2="4600" stroke-width="7" stroke="red" />
+    <circle cx="2992" cy="4600" r="10"/>    <circle cx="3024" cy="4600" r="10"/>
+<line x1="3024" y1="4600" x2="3024" y2="4592" stroke-width="7" stroke="red" />
+    <circle cx="3024" cy="4600" r="10"/>    <circle cx="3024" cy="4592" r="10"/>
+<line x1="2992" y1="4592" x2="2992" y2="4600" stroke-width="7" stroke="red" />
+    <circle cx="2992" cy="4592" r="10"/>    <circle cx="2992" cy="4600" r="10"/>
+<line x1="3040" y1="4608" x2="2976" y2="4608" stroke-width="7" stroke="red" />
+    <circle cx="3040" cy="4608" r="10"/>    <circle cx="2976" cy="4608" r="10"/>
+<line x1="3024" y1="4840" x2="2992" y2="4840" stroke-width="7" stroke="red" />
+    <circle cx="3024" cy="4840" r="10"/>    <circle cx="2992" cy="4840" r="10"/>
+<line x1="2992" y1="4848" x2="3024" y2="4848" stroke-width="7" stroke="red" />
+    <circle cx="2992" cy="4848" r="10"/>    <circle cx="3024" cy="4848" r="10"/>
+<line x1="3024" y1="4848" x2="3024" y2="4840" stroke-width="7" stroke="red" />
+    <circle cx="3024" cy="4848" r="10"/>    <circle cx="3024" cy="4840" r="10"/>
+<line x1="2992" y1="4840" x2="2992" y2="4848" stroke-width="7" stroke="red" />
+    <circle cx="2992" cy="4840" r="10"/>    <circle cx="2992" cy="4848" r="10"/>
+<line x1="2752" y1="2912" x2="2880" y2="2912" stroke-width="7" stroke="black" />
+    <circle cx="2752" cy="2912" r="10"/>    <circle cx="2880" cy="2912" r="10"/>
+<line x1="-240" y1="3264" x2="-208" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="-240" cy="3264" r="10"/>    <circle cx="-208" cy="3264" r="10"/>
+<line x1="-208" y1="3264" x2="-192" y2="3248" stroke-width="7" stroke="red" />
+    <circle cx="-208" cy="3264" r="10"/>    <circle cx="-192" cy="3248" r="10"/>
+<line x1="-192" y1="3248" x2="-192" y2="3216" stroke-width="7" stroke="red" />
+    <circle cx="-192" cy="3248" r="10"/>    <circle cx="-192" cy="3216" r="10"/>
+<line x1="-192" y1="3216" x2="-208" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="-192" cy="3216" r="10"/>    <circle cx="-208" cy="3200" r="10"/>
+<line x1="-208" y1="3200" x2="-240" y2="3200" stroke-width="7" stroke="red" />
+    <circle cx="-208" cy="3200" r="10"/>    <circle cx="-240" cy="3200" r="10"/>
+<line x1="-240" y1="3200" x2="-256" y2="3216" stroke-width="7" stroke="red" />
+    <circle cx="-240" cy="3200" r="10"/>    <circle cx="-256" cy="3216" r="10"/>
+<line x1="-256" y1="3216" x2="-256" y2="3248" stroke-width="7" stroke="red" />
+    <circle cx="-256" cy="3216" r="10"/>    <circle cx="-256" cy="3248" r="10"/>
+<line x1="-256" y1="3248" x2="-240" y2="3264" stroke-width="7" stroke="red" />
+    <circle cx="-256" cy="3248" r="10"/>    <circle cx="-240" cy="3264" r="10"/>
+<line x1="1664" y1="2368" x2="1600" y2="2368" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2368" r="10"/>    <circle cx="1600" cy="2368" r="10"/>
+<line x1="1600" y1="2368" x2="1600" y2="2112" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2368" r="10"/>    <circle cx="1600" cy="2112" r="10"/>
+<line x1="1600" y1="2624" x2="1664" y2="2624" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2624" r="10"/>    <circle cx="1664" cy="2624" r="10"/>
+<line x1="2560" y1="2112" x2="2560" y2="2496" stroke-width="7" stroke="black" />
+    <circle cx="2560" cy="2112" r="10"/>    <circle cx="2560" cy="2496" r="10"/>
+<line x1="2560" y1="2496" x2="2496" y2="2496" stroke-width="7" stroke="black" />
+    <circle cx="2560" cy="2496" r="10"/>    <circle cx="2496" cy="2496" r="10"/>
+<line x1="2176" y1="2752" x2="2176" y2="2816" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="2752" r="10"/>    <circle cx="2176" cy="2816" r="10"/>
+<line x1="1600" y1="2048" x2="1664" y2="2048" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2048" r="10"/>    <circle cx="1664" cy="2048" r="10"/>
+<line x1="1664" y1="2048" x2="2496" y2="2048" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2048" r="10"/>    <circle cx="2496" cy="2048" r="10"/>
+<line x1="2496" y1="2048" x2="2560" y2="2048" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2048" r="10"/>    <circle cx="2560" cy="2048" r="10"/>
+<line x1="2560" y1="2048" x2="2560" y2="2112" stroke-width="7" stroke="black" />
+    <circle cx="2560" cy="2048" r="10"/>    <circle cx="2560" cy="2112" r="10"/>
+<line x1="1600" y1="2112" x2="1600" y2="2048" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2112" r="10"/>    <circle cx="1600" cy="2048" r="10"/>
+<line x1="1664" y1="2368" x2="1664" y2="2112" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2368" r="10"/>    <circle cx="1664" cy="2112" r="10"/>
+<line x1="1664" y1="2112" x2="2496" y2="2112" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2112" r="10"/>    <circle cx="2496" cy="2112" r="10"/>
+<line x1="2496" y1="2112" x2="2496" y2="2496" stroke-width="7" stroke="red" />
+    <circle cx="2496" cy="2112" r="10"/>    <circle cx="2496" cy="2496" r="10"/>
+<line x1="1664" y1="2816" x2="1600" y2="2816" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2816" r="10"/>    <circle cx="1600" cy="2816" r="10"/>
+<line x1="1600" y1="2816" x2="1600" y2="2752" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2816" r="10"/>    <circle cx="1600" cy="2752" r="10"/>
+<line x1="1600" y1="2752" x2="1600" y2="2624" stroke-width="7" stroke="black" />
+    <circle cx="1600" cy="2752" r="10"/>    <circle cx="1600" cy="2624" r="10"/>
+<line x1="2176" y1="2752" x2="1664" y2="2752" stroke-width="7" stroke="red" />
+    <circle cx="2176" cy="2752" r="10"/>    <circle cx="1664" cy="2752" r="10"/>
+<line x1="2496" y1="2688" x2="2496" y2="2752" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2688" r="10"/>    <circle cx="2496" cy="2752" r="10"/>
+<line x1="2624" y1="2784" x2="2520" y2="2688" stroke-width="7" stroke="black" />
+    <circle cx="2624" cy="2784" r="10"/>    <circle cx="2520" cy="2688" r="10"/>
+<line x1="2496" y1="2560" x2="2520" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2560" r="10"/>    <circle cx="2520" cy="2560" r="10"/>
+<line x1="2520" y1="2688" x2="2496" y2="2688" stroke-width="7" stroke="black" />
+    <circle cx="2520" cy="2688" r="10"/>    <circle cx="2496" cy="2688" r="10"/>
+<line x1="1664" y1="2560" x2="1664" y2="2432" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2560" r="10"/>    <circle cx="1664" cy="2432" r="10"/>
+<line x1="2496" y1="2560" x2="2496" y2="2688" stroke-width="7" stroke="red" />
+    <circle cx="2496" cy="2560" r="10"/>    <circle cx="2496" cy="2688" r="10"/>
+<line x1="1984" y1="2304" x2="1984" y2="2240" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="2304" r="10"/>    <circle cx="1984" cy="2240" r="10"/>
+<line x1="1984" y1="2240" x2="1792" y2="2240" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="2240" r="10"/>    <circle cx="1792" cy="2240" r="10"/>
+<line x1="1792" y1="2240" x2="1792" y2="2304" stroke-width="7" stroke="red" />
+    <circle cx="1792" cy="2240" r="10"/>    <circle cx="1792" cy="2304" r="10"/>
+<line x1="1792" y1="2304" x2="1984" y2="2304" stroke-width="7" stroke="red" />
+    <circle cx="1792" cy="2304" r="10"/>    <circle cx="1984" cy="2304" r="10"/>
+<line x1="1664" y1="2624" x2="1664" y2="2600" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2624" r="10"/>    <circle cx="1664" cy="2600" r="10"/>
+<line x1="1664" y1="2600" x2="1664" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2600" r="10"/>    <circle cx="1664" cy="2560" r="10"/>
+<line x1="1664" y1="2432" x2="1664" y2="2392" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2432" r="10"/>    <circle cx="1664" cy="2392" r="10"/>
+<line x1="1664" y1="2392" x2="1664" y2="2368" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2392" r="10"/>    <circle cx="1664" cy="2368" r="10"/>
+<line x1="2496" y1="2496" x2="2496" y2="2520" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2496" r="10"/>    <circle cx="2496" cy="2520" r="10"/>
+<line x1="2496" y1="2520" x2="2496" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2520" r="10"/>    <circle cx="2496" cy="2560" r="10"/>
+<line x1="2496" y1="2752" x2="2200" y2="2752" stroke-width="7" stroke="black" />
+    <circle cx="2496" cy="2752" r="10"/>    <circle cx="2200" cy="2752" r="10"/>
+<line x1="2200" y1="2752" x2="2176" y2="2752" stroke-width="7" stroke="black" />
+    <circle cx="2200" cy="2752" r="10"/>    <circle cx="2176" cy="2752" r="10"/>
+<line x1="2112" y1="2592" x2="2336" y2="2592" stroke-width="7" stroke="black" />
+    <circle cx="2112" cy="2592" r="10"/>    <circle cx="2336" cy="2592" r="10"/>
+<line x1="2336" y1="2592" x2="2336" y2="2272" stroke-width="7" stroke="black" />
+    <circle cx="2336" cy="2592" r="10"/>    <circle cx="2336" cy="2272" r="10"/>
+<line x1="2336" y1="2272" x2="2112" y2="2272" stroke-width="7" stroke="black" />
+    <circle cx="2336" cy="2272" r="10"/>    <circle cx="2112" cy="2272" r="10"/>
+<line x1="2112" y1="2272" x2="2112" y2="2304" stroke-width="7" stroke="black" />
+    <circle cx="2112" cy="2272" r="10"/>    <circle cx="2112" cy="2304" r="10"/>
+<line x1="2112" y1="2304" x2="2144" y2="2304" stroke-width="7" stroke="black" />
+    <circle cx="2112" cy="2304" r="10"/>    <circle cx="2144" cy="2304" r="10"/>
+<line x1="2144" y1="2304" x2="2176" y2="2304" stroke-width="7" stroke="black" />
+    <circle cx="2144" cy="2304" r="10"/>    <circle cx="2176" cy="2304" r="10"/>
+<line x1="2176" y1="2304" x2="2208" y2="2304" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="2304" r="10"/>    <circle cx="2208" cy="2304" r="10"/>
+<line x1="2208" y1="2304" x2="2304" y2="2304" stroke-width="7" stroke="black" />
+    <circle cx="2208" cy="2304" r="10"/>    <circle cx="2304" cy="2304" r="10"/>
+<line x1="2304" y1="2304" x2="2304" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2304" cy="2304" r="10"/>    <circle cx="2304" cy="2560" r="10"/>
+<line x1="2304" y1="2560" x2="2208" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2304" cy="2560" r="10"/>    <circle cx="2208" cy="2560" r="10"/>
+<line x1="2208" y1="2560" x2="2176" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2208" cy="2560" r="10"/>    <circle cx="2176" cy="2560" r="10"/>
+<line x1="2176" y1="2560" x2="2144" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="2560" r="10"/>    <circle cx="2144" cy="2560" r="10"/>
+<line x1="2144" y1="2560" x2="2112" y2="2560" stroke-width="7" stroke="black" />
+    <circle cx="2144" cy="2560" r="10"/>    <circle cx="2112" cy="2560" r="10"/>
+<line x1="2112" y1="2560" x2="2112" y2="2592" stroke-width="7" stroke="black" />
+    <circle cx="2112" cy="2560" r="10"/>    <circle cx="2112" cy="2592" r="10"/>
+<line x1="2144" y1="2304" x2="2144" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="2144" cy="2304" r="10"/>    <circle cx="2144" cy="2560" r="10"/>
+<line x1="2176" y1="2304" x2="2176" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="2176" cy="2304" r="10"/>    <circle cx="2176" cy="2560" r="10"/>
+<line x1="2208" y1="2304" x2="2208" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="2208" cy="2304" r="10"/>    <circle cx="2208" cy="2560" r="10"/>
+<line x1="1984" y1="2624" x2="1984" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="2624" r="10"/>    <circle cx="1984" cy="2560" r="10"/>
+<line x1="1984" y1="2560" x2="1792" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="1984" cy="2560" r="10"/>    <circle cx="1792" cy="2560" r="10"/>
+<line x1="1792" y1="2560" x2="1792" y2="2624" stroke-width="7" stroke="red" />
+    <circle cx="1792" cy="2560" r="10"/>    <circle cx="1792" cy="2624" r="10"/>
+<line x1="1792" y1="2624" x2="1984" y2="2624" stroke-width="7" stroke="red" />
+    <circle cx="1792" cy="2624" r="10"/>    <circle cx="1984" cy="2624" r="10"/>
+<line x1="1992" y1="2552" x2="1784" y2="2552" stroke-width="7" stroke="red" />
+    <circle cx="1992" cy="2552" r="10"/>    <circle cx="1784" cy="2552" r="10"/>
+<line x1="1784" y1="2552" x2="1784" y2="2632" stroke-width="7" stroke="red" />
+    <circle cx="1784" cy="2552" r="10"/>    <circle cx="1784" cy="2632" r="10"/>
+<line x1="1784" y1="2632" x2="1992" y2="2632" stroke-width="7" stroke="red" />
+    <circle cx="1784" cy="2632" r="10"/>    <circle cx="1992" cy="2632" r="10"/>
+<line x1="1992" y1="2632" x2="1992" y2="2552" stroke-width="7" stroke="red" />
+    <circle cx="1992" cy="2632" r="10"/>    <circle cx="1992" cy="2552" r="10"/>
+<line x1="1784" y1="2312" x2="1992" y2="2312" stroke-width="7" stroke="red" />
+    <circle cx="1784" cy="2312" r="10"/>    <circle cx="1992" cy="2312" r="10"/>
+<line x1="1992" y1="2312" x2="1992" y2="2232" stroke-width="7" stroke="red" />
+    <circle cx="1992" cy="2312" r="10"/>    <circle cx="1992" cy="2232" r="10"/>
+<line x1="1992" y1="2232" x2="1784" y2="2232" stroke-width="7" stroke="red" />
+    <circle cx="1992" cy="2232" r="10"/>    <circle cx="1784" cy="2232" r="10"/>
+<line x1="1784" y1="2232" x2="1784" y2="2312" stroke-width="7" stroke="red" />
+    <circle cx="1784" cy="2232" r="10"/>    <circle cx="1784" cy="2312" r="10"/>
+<line x1="2624" y1="2784" x2="2752" y2="2560" stroke-width="7" stroke="red" />
+    <circle cx="2624" cy="2784" r="10"/>    <circle cx="2752" cy="2560" r="10"/>
+<line x1="3520" y1="3904" x2="3328" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="3520" cy="3904" r="10"/>    <circle cx="3328" cy="3968" r="10"/>
+<line x1="3200" y1="3968" x2="3200" y2="3744" stroke-width="7" stroke="black" />
+    <circle cx="3200" cy="3968" r="10"/>    <circle cx="3200" cy="3744" r="10"/>
+<line x1="3328" y1="3744" x2="3360" y2="3648" stroke-width="7" stroke="black" />
+    <circle cx="3328" cy="3744" r="10"/>    <circle cx="3360" cy="3648" r="10"/>
+<line x1="3328" y1="3968" x2="3328" y2="3744" stroke-width="7" stroke="red" />
+    <circle cx="3328" cy="3968" r="10"/>    <circle cx="3328" cy="3744" r="10"/>
+<line x1="3448" y1="3520" x2="3472" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="3448" cy="3520" r="10"/>    <circle cx="3472" cy="3520" r="10"/>
+<line x1="3472" y1="3520" x2="3520" y2="3584" stroke-width="7" stroke="black" />
+    <circle cx="3472" cy="3520" r="10"/>    <circle cx="3520" cy="3584" r="10"/>
+<line x1="3360" y1="3648" x2="3352" y2="3592" stroke-width="7" stroke="black" />
+    <circle cx="3360" cy="3648" r="10"/>    <circle cx="3352" cy="3592" r="10"/>
+<line x1="3352" y1="3592" x2="3352" y2="3568" stroke-width="7" stroke="black" />
+    <circle cx="3352" cy="3592" r="10"/>    <circle cx="3352" cy="3568" r="10"/>
+<line x1="3328" y1="3968" x2="3304" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="3328" cy="3968" r="10"/>    <circle cx="3304" cy="3968" r="10"/>
+<line x1="3304" y1="3968" x2="3200" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="3304" cy="3968" r="10"/>    <circle cx="3200" cy="3968" r="10"/>
+<line x1="3200" y1="3744" x2="3304" y2="3744" stroke-width="7" stroke="black" />
+    <circle cx="3200" cy="3744" r="10"/>    <circle cx="3304" cy="3744" r="10"/>
+<line x1="3304" y1="3744" x2="3328" y2="3744" stroke-width="7" stroke="black" />
+    <circle cx="3304" cy="3744" r="10"/>    <circle cx="3328" cy="3744" r="10"/>
+<line x1="2368" y1="4096" x2="2344" y2="4096" stroke-width="7" stroke="black" />
+    <circle cx="2368" cy="4096" r="10"/>    <circle cx="2344" cy="4096" r="10"/>
+<line x1="2344" y1="4096" x2="2264" y2="4096" stroke-width="7" stroke="black" />
+    <circle cx="2344" cy="4096" r="10"/>    <circle cx="2264" cy="4096" r="10"/>
+<line x1="2264" y1="4096" x2="2240" y2="4096" stroke-width="7" stroke="black" />
+    <circle cx="2264" cy="4096" r="10"/>    <circle cx="2240" cy="4096" r="10"/>
+<line x1="2240" y1="3968" x2="2264" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="2240" cy="3968" r="10"/>    <circle cx="2264" cy="3968" r="10"/>
+<line x1="2264" y1="3968" x2="2344" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="2264" cy="3968" r="10"/>    <circle cx="2344" cy="3968" r="10"/>
+<line x1="2344" y1="3968" x2="2368" y2="3968" stroke-width="7" stroke="black" />
+    <circle cx="2344" cy="3968" r="10"/>    <circle cx="2368" cy="3968" r="10"/>
+<line x1="2176" y1="3680" x2="2176" y2="3704" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3680" r="10"/>    <circle cx="2176" cy="3704" r="10"/>
+<line x1="2176" y1="3704" x2="2176" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="3704" r="10"/>    <circle cx="2176" cy="3776" r="10"/>
+<line x1="2048" y1="3776" x2="2048" y2="3704" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3776" r="10"/>    <circle cx="2048" cy="3704" r="10"/>
+<line x1="2048" y1="3704" x2="2048" y2="3680" stroke-width="7" stroke="black" />
+    <circle cx="2048" cy="3704" r="10"/>    <circle cx="2048" cy="3680" r="10"/>
+<line x1="3520" y1="3584" x2="3520" y2="3840" stroke-width="7" stroke="black" />
+    <circle cx="3520" cy="3584" r="10"/>    <circle cx="3520" cy="3840" r="10"/>
+<line x1="3680" y1="3904" x2="3584" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="3680" cy="3904" r="10"/>    <circle cx="3584" cy="3904" r="10"/>
+<line x1="3744" y1="3808" x2="3680" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="3744" cy="3808" r="10"/>    <circle cx="3680" cy="3904" r="10"/>
+<line x1="3584" y1="3840" x2="3616" y2="3776" stroke-width="7" stroke="black" />
+    <circle cx="3584" cy="3840" r="10"/>    <circle cx="3616" cy="3776" r="10"/>
+<line x1="3616" y1="3776" x2="3552" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="3616" cy="3776" r="10"/>    <circle cx="3552" cy="3552" r="10"/>
+<line x1="3552" y1="3552" x2="3552" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="3552" cy="3552" r="10"/>    <circle cx="3552" cy="3392" r="10"/>
+<line x1="3552" y1="3392" x2="3648" y2="3264" stroke-width="7" stroke="black" />
+    <circle cx="3552" cy="3392" r="10"/>    <circle cx="3648" cy="3264" r="10"/>
+<line x1="3680" y1="3552" x2="3744" y2="3808" stroke-width="7" stroke="black" />
+    <circle cx="3680" cy="3552" r="10"/>    <circle cx="3744" cy="3808" r="10"/>
+<line x1="3680" y1="3392" x2="3680" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="3680" cy="3392" r="10"/>    <circle cx="3680" cy="3552" r="10"/>
+<line x1="3808" y1="3264" x2="3680" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="3808" cy="3264" r="10"/>    <circle cx="3680" cy="3392" r="10"/>
+<line x1="3648" y1="3264" x2="3496" y2="3032" stroke-width="7" stroke="black" />
+    <circle cx="3648" cy="3264" r="10"/>    <circle cx="3496" cy="3032" r="10"/>
+<line x1="3584" y1="2880" x2="3808" y2="3264" stroke-width="7" stroke="black" />
+    <circle cx="3584" cy="2880" r="10"/>    <circle cx="3808" cy="3264" r="10"/>
+<line x1="3496" y1="3032" x2="3456" y2="3032" stroke-width="7" stroke="black" />
+    <circle cx="3496" cy="3032" r="10"/>    <circle cx="3456" cy="3032" r="10"/>
+<line x1="3360" y1="2880" x2="3584" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="3360" cy="2880" r="10"/>    <circle cx="3584" cy="2880" r="10"/>
+<line x1="3304" y1="3040" x2="3400" y2="3152" stroke-width="7" stroke="red" />
+    <circle cx="3304" cy="3040" r="10"/>    <circle cx="3400" cy="3152" r="10"/>
+<line x1="3520" y1="3840" x2="3520" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="3520" cy="3840" r="10"/>    <circle cx="3520" cy="3904" r="10"/>
+<line x1="3584" y1="3840" x2="3584" y2="3904" stroke-width="7" stroke="red" />
+    <circle cx="3584" cy="3840" r="10"/>    <circle cx="3584" cy="3904" r="10"/>
+<line x1="3304" y1="3040" x2="3320" y2="3040" stroke-width="7" stroke="black" />
+    <circle cx="3304" cy="3040" r="10"/>    <circle cx="3320" cy="3040" r="10"/>
+<line x1="3320" y1="3040" x2="3360" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="3320" cy="3040" r="10"/>    <circle cx="3360" cy="2880" r="10"/>
+<line x1="3456" y1="3032" x2="3416" y2="3152" stroke-width="7" stroke="black" />
+    <circle cx="3456" cy="3032" r="10"/>    <circle cx="3416" cy="3152" r="10"/>
+<line x1="3416" y1="3152" x2="3400" y2="3152" stroke-width="7" stroke="black" />
+    <circle cx="3416" cy="3152" r="10"/>    <circle cx="3400" cy="3152" r="10"/>
+<line x1="3520" y1="3840" x2="3536" y2="3840" stroke-width="7" stroke="black" />
+    <circle cx="3520" cy="3840" r="10"/>    <circle cx="3536" cy="3840" r="10"/>
+<line x1="3536" y1="3840" x2="3584" y2="3840" stroke-width="7" stroke="black" />
+    <circle cx="3536" cy="3840" r="10"/>    <circle cx="3584" cy="3840" r="10"/>
+<line x1="3584" y1="3904" x2="3536" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="3584" cy="3904" r="10"/>    <circle cx="3536" cy="3904" r="10"/>
+<line x1="3536" y1="3904" x2="3520" y2="3904" stroke-width="7" stroke="black" />
+    <circle cx="3536" cy="3904" r="10"/>    <circle cx="3520" cy="3904" r="10"/>
+<line x1="1344" y1="3360" x2="1344" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3360" r="10"/>    <circle cx="1344" cy="3392" r="10"/>
+<line x1="1344" y1="3520" x2="1344" y2="3552" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3520" r="10"/>    <circle cx="1344" cy="3552" r="10"/>
+<line x1="1344" y1="3392" x2="1344" y2="3520" stroke-width="7" stroke="red" />
+    <circle cx="1344" cy="3392" r="10"/>    <circle cx="1344" cy="3520" r="10"/>
+<line x1="1344" y1="3392" x2="1376" y2="3392" stroke-width="7" stroke="black" />
+    <circle cx="1344" cy="3392" r="10"/>    <circle cx="1376" cy="3392" r="10"/>
+<line x1="1376" y1="3520" x2="1344" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3520" r="10"/>    <circle cx="1344" cy="3520" r="10"/>
+<line x1="1376" y1="3648" x2="1376" y2="3520" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3648" r="10"/>    <circle cx="1376" cy="3520" r="10"/>
+<line x1="1376" y1="3392" x2="1376" y2="3360" stroke-width="7" stroke="black" />
+    <circle cx="1376" cy="3392" r="10"/>    <circle cx="1376" cy="3360" r="10"/>
+<line x1="1376" y1="3520" x2="1376" y2="3392" stroke-width="7" stroke="red" />
+    <circle cx="1376" cy="3520" r="10"/>    <circle cx="1376" cy="3392" r="10"/>
+<line x1="2176" y1="2816" x2="1664" y2="2816" stroke-width="7" stroke="red" />
+    <circle cx="2176" cy="2816" r="10"/>    <circle cx="1664" cy="2816" r="10"/>
+<line x1="1472" y1="2880" x2="1664" y2="2880" stroke-width="7" stroke="black" />
+    <circle cx="1472" cy="2880" r="10"/>    <circle cx="1664" cy="2880" r="10"/>
+<line x1="1664" y1="2880" x2="1856" y2="2880" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2880" r="10"/>    <circle cx="1856" cy="2880" r="10"/>
+<line x1="1920" y1="2920" x2="2176" y2="2920" stroke-width="7" stroke="red" />
+    <circle cx="1920" cy="2920" r="10"/>    <circle cx="2176" cy="2920" r="10"/>
+<line x1="2176" y1="2920" x2="2240" y2="2920" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="2920" r="10"/>    <circle cx="2240" cy="2920" r="10"/>
+<line x1="2176" y1="2816" x2="2176" y2="2920" stroke-width="7" stroke="black" />
+    <circle cx="2176" cy="2816" r="10"/>    <circle cx="2176" cy="2920" r="10"/>
+<line x1="1664" y1="2880" x2="1664" y2="2816" stroke-width="7" stroke="black" />
+    <circle cx="1664" cy="2880" r="10"/>    <circle cx="1664" cy="2816" r="10"/>
+<line x1="1664" y1="2816" x2="1664" y2="2752" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2816" r="10"/>    <circle cx="1664" cy="2752" r="10"/>
+<line x1="1664" y1="2752" x2="1664" y2="2624" stroke-width="7" stroke="red" />
+    <circle cx="1664" cy="2752" r="10"/>    <circle cx="1664" cy="2624" r="10"/>
+
+</svg>
+
