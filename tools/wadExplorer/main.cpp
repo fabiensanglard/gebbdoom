@@ -20,7 +20,7 @@ size_t getFilesize(const char* filename) {
 //int fd;
 //size_t filesize;
 
-WadArchive&& openArchive(const char* filepath) {
+WadArchive openArchive(const char* filepath) {
 
     size_t filesize = getFilesize(filepath);
 
@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
 
     WadArchive archive = openArchive(argv[1]);
     archive.parse();
+    archive.categories();
 
     MapReader mapReader;
     mapReader.parse(archive.lumps());

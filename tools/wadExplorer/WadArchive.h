@@ -29,7 +29,7 @@ private:
     size_t mSize;
 
     enum Category {MAP, GFX, SOUND, MUSIC, OTHERS, NUM_CATEGORIES};
-    std::array<size_t, NUM_CATEGORIES> categoriesSize;
+    std::array<size_t, NUM_CATEGORIES> categoriesSize = {0, 0, 0, 0, 0};
     Category catMode = OTHERS;
 
     Category categorizeLump(Lump &lump);

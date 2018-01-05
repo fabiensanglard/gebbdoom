@@ -34,9 +34,13 @@ void WadArchive::parse() {
 }
 
 void WadArchive::categories() {
-    for (Lump& lump : mLumps) {
+    for (Lump lump : mLumps) {
         Category cat = categorizeLump(lump);
         categoriesSize[cat] += lump.size();
+    }
+
+    for(size_t i = 0 ; i < Category::NUM_CATEGORIES ; i++) {
+        std::cout << i << ":" << categoriesSize[i] << "(" << categoriesSize[i]/(float)mSize * 100 << "%)" << std::endl;
     }
 }
 
@@ -49,12 +53,12 @@ WadArchive::Category WadArchive::categorizeLump(Lump &lump) {
         }
         return MAP;
     }
-
-    if (lump.name()[0] == 'E' && lump.name()[2] == 'M') {
+    std::cout << lump.name() << std::endl;
+    if (lump.name().size() >= 2 && lump.name()[0] == 'E' && lump.name()[2] == 'M') {
         catMode = MAP;
         return MAP;
     }
-    else if(!strncmp(lump.name().c_str(), "MAP", 3)) {
+    else if(lump.name().size() >= 3 && !strncmp(lump.name().c_str(), "MAP", 3)) {
         catMode = MAP;
         return MAP;
     }
