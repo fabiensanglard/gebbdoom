@@ -10,26 +10,14 @@
   \setlength\paperheight{9.25in}
  \setlength\textwidth{5.2in}
  \setlength\textheight{7.2in}
-  %\setlength\oddsidemargin{(\paperwidth-\textwidth)/2 - 2in}
-  %\setlength\topmargin{(\paperheight-\textheight -\headheight-\headsep-\footskip)/2 - 1in}
 
-  %Header is clear, but the footer contains the page number in the center.
-  %\pagestyle{plain} Using fancyhdr instead
+   
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\rmdefault}{cmss}
 
-   % FONT FAMILY
-   % \rmdefault, selects a roman font family
-   % \sfdefault selects a sans serif font family
-   % \ttdefault selects a monospaced
-   \renewcommand{\familydefault}{\sfdefault}
-
-   % ptm = Times New Roman
-   % garamond
-   % cmss
-   \renewcommand{\rmdefault}{cmss}
-
-   % Reduces interspace in list of elements (\begin{compactitem})
-   %\usepackage{paralist}
-   % Note: using itemize instead
+%\usepackage[sfdefault]{roboto}
+%\usepackage[T1]{fontenc}
+%\renewcommand{\rmdefault}{roboto}
 
 % Remove all indentaion for pargraphs.
 \setlength\parindent{0pt}
@@ -282,3 +270,9 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \setlength\intextsep{0pt}
 
 \newcommand{\at}{\makeatletter @\makeatother}
+\newcommand{\doom}{\textbf{DooM{}}}
+
+
+%\newcommand{\NeXT}{{\fontfamily{ptm}\selectfont N\kern -.025em\raisebox{-0.4\depth}{\rotatebox[origin=c]{10}{e}}\kern -.025emXT }}
+\newcommand{\NeXT}{N\kern -.025em\raisebox{-0.4\depth}{\rotatebox[origin=c]{10}{e}}\kern -.025emXT }
+

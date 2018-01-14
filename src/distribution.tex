@@ -10,9 +10,17 @@ Ideally, to make distribution as easy as possible, the game would have fitted on
 In the previous photo, notice how the shareware came with a guide book which had little to do with id Software. In order to maximize distribution, id Software encouraged retails and distributor to sell the shareware or embedd it however they wanted.\\
 \par
 
-\fq{Put it in a box, sell it quote needed here.}{John Romero}
+\fq{The challenge was: "How do we get Doom in the store? How do we get something free on shelves?\\
+par 
+The idea was that the title screen of doom says "Suggested retail price \$9 dollars" on it and then we told the
+companies that were already in the stores "if you put DOOM in the store in a box on the shelf you just keep all
+the money. We don't want any of it just put it in a box and sell it".\\
+\par 
+Nutty, except that worked. It was everywhere. If you went into a CompUSA back then in 1994 you would see ten different boxes of doom and think they're all different games but they're all the same shareware game. Distributors ended up trying to make the best looking boxes to outperform their competitors because all they were allowed to sell was the shareware.}{John Romero}
 
 \subsection{What's in the disk?}
+
+
 
 \def\angle{0}
 \def\radius{3}
@@ -21,12 +29,8 @@ In the previous photo, notice how the shareware came with a guide book which had
 \newcount\ind \ind=-1
 \begin{tikzpicture}[nodes = {font=\sffamily}]
   \foreach \percent/\name in {
-      46.6/Chrome,
-      24.6/Internet Explorer,
-      20.4/Firefox,
-      5.1/Safari,
-      1.3/Opera,
-      2.0/Other
+      11/DOOM.EXE,
+      89/DOOM.WAD
     } {
       \ifx\percent\empty\else               % If \percent is empty, do nothing
         \global\advance\cyclecount by 1     % Advance cyclecount
@@ -38,7 +42,35 @@ In the previous photo, notice how the shareware came with a guide book which had
         \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
         \edef\color{\pgfmathresult}         %   and store as \color
         % Draw angle and set labels
-        \draw[fill={\color!50},draw={\color}] (0,0) -- (\angle:\radius)
+        \draw[fill={\color!50},draw={black}] (0,0) -- (\angle:\radius)
+          arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+        \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
+        \node[pin=\angle+0.5*\percent*3.6:\name]
+          at (\angle+0.5*\percent*3.6:\radius) {};
+        \pgfmathparse{\angle+\percent*3.6}  % Advance angle
+        \xdef\angle{\pgfmathresult}         %   and store in \angle
+      \fi
+    };
+\end{tikzpicture}
+\par
+\begin{tikzpicture}[nodes = {font=\sffamily}]
+  \foreach \percent/\name in {
+      52.9/Graphics,
+      29.1/Map,
+       9.9/Music,
+       8.1/{Sound Effects},
+    } {
+      \ifx\percent\empty\else               % If \percent is empty, do nothing
+        \global\advance\cyclecount by 1     % Advance cyclecount
+        \global\advance\ind by 1            % Advance list index
+        \ifnum3<\cyclecount                 % If cyclecount is larger than list
+          \global\cyclecount=0              %   reset cyclecount and
+          \global\ind=0                     %   reset list index
+        \fi
+        \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
+        \edef\color{\pgfmathresult}         %   and store as \color
+        % Draw angle and set labels
+        \draw[fill={\color!50},draw={black}] (0,0) -- (\angle:\radius)
           arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
         \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
         \node[pin=\angle+0.5*\percent*3.6:\name]
