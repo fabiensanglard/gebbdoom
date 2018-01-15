@@ -1,4 +1,6 @@
-\section{Dos Extender}
+\section{RAM - Dos Extender}
+
+\subsection{DOS/4G}
 \tcode{dos4gw.txt}
 
 the CPU is switched to Protected Mode\footnote{Some driver implementation relied on I/O ports}, a page is swapped between the EMS\footnote{Expanded Memory Specification} and the HMA\footnote{High memory area}. The CPU is then switched back to Real Mode where the 16KiB page is now accessible. Given this mechanism, no executable code can be stored there, it is only useful to store data.\\
