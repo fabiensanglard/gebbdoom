@@ -1,9 +1,20 @@
+#!/bin/bash
+
+epsToPDF () {
+	echo $1
+    epstopdf $1
+}
+
 if [ ! -d output ]
 then
    mkdir output
 fi
 cd src
-find . -name "*.eps" -exec epstopdf '{}' \;
+
+# Convert eps to pdf if necessary
+find . -name "*.eps" -exec epsToPDF('{}') \;
+
+# Compile 
 pdflatex -output-directory ../output book.tex
 cd ..
 if [ ! -d build ]
