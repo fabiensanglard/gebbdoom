@@ -127,7 +127,7 @@ According to Intel 80386 programmer's reference manual from 1986, their processo
 \includegraphics[width=\textwidth]{drawings/386_instruction_pipeline.pdf}
 \caption{386 pipeline in Intel documentation.}
 \end{figure}
-\bigskip
+
 \par
 In practice however, even if the Prefetch Unit and the Execution Unit were properly fed, the Decode unit always took a minimum of two cycles to decode an instruction\footnote{The author speculates this high decode cost was the result of Intel's choice to use CISC instead of RISC.}. Since the maximum throughput of a pipeline cannot exceed the speed of its slowest stage, the Intel 386 could process at its most one instructions every two cycles.\\
 \par
@@ -137,7 +137,7 @@ In practice however, even if the Prefetch Unit and the Execution Unit were prope
 \includegraphics[width=\textwidth]{drawings/actual_386_instruction_pipeline.pdf}
 \caption{386 pipeline: Two cycles per instruction.}
 \end{figure}
-\bigskip
+
 \par
 To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI, the total throughput of the 486 was doubled.\\
 \begin{figure}[H]
@@ -165,17 +165,53 @@ From the description, even a perfect bus request with one cycle for setup and on
 \par
 \pngdrawing{cpu_cache}{}
 
+
+
+
 \subsection{L1 Cache}
-The 486 L1 cache was not very big by today standard, 8 KiB. On top of its small size, it was meant to cache both data and instructions. The cache had such a small capacity because of the type of RAM it used was made of many more transistors than normal RAM. The main RAM made of D-RAM\footnote{Dynamic RAM}was compact with each bit stored via 2 transistors. Its simple design allowed compact layout and high capacity at the one serious cost. The capacitor would leak and the only way to retain information was to refresh it periodically \fixme{EVERY X us}. Hence the name "Dynamic RAM".\\
+The L1 cache was builtin the die and therefore low capacity. At only 8 KiB it may have looked tiny but its clever design and superior access time made it the real powerhouse of the 486.
+
+\subsubsection{DRAM vs SRAM}
+The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to  much faster access time. DRAM of these days typically had an access time of 150ns while SRAM was capable of 10ns, 1000\% faster.\\
 \par
-DRAWING\\
+DRAM was "slow" grealy because it was unavailable some of the time. The design of each cells was simple, based on one transistor and one storage capacitor. Two elements allowed for tight packing and hight capacity. The problem was with the capacitor losing its charge and its bit value in the process. The only way to keep the RAM integrity was to periodically refresh it every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
 \par
-The RAM in the cache in comparison was more voluminous and the same area could store less bits. But the design did not leak. Without periodical refreshed the "Static" S-RAM\footnote{Static RAM} was much faster \fixme{Access time XXX vs YYY}. Tapping into that memory allowed the CPU to reach ZERO WAIT STATE and work at full speed. 
+\spngdrawing{0.5}{DRAM}{Dynamic RAM}
+The DRAM was also located somewhere on the motherboard so to access it, the CPU had to request it to its Bus Unit. Not only that was far away (in terms of physical distance), the bus had to be shared with other I/O devices.\\
 \par
-DRAWING\\
+The SRAM in contrast was located inside the chip. There was no need for expensive bus requests. Moreover it was designed differently with no less than six transistors which did not need periodic refresh.
+\par
+\spngdrawing{0.5}{SRAM}{Static RAM}
 \par
 
-\subsection{Cacheline and Netburst}
+
+
+
+
+
+
+
+
+
+\subsubsection{Cachelines}
+Not only the L1 cache was made of faster RAM, it was also cleverly design. Even though it had the constraints of being unified (it stores both code and data) it managed to yield an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".}.\\
+\par
+To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided in 1,953,125 pages of 2 KiB. Within each page, 128 lines of 16 bytes (also called paragraph).\\
+\par
+\drawing{cacheline}{The 8 bytes in a cacheline.}
+\par
+The cache system is made of one directory and four banks (also called ways). Each way can store 128 cacheline and therefore has a capacity of 2 KiB. These lines of 16 bytes are the elementary unit of the cache. It only deals with what it calls cachelines.\\
+\par
+\drawing{cacheways}{The cache controller and its four ways (banks).}
+
+
+
+
+
+
+\subsection{Netburst}
+ZERO WAIT STATE\\
+\par
 With a fast RAM available, the new goal of the game was to have the cache populated with what the CPU was going to need. The 486 did not have a \fixme{guesser} so any branch or JMP instruction was a guaranteed pipeline flush. Nontheless it managed a high hit rate thanks to a design based on 16 bytes cacheline and a four way-associative policy.\\
 \par
 DRAWING\\
@@ -192,6 +228,8 @@ Hit rate
 
 
 \subsection{Overdrive and Writeback}
+Neither a 486SX nor a 486DX where the recommended CPU to run Doon. What was the best at the time was a 486-DX2.\\
+\par 
 \drawing{486dx2_notm}{The best CPU to run \doom at the time.}
 
 
@@ -261,7 +299,7 @@ Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
 \label{perf_summary}
 \end{figure}
 
-\subsection{Programming a 486}
+
 \subsection{Die}
 To close this section on the 486, I cannot resist including a magnified photography of the die. If you are holding a physical 9.25''x7.5'' of this book, the CPU casing should be 30mm square and the die should be 15.5 x 9.9 mm at 1:1 scale.\\
 \par
@@ -295,3 +333,7 @@ To close this section on the 486, I cannot resist including a magnified photogra
 \centering
 \scaledimage{0.9}{486_layout.png}
 \end{figure}
+
+\subsection{Summary}
+Full CPU Diagram.
+Programming a 486
