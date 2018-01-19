@@ -5,28 +5,11 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the i486-25Mhz was a performance evolution which addressed all bottleneck of the 386 and shipped with an integrating FPU\footnote{Floating Point Unit} named i487. Like for its predecessor (the i386 running Wolfenstein 3D), Intel offered two flavors, an SX version and a DX version (more powerful). This choice was only enabled due to manufacturing problems where some 486 chips came out with malfunctioning FPUs units. Instead of throwing these away, Intel sold them at a discounted price.\\
+Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 386. It was very expensive, at U\$900 XXX in 2018. By 1993, the chip was finally becoming affordable. It was \doom recommended CPU. Like for its predecessor (the i386 running Wolfenstein 3D), Intel offered two flavors, an SX version and a DX version (more powerful). This choice was only enabled due to manufacturing problems. The CPU integrated a Floating Point Unit but when some chips came out of the factories mostly performing but with a malfunctioning FPUs units, Intel had an idea. Instead of throwing these away, Intel sold them at a discounted price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers prefered getting a discount instead of a FPU they had no usage of}.\\
 \par
- On \cw{alt.games.doom} BBS\footnote{Bulletin Board System} one endless thread in particular debated on what to get to play \doom. Should customer go for an SX, should they go for a DX which was supposed to be "faster"\footnote{\cw{alt.games.doom}: Does a 486DX run Doom faster than an SX?}. Comparing simple instruction speed for \cw{integer} and \cw{float} gives us the answer.\\
- \par
+ 
+DRAWING OF THE CPU\\
 
-\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
-\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
- \begin{figure}[H]
-\centering  
-\begin{tabularx}{\textwidth}{ L{0.3} L{0.3} L{0.4}}
-  \toprule
-  \textbf{Operation} &  \textbf{i486 (ALU)} & \textbf{i487 (FPU)} \\
-  \toprule 
-   
-   \cw{ADD} & 1 & 8-20\\
-   \cw{DIV} & 43 & 73\\
-   \cw{MUL} & 12-42 & 29-52\\
-   \toprule
-\end{tabularx}
-\caption{Comparaison ALU vs FPU operations.}
-\end{figure}
-\bigskip
       \par
 
 Even though the Floating Point Unit performance was drastically improved compared to the previous generation (i387), it was still a far cry of what the ALU could deliver with performances up to 20x slower. As a result, video games of the 90s did not have the luxury to use floating point arithmetics. To play \doom, a 486-SX or a 486-DX were exactly the same thing.\\
@@ -35,7 +18,7 @@ Even though the Floating Point Unit performance was drastically improved compare
 
 
 
-If in retrospect the 486 is an unquestionable powerhouse (both in terms of performances and sales\footnote{It was still manufactured as late as 2015 for routers}), it was far from a guaranteed success when it was released. Priced at \$950\footnote{\$950 is \$1,920 in 2017, adjusted to inflation.} for the DX 
+If in retrospect the 486 is an unquestionable powerhouse (both in terms of performances and sales\footnote{It was still manufactured as late as 2015 for routers}), it was far from a guaranteed success when it was released. Priced at \$520\footnote{\$950 is \$1,920 in 2017, adjusted to inflation.} for the DX 
 and \$258\footnote{InfoWorld Apr 29, 1991.}\footnote{\$258 in 1991 is \$469.20 in 2017, adjusted to inflation.} for the SX, the beast left a dent on a wallet. 
 On top of its price, the i486 had to face internal competition from an other CPU also manufactured by Intel around the same time, the i860. Relying on an heavily pipelined superscaler architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which rendered it incompatible with the i386 instruction set hard the potential to easily outperform a 486. Where most CPU tried to hide complexity from compiler, the i860 allowed direct access to its parallel pipeline\footnote{https://en.wikipedia.org/wiki/NEAT\_chipset}.\\
 \par
@@ -201,24 +184,33 @@ To achieve this, Intel engineers used a four-way associative design where the $2
 \drawing{cacheline}{The 8 bytes in a cacheline.}
 \par
 The cache system is made of one directory and four banks (also called ways). Each way can store 128 cacheline and therefore has a capacity of 2 KiB. These lines of 16 bytes are the elementary unit of the cache. It only deals with what it calls cachelines.\\
+\drawing{mem_to_way}{How a memory address is interpreted by the cache controller}
+\par
+Upong receiving a 32-bit address access request, the cache controller splits it in three fields.
+\begin{enumerate}
+\item Use the LINE field [0-127] to look the dictionary entry.
+\item Look at the four tag in the entry, if one matches the cacheline is present in the CACHE field.
+\item Check the flag F in the directory to make sure the cacheline is valid.
+\item Use the OFFSET [0-15] field to access the value in the cacheline.
+\item Update the flag F in the directory entry to update the LRU value.
+\end{enumerate}
+\par
+If a value was to be written an all cacheline in the four ways are valid, the cache controller uses a LRU\footnote{Least Recently Used} to evict a cacheline.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
-
+This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
+\par
+\trivia{What about increasing to eight ways? What about sixteen? According to XXX four ways gives the best bang for the bucks. A two ways cache yields a XX\% hit rate, a four-ways XX\% hit rate but going to eight only improves the percentage to XX\% and sixteeen to XX\%. The decreasing return on investment appears vividly once one a graph.}
 
 
 
 
 
 \subsection{Netburst}
-ZERO WAIT STATE\\
+Any cache miss within the 486 pipeline triggered the eviction of a cacheline and a full 16 bytes had to be transfered from DRAM to SRAM\footnote{The prefetcher also worked with units of 16 bytes. It retrieved and stored cacheline into a prefetch queue of 32 bytes.}. Normally this would have been a very costy operation and a huge issue for the CPU. But Intel added something called NetBurst capacity to make it all work together.\\
 \par
-With a fast RAM available, the new goal of the game was to have the cache populated with what the CPU was going to need. The 486 did not have a \fixme{guesser} so any branch or JMP instruction was a guaranteed pipeline flush. Nontheless it managed a high hit rate thanks to a design based on 16 bytes cacheline and a four way-associative policy.\\
+Hit rate, ZERO WAIT STATE\\
 \par
-DRAWING\\
-\par
-Hit rate
-
-
 \pngdrawing{netburst}{NetBurst allows for 65\% faster cacheline filling.}
 
 
@@ -228,10 +220,11 @@ Hit rate
 
 
 \subsection{Overdrive and Writeback}
-Neither a 486SX nor a 486DX where the recommended CPU to run Doon. What was the best at the time was a 486-DX2.\\
+As if the huge performance improvement of the 486 were not enough, Intel managed to top it all with the its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and was the golden standard until 1995. It was commonly called DX2-66 and was the absolute best to run \doom.\\
 \par 
 \drawing{486dx2_notm}{The best CPU to run \doom at the time.}
-
+\par
+%\trivia{Want even more performance? Not only a DX2-66 ran faster, they also came with an enhanced writeback L1 cache\footnote{The standard 486 L1 cache was writethrough with post-writes.}}
 
 \begin{figure}[H]
 \centering
@@ -264,44 +257,15 @@ Neither a 486SX nor a 486DX where the recommended CPU to run Doon. What was the 
    \caption{Comparison\protect\footnotemark of CPUs with MIPS \protect\footnotemark.}
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
-
-Zero-wait state.\\
-DRAM vs SRAM\\
-Cache hit percentage from ISA book.\\
-four-way set-associative write back.\\
-
-
-
-\subsection{Performance \& Price}
-By may 1992, the Intel 386 was being replaced by a new version, the 486. The increase in operatin frequency was substancial for the high end model running at 50Mhz but most 486 ran at the same speed at the 386: 25Mhz and 33Mhz. The revolutionary design of the CPU.\\
 \par
-TODO: How to program it? Use the cache luke and avoid branching. Re-read michael abrash guide on 486.
-\subsection{Floating Point Unit}
-The i386 was able to talk to an i387 located on the motherboard. Requests and responses had to transition on the bus and incurred four CPU cycles of overhead. For the i486, Intel decided to integrate the i487 FPU in the same die and improved performance by a factor 2.\\
-\par
-TODO: Drawing
-\par
+\trivia{Notice how a 486DX2-66Mhz is faster than a 485DX-50Mhz but not the full 20\% frequency could have made us expect. This is because the DX2 bus runs at 33Mhz while on the DX the CPU and the bus run at 50Mhz.}
 
-TODO: Verify with 387/487 description
 
-\subsection{Fixed Point arithmetic}
-
-\par
-\begin{figure}[H]
-\centering
-\begin{tabularx}{\textwidth}{ X  X X  X  X}
-  \toprule
-  \textbf{CPU} & \textbf{FADD} & \textbf{FMUL} & \textbf{FDIV} &\textbf{FXCH} \\ \bottomrule
-Intel 387 & 23-34 & 29-57   & 88-91 & 18 \\
-Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
-\end{tabularx}
-\caption{FPU performance: 387 vs 487.}
-\label{perf_summary}
-\end{figure}
 
 
 \subsection{Die}
-To close this section on the 486, I cannot resist including a magnified photography of the die. If you are holding a physical 9.25''x7.5'' of this book, the CPU casing should be 30mm square and the die should be 15.5 x 9.9 mm at 1:1 scale.\\
+%To close this section on the 486, I cannot resist including a magnified photography of the die. 
+If you are holding a physical 9.25''x7.5'' of this book, the CPU casing should be 30mm square and the die should be 15.5 x 9.9 mm at 1:1 scale.\\
 \par
 \bigskip
 
@@ -310,13 +274,13 @@ To close this section on the 486, I cannot resist including a magnified photogra
 \begin{minipage}{0.48\textwidth}
 \centering
 \scaledrawimage{44.45mm}{486topdown.png}
-\caption{468 packaging.}
+%\caption{468 packaging.}
 \end{minipage}
 \hfill
 \begin{minipage}{0.48\textwidth}
 \centering
 \includegraphics[width=44.45mm]{drawings/486toscale.pdf}
-\caption{The die inside the package.}
+%\caption{The die inside the package.}
 \end{minipage}
 \end{figure}
 
@@ -334,6 +298,58 @@ To close this section on the 486, I cannot resist including a magnified photogra
 \scaledimage{0.9}{486_layout.png}
 \end{figure}
 
-\subsection{Summary}
+
+
+
+
+
+\subsection{Programming the 486}
+With the architecture in mind we can now understand how a programmer could take best advantage of the 486. The good news was most of the performance improvement was the characterized free-lunch of the 90s and 2000s. The exact same binary will run twice as fast on the new CPU.\\
+\par
+As long as the programer was mindful of the cacheline and maxmized time and space locality\footnote{And avoid branching, the 486 had no branch predictor. A \cw{jmp} instruction was a guaranteed pipeline flush}, the CPU would fly. That is for integers. Because as improved as the floating point unit was, it was still a far cry compared to the performance of the ALU and Barrel shifter.\\
+\par
+\begin{figure}[H]
+\centering
+\begin{tabularx}{\textwidth}{ X  X X  X  X}
+  \toprule
+  \textbf{CPU} & \textbf{FADD} & \textbf{FMUL} & \textbf{FDIV} &\textbf{FXCH} \\ \bottomrule
+Intel 387 & 23-34 & 29-57   & 88-91 & 18 \\
+Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
+\end{tabularx}
+\caption{FPU performance: 387 vs 487.}
+
+\end{figure}
+
+
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
+
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.3} L{0.3} L{0.4}}
+  \toprule
+  \textbf{Operation} &  \textbf{i486 (ALU)} & \textbf{i487 (FPU)} \\
+  \toprule 
+   
+   \cw{ADD} & 1 & 8-20\\
+   \cw{DIV} & 43 & 73\\
+   \cw{MUL} & 12-42 & 29-52\\
+   \toprule
+\end{tabularx}
+\caption{Comparaison ALU vs FPU operations.}
+\end{figure}
+\par
+\trivia{There were many discussions on \cw{alt.games.doom} BBS\footnote. One endless thread in particular debated on what to get to play \doom. Should customer go for an SX, should they go for a DX which was supposed to be "faster"\footnote{\cw{alt.games.doom}: Does a 486DX run Doom faster than an SX?}. Comparing simple instruction speed for \cw{integer} and \cw{float} gives us the answer.}\\
+ \par
+
+
+The i386 was able to talk to an i387 located on the motherboard. Requests and responses had to transition on the bus and incurred four CPU cycles of overhead. For the i486, Intel decided to integrate the i487 FPU in the same die and improved performance by a factor 2.\\
+\par
+TODO: Drawing
+\par
+
+TODO: Verify with 387/487 description
+TODO: How to program it? Use the cache luke and avoid branching. Re-read michael abrash guide on 486.
 Full CPU Diagram.
 Programming a 486
