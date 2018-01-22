@@ -1,12 +1,49 @@
 \section{RAM - Dos Extender}
-
-\subsection{DOS/4G}
-\tcode{dos4gw.txt}
-
-the CPU is switched to Protected Mode\footnote{Some driver implementation relied on I/O ports}, a page is swapped between the EMS\footnote{Expanded Memory Specification} and the HMA\footnote{High memory area}. The CPU is then switched back to Real Mode where the 16KiB page is now accessible. Given this mechanism, no executable code can be stored there, it is only useful to store data.\\
+With the price dropping, PC manufactures were able to ship twice as more RAM with their machines. Game developers now could count on 4 MiB, which mostly translated into more assets available at runtime. But the most important improvement for \doom came from how memory was accessed.\\
 \par
-\textbf{\underline{Trivia :}} Switching from Real Mode to Protected Mode is easy, you only need to set the Control Register bit 0 to 1. It can be done with 6 instructions:
+While improving and adding features to its line of CPU, Intel also had to face the orthogonal problem to maintain backward compatibility. This dilemma resulted in two operating modes. Protected Mode allowing the CPU full power with 32-bit registers and flat address space of up to 4 GiB. And Real Mode, emulating a 8086 from 1976 with 16 registers and segmented addressing. Because DOS ran in Real Mode, developers were stuck with it.\\
+\par
+The worse aspect of all was how the language had to be patched with new keywords to support segmented addressing. It made the code DOS only and non-portable.\\
+\par
+\ccode{real_mode_c.c}
+\par
+In the previous code sample, notice the DOS only \cw{near}, \cw{far} keywords and the usage of the non-standard \cw{mallocnear} memory allocator.\\
+\par
+With the growing fustration some people saw an opportunity. Namely two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler would had a deep impact on the industry.\\
+\par
+
+
+\subsection{DOS/4GW Extender}
+Under DOS the "normal" way of opeation was to have everything in Real Mode. The way to perform what we call now a "system call" was to use sofware interrupt \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
+\par
+\drawing{realmode_app_limk}{}
+With an application wanting to run in Protected Mode there had to be a middle layer. This layer would come as being named "DOS Extender".\\
+
+\par
+\drawing{realmode_app_limk_extender}{}
+On startup, the DOS Extender would place hooks in the software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, there was no need to change anything in the program. For perform calls not hooked by the extender (e.g: \cw{int 0x33} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h}.\\
+\par
+\trivia{DMPI was orignally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}
+\par
+When the extender intercepted an operating system call, it had to do a lot of work:
+\begin{enumerate}
+\item Perform all translation needed (e.g: a 32-bit address had to be expressed as a 16-bit offset with a 16-bit segment)
+\item Switch the CPU back to Real Mode
+\item Forward the call to DOS
+\item Retrieve the results and convert back from 16-bit to 32-bit
+\item Switch the CPU back to Protected Mode.
+\end{enumerate} 
+
+The performance sensitive operations were of course switching from Real to Protected and from Protected to Real. The documented technique was XXX.\\
+\par
+\trivia{Switching from Real Mode to Protected Mode is easy, you only need to set the Control Register bit 0 to 1. It can be done with 6 instructions.}
 \par
 \acode{switch_to_protected_mode.asm}
 \par
-However, switching back from Protected Mode to Real Mode is impossible on a 286 since Intel designers never envisioned this would be needed. As a result the only way is to issue a reset instruction \cw{HALT} to the CPU which can take milliseconds to execute. The 386 does not have this problem since it recognizes correctly when \cw{CR0} bit 1 is set back to 0.
+A lot of work and reverse engineering went into making these operation as fast as possible. Each DOS Extender had their own secret sauce. Besides stability this is what gave an edge to \cw{DOS/4GW} by Rational Systems.\\
+\fixme{Dig into switch code and find out the best techniqes.}\\
+\par 
+\trivia{The extender was briefly visible when starting up \doom. When running \cw{DOOM.EXE} what was really staring was \cw{DOS/4GW} Real Mode bootstrap. After showing the following text, it would ouput prompty switch the CPU into Protected Mode, load \doom into memory and branch to its \cw{\_main} method.}
+\par
+\tcode{dos4gw.txt}
+\par

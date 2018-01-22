@@ -1,57 +1,52 @@
-\section{Watcom Compiler}
-In 1993 the best compiler available on MS-DOS was irrevocably Watcom C 9.0\footnote{Editor's choice -- PC Magazine, April 1995}. Commercialized by Watcom International Corporation, the compiler not only featured i486 optimizations, it also came with a DOS Extender, \cw{DOS/4G} thanks to a partnership with Rational Systems.\\
+\section{Watcom}
+
+\begin{wrapfigure}[9]{r}{0.25\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{drawings/watcom.pdf}
+\end{wrapfigure}
+
+
+The DOS extender was magical but it was hard to setup as a standalone product. A bootstrap which would locate \cw{DOS/4GW}, the program and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. If there was no impact on the program itself, the build process was affected. The ramp up time was significant and raise the entry barrier. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable.\\ 
 \par
-Watcom International Corporation found its roots in 1986 when a team of undergraduate students at the University of Waterloo in Canada developed a FORTRAN compiler. The small team of three made of Fred Crigger, Ian McPhee, and Jack Schueler improved the compiler to support multiple language and platforms.\\
+
+In 1993 the best compiler available on MS-DOS was irrevocably Watcom C 9.0\footnote{Editor's choice -- PC Magazine, April 1995} \footnote{PC Magazine ran a comparative study of a collection of C compilers.  They hailed WATCOM C/C++ v9.5 for producing the fastest code (by a *wide* margin).}. Started in 1986 when a team of undergraduate students at the University of Waterloo in Canada developed a FORTRAN compiler. The small team of three\footnote{The company success quickly grew the compiler team to 8 peoples.} made of Fred Crigger, Ian McPhee, and Jack Schueler improved the compiler to support multiple language and platforms. Their had chosen a lightning for their logo to advertise their focus on performances. On BSS you could ran into these kind of claims:\\
 \par
-In 1993 it was impossible to open a Byte or PC Magazine without stumbling upon an ad for the version 9 of their compiler. \footnote{Watcom C first released was Watcom C 6.0. There was never a 1.0 or 2.0. This was a marketing coup aiming at its two competitors, Microsoft and Borland, who at the time commercialized version 5 of their products (Borland C++ 4 and YYY). Using version 6.0 made it look like Watcom was one release ahead of its competitors.}
+\fq{WATCOM C/C++ will produce code which is at *least* twice as fast as your current 16 bit compiler, and more typically around five times as fast.}{rec.games.programmer}
 \\
-At a cost of \$639\footnote{Byte Magazine March 1992} (a standard price for a compiler at the time), it was not cheap but opened a door to a new world of possibilities for id Software. The DOS Extender would be the corner stone in the bridge between PC and NeXT. Borland C++ for example had limited Wolfenstein 3D to Real Mode programming where C code (in a major departure from the intent of the language) would not be portable due to new keywords like \cw{near}, and \cw{far}.\\
+You could not open a computer magazine without finding a full page advertising Watcom's compiler. All ads ostensibly underlined the presence of a Dos Extender.
+\par
+\fullimage{watcom_ad.png}
+\par
+\trivia{People at Watcom were knew how to produce good compiler and they were also clever about marketing it. There was never a 1.0 or 2.0. They started directly at "version 6". This was at least one version ahead of their competitors (Borland and Microsoft). A higher number undoublty uncounciously carried a "more advanced than its competitor" feeling. Version one was also likely to features many bugs whereas the sixth installement was likely to have been battle hardened.}
 \par
 
+At a cost of \$639\footnote{Byte Magazine March 1992} (a standard price for a compiler at the time), it was not cheap but opened was a small price to pay for the door to a new world of possibilities it opened to id Software. The DOS Extender would be the corner stone bridging between PC and NeXT workstation.\\
 
-
-\subsection{Speed}
-Third player besides Microsoft and Borland.
-
-Introduced in 1988 by , Watcom C Compiler ads found in BYTE and PC Magazine:\\
-\par
-\fq{WATCOM C/C++ will produce code which is at *least* 
-twice as fast as your current 16 bit compiler, and more typically around 
-five times as fast.}{rec.games.programmer}
-premiere C compiler for high performance and reliability\\
-Version 6 direct.\\
-Alliance with DOS4GW.\\
-only 8 people.\\
-A few years later
-PC Magazine ran a comparative study of a collection of C compilers.  They
-hailed WATCOM C/C++ v9.5 for producing the fastest code (by a *wide* margin)
-but criticized it for its klunky command line driven interface.\\
-
-\subsection{Popularity}
-id Software were not the only team to value Watcom solution. Many other studios enthrusted it with their code and as a result many emblematic software of the 90s were built with Watcom.\\
+\subsubsection{Popularity}
+id Software were not the only team to value Watcom solution. Many other studios enthrusted it with their code and as a result many emblematic software of the 90s were built with Watcom technology.\\
 \begin{enumerate}
 \item id Softare 
        \begin{enumerate}
-       \item Doom
-       \item Doom II
+       \item Doom (1993)
+       \item Doom II (1994)
        \end{enumerate} 
 \item Blizzard Entertainment 
        \begin{enumerate}
-       \item Warcraft
-       \item Warcraft II
+       \item Warcraft (1994)
+       \item Warcraft II (1995)
        \end{enumerate}
 \item Ken Silverman's BUILD Engine based games
       \begin{enumerate}
-       \item Duke Nukem 3D
-       \item Shadow Warrior
-       \item Blood
+       \item Duke Nukem 3D (1996)
+       \item Shadow Warrior (1997)
+       \item Blood (1997)
        \end{enumerate}
 \item LucasArts Entertainment Company
       \begin{enumerate}
-       \item Full Throttle
-       \item  The Dig
-       \item Dark Forces
-       \item Rebel Assault II       
+       \item Full Throttle (1995)
+       \item The Dig (1995)
+       \item Dark Forces  (1995)
+       \item Rebel Assault II  (1995)    
       \end{enumerate}
 \end{enumerate}
 \par
