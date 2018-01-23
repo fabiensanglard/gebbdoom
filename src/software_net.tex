@@ -12,3 +12,10 @@ I was strafing back and forth on one system and looking over my shoulder at the 
 What I didn't realize was that there were some entire campuses that were built up out of bridged IPX networks, and a broadcast packet could be forwarded across many bridges until it had been seen by every single computer on the campus. At those sites, every person playing LAN Doom had an impact on every computer on the network, as each broadcast packet had to be examined to see if the local computer wanted it. A few dozen Doom players could cripple a network with a few thousand endpoints.\\
 \par
 The day after release, I was awoken by a phone call. I blearily answered it and got chewed out by a network administrator who had found my phone number just to yell at me for my game breaking his entire network. I quickly changed the network protocol to only use broadcast packets for game discovery, and send all-to-all directed packets for gameplay (resulting in 3x the total number of packets for a four player game), but a lot of admins still had to add Doom-specific rules to their bridges (as well as stern warnings that nobody should play the game) to deal with the problems of the original release.}{John Carmack, kotaku.com "Memories Of Doom"}
+
+\trivia{The "official" (as stated in the IPXSETUP source code) IPX network socket for Doom is 869C hex (34460 decimal). This was apparently registered with Novell, as it appears in the list of well-known IPX sockets published by Novell.}
+
+DeathManager!
+
+\fullimage{DeathManagerv1-2.png}
+\triva{DeathManager is a 16-bit program that appears to have been written in Turbo C - as many of the other Doom utility programs were. Unlike the other utilities, the source code to DeathManager has never been released.}
