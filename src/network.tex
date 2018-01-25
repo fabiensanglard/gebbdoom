@@ -1,7 +1,102 @@
 \section{Network}
-\subsection{NullModem}
-\subsection{BNC}
+The early 90s predated the democratization of internet and wifi by a decadate. Connecting computers together was expensive. Even if you had the means, bandwidth and latency were nowhere what we have today. The three most common way to connect computers where NullModem cable, Modem and LAN via BNC.\\
+\par
+
+
+
+
+
+
+
+
+
+\subsection{Null Modem Cable}
+The cheapest way only allowed two players. A \$20 cable known as "Null Modem" could be plugged in each PCs COM port. The cable offered no modulation at all (hence the name) and everything had to be configured manually You had to manualy configure the bauds.\\
+\par 
+\cscaledimage{0.5}{nullmodemcable.png}{NullModem cable}
+
+
+
+
+
+
+
+
+\subsection{BNC LAN}
 Token bus network\\
 BNC connector\\
 BNC Tee Connectors with resistive load terminators\\
 \pngdrawing{10base5bncConnector}{10-Base-5 BNS Connector.}
+
+
+
+
+
+
+
+
+
+\subsection{Modem}
+\cscaledimage{1}{robotic28-8.png}{US Robotic 28.8 bauds modem. The top of the line in 1994.}
+1998, the year the first 56K\\
+\par
+
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.2} L{0.3} L{0.5}}
+  \toprule
+  \textbf{Year} & \textbf{Version} & \textbf{Bandwidth} \\
+  \toprule 
+   
+    1990 & V.32	& 9.6 kbit/s \\
+    1991 & V.32bis &	14.4 kbit/s \\
+    1994 & V.34 &	28.8 kbit/s  ( US Robotics above) \\
+    1995 & V.34 &	33.6 kbit/s \\
+    1996 & V.90 &	56.0/33.6 kbit/s\\
+    1999 & V.92 &	56.0/48.0 kbit/s\\
+   
+   \toprule
+\end{tabularx}
+\caption{Modem bandwidth evolution over the 90s.}
+\end{figure}
+
+
+
+\par
+\trivia{Downloading the shareware version of \doom (2,166,955 bytes) on a top of the line model (28.8 kbits) took 10 minutes (if you were lucky and disconnected.).}
+The most interconnection user experienced was connecting to a BBS bulletin to retrieve and post messages. 
+
+Modem issued commands using Hayes command set to control the line. \\
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.2} L{0.15} L{0.65}}
+  \toprule
+  \textbf{Modem A} & \textbf{Modem B} & \textbf{Comments} \\
+  \toprule 
+   
+    ATDT15551234 &	&	Modem A issues a dial command: AT-Get the modem's ATtention; D-Dial; T-Touch-Tone; 15551234-Call this number\\
+    \toprule 
+      & RING	& Modem A begins dialing. Modem B's phone-line rings, and the modem reports the fact.\\
+      \toprule 
+    & ATA	& Modem B issues answer command.\\
+    \toprule 
+    CONNECT	& CONNECT	& The modems connect, and both modems report "connect"..\\
+    abcdef	& abcdef	& When the modems are connected, any characters typed at either side will appear on the other side.\\
+    \toprule 
+    & +++	& Modem B issues the modem escape command.\\
+    \toprule 
+     OK &	& The modem acknowledges it.\\
+    \toprule 
+    & ATH	& Modem B issues a hang up command.\\
+    \toprule 
+    NO CARRIER &	OK	& Both modems report that the connection has ended. Modem B responds "OK" as the expected result of the command; modem A says NO CARRIER to report that the remote side interrupted the connection.\\
+   \toprule
+\end{tabularx}
+\caption{Modem bandwidth evolution over the 90s.}
+\end{figure}
+\par
+The fragility of early connection were subject of many jokes.\\
+
+\par
+\trivia{An humourous way to end a message was to type some garbage followed by NO CARRIER. ("Hey! Wait! Don't pick up the ph\{\#`\%\$\{\%\&`+'\$\{`\%\&NO CARRIER").}

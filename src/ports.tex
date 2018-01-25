@@ -1,13 +1,47 @@
-Doom was ported to Windows for Microsoft by Gabe Newell. TOOD: Interview him ?!
+Due to its success and its architecture, \doom was ported to almost all the video game consoles of the era. Atari Jaguar, Sega 32X, Nintendo SNES, Sony Playstation and even 3DO standard.\\
+
+Template: Year, Authors, Framerate.
+
 \section{Jaguar (1994)}
+Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar. The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
+\par
+Lot of good stuff here: https://doomwiki.org/wiki/Atari\_Jaguar\\
+\par
+\fullimage{consoles/Jaguar.png}
+
+
 \section{Sega 32X (1994)}
+\fullimage{consoles/32X.png}
+
+
+
 \section{Super Nintendo (1995)}
-Super FX 2 chip.
+\begin{wrapfigure}[11]{r}{0.25\textwidth}
+\centering
+\scaledimage{0.25}{superfx.png}
+\end{wrapfigure}
+With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely plateform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as uusal hackers found a way.\\
+\par
+
+
+Argonaut Games, plc was a British video game developer founded by teenager Jez San in 1982. Although originally focused on the C64 market, they latter leaned toward the NES and then the SNES.\\
+\par Around 1993, the gifted hackers managed to impresse Nintendo and landed a contract for a game nicknamed "NesGlider" which would later become the legendary "Starfox". The project was to become a features real-time 3D graphicsAs good as they were, there was only that much they could do with the hardware. What they needed was more raw power.\\
+\par
+\fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
+\par
+Jez's team made good usage of Nintendo's investment. They came up with something originally codenamed Mathematical Argonaut Rotation I/O, or "MARIO". So powerful was the Super FX chip, the joke was that the Super NES was just a box to hold the chip. Since there was no way to modify the console, the chip was soldered on each new games.\\
+\par
+The GSU\footnote{Graphics Support Unit} as its official name would be had a simple design based on a RISC processor running at 21.4 Mhz. Its sole purpose was to draw polygons to a frame buffer in the RAM sitting next to it where its data would be periodically transfered to the main system RAM via DMA.\\
+\par
+\cfullimage{consoles/SNES.png}{The Super Famicom by Nintendo.}
+\par
+When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a thighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable. Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
+\par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas. With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement. 
 
 \fq{DOOM was a truly ground-breaking title and I wanted to make it possible for gamers without a PC to play the game, too. DOOM on the Super Nintendo was another one of those programming challenges that I knew could be accomplished.\\
 \par
 
-I started the project independently and demo’d it to Sculptured Software when I had a fully operational prototype running. A bunch of people at Sculptured helped complete the game so it could be released in time for the holidays.\\
+I started the project independently and demo'd it to Sculptured Software when I had a fully operational prototype running. A bunch of people at Sculptured helped complete the game so it could be released in time for the holidays.\\
 \par
 The development was challenging for a few reasons, notably there were no development systems for the SuperFX chip at the time. I wrote a complete set of tools — assembler, linker and debugger — before I could even start on the game itself.\\
 \par
@@ -17,11 +51,43 @@ I wish there could have been more levels but unfortunately the game used the lar
 {Randy Linden (Interview with gamingreinvented.com)}
 \par
 Almost no censorship from Nintendo except for removing red blood.
+\par
+
+\cfullimage{consoles/snes/wide.png}{}
+\par
+\cfullimage{consoles/snes/enemy.png}{}
+
+
+
+
+
+
 
 \section{Playstation 1 (1995)}
+The screen resolution was changed from 320x200 to 256x240, which is stretched to roughly 293x240 via NTSC rasterization.\\
+modified version of the Doom engine used in the Atari Jaguar port.\\
+
+Harry Teasley: http://5years.doomworld.com/interviews/harryteasley/\\
+\par
+\fullimage{consoles/PSX.png}
 How PSX renders doom: https://www.youtube.com/watch?time\_continue=58\&v=MS9MGSm4gng\\
 \par
+
+
+
+
+
+
+
+
+
+
+
 \section{3DO (1996)}
+Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
+\par
+\fullimage{consoles/3DO.png}
+\par
 \fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
 \par
 Uh... No...\\
@@ -39,8 +105,19 @@ There was a Electronic Arts logo movie in the data, because there was a time tha
 The vertical walls were drawn with strips using the cell engine. However, the cell engine can't handle 3D perspective so the floors and ceilings were drawn with software rendering. I simply ran out of time to translate the code to use the cell engine because the implementation I had caused texture tearing.\\
 \par
 I had to write my own string.h ANSI C library because the one 3DO supplied with their compiler had bugs! string.h??? How can you screw that up!?!?! They did! I spent a day writing all of the functions I needed in ARM 6 assembly.}{Rebecca Ann Heineman}
+
+
+
+
+
+
 \section{Game Boy Advance (2001)}
+\fullimage{consoles/GBA.png}
+
+
+
 \section{Saturn}
+\fullimage{consoles/Saturn.png}
 https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
 \par
 JIMSDOOM.WAD, obviously named after Jim Bagley.\\
