@@ -1,0 +1,17 @@
+$ clang -c -o s_sound.o s_sound.c
+
+$ nm -u s_sound.o | grep I_
+U _I_Error
+U _I_GetSfxLumpNum
+U _I_PauseSong
+U _I_PlaySong
+U _I_RegisterSong
+U _I_ResumeSong
+U _I_SetChannels
+U _I_SetMusicVolume
+U _I_SoundIsPlaying
+U _I_StartSound
+U _I_StopSong
+U _I_StopSound
+U _I_UnRegisterSong
+U _I_UpdateSoundParams
