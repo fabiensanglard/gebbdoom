@@ -47,3 +47,52 @@ NextStep dithering.\\
 \fullimage{Doom_build_NeXTStep.png}
 
 \trivia{What are the dot during startup?}
+
+\section{Structure of the code}
+The kernel is made of 45 translation units and is common to all version of \doom.\\
+\par
+
+\drawing{doom_code_arch}{}
+\par
+
+The I/O system differ on DOS and \NeXT.\\
+\par
+
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.4} L{0.6} }
+  \toprule
+  \textbf{Filename} & \textbf{Description}\\
+  \toprule 
+   i\_main.c & \\
+i\_ibm.c  & \\
+planar.asm    & \\    
+i\_ibm\_a.asm & \\
+i\_sound.c & \\
+i\_cyber.c & \\
+   \toprule
+\end{tabularx}
+\caption{DOS specific code}
+\end{figure}
+
+\par
+
+
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.4} L{0.6} }
+  \toprule
+  \textbf{Filename} & \textbf{Description}\\
+  \toprule 
+DRCoord.m  & \\
+VGAView.m & \\
+fpfunc.s & \\
+Doom\_main.m  & \\
+i\_next.m  & \\
+r\_debug.m & \\
+   \toprule
+\end{tabularx}
+\caption{NeXT specific code}
+\end{figure}
+
+Some systems are bigger than others. Since it is basd on \cw{<stdio.h>}, the filesystem is very tiny and takes care of the difference in endianess

@@ -1,0 +1,4 @@
+\section{Memory Manager}
+Because \cw{malloc} of the 90s could end up with badly fragmented memory, \doom has its own memory manager. Its strength is how it tags memory blocks in zones. There are XXX zones and for example it is easy to release all RAM used during a frame.\\
+\par
+\trivia{Surprisingly the zone allocator is common to both DOS and \NeXT. You can find all the code in \cw{z\_zone.h} and \cw{z\_zone.c}.}
