@@ -1,17 +1,66 @@
 Due to its success and its architecture, \doom was ported to almost all the video game consoles of the era. Atari Jaguar, Sega 32X, Nintendo SNES, Sony Playstation and even 3DO standard.\\
+\par
+\fixme{Watch https://www.youtube.com/watch?v=784MUbDoLjQ before closing this chapter.}
+\par
+See: http://itrunsdoom.tumblr.com/archive\\
+\par
+INSER ARRAY HERE: Console, Year, Authors, Avg framerate.
 
-Template: Year, Authors, Framerate.
+
+
+
+
+
+
+
+
+
 
 \section{Jaguar (1994)}
 Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar. The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
+\par
+\pngdrawing{jaguar_arch}{}
 \par
 Lot of good stuff here: https://doomwiki.org/wiki/Atari\_Jaguar\\
 \par
 \fullimage{consoles/Jaguar.png}
 
 
+
+
+
+
+
+
+
+
 \section{Sega 32X (1994)}
+The Sega X32 was an power up booster which you could insert on top of its Genesis via its cartridge slot. Developed in less than a year during 1994, it was rushed in order to buy time against the Atari Jaguar. The task of building it fell on Sega USA\footnote{Retroinspection: SEGA X32, Retro Gamer \#77} (while Sega Japan worked on its next flagship, the SEGA Saturn). Despite unfavorable time constraints they managed to produce an impressive piece of engineering. Nicknamed "Mars", the machine was capable of up to four operations per instructions, something unheard of even on PCs\footnote{The first super scalar on PC would be the Intel Pentium introduced in March 1993.}. The key innovation was its mirrored architecture based on two Hitashi RISC CPUs running at 23 MHz, each with their own framebuffer which could be used either as a master/slave or a pair in order to double the framerate.\\
+\par
 \fullimage{consoles/32X.png}
+\par
+\drawing{x32_arch}{Sega X32 architecture.}
+\par
+John Carmach himself took care of this port.\\
+\par
+\fq{I spent weeks working with Id Software’s John Carmack, who literally camped out at the Sega of America building in Redwood City trying to get Doom ported. That guy worked his ass off and he still had to cut a third of the levels to get it done in time.\\ 
+\par
+What amazes me now is that with all that going on, nobody at Sega was willing to say "Wait a minute, what are we doing? Why don’t we just stop?" Sega should have killed the 32X in the spring of 1994, but we didn’t. We stormed the hill, and when we got to the top we realized it was the wrong damn hill. }{Scot Bayless, Senior Producer at Sega of America}
+\par
+Despite the hardware impressive claims, the machine struggled, likely due to a cache too small resulting in cache misses and stalled CPUS. The game had to be significantly tuned down.\\ Levels had to be cut, from the original 30, only 15 remained. Enemies eight positions had to be reduced to one to always face the player. With the side effect of removing monster infighting. Enemies were removed all together (cyberdemon, spiderdemon or spectre). Worse than all, the active window had to be made smaller. Running in a resolution of 320x224, only a 256 x 144 is actually updated every frames.\\
+\par
+\cfullimage{consoles/x32_screenshot.png}{}
+\par
+In the previous screenshot notice how E1M1 blue texture had to be replaced with a brown one to limit cache misses. The number of stairs was also lowered in order to reduce the number of visplanes generated.\\
+\par
+\trivia{Upon finishing the game, instead of looping back to level one, the player is presented with a DOS prompt (\cw{C:\textbackslash \textbackslash DOOM>}) and the game stop without showing the end! \fixme{WHHAAAT?}}
+\par
+With all these compromises the framerate managed to remain within the 20 fps which was a pleasant experience.
+
+\pngdrawing{x32_fullarch}{}
+
+
+
 
 
 
@@ -20,7 +69,7 @@ Lot of good stuff here: https://doomwiki.org/wiki/Atari\_Jaguar\\
 \centering
 \scaledimage{0.25}{superfx.png}
 \end{wrapfigure}
-With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely plateform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as uusal hackers found a way.\\
+With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely platform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as usual hackers found a way.\\
 \par
 
 
@@ -35,8 +84,8 @@ The GSU\footnote{Graphics Support Unit} as its official name would be had a simp
 \par
 \cfullimage{consoles/SNES.png}{The Super Famicom by Nintendo.}
 \par
-When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a thighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable. Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
-\par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas. With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement. 
+When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a tighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable. Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
+\par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas. With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement.\\
 
 \fq{DOOM was a truly ground-breaking title and I wanted to make it possible for gamers without a PC to play the game, too. DOOM on the Super Nintendo was another one of those programming challenges that I knew could be accomplished.\\
 \par
@@ -65,8 +114,12 @@ Almost no censorship from Nintendo except for removing red blood.
 
 \section{Playstation 1 (1995)}
 The screen resolution was changed from 320x200 to 256x240, which is stretched to roughly 293x240 via NTSC rasterization.\\
-modified version of the Doom engine used in the Atari Jaguar port.\\
-
+modified version of the Doom engine used in the Atari Jaguar port. This version spent six months in development. The Arch-vile monster from Doom II is not present; according to one of the game's designers, Harry Teasley, this was because he had twice as many frames as any other monster, and the team felt that they "just couldn't do him justice" on the PlayStation. A new monster however was added: Nightmare spectre (subtractively blended against the background graphics).\\
+\par
+ These include sector-based coloured lighting, an animated, flame-filled sky, and a new animation for the player's mug shot, which shows the Doomguy's head exploding if the player character is gibbed. translucent Spectres are drawn without the cascade effect \\
+\par
+r Next Generation said the PlayStation version succeeded in "putting previous efforts for 32X, Jaguar, and especially Super NES, to shame" 
+\par
 Harry Teasley: http://5years.doomworld.com/interviews/harryteasley/\\
 \par
 \fullimage{consoles/PSX.png}
@@ -146,13 +199,6 @@ Explanation:\\
 There are solutions to this:\\
 \par
 \fullimage{affine_texture_mapping/subdivision_sample.png}
-
-
-
-
-\section{Game Boy Advance (2001)}
-\fixme{DELETE?}
-\fullimage{consoles/GBA.png}
 
 
 

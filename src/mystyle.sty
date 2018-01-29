@@ -22,6 +22,7 @@
 % Remove all indentaion for pargraphs.
 \setlength\parindent{0pt}
 
+
 \newcommand{\codeword}[1]{\texttt{#1}}
 \newcommand{\cw}[1]{\texttt{#1}}
 \newcommand{\quotes}[1]{``#1''}
@@ -322,3 +323,8 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \definecolor{Black}{gray}{0.0}
 \definecolor{White}{gray}{0.9}
 \newcommand{\fakedosoutput}[1]{\lstset{ backgroundcolor=\color{Black}, basicstyle=\color{White}} \tcode{#1}}
+
+
+
+\renewcommand{\rmdefault}{cmss} 
+\renewcommand{\familydefault}{\sfdefault}
