@@ -1,5 +1,42 @@
 \section{3D Renderer}
-\subsection{Video system}
-\subsection{Breaking Away from Orthogonal Walls}
+The early 1993 press release written by Tom Halls (see Annexe page \pageref{label_press_release}) made some bold statements. Besides promising the best game of all time, it was remarquably accurate with regards to features the 3D renderer would end up shipping with:\\
+\par
+\begin{enumerate}
+\item Texture-Mapped Environment
+\item Non-Orthogonal Walls
+\item Light Diminishing
+\item Variable Height Floors and Ceilings
+\end{enumerate}
+\par
+Some of the annouced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environement including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
+\par
+DETAIL WOLF3D\\
+\par
+To lose fast intersections with aligned axis was a big problem. Not only drawing a scene correctly was going to be difficult, also gone were collision detection, sound propagation, and fast line of sight for monster I.A simulation.\\
+\par
 
-\fq{It’s not a really supercritical aspect of it, but it is interesting that when I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It’s interesting to talk to people about the old days. Of course, you’ve got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you’d pay twenty-five dollars or whatever, and they’d mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I’d be all proud of myself for having figured something out, and then I’d find it was just classic method and they did it better than I did.}{John Carmac, Interview for Scarydarkfast}
+
+\subsection{Video system}
+
+For details about \NeXT video system, see the Annex on page \pageref{labe_next_video_system}.\\
+\par
+
+\subsection{Non Orthogonal Walls}
+
+\subsubsection{Genesis}
+Doom did not always have a BSP. Only after April 1993, when the team had to do Wolfnenstein 3D within three weeks, did the engine renderer change.\\
+\par
+First window ever.\\
+Romero broke the engine.\\
+\fullimage{SCREEN00.png}
+\par
+\fq{It was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
+
+\subsubsection{Binary Space Partitioning}
+
+\fq{It's not a really supercritical aspect of it, but it is interesting that when I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}
+
+
+\subsection{Light Diminishing}
+
+\subsection{Variable Height \& Texture-Mapped Environment}

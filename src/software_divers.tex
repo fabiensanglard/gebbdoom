@@ -1,16 +1,5 @@
 
-\section{Genesis}
-Doom did not always have a BSP. Only after April 1993, when the team had to do Wolfnenstein 3D within three weeks, did the engine renderer change.\\
-\par
-\fq{It was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
 
-\subsection{Doom Bible}
-
-\subsection{Early version}
-
-First window ever.\\
-Romero broke the engine.\\
-\fullimage{SCREEN00.png}
 
 
 \section{Architecture}
@@ -24,7 +13,7 @@ TOOD: Measure doom speedup due to ASM with DoomPC\\
 Why wasn't Doom coded in C++?\\
 \par 
 I believe the reason was because DOOM was our first game that used a DOS Extender and there were no C++ compilers available at that time that used DOS Extenders.  Another reason could have been because we were doing all the code on NeXT computers under NEXTSTEP and there was no C++ compiler, only Objective-C.  We would compile and link the code (typed on the NeXT systems) on the Intel systems and then run the game.}
-{- John Romero}
+{John Romero}
 
 
 
@@ -50,7 +39,7 @@ All future work will be entirely developed under NS, with only DMA
 buffer flipping being the hardware layer.  We will probably also run  
 midi under NS for music (which will be dynamically tuned to the game  
 situation in Quake).}
-{- John Carmack}
+{John Carmack}
 
 \section{Three Screen Mode}
 \section{Door}
