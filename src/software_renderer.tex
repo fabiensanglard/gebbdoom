@@ -1,9 +1,35 @@
-\section{Renderer}
+\section{Renderer \& Video System}
+\begin{verbatim}
+enum {BOXTOP,BOXBOTTOM,BOXLEFT,BOXRIGHT};
+extern  int             dirtybox[4];
+\end{verbatim}
+
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.27} | C{0.73} }
+  \specialrule{1pt}{0pt}{0pt}
+  \textbf{Method} & \textbf{Description} \\
+  \specialrule{1pt}{0pt}{0pt}
+\cw{I\_InitGraphics} & \\
+\cw{I\_UpdateNoBlit} & \\
+\cw{I\_FinishUpdate} & \\
+\cw{I\_WaitVBL} & \\
+   \specialrule{1pt}{0pt}{0pt}
+\end{tabularx}
+\caption{Video system interface}
+\end{figure}
+
+\fixme{DRAWING FRAMEBUFFER}
+
+\par
+
+For details about \NeXT video system, see the Annex on page \pageref{labe_next_video_system}.\\
+\par
 
 \subsection{No More Visplanes!}
-"R_FindPlane: no more visplanes"\\
+"R\_FindPlane: no more visplanes"\\
 \par
-R_DrawPlanes: visplane overflow (\%i)\\
+R\_DrawPlanes: visplane overflow (\%i)\\
 \par
 
 Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.

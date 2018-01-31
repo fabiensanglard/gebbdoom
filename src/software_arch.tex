@@ -22,16 +22,7 @@ To accomodate the needs of running on different architecture Doom engine is a co
 \caption{Doom kernel and its I/O platform-dependent systems.}
 \end{figure}
 \par
-% The kernel six sub-systems are:\\
-% \par
-% \begin{enumerate}
-% \item
-% \item
-% \item
-% \item
-% \item
-% \item
-% \end{enumerate}
+
 The beauty of this system is that once the platform specific system are written, there is zero overheard. All code written runs on both platforms with no modifications.
 \par
 To implement this system, they exploited the C language ability to declare in a header file (\cw{.h}) a library interface that will only be available later. Each components, the core and all systems for the target plateform are compiled independently during a first step. The C linker combine all object files into an executable (in the case of MS-DOS \cw{DOOM.EXE}).\\
