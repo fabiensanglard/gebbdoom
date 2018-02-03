@@ -1,9 +1,9 @@
 \section{Renderer \& Video System}
-\begin{verbatim}
-enum {BOXTOP,BOXBOTTOM,BOXLEFT,BOXRIGHT};
-extern  int             dirtybox[4];
-\end{verbatim}
-
+The rendition system is located in the kernel. It maintains and expose two data structures, one framebuffer, and one dirtybox and also signal the video system when something has changed on the screen.\\
+\par
+\ccode{kernel_renderer.c}
+\par
+The video system implementation must provide four functions to the rendition system. 
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.27} | C{0.73} }
@@ -18,12 +18,18 @@ extern  int             dirtybox[4];
 \end{tabularx}
 \caption{Video system interface}
 \end{figure}
-
-\fixme{DRAWING FRAMEBUFFER}
-
 \par
-
-For details about \NeXT video system, see the Annex on page \pageref{labe_next_video_system}.\\
+\trivia{To host the framebuffer in the kernel and not in the video system allowed fast access to it. There was no more need to play with VGA banks. It also opened the door to reading back what would become pixels. This capability opened the door to new effects such as "predator" transparency opponnetes such as the "spectre" }
+\par
+\fixme{Screenshot}
+\par
+\drawing{renderer_full_pipeline}{}
+\par
+\trivia{VGA framebuffer 0x4000 apart instead of 0x3E80}
+\par
+The methods are called from the kernel to instruct the video system when data is available. With the \cw{dirtybox} screenspace coordinates, the kernel can signal partial update of the screen via \cw{I\_UpdateNoBlit}. When a frame is finished the kernel triggers a blit operation via \cw{I\_FinishUpdate} and start drawing in the same framebuffer again. This is in essence a double buffering design where one buffer is in the kernel and the other one in the video system. It is common during a frame for the kernel to set a large area in \cw{dirtybox} and issue a first \cw{I\_UpdateNoBlit} to update only the 3D view. Then issue a few smaller updates via \cw{dirtybox}/\cw{I\_UpdateNoBlit} for the status bar content.\\
+\par
+\trivia{The implementation of the video system on DOS and \NeXT are very different. DOS application have total access to the hardware whereas \NeXT apps must use the Window System. You can read how both deal with sending the content to the screen as fast as possible in the Annex on page \pageref{label_next_video_system}. Moreover if you refer back to the architecture of a VLB system, it allowed tranfer of one framebuffer to the video system while the next frame was being generated which allowed two systems to work in parallel for an improved output.}\\
 \par
 
 \subsection{No More Visplanes!}
