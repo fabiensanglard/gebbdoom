@@ -44,6 +44,7 @@
 %\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} \caption{#3}\end{figure}}
 
 \newcommand{\ccode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage} }
+\newcommand{\cccode}[2]{\begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=C]{code/#1}\caption{#2}\end{figure}\end{minipage} }
 \newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
 \newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
 
@@ -313,8 +314,8 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 
 \newcommand{\NeXT}{N\kern -.025em\raisebox{-0.4\depth}{\rotatebox[origin=c]{10}{e}}\kern -.025emXT }
 \newcommand{\fixme}[1]{\color{red}\#\#\#\#\##1\color{black}\ }
-\addtolength{\belowcaptionskip}{5pt}
-
+\addtolength{\belowcaptionskip}{15pt}
+\addtolength{\abovecaptionskip}{-5pt}
 
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%

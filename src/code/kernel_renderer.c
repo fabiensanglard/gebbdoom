@@ -1,4 +1,3 @@
-// Four framebuffers + one status bar buffer.
 // doomdef.h
 extern byte *screens[5];
 
@@ -9,7 +8,3 @@ for (i=0 ; i<4 ; i++)
 
 screens[4] = (byte *) Z_Malloc(ST_WIDTH*ST_HEIGHT, PU_STATIC, 0);
 
-// Dirty box used to keep track of updates.
-enum {BOXTOP,BOXBOTTOM,BOXLEFT,BOXRIGHT};
-extern int dirtybox[4];
-// TODO: Find framebuffer declaration
