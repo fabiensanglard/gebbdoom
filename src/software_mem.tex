@@ -1,4 +1,15 @@
 \section{Memory Manager}
-
-
-\trivia{Dave Taylor had his own TAG: \cw{PU_DAVE}, which was used for "anything else Dave wants static". Unfortunately this tag was never used.}
+Like all game engine of the era, \doom did not trust stock \cw{malloc}, even the one provided by the excellent Watcom's \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. It was also a good opportunity to add debugging tools.\\
+\par
+The original design called for a zone memory manager. However the concept was abandonned in favor of a tag system allowing memory block allocated to be marked and recognized for a certain purpose.\\
+\par
+\ccode{memory_zone.c}
+\par
+\cw{PU\_LEVEL} for example allows \doom to free all memory between levels without any tracking. The engine simply ask the zone memory manage to free all blocks tagged \cw{PU\_LEVEL}. An other powerful tag is \cw{PU\_CACHE} which allows the memory system to free a block by itself if it cannot complete an allocation request. \\
+\par
+  
+\par
+\trivia{Unsurprisingly the zone allocator is not entierely common to both DOS and \NeXT. Most of the code can be found in \cw{z\_zone.h} and \cw{z\_zone.c} but the RAM system is need to provide \cw{I\_ZoneBase}.\\
+\par \tcode{zone_undefined.txt}}
+\par
+\trivia{Dave Taylor had his own TAG: \cw{PU\_DAVE}, which was used for "anything else Dave wants static". Unfortunately this tag was never used.}
