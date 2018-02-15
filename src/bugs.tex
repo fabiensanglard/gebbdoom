@@ -1,5 +1,28 @@
 \section{Bugs}
+Like every software, \doom shipped with bugs. They were rare occurences, the game was very stable but a few amusing issues could occasionaly occur.
+
+
+
 \subsection{Slime trail}
+
+\fq{There is a roundoff error in the map partitionaer that can cause a few pixe-wide segment of a line to be drawn in the wrong order. This results in a narrow strip of a floor and ceiling texture being drawn past the line that should have stopped it. ksome of the artwork was drawn wide...}{John Carmack}
+
+\par
+
+\fq{BTW, there IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
+}{John Carmack}
+\par
+\fullimage{slime_trail.png}
+
+
+\subsection{Mysterious bug}
+Clue\footnote{Doom strategy guide}\\
+\fq{There are a few remaining bugs in the refresh code that are unlikely to get fixed. Sometimes you will see a one-pixel-wide column stretching from the top to the bottom of the screen. This is a result of drawing a line that has its two endpoints transformed to almost exactly the same polar angle. The fixed point arithmetic that calculates the scale for the column sometimes overflow, and the column goes to the maximum possible scale of 64 times normal height. Cuts on the floor or ceiling that are nearly vertical will also sometimes show an error.}{John Carmack}
+\par
 \subsection{sound pitch}
+
+
+
 \subsection{Flawed collision detection}
-technical explanation by Colin "cph" Phipps.
+technical explanation by Colin "cph" Phipps.\\
+\fullimage{Flawed_collision_detection.png}

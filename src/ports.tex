@@ -4,7 +4,7 @@ Due to its success and its architecture, \doom was ported to almost all the vide
 \par
 See: http://itrunsdoom.tumblr.com/archive\\
 \par
-INSER ARRAY HERE: Console, Year, Authors, Avg framerate.
+INSER ARRAY HERE: Console, Year, Authors, Avg framerate, price, CPUS, RAM.
 
 
 
@@ -17,15 +17,28 @@ INSER ARRAY HERE: Console, Year, Authors, Avg framerate.
 
 
 \section{Jaguar (1994)}
+
+\begin{wrapfigure}[10]{r}{0.25\textwidth}
+\centering
+\scaledimage{0.25}{jaguar_logo.png}
+CPU: blabalc\\
+CPU: dgfdƒå\\
+RAM: 2MiB\\
+\end{wrapfigure}
+
+Tom \& Jerry: One chip for video (Tom) one for sound (Jerry, DSP)? Two chips of 32-bit + a 68000 to orchestrate everybody (I maintain this is only there to read the joysticks).
 Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar. The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
 \par
 \pngdrawing{jaguar_arch}{}
 \par
 Lot of good stuff here: https://doomwiki.org/wiki/Atari\_Jaguar\\
 \par
+Best port since it had 16 bit color and 16 bit brightness.
+\par
 \fullimage{consoles/Jaguar.png}
-
-
+Not truly a 16 bit system.\\
+Called their console after big cats (Jaguar, Panther, Lynx).\\
+\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64 bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64 bit processors for this.}{Jaguar designer John Mathieson}
 
 
 
@@ -58,7 +71,7 @@ In the previous screenshot notice how E1M1 blue texture had to be replaced with 
 With all these compromises the framerate managed to remain within the 20 fps which was a pleasant experience.
 
 \pngdrawing{x32_fullarch}{}
-
+Called their console after planets (Jupiter, Mars, Saturn).\\
 
 
 
@@ -140,6 +153,7 @@ How PSX renders doom: https://www.youtube.com/watch?time\_continue=58\&v=MS9MGSm
 
 
 \section{3DO (1996)}
+Running on ARM60
 Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
 \par
 \fullimage{consoles/3DO.png}

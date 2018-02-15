@@ -1,15 +1,19 @@
 \section{VGA}
-At first sight, the video system may have looked like it had not evolved much.  The video system was still the same weird VGA with its maze of 300 registers and VRAM made of four banks of 64 KiB. 
+The video system may have looked like it had not evolved much. At its core it was still made of the same weird VGA with its maze of 300 registers and VRAM made of four banks of 64 KiB.\\
+\par 
+\fullimage{circleframebuffer.png}
 \par
-DRAWING
+\fullimage{circlescreen.png}
+\par
+\drawing{vga}{}
 \par
 Programmed via mapped memory from \cw{0xA0000} to \cw{0xAFFFF}. It still had to be put used in 320x200 in unchained Mode-Y mode to make games.\\
 \par
-DRAWING
+\drawing{vga_ram_screen_layout}{}
 \par
 And of course since the framebuffer aspect ratio did not match the CRT aspect ratio, the result was still distored.
 \par
-DRAWING
+\drawing{vga_mapping}{}
 \par
 But a closer insepction unveiled tremendous improvements. The early 90s saw the dawn of GUIs with IBM's OS/2 and Microsoft Windows 3.1. It was a demanding task to transit from pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to 300,000 bytes\footnote{256 colors at 640x480}.\\
 \par
@@ -19,7 +23,7 @@ Two majors improvement occured. One came from VGA card manufacturers themselves.
 \par
 
 
- 
+
 RAMDAC\footnote{Random Access Memory Digital-Analog Converter.}
 \par
 ARK 2000PV\\

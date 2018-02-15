@@ -96,3 +96,26 @@ There was very little optimized assembler in \doom compared to previous title. T
 \ccode{main_loop.c}
 \ccode{doomloop.c}
 Right there we can see a fundamental design decision in the loop. The engine is fixed base increment blablbal. Which led to many possibilities: recording games, three screen, network.
+
+\section{Fixed arithemetic}
+With floating points unavailable, \doom performs all its 3D calculations via fixed point.\\
+\par
+\ccode{fixed_t.c}{}
+\ccode{TryRunTics.c}{}
+\begin{figure}[H]
+ \centering
+  \input{drawings/int.tex}
+ \caption{Fixed point layout 16:16 (16 bits for the integer part and 16 bits for the fractional part).} \label{fig:mips}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+  \input{drawings/fp.tex}
+ \caption{Fixed point layout 16:16 (16 bits for the integer part and 16 bits for the fractional part).} \label{fig:mips}
+\end{figure}
+
+\section{Fixed time steps}
+\drawing{fixed}{}
+
+\section{Game thread/Sound thread}
+\drawing{three_systems}{}

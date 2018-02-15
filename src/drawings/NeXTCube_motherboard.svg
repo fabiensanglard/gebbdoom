@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="332.2713mm"
-   height="319.54611mm"
-   viewBox="0 0 1177.3393 1132.25"
+   width="367.39285mm"
+   height="343.95834mm"
+   viewBox="0 0 1301.7857 1218.75"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    sodipodi:docname="NeXTCube_motherboard.svg">
   <defs
      id="defs4" />
@@ -26,16 +26,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="491.71428"
-     inkscape:cy="612.24992"
+     inkscape:cx="708.85714"
+     inkscape:cy="663.67854"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1440"
      inkscape:window-height="855"
-     inkscape:window-x="0"
-     inkscape:window-y="1"
-     inkscape:window-maximized="1"
+     inkscape:window-x="57"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -56,7 +56,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(357.64285,33.762794)">
+     transform="translate(400.5,72.048508)">
     <rect
        style="fill:#7f9771;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4497"
@@ -369,5 +369,12 @@
        height="157.14285"
        x="739.36951"
        y="866.64789" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:12.21338749;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1513"
+       width="1301.7858"
+       height="1218.7501"
+       x="-400.5"
+       y="-72.048508" />
   </g>
 </svg>

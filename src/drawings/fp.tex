@@ -1,0 +1,42 @@
+\begin{tikzpicture}[scale=0.41, every node/.style={scale=0.85}]
+
+
+\colorlet{LighterMark}{black!50}
+
+% Dark marks
+\draw[thick,black] (0,0) -- (32,0);
+\draw[thick,black] (0,1) -- (32,1);
+
+\draw[thick,black] (0,1) -- (0,0);
+
+\draw[thick,black] (32,1) -- (32,0);
+
+% Light marks
+\foreach \i in {1,...,32}
+{
+     \draw[thick,LighterMark] (\i,1) -- (\i,0);
+}
+
+\draw[thick,black] (16,1) -- (16,0);
+
+% Labels      
+\node[] at (31+0.6,1.5){$2^{-15}$  }  ;      
+\node[] at (16.5+0.5,1.5){$2^{-1}$  }  ;     
+\node[] at (15+0.5,1.5){$2^{0}$  }  ;     
+\node[] at (00+0.6,1.5){$2^{15}$  }  ;     
+       
+% Labels      
+% \foreach \i[evaluate={\pow=int(15-\i)}] in {0,...,15}
+% {
+%    \node[] at (\i+0.5,1.5){$2^{\pow}$  }  ;     
+% }
+
+% \foreach \i[evaluate={\pow=int(\i-15)}]  in {16,...,31}
+% {
+%      \node[] at (\i+0.5,1.5){$2^{-\pow}$}  ;
+% }
+
+
+
+
+\end{tikzpicture}

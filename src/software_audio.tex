@@ -24,6 +24,8 @@ At a time before Microsoft harnessed all vendors under DirectSound API in 1995, 
 \item 
 \end{enumerate}
 
+\subsection{Audio Architecture}
+\drawing{sound_manager_architecture}{}
 DMX offloaded dealing with hardware bugs as Paul Radek described:
 
 \fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transfering only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benifit of sample smoothing from the GF1.//

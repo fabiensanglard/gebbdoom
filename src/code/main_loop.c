@@ -1,7 +1,7 @@
 void main (int argc, char **argv) {
-|  void D_DoomMain (void} {
-|  |  FindResponseFile ();
-|  |  IdentifyVersion ();   // WTF IS THIS?
+   void D_DoomMain (void} {
+      FindResponseFile ();
+      IdentifyVersion ();   // WTF IS THIS?
       
       V_Init ();
       M_LoadDefaults ();  
@@ -16,5 +16,5 @@ void main (int argc, char **argv) {
       ST_Init ();
 
       D_DoomLoop ();  // never returns
-|  }
+   }
 }
