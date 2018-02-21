@@ -1,0 +1,118 @@
+\section{A.I}
+
+\subsection{Monster Infighting}
+
+The A.I is an aspect of the engine which historically received little praise. It is unfair since the implementation is pretty neat. Each entity state machine is described in a script file \cw{multigen.txt} which is parsed by a tool (cunningly named \cw{multigen}) and compiled into a C structure (\cw{info.h} and \cw{info.c}).\\
+\par
+DRAWING
+\par
+The script has two sections per entity. First the general info and then a serie of state machines. To illustrate here if the imp script.\\
+\par
+\tcode{enemy_info.txt}
+\par
+It is not immediately apparent but the information is grouped in four sections. First comes the unique ID used in DoomED to place things on the map. Then there are integers describing the attributes of the entities such as \cw{speed}, \cw{heigh}, \cw{radius}. There are state pointers. And there are sound strings.\\
+\par
+doomednum        3001\\
+
+spawnhealth        60\\
+painchance        200\\
+speed            8\\
+radius            20*FRACUNIT\\
+height            56*FRACUNIT\\
+
+spawnstate        S\_TROO\_STND\\
+seestate        S\_TROO\_RUN1\\
+painstate        S\_TROO\_PAIN\\
+meleestate        S\_TROO\_ATK1\\
+missilestate    S\_TROO\_ATK1\\
+deathstate        S\_TROO\_DIE1\\
+xdeathstate        S\_TROO\_XDIE1\\
+raisestate        S\_TROO\_RAISE1\\
+
+seesound        sfx\_bgsit1\\
+attacksound        0\\
+painsound        sfx\_popain\\
+deathsound        sfx\_bgdth1\\
+activesound        sfx\_bgact\\
+
+flags            MF\_SOLID|MF\_SHOOTABLE|MF\_COUNTKILL\\
+\par
+The \cw{*state} values are used as starting point when the engine decides to put an entity in the desired state. The \cw{*sound} values are used to lookup the appropriate sound when it is needed.\\
+\par
+After the info section, comes the state section which is where the design shines. In this part the game designer can completely decide of that an entity does, what it looks like, what is sound like and so on.\\
+\par
+Let's take the example of the dying animation, which is called from \cw{deathstate=S\_TROO\_DIE1}:\\
+\par
+\tcode{enemy_state_die.txt}
+\par
+Each line is a state with the following syntax. 
+\begin{enumerate}
+\item State name.
+\item Frame family.
+\item Frame ID (sprite to render).
+\item ticks.
+\item Function to call when in thie state.
+\item Next state.
+\end{enumerate}
+\par
+As the sequence above shows, an imp dies in five steps.
+
+\begin{enumerate}
+\item Show first death frame (I) for 8/35th of a second.
+\item Show second death frame (J) for 8/35th of a second. Scream using \cw{deathsound}.
+\item Show third death frame (K) for 6/35th of a second.
+\item Show fourth death frame (L) for 6/35th of a second. Mark itself as non-obstacle (\cw{FALL}).
+\item Show fifth death frame (M) forever (\cw{-1}).
+\end{enumerate}
+\par
+The total dying sequence lasts $8+8+6+6=24/35 = 0.68 seconds$.
+\par
+DRAWINGS.
+\par
+Because an enemy will not always be facing the player, the Frame ID follows a convention:
+\par
+\begin{verbatim}
+0 = no rotation.
+
+        3
+      4 | 2
+       \|/
+     5--*----> 1   Thing is facing this direction
+       /|\
+      6 | 8
+        7
+\end{verbatim}
+\trivia{To save storage and RAM, symetrical enemies are mirrored. 
+
+TROOA1
+TROOA2A8
+TROOA3A7
+TROOA4A6
+TROOA5
+
+Cyberdemon is not symetrical.
+CYBRA1
+..
+CYBRA8
+}
+\par
+
+Once compiled the engine deals with something like this:\\
+\par
+\ccode{enemy_state_compiled.c}
+
+\trivia{When an entity receives enough damage to no negative its \cw{spawnhealth} (in the case of an imp that would be -60), the engine triggers no \cw{deathstate} but \cw{xdeathstate} state which means the entity exploded.\\
+\par 
+\ccode{explode.c}
+\par
+In the case of the imp, there are more frames but you get the idea:\\
+\par
+\tcode{enemy_state_xdie.txt}
+}
+
+\tcode{imp_state.txt}
+\par
+\trivia{Notice how the \cw{RAISE} state (used when the Arch-vile enemy resurrects dead monsters) played the dying frame in reverse.}
+\subsection{Map intelligence}
+Not only Things are intelligence, the map can also react to the player actions via something called tripwires.
+\pngdrawing{tripwire}{}

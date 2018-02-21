@@ -1,0 +1,139 @@
+For the publication of "Doom Survivor's Strategies \& Secrets" by Jonathan Mendoza, three members of id Software wrote essaies about their area of expertise. John Carmack spoke about the engine, Sandy Petersen of the map design, and Kevin Cloud talked about the art.\\
+\par
+\section{John Carmack - Engine}
+\subsection{GOALS}
+\b{High Speed} Doom is an interactive game, so it should be played at a rate of ten frames per second or faster. Our target audience is people with 386/33 and faster machines. With the selectable detail and screen size, slower computers can trade visual fidelity for more usable speed. At the high end, a fast Pentium machine can run Doom at 35 fps, its maximum speed, under most circumstances.\\
+\par
+
+\b{Freeform World Geometry} All of our previous games had been tile-based," which means the world was divided up into fixed-sized blocks that are chosen from a palette of pre-created data. The advantage of tile-based worlds is that you can create them quickly and easily, by repeating simple tiles many times. But making levels with many unique areas or with angled corridors can require thousands of small tiles of geometry. We wanted the ability to design levels without being constrained to a block-based world.\\
+\par 
+\b{Infinite View Distance} Most 3-D games
+follow the principle that only the objects within a certain distance are considered for drawing.
+This simplifies the rendering algorithms, but it forces the viewing horizon to either fade out rapidly (Ultima Underworld/Shadowcaster) or suffer the disconcerting effect of having objects pop into view (most flight simulators and driving games) rather than appear as a distant speck and grow larger.
+\par
+\subsection{IMPLEMENTATION}
+The work of programming Doom can be divided into four roughly
+equal parts:
+\begin{itemize}
+\item Developing the rendering engine
+to draw pictures
+of the world
+environment.
+\item Developing the utilities used to create data for the game.
+\item Developing the world model that governs
+the interaction of
+things in the game world.
+\item Tuning and modifying
+the code as new circumstances arise.
+\end{itemize}
+
+The main game code consists of
+just under 30,000
+lines of C code. The
+DOS version has three functions in assembly language: horizontal texture map, vertical stretch, and read
+joystick. The sound code was developed by an outside contractor. A fundamental aspect of our development
+strategy is that we use NEXTSTEP systems
+for almost all programming
+work. The powerful, stable development environment has enabled us to
+do much richer work than if we had restricted ourselves to working under DOS.\\
+\par
+The game is structured so that it can be run in a window under NEXTSTEP, where it can be easily debugged, or recompiled to run full-screen under DOS. The rendering engine was actually developed mostly on a black-and-white NeXTStation at my home. It was structured so that the graphics could be drawn in grayscale, eight-bit color, or twelve-bicolor (native to color NeXIStations). The refresh can also be used at any resolution, not limited to the PC screen size. Imposing the discipline of developing portable code has led me to some insights about better game architecture.\\
+\par
+
+I usually categorize game rendering engines on three axes: speed, capabilities, and image fidelity. Speed is the relation of view window size to frame rate. Capabilities covers limitations to the world model, like 90 degree walls only, sloping floors, variable lighting, view height variability, etc. Fidelity includes the accuracy of texture mapping, any fudging done to improve speed, and things like anti-aliasing.\\
+\par
+
+Our game design starts by selecting a speed for the game on our target platform, then trying to get as many capabilities and as high fidelity as possible. Dooms world geometry is limited to a two-dimensional arrangement of lines representing walls, and flat floors and ceiling of variable heights. Doom cannot draw sloping floors, overlapping walkways, or tilted walls. The viewpoint has four axes of freedom: forward/backwards, left/right, up/down, and clockwise/counterclockwise. These are significant limitations for, say, an architectural walk-through program, but they provided us with a great deal of freedom for our game design. We are still finding new ways to exploit these capabilities as work progresses on Doom II. 1 am proud of the fidelity of the Doom engine. The texture mapping is subpixel-accurate, and there are no compromises with distance.\\
+\par
+
+Because of the geometric limitations imposed on Doom, the hidden-surface removal problem can be reduced to a two-dimensional problem dealing only with the walls. The floors and ceilings are filled in to the remaining spaces after the walls have been properly drawn. This is a lot quicker than an arbitrary three-dimensional rendering scheme. The central algorithm Doom uses for the hidden-surface removal is a two-dimensional binary space-partition tree traversal. After a map has been drawn, it is passed to a separate utility which groups lines into sectors and recursively partitions the entire map into convex areas. This is a time-consuming task, but doing the work ahead of time lets the game perform less work at run time. The downside of this is that the lines that make up the world cannot have their endpoints adjusted during play. Thats why there are no swinging doors in Doom.\\
+\par
+
+Our map editor was used day-in, day-out for almost a year by our game designers, so the effort expended on making it productive to use was well spent. DoomEd is the NEXTSTEP application we created to build and modify worlds. It allows us to design the geometry of the world from a top-down perspective, and select the graphics to map onto the walls, floors, and ceilings.\\
+\par
+
+The game world model was developed to support networking from the start. Each object in the world is processed through the same routines, regardless of whether it is a bonus item, a monster, or a networked player. Some of the world utility routines, like the bullet target and trace call, were actually more involved than the 3-D rendering routines.\\
+\par
+
+The tuning of the entire project is the most important phase for making an enjoyable game. Subtle elements like the timing of an animation, the pitch of a sound effect, or the motion of an exploding body all impact the impression a user gets from the game. Proper tuning takes a long time, and a lot of testing, but the details really count. We experienced an interesting synergy in Doom, where several of the game elements regarding movement, combat, and the environment managed to complement each other so well that the game turned out better than our original vision of it. The normal process of game design starts with a glorious vision that is slowly torn down to reality as the project progresses. While our original plan was greatly changed, and some features were lost, the final product exceeded our early expectations.\\
+
+\subsubsection{AFTERTHOUGHTS}
+Doom is the first project I have worked on that l have still been proud of at its completion. I was not happy with Wolfenstein by the time it was released, and I was disappointed with my implementation of the Shadowcaster engine. I see a few warts, but I am still pleased with my work on Doom. There are a few remaining bugs in the refresh code that are unlikely to get fixed. Sometimes you will seea one-pixel-wide column stretching from the top to the bottom of the screen. This is a result of drawing a line that has its two endpoints transformed to almost exactly the same polar angle. The fixed-point arithmetic that calculates the scale for the column sometimes overflows, and the column goes to the maximum possible scale of 64 times normal height. Cuts on the floor or ceiling that are nearly vertical will also sometimes show an error.\\
+\par
+
+There is a roundoff error in the map partitioner that can pixel-wide segment of a line to be drawn in the wrong order in a narrow the strip of the floor and ceiling texture being drawn pas.
+line that should have stopped it. Some of the artwork was drawn wider than the real width of the game object, so it is possible to have a piece of a sprite be seen past a wall under certain circumstances. I could have made Doom about 15 percent faster by paying more attention to the low-level Intel architecture. We all learned a lot during the development of Doom, and there are many new things for us to bring on in the next project. Watch out!
+
+
+
+
+
+\section{Sandy Petersen- Game Design}
+
+
+Doom's levels were not designed by one single person. John Romero created all the levels in episode 1, Knee Deep in the Dead, from scratch, except for level 1.8. All the remaining levels were done by me, either alone or sometimes by converting someone else's earlier work into a more polished form. The following paragraphs give full credit for the remaining levels.\\
+\par
+ Though a great deal of changes were made to Tom Halls and Shawn Green's levels (one a former id Software contributor, the other still with id Software),including placing monsters, repairing wall textures, and altering number less small details, the basic architecture remains unchanged.\\
+\par
+It is my belief that a perceptive player of Doom will sense a definite personality difference between the levels created by each of the designers.This effect may be slightly dimmed in the case of Tom Hall and Shawn Green, since their original distinctive style has been somewhat merged with my own through the heavy editing their levels underwent.\\
+\par
+ John Romero's particular lunacy appears to lie in flooding the player with seemingly unstoppable hordes of monsters, interspersed with long periods of tense quietude, as the player ponders what horrors are to be unleashed next. He often places monsters on distant vantage points, whence they can snipe at the player in relative safety.Johns levels are riddled with special vantage points, cunning secret areas, and multilevel action.\\
+ \par
+  John almost always starts out a level with a nightmarish bloodbath to get the players adrenaline flowing. Only after you have survived this onslaught can you take a break and decide where to go next. Another tendency of Johns is to make the level linear. if you don't count the many secret passages, you pretty much have to go through Johns levels in the order he prescribes.\\
+  \par
+   On my own levels, I tend to present the player with a constant trickle of monsters, unlike Johns episodic bursts of terror. Also, instead of Johns diabolic secret tunnels and platforms, I tend to assault the player with booby traps and snares. The classic example is the false exit on E2M6. It looks like an exit, it smells like an exit, but its not really an exit.\\
+   \par
+    My levels start out kind of quiet, with the player left on his or her own. There's usually a monster or two right around the comer, but not the slavering horde you may have learned to expect from John. Some of my levels are quite linear (E3M1 or E3M4, for instance), but others, such as E3M2, EZMS, and E3M6 leave the area wide open for players to explore almost anywhere they want. Ive found that some players really like this type of free-form experience, while others feel lost and confuse until they manage to figure out the right way to go (which generally varies from player to player|.\\
+    \par
+     Three things must be kept in mind at all times while designing levels for the players:
+\begin{enumerate}
+\item How does it look?
+\item Is it fun?
+\item Did you remember to clean up?
+\end{enumerate}
+\par
+
+\subsection{How Does It Look?}
+
+This was the hardest part of level design to learn, at least for me. It seemed to come naturally to Romero, while I had to work and work. The basic problem is that in order to design a good-looking room for Doom, you must think architecturally. That is, you must see the room in terms of spaces rather than as a set of lines on a map. The exact wall textures used to give animation and color to a room often are secondary to the rooms actual structural components. Some rooms end up looking very good indeed, while others are not as impressive, despite colors and structures. For instance, were never been really happy with the large entry hall on E1M4. It does the job and is fun to play in, but it just doesn't seem it have that zip. An open hole in the roof and numerous alterations in the Chamber's decor didnt wholly fix it. In the end, we decided that it played just fine, so wed leave it and move on to other things.\\
+\par
+ In the early design of Doom, there was a tendency to have lots of twisty little mazes. As playtest began, we discovered that these usually weren't too much fun, and most of them have been discarded (with a few exceptions, mostly in Tom Halls old levels). Even the ones that remain have been altered and simplified in most cases, or serve a purpose by being claustrophobic and frightening (for instance, check out the excellent final maze in E1M4, the upstairs maze in E3M3, or the lava maze in E3M7).
+
+\subsection{Is It Fun?}
+
+
+This is, of course, even more important than making the game look good if it doesn't PLAY well, it just doesn't matter how good it looks. Making a level fun, for me, was a combination of an initial overall plan and continual playtest.\\
+\par
+ When I began a level, I thought long and hard about the overall theme of that level what the player was supposed to get from it. For example, on E3M5, I wanted to give the player an illusion of a vast fane or temple, with a symmetric and understandable architecture. At first, players on this level are puzzled, with the teleporters, released monsters, and so forth, but soon they understand the levels overall structure and are racing round it with ease. Once players comprehend the layout, they are able to approach E3M5 scientifically and rationally, which gives them an interesting contrast (I believe) between the emotionally laden nature of that level (a huge cathedral) and their own behavior.\\
+ \par
+  On the other hand, on E3M1, the goal was simply to overawe the player with the wonders that await them in Hell. The level teems with ominous and frightening images from the start, where you find yourself outside under a glowering red sky, chased by Imps. When you open the promising door to escape, it releases a Cacodemon. The bridge leading to the shotgun collapses, etc. You are kept running around, seeing ever more ominous and weird sights and terrors that quickly teach you the different nature of Hell, as compared with the more rationally constructed levels of episodes 1 and 2.\\
+  \par
+   Once Ive got my theme worked out, I'll generally complete one small area of a level, then quickly playtest it. If it seems to work and looks fine I'll complete the next area, and test both completed areas out together, continuing to do this until the entire level is finished.\\
+   \par
+    \subsection{Did You Remember to Clean Up?} 
+
+    Just because a level looks good and plays well doesn't mean its done. Now Ive got to make sure I've thought of everything. Is there enough ammunition and weapons for the players? How about bonus items? Players expect them, and they re easy to leave out. Did you remember to mark secret areas? And are there enough traps and tricks to keep the players amused?\\
+    \par
+     After trying to cover these pathetic tiny details, I have to probe deeper. Is there some way that a clever player can bypass all the action of the whole level? If so, is that okay? (Sometimes it is if you are smart you can skip almost the whole of E3M6, and I dont mind a bit; but youll miss out on a lot of weapons and interesting combat.) How does the level mesh with the one preceding? The one following? If the start room of level B includes a single lonely Cacodemon coming at you down a long hall, but you were given the opportunity to pick up a rocket launcher in the exit room of level A, you arent presented with much of a problem. On the other hand, if that rocket launcher is at the very start of level A, so that you only have it available in level B if you carefully held onto your rockets, this might be okayyou should be rewarded for your stinginess.\\
+     \par
+      When the final level is done, I play it a few more times, looking for flaws and mistakes (I find plenty of these), then I turn it over to those rotten excuses for human beings,  the other id-iots at id Software. They quickly find all sorts of terrible things wrong with my poor baby level, and 1 fix these as rapidly as possible to avoid the rancorous comments and snide laughter that results when they expose flaws I've built into an area. If I sound like a bitter man, there are reasons.
+
+
+
+\section{Kevin Cloud - Art}
+
+In games, good computer art is commonly referred to as beautifully rendered or detailed" because most good game art looks meticulously hand drawn. Unfortunately, beautifully rendered worlds often begin to look staged. For Doom, we wanted to create a realistic and dark world that looked more dirty than pretty. There was nothing beautiful about Doom and we wanted its world to convey that concept scary and dark.\\
+\par
+
+ To achieve the intended effect we used a combination of scanned and hand rendered images. John Carmack created the program, Fuzzy Pumper Palette Shop, that would capture live video images and convert them into a PC graphic format. We then loaded the images directly into our PC art applications where we could edit, resize, colorize, and combine themwhatever it took to create an interesting graphic. The overall effect is somewhat distorted, but thats Doom.\\ 
+\par
+ The characters in Doom were created using a variety of methods hand drawn, scanned clay models, and finally, latex and metal models. After working on Wolfenstein, we knew the frustration of creating the rotated views of every animation of a creature. Most characters are easy to draw from the front, but rotate them 45 degrees and things become a little more complex. Using small wooden mannequins and a couple of pounds of clay, we set out to make our own models. This technique wasnt perfect, but it enabled us to pose the creatures in stances we would normally not draw.\\
+\par
+As the project neared its end, we wanted to create a monster that wasnt a biped. We came up with the idea of a large brainy creature with a chaingun embedded into its face, and its body attached by several large metal hooks to a four-legged metal machine. We couldnt create this guy using clay, and thats when we contacted Gregor Punchatz.\\
+\par
+ Gregor has an extensive background in creating models. Working on the sets of such movie classics as Nightmare on Elm Street and Robutup, Greg had the tools and the talent necessary for creating models. Within a few weeks, Gregor had turned our sketches into a fully moveable monster. The process worked well. And although this version of Doom only features one of his creations, the retail version of Doom will fully utilize Gregor's talents.
+
+\subsection{HAPPY DOOMING}
+
+There is obviously a lot more to Doom than what you see on the screen, and there is much more the Doom creators could have shared with us. I hope the above discussions have at least given you an insight into the minds of the Doom creators and an appreciation for the art and science of Doom. For more technical information about playing and enjoying Doom, look for your specific topics in the appendixes.\\
+\par

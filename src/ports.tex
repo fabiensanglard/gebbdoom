@@ -18,16 +18,20 @@ INSER ARRAY HERE: Console, Year, Authors, Avg framerate, price, CPUS, RAM.
 
 \section{Jaguar (1994)}
 
-\begin{wrapfigure}[10]{r}{0.25\textwidth}
-\centering
-\scaledimage{0.25}{jaguar_logo.png}
-CPU: blabalc\\
-CPU: dgfdƒå\\
-RAM: 2MiB\\
+\begin{wrapfigure}[10]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{jaguar_logo.png}}
+\hrule 
+\bigskip
+   Released Nov, 1993\\
+   GPU: "Tom" 26 MHz\\
+   DSP: "Jerry" 26 MHz\\
+   CPU: m68k 14 Mhz\\
+   Ram: 2 MiB\\
+\hrule 
 \end{wrapfigure}
 
 Tom \& Jerry: One chip for video (Tom) one for sound (Jerry, DSP)? Two chips of 32-bit + a 68000 to orchestrate everybody (I maintain this is only there to read the joysticks).
-Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar. The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
+Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar.\\
+\par The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
 \par
 \pngdrawing{jaguar_arch}{}
 \par
@@ -38,27 +42,96 @@ Best port since it had 16 bit color and 16 bit brightness.
 \fullimage{consoles/Jaguar.png}
 Not truly a 16 bit system.\\
 Called their console after big cats (Jaguar, Panther, Lynx).\\
-\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64 bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64 bit processors for this.}{Jaguar designer John Mathieson}
+\par
+\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64 bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64 bit processors for this.}{Jaguar designer John Mathieson}\\
+\par
+\ccode{jaguar_visplanes.c}
+\fullimage{doom_jaguar2.png}
+\par
+\fullimage{doom_jaguar3.png}
 
-
-
+\fq{The memory, bus, blitter and video processor were 64 bits wide, but the
+processors (68k and two custom risc processors) were 32 bit.\\
+\par
+The blitter could do basic texture mapping of horizontal and vertical spans,
+but because there wasn't any caching involved, every pixel caused two
+ram page misses and only used 1/4 of the 64 bit bus. Two 64 bit buffers
+would have easily trippled texture mapping performance. Unfortunate.\\
+\par
+It could make better use of the 64 bit bus with Z buffered, shaded triangles,
+but that didn't make for compelling games.\\
+\par
+It offered a usefull color space option that allowed you to do lighting effects
+based on a single channel, isntead of RGB.\\
+\par
+The video compositing engine was the most innovative part of the console.
+All of the characters in Wolf3D were done with just the back end
+scalar instead of blitting. Still, the experience with the limitations and
+hard failure cases of that gave me good amunition to rail against microsoft's
+(thankfully aborted) talisman project.\\
+\par
+The little risc engined were decent processors. I was surprised that they
+didn't use off the shelf designs, but they basically worked ok. They had
+some design hazards (write after write) that didn't get fixed, but the only
+thing truly wrong with them was that they had scratchpad memory instead
+of caches, and couldn't execute code from main memory. I had
+to chunk the DOOM renderer into nine sequentially loaded overlays to
+get it working (with hindsight, I would have done it differently in about
+three...).\\
+\par
+The 68k was slow. This was the primary problem of the system. You options
+were either taking it easy, running everything on the 68k, and going
+slow, or sweating over lots of overlayed parallel asm chunks to make
+something go fast on the risc processors.\\
+\par
+That is why playstation kicked so much ass for development - it was programmed
+like a single serial processor with a single fast accelerator.
+If the jaguar had dumped the 68k and offered a dynamic cache on the
+risc processors and had a tiny bit of buffering on the blitter, it could have put up a reasonable fight against sony.} {John Carmack}
+\par
+Peeking inside the Jaguar port source code we can find the following:\\
+\par
+\ccode{jaguar_src.c}
+\par
+\cw{MARS} was the code name of the Sega Genesis. Jaguar ran at resolution of 320x240. Due to limitations the 3D scene is actually renderer in 160 x 180 (vertical lines doubled) with 60 pixels at the botton.\\
+Simulator means when they were running on PC.
+\par
+No music due to DSP used for collision detection.\\
+\fullimage{jagua_motherboard.png}
 
 
 
 
 
 \section{Sega 32X (1994)}
+
+\begin{wrapfigure}[15]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{sega_x32_logo.png}}
+\hrule 
+\bigskip
+   Released Nov, 1994\\
+   CPU: 2x SH-2 \\
+   32-bit 23 MHz\\
+   RAM: 256 KiB\\
+   VRAM: 2x128 KiB\\
+
+   From the Genesis:\\
+   m68k 7.6 MHz\\
+   Zilog Z80 3.58 MHz\\
+\hrule 
+\end{wrapfigure}
+
+
 The Sega X32 was an power up booster which you could insert on top of its Genesis via its cartridge slot. Developed in less than a year during 1994, it was rushed in order to buy time against the Atari Jaguar. The task of building it fell on Sega USA\footnote{Retroinspection: SEGA X32, Retro Gamer \#77} (while Sega Japan worked on its next flagship, the SEGA Saturn). Despite unfavorable time constraints they managed to produce an impressive piece of engineering. Nicknamed "Mars", the machine was capable of up to four operations per instructions, something unheard of even on PCs\footnote{The first super scalar on PC would be the Intel Pentium introduced in March 1993.}. The key innovation was its mirrored architecture based on two Hitashi RISC CPUs running at 23 MHz, each with their own framebuffer which could be used either as a master/slave or a pair in order to double the framerate.\\
 \par
 \fullimage{consoles/32X.png}
 \par
 \drawing{x32_arch}{Sega X32 architecture.}
 \par
-John Carmach himself took care of this port.\\
+John Carmach himself took care of this port. 3D section ran at 128x144 translated 256x244 and floating inside the 320x224 resolution of whole screen.\\
 \par
-\fq{I spent weeks working with Id Software’s John Carmack, who literally camped out at the Sega of America building in Redwood City trying to get Doom ported. That guy worked his ass off and he still had to cut a third of the levels to get it done in time.\\ 
+\fq{I spent weeks working with Id Software's John Carmack, who literally camped out at the Sega of America building in Redwood City trying to get Doom ported. That guy worked his ass off and he still had to cut a third of the levels to get it done in time.\\ 
 \par
-What amazes me now is that with all that going on, nobody at Sega was willing to say "Wait a minute, what are we doing? Why don’t we just stop?" Sega should have killed the 32X in the spring of 1994, but we didn’t. We stormed the hill, and when we got to the top we realized it was the wrong damn hill. }{Scot Bayless, Senior Producer at Sega of America}
+What amazes me now is that with all that going on, nobody at Sega was willing to say "Wait a minute, what are we doing? Why don't we just stop?" Sega should have killed the 32X in the spring of 1994, but we didn't. We stormed the hill, and when we got to the top we realized it was the wrong damn hill. }{Scot Bayless, Senior Producer at Sega of America}
 \par
 Despite the hardware impressive claims, the machine struggled, likely due to a cache too small resulting in cache misses and stalled CPUS. The game had to be significantly tuned down.\\ Levels had to be cut, from the original 30, only 15 remained. Enemies eight positions had to be reduced to one to always face the player. With the side effect of removing monster infighting. Enemies were removed all together (cyberdemon, spiderdemon or spectre). Worse than all, the active window had to be made smaller. Running in a resolution of 320x224, only a 256 x 144 is actually updated every frames.\\
 \par
@@ -78,10 +151,24 @@ Called their console after planets (Jupiter, Mars, Saturn).\\
 
 
 \section{Super Nintendo (1995)}
-\begin{wrapfigure}[11]{r}{0.25\textwidth}
-\centering
-\scaledimage{0.25}{superfx.png}
+
+\begin{wrapfigure}[14]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{snes_logo.png}}
+\hrule 
+\bigskip
+   Super FX2:
+   Released 1993\\
+   GSU: 23 MHz\\
+   VRAM: 32 KiB\\
+   
+   SNES:\\
+   Released 1990\\
+   CPU: 5A22 3.58 MHz\\
+   Audio: SPC700\\
+\hrule 
 \end{wrapfigure}
+
+
+
 With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely platform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as usual hackers found a way.\\
 \par
 
@@ -97,8 +184,18 @@ The GSU\footnote{Graphics Support Unit} as its official name would be had a simp
 \par
 \cfullimage{consoles/SNES.png}{The Super Famicom by Nintendo.}
 \par
-When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a tighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable. Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
+\begin{wrapfigure}[11]{r}{0.25\textwidth}
+\centering
+\scaledimage{0.25}{superfx.png}
+\end{wrapfigure}
+When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a tighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable.\\
+\par
+ Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
 \par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas. With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement.\\
+
+
+
+
 
 \fq{DOOM was a truly ground-breaking title and I wanted to make it possible for gamers without a PC to play the game, too. DOOM on the Super Nintendo was another one of those programming challenges that I knew could be accomplished.\\
 \par
@@ -107,9 +204,9 @@ I started the project independently and demo'd it to Sculptured Software when I 
 \par
 The development was challenging for a few reasons, notably there were no development systems for the SuperFX chip at the time. I wrote a complete set of tools — assembler, linker and debugger — before I could even start on the game itself.\\
 \par
-The development hardware was a hacked-up StarFox cartridge (because it included the SuperFX chip) and a modified pair of game controllers that were plugged into both SNES ports and connected to the Amiga’s parallel port. A serial protocol was used to communicate between the two for downloading code, setting breakpoints, inspecting memory, etc.\\
+The development hardware was a hacked-up StarFox cartridge (because it included the SuperFX chip) and a modified pair of game controllers that were plugged into both SNES ports and connected to the Amiga's parallel port. A serial protocol was used to communicate between the two for downloading code, setting breakpoints, inspecting memory, etc.\\
 \par
-I wish there could have been more levels but unfortunately the game used the largest capacity ROM available and filled it almost completely. I vaguely recall there were roughly 16 bytes free, so there wasn’t any more space available anyway! However, I did manage to include support for the SuperScope, Mouse and XBand modem! … Yes, you could actually play against someone online!}
+I wish there could have been more levels but unfortunately the game used the largest capacity ROM available and filled it almost completely. I vaguely recall there were roughly 16 bytes free, so there wasn't any more space available anyway! However, I did manage to include support for the SuperScope, Mouse and XBand modem! … Yes, you could actually play against someone online!}
 {Randy Linden (Interview with gamingreinvented.com)}
 \par
 Almost no censorship from Nintendo except for removing red blood.
@@ -125,10 +222,30 @@ Almost no censorship from Nintendo except for removing red blood.
 \drawing{snes_cartridge}{SNES 721 games library. Zelda stands apart. Because Zelda stands apart.}
 \par
 \rawdrawing{snes_cartridge2}
+resolution = 256 x 224 but inside black frame.
+
+
+
+
+
+
+
 
 
 
 \section{Playstation 1 (1995)}
+
+\begin{wrapfigure}[14]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{psx_logo.png}}
+\hrule 
+   Released Dec 1994\\
+   MIPS R3000 33 MHz\\
+   GTE Copro, 33 MHz\\
+   RAM: 2 MiB\\
+   VRAM: 1 MiB\\
+   Audio: Sony SPU
+\hrule 
+\end{wrapfigure}
+
 The screen resolution was changed from 320x200 to 256x240, which is stretched to roughly 293x240 via NTSC rasterization.\\
 modified version of the Doom engine used in the Atari Jaguar port. This version spent six months in development. The Arch-vile monster from Doom II is not present; according to one of the game's designers, Harry Teasley, this was because he had twice as many frames as any other monster, and the team felt that they "just couldn't do him justice" on the PlayStation. A new monster however was added: Nightmare spectre (subtractively blended against the background graphics).\\
 \par
@@ -153,7 +270,29 @@ How PSX renders doom: https://www.youtube.com/watch?time\_continue=58\&v=MS9MGSm
 
 
 \section{3DO (1996)}
-Running on ARM60
+\begin{wrapfigure}[22]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{3do_logo.png}}
+\hrule 
+   Released Dec 1993\\
+   CPU: ARM60 12.5 MHz\\
+   RAM: 2 MB\\
+   VRAM:1 MB\\
+\hrule 
+\end{wrapfigure}
+
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB\\ 
+\par
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB \\
+\par
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
+BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
 Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
 \par
 \fullimage{consoles/3DO.png}
@@ -181,14 +320,27 @@ I had to write my own string.h ANSI C library because the one 3DO supplied with 
 
 
 \section{Saturn (1997)}
-\fullimage{consoles/Saturn.png}
+\begin{wrapfigure}[12]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{saturn_logo.png}}
+\hrule 
+\bigskip
+   Released 19XX\\
+   CPU: 
+   RAM:\\
+   VRAM:\\
+   Audio: SPC700\\
+\hrule 
+\end{wrapfigure}
+
 https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
 \par
 JIMSDOOM.WAD, obviously named after Jim Bagley.\\
 The wad is a 1:1 copy of PSXDOOM.WAD\\
 John Carmack shut down their original plan to use a hardware-accelerated renderer\\
-\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
+\par
 See author comments: https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/?page=2\#comment-1580057\\
+\par
+\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
+\fullimage{consoles/Saturn.png}\\
 \fullimage{affine_texture_mapping/post_far.png}\\
 \fullimage{affine_texture_mapping/post_near.png}\\
 \par

@@ -1,0 +1,39 @@
+S_TROO_STND    TROO   A  10  A_Look        S_TROO_STND2
+S_TROO_STND2   TROO   B  10  A_Look        S_TROO_STND
+
+S_TROO_RUN1    TROO   A   3  A_Chase       S_TROO_RUN2
+S_TROO_RUN2    TROO   A   3  A_Chase       S_TROO_RUN3
+S_TROO_RUN3    TROO   B   3  A_Chase       S_TROO_RUN4
+S_TROO_RUN4    TROO   B   3  A_Chase       S_TROO_RUN5
+S_TROO_RUN5    TROO   C   3  A_Chase       S_TROO_RUN6
+S_TROO_RUN6    TROO   C   3  A_Chase       S_TROO_RUN7
+S_TROO_RUN7    TROO   D   3  A_Chase       S_TROO_RUN8
+S_TROO_RUN8    TROO   D   3  A_Chase       S_TROO_RUN1
+
+S_TROO_ATK1    TROO   E   8  A_FaceTarget  S_TROO_ATK2
+S_TROO_ATK2    TROO   F   8  A_FaceTarget  S_TROO_ATK3
+S_TROO_ATK3    TROO   G   6  A_TroopAttack S_TROO_RUN1
+
+S_TROO_PAIN    TROO   H   2  NULL          S_TROO_PAIN2
+S_TROO_PAIN2   TROO   H   2  A_Pain        S_TROO_RUN1
+
+S_TROO_DIE1    TROO   I   8  NULL          S_TROO_DIE2
+S_TROO_DIE2    TROO   J   8  A_Scream      S_TROO_DIE3
+S_TROO_DIE3    TROO   K   6  NULL          S_TROO_DIE4
+S_TROO_DIE4    TROO   L   6  A_FALL        S_TROO_DIE5
+S_TROO_DIE5    TROO   M  -1  NULL          S_NULL
+
+S_TROO_XDIE1   TROO   N   5  NULL          S_TROO_XDIE2
+S_TROO_XDIE2   TROO   O   5  A_XScream     S_TROO_XDIE3
+S_TROO_XDIE3   TROO   P   5  NULL          S_TROO_XDIE4
+S_TROO_XDIE4   TROO   Q   5  A_FALL        S_TROO_XDIE5
+S_TROO_XDIE5   TROO   R   5  NULL          S_TROO_XDIE6
+S_TROO_XDIE6   TROO   S   5  NULL          S_TROO_XDIE7
+S_TROO_XDIE7   TROO   T   5  NULL          S_TROO_XDIE8
+S_TROO_XDIE8   TROO   U  -1  NULL          S_NULL
+
+S_TROO_RAISE1  TROO   M   8  NULL          S_TROO_RAISE2
+S_TROO_RAISE2  TROO   L   8  NULL          S_TROO_RAISE3 
+S_TROO_RAISE3  TROO   K   6  NULL          S_TROO_RAISE4 
+S_TROO_RAISE4  TROO   J   6  NULL          S_TROO_RAISE5 
+S_TROO_RAISE5  TROO   I   6  NULL          S_TROO_RUN1 

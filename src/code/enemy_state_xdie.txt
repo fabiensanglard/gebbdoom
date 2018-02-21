@@ -1,0 +1,8 @@
+S_TROO_XDIE1    TROO    N    5    NULL       S_TROO_XDIE2
+S_TROO_XDIE2    TROO    O    5    A_XScream  S_TROO_XDIE3
+S_TROO_XDIE3    TROO    P    5    NULL       S_TROO_XDIE4
+S_TROO_XDIE4    TROO    Q    5    A_FALL     S_TROO_XDIE5
+S_TROO_XDIE5    TROO    R    5    NULL       S_TROO_XDIE6
+S_TROO_XDIE6    TROO    S    5    NULL       S_TROO_XDIE7
+S_TROO_XDIE7    TROO    T    5    NULL       S_TROO_XDIE8
+S_TROO_XDIE8    TROO    U   -1    NULL       S_NULL
