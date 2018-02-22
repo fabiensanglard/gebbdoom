@@ -4,7 +4,7 @@
 
 The A.I is an aspect of the engine which historically received little praise. It is unfair since the implementation is pretty neat. Each entity state machine is described in a script file \cw{multigen.txt} which is parsed by a tool (cunningly named \cw{multigen}) and compiled into a C structure (\cw{info.h} and \cw{info.c}).\\
 \par
-DRAWING
+\pngdrawing{multigen}{}
 \par
 The script has two sections per entity. First the general info and then a serie of state machines. To illustrate here if the imp script.\\
 \par
@@ -45,6 +45,8 @@ Let's take the example of the dying animation, which is called from \cw{deathsta
 \par
 \tcode{enemy_state_die.txt}
 \par
+\pngdrawing{die}{}
+\par
 Each line is a state with the following syntax. 
 \begin{enumerate}
 \item State name.
@@ -67,7 +69,8 @@ As the sequence above shows, an imp dies in five steps.
 \par
 The total dying sequence lasts $8+8+6+6=24/35 = 0.68 seconds$.
 \par
-DRAWINGS.
+
+
 \par
 Because an enemy will not always be facing the player, the Frame ID follows a convention:
 \par
@@ -84,16 +87,10 @@ Because an enemy will not always be facing the player, the Frame ID follows a co
 \end{verbatim}
 \trivia{To save storage and RAM, symetrical enemies are mirrored. 
 
-TROOA1
-TROOA2A8
-TROOA3A7
-TROOA4A6
-TROOA5
-
-Cyberdemon is not symetrical.
-CYBRA1
-..
-CYBRA8
+\pngdrawing{imp_pose}{}
+\par
+\pngdrawing{cyber_pose}{}
+sdfs
 }
 \par
 
@@ -105,12 +102,16 @@ Once compiled the engine deals with something like this:\\
 \par 
 \ccode{explode.c}
 \par
+\pngdrawing{explode}{}
+\par
 In the case of the imp, there are more frames but you get the idea:\\
 \par
 \tcode{enemy_state_xdie.txt}
 }
 
 \tcode{imp_state.txt}
+\par
+\pngdrawing{automate}{}
 \par
 \trivia{Notice how the \cw{RAISE} state (used when the Arch-vile enemy resurrects dead monsters) played the dying frame in reverse.}
 \subsection{Map intelligence}

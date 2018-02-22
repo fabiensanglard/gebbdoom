@@ -101,7 +101,7 @@ Right there we can see a fundamental design decision in the loop. The engine is 
 With floating points unavailable, \doom performs all its 3D calculations via fixed point.\\
 \par
 \ccode{fixed_t.c}{}
-\ccode{TryRunTics.c}{}
+
 \begin{figure}[H]
  \centering
   \input{drawings/int.tex}
@@ -115,6 +115,7 @@ With floating points unavailable, \doom performs all its 3D calculations via fix
 \end{figure}
 
 \section{Fixed time steps}
+\ccode{TryRunTics.c}{}
 \drawing{fixed}{}
 
 \section{Game thread/Sound thread}
