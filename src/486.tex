@@ -115,16 +115,22 @@ To solve this problem, Intel simply decided to break the three stage pipeline in
 
 
 \subsection{Caching }
-Modify the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to stall. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 486 which had only three stages. To allow the 486 to reach and maintain maximum velocity meant to avoid the CPU stale into what Intel called Wait States.\\
+Modifying the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 486 which had only three stages.\\
 \par
-With the RAM located somewhere on the motherboard, the CPU must be fuelled with instructions and datas via its Bus Unit.\\
+ A frequently stalling 486 would have been slower than a 386. As it would turn out, avoid starvation was difficult. Starting in 1980, RAM speed had started to lag behind CPU speed. By 1989, RAM access tme was 10 times slower than CPU.\\
+\par
+\pngdrawing{ram_vs_cpu}{}
+\par
+Until the 486, a CPU requesting either instructions or datas from the RAM always had to go through its Bus unit and communicate with the Bus which would route request to the RAM. As optimized as the protocol was took at the very minimum two cycles. One cycle to init the bus request, place the address on the address line and set the control line (Read/Write). And at least one wait cycle (which Intel called Wait State since while waiting on the Bus, the CPU did absolutely nothing).\\
 \par
 \pngdrawing{cpu_chipset_bus}{}
 \par
-To read an address in RAM, The CPU Bus Unit asserts the 24 address lines, set the control line to "READ" and use a pin to become the bus master. This all happen in one cycle. But then the CPU has no other choice but to wait until the bus request completes. It is stuck in WAIT STATE and does nothing else. If the addressed component is fast enough, the request can complete in an second CPU cycle. Otherwise, the BUS insert more wait states \footnote{This is the same process for all I/O with the CPU. Commmunicating with the VGA or the Sound card is the same story until DMA is involved.}. From a performance perspective, WAIT STATEs are a disaster.\\
+If a device was able to answer the bus request within the first wait state, the CPU was able to resume operations, having reached a Zero Wait state. Otherwise, Wait States were inserted in order to wait for the request to complete. From a performance perspective, these WAIT STATEs were a disaster.\\\\
 \par
 \pngdrawing{cpu_wait_states}{}
-From the description, even a perfect bus request with one cycle for setup and only one wait state means game over for the pipeline. To avoid using the bus as much as possible, Intel engineers added an internal cache system sitting between the pipeline and the Bus Unit.\\
+The idea behind the L1 cache is to exploit both locality and temporality of code. Temporality is mainly a factor of code structure being made of loops. If an instruction is used, it is likely to be in a loop and be used sooner than later. Locality is also  factor of code structuring meaning that if an area of the RAM is accessed, it is likely a nearby other RAM area will also be accessed soon.\\
+\par
+By leverating these two properties, a cache located between the CPU and the Bus unit will often already contains the data requested, making a bus request useless. As a result, Intel engineers added an internal cache system sitting between the pipeline and the Bus Unit.\\
 \par
 \pngdrawing{cpu_cache}{}
 
@@ -132,19 +138,21 @@ From the description, even a perfect bus request with one cycle for setup and on
 
 
 \subsection{L1 Cache}
-The L1 cache was builtin the die and therefore low capacity. At only 8 KiB it may have looked tiny but its clever design and superior access time made it the real powerhouse of the 486.
+As we are making our way deep into Intel's technology it is now abundantly clear the cache is the cornerstone of the entire CPU. Without it there is no gain. Designing the cache to yeild the highest hit rate possbile and make it as fast as possible were paramount. 
 
 \subsubsection{DRAM vs SRAM}
-The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to  much faster access time. DRAM of these days typically had an access time of 150ns while SRAM was capable of 10ns, 1000\% faster.\\
+The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to  much faster access time. DRAM of these days typically had an access time of 150ns while SRAM was capable of 10ns, 150\% faster.\\
 \par
-DRAM was "slow" grealy because it was unavailable some of the time. The design of each cells was simple, based on one transistor and one storage capacitor. Two elements allowed for tight packing and hight capacity. The problem was with the capacitor losing its charge and its bit value in the process. The only way to keep the RAM integrity was to periodically refresh it every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
+DRAM was "slow" grealy because it was unavailable some of the time. The design of each cells was simple, based on one transistor and one storage capacitor. Two elements allowed for tight packing and hight capacity. The problem was with the capacitor losing its charge over time. The only way to keep the RAM integrity was to periodically refresh it every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
 \par
 \spngdrawing{0.5}{DRAM}{Dynamic RAM}
-The DRAM was also located somewhere on the motherboard so to access it, the CPU had to request it to its Bus Unit. Not only that was far away (in terms of physical distance), the bus had to be shared with other I/O devices.\\
+The DRAM also had the disavantage to be far away. Located "somewhere" on the motherboard so to access it, the CPU had to request it to its Bus Unit. Not only that was far away (in terms of physical distance), the bus had to be shared with other I/O devices.\\
 \par
-The SRAM in contrast was located inside the chip. There was no need for expensive bus requests. Moreover it was designed differently with no less than six transistors which did not need periodic refresh.
+A different type of ram would solve all these problem. It is called SRAM.\\
 \par
 \spngdrawing{0.5}{SRAM}{Static RAM}
+\par
+Located inside the chip, accessing it did not require an expensive bus request. Moreover it was designed differently with no less than six transistors which did not need periodic refresh.
 \par
 
 
@@ -157,9 +165,9 @@ The SRAM in contrast was located inside the chip. There was no need for expensiv
 
 
 \subsubsection{Cachelines}
-Not only the L1 cache was made of faster RAM, it was also cleverly design. Even though it had the constraints of being unified (it stores both code and data) it managed to yield an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".}.\\
+Not only the L1 cache was made of faster RAM, it was also cleverly design. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on its design. Nonetheless it managed an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
 \par
-To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided in 1,953,125 pages of 2 KiB. Within each page, 128 lines of 16 bytes (also called paragraph).\\
+To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided in 1,953,125 pages of 2 KiB. Within each page, 128 lines of 16 bytes (called cacheline).\\
 \par
 \drawing{cacheline}{The 16 bytes in a cacheline.}
 \par
@@ -168,10 +176,10 @@ The cache system is made of one directory and four banks (also called ways). Eac
 \par
 Upong receiving a 32-bit address access request, the cache controller splits it in three fields.
 \begin{enumerate}
-\item Use the LINE field [0-127] to look the dictionary entry.
-\item Look at the four tag in the entry, if one matches the cacheline is present in the CACHE field.
+\item Use the LINE field [4-11] to look up one of the 128 dictionary entries.
+\item Look at the four tags in the entry, if one matches the TAG [12-31] then it means the cacheline is present in one of the four ways.
 \item Check the flag F in the directory to make sure the cacheline is valid.
-\item Use the OFFSET [0-15] field to access the value in the cacheline.
+\item With the way ID known, use the OFFSET [0-3] field to access the value in the cacheline.
 \item Update the flag F in the directory entry to update the LRU value.
 \end{enumerate}
 \par
