@@ -1,31 +1,56 @@
 The PC environment had morphed significantly between the development of Wolfenstein 3D in 1991 and the development of Doom in 1993. The previous "recommend configuration" based on an Intel 386 CPU with 2~MiB of RAM and a VGA graphic card was no more.\\
 \par
-The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~CPU, \circled{3}~RAM, \circled{4}~Bus, \circled{5}~Video~output, and \circled{6}~Audio~output together forming a pipeline.\\
+The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~Bus, \circled{3}~CPU, \circled{4}~RAM, \circled{5}~Video~output, and \circled{6}~Audio~output together forming a pipeline. Only each of these sub-systems had become faster or increased its capacity.\\
 \par
-\pngdrawing{pc_components}{The six components of an IBM PC.}
+
+\drawing{pc_components}{The six components of an IBM PC.}
 \par
-Only each of these sub-systems had become faster or increased its capacity. Before describing each components in details, it is important to remind the reader that despite these improvements, the IBM PC was still not something built for video games. These were machine originally designed to do word processing, spreadsheet and sometimes display a static graph. The goal was never to have something on screen refreshing at 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.}. Not to mention the pricetag where a top of line machine fetched close to \$13,000 adjusted to inflation.\\
-\par Looking back it seem hard to believe studios focused on producing titles for these expensive and seemingly less capable machines when it came to video games. With a CPU unable to floating-point, a graphic system with no double buffering capabilities, and a sound system only capable of irritating "beeps" a PC was unappealing at best and probably less propice to profit, especially compared to cheaper systems such as the Super Nintendo, the Sega Genesis, or the Neo-Geosystems\footnote{At introduction, the SNES and the SEGA Genernis were both priced at US\$199 while the top of the line Neo-Geo was US\$649.99.} which were designed from the ground up for video games. \\
+ Before describing each components in details, it is important to remind the reader that despite these improvements, the IBM PC was still not something built for video games. These were machine originally designed to do word processing, spreadsheet and sometimes display a static graph. The goal was never to have something on screen refreshing at 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.}.\\ 
+\par 
+Looking back it seem hard to believe studios focused on producing titles for these expensive and seemingly less capable machines when it came to video games. 
+\begin{itemize}
+\item With a CPU unable to perform floating-point operations
+\item An archaic graphic system unable no double buffer and distorting images
+\item A sound system only capable of irritating "beeps", a PC was unappealing at best and probably less likely to generate good games and profit, especially compared to cheaper systems such as the Super Nintendo, the Sega Genesis, or the NeoGeo systems\footnote{At introduction, the SNES and the SEGA Genernis were both priced at US\$199 while the top of the line Neo-Geo was US\$649.99.} which were designed from the ground up for video games.
+\item Not to mention the pricetag where a top of line machine fetched close to \$13,000 adjusted to inflation.
+\end{itemize}
 \par
-Obviously, given the title of the book you have in your hands, with a few software tricks the hardware of the PC was capable of more than what it was designed for. But I felt the hardware chapter should do it best not outline the limitations as well as the bottleneck of the available metal.\\
+Obviously, given the title of the book you have in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. Despite the list of improvements and overall positive aspect, keep in mind that these machine running games were next to engineering miracle.\\
 \par
 
 
-\cfullimage{ibm_ps1_top}{IBM PS1 featuring an Intel 486. Notice how the ad emphasis static screen office apps. Also notice the standard 14" CRT which probably weighted close to 20 pounds!}
+\cfullimage{ibm_ps1_top}{An ad from 1994 for an IBM PS1 featuring an Intel 486 CPU. Notice how the ad emphasis office work and static screen office apps, the only way to justify the outrageous price of the machine (\$2,000\protect\footnotemark). Also notice the standard 14" CRT which probably weighted close to 20 pounds!}
+\footnotetext{\$13,000 in 2017.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \cleartoleftpage
- The best way to get an overview is to look at the best selling motherboard of the year 1993, the PX486P3 by QDI Computer, Inc\footnote{Again, a canadian company :) !}.\\
-\par
-
+ 
 \cfullimage{PX486P3/b-486-px486p3_romain}{Motherboard PX486P3 by QDI Computer, Inc}
+The best way to get an overview of the changes is to look at the component connecting them all together. The best selling motherboard of the year 1993 was the PX486P3 by QDI Computer, Inc\footnote{Again, a canadian company :) !}.\\
+
 \par
-The most prominent novelty is of course the heart of the computer, the Intel i486 CPU. Yet a closer looks reveals many more features which would be of paramount importance for the design of \doom.\\
+The most prominent novelty is of course the heart of the computer, the Intel i486 CPU. Yet a closer looks reveals many more features which would turn out to be of paramount importance for the architecture of \doom engine.\\
 \par 
-If the black extension connectors show the traditional ISA bus ports, a 8 bit one (\circled{1}), two dual slot 16 bit (\circled{2}) we can also see a new type of connector with three slots (\circled{3}). These are VBL\footnote{Video Local Bus.}, a new type of bus up to 20x faster than ISA.\\
+If the black extension connectors show the traditional ISA bus ports, a 8 bit one (\circled{1}), two dual slot 16 bit (\circled{2}) we can also see a new type of connector with three slots (\circled{3}). These are VBL\footnote{Video Local Bus.}, a new type of bus up to 20x faster than ISA.
+
+\drawing{px486p3}{Components diagram of the PX486P3.}
 \par
  Next in the upper right (\circled{5}), a new type of RAM had found its way into these new PC. In black, eight chips of Static RAM offered 256 KiB acting as "cache", a new system to prevent CPU starvation. see large rows of black chips, a new type of RAM called sRAM\footnote{Static RAM}, up to 10x faster than dRAM\footnote{Dynamic RAM} aiming at avoiding CPU stalls\footnote{SRAM was expensive and took a lot of space. Despite their size compared to the DRAM (in white), the eight chips could only stored 256 KiB with 20ns access time.}. \\
-\par
-\drawing{px486p3}{Components diagram of the PX486P3.}
 \par
 The main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM installed (\circled{4}) had doubled to 4MiB\footnote{\doom would not run on PC equipped with "only" 2 MiB}.\\
 \par
@@ -74,8 +99,14 @@ The main memory system had grown in capacity, speed and complexity. Thanks to a 
 % \end{enumerate}
 
 
-Back then, it was a fair assumption to assume the next PC would have twice the processing power and twice the RAM capacity.
+Back then, it was a fair assumption to assume the next PC would have twice the processing power and twice the RAM capacity.\\
 \par
+\trivia{Several of the most impressive game studio of the era embrassed the RAM increase. The most impressive release of 1994 would all make 4 MiB the minimum requirement. Origins's Strike Commander and Ultima 8 as well as NovaLogic's Commanche Maximum Overkill are prime examples.
+
+\begin{center}
+\scaledimage{0.31}{box_strike_commander.png} \scaledimage{0.31}{box_ultima8.png} \scaledimage{0.31}{box_comanche.png}
+\end{center}
+}
 \break
 
 
