@@ -5,33 +5,19 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 386. It was very expensive, at U\$900 XXX in 2018. By 1993, the chip was finally becoming affordable. It was \doom recommended CPU. Like for its predecessor (the i386 running Wolfenstein 3D), Intel offered two flavors, an SX version and a DX version (more powerful). This choice was only enabled due to manufacturing problems. The CPU integrated a Floating Point Unit but when some chips came out of the factories mostly performing but with a malfunctioning FPUs units, Intel had an idea. Instead of throwing these away, Intel sold them at a discounted price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers prefered getting a discount instead of a FPU they had no usage of}.\\
+Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 386. However it's pricetag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom recommended CPU.\\
 \par
- 
+The design has changed significantly compared to its predecessor, the 486. The pipeline was gifted with two extra stages, extending its depth to five. The floating point unit which used to be optionnal and somewhere on the motherboard became mandatory and built-in. Most importantly manufacturing improvements allowed the 486 to have a decent size L1 cache.\\
+\par
+\fq{The 386 actually had small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
+\par
+
 \drawing{486_arch}{Intel 486 architecture}
-
-      \par
-
-Even though the Floating Point Unit performance was drastically improved compared to the previous generation (i387), it was still a far cry of what the ALU could deliver with performances up to 20x slower. As a result, video games of the 90s did not have the luxury to use floating point arithmetics. To play \doom, a 486-SX or a 486-DX were exactly the same thing.\\
 \par
-
-
-
-
-If in retrospect the 486 is an unquestionable powerhouse (both in terms of performances and sales\footnote{It was still manufactured as late as 2015 for routers}), it was far from a guaranteed success when it was released. Priced at \$520\footnote{\$950 is \$1,920 in 2017, adjusted to inflation.} for the DX 
-and \$258\footnote{InfoWorld Apr 29, 1991.}\footnote{\$258 in 1991 is \$469.20 in 2017, adjusted to inflation.} for the SX, the beast left a dent on a wallet. 
-On top of its price, the i486 had to face internal competition from an other CPU also manufactured by Intel around the same time, the i860. Relying on an heavily pipelined superscaler architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which rendered it incompatible with the i386 instruction set hard the potential to easily outperform a 486. Where most CPU tried to hide complexity from compiler, the i860 allowed direct access to its parallel pipeline\footnote{https://en.wikipedia.org/wiki/NEAT\_chipset}.\\
+Like for the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version which was "slower". But while it was a deliberate design choice to offer a 386 which was slower but more affordable, the 486 SX was in fact a trick. Due to manufacturing problems, the first 486 CPU came out of the factories working normally but with faulty FPUs units. Instead of throwing the faulty CPUs away, Intel sold them at a discounted (50\%) price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers prefered getting a discount instead of a FPU they had little to no usage of}.\\
 \par
-\fq{Cray on a Chip\\
+If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performances and sales\footnote{It was still manufactured as late as 2015 for routers}), it had to sustain a period of uncertaincy. Like the 386 had to face its brother (the XXX), the i486 also had to a competitor from the same company. Its archemesis name was Intel 860.\\
 \par
-The Intel 80860 was an impressive chip, able at top speed to perform close to 66 MFLOPS at 33 MHz in real applications, compared to a more typical 5 or 10 MFLOPS for other CPUs of the time. Much of this was marketing hype, and it never become popular, lagging behind most newer CPUs and Digital Signal Processors in performance.
-The 860 has several modes, from regular scaler mode to a superscalar mode that executes two instructions per cycle and a user visible pipeline mode (instructions using the result register of a multi-cycle op would take the current value instead of stalling and waiting for the result). It can use the 8K data cache in a limited way as a small vector register (like those in supercomputers). The unusual cache uses virtual addresses, instead of physical, so the cache has to be flushed any time the page tables changes, even if the data is unchanged. Instruction and data busses are separate, with 4 G of memory, using segments. It also includes a Memory Management Unit for virtual storage.\\
-\par
-The 860 has thirty two 32 bit registers and thirty two 32 bit (or sixteen 64 bit) floating point registers. It was one of the first microprocessors to contains not only an FPU as well as an integer ALU, and also included a 3-D graphics unit (attached to the FPU) that supports lines drawing, Gouraud shading, Z-buffering for hidden line removal, and operations in conjunction with the FPU. It was also the first able to do an integer operation, and a (unique at the time) multiply and add floating point instruction, for the equivalent of three instructions, at the same time.\\
-\par
-However actually getting the chip at top speed usually requires using assembly language - using standard compilers gives it a speed closer to other processors. Because of this, it was used as a coprocessor, either for graphics, or floating point acceleration, like add in parallel units for workstations. Another problem with using the Intel 860 as a general purpose CPU is the difficulty handling interrupts. It is extensively pipelined, having as many as four pipes operating at once, and when an interrupt occurs, the pipes can spill and lose data unless complex code is used to clean up. Delays range from 62 cycles (best case) to 50 microseconds (almost 2000 cycles).}{John Bayko, University of Regina}
-\par
-
 \fq{
 
 \begin{wrapfigure}[11]{r}{0.55\textwidth}
@@ -42,14 +28,21 @@ However actually getting the chip at top speed usually requires using assembly l
 ...We now had two very powerful chips that we were introducing at just about the same time: the 486, largely based on CISC technology and compatible with all the pc software, and the i860, based on RISC technology, which was very fast but compatible with nothing. we didn't know what to do. so we introduced both, figuring we'd let the marketplace decide. however, things were not that simple. supporting a microprocessor architecture with all the necessary computer-related products --- software, sales, and technical support --- takes enormous resources. even a company like Intel had to strain to do an adequate job with just one architecture. and now we had two different and competing efforts, each demanding more and more internal resources. development projects have a tendency to want to grow like the proverbial mustard seed. the fight for resources and for marketing attention (for example, when meeting with the customer, which processor should we highlight) led to internal debates that were fierce enough to tear apart our microprocessor organization. meanwhile, our equivocation caused our customers to wonder what Intel really stood for, the 486 or i860?}{Andy Grove, "Only the paranoid survive".}
 \bigskip
 \par
-In practice however the i860 never stood a chance. Impaired by its audacious yet incompatible instruction set, only its superior design could have saved sales. With compiler technology still struggling to generate fast C properly, nothing was even remotely close to generate instructions able to exploit its super scalar capability. If only Intel had been willing to build the compilers it desperately needed the i860 history could have been different.\\
+In practice however the i860 never stood a chance. Relying on an heavily pipelined superscaler architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which when efficently used allowed it to outperform the Intel 486.
+But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parralele when possible, the i860 architect allowed direct access to its parallel pipeline. The chip did nothing behind the scene and rely on compiler writers to sequence instructions appropriately.\\
 \par
-\trivia{Amusingly, the i860 would still play a part in Doom's development since it was used on NextDimension boards.}
+Unfortunately compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super scalar capability. the i860 was never able to reach its full potential. If only Intel had been willing to build the compilers it desperately needed the i860 history could have been different.\\
 \par
+\par
+\trivia{Amusingly, the i860 would still play a part in Doom's development since it was used on NextDimension boards.}\\
+\par
+\cscaledimage{1}{i486DX.png}{The Intel 486 packing 1.2 millions transistors.}
 
 \par
-\subsection{Performance improvements}
-Charting the 486 performances against the previous 386 showed a tremendous improvement. The first obvious reasons was the raw increase of frequency. Where Intel offered up to 40 Mhz on a 386, the smaller process of the 486 allowed up to 50 Mhz, giving it an obvious advantage. But looking close at the chart, one will notice that even at equal frequency, a 486 offered more than twice the processing power of a 386.\\
+\subsection{Pipeline improvements}
+Charting the 486 MIPs performances along with the previous generation make the performance boost appear vividly. If, thanks to manufacturing improvements, top of the line 486 were able to run at 50Mhz, the frequency increase was not the main factor of improvement.\\
+\par
+ Looking closely at the chart, one will notice that even at equal frequency, a 486 offered more than twice the processing power of a 386.\\
 
 \par
 \begin{figure}[H]
@@ -57,7 +50,7 @@ Charting the 486 performances against the previous 386 showed a tremendous impro
   \begin{tikzpicture}[font=\small]
     \begin{axis}[
       width=1.0\textwidth,
-      height=0.6\textwidth,
+      height=0.8\textwidth,
       ybar,
       bar width=20pt,
       ylabel={MIPS},
@@ -82,47 +75,34 @@ Charting the 486 performances against the previous 386 showed a tremendous impro
     \end{axis}
    
    \end{tikzpicture}
-   \caption{Comparison\protect\footnotemark of CPUs with MIPS \protect\footnotemark.}
+   \caption{Comparison\protect\footnotemark of Intel CPUs with MIPS \protect\footnotemark.}
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 
-Intel had identified all bottlenecks in the 486 and fixed them. The name of the game was to avoid ALU starvation in terms of both instructions and operands.\\
-\par
-\cscaledimage{0.6}{i486DX.png}{The Intel 486 packing 1.2 millions transistors.}
-\par
-
-
-
-
-
-
-
-
-
-
-
-
-
-According to Intel 80386 programmer's reference manual from 1986, their processor was a three stage pipeline which was ideally always full and busy.\\
+However since its frequency is the same as a 386, the 486 is unable to execute instructions faster. The way it achieves higher performances is through a higher average thoughput. According to its documentation the 386 was a smoothly three stage pipelined processor. Under ideal condition, figure \ref{386_doc_pipeline} shows how it should have in theory been able to execute one instruction per cycle. But under this neat diagram lied a serious bottleneck.\\
 \par
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/386_instruction_pipeline.pdf}
 \caption{386 pipeline in Intel documentation.}
+\label{386_doc_pipeline}
 \end{figure}
 
+
+
 \par
-In practice however, even if the Prefetch Unit and the Execution Unit were properly fed, the Decode unit always took a minimum of two cycles to decode an instruction\footnote{The author speculates this high decode cost was the result of Intel's choice to use CISC instead of RISC.}. Since the maximum throughput of a pipeline cannot exceed the speed of its slowest stage, the Intel 386 could process at its most one instructions every two cycles.\\
+Even if the Prefetch Unit and the Execution Unit were properly fed, the Decode unit always took a minimum of two cycles to decode an instruction\footnote{The author speculates this high decode cost was the result of Intel's choice to use CISC instead of RISC.}. Since the maximum throughput of a pipeline cannot exceed the speed of its slowest stage, the Intel 386 could process at its most one instructions every two cycles.\\
 \par
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/actual_386_instruction_pipeline.pdf}
 \caption{386 pipeline: Two cycles per instruction.}
+
 \end{figure}
 
 \par
-To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI, the total throughput of the 486 was doubled.\\
+To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI, the total throughput of the 486 was doubled, which doubled perfomances (as long as the pipeline never starved).\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/actual_486_instruction_pipeline.pdf}
@@ -135,7 +115,7 @@ To solve this problem, Intel simply decided to break the three stage pipeline in
 
 
 \subsection{Caching }
-Modify the pipeline and make each stage run as fast as each others was one step in the right direction. But to allow the 486 to reach and maintain maximum velocity meant to avoid the CPU stale into what Intel called Wait States.\\
+Modify the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to stall. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 486 which had only three stages. To allow the 486 to reach and maintain maximum velocity meant to avoid the CPU stale into what Intel called Wait States.\\
 \par
 With the RAM located somewhere on the motherboard, the CPU must be fuelled with instructions and datas via its Bus Unit.\\
 \par
@@ -351,4 +331,39 @@ TODO: Drawing
 TODO: Verify with 387/487 description
 TODO: How to program it? Use the cache luke and avoid branching. Re-read michael abrash guide on 486.
 Full CPU Diagram.
-Programming a 486
+Programming a 486\\
+\par
+
+
+alt.games.doom thread "Does a 486DX run Doom faster than an SX?" shows how hard it was to access information back then.\\
+
+\fq{My friend is buying a computer and doesn't see much reason to buy
+a DX.  Any opinions?  (or hard facts :) ?)}{Dave Gates}
+\par
+\fq{An SX is considerably slower than a DX for most processor-intensive
+applications and games, including DOOM.}{Neal W.Miller}
+
+\par
+\fq{Thats wrong !
+A 486 SX runs Doom with exactly the same speed like a 486 DX
+(if you use the same VGA Card and Motherboard).}{Grassl Wolfgang}
+
+\par
+\fq{We have a 486SX/25 and a 486DX/50 and the DX 50 runs faster at full screen
+high detail then the SX runs at postage stamp. It is so slow as to be
+almost unplayable. }{BonesBro}
+\par
+
+\fq{DOOM runs *MUCH* faster on a 486DX/33 than on a 486SX/33.  Believe me,
+I've seen it running on the 2 different machines in the same room.}{BillyBoB 4}
+\par
+
+\fq{They are *NOT* any different as far as CPU speed go.  Period.
+The reason one (DX) is faster must have something to do with
+probably the SX has an ISA video card, or no cache, or less
+memory. Doom does NOT NOT NOT NOT use an FPU (math coprocessor) so there will be no slowdown for the SX.\\}{Chad Anson}
+
+
+
+
+
