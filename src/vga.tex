@@ -1,31 +1,74 @@
-\section{VGA}
-At first glance the video output system, the Video Graphic Array, was still the same weird beast. It was still the ubiquitous graphic palette based graphic system, with its infamous 300 registers to configure and its awkward four banks of 64 KiB.\\
+\section{Video System}
+At first glance the video output system, the (VGA) Video Graphic Array, was still the same weird beast Wolfenstein 3D had to deal with. With its infamous 300 registers to configure it, its palette system limiting colors to 256, and the awkward four banks of 64 KiB mandating interleaved framebuffer the VGA was an unappealing programming interface.\\
+\par
+A GC (Graphic Controller) and a (SC) Sequence Controller controlled access to 256 KiB of Video RAM. A CRTC (Cathode Ray Tube Controller) controlled how the framebuffer was sampled. And finally a DAC took care of converting Digital data to analogic toward the CRT monitor.\\
+\par 	
 \scaleddrawing{0.6}{vga}{}
 \par
 At this point in time, all video games used the VGA in tweaked mode 13h which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layout accross banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
 \par
 \par
-\scaledimage{0.9}{vga_ram_screen_layout}
+\cscaledimage{0.9}{vga_ram_screen_layout}{\label{vga_ram_screen_layout}}
 \par
-Programmed via mapped memory from \cw{0xA0000} to \cw{0xAFFFF}. It still had to be put used in 320x200 in unchained Mode-Y mode to make games.\\
-
-And of course since the framebuffer aspect ratio did not match the CRT aspect ratio, the result was still distored.
+In figure \ref{vga_ram_screen_layout}, notice how the first pixel \cw{0} is stored in bank 0, \cw{1} is stored in bank 1 and so on. With an horizontal resolution of 320, 80 pixels are stored in each banks.\\
 \par
-\scaleddrawing{0.7}{vga_mapping}{}
+To access the 256 KiB of VRAM, Intel had established a hard-coded memory mapping in RAM from \cw{0xA0000} to \cw{0xAFFFF}. An eye accustomed to hexadecimal will have immediately noticed that \cw{0xFFFF} translates to 64KiB addresses, far fewer than the total available VRAM.\\
 \par
-But a closer insepction unveiled tremendous improvements. The early 90s saw the dawn of GUIs with IBM's OS/2 and Microsoft Windows 3.1. It was a demanding task to transit from pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to 300,000 bytes\footnote{256 colors at 640x480}.\\
-\par
-
-Two majors improvement occured. One came from VGA card manufacturers themselves. The other came from a Association of manufacturers defining a new technical standard which they called VLB\footnote{VESA Local Bus}.\\ 
-\par
-\fullimage{circleframebuffer.png}
-\par
-\fullimage{circlescreen.png}
-\par
+ In order to compensate for the lack of addresses, IBM had designed a bank switching system managed through a \textit{map mask register}. In practice this meant a RAM address within \cw{0xA0000} to \cw{0xAFFFF} could correspond to four locations in VRAM as shown in figure \ref{ram_vram_mapping}.\\
 
 
-\subsection{Bla}
+\par
+\scaleddrawing{0.7}{vga_mapping}{\label{ram_vram_mapping}}
+\par
+And if all these difficulties were not enough, because the framebuffer aspect ratio did not match the CRT monitor aspect ratio, the framebuffer was distorted.\\
+\par
+\par
+\cfullimage{circleframebuffer.png}{\label{circleframebuffer}}
+\par
+In figure \label{circleframebuffer} a programmer drew a circle into the framebuffer, notice the $ 320/200 = 1.6 $ aspect ratio.
+\par
+\cfullimage{circlescreen.png}{What the same framebuffer looked like on the monitor. Notice the $ 320/240 = 1.333 $ aspect ratio.}
+\par
+
+
+
+
+
+
+
+\section{A Witty Section Name Here}
+Despite this bleak description, a closer inspection of the world of PC graphic unveiled two tremendous changes which ended up deeply impacting \doom. \\
+\par
+Since 1992 with the released of Microsoft and IBM new operating systems (respectiely OS/2 2.0 and Microsoft Windows 3.1 (1992)), the demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 300,000 bytes\footnote{256 colors at 640x480}.\\
+\par
+
+\cfullimage{Windows311workspace.png}{Despite its simple interface, Windows 3.11 640x480 16 colors was able to put PCs on their knees.}
+
+
+
+\subsection{VGA Chip manufacturer}
+The first improvement came from VGA chip manufacturers. VGA cards were very unequal in terms of performance, in some case they were just as important as CPU speed\footnote{Game Engine Black Book: Wolfenstein 3D, benchmarks}. Some manufacturers such as Cirrus Logic and Tseng Labs were famous for their higher performances. Hardware GUI acceleration had not yet become mainstream, and so host-throughput was the dominating factor in a graphical-application's redraw speed.\\
+\par
+Peeking inside Tseng Labs's ET4000 Graphic Controller documentation. 
+\par
+Inside the ET4000: .\\
+Outside the ET4000: ROM, VGA BIOS, VRAM, RAMDAC.\\
 RAMDAC\footnote{Random Access Memory Digital-Analog Converter.}
+\par
+blitter, display rasteriser and RAMDAC
+\par
+
+
+
+
+
+Fabless\footnote{Fabless manufacturing is the design and sale of hardware devices and semiconductor chips while outsourcing the fabrication.} semiconductor supplier started to pick interested in video systems. Companies such as Cirrus Logic, Matrox and ATI competed to produce the fastest chips, using SRAM in their RAMDACs. One of the most revered brand Tseng Labs manufactured probably one of the best VGA chipset of the time. The ET4000 chip was in high demand.\\
+\par
+\cfullimage{vlb_cards/tseng_lans_et4000_w32_vesa_local_illetw32.png}{ILLETW32 Britek Electronics. Photo courtesy \cw{http://www.amoretro.de/}}
+
+\drawing{vga_vlb_arch}{}
+%\cfullimage{vlb_cards/hercules_vl_bus_dynamite_tseng_labs_et4000_w32p_2mb_vlb_vesa_local}{Hercules Dynamite. Photo courtesy \cw{http://www.amoretro.de/}}
+%\cfullimage{vlb_cards/tseng_labs_et4000_w32_vesa_local_vlb.png}{Photo courtesy \cw{http://www.amoretro.de/}}
 \par
 ARK 2000PV\\
 ET4000\\
@@ -33,18 +76,9 @@ ET4000\\
 Cirrus Logic VLB (fabless microbalbla)\\
 Trident he rapid introduction of 3D graphics caught many graphics suppliers off guard, including Trident\\
 \par
-\par
-\cfullimage{Windows311workspace.png}{Windows 3.11 for Workgroup by Microsoft.}
-\par
 40 to 100 times faster than ISA\\
 \par
-\subsection{VGA Chip manufacturer}
-Fabless\footnote{Fabless manufacturing is the design and sale of hardware devices and semiconductor chips while outsourcing the fabrication.} semiconductor supplier started to pick interested in video systems. Companies such as Cirrus Logic, Matrox and ATI competed to produce the fastest chips, using SRAM in their RAMDACs. One of the most revered brand Tseng Labs manufactured probably one of the best VGA chipset of the time. The ET4000 chip was in high demand.\\
-\par
-\cfullimage{vlb_cards/tseng_lans_et4000_w32_vesa_local_illetw32.png}{ILLETW32 Britek Electronics. Photo courtesy \cw{http://www.amoretro.de/}}
-\cfullimage{vlb_cards/hercules_vl_bus_dynamite_tseng_labs_et4000_w32p_2mb_vlb_vesa_local}{Hercules Dynamite. Photo courtesy \cw{http://www.amoretro.de/}}
-\cfullimage{vlb_cards/tseng_labs_et4000_w32_vesa_local_vlb.png}{Photo courtesy \cw{http://www.amoretro.de/}}
-\par
+
 
 
 \subsection{VL-Bus}
@@ -52,7 +86,8 @@ The most intersting performance boost would not come from the graphic chips (thi
 \pngdrawing{bus_isa}{ISA Bus}
 \par
 \pngdrawing{bus_vlb}{VLB Bus}
-
+The other came from a Association of manufacturers defining a new technical standard which they called VLB\footnote{VESA Local Bus}.\\ 
+\par
 The speed of the system data bus is based on the clock rate of the motherboard's crystal. During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran at half that rate, far outpacing the ISA bus. Some cards ran as fast as 50 MHz, using the full speed of the souped-up system bus. That often caused system crashes, because 50 MHz was outside the VLB specification.\\
 \par
 The chip design for the VLB controller was relativity simple, because many of the core instructions were hosted by the ISA circuits already on the motherboard, but the actual data passes were on the same local bus as the one used by the CPU.\\

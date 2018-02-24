@@ -19,7 +19,7 @@
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"><metadata
      id="metadata4630"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
      id="defs4628"><clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath4642"><path
@@ -35,12 +35,12 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1381"
-     inkscape:window-height="987"
+     inkscape:window-height="856"
      id="namedview4626"
      showgrid="false"
      inkscape:zoom="1.9186992"
-     inkscape:cx="151.51399"
-     inkscape:cy="268.09955"
+     inkscape:cx="270.62017"
+     inkscape:cy="138.08141"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -236,17 +236,19 @@
              inkscape:connector-curvature="0" /><g
              id="g4736"
              transform="scale(10)"><text
-               transform="matrix(1,0,0,-1,232.376,44.1879)"
+               transform="scale(1,-1)"
                style="font-variant:normal;font-weight:normal;font-size:12.80000019px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:BitstreamVeraSans-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-               id="text4742"><tspan
-                 x="0 7.1551194 15.001519 18.559919 26.431919 31.44952 36.480011"
-                 y="0"
+               id="text4742"
+               x="264.42896"
+               y="-43.40612"><tspan
                  sodipodi:role="line"
-                 id="tspan4738">Palette</tspan><tspan
-                 x="-185.39799 -176.45071 -168.4762 -161.39796 -152.45068 -148.36739 -139.4201 -131.5994 -123.4713 -118.44081 -113.44876 -105.61516 -102.06965 -98.511253 -90.639252"
-                 y="-43.729698"
+                 id="tspan4738"
+                 x="264.42896"
+                 y="-32.08112" /><tspan
+                 x="79.030975 87.978256 95.952774 103.03101 111.97829"
+                 y="-87.135818"
                  sodipodi:role="line"
-                 id="tspan4740">CRTC Controller</tspan></text>
+                 id="tspan4740">CRTC </tspan></text>
 <text
                transform="matrix(0.91144,0,0,-1,136.412,178.609)"
                style="font-variant:normal;font-weight:normal;font-size:11.3991003px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:BitstreamVeraSans-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -287,4 +289,20 @@
                  y="0"
                  sodipodi:role="line"
                  id="tspan4760">Bus to CPU</tspan></text>
-</g></g></g></g></g></svg>
+</g></g></g></g><text
+       style="font-variant:normal;font-weight:normal;font-size:12.79999924px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:BitstreamVeraSans-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99999994"
+       id="text4742-7"
+       x="232.24088"
+       y="-71.614128"
+       transform="scale(1,-1)"><tspan
+         style="stroke-width:0.99999994"
+         sodipodi:role="line"
+         id="tspan4738-9"
+         x="232.24088"
+         y="-60.289131" /><tspan
+         style="stroke-width:0.99999994"
+         x="232.24088"
+         sodipodi:role="line"
+         id="tspan4740-3"
+         y="-44.289131">Palette</tspan></text>
+</g></svg>
