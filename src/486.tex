@@ -186,12 +186,18 @@ Upong receiving a 32-bit address access request, the cache controller splits it 
 If a value was to be written an all cacheline in the four ways are valid, the cache controller uses a LRU\footnote{Least Recently Used} to evict a cacheline.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
-This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
+%This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
 \par
-\trivia{What about increasing to eight ways? What about sixteen? According to XXX four ways gives the best bang for the bucks. A two ways cache yields a XX\% hit rate, a four-ways XX\% hit rate but going to eight only improves the percentage to XX\% and sixteeen to XX\%. The decreasing return on investment appears vividly once one a graph.}
+\trivia{What about increasing the number of ways? What about the cache size? An8 KiB four ways grant the best trade-off\footnote{Computer Architecture: A Quantitative Approach}. A two ways cache yields a 14\% miss rate, a four-ways 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment appears vividly once one a graph.}\\
+\par
 
 
-
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{drawings/set_cache_stats.png}
+    \caption{}
+  \end{figure}
+  \par
 
 
 \subsection{Netburst}

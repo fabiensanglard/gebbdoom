@@ -1,6 +1,6 @@
 \section{A.I}
 
-\subsection{Monster Infighting}
+
 
 The A.I is an aspect of the engine which historically received little praise. It is unfair since the implementation is pretty neat. Each entity state machine is described in a script file \cw{multigen.txt} which is parsed by a tool (cunningly named \cw{multigen}) and compiled into a C structure (\cw{info.h} and \cw{info.c}).\\
 \par
@@ -45,7 +45,9 @@ Let's take the example of the dying animation, which is called from \cw{deathsta
 \par
 \tcode{enemy_state_die.txt}
 \par
-\pngdrawing{die}{}
+%\pngdrawing{die}{}
+%\drawing{imp_die}{}
+\fullimage{imp_die}
 \par
 Each line is a state with the following syntax. 
 \begin{enumerate}
@@ -117,3 +119,4 @@ In the case of the imp, there are more frames but you get the idea:\\
 \subsection{Map intelligence}
 Not only Things are intelligence, the map can also react to the player actions via something called tripwires.
 \pngdrawing{tripwire}{}
+\subsection{Monster Infighting}

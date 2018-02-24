@@ -1,29 +1,30 @@
 \section{VGA}
-The video system may have looked like it had not evolved much. At its core it was still made of the same weird VGA with its maze of 300 registers and VRAM made of four banks of 64 KiB.\\
-\par 
+At first glance the video output system, the Video Graphic Array, was still the same weird beast. It was still the ubiquitous graphic palette based graphic system, with its infamous 300 registers to configure and its awkward four banks of 64 KiB.\\
+\scaleddrawing{0.6}{vga}{}
+\par
+At this point in time, all video games used the VGA in tweaked mode 13h which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layout accross banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
+\par
+\par
+\scaleddrawing{0.9}{vga_ram_screen_layout}{}
+\par
+Programmed via mapped memory from \cw{0xA0000} to \cw{0xAFFFF}. It still had to be put used in 320x200 in unchained Mode-Y mode to make games.\\
+
+And of course since the framebuffer aspect ratio did not match the CRT aspect ratio, the result was still distored.
+\par
+\scaleddrawing{0.7}{vga_mapping}{}
+\par
+But a closer insepction unveiled tremendous improvements. The early 90s saw the dawn of GUIs with IBM's OS/2 and Microsoft Windows 3.1. It was a demanding task to transit from pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to 300,000 bytes\footnote{256 colors at 640x480}.\\
+\par
+
+Two majors improvement occured. One came from VGA card manufacturers themselves. The other came from a Association of manufacturers defining a new technical standard which they called VLB\footnote{VESA Local Bus}.\\ 
+\par
 \fullimage{circleframebuffer.png}
 \par
 \fullimage{circlescreen.png}
 \par
-\drawing{vga}{}
-\par
-Programmed via mapped memory from \cw{0xA0000} to \cw{0xAFFFF}. It still had to be put used in 320x200 in unchained Mode-Y mode to make games.\\
-\par
-\drawing{vga_ram_screen_layout}{}
-\par
-And of course since the framebuffer aspect ratio did not match the CRT aspect ratio, the result was still distored.
-\par
-\drawing{vga_mapping}{}
-\par
-But a closer insepction unveiled tremendous improvements. The early 90s saw the dawn of GUIs with IBM's OS/2 and Microsoft Windows 3.1. It was a demanding task to transit from pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to 300,000 bytes\footnote{256 colors at 640x480}.\\
-\par
-\cfullimage{Windows311workspace.png}{Windows 3.11 for Workgroup by Microsoft.}
-\par
-Two majors improvement occured. One came from VGA card manufacturers themselves. The other came from a Association of manufacturers defining a new technical standard which they called VLB\footnote{VESA Local Bus}.\\ 
-\par
 
 
-
+\subsection{Bla}
 RAMDAC\footnote{Random Access Memory Digital-Analog Converter.}
 \par
 ARK 2000PV\\
@@ -32,6 +33,8 @@ ET4000\\
 Cirrus Logic VLB (fabless microbalbla)\\
 Trident he rapid introduction of 3D graphics caught many graphics suppliers off guard, including Trident\\
 \par
+\par
+\cfullimage{Windows311workspace.png}{Windows 3.11 for Workgroup by Microsoft.}
 \par
 40 to 100 times faster than ISA\\
 \par
