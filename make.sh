@@ -16,7 +16,6 @@ epsToPDF () {
     epstopdf "$extensionless".eps
   fi
   # epstopdf $filename
-  exit 0
 }
 
 svgToPNG() {
