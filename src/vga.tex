@@ -5,7 +5,7 @@ At first glance the video output system, the Video Graphic Array, was still the 
 At this point in time, all video games used the VGA in tweaked mode 13h which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layout accross banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
 \par
 \par
-\scaleddrawing{0.9}{vga_ram_screen_layout}{}
+\scaledimage{0.9}{vga_ram_screen_layout}
 \par
 Programmed via mapped memory from \cw{0xA0000} to \cw{0xAFFFF}. It still had to be put used in 320x200 in unchained Mode-Y mode to make games.\\
 
