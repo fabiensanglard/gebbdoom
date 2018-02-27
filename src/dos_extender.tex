@@ -11,7 +11,7 @@ In the previous code sample, notice the DOS only \cw{near}, \cw{far} keywords an
 \par
 With the growing fustration some people saw an opportunity. Namely two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler would had a deep impact on the industry.\\
 \par
-
+\pagebreak
 
 \subsection{DOS/4GW Extender}
 Under DOS the "normal" way of opeation was to have everything in Real Mode. The way to perform what we call now a "system call" was to use sofware interrupt \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
@@ -36,14 +36,14 @@ When the extender intercepted an operating system call, it had to do a lot of wo
 
 The performance sensitive operations were of course switching from Real to Protected and from Protected to Real. The documented technique was XXX.\\
 \par
-\trivia{Switching from Real Mode to Protected Mode is easy, you only need to set the Control Register bit 0 to 1. It can be done with 6 instructions.}
+\trivia{Switching from Real Mode to Protected Mode is easy, you only need to set the Control Register bit 0 to 1. It can be done with 6 instructions.}\\
 \par
 \acode{switch_to_protected_mode.asm}
 \par
 A lot of work and reverse engineering went into making these operation as fast as possible. Each DOS Extender had their own secret sauce. Besides stability this is what gave an edge to \cw{DOS/4GW} by Rational Systems.\\
 \fixme{Dig into switch code and find out the best techniqes.}\\
 \par 
-\trivia{The extender was briefly visible when starting up \doom. When running \cw{DOOM.EXE} what was really staring was \cw{DOS/4GW} Real Mode bootstrap. After showing the following text, it would ouput prompty switch the CPU into Protected Mode, load \doom into memory and branch to its \cw{\_main} method.}
+\trivia{The extender was briefly visible when starting up \doom. When running \cw{DOOM.EXE} what was really staring was \cw{DOS/4GW} Real Mode bootstrap. After showing the following text, it would ouput prompty switch the CPU into Protected Mode, load \doom into memory and branch to its \cw{\_main} method.}\\
 \par
 \tcode{dos4gw.txt}
 \par

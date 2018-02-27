@@ -15,6 +15,29 @@ In 1992 the audio ecosystem had gotten even more fragmented. Frustration can be 
 \par
 At a time before Microsoft harnessed all vendors under DirectSound API in 1995, games studio had to code an audio backend for each card they wanted to support. To lighten the workload id decided to license DMX audio library written by Paul J. Radek.\\
 \par
+\begin{verbatim}
+typedef enum
+{
+  snd_none,
+  snd_PC,
+  snd_Adlib,
+  snd_SB,
+  snd_PAS,
+  snd_GUS,
+  snd_MPU,
+  snd_MPU2,
+  snd_MPU3,
+  snd_AWE,
+  snd_ENS,
+  snd_CODEC,
+  NUM_SCARDS
+} cardenum_t;
+\end{verbatim}
+
+\begin{verbatim}
+"I_StartupSound: Hope you hear a pop.\n
+\end{verbatim}
+
 \begin{enumerate}
 \item 
 \item 

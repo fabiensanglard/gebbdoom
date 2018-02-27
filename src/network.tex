@@ -1,5 +1,6 @@
 \section{Network}
-The early 90s predated the democratization of internet and wifi by a decadate. Connecting computers together was expensive. Even if you had the means, bandwidth and latency were nowhere what we have today. The three most common way to connect computers where NullModem cable, Modem and LAN via BNC.\\
+The early 90s predated the democratization of the internet and wifi by a decade. Connecting computers together was difficult and expensive. Even if you had the means, bandwidth and latency were abysmal. Most of the time, playing with friends meant getting all computers into the same room. Playing from the comfort of your room was extremely uncommon.\\
+\par To connect, players had were three technology available: NullModem cable, Modem and LAN via Network cards.\\
 \par
 
 
@@ -11,7 +12,9 @@ The early 90s predated the democratization of internet and wifi by a decadate. C
 
 
 \subsection{Null Modem Cable}
-The cheapest way only allowed two players. A \$20 cable known as "Null Modem" could be plugged in each PCs COM port. The cable offered no modulation at all (hence the name) and everything had to be configured manually You had to manualy configure the bauds.\\
+The cheapest way and what most people used was the \$20 cable known as "Null Modem" which could be plugged in each PCs COM port. The cable offered no modulation at all (hence the name). Only two players could participate but back then it was so new and cool that it felt like the most amazing thing in the world.\\
+\par
+Nowadays it is something natural and almost the bare minimum to expect connectivity. But back in the early 90s, to pack your 50 pounds machine (including the CRT) on your bike, making it to a friend's place alive, plug the cable, start \doom and finally see your character move on the other computer screen was an indescribable feeling. To realize the machines were actually communicating felt unreal and almost magical.\\
 \par 
 \cscaledimage{0.5}{nullmodemcable.png}{NullModem cable}
 
@@ -23,10 +26,33 @@ The cheapest way only allowed two players. A \$20 cable known as "Null Modem" co
 
 
 \subsection{BNC LAN}
-Token bus network\\
-BNC connector\\
-BNC Tee Connectors with resistive load terminators\\
+To play with more than two players was substantially more difficult. Besides the relatively easy financial burden to pay for the equipment, you had to overcome the much more difficult task to convince a parent to let four teenagers come to their house where they would scream all night.\\
+\par
+The famous saying: "Shame on me if you fool me once, shame on you if you fool me twice" is often rumored to have originated from betrayed mothers and fathers whom had been \textit{dommed} all night.\\
+\par
+
+
+\begin{wrapfigure}[7]{r}{0.25\textwidth}
+\centering
+\scaledimage{.25}{BNC_T-piece.png}
+\end{wrapfigure}
+
+Leaving creative ways to ask for forgiveness aside, on the technical side a player had to plug a BNC network card via the ISA bus. The card had a BNC connector upon which was to be plugged a T-shaped connector. Each PC was connected to two other machines via 10-Base-5 coaxial cables. 
+There was no central point in this type of networking, all machines involved in the networked formed a chain. At both ends the chain had to be plugged signal terminator in order to prevent an RF signal from being reflected back from each end, causing interference, or power loss.\\
+\par
+\begin{figure}
+\centering
+\scaledimage{0.7}{BNC_connector_50_ohm_male.png}
+\caption{bla}
+\end{figure}
+
+\par
+Once physically connected, there was no IP configuration required. The Network card MAC address were enough to run the Ethernet protocol which all games used.\\
 \pngdrawing{10base5bncConnector}{10-Base-5 BNS Connector.}
+\par
+
+\trivia{Adding new machine on the network meant all other machines lost connectivity. Everybody remember this one friend who was always late to the LAn and forcing everybody to disconnect so he could join.}
+
 
 
 
@@ -37,8 +63,26 @@ BNC Tee Connectors with resistive load terminators\\
 
 
 \subsection{Modem}
-\cscaledimage{1}{robotic28-8.png}{US Robotic 28.8 bauds modem. The top of the line in 1994.}
-1998, the year the first 56K\\
+The most fortunate player were able to afford the luxury of networking from home. That was very expensive since they not only had to pay for a modem and the service of an Internet monthly but they also had to pay for the time spent online.\\
+\par 
+A time before broadband, modem used phone landlines to connect to the Internet provider. These landlines were owned by telecom companies and you literally had to pay for each minutes connected, whether data was transfered or not.\\
+\par
+2h/day.\\
+Price of model + internet + landline. \\
+\par
+The technology was still in its infancy. On top of costing you a fortune, modems were frankly ugly.\\
+\par
+\cscaledimage{0.9}{robotic28-8.png}{US Robotic 28.8 bauds modem. The top of the line in 1994.}
+
+ Upon establishing the initial handshake during dial up, the modem speaker was kept turned on. An attuned ear could easily recognize the different phase of the connection startup. V.X bis transaction, speed negotiation, echo canceller disabling, modulation modes selection, all together formed an unforgeable melody which this book cannot do justice to but reader should definitely research it.\\
+ \par 
+\cfullimage{spectrogram2.png}{The spectrogram of V.34 modems handshake (Courtesy: Oona R\"{a}is\"{a}nen)}
+\par
+ \pagebreak
+ \par
+
+
+All along the 90s the bandwidth kept on steadily improving. Upon \doom release most modem were capable of kbit/s. Those who downloaded the shareware version in December 1993 had to wait 20 minutes to collect the (2,166,955 bytes) of the zip archive.\\
 \par
 
  \begin{figure}[H]
@@ -48,12 +92,12 @@ BNC Tee Connectors with resistive load terminators\\
   \textbf{Year} & \textbf{Version} & \textbf{Bandwidth} \\
   \toprule 
    
-    1990 & V.32	& 9.6 kbit/s \\
-    1991 & V.32bis &	14.4 kbit/s \\
-    1994 & V.34 &	28.8 kbit/s  ( US Robotics above) \\
-    1995 & V.34 &	33.6 kbit/s \\
-    1996 & V.90 &	56.0/33.6 kbit/s\\
-    1999 & V.92 &	56.0/48.0 kbit/s\\
+    1990 & V.32 & 9.6 kbit/s \\
+    1991 & V.32bis &  14.4 kbit/s \\
+    1994 & V.34 & 28.8 kbit/s \\
+    1995 & V.34 & 33.6 kbit/s \\
+    1996 & V.90 & 56.0/33.6 kbit/s\\
+    1999 & V.92 & 56.0/48.0 kbit/s\\
    
    \toprule
 \end{tabularx}
@@ -63,10 +107,8 @@ BNC Tee Connectors with resistive load terminators\\
 
 
 \par
-\trivia{Downloading the shareware version of \doom (2,166,955 bytes) on a top of the line model (28.8 kbits) took 10 minutes (if you were lucky and disconnected.).}
-The most interconnection user experienced was connecting to a BBS bulletin to retrieve and post messages. 
-
 Modem issued commands using Hayes command set to control the line. \\
+
 \par
  \begin{figure}[H]
 \centering  
