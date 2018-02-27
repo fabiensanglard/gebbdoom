@@ -29,37 +29,67 @@ The first machine shipped in 1989 after three years of hard work. Not meeting th
 \par
 Based on a Motorola 68030 25 Mhz and featuring powerful co-processors such a Digital Signal Processor and a Floating Point Unit, the hardware delivered. On top of a powerful architecture, the machines coming out of Red Woods, CA factory also happened to be gorgeous. The one foot perfect cube made of painted magnesium was elegant.\\
 \par
-\cfullimage{next/next-cube-system.png}{The Next Computer}
-\par
-Contrary to PCs which were a mess of wires, the NeXT Computer formed a chain. The mouse was connected to the keyboard, itself connected to the screen, connected to the Cube.\\
-\par
+\cfullimage{NEXT_Cube}{The Next Computer}
 
-MegaDisplay: 1120 x 832 at 92 DPI (just shy of a true Megapixel at 931,840 total pixels)\\
+
+The monitor was a piece of art itself. The MegaDisplay allowed a resolution of 1120 x 832 pixels with a density of 92 DPI (just shy of a true Megapixel at 931,840 total pixels). At launch the supply chain was so tight that when ordering a NeXTComputer, the customer received two parcels. One from RedWood containing the Central Unit, the keyboard and the mouse. And an other one directly from Sony containing the MegaDisplay.\\
 \par
+SPECS HERE
+\par
+\pagebreak
+
+
+
 \fullimage{next/NeXTcube_motherboard.png}
 \par
+\pagebreak
+
+
 
 \drawing{NeXTCube_motherboard}{NextCube motherboard}
+\pagebreak
+
+
 
 \begin{figure}[H]
 \centering
 \scaledimage{1}{68030_blueprint.png}
 \end{figure}
+\pagebreak
 \par
+
+
 \begin{figure}[H]
 \centering
 \scaledimage{1}{68030_layout.png}
 \end{figure}
+\pagebreak
+ 
 
 
-The only issue really was the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at \$6,500 and the optical drive which was great for backup was too slow for runtime made the "optional" \$3,500  SCSI hard-drive mandatory, pushing the price to \$10,000.\\
+\begin{wrapfigure}[9]{r}{0.33\textwidth}
+\centering
+\scaledimage{0.33}{next/next-cube-system.png}
+\end{wrapfigure}
+
+
+Contrary to PCs which were a mess of wires, the NeXT Computer formed a chain. The mouse was connected to the keyboard, itself connected to the screen, connected to the Cube.\\
+
+
+\par
+
+
+If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worth, the optical drive which powered the bare configuration would turn out to be great for backup but way too slow for runtime. This made the "optional" \$3,500 SCSI hard-drive and absolute necessity which pushed the final price tag to \$10,000!\\
 \par
 
 
 
 
 \section{Line of Products}
-History of models produced by Next over the years\footnote{Source: kevra.org (Competing Hardware Comparisons) and https://simson.net/ref/NeXT/specifications.htm.}.
+With a factory tailed made to produce XXX units per week but week nearing XXX/month, NeXT upgraded its product line.\\
+\par
+In 1991 NeXT released four new products an upgraded NextComputer called NextCube. A smaller, flattened version of the NeXTCube which did not offer any expansion slots but with built-in color capability called NeXTStation. To offer color and video capture, the NeXTDimension expansion board.\\
+\par
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
  \begin{figure}[H]
@@ -81,14 +111,13 @@ History of models produced by Next over the years\footnote{Source: kevra.org (Co
    NeXTStation Turbo Color & 1992 & 68040 33 Mhz & \$8995 & \$17,904 \\
    \toprule
 \end{tabularx}
-\caption{Next products over the years.}
+\caption{Next products over the years\protect\footnotemark.}
 \end{figure}
 \par
+\footnotetext{Source: kevra.org (Competing Hardware Comparisons) and https://simson.net/ref/NeXT/specifications.htm.}
+\par
+In 1992, they buffed up their entire line with Turbo version and what would become the Gold Standard at id Software: The NeXTStation Color Turbo.
 
-
-\begin{minipage}{\textwidth}
-\scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}
-\end{minipage}
 
 
 
@@ -99,7 +128,26 @@ History of models produced by Next over the years\footnote{Source: kevra.org (Co
 
 \section{NeXTCube}
 
-BLABLA
+\begin{minipage}{\textwidth}
+\scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}
+\end{minipage}
+\pagebreak
+
+
+\section{NeXTStation}
+
+\fullimage{cube_vs_slab.png}
+\pagebreak
+
+\par
+\fullimage{next/nextstation.png}
+\par
+SPECS
+\pagebreak
+
+
+
+
 
 \section{NeXTDimension}
 \fullimage{NeXTtv.png}
@@ -111,6 +159,8 @@ I believe the video camera was a Hi8 Handycam Sony model.\\
 dual screen. Monster with no driver and no SDK.\\
 \par 
 \fq{I was sad that I never got dev tools for the i860 - I wanted to have it do the low level texture mapping primitives.}{John Carmack}
+
+\pagebreak
 \cfullimage{next/NextDimension_board.png}{NeXTDimension board}
 \par
 \drawing{NeXTDimension_motherboard}{}
@@ -143,15 +193,6 @@ In the case of the NeXTdimension board, the device layer is implemented on the N
 \par 
 \fq{
 Renderman uses a similar architecture. The 3DKit and RI C binding reside on the m68k (otherwise you couldn't link with them). Depending on the setup of the Renderman context, a RIB stream can be spooled to Photorealistic Renderman running on the host CPU (the m68K for black hardware), or to a Quick Renderman implementation loaded on demand into the Window Server. The Quick Renderman implementation in the Window Server may then, if the target window is on a NeXTdimension, forward the rendering operations to a Quick Renderman context running on the NeXTdimension board.}{M Paquette} 
-
-
-\section{NeXTStation}
-
-\fullimage{cube_vs_slab.png}
-\par
-\fullimage{next/nextstation.png}
-
-
 
 
 
@@ -225,10 +266,6 @@ The NeXTStation had impressed id Software so much they decided to make it the fo
 In 1990, NeXT unveiled faster workstations running at 25MHz on the Motorola 68040. Affectionately called "the slab," the NeXTstation had a black and white display while the NeXTstation Color displayed 4,096 colors from a palette of 16 million colors. A new version of the Cube offered a 32-bit true-color display.
 Spring of 1992 brought about the end of NeXT's optical disk, but NeXT also introduced upgraded workstations, the NeXTstation Turbo and Turbo Color running at 33MHz. NeXT also began offering a color printer and a standard CD-ROM drive. Foreshadowing its exit from the hardware business, the company announced it had begun working on NeXTstep for Intel.\\
 
-NeXT stopped manufacturing hardware in 1993 to become a software-only vendor, selling NeXTSTEP as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. \\
-\par
-Apple Computer bought NeXT in 1996 after its own efforts to upgrade the Macintosh operating system failed.  After the sale, Steve Jobs first began working as an advisor but was later appointed acting-CEO, and then finally CEO of the company.  NeXTSTEP lives on as the heart of Mac OS X.\\
-
 
 
 \par
@@ -272,5 +309,13 @@ Over the entire course of Doom and Quake 1’s development we probably spent \$1
 \par
 \fq{The NeXTCube was purchased in December 1991 and was the only NeXT Computer we had until December 1992 when we decided we would develop DOOM with them so we bought 3 NeXTStations: mine, John Carmack’s new one, Tom Hall’s. John C’s original NeXTCube was the computer used to scan the clay models, gun toys, and latex models.}{John Romero}\\
 \par
-\section{Programming}
-\fullimage{TextEditApp.png}
+
+
+\section{After NeXT}
+NeXT stopped manufacturing hardware in 1993 to become a software-only vendor, selling NeXTSTEP as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. \\
+\par
+Apple Computer bought NeXT in 1996 after its own efforts to upgrade the Macintosh operating system failed.  After the sale, Steve Jobs first began working as an advisor but was later appointed acting-CEO, and then finally CEO of the company.\\
+\par
+NeXTSTEP lives on as the heart of Mac OS X. It is likely some of the code that once ran on NeXTStep and contributed to \doom now runs on the many mac computer across the world.\\
+
+
