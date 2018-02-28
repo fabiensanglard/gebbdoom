@@ -18,7 +18,7 @@ Drawing all assets for a monster took a lot of time. Drawing it once facing the 
 \end{wrapfigure}
 Once the character was carved they could change the pose at will. They only had to connect a Hi8 Handycam Sony videocamera to the NextDimension. Placed on a spinner, the clay model was lighted and digitized from eight different viewing angles.\\
 \par
-The result was 32-bit truecolor which had to be transformed to the doom palette of 256 colors via a tool called the "Fuzzy Pumper Palette Shop". To complete the set of sprites, the artist digitally paint it.\\
+The result was 32-bit truecolor which had to be transformed to the doom palette\footnote{See the \doom palette on p\ref{doom_palette}.} of 256 colors via a tool called the "Fuzzy Pumper Palette Shop". To complete the set of sprites, the artist digitally paint it.\\
 \par
 \fullimage{sprites/doomguy_fpps.png}\\
 \par
@@ -36,14 +36,17 @@ The process was not without it own flaws since the clay dried and had a tendency
 
 
 \par
-\trivia{Some complicated models such as the SpiderDemon where commissioned to Gregor Punchatz to build the rest of the models (the arch-vile, mancubus, revenant and spiderdemon). This was not Gregor's first gig since he had worked on major Hollywood movies such as Robocop before.}
+Using clay models was faster than drawing by hand but it was still not fast enough to produce the many monsters necessary. Clay also was unable to generate the lighting they wanted for metal. Clay also was unable to render intricated details. They needed better models, possibly motion stop capable. Don Ivan Punchatz who had been commissioned for the Doom package art and logo mentioned he had a son doing exactly that. He had worked on big movies for Hollywood \textit{A Nightmare on Elm Street 2}, \textit{RoboCop} and its sequels, and \textit{Coming to America}.\\
 \par
-\fq{The spider creature was made out of parts I had literally just found at hardware and hobby stores, pieces of Tupperware and PVC pipes. The main body started out as a sculpture, then a plaster mold was pulled from that. Then we made the armature to fit that mold, and then foam latex was injected inside the mould and put into an oven.\\
-\par
-Mastermind's legs pretty much only just moved, and his arms moved, but his mouth didn't move. As we went along, the other maquettes become full ball and socket armatures, so they had a full range of motion. In some ways, these stop-motion maquettes are easier to get right than they would be in CG. You don’t have to worry about how your skin is weighted on stop-motion model because it just sticks to the metal armature.}{Greg Punchatz, Interview by develop-online.net Feb 16, 2016}\\
+Kevin Cloud got in touch with Greg Punchatz and the young artist was rapidely commisioned to four models for the Arch-vile, Mancubus, Revenant and Spiderdemon.\\
 \par
 
-\fq{At one stage id offered me points on the backend to take \$500 off the price of one of the characters and I turned that down. It’s a painful lesson. But to be part of something that has left a long-lasting impression on the world is kind of crazy – people find out that I worked on Doom and it’s like I played on the Beatles’ White Album.}{Greg Punchatz, Interview by develop-online.net Feb 16, 2016}
+\fq{The spider creature was made out of parts I had literally just found at hardware and hobby stores, pieces of Tupperware and PVC pipes. The main body started out as a sculpture, then a plaster mold was pulled from that. Then we made the armature to fit that mold, and then foam latex was injected inside the mould and put into an oven.\\
+\par
+Mastermind's legs pretty much only just moved, and his arms moved, but his mouth didn't move. As we went along, the other maquettes become full ball and socket armatures, so they had a full range of motion. In some ways, these stop-motion maquettes are easier to get right than they would be in CG. You don't have to worry about how your skin is weighted on stop-motion model because it just sticks to the metal armature.}{Greg Punchatz, Interview by develop-online.net Feb 16, 2016}\\
+\par
+
+\fq{At one stage id offered me points on the backend to take \$500 off the price of one of the characters and I turned that down. It's a painful lesson. But to be part of something that has left a long-lasting impression on the world is kind of crazy -- people find out that I worked on Doom and it's like I played on the Beatles' White Album.}{Greg Punchatz, Interview by develop-online.net Feb 16, 2016}
 
 \cfullimage{sprites/spiderdemon_model.png}{Notice the spinner, camera, and a virgin Wooden Manikin on the table}
 \par
@@ -53,9 +56,111 @@ Mastermind's legs pretty much only just moved, and his arms moved, but his mouth
 
 
 
-\section{Props}
-
-\fullimage{props/chainsaw.png}\\
+\subsection{Weapons}
+The weapons starting point were mostly toys, digitized with NeXTDimension and heavily cleaned up via Deluxe Paint (the photoshop of the 90s). The shotgun for example was in fact the "TootsieToy Dakota" cap shotgun, manufactured by the Strombecker Corporation of America.\\
+\par
+\cfullimage{Doomshotgun.png}{TootsieToy Dakota. The thing had a rifle fire mode.}
+\par
+The chainsaw was real and a McCulloch Eager Beaver. It was borrowed from Tom Halls's girlfriend.\\
+\par
+\cfullimage{chainsaw.png}{McCulloch Eager Beaver}
+\par
 
 \par
-\trivia{To help convert code between NeXT and DOS, they wrote a tool named \cw{removecontrolm} and \cw{unfuck}}
+\trivia{The chainsaw worked well but it was leaking oil abundantly. They had to store it on top of a bowl on the ground.}\\
+\par
+
+The chaingun was also a toy called the Ol' Painless and also manufactured by Tootsietoy. Assurely to the delight of many parents it was able to produce loud firing sounds when connected to a 9V battery.\\
+\par
+\fullimage{props/chainsaw.png}\\
+\par
+
+
+
+\par
+\fullimage{props/chaingun.png}\\
+
+
+The fist were actually Kevin Cloud's wearing a knuckle duster. The BFG 9000 was a battery operated toy called the RoarGun manufactured by Creatoy. Probably the most exotic was the Plasma rifle which was based on the grenade launcher of a M-60 toy based on Rambo movie.\\
+\par
+\fullimage{props/rambo.png}\\
+\par
+\fullimage{props/plasma.png}\\
+\pagebreak
+
+
+
+
+
+
+
+
+
+
+\subsection{Backgrounds}
+
+\begin{wrapfigure}[7]{r}{0.4\textwidth}
+\centering
+\scaledimage{0.4}{skies/doom/SKY1.png}
+\end{wrapfigure}
+
+Each Doom episode had an unique background so only three had to be generated for \doom 1. It was still a difficult task, especially since they wanted to give the game a "real" touch. They decided to throw money at the problem and bought a set of 10 royalty free CD-ROM called MediaClips.\\
+\par Each CD had a theme (Jets, Majestic Places, Props,Wild Places, Worldview) and the wooping 650MiB capacity allowed one hundred high resolution (640x480) photos.\\
+\par
+
+\begin{wrapfigure}[7]{r}{0.4\textwidth}
+\centering
+\scaledimage{0.4}{skies/doom/SKY2.png}
+\end{wrapfigure}
+
+At first the background were cropped down version of what was found on the CDs. Episode 1 is a straight up crop of Yangshuo Cavern in China. But soon they started using composition. Episode 2 is made of Zion's iconic mountain "The Watchman" and \cw{SUNRISE} MediaClips.\\
+\par
+
+Notice how backgrounds left and right border had to match so they could be repeated without discontinuity.\\
+\par
+\trivia{Can you guess what the clouds in Doom II Episode 2 skies are from?}\\
+\par
+\fullimage{skies/doom2/RSKY2.png}\\
+
+
+\begin{minipage}{\textwidth}
+\fullimage{skies/doom/e2mx.png}
+\fullimage{e2composite.png}
+\end{minipage}
+
+
+
+
+
+
+\begin{minipage}{\textwidth}
+\fullimage{skies/doom/e1m1.png}
+% \par
+\fullimage{MAJEST3.png}
+\end{minipage}
+\par
+
+
+
+
+
+
+\begin{minipage}{\textwidth}
+\fullimage{skies/doom2/e1m1.png}
+\par
+\fullimage{WILD4.png}
+\end{minipage}
+
+
+\begin{minipage}{\textwidth}
+\fullimage{skies/doom2/e2mX.png}
+\par
+\fullimage{WORLD2.png}
+\end{minipage}
+
+
+
+
+
+
+

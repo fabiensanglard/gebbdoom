@@ -1,19 +1,37 @@
-bash-2.05b\$ finger johnc@idsoftware.com
+$ finger johnc@idsoftware.com
 
 [idsoftware.com]
 
 Welcome to id Software's Finger Service V1.5!
 
-
-
 Name: John Carmack
-
 Email:
-
 Description: Programmer
-
 Project:
+Plan:
+-----------------------------------------
+John Carmack's .plan for Feb 18, 1996
+-----------------------------------------
 
-Last Updated: 02/08/2003 14:59:55 (Central Standard Time)
+*	page flip crap
+*	stretch console
+*	faster swimming speed
+*	damage direction protocol
+*	armor color flash
+*	gib death
+*	grenade tweaking
+*	brightened alias models
+*	nail gun lag
+*	dedicated server quit at game end
 
--------------------------------------------------------------------------------
++ scoreboard
++ optional full size
++ view centering key
++ vid mode 15 crap
++ change ammo box on sbar
++ allow "restart" after a program error
++ respawn blood trail?
++ -1 ammo value on rockets
++ light up characters
+
+vsync on high framerates
