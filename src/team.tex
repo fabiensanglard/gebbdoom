@@ -1,4 +1,6 @@
-The development of \doom started as soon as id Software shipped Wolfenstein 3D in May, 1992. While a part of the team worked on Wolfenstein 3D Hint Manual and Spear of Destiny (using the same game engine), an other part went into research mode. The result was Shadowcaster engine which introduced diminished lightning and floor/ceiling texturing. Given the time constraints, and the scope of what they were attemtping to do, the team of four almost tripled in size.\\
+After having shipped Wolfenstein 3D in May 1992, id Software went right back to work. The team of five (John Carmack, John Romero, Adrian Carmack, Tom Hall and Kevin Cloud) split in two. While part of the team would focus on Wolfenstein 3D Hint Manual and Spear of Destiny an other faction went into research mode to build the technology of the next title.\\
+\par
+The development of \doom really start in January 1993 with an impressive press release\protect\footnote{Annexe, p \ref{label_pressrelease}}. Within only eleven months they managed to have the shareware version ready for Christmas. During the year, no less than thirteen person would end up being involved.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -22,10 +24,10 @@ The development of \doom started as soon as id Software shipped Wolfenstein 3D i
 
      \toprule
 \end{tabularx}
-\caption{id Software recruits for Doom.}\label{fig:Id Software team}
+\caption{Doom team}\label{fig:Id Software team}
 \end{figure}
 \footnotetext{Due to creative differences, Tom Hall left the project after two months. He went to Apogee/3D Realms.}
-\trivia{Gregor is the son of Don Ivan Punchatz, who created the Doom package art and logo.}\\
+
 
 
 \par
@@ -39,42 +41,42 @@ The development of \doom started as soon as id Software shipped Wolfenstein 3D i
 
 
 % First good page in the whole book :) !
-\begin{minipage}{1.0\textwidth}
 \fullimage{idsoftware_crew.png}
-\par
 
-\begin{minipage}{.55\textwidth}
-In January of 1995, Electronic Games magazine ran a series of three articles for the release of Doom II. An opportunity to gather all members of id team in the group photo shown above. In the back row, left to right: Kevin Cloud, American Mcgee, John Carmack, Adrian Carmack, Sandy Petersen. Front row: Dave Taylor, John Romero and Shawn Green.\\
-\par
-The plank in the photo is in fact John Romero's office door. The hole in it is the making of John Carmack involving what John Romero is holding in the photo on the right.\\
-\end{minipage}
-\begin{minipage}{.39\textwidth}
-\centering
-\scaledimage{1}{johns_weapons.png}
-\par
-\end{minipage}
+\begin{wrapfigure}[12]{r}{0.35\textwidth}
+\scaledimage{0.35}{johns_weapons.png}
+\end{wrapfigure}
 
-\par
+In January of 1995, Electronic Games magazine ran a series of three articles for the release of Doom II. An opportunity to gather all members of id team in a photo.\\
+\par Back row, left to right: Kevin Cloud, American Mcgee, John Carmack, Adrian Carmack, Sandy Petersen.
+ Front row , left to right: Dave Taylor, John Romero and Shawn Green.\\
+ \par
+  The plank in the photo is in fact John Romero's office door and the hole the making of John Carmack.\\
+ \par
 \fq{Well, Romero's doom jammed one day. He was in his office and was trapped in there,
 and we couldn't get the door open. It was after-hours, so we couldn't call building
 maintenance, and we were all standing around trying to figure out what to do, when
 it occurred to me and I said, "You know, I do have a batle axe in my office."\\
 \par
 Yes, this thing really works.}{John Carmack}
-\end{minipage}
+
+
+
+
 
 
 \section{Location}
-
-
- Town East Tower in Mesquite, near Big Billy Barren's Used Cars and Sheplers Western Store. The black cube.\\
+Fed up with the winter of Wisconscin, the studio decided to relocate. They left behind the cold of Madison and settle in the Town East Tower in Mesquite TX, better known as the Black Cube.\\
 \par
+\bigskip
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/usa-id-software.pdf}
 \end{figure}
 \par
 \bigskip
+In an interview for the book "Masters of Doom", Tom Halls remembered how all team members settled in the new environment.\\
+\par
 \fq{On the first day. each guy chose his space. Carmack and Romero took side-by-side offices, while Adrian and Kevin, who were growing increasingly close, decided to share a space. Tom liked an open corner spot in a large room with a window. "This would be a great office area," he said, "we just need to put some walls up." The rest agreed. But the walls were slow to come. When- ever Tom asked Jay about it, Jay would say they were on their way. Out of humor and frustration, Tom put down two long strips of masking tape where the walls of what he called his creative corner would go.}{David Kushner, Masters of Doom}
 \par
 \begin{figure}[H]
@@ -84,207 +86,20 @@ Yes, this thing really works.}{John Carmack}
 \end{figure}
 \par
 
+\fq{I fell asleep on the floors a lot, which is why they got the sofa and had me test-drive it for comfort, but I only remember them taping my outline once. I believe it stuck around for a while though.}{Dave Taylor}\\
+\par
+\fq{I remember companies would send us free sound cards all the time, so many that we took to using them as ninja throwing stars at one point and would throw them into the kitchen wall opposite my desk.}{Dave Taylor}
 
-
-
-\section{Artistic direction}
-Balb Balb Balb Balb Balb Balb Balb \\
-\fullimage{Doom_gibs.png}
+\section{Creative direction}
+The tone of the new title was to be much darker than the previous games. Initially intending to adapt the movie Aliens (1986) the team decided against it in order to retain total creative control\footnote{Amusingly, one of the best mod of all time would be the total conversion "Aliens TC.}. They wanted to do something scary, inspired by movie such as Evil Dead, The Thing, or The Fly and as aggressive as the metal music they usually listened to.\\
 \par
-Balb Balb Balb \\
+Even the name of the next title would be to inspire fear. The idea would come from John Carmack while watching the movie "The color of money".\\ 
 \par
-\fullimage{Doom_gibs2.png}
-Balb Balb Balb Balb Balb Balb Balb Balb Balb Balb Balb Balb \\
-\par
-\fullimage{bestiary.png}
-
-
-
-\section{DoomED}
-\fullimage{doomed/DoomEd.png}
-\par
-\fullimage{doomed/all_widgets.png}
-\par
-\tcode{cloc_doomed.txt}
-\par
-\tcode{map.txt}
-
-\section{doombsp}
-\cw{doombsp} processes output from DoomED (XXX files) into XXX, XXX, and XXX. It was released very shorty after Doom shareware on April, 6th 1994. It is a small code base which was critical to the modding community since it enabled enthusiast to compile and inject their own maps into Doom.\\
-\par
-\tcode{cloc_doombsp.txt}
-\par
-Trivia: WAD was coined by Tom Halls. "Where's all the data?".\\
+Midway through the movie, Vincent played by Tom Cruise enters a pool bar carrying one of the best pool stick in the world, a Balabushka. Confident and decided to unleash his skills, knowing the massacre he is about to make of his opponents, one of the local, Moselle, notices him enter. Surprised by the pool cue case he asks: "What do you go in there?". "In Here?!" exclaims Vincent, looking up and smiling like the devil. "Doom!".\\
 \par
 
 \par
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{drawings/E1M1_lines.pdf}
-\end{figure}
+\cfullimage{Doom_gibs.png}{"In Here ?" DOOM !"}
 \par
-The map as it is generated via the editor (DoomED) on NextStation.\\
-\par
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{drawings/E1M1_fab.pdf}
-\end{figure}
-\par
-Binary space partition. Slice all sectors into convex sub-spaces called subsectors.\\
-\par
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{drawings/E1M1_blockmap.pdf}
-\end{figure}
-\par
-Block based line index.\\
-\par
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{drawings/E1M1_sides.pdf}
-\end{figure}
-\par
-Reject map based on enemies and monsters line of sight.\\
+They decided they would go way beyond what they had accomplised with Wolfenstein 3D and Spear of Destiny. \doom would have nine weapons and seven-teen type of opponents. The hero would fight demons, tons of them. And there would be gibs. Even more of them.
 
-\section{Scanning tools}
-\par
-Screenshots running:\\
-\par
-
-
-\section{Graphic Assets}
-TODO: All monsters mural.
-\par
-TODO: Map
-\par
-\fullimage{palette.png}
-\par
-\scaledimage{1}{COLORMAP.png}
-
-\par
-\section{Backgrounds}
-bla
-
-Doom 1 backgrounds:\\
-\par
-\scaledimage{0.9}{skies/doom/SKY1.png}\\
-\scaledimage{0.9}{skies/doom/SKY2.png}\\
-\scaledimage{0.9}{skies/doom/SKY3.png}\\
-
-Ultimate Doom episode 4 background:\\
-\par
-\scaledimage{0.9}{skies/ultimate_doom/SKY4.png}
-
-Doom 2 backgrounds:\\
-\par
-\par
-\scaledimage{0.9}{skies/doom2/RSKY1.png}\\
-\scaledimage{0.9}{skies/doom2/RSKY2.png}\\
-\scaledimage{0.9}{skies/doom2/RSKY3.png}\\
-
-Doom TNT changed the way background were handled. Instead of one bitmap, four were used:\\
-
-
-
-\begin{minipage}{\textwidth}
-\fullimage{skies/doom/e1m1.png}
-\par
-Yangshuo Cavern in China (MAJEST3.BMP, 640x480)\\
-\par
-\fullimage{MAJEST3.png}
-\end{minipage}
-\par
-
-
-\begin{minipage}{\textwidth}
-\fullimage{skies/doom/e2mx.png}
-\par
-MAJEST3.BMP, 640x480\\
-\par
-\fullimage{MAJEST4.png}
-\end{minipage}
-\par
-
-
-\begin{minipage}{\textwidth}
-\fullimage{skies/doom/e3m1.png}
-\par
-MAJEST3.BMP, 640x480\\
-\par
-\fullimage{WILD4.png}
-\end{minipage}
-
-\par
-
-\begin{minipage}{\textwidth}
-\fullimage{skies/doom2/e1m1.png}
-\par
-MAJEST3.BMP, 640x480\\
-\par
-\fullimage{WILD4.png}
-\end{minipage}
-
-
-\begin{minipage}{\textwidth}
-\fullimage{skies/doom/e3m1.png}
-\par
-MAJEST3.BMP, 640x480\\
-\par
-\fullimage{WORLD2.png}
-\end{minipage}
-
-
-\section{Backgrounds}
-Props
-
-\section{music}
-fq{“Much of what was in Doom Bible never appeared in the game, but it set a mood for starting on the project. Within a few months of receiving that document, I had roughed out a lot of music and most of what turned out to be final sound effects.”}{Bobby Prince, Retro Gamer 44.}
-
-\fq{The id Software development team originally wanted me to do nothing but metal songs for DOOM. I did not think that this type of music would be appropriate throughout the game, but I roughed out several original songs and also created MIDI sequences of some cover material. This was before any level design and was before most of the artwork had been created. As the game came together, the guys at id saw that this type of music was not appropriate for many of the levels in DOOM. Thinking that this would be the case, I had also roughed out a lot of ambient moody background music, much of which ended up in the game. This song ("At Doom's Gate") was one of the first of its type that I wrote. I heard it as being on a level that went by real fast. As it turns out, John Romero (who placed all of the songs on the levels) decided it was a perfect song for the first level.}{Bobby}
-
-\section{audio samples}
-
-"Body Movin" music video features the door song at the 5:09 mark.\\
-\par
-imp dying sound is a camel.\\
-\par
-Source: Commercial sound library created by Sound Ideas\\
-\par
-In a baffling move, Doom (2005), the film did not tap into those now-famous Sound Ideas effects. except for the scene that most folks deem to be the best in the film.\\
-\trivia{DMXGUS contains a TEXT FILE with comments...}
-
-\section{Distribution}
-\fq{We don’t care if you make money off this shareware demo,” Jay told retailers. “Move it. Move it in mass quantities.” The retailers couldn’t believe their ears, no one had ever told them not to pay royalties.
-But Jay was insistent. “Take DOOM for nothing, keep the profit. My goal is distribution. DOOM is going to
-be Wolfenstein on steroids, and I want it far and wide.
-I want you to stack DOOM high. In fact, I want you to
-do advertising for it, too, because you’re going to make money off it. So take this money that you might have given me in royalties and use it to advertise the fact that you’re selling DOOM.}{Jay}
-
-
-\section{Dave Taylor Leak anecdote}
-par
-\fullimage{chainsaw.png}
-\par
-\fullimage{Doomshotgun.png}
-
-
-
-\section{Credit Screen Evolution}
-
-\trivia{The credit screen evolved with each beta version of Doom. Notice how NeXT computer were originally credited, witnessing how important the development machine were to id. In version 1.25, Michael Abrash (who would only join id for Quake) was credited due to the quality of his article in XXX and Graphic Black Book ???.}\\
-\par
-\cscaledimage{0.92}{credits/DoomCREDIT10.png}{v1.0}
-\par
-\cscaledimage{0.92}{credits/DoomCREDIT19.png}{v1.1 to v1.9}
-\par
-\cscaledimage{0.92}{credits/DoomCREDIT125.png}{v1.25}
-\par
-\cscaledimage{0.92}{credits/DoomCREDITUD.png}{Ultimate Doom}
-\par
-
-\pagebreak
-\section{Programming}
-Migrating from Borland C++ editor on DOS to TextEdit on NeXT Step was a bittersweet experience. On one side convenient things such as syntax highlighting were lost. On the other side, the machine never crashes and developers never had to curse over hours lost. The high resolution (1120 x 832) allowed to see full function vertically and three DOS windows horizontally. \\
-\par
-\fullimage{development.png}
-\fullimage{TextEditApp.png}
