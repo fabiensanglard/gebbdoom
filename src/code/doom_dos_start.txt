@@ -1,0 +1,37 @@
+                     DOOM System Startup v1.9
+V_Init: allocate screens.
+M_LoadDefaults: Load system defaults. 
+Z_Init: Init zone memory allocation daemom. 
+W_Init: Init WADfiles. 
+ adding ./doom.wad 
+=================================================================
+            Commercial product - do not distribute! 
+    Please report software piracy to the SPA: 1-88B-3E0-P1W 
+=================================================================
+M_Init: lnit miscellaneous info. 
+R_Init: Init MCM refresh daemon [...] 
+InitTextures 
+InitFlats........  
+InitSprites 
+InitColormaps 
+R_InitData 
+R_InitPointToAngle 
+R_InitTables 
+R_InitPlanes 
+R_InitLightTables 
+R_InitSkyMaP 
+R_InitTranslationsTables 
+P_Init: Init Playloop state. 
+I_Init: Setting on machine state. 
+I_InitSound: configured audio device (well, not really..)
+ pre-cached all sound data 
+I_InitSound:sound module needy 
+S_Init: Setting up sound. 
+S_Init: default sfx volume 8 
+HU_Init: Setting up heads up display. 
+ST_Init: nit status bar. 
+
+
+
+
+ 
