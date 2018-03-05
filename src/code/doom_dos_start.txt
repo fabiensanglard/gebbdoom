@@ -1,7 +1,7 @@
                      DOOM System Startup v1.9
 V_Init: allocate screens.
 M_LoadDefaults: Load system defaults. 
-Z_Init: Init zone memory allocation daemom. 
+Z_Init: Init zone memory allocation daemon. 
 W_Init: Init WADfiles. 
  adding ./doom.wad 
 =================================================================

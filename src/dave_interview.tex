@@ -1,0 +1,92 @@
+Dave Taylor was kind enough to allow an interview.\\
+
+
+\section{Q \& A }
+
+How old were you in 1992 when you started working at id?\\ \par
+\rawfq{I started studying the Sega Genesis tech docs in order to do a Sega Wolf3D port at the beginning of summer 1993, but by the end of summer when I started, I was assigned to Doom instead.  I was 24 when I started.}{}
+\par
+
+
+
+
+
+How did you get a job at id Software? It wasn't yet the powerhouse it became but there were already successful with Dave and Wolf3D games so I assume there must have been competition\&interviews ?\\ \par
+\rawfq{I was studying electrical engineering at UT Austin and working as a journalist for an early electronic game magazine that came on floppies called Game Bytes.  Wolf3D had come out, and I had interviewed the whole id team on a speakerphone call.  There was a really friendly voice who would turn out to be Jay and a really knowledgeable voice with all the answers to my technical questions, who would turn out to be John Carmack.  The summer before I took my senior lab, I emailed John to see if I could come up and interview.\\
+\par
+I had been organizing very ambitious programming contests for the IEEE called the IEEE CS National Programming Contest, where we would develop a 3-on-3 multiplayer game in secret for Unix workstations, and then teams of 3 programmers would show up from 16 fancy schools (Stanford, MIT, Berkeley, Caltech, etc), we would reveal the game, and they’d have about 16 hours to write AI to play the game on their behalf.\\
+\par
+At the end, we would do an exhibition game where all 16 teams of 3 players (48 players total) would do a deathmatch.\\
+\par
+I had more Unix and network code experience than the rest of the id team, but I was a real noob at game development.  Doom was my first commercial game.\\}{}
+\par
+
+
+
+
+How advanced was doom development when you joined?\\ \par
+\rawfq{The core 3D gameplay window was there, most of the art was in, the single-player gameplay was almost all there.  I integrated the sound code/effects, the automap, status bar, screen wipes, level transitions, and cheat codes.}{}
+\par
+
+Who did you report to, how did you know what to work on ? \\ \par
+\rawfq{I reported to John Carmack, but I wasn’t easy to manage and would often do my own thing.}{}
+\par
+
+
+I can see you have a NeXT workstation on your desk. What did you use it for? \\ \par
+\rawfq{We used them to make the whole game, and that’s what the level editor ran on.  DOS 3.3 was our target OS, and DOS wasn’t really a complete operating system (no sound or video drivers, for example, and no debugger to speak of), so it was pretty painful to debug on.  NeXTStep was much faster and easier to iterate on.}{}
+\par
+
+
+I read on your wikipedia page that you took care of the VESA 2.0 code for quake. I am very interested in this topic. My book describes first the hardware and I am going to details 486 DX-2, Gravis UltraSound, NeXT workstation. VESA documentation is hard to come around but I would still want to describe it since there were 486 VBL at the time. Can you elaborate on what you did for Quake to run well with VESA 2.0 ?\\ \par
+\rawfq{Man, it’s been a while.  I think I just took care of the page-swapping for memory access and the page-flipping on update.  It wasn’t much code.}{}
+\par
+
+
+You wrote ports for IRIX, AIX, Solaris and Linux. What is for both Doom and Quake ?\\ \par
+\rawfq{For Doom, ya.  For Quake, Linux for sure, but the others, I can’t remember.}{}
+\par
+
+
+
+Could you details as much as possible how it was to work with IRIX, AIX and Solaris ? What editor you used, how did you compile, how much error due to compilers did you bubble up to the codebase (I assume this improved portability of the code tremendously which explains why doom is the most ported game of all time).  Did you get the sound to work on all of them? I did not even know they had sound drivers for AIX. What was your favorite development environment while you worked for id ?\\ \par
+
+\rawfq{I used vi for editing code.  I made a Makefile and just typed make, as you’d think.  We didn’t have source code then.  Ya, once I got the basic code down for Linux (I had a system at home), it was pretty similar for the other Unix platforms.  I seperated the sound code into its own server.  It would load the files itself, and then the game would just tell it over a socket to fire off sounds and update volume/pitch/etc.  The Linux code would eventually get really optimized, as Linus hooked me up with the XFree86 guys, who added an extension to give me direct access to the framebuffer, and then on Quake, Linus gave me a much faster way to get directly to the sound card DMA buffer and to get the current DMA transfer location down to a somewhat chunky granularity.\\
+\par
+AIX, Irix, and Solaris were all kinda foreign to me but of course all still Unix variants, and I realized that by offering ports to Doom, I could get free workstations, so... :)\\
+\par
+I know I got sound working on Irix and that Irix support was why Doom made the rounds with so many CG/VFX type people in the film industry.  I can’t remember whether I got it working on AIX and Solaris.  Sound wasn’t a priority for Sun/IBM at the time.\\}{}
+\par
+
+
+
+What is the most memorable outline of you unconscious marked with masking tape in the office (I would like to include it in the layout for fun) |  Or the one that stayed on place the longest before the cleaning crew removed it.\\ \par
+
+\rawfq{ I fell asleep on the floors a lot, which is why they got the sofa and had me test-drive it for comfort, but I only remember them taping my outline once.  I believe it stuck around for a while though.}{}
+\par
+
+
+When did you leave id software ?\\ \par
+\rawfq{I believe I left in early 1996, just after qtest1 shipped.}{}
+\par
+
+
+Leaving was a courageous decision, you could have made a lot more money. I assume you dreamed of making your own game: Do you regret leaving so "early" ?\\ \par
+\rawfq{Actually, not brave.  I asked when I hired on to get some ownership in id, and after the 6mo trial period, they decided against giving out more ownership, they said because it hadn’t worked out with a couple of previous folks, and they had an expensive buy/sell agreement for anyone who left.  When they said ownership wasn’t going to happen, I asked if I could invest in my own game company on the side, and they said yes, as long as it wasn’t 3D and I wasn’t coding on it.  So I invested in Crack dot Com, and produced Abuse.  After it shipped, I was starting to get royalty checks that were bigger than what I got from id in bonus checks (and they were very generous).  I was becoming more interested in producing for Crack and less interested in coding on Quake, which was starting to feel like a brown Doom with fewer monsters and a less relatable theme, so I was really slowing down.  Carmack noticed and said we should prolly part ways after Quake shipped, and I countered that I’d prefer to leave after qtest1 shipped.\\
+\par
+I don’t know if I could have made more money.  I wasn’t very fulfilled when I left, and it was affecting my work.  I’ve also never been much of a fan of money.  It tends not to correlate all that well to what I value.}{}
+\par
+
+
+
+How do you feel looking back on this period of your life?\\ \par
+\rawfq{ I don’t look back much.  My mind is usually dwelling on the far-enough future that I’m regarded as weird in the present.  Back then was no different.  I was trying to turn them onto networked games like netrek, which had persistent accounts, and I remember that being met with indifference.  I started using the .plan files, sort of a blogging precursor, and would spend a lot more time on irc than the others.  My fascination with the Unix ports was considered largely to be a waste of time, but they were very tolerant of me.}{}
+\par
+
+
+
+Are you still in touch with anybody from the team of 93 ?\\ \par
+\rawfq{Not much.  I exchange emails with John Carmack every once in a while.}{}
+\par
+
+

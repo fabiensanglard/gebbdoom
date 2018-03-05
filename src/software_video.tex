@@ -1,4 +1,4 @@
-\section{Renderer \& Video System}
+\section{Video Manager}
 The rendition system is located in the kernel. It maintains and expose two data structures, a set of five framebuffers, and one dirtybox. It is the brain which signal the video system when a frame is ready to be presented to the player.\\
 \par
 \cccode{kernel_renderer.c}{Five framebuffers.}
@@ -6,7 +6,7 @@ The rendition system is located in the kernel. It maintains and expose two data 
 \par
 \cccode{kernel_renderer_dbox.c}{The dirtybox.}
 \par
-The video system implementation must provide four functions to the rendition system to work properly. 
+The video system implementation must provide four functions to the rendition system to work properly.\\ 
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.27} | L{0.73} }
@@ -16,7 +16,7 @@ The video system implementation must provide four functions to the rendition sys
 \cw{I\_InitGraphics} & Set VGA in Mode-Y.\\
 \cw{I\_UpdateNoBlit} & Send updated area of the screen to the VGA.\\
 \cw{I\_FinishUpdate} & Flip buffer (update CRTC start scan address.\\
-\cw{I\_WaitVBL} & Wait for Vertical Sync.\\
+\cw{I\_WaitVBL} & Wait for Vertical Sync (almost never used).\\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
 \caption{Video system interface}
@@ -25,8 +25,8 @@ The video system implementation must provide four functions to the rendition sys
 \trivia{To host the framebuffer in the kernel and not in the video system allowed fast access to it. There was no more need to play with VGA banks. It also opened the door to reading back what would become pixels. This capability opened the door to new effects such as "predator" transparency opponnetes such as the "spectre". Moreover if you refer back to the architecture of a VLB system, it allowed tranfer of one framebuffer to the video system while the next frame was being generated which allowed two systems to work in parallel for an improved output.}
 \par
 \drawing{renderer_full_pipeline}{}
-\par
-\trivia{Notice how the VGA framebuffer are not exactyl 320x200=0x3E80 in size but 0x4000 instead. This is done because updating the CRTC start address can be don atomically.}
+%\par
+%\trivia{Notice how the VGA framebuffer are not exactyl 320x200=0x3E80 in size but 0x4000 instead. This is done because updating the CRTC start address can be don atomically.}
 \par
 The pipeline is a follow:
 \begin{enumerate}
@@ -35,16 +35,19 @@ The pipeline is a follow:
 \item Once transfer has been completed, the kernel calls \cw{I\_FinishUpdate}  which flips the used buffer on the VGA. This is as fast as updating the start address of the CRTC.
 \end{enumerate}
 \par
-The four other framebuffers are rarely used. FrameBuffer 2 and 3 are used during the wipe animation to store the start and end screen while compositing into framebuffer (see detailed wipe system in the Annex on page \pageref{label_melt}). FrameBuffer 4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. Framebuffer 1 is also used when taking a screenshot. Finally Framebuffer 1 is used for \cw{r\_FillBlackScreen}.\\
-\par
-\trivia{The implementation of the video system on DOS and \NeXT are very different. DOS application have total access to the hardware whereas \NeXT apps must use API. The \NeXT video system is detailled in the Annex on page \pageref{label_next_video_system}.}\\
-\par
-\trivia{On VGA blitting is done bank after banks. SHOW CODE.}
-\par
-\subsection{No More Visplanes!}
-"R\_FindPlane: no more visplanes"\\
-\par
-R\_DrawPlanes: visplane overflow (\%i)\\
+The four other framebuffers are rarely used.
+\begin{itemize} 
+\item Framebuffer 1 is also used when taking a screenshot. Finally Framebuffer 1 is used for \cw{r\_FillBlackScreen}.
+
+\item FrameBuffer 2 and 3 are used during the wipe animation to store the start and end screen while compositing into framebuffer (see detailed wipe system in the Annex on page \pageref{label_melt}). 
+\item FrameBuffer 4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. 
+\end{itemize}
 \par
 
-Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.
+\trivia{The implementation of the video system on DOS and \NeXT are very different. DOS application have total access to the hardware whereas \NeXT apps must use API. The \NeXT video system is detailled in the Annex on page \pageref{label_next_video_system}.}\\
+\par
+\ccode{I_FinishUpdate.c}
+\par
+\par
+\ccode{I_UpdateBox.c}
+\par

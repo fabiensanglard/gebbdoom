@@ -1,3 +1,4 @@
+\pagebreak
 \section{3D Renderer}
 The early 1993 press release written by Tom Halls (see Annexe page \pageref{label_press_release}) made some bold statements. Besides promising the best game of all time, it was remarquably accurate with regards to features the 3D renderer would end up shipping with:\\
 \par
@@ -26,10 +27,13 @@ Doom did not always have a BSP. Only after April 1993, when the team had to do W
 First window ever.\\
 Romero broke the engine.\\
 \fullimage{SCREEN00.png}
+\label{HUD_screenshot}
 \par
 \fq{It was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
 
 \subsubsection{Binary Space Partitioning}
+TODO: How long did it take to preprocess all maps?\\
+\par
 
 \fq{It's not a really supercritical aspect of it, but it is interesting that when I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}
 
@@ -63,3 +67,12 @@ sizeof(visplane) = 664
 
 \fullimage{high_res.png}\\
 \fullimage{low_res.png}\\
+
+
+\subsection{No More Visplanes!}
+"R\_FindPlane: no more visplanes"\\
+\par
+R\_DrawPlanes: visplane overflow (\%i)\\
+\par
+
+Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.

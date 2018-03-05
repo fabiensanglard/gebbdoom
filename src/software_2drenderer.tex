@@ -1,5 +1,123 @@
+\pagebreak
 \section{2D Renderer}
-Mostly written by Dave Taylor, this part of the engine is in charge of drawing the menu, the status bar and the intermediate screen between menus.
+There are many instances during which \doom needs to render 2D elements. All of this work was my the self proclaimed "spackle coder" of the team, Dave Taylor.\\
+\begin{itemize}
+\item Status Bar
+\item Automap
+\item Intermission
+\item HUD
+\item Menus
+\item Transition screens (wipe)
+\end{itemize} 
+\par
+\trivia{The cheatcode \cw{iddt} allowing to see everything in the automap is named after Dave Taylor.}
+
+
+
+\subsection{Intermission}
+The intermission screen is faily simple in nature and fully contained in \cw{wi\_stuff.c} translation unit. It start by loading a virgin background map from the wad archive to RAM and placing it in FrameBuffer \#1.\\
+\par
+\scaledimage{0.8}{intermissions/WIMAP0.png}\\
+\par
+Everytime a screen refresh is needed, the intermission code does a \cw{memcpy} (called "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draw sprites and text on top of it.\\
+\par
+\fullimage{intermissions/stats.png}\\
+
+Once the intermission is finished, method \cw{WI\_unloadData} does not free the ram, it just mark elements as PU\_CACHE.\\
+
+%\fullimage{intermissions/Intermission.png}\\
+
+
+
+\par
 
 \subsection{Status Bar}
-Background upon which are drawn "widgets".
+The design of the status bar is similar to intermission and contains in \cw{st\_lib.c} and \cw{st\_stuff.c}. Elements in the bar are called "widgets'. There are seven widgets. From left to right, ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four kind ammo count.\\
+\par
+\fullimage{stbar.png}
+\par
+\trivia{Head shows where damage came from.}\\
+
+\par
+\fullimage{faces.png}\\
+\par
+Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. In the heat of the action it often comes at a surprise that the head actually shows the origin of damage. "Evil" is showed when picking up a weapon. "Kill".\\
+\par
+Even to player who spent a lot of time on \doom, the "Ouch" face is likely to be something they have never seen. It was intended to show up when the player takes and enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
+\par
+\ccode{ouch_face.c}\\
+\par
+The test is the opposite of what it should have been. The ST module shows the ouch face when 20 life is gained which almost never happens. The test should be reversed.\\
+\par
+\ccode{ouch_face_fixed.c}\\
+\par
+With regards to interation with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar in FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
+\par
+\fullimage{stbar_virgin.png}
+
+
+\subsection{Menu}
+
+\begin{wrapfigure}[5]{r}{0.1\textwidth}
+\centering
+\scaledimage{0.1}{M_SKULL1.png}
+\end{wrapfigure}
+There are ten menus and they are all hard-coded in \cw{m\_menu.c} and \cw{m\_misc.c}. The design is simple with \cw{menu\_t} containing a list of \cw{menuitem\_t}. A \cw{name} field for each menuitem is used to retrieve the appropriate sprite.\\
+\par
+A \cw{menu\_t*} is consumed by the menu drawing routine and a skull is drawn on the left of the currently selected \cw{menuitem\_t}.\\
+\par
+\ccode{menu_item.c}
+\par
+\begin{minipage}{0.65\textwidth}
+\ccode{main_menu.c}
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\centering
+\scaledimage{0.9}{menu.png}
+\end{minipage}
+\par
+\ccode{M_DrawMainMenu.c}
+\par
+In the previous code sample describing the main menu, notice how the strings \cw{M\_NGAME}, \cw{M\_OPTION}, \cw{M\_DOOM} are all names of a lump found in the wad archive.\\
+\par
+%\trivia{The slider to select the screen size, mouse sensitivity, sfx volume, and music volume are called "Thermostats".}\\
+%\par
+
+
+
+
+
+
+
+
+\subsection{HUD (HeadUP)}
+In its early instances, \doom featured a full pleaged HUD occupying almost 50\% of the screen (see page \pageref{HUD_screenshot}). Over time the design changed and the HUD shrinked considerable to be reduced to lines of text imprinted over the 3D view.\\
+\par
+\fullimage{alpha_hud.png}
+\par
+\fullimage{new_hud.png}\\
+Code located in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.
+\par
+%\trivia{Despite being a small market, french characters receveid special attention in this module.}
+
+
+
+
+
+
+
+
+\subsection{Wipe}
+\label{label_melt}
+The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as "Screen melt"\\
+
+\par
+
+\scaledimage{.9}{melt/melt0.png}\\
+\scaledimage{.9}{melt/melt1.png}\\
+\scaledimage{.9}{melt/melt2.png}\\
+\scaledimage{.9}{melt/melt3.png}\\
+
+
+\subsection{Automap}
+Code in \cw{am\_map.c}.

@@ -1,9 +1,10 @@
 \section{Memory Manager}
-Like all game engine of the era, \doom did not trust stock \cw{malloc}, even the one provided by the excellent Watcom's \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. It was also a good opportunity to add debugging tools.\\
+Like all game engine of the era, \doom did not trust stock \cw{malloc}, not even the one provided by Watcom with \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. They were also wasteful for optimized for big chunk allocation which is not what the engine does. They also lacked good debugging tools. For all these reason \doom uses its own memory allocator.\\
 \par
-The original design called for a zone memory manager. However the concept was abandonned in favor of a tag system allowing memory block allocated to be marked and recognized for a certain purpose.\\
+
+The engine runs on a very clearly established memory budjet. Upon starting up the MM will allocate 4 MiB of RAM. Less and the game won't start. More will not be used and won't make the game faster.\\
 \par
-4 MiB, no less, no more.\\
+The original based on zones gave its name to the system and as a result this part is hosted in \cw{z\_zone.c}. However the concept was abandonned in favor of a tag system allowing memory block allocated to be marked and recognized for a certain purpose.\\
 \par
 \ccode{memory_zone.c}
 \par
@@ -11,7 +12,16 @@ The original design called for a zone memory manager. However the concept was ab
 \par
   
 \par
-\trivia{Unsurprisingly the zone allocator is not entierely common to both DOS and \NeXT. Most of the code can be found in \cw{z\_zone.h} and \cw{z\_zone.c} but the RAM system is need to provide \cw{I\_ZoneBase}.\\
+\trivia{The allocator code is not entierely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
 \par \tcode{zone_undefined.txt}}
 \par
-\trivia{Dave Taylor had his own TAG: \cw{PU\_DAVE}, which was used for "anything else Dave wants static". Unfortunately this tag was never used.}
+%\trivia{Dave Taylor had his own TAG: \cw{PU\_DAVE}, which was used for "anything else Dave wants static". Unfortunately this tag was never used.}
+
+\pagebreak
+DRAWING\\
+MEmory budget:\\
+- Video system
+- visplanes
+\par
+Maybe memory footprint of -timedemo demo3?\\
+\pagebreak
