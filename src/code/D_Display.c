@@ -12,7 +12,7 @@ void D_Display (void) {
   // draw buffered stuff to screen
   I_UpdateNoBlit ();
 
-  // draw the view directly
+  // draw 3D view
   R_RenderPlayerView (&players[displayplayer]);
 
   HU_Drawer ();

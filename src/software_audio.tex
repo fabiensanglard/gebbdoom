@@ -80,5 +80,25 @@ How did it work? Looks like they had sectors which could block sound. Use Romero
 Fist noise does activate monsters (unless they are deaf).\\
 If a monster yells at a player, it will alert other monsters to the player\\
 \par
+Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.\\
+\par
+\fq{
+The NeXT version does not have the full  
+feature polish that the dos version has, just because we can't spare  
+the time for it.  It's basically the same thing, though.
 
+The way our development works is that I write the entire game in  
+portable ansi C, then have different hardware abstraction files for  
+NEXTSTEP, dos, X, windows, etc.  The tools can be NS specific, because  
+we don't need to provide them for anyone else (the two companies we are  
+working with on DOOM style games are now NS converts).
+
+Our biggest mistake during DOOM development was the contracting of an  
+outside party to do dos sound drivers.  Because we had this black box  
+functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.   
+All future work will be entirely developed under NS, with only DMA  
+buffer flipping being the hardware layer.  We will probably also run  
+midi under NS for music (which will be dynamically tuned to the game  
+situation in Quake).}
+{John Carmack}
 

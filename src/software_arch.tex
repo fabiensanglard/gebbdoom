@@ -76,10 +76,7 @@ The volume of code is twice as much as Wolfenstein 3D.\\
 \par
 \tcode{cloc.txt}
 \par
-\trivia{The MS-DOS source code features what should have been a Doom easter egg. Files \cw{am\_oids.h} and \cw{am\_oids.c} were to allow player to play a remake of Asteroids in the automap but was left unfinished.}\\
-\par
-\fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
-\par
+
 
 
 
@@ -97,6 +94,7 @@ The volume of code is twice as much as Wolfenstein 3D.\\
     Control System & DMPI Interrupts & NSWindow/NXEvent \\
     File  System & Direct & BigEndian converter\\
     Network System & Direct interrupt & BSD socket \\
+    RAM System & greedy malloc & tight 4 MiB malloc\\
    \toprule
 \end{tabularx}
 \caption{Platform code specific.}

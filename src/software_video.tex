@@ -22,7 +22,7 @@ The video system implementation must provide four functions to the rendition sys
 \caption{Video system interface}
 \end{figure}
 \par
-\trivia{To host the framebuffer in the kernel and not in the video system allowed fast access to it. There was no more need to play with VGA banks. It also opened the door to reading back what would become pixels. This capability opened the door to new effects such as "predator" transparency opponnetes such as the "spectre". Moreover if you refer back to the architecture of a VLB system, it allowed tranfer of one framebuffer to the video system while the next frame was being generated which allowed two systems to work in parallel for an improved output.}
+\trivia{To host the framebuffer in the kernel and not in the video system allowed fast access to it. There was no more need to play with VGA banks. It also opened the door to reading back what would become pixels. This capability opened the door to new effects such as "predator" transparency opponents such as the "spectre". Moreover if you refer back to the architecture of a VLB system, it allowed transfer of one framebuffer to the video system while the next frame was being generated which allowed two systems to work in parallel for an improved output.}
 \par
 \drawing{renderer_full_pipeline}{}
 %\par
@@ -31,7 +31,7 @@ The video system implementation must provide four functions to the rendition sys
 The pipeline is a follow:
 \begin{enumerate}
 \item When the engine runs, it always write to framebuffer 0. In the process it updates the \cw{dirtybox}.
-\item When the engine is done, it calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer 0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS it copies its content to the VGA in the last used area. This is usually an expensive operation. Note that each VGA buffer update is also tracjed via an \cw{updatebox}.
+\item When the engine is done, it calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer 0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS it copies its content to the VGA in the last used area. This is usually an expensive operation. Note that each VGA buffer update is also traced via an \cw{updatebox}.
 \item Once transfer has been completed, the kernel calls \cw{I\_FinishUpdate}  which flips the used buffer on the VGA. This is as fast as updating the start address of the CRTC.
 \end{enumerate}
 \par
@@ -48,6 +48,9 @@ The four other framebuffers are rarely used.
 \par
 \ccode{I_FinishUpdate.c}
 \par
+The code of function \cw{I\_UpdateBox} to transfer data from RAM to VRAM may look surprising. After all the hardware discussion about 32-bit CPU and 32-bit VL-Bus it is uncanny to see the transfer loop do it 16-bit at a time (\cw{short *dest;}). It turns out it was a deliberate choice.\\
+\par
+\fq{Our artwork was always done in 8x8 blocks, or "ebes" as Tom called them.  A 32 bit inner loop would have needed more code to handle widths that were an odd number of ebes.  It might have been a speedup, but both the bus and video card would have to have handled full 32 bit writes, and I don't recall that being common back then.  Even many VL-Bus cards were still the same basic chipset used on the ISA cards, and often still 16 bit, which meant that a 32 bit write just took twice as long.}{John Carmack}
 \par
 \ccode{I_UpdateBox.c}
 \par

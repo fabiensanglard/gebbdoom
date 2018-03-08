@@ -91,12 +91,13 @@ In the previous code sample describing the main menu, notice how the strings \cw
 
 
 \subsection{HUD (HeadUP)}
-In its early instances, \doom featured a full pleaged HUD occupying almost 50\% of the screen (see page \pageref{HUD_screenshot}). Over time the design changed and the HUD shrinked considerable to be reduced to lines of text imprinted over the 3D view.\\
+In its early instances, \doom featured a full pleaged HUD occupying 50\% of the screen.\\
 \par
 \fullimage{alpha_hud.png}
 \par
+Over time the design changed and the HUD shrinked to be reduced to lines of text. The small code is contained in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.\\
+\par
 \fullimage{new_hud.png}\\
-Code located in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.
 \par
 %\trivia{Despite being a small market, french characters receveid special attention in this module.}
 
@@ -109,7 +110,7 @@ Code located in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.
 
 \subsection{Wipe}
 \label{label_melt}
-The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as "Screen melt"\\
+Also known as the "Screen melt", wipe is used to transition between sections of the game.
 
 \par
 
@@ -118,6 +119,27 @@ The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{w
 \scaledimage{.9}{melt/melt2.png}\\
 \scaledimage{.9}{melt/melt3.png}\\
 
+\par
+The wipe module (as it is known internally) takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output in FrameBuffer \#0 (FrameBuffer \#1 is left available in case a screenshot request was received in the middle of a wipe.).\\
+\par
+The first step is to reorganize the two sources of data from row major to column major. This is done so the vertical strip play nicely with the 486 cachelines.\\
+\par
+\fullimage{face_rawmajorized.png}
+\par
+After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value are within 16 units of their two neighbors.\\
+\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped of the screen. During the animation, columns two pixels wide and 240 pixels tall are copies repeatedly from src and dest to FB \#0. All columns falls at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.\\
+%The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as \\
+
+
 
 \subsection{Automap}
-Code in \cw{am\_map.c}.
+The automap is a small and simple component contained in \cw{am\_map.c}. As the players discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
+\par
+It is not possible to play the game in this mode since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
+\par
+\fullimage{automap.png}
+\par
+\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids but was left unfinished.}\\
+\par
+\fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
+\par
