@@ -1,64 +1,113 @@
-\section{Audio System (DMX)}
+\section{Audio System}
 \label{dmx_section}
+Like every other I/O in the engine, the audio system was abstracted behind an interface. To fulfit \doom's kernel such a system had to implement not less than twenty functions covering SFX, Music, and also Timer.\\
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.6}  L{1.4}}
+  \toprule
+  \textbf{Method} &  \textbf{Usage}\\
 
-Wolfenstein had four back ends:
-\begin{enumerate}
-\item SoundBlaster sound card.
-\item PC Speaker
-\item Disney Sound Sounce
-\item AdLib
-\end{enumerate}
+  \toprule 
+  I\_StartupSound & Initialize Audio system, detect audio hardware\\
+  I\_SetChannels & Set number of channels and sample rate\\
+  \toprule 
+   
+I\_RegisterSong & \\
+I\_SetMusicVolume &\\
+I\_PlaySong &\\
+I\_PauseSong &\\
+I\_ResumeSong &\\
+I\_StopSong &\\
+I\_UnRegisterSong & \\
 
-In 1992 the audio ecosystem had gotten even more fragmented. Frustration can be seen in the source code, in \cw{i\_sound.c} where can be found the following comment:\\
+
+
+
+  \toprule 
+I\_GetSfxLumpNum & Load audio sample from WAD and associate it with an id.\\
+I\_StartSound & Start playing SFX sample\\
+I\_StopSound & Stop playing SFX sample\\
+I\_SoundIsPlaying & Test is SFX is playing\\
+I\_UpdateSoundParams & Set pitch, left/right position and volume\\
+
+  \toprule 
+  
+I\_StartupTimer &\\
+I\_ShutdownTimer &\\
+
+  \toprule 
+
+
+
+   \toprule
+\end{tabularx}
+\caption{\doom audio system interface}
+\end{figure}
+
+
+
+On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfesnstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than 15 chips available, all with different types of bugs, kirks and technologies.\\
+\par
+To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the situation by throwing money at it and licenced DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all majour sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoublty saved id several months of development.\\
+\par
+The abstraction layer provided by DMX was a colossal task. The comment before the function in charge of detecting the hardware leaves no ambiguity regarding how big an issue it was to tackle.\\
 \par
 \ccode{whypcssucks.c}
 \par
-At a time before Microsoft harnessed all vendors under DirectSound API in 1995, games studio had to code an audio backend for each card they wanted to support. To lighten the workload id decided to license DMX audio library written by Paul J. Radek.\\
+With DMX backing the sound system, \doom managed to support 10 chipsets on PC.\\
 \par
-\begin{verbatim}
-typedef enum
-{
-  snd_none,
-  snd_PC,
-  snd_Adlib,
-  snd_SB,
-  snd_PAS,
-  snd_GUS,
-  snd_MPU,
-  snd_MPU2,
-  snd_MPU3,
-  snd_AWE,
-  snd_ENS,
-  snd_CODEC,
-  NUM_SCARDS
-} cardenum_t;
-\end{verbatim}
-
-\begin{verbatim}
-"I_StartupSound: Hope you hear a pop.\n
-\end{verbatim}
-
-\begin{enumerate}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
-\end{enumerate}
-
-\subsection{Audio Architecture}
-\drawing{sound_manager_architecture}{}
-DMX offloaded dealing with hardware bugs as Paul Radek described:
-
-\fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transfering only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benifit of sample smoothing from the GF1.//
+\ccode{cardenum_t.c}
 \par
-Sorry, but that's the way it has to be :(//
+Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simulatenously. An attentive will remember the hardware section mentioning the motherboard two chipset i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC).\\
+\par
+What DMX did at startup was to install itself as a TSR via the PIC and the TIC to interrupt \doom engine at 140Hz\footnote{The way PIC and TIC interact is extensively detailled in Game Engine Black Book: Wolfesntein 3D}. Upong aweakening the TSR took care of feeding the audio device with music and sound effect data. Since the were no other source of time on the machine DMX was also in charge of generating the heartbeat via variable \cw{ticcount}.
+\par
+
+
+\scaleddrawing{0.8}{sound_manager_architecture}{DMX architecture}
+This architecture explains why sound memory allocation had a special treatment in the zone memory allocator. Because the audio system runs in an interrupt, each interruption must be aknowledged as fast as posssible. This system simply had no time to recover from a memory miss. Audio data had to be ready at all time while it could be used.\\
+\par
+
+Dealing with so much complexity proved difficult for DMX. Some of the craziness Paul Radek had to deal with surfaced in a post on \cw{vogons.org}\footnote{Forum thread: "Gravis Ultrasound - Hardware Mixing Game List".}.
+
+
+
+
+
+\fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transfering only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benifit of sample smoothing from the GF1.\\
+\par
+Sorry, but that's the way it has to be :(\\
 }
-{Paul Radek, Digital Expressions, Inc.}
+{Paul Radek, Digital Expressions, Inc.}\\
+\par
+
+The library evolved during the development of \doom and sometimes introduced bugs. Gravis UltraSound was broken with beta vXX. It was promptly restored in vYY. Support for Audio Spectrum was also broken but it was not too bad since the card had an option to emulate sound blasters.\\
+\par
+Something more serious happened due to API change. The version \\
+\par
+\ccode{dmx_before.c}
+\par
+\doom was supposed to emit sounds at random pitch to avoid monotony. The DMX API was modified to accomodate this need in vXXX:\\
+\par
+\ccode{dmx_after.c}
+\par
+It may not be immediately apparent but function \cw{SFX\_PlayPatch} parameters have been reversed. Moreover function \cw{SFX\_SetOrigin} new parameter was added as the first argument instead of the last. id Software did not properly update the parameter. As a result the game shipped without the random pitch feature, instead randomly balancing sound between the left and right channel.\\
+\par
+\ccode{I_StartSound.c}
 \par
 In retrospect John Carmack regretted using DMX because it led to issues when open sourcing the game engine (it is unknown if Paul Radek was unwilling to open source DMX or if id software was unwilling to negociate with him).\\
 \par
+\fq{
+Our biggest mistake during DOOM development was the contracting of an  
+outside party to do dos sound drivers.  Because we had this black box  
+functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.   
+All future work will be entirely developed under NS, with only DMA  
+buffer flipping being the hardware layer.  We will probably also run  
+midi under NS for music (which will be dynamically tuned to the game  
+situation in Quake).}
+{John Carmack}
+
 Judging by usenet message posted by John Romero, it sounds like relationship between Radek and id software were tense:\\
 \par
 \fq{Hey, everybody!  Thanks a lot for downloading DOOM II -- that's really "cool".   
@@ -70,7 +119,9 @@ while he was "expanding" it, so IRQs > 7 don't work, Pro Audio Spectrum owners
 now have to run their SB-emulation driver (no more native support), etc.  The  
 sound guy is a real shithead.  All these fuckups are in v1.666 as well --  
 sorry.  We have NO time to wait and hope that sound-dork fixes these problems,  
-as he's demonstrated in the past year and a half that he's incompetent.}{John Romero\footnote{alt.games.doom}}
+as he's demonstrated in the past year and a half that he's incompetent.}{John Romero (alt.games.doom)}
+
+
 
 \section{Sound Propagation}
 How did it work? Looks like they had sectors which could block sound. Use Romero quote p29 in Scarydarkfast\\
@@ -82,23 +133,5 @@ If a monster yells at a player, it will alert other monsters to the player\\
 \par
 Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.\\
 \par
-\fq{
-The NeXT version does not have the full  
-feature polish that the dos version has, just because we can't spare  
-the time for it.  It's basically the same thing, though.
 
-The way our development works is that I write the entire game in  
-portable ansi C, then have different hardware abstraction files for  
-NEXTSTEP, dos, X, windows, etc.  The tools can be NS specific, because  
-we don't need to provide them for anyone else (the two companies we are  
-working with on DOOM style games are now NS converts).
-
-Our biggest mistake during DOOM development was the contracting of an  
-outside party to do dos sound drivers.  Because we had this black box  
-functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.   
-All future work will be entirely developed under NS, with only DMA  
-buffer flipping being the hardware layer.  We will probably also run  
-midi under NS for music (which will be dynamically tuned to the game  
-situation in Quake).}
-{John Carmack}
 

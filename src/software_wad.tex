@@ -1,0 +1,131 @@
+\section{Filesystem}
+The shareware shipped the engine (\cw{DOOM.EXE}) along with an archive \cw{DOOM.WAD} which was an id proprietary format used to neatly store all the game assets.\\ 
+\par
+\trivia{The extension name was coined by Tom Halls, when John Carmack asked him "How do you call a file where's all the data?". Tom's answer was a "WAD" (Where's All the Data).}\\
+
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{1.3}  L{0.7} R{1}}
+  \toprule
+  \textbf{Game} &  \textbf{Archive name} & \textbf{Size in bytes}\\
+
+  \toprule 
+  Doom Shareware & \cw{DOOM1.WAD} &  4,196,020 \\
+  Doom Registered & \cw{DOOM.WAD} & 11,159,840 \\
+  Doom II: Hell on Earth & \cw{DOOM2.WAD} & 14,604,584\\
+  Ultimate Doom & \cw{UDOOM.WAD} & 12,408,292\\
+  The Plutonia Experiment & \cw{PLUTONIA.WAD} & 17,420,824\\
+TNT: Evilution &  \cw{TNT.WAD} & 18,195,736\\
+French Doom II & \cw{DOOM2F.WAD} & 14,607,420\\
+   \toprule
+  Heretic Shareware & \cw{HERETIC1.WAD} & 5,120,920\\
+    Heretic Registered & \cw{HERETIC.WAD} & 14,189,976\\
+   \toprule
+  Hexen Shareware & \cw{HEXENDEMO.WAD} & 10,644,136\\
+  Hexen Registered & \cw{HEXEN.WAD} & 20,083,672\\
+  Hexen: Deathkings & \cw{HEXEDD.WAD} & 4,440,584\\
+   \toprule
+\end{tabularx}
+\caption{WAD files in \protect\footnotemark}
+\end{figure}
+\par
+\footnotetext{Source: doomgod.com "Internal War Allocation Daemons"}
+
+The goal of a wad is to contain \cw{LUMP}s, they are the atomic unit of the archive. A wad is structured in three parts:
+\begin{itemize}
+ \item A header containing a magic number, the number of lumps, and an offset to the lumps directory.  \
+ \item All the lumps.
+ \item The lump directory with each entry containing the offset of the lump from the beginning of the file, the size of the lump, and the lump name.
+ \end{itemize}
+\par
+
+\begin{verbatim}
+struct WadHeader {
+    char magic[4];
+    int32_t numLumps;
+    int32_t offsetToLumps;
+};
+
+struct LumpDirectoryEntry {
+    int32_t offset;
+    int32_t size;
+    char name[8];
+};
+\end{verbatim}
+\par
+DRAWING WAD STRUCTURE\\
+\par
+The design of the container had several advantages. The first obvious one is that the full archive can be parsed without knowlege of what each lump contains. In the worse case scenario the game engine would have a lump off unknown format but all the others will be correctly referenced\footnote{An other popular format, IFF also allowed parsing and was extensively used at Origins and particularely on WingCommander and Strike Commander.}.\\
+\par
+ The second advantage is incremental updates. With each map requiring computationally expensive pre-processing and artist adding assets and designers adding more maps, it was a huge time waster to rebuild the archive from scratch every time. With this design a new lump can be added for cheap:
+\begin{itemize}
+ \item Cut the lump directory at the end (it is 1KiB).
+ \item Append the new lump at the end of the wad.
+ \item Reattach the lump.
+ \item Add a entry to the directory.
+ \item Increase lump count in the header.
+\end{itemize}
+
+\subsection{Lump access and Caching}
+At startup the wad file is loaded and the lump directory parsed so all lumps are known. At runtime when an asset is needed it is requested and refered to by its lump name.\\
+\par
+\ccode{W_CacheLumpName.c}
+\par
+ Upon completing a request, the memory zone system usually was instructed to keep the lump cached in RAM.\\
+\par
+DRAWING CACHING\\
+\par
+\begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.2}  L{0.8}}
+  \toprule
+  \textbf{Lump Name} &  \textbf{Description} \\
+   
+  \toprule 
+  \cw{PLAYPAL} & Main palette \\
+  \cw{COLORMAP} &  \\
+  \cw{DEMO.?} &  \\
+  \toprule
+  \cw{MAP.?.?} &  \\
+  \cw{THINGS} &  \\
+  \cw{LINESDEFS} &  \\
+  \cw{SIDEDEFS} &  \\
+  \cw{VERTEXES} &  \\
+  \cw{SEGS} &  \\
+  \cw{SSECTORS} &  \\
+  \cw{NODES} &  \\
+  \cw{SECTORS} &  \\
+  \cw{REJECT} &  \\
+  \cw{BLOCKMAP} &  \\
+  \toprule
+  \cw{DP.*} &  \\
+  \cw{DS.*} &  \\
+  \cw{D\_.*} &  \\
+  \toprule
+  \cw{ENDOOM} &  \\
+  \cw{DMXGUSC} &  \\
+  \cw{GENMIDI} &  \\
+  \cw{PNAMES} &  \\
+  \cw{TEXTURE.?} &  \\  
+  \cw{.*} &  \\  
+   \toprule
+\end{tabularx}
+\caption{WAD lump types}
+\end{figure}
+\par
+
+
+\subsection{Inheritance system}
+Upon starting the engine automatically looked for known wads such as \cw{DOOM1.WAD}, \cw{DOOM.WAD}, or \cw{DOOM2.WAD}. It also accepted a parameter \cw{-file} allowing to load additional wad. These additional WADs took precedence over the stock wads in the sense that when a lump was requested the engine looked it that directory first. If that failed, the lookup went down the wad chain.\\
+\par
+\trivia{Additional wad had to use the magic number \cw{PWAD} for Player WAD while the magic number IWAD was reserved for Id Software WADs.}\\
+\par
+ This elegant design allowed modders to overwrite some aspect of stock wad while keeping the rest. For mappers this meant only shipping a small \cw{PWAD} with the map lumps and still be able to use the textures from the \cw{IPWAD}.\\
+ \par
+
+\subsection{Big/Little abstraction}
+To abstract away the endianess of the system, the wad filesystem does not read byte directly from the hard-drive, instead it uses a set of macros.\\
+\par
+\ccode{endianess.c}
+\par
+Note that wad data was stored in little endian so the target players who used PCs suffered zero performance penalty. This would be a problem later when porting to consoles which were all big endian. Since these machines were already struggling, the wad archives had to be re-generated in big endian and the macro were adjusted.

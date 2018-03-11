@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
+    <sourceRoots />
+    <libraryRoots />
     <excludeRoots>
       <file path="$PROJECT_DIR$/DOOM.WAD" />
       <file path="$PROJECT_DIR$/DOOM2.WAD" />

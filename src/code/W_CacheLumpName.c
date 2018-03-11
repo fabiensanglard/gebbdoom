@@ -1,0 +1,1 @@
+void* W_CacheLumpName (char *name, int tag);

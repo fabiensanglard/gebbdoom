@@ -19,7 +19,7 @@ void D_Display (void) {
 
   I_SetPalette (W_CacheLumpName ("PLAYPAL",PU_CACHE));
 
-  R_FillBackScreen (); 
+  R_FillBackScreen (); // Background when not full screen
 
   M_Drawer ();  // menu is drawn even on top of everything
   NetUpdate (); // send out any new accumulation
