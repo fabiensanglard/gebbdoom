@@ -16,7 +16,7 @@ The video system implementation must provide four functions to the rendition sys
 \cw{I\_InitGraphics} & Set VGA in Mode-Y.\\
 \cw{I\_UpdateNoBlit} & Send updated area of the screen to the VGA.\\
 \cw{I\_FinishUpdate} & Flip buffer (update CRTC start scan address.\\
-\cw{I\_WaitVBL} & Wait for Vertical Sync (almost never used).\\
+\cw{I\_WaitVBL} & Wait V-Sync (Used to wait before update palette).\\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
 \caption{Video system interface}

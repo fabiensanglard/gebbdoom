@@ -1,21 +1,39 @@
 \section{Palette Effects}
- The first palette, palette 0, is used for most situations.\\ \par
-  Palettes 10-12 are used (briefly) when an item is picked up, the
-more items that are picked up in quick succession, the brighter it
-gets, palette 12 being the brightest. \\ \par
-  Palette 13 is used while wearing a radiation suit.\\ \par
-  Palettes 3, 2, then 0 again are used after getting berserk strength.
+\begin{wrapfigure}[8]{r}{0.25\textwidth}
+\centering
+\scaledimage{0.25}{palette.png}
+\end{wrapfigure}
 
-  If the player is hurt, then the palette shifts up to number X, then
-comes "down" one every second or so, to palette 2, then palette 0
-(normal) again. What X is depends on how badly the player got hurt:
-Over 100\% damage (add health loss and armor loss), X=8.\\
-93\%, X=7.\\
- 81\%, X=6\\
- . 55\%, X=5\\
- . 35\%, X=4\\
- . 16\%, X=2\\
- . These are just rough estimates based on a single test session long ago. Why bother tracking down the exact division points? \\ \par
+Despite its many weaknesses, the VGA had one really cool feature: Its palette. Just 768 bytes were enough to make the entire screen fade toward a color. \doom used fading for three effects which were damage, item pickup, and while wearing radiation suit. To implement this effect, palette were precalculated and stored in the \cw{PLAYPAL} lump. There are fourteen palettes in total. Palette \#0 was the default, used during most of the game.\\
+\par
+Eight palettes (from \#1 to \#8) were used for emphasis damage and let the player know how badly she was being hit. The effect shifts directly to one of the seven palette based on the amount of damage taken (The higher the damage the higher the staring palette). A screen full red was usually very bad news. If no more damage are taken, the palette fades back to normal (Palette \#1) at the rate of one palette unit every 1/2 second.\\
+\par
+\scaledimage{0.25}{palette_damage1.png}
+\scaledimage{0.25}{palette_damage2.png}
+\scaledimage{0.25}{palette_damage3.png}
+\scaledimage{0.25}{palette_damage4.png}
+\scaledimage{0.25}{palette_damage5.png}
+\scaledimage{0.25}{palette_damage6.png}
+\scaledimage{0.25}{palette_damage7.png}
+\scaledimage{0.25}{palette_damage8.png}
+\par
+However palette \#1 was never used. Take a good look at the code selecting the damage palette:\\
+\par
+\ccode{ST_doPaletteStuff.c}\\
+\par
+It can only generate values within [2..9].\\
+\par
+Four palettes (from \#9 to \#12) are used briefly when an item is picked up.\\
+\par
+\scaledimage{0.25}{palette_item1.png}
+\scaledimage{0.25}{palette_item2.png}
+\scaledimage{0.25}{palette_item3.png}
+\scaledimage{0.25}{palette_item4.png}
+\par
+For the same of-by-one miscalculation, palette \#9 is never used. The palette selector can only generate offset between [1..3] whereas [0..3] was needed.\\
+\par
+\ccode{ST_doPaletteStuff2.c}\\
+\par
+Lastly, palette \#13 is not used for a fading effect but as a permanent set when the player is wearing the radiation suit \\ \par
 
-  Unknown: what palettes 1 and 9 are for.\\ \par
-\pagebreak
+\scaledimage{0.25}{palette_radiationsuit.png}
