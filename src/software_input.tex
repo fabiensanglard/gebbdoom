@@ -1,2 +1,36 @@
 \section{Input}
-Concept of responder.
+The input system is abstracted with the notions of events and responder which can consume them. Since an event must contain data from keyboard, mouse, or joystick, it was loosely defined.\\
+\par
+\ccode{events.c}
+\par
+Incoming events are stored in the kernel inside a circular buffer. The kernel expose a method for the input system implementation to add events.\\
+\par
+\ccode{events_storage.c}
+\par
+\drawing{event_arch}{}
+\par
+The implementation can contribute events within two functions:\\
+\par
+\begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.6}  L{1.4}}
+  \toprule
+  \textbf{Method} &  \textbf{Usage}\\
+
+  \toprule 
+  
+I\_StartTick &\\
+I\_StartFrame &\\
+
+   \toprule
+\end{tabularx}
+\caption{\doom input system interface}
+\end{figure}
+\par
+
+
+Each ticks, all events are passed down a chain of responders. Each responder has the choice to consume the event or not. If the event is consumed ("eaten" in the code) then it is not passed to subsequent responders. Note the 3D renderer is the last responder in the chain.\\
+\par
+\ccode{D_ProcessEvents.c}
+\par
+
