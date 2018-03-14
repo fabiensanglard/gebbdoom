@@ -1,37 +1,50 @@
 \section{Input}
-The input system is abstracted with the notions of events and responder which can consume them. Since an event must contain data from keyboard, mouse, or joystick, it was loosely defined.\\
+The input system is abstracted with the notions of events and responder which can consume them. Key strokes, joystick, and mouse inputs type are stored in an \cw{event\_t} structure.\\
 \par
 \ccode{events.c}
 \par
-Incoming events are stored in the kernel inside a circular buffer. The kernel expose a method for the input system implementation to add events.\\
-\par
-\ccode{events_storage.c}
-\par
-
-\scaleddrawing{0.8}{event_arch}{}
-\par
-The implementation can contribute events within two functions:\\
+The kernel notify the input system when a new frame start or when a game tick start which give it an opportunity to sample inputs, wrap them into an event and use call back method to post it to the kernel.
 \par
 \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.6}  L{1.4}}
   \toprule
   \textbf{Method} &  \textbf{Usage}\\
-
   \toprule 
-  
-I\_StartTick &\\
-I\_StartFrame &\\
-
+  I\_StartTick &\\
+  I\_StartFrame &\\
+  D\_PostEvent & \\
    \toprule
 \end{tabularx}
 \caption{\doom input system interface}
 \end{figure}
 \par
+Incoming events are stored in the kernel inside a circular buffer.\\
+\par
+\ccode{events_storage.c}
 
-
-Each ticks, all events are passed down a chain of responders. Each responder has the choice to consume the event or not. If the event is consumed ("eaten" in the code) then it is not passed to subsequent responders. Note the 3D renderer is the last responder in the chain.\\
+\par
+Each ticks, the event queue is emptied. Events are sent one by one down a chain of responders. Each responder has the choice to consume the event or not so it is passed to the next resonder. If the event is consumed ("eaten" in the code) then it is not passed to subsequent responders. Note the 3D renderer is the last responder in the chain.\\
 \par
 \ccode{D_ProcessEvents.c}
 \par
 
+\begin{wrapfigure}[11]{r}{0.5\textwidth}
+\centering
+\scaledimage{0.5}{cyberman2.png}
+\end{wrapfigure}
+\trivia{The file \cw{i\_cyber.c} has nothing to do with the enemy called "cyberdemon". It is a driver especially written to support a curious device manufactured by Logitec around 1992 called the "CyberMan". It was an hybrid input device providing six degrees of freedom. Think of it as a joystick upon which would be mounted a mouse. Support for its \cw{SWIFT} API seems to have been added later since it doesn't generate events like the keyboard, mouse, and joystick but instead generate a tick command directly directly into the tick command stream.}\\
+\par
+Most responders consume events as there are but the 3D renderer normalize them into a \cw{ticcmd\_t} which contains not inputs but player actions. Commands have no timestamps since they are part of a stream going at 35Hz. \\
+\par
+\ccode{ticcmd_t.c}
+\par
+Commands can be consumed and deleted but they can also be stored to disk when recording a demo or even injected into the renderer when replaying a demo. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t} meant to be played at 35Hz. As a result demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
+\par
+LIST OF DEMO LUMPS with their size.
+\par
+
+\scaleddrawing{1}{event_arch}{}
+\par
+Putting it all together, \circled{1} The kernel calls into the input system once per frame and once per tick to allow it operate. \circled{2} Events can be sent to the kernel. \circled{3} Events received are stored in a circular event buffer. \circled{4} Events are dispatched to various responders. If the 3D renderer is active, the events are combined into a \cw{ticcmd\_t} which can be consumed but also stored on disk in the context of a demo recording or consumed by the engine. During demo playback the input system is disabled, tic commands are read from storage and injected into the end of the pipeline.
+\par

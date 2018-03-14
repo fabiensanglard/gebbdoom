@@ -1,24 +1,112 @@
-\section{Network}
-
-\fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office—in addition to my NeXT workstation—to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
+\section{DeathMatch \& Networking}
+If the 3D renderer was breathtaking, it was the networking capability and its famous deathmatches which really took \doom to a new level. The ability to connect two PCs and interact with human players was something completely new back then. Early one during development it was apparent this aspect of the game was going to be amazing.\\
 \par
-I was strafing back and forth on one system and looking over my shoulder at the other computer, watching the marine sprite slide side to side in front of the other player's pistol. I let it coast down, centered on the screen, and turned to the other computer. "Bang!" "Urgh!" Twitch. Shuffle. Big smile. :-) "Bang!" "Bang!" "Bang!" "Bang!" There was a consistency failure before the first frag was truly logged, but it was blindingly obvious that this was going to be awesome.}{John Carmack, kotaku.com "Memories Of Doom"}
-
+\fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office—in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
+\par
+I was strafing back and forth on one system and looking over my shoulder at the other computer, watching the marine sprite slide side to side in front of the other player's pistol. I let it coast down, centered on the screen, and turned to the other computer. "Bang!" "Urgh!" Twitch. Shuffle. Big smile. :-) "Bang!" "Bang!" "Bang!" "Bang!" There was a consistency failure before the first frag was truly logged, but it was blindingly obvious that this was going to be awesome.}{John Carmack, kotaku.com "Memories Of Doom"}\\
 \par
 
-\fq{From that point up to the first public release, Doom used IPX broadcast packets to communicate between the players. This seemed like a good efficiency to me—a four player game just involved four broadcast packets each frame. My knowledge of networking was limited to the couple of books I had read, and my naive understanding was that big networks were broken up into little segments connected by routers, and broadcast packets were contained to the little segments. I figured I would eventually extend things to allow playing across routers, but I could ignore the issue for the time being.}{John Carmack, kotaku.com "Memories Of Doom"}
+\subsection{Architecture}
+Given contemporary standards, the architecture of deathmatchs will surprise many. There are not central server or source of authority in the network model of \doom. It is a peer to peer model where each machine (called "node) maintain its own game state with no synchronization with other nodes.\\
+\par
+\drawing{p2psvg}{}
+\par
+ Each node must send the command generated locally to all other nodes. This means that a machine can simulate the next tic only when ALL nodes involved in the game have send their commands. As a result, the slowest machine dictates the framerate of every players involved. This also meant that all nodes had to run the exact same state machine and run the same version of \doom.\\
+\par
+There is no prediction system or latency mitigation either. Since the medium offer no guarantee of packet delivery, the engine features a negative acknowledgment where packet sequencial number is tracker on a per node basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node could not discard commands once they were sent on the wire. Commands are stored in a buffer.\\
+\cw{NetUpdate}\\
+\par
+In an attempt to mitigate the impact of latency on other machines, the net function \cw{NetUpdate} is called no less than eight times during each frame.\\
+\par
+\subsection{Abstraction}
+The Network system abstraction is rather unconventional. It revolve around a struct \cw{doomcom\_t}  and two functions. The kernel and the driver write into the same variable which is used alternatively to send and receive data. The kernel remains in control by setting a field \cw{command} to mark data as outgoing(\cw{CMD\_SEND}) or ingoing(\cw{CMD\_GET}) and trigger processing with a zero parameters function \cw{I\_NetCmd}.\\
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.6}  L{1.4}}
+  \toprule
+  \textbf{Element} &  \textbf{Usage}\\
+
+  \toprule 
+   I\_InitNetwork & \\
+   I\_NetCmd & \\
+   doomcom\_t & \\
+   \toprule
+\end{tabularx}
+\caption{\doom network system interface}
+\end{figure}
+\par
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\ccode{doomcom_t.c}
+\par
+In the code, notice the array of \cw{ticcmd\_t} structure, a type we already saw in the input system, which constitute the payload. Also notice that \cw{doomcom\_t} does not contain any data specific to a network protocol such as IPX or UDP. The source and destination player are only referred to by their kernel id \cw{remotenode}. The matching between a player id and its network address is done via parameters passed on the commandline.\\
+\par
+
+
+
+\ccode{I_InitNetwork.c}
+
+\par
+On NeXT, the implementation used a simple UDP system with Berkley sockets\footnote{The Internet Assigned Numbers Authority (IANA) publishes a list, The Service Name and Transport Protocol Port Number Registry where port 666 is reserved for \doom!}. On the PC side, things were more complicated. Until v1.1 the game engine shipped with built-in support for lan over IPX. To minimize communications, the ipx packet used Node number \cw{FF-FF-FF-FF-FF-FF} for broadcast for addressing.\\
+\par
+\begin{verbatim}
+
+ IPX addressing: 12 bytes structured as follow:
+
+   Network         Node        Socket
+|-----------|-----------------|-----|
+ XX XX XX XX XX XX XX XX XX XX XX XX 
+
+\end{verbatim}
+\par
+however things did not go as smoothly as expected.\\
+\par
+\fq{From that point up to the first public release, Doom used IPX broadcast packets to communicate between the players. This seemed like a good efficiency to me a four player game just involved four broadcast packets each frame. My knowledge of networking was limited to the couple of books I had read, and my naive understanding was that big networks were broken up into little segments connected by routers, and broadcast packets were contained to the little segments. I figured I would eventually extend things to allow playing across routers, but I could ignore the issue for the time being.}{John Carmack, kotaku.com "Memories Of Doom"}
 
 \fq{
 What I didn't realize was that there were some entire campuses that were built up out of bridged IPX networks, and a broadcast packet could be forwarded across many bridges until it had been seen by every single computer on the campus. At those sites, every person playing LAN Doom had an impact on every computer on the network, as each broadcast packet had to be examined to see if the local computer wanted it. A few dozen Doom players could cripple a network with a few thousand endpoints.\\
 \par
-The day after release, I was awoken by a phone call. I blearily answered it and got chewed out by a network administrator who had found my phone number just to yell at me for my game breaking his entire network. I quickly changed the network protocol to only use broadcast packets for game discovery, and send all-to-all directed packets for gameplay (resulting in 3x the total number of packets for a four player game), but a lot of admins still had to add Doom-specific rules to their bridges (as well as stern warnings that nobody should play the game) to deal with the problems of the original release.}{John Carmack, kotaku.com "Memories Of Doom"}
-
-\trivia{The "official" (as stated in the IPXSETUP source code) IPX network socket for Doom is 869C hex (34460 decimal). This was apparently registered with Novell, as it appears in the list of well-known IPX sockets published by Novell.}
-
-DeathManager!
-
-\fullimage{DeathManagerv1-2.png}
-\trivia{DeathManager is a 16-bit program that appears to have been written in Turbo C - as many of the other Doom utility programs were. Unlike the other utilities, the source code to DeathManager has never been released.}
+The day after release, I was awoken by a phone call. I blearily answered it and got chewed out by a network administrator who had found my phone number just to yell at me for my game breaking his entire network. I quickly changed the network protocol to only use broadcast packets for game discovery, and send all-to-all directed packets for gameplay (resulting in 3x the total number of packets for a four player game), but a lot of admins still had to add Doom-specific rules to their bridges (as well as stern warnings that nobody should play the game) to deal with the problems of the original release.}{John Carmack, kotaku.com "Memories Of Doom"} 
+\par
+\subsection{PC Network drivers}
+When time came to support serial and modem, the IPX network system was chopped off and networking refactored around the notion of drivers. In this model, the game engine still dealed only with \cw{doomcom\_t} but receiving or emitting packet was done via interrupts. How this was implemented was a magnificent hack like only an unprotected OS allowed.\\
+\par
+The driver was expected to start first, install a tiny TSR interrupt handler in RAM. Then start \cw{DOOM.EXE} with a special parameter \cw{-net X} where X was the address of the TSR \cw{doomcom\_t} variable. The engine literaly did a \cw{(doomcom\_t*)(atoi(param)} to access the structure fields. At this point, the engine had everything it needed to communicate in a generic way (including the software interrupt \# to raise to trigger the driver).\\
+\par
+\fakedosoutput{doomnet.c}
+\par
+DRAWING\\
+\par
+Two drivers came with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem.\\
+\par
 \par
 
-The networking code was completely rewritten in v1.2. The networking component was stripped out of the main executable and into separate IPXSETUP.EXE and SERSETUP.EXE drivers. Using networked PCs, it is possible to extend the game's field of view over three monitors. The player needs to set up a network game on the center PC, then the left and right PCs must launch with the -left and -right parameters. 
+
+
+\trivia{The "official" (as stated in the IPXSETUP source code) IPX socket number for Doom is 869C hex (34460 decimal). This was apparently registered with Novell, as it appears in the list of well-known IPX sockets published by Novell.}
+
+
+
+
+
+
+
+
+\subsection{DeathManager}
+Given the complexity of the commandline parameter to setup a network game, several tools were provided. Originally players could use \cw{SETUP.EXE}. Later version showed the introduction of \cw{DM}(DeathManager) which was faster.\\
+\par
+\fullimage{DeathManagerv1-2.png}
+\trivia{DeathManager is a 16-bit program that appears to have been written in Turbo C - as many of the other Doom utility programs were. Unlike the other utilities, the source code to DeathManager has never been released.}
