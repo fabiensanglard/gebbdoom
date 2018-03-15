@@ -1,0 +1,55 @@
+wcc386p $(CFLAGS) i_main.c /fo=pc_obj\i_main.obj
+wcc386p $(CFLAGS) i_ibm.c /fo=pc_obj\i_ibm.obj
+tasm  /mx i_ibm_a.asm
+wcc386p $(CFLAGS) i_sound.c /fo=pc_obj\i_sound.obj
+wcc386p $(CFLAGS) i_cyber.c /fo=pc_obj\i_cyber.obj
+tasm  /mx planar.asm
+wcc386p $(CFLAGS) tables.c /fo=pc_obj\tables.obj
+wcc386p $(CFLAGS) f_finale.c /fo=pc_obj\f_finale.obj
+wcc386p $(CFLAGS) d_main.c /fo=pc_obj\d_main.obj
+wcc386p $(CFLAGS) d_net.c /fo=pc_obj\d_net.obj
+wcc386p $(CFLAGS) g_game.c /fo=pc_obj\g_game.obj
+wcc386p $(CFLAGS) m_menu.c /fo=pc_obj\m_menu.obj
+wcc386p $(CFLAGS) m_misc.c /fo=pc_obj\m_misc.obj
+wcc386p $(CFLAGS) am_map.c /fo=pc_obj\am_map.obj
+wcc386p $(CFLAGS) p_ceilng.c /fo=pc_obj\p_ceilng.obj
+wcc386p $(CFLAGS) p_doors.c /fo=pc_obj\p_doors.obj
+wcc386p $(CFLAGS) p_enemy.c /fo=pc_obj\p_enemy.obj
+wcc386p $(CFLAGS) p_floor.c /fo=pc_obj\p_floor.obj
+wcc386p $(CFLAGS) p_inter.c /fo=pc_obj\p_inter.obj
+wcc386p $(CFLAGS) p_lights.c /fo=pc_obj\p_lights.obj
+wcc386p $(CFLAGS) p_map.c /fo=pc_obj\p_map.obj
+wcc386p $(CFLAGS) p_maputl.c /fo=pc_obj\p_maputl.obj
+wcc386p $(CFLAGS) p_plats.c /fo=pc_obj\p_plats.obj
+wcc386p $(CFLAGS) p_pspr.c /fo=pc_obj\p_pspr.obj
+wcc386p $(CFLAGS) p_setup.c /fo=pc_obj\p_setup.obj
+wcc386p $(CFLAGS) p_sight.c /fo=pc_obj\p_sight.obj
+wcc386p $(CFLAGS) p_spec.c /fo=pc_obj\p_spec.obj
+wcc386p $(CFLAGS) p_switch.c /fo=pc_obj\p_switch.obj
+wcc386p $(CFLAGS) p_mobj.c /fo=pc_obj\p_mobj.obj
+wcc386p $(CFLAGS) p_telept.c /fo=pc_obj\p_telept.obj
+wcc386p $(CFLAGS) p_tick.c /fo=pc_obj\p_tick.obj
+wcc386p $(CFLAGS) p_user.c /fo=pc_obj\p_user.obj
+wcc386p $(CFLAGS) r_bsp.c /fo=pc_obj\r_bsp.obj
+wcc386p $(CFLAGS) r_data.c /fo=pc_obj\r_data.obj
+wcc386p $(CFLAGS) r_draw.c /fo=pc_obj\r_draw.obj
+wcc386p $(CFLAGS) r_main.c /fo=pc_obj\r_main.obj
+wcc386p $(CFLAGS) r_plane.c /fo=pc_obj\r_plane.obj
+wcc386p $(CFLAGS) r_segs.c /fo=pc_obj\r_segs.obj
+wcc386p $(CFLAGS) r_things.c /fo=pc_obj\r_things.obj
+wcc386p $(CFLAGS) w_wad.c /fo=pc_obj\w_wad.obj
+wcc386p $(CFLAGS) wi_stuff.c /fo=pc_obj\wi_stuff.obj
+wcc386p $(CFLAGS) v_video.c /fo=pc_obj\v_video.obj
+wcc386p $(CFLAGS) st_lib.c /fo=pc_obj\st_lib.obj
+wcc386p $(CFLAGS) st_stuff.c /fo=pc_obj\st_stuff.obj
+wcc386p $(CFLAGS) hu_stuff.c /fo=pc_obj\hu_stuff.obj
+wcc386p $(CFLAGS) hu_lib.c /fo=pc_obj\hu_lib.obj
+wcc386p $(CFLAGS) s_sound.c /fo=pc_obj\s_sound.obj
+wcc386p $(CFLAGS) z_zone.c /fo=pc_obj\z_zone.obj
+wcc386p $(CFLAGS) info.c /fo=pc_obj\info.obj
+wcc386p $(CFLAGS) sounds.c /fo=pc_obj\sounds.obj
+wcc386p $(CFLAGS) dutils.c /fo=pc_obj\dutils.obj
+wlink @newdoom.lnk ..\dmx\lib\dmx_r.lib
+wstrip newdoom 
+c:\4gwpro95\4gwbind c:\4gwpro95\4gwpro.exe newdoom.exe doom.exe -v
+chmod 777 doom.exe
