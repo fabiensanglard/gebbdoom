@@ -2,32 +2,22 @@
 V_Init: allocate screens.
 M_LoadDefaults: Load system defaults. 
 Z_Init: Init zone memory allocation daemon. 
+DPMI memory: 0xd59000, 0x800000 allocated for zone
 W_Init: Init WAD files. 
  adding ./doom.wad 
 =================================================================
             Commercial product - do not distribute! 
-    Please report software piracy to the SPA: 1-88B-3E0-P1W 
+     Please report software piracy to the SPA: 1-800-388-PIR8 
 =================================================================
-M_Init: lnit miscellaneous info. 
-R_Init: Init MCM refresh daemon [...] 
-InitTextures 
-InitFlats........  
-InitSprites 
-InitColormaps 
-R_InitData 
-R_InitPointToAngle 
-R_InitTables 
-R_InitPlanes 
-R_InitLightTables 
-R_InitSkyMaP 
-R_InitTranslationsTables 
+M_Init: Init miscellaneous info. 
+R_Init: Init DOOM refresh daemon [.........................] 
 P_Init: Init Playloop state. 
 I_Init: Setting on machine state. 
 I_InitSound: I_StartupSound: Hope you hear a pop.
 S_Init: Setting up sound. 
 S_Init: default sfx volume 8 
 HU_Init: Setting up heads up display. 
-ST_Init: nit status bar. 
+ST_Init: Init status bar. 
 
 
 

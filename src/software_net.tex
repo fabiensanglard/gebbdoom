@@ -13,7 +13,12 @@ Given contemporary standards, the architecture of deathmatchs will surprise many
 \par
  Each node must send the command generated locally to all other nodes. This means that a machine can simulate the next tic only when ALL nodes involved in the game have send their commands. As a result, the slowest machine dictates the framerate of every players involved. This also meant that all nodes had to run the exact same state machine and run the same version of \doom.\\
 \par
-There is no prediction system or latency mitigation either. Since the medium offer no guarantee of packet delivery, the engine features a negative acknowledgment where packet sequencial number is tracker on a per node basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node could not discard commands once they were sent on the wire. Commands are stored in a buffer.\\
+
+
+\ccode{net_loop_wait.c}
+
+\par
+There is no prediction system or latency mitigation either. Since the medium offer no guarantee of packet delivery, the engine features a negative acknowledgment where packet sequencial number is tracker on a per node basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node could not discard commands once they were sent on the wire. This resent mechanism was a last resort and to be avoided at all cost. To avoid this worse case scenario, packets could feature not only the current command but also the last command (in that case the field \cw{extratics} is marked as true).\\
 \cw{NetUpdate}\\
 \par
 In an attempt to mitigate the impact of latency on other machines, the net function \cw{NetUpdate} is called no less than eight times during each frame.\\
@@ -88,7 +93,7 @@ The driver was expected to start first, install a tiny TSR interrupt handler in 
 \par
 \fakedosoutput{doomnet.c}
 \par
-DRAWING\\
+\pngdrawing{net_drivers}{}
 \par
 Two drivers came with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem.\\
 \par

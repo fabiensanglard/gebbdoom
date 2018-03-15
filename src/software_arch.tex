@@ -111,8 +111,19 @@ The \cw{main} function can be found in \cw{i\_main.c} translation unit\footnote{
 The function calls match exactly what players could see in the DOS prompt upong starting the game.\\
 \par
 \fakedosoutput{doom_dos_start.txt}
+% InitTextures 
+% InitFlats........  
+% InitSprites 
+% InitColormaps 
+% R_InitData 
+% R_InitPointToAngle 
+% R_InitTables 
+% R_InitPlanes 
+% R_InitLightTables 
+% R_InitSkyMaP 
+% R_InitTranslationsTables 
 \par
-\fixme{Startup screen is inacurate.}
+\fixme{Startup screen is inacurate. Trivia about dot? Due to textures loading from S\_START to S\_END.}
 
 \section{Fixed time steps}
 Peeking inside \cw{D\_DoomLoop} reveals a pretty standard loop where the world is updated and then rendered to the audio and video output.\\

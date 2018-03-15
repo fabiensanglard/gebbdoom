@@ -65,7 +65,7 @@ What DMX did at startup was to install itself as a TSR via the PIC and the TIC t
 \par
 
 
-\scaleddrawing{0.8}{sound_manager_architecture}{DMX architecture}
+\scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
 This architecture explains why sound memory allocation had a special treatment in the zone memory allocator. Because the audio system runs in an interrupt, each interruption must be aknowledged as fast as posssible. This system simply had no time to recover from a memory miss. Audio data had to be ready at all time while it could be used.\\
 \par
 
