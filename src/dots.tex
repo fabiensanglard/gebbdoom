@@ -1,22 +1,23 @@
 \section{Waiting for the Dots}
-For anybody who played doom on a PC, the most frustrating part was to wait for the game to load. One especially intriguying part was \cw{R\_Init}.\\
+For anybody who played doom on a PC in 1994, the most frustrating part was to wait for the game to load. An improvised progress bar made of dots helped the player to be patient. Millions of hours were spent watching these tidy dots progress. And probably a few more trying to guess what \cw{R\_Init} did in the background. It turns out it was all about setting up the graphic renderer.\\
 \par
 \fakedosoutput{dots.txt}\\
 \par
-With access to the source they can easily be explained.\\
+With access to the source the dots can be "labeled".\\
 \par
 \fakedosoutput{dots_explained.txt}\\
 \par
 \begin{itemize}
-\item \cw{xxxxx}
-\item \cw{T}
-\item \cw{F}
-\item \cw{LLLLLLLLLLLL}
-\item \cw{S}
-\item \cw{D}
-\item \cw{A}
-\item \cw{T}
-\item \cw{P}
-\item \cw{L}
-\item \cw{S}
+\item \cw{xxxxx} \cw{R\_InitTextures}. Open \cw{PNAMES} lump. Build a WALL texture dictionary and locate them in \cw{TEXTURE1} and \cw{TEXTURE2} lumps.
+\item \cw{T}: Marker to show end of \cw{R\_InitTextures}.
+\item \cw{F}: \cw{R\_InitFlats}. Calculate \# flats textures by retrieving lumps \cw{F\_START} and \cw{F\_END}
+\item \cw{LLLLLLLLLLLL}: \cw{R\_InitSpriteLumps}. lookup \cw{S\_START} and \cw{S\_END} to find the width and hoffset of all sprites in the wad. Print a dot every 64 sprites. This was the slowed part since it had to do a lot of HDD accesses.
+\item \cw{S}: Marker to show end of \cw{R\_InitSpriteLumps}. 
+\item \cw{D}: Marker to show end of \cw{R\_InitData} which encomparse  \cw{T}, \cw{F}, \cw{L}, and \cw{S}.
+\item \cw{A}: \cw{R\_InitPointToAngle}. Used to build \cw{tantoangle}. Now a noop thanks to \cw{tables.c}
+\item \cw{T}: \cw{R\_InitTables}. Used to build \cw{finetangent} and \cw{finesine}. Now a noop thanks to \cw{tables.c}
+\item \cw{P}: \cw{R\_InitPlanes}. Does nothing. 
+\item \cw{Y}: \cw{R\_InitLightTables}. Inits the zlight table.
+\item \cw{X}: \cw{R\_InitSkyMap}. Initialize \cw{skyflatnum}.
 \end{itemize}
+
