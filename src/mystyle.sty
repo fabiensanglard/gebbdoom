@@ -48,6 +48,11 @@
 \newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
 \newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
 
+\newcommand{\smallfakedosoutput}[1]{{\lstset{ backgroundcolor=\color{Black}, basicstyle=\footnotesize\color{White}} \tcode{#1}}}
+\newcommand{\fakedosoutput}[1]{{\lstset{ backgroundcolor=\color{Black}, basicstyle=\color{White}} \tcode{#1}}}
+
+
+
 % Allow to include urls in pdf
 \usepackage[pdftex]{hyperref}
 
@@ -330,7 +335,7 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 
 \definecolor{Black}{gray}{0.0}
 \definecolor{White}{gray}{0.9}
-\newcommand{\fakedosoutput}[1]{{\lstset{ backgroundcolor=\color{Black}, basicstyle=\color{White}} \tcode{#1}}}
+
 
 
 

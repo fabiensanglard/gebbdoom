@@ -1,81 +1,196 @@
 \section{3D Renderer}
-After the 2D renderer, our trip down the source code takes us to what \doom is mostly known for, its 3D renderer.\\
+The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
 \par
-\ccode{D_Display.c}
-
-The early 1993 press release written by Tom Halls (see Annexe page \pageref{label_press_release}) made some bold statements. Besides promising the best game of all time, it was remarquably accurate with regards to features the 3D renderer would end up shipping with:\\
+The big lines are as follow:\\
 \par
-\begin{enumerate}
-\item Texture-Mapped Environment
-\item Non-Orthogonal Walls
-\item Light Diminishing
-\item Variable Height Floors and Ceilings
-\end{enumerate}
+\begin{itemize}
+\item Render walls segments, sorted near to far from the player point of view. Both wall ends are projected into screenspace axis X. Based on the distance and floor/ceiling the wall sectors belongs to, calculate a column Y offset and an height. 
+\item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
+   \begin{itemize}
+     \item record screenspace vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) or floor (if below miscreen) and stored the area into an array of structure called "visplanes".
+     \item Store sprites to be drawn into an array of struct "vissprites".
+   \end{itemize}      
+\item Render all ceiling and floors from the visplanes.
+\item Render transparent elements in far to near order.
+\item Render player sprite (overlay view).
+\end{itemize}
 \par
-Some of the annouced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environement including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
-\par
-DETAIL WOLF3D\\
-\par
-To lose fast intersections with aligned axis was a big problem. Not only drawing a scene correctly was going to be difficult, also gone were collision detection, sound propagation, and fast line of sight for monster I.A simulation.\\
+The different sections can easily be identified in the code.\\
 \par
 \ccode{R_RenderPlayerView.c}{}
 
 
-
-\subsection{Non Orthogonal Walls}
-
-\subsubsection{Genesis}
-Doom did not always have a BSP. Only after April 1993, when the team had to do Wolfnenstein 3D within three weeks, did the engine renderer change.\\
+\subsection{Walls}
+There are two ways to render walls in a correct way. Either go with a painter algorithm which draw far to near and involves no book-keeping but generate a lot of overdraw. Or draw near to far, keeping track of what has been drawn which is more compicated but has zero overdraw. In both strategy lies the problem of sorting them according to the player point of view. Given the high cost of rendition, \doom went for the latter approach.\\
 \par
-First window ever.\\
-Romero broke the engine.\\
-\fullimage{SCREEN00.png}
-\label{HUD_screenshot}
-\par
-\fq{It was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
 
-\subsubsection{Binary Space Partitioning}
+\subsubsection{Sorting walls}
+In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals. Each portal lead to ajacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
+\par
+DRAWING\\
+\par
+Most of the time it worked well. But when designers stated to build complex maps with staircases, performances collapsed like it in this early map made by John Romero for an alpha version.\\
+\par
+\cfullimage{SCREEN00.png}{Notice the HUD using a huge portion of the 3D canvas.} \label{HUD_screenshot}
+\par
+\fq{The engine was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
+\par
+Concave and convex sectors proved to be too much complexity for the engine to deal with and maintain a descent frame rate. This was a huge issue. They did not have much time to work on it thought, since around the same time this issue was discovered, work on \doom had to stop in order to respond to an emergency.\\
+\par
+Back in June 1992, id had promised to deliver Wolfenstein 3D for SNES. They subcontracted the project and kinda forgot about it. Six month later they could not get in touch with the contractor. They had nothing to show to Nintendo and it was a big deal involving a huge penalty.  \doom development stopped completely and desperatly banged they old game together into a machine not remotely built to do what they wanted. While Tom Halls dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolf relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}. It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
+\par
+
+
+
+
+\subsubsection{Binary Space Partitioning: Theory}
+In early 1993, Bruce Taylor paid a visit to his friend at id Software. At that point, he had been working in the Computer Graphics field for nearly two decade at University of Texas. He did not come empty handed, he had brought with him many papers about CG. One of them was his own, published in 1988 for SIGGRAPH in collaboration with H.Futchs and Zvi Kedem. It was titled "ON VISIBLE SURFACE GENERATION BY A PRIORITI TREE STRUCTURES".\\
+\par
+The technique explained a favorable trade-off where a bit of preprocessing on a set of polygon allowed a formidable runtime speed up. The preprocessing was dead simple. By recursively spiting a space in two, any set of complex polygons could be transformed into a set of convex polygon associated with a navigable binary tree.\\
+\par
+\cfullimage{bsp_paper.png}{ON VISIBLE SURFACE GENERATION BY A PRIORITI TREE STRUCTURES}
+\par
+ \trivia{The paper mentions 1988 hardware, "moderately-priced (\$40,000-80,000) real-time line-drawing systems" capable of line drawing only. A good example of the improvement of performances within five years only.}\\
+ \par
+
+ \begin{verbatim}
+In order to determine the visible surface at each pixel, traditionally
+tile distance from the viewing position to each polygon which maps onto 
+that pixel is calculated. Most methods attempt to minimize the number 
+of polygons to be so considered. Our approach eliminates these distance
+calculations entirely. Rather, it transforms the polygonal data base 
+(splitting polygons when necessary) into a binary tree which can be 
+traversed at image generation time to yield a visible priority z value
+for each polygon.
+\end{verbatim}
+
+\par
+\fq{When I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}
+
+\par
+\subsubsection{Step by Step}
+Let's take the example of a simple map which could have been drawn in DoomED. It features a single sector with a pillar inside it. Eight vertices and eight lines. Despite is simplicity it forms a difficult problem to solve to a renderer aiming at scene correctness. Depending on the player position the order in which the wall must be drawn will vary. \\
+\par
+\pngdrawing{doom_map}{}
+\par
+The science of Node building is to select the best splitting line. A list of poor choices would to select \cw{A}, then \cw{B}, then \cw{C} then \cw{D} which would accomplish nothing but to create a costy linked list with more data at the end.\\ 
+\par
+In the case where \cw{H} is chosen, the map is divided in two. Some line fit entirely on the right side of the spliting plan, some on the left. Line on both sides must be slit into segments.\\
+\par
+\pngdrawing{doom_map_split1}{}
+\par
+The process is repeated until the map is made of convex spaces. Notice how the binary tree grows, with splitting plan as nodes and segments in the leave. 
+\par
+\pngdrawing{doom_map_split2}{}
+\par
+After the last spliting operation, all segments in the leaves form a convex subspace called a Sub-Sector (\cw{SSECTOR}).\\
+\par
+\pngdrawing{doom_map_split3}{}
+\par
+Notice that this is only one of the many possible BSP tree which could have been generated. A different (yet reasonable) set of splitter would have given something different yet equivalent.\\
+\par
+\pngdrawing{doom_map_alternate}{}
+\par
+At first sight it may look like all these operations were counter productive. The map started with 8 lines and now it has twelve which is 50\% more work. But by using the binary tree the entire scene can be sorted in only three tests regardless of the player position.
+\par
+EXAMPLE, PLAYER in SSector 1\\
+\par
+EXAMPLE, PLAYER in SSector 2\\
+
+
+
+
+
+\subsubsection{Binary Space Partitioning: Practice}
+Input:\cw{LINE} and \cw{SECTOR} figure XX.\\
+Output:\cw{SEG} and \cw{SSECTOR} and \cw{NODE} figure YY.\\
 TODO: How long did it take to preprocess all maps?\\
 \par
+If the cost of preprocessing map was invisible to players and only affected designers, there was a second side effect which was much more of an issue. Because the BSP sliced the map, wall position was set in stone, there was no way to move. Floor and ceiling levels remained unaffected.\\
+\par
+Only after April 1993, when the team had to do Wolfenstein 3D within three weeks, did the engine renderer change.\\
 
-\fq{It's not a really supercritical aspect of it, but it is interesting that when I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}
+\ccode{R_RenderBSPNode.c}
+\par
 
-\pngdrawing{wolf3d_map}{}
-\pngdrawing{doom_map}{}
-\pngdrawing{doom_map_split1}{}
-\pngdrawing{doom_map_split2}{}
-\pngdrawing{doom_map_split3}{}
-\pngdrawing{doom_map_alternate}{}
+\subsubsection{Binary Space traversing}
+The theory to traverse a binary tree is straight forward. Recursively determine on what side of a plan a point is. To perform the side test, any geometry book will describe how to represent the plan with a parametric equation $$ P = P0 + (P1 - P0) * t$$
+and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point on a line perpendicular to the plan. The sign of the result tell if the point is in front or in the back of the plan.\\
+\par
+This technique is far from optimal in the context of \doom for the simple reason it requires either floating point or fixed point arithmetic. There is a much better way which involves not the magic of the dot product but the awesomeness of the cross product.\\
+\par
+\pngdrawing{line_dot_product}{}
+\pngdrawing{line_cross_product}{}
+
+
+\ccode{R_PointOnSide.c}
+
+\subsubsection{Wall projection}
+\pngdrawing{projectionExplained}{}
+
+
+
+
+\subsubsection{Wall drawing}
+At this point in the rendering pipeline, the framebuffer \#1 looks like mashed potatoes. All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes\\
+\par
+\trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90degrees left).}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Flats}
+How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
+\par
 \ccode{visplanes.c}
+\par
+In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
+\par
 \fullimage{doom_visplanes.png}{}\\
+\fullimage{doom_visplanes_colored.png}{}
+\par
+The previous screenshot was slightly misleading in order to ease comprehension. There are fourteen visplanes in that screenshot which is a lot for a simple room with a window. It is a problem in terms of memory consumption since a \cw{visplane\_t} struct is no less than 664 bytes. 9 KiB off storage for such a simple screen but imagine a scene with a staircase and two windows and the number of visplane could easily climb to 100s which would consum way too much for a game already struggling to fit into 4 MiB.\\
+\par
+To solve this problem, the engine merges visplanes as they are encountered. If two visplanes share the same texture, height, light intensity and if they don't overlad vertically, they are merged. In the previous example this brings the fourteen visplanes figure down to five.\\
+\par
 \fullimage{doom_visplanes_colored.png}{}
 \par
 \begin{verbatim}
 sizeof(visplane) = 664
-
-(320*2 + 4 + 5 * 4) * 128 = 84992
+(664) * 128 = 84992
+framebuffers
 \end{verbatim}
-
-\subsection{BSP Traversal}
-\pngdrawing{line_dot_product}{}
-\pngdrawing{line_cross_product}{}
-
-\subsection{Diminishing Lighting}
-
-\subsection{Variable Height \& Texture-Mapped Environment}
-
-\section{High/Low details}
-
-\fullimage{high_res.png}\\
-\fullimage{low_res.png}\\
+\fullimage{many_visplanes.png}
 
 
-\subsection{No More Visplanes!}
+
+
+
+
+
+
+\subsection{Visplanes and DrawPlanes overflow}
+Even with visplane merging, the number of visplanes could still get out of hand. Storage was not dynamic, it was capped at 128 units. If the engine encountered condition where 129 visplanes were required it would quit with the following mysterious message:\\
+\begin{verbatim}
 "R\_FindPlane: no more visplanes"\\
+\end{verbatim}
 \par
 R\_DrawPlanes: visplane overflow (\%i)\\
+R\_DrawPlanes: drawsegs overflow (\%i)\\
+R\_DrawPlanes: opening  overflow (\%i)"\\
 \par
 
 Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.
@@ -88,4 +203,58 @@ Door code to make them open horizontally.
 \section{Texture Mapping}
 Persepctive correct was too expensive. But since only one axis had to be corrected, there was a way to get away with fast affine texture mapping.\\
 https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
+\par
+
+\subsection{Diminishing Lighting}
+Play with:
+\begin{verbatim}
+player->fixedcolormap
+\end{verbatim}
+\subsection{Things}
+\begin{verbatim}
+vissprite_t	vissprites[MAXVISSPRITES];
+
+typedef struct vissprite_s {
+    
+    struct vissprite_s*	prev; // Doubly linked list.
+    struct vissprite_s*	next;
+    
+    int			x1;
+    int			x2;
+    
+    fixed_t		gx; // for line side calculation
+    fixed_t		gy;		
+
+    fixed_t		gz; // global bottom / top for silhouette clipping
+    fixed_t		gzt;
+
+    fixed_t		startfrac;     // horizontal position of x1
+    
+    fixed_t		scale;
+        
+    fixed_t		xiscale;	 // negative if flipped
+
+    fixed_t		texturemid;
+    int			patch;
+
+    // for color translation and shadow draw,
+    //  maxbright frames as well
+    lighttable_t*	colormap;
+   
+    int			mobjflags;
+    
+} vissprite_t;
+
+\end{verbatim}
+\subsection{Weapon}
+
+\subsection{Pot pourri}
+The early 1993 press release written by Tom Halls (see Annexe page \pageref{label_press_release}) made some bold statements. Besides promising the best game of all time, it was remarquably accurate with regards to features the 3D renderer would end up shipping with:\\
+\par
+\par
+Some of the annouced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environement including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
+\par
+DETAIL WOLF3D\\
+\par
+To lose fast intersections with aligned axis was a big problem. Not only drawing a scene correctly was going to be difficult, also gone were collision detection, sound propagation, and fast line of sight for monster I.A simulation.\\
 \par

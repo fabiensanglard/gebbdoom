@@ -13,7 +13,8 @@ void D_Display (void) {
   I_UpdateNoBlit ();
 
   // draw 3D view
-  R_RenderPlayerView (&players[displayplayer]);
+  if (gamestate != oldgamestate && gamestate != GS_LEVEL)
+    R_RenderPlayerView (&players[displayplayer]);
 
   HU_Drawer ();
 
