@@ -18,7 +18,8 @@ The big lines are as follow:\\
 The different sections can easily be identified in the code.\\
 \par
 \ccode{R_RenderPlayerView.c}{}
-
+\par
+\trivia{Wolfenstein 3D and Doom have orthogonal architectures. Where the former tried to draw everything vertically to favor the VGA, the latter tried to draw everything horizontally to favor the 486 cachelines.}
 
 \subsection{Walls}
 There are two ways to render walls in a correct way. Either go with a painter algorithm which draw far to near and involves no book-keeping but generate a lot of overdraw. Or draw near to far, keeping track of what has been drawn which is more compicated but has zero overdraw. In both strategy lies the problem of sorting them according to the player point of view. Given the high cost of rendition, \doom went for the latter approach.\\
