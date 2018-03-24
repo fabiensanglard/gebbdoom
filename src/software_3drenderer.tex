@@ -126,14 +126,40 @@ This technique is far from optimal in the context of \doom for the simple reason
 \ccode{R_PointOnSide.c}
 
 \subsubsection{Wall projection}
+BAM\\
+\par
+\ccode{bam.c}
+\par
 \pngdrawing{projectionExplained}{}
 
 
 
 
-\subsubsection{Wall drawing}
-At this point in the rendering pipeline, the framebuffer \#1 looks like mashed potatoes. All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes\\
+
+
+
+
+\subsubsection{Wall clipping}
+As segments are elected for rendition in a back to front order, they must be clipped before they reach the rasterizer. Clipping is done in two steps using an horizontal occlusion array and a vertical occlusion structure.\\
 \par
+The first crude pass maintains a solidseg array which keeps track of which part of the screen received wall segment. Segments can be completely rejected or split into multiple fragments. Note that since they allow things to be drawn behind them, portal segment have no impact on the horizontal occlusion array.\\
+\par
+Ceiling start at -1 while floor start at viewheight (namely XXX).
+\par
+\ccode{hclipper.c}
+
+
+\par
+The second pass clips fragment vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. Each portal segment updates the vertical occlusion array. At the end of this step, fragments are converted into columns which are passed to the rasterizer \cw{colfunc()}\\
+\par
+\ccode{vclippers.c}
+\par
+
+
+
+
+\subsubsection{Wall drawing}
+Interpolation
 \trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90degrees left).}
 
 
@@ -148,25 +174,32 @@ At this point in the rendering pipeline, the framebuffer \#1 looks like mashed p
 
 
 
-
-
-
-
 \subsection{Flats}
-How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
+At this point in the rendering pipeline, the framebuffer \#1 looks like mashed potatoes. A scene that would end up looking this way:\\
+\par
+\fullimage{mashed_potatoes1.png}
+\par
+As been partially drawn like this:\\
+\fullimage{mashed_potatoes2.png}
+\par
+
+ All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
 \par
 \ccode{visplanes.c}
 \par
 In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
 \par
 \fullimage{doom_visplanes.png}{}\\
-\fullimage{doom_visplanes_colored.png}{}
+\fullimage{doom_visplanes_colored.png}{} 22 visplanes
+%\fullimage{doom_visplanes_colored_merged.png}{} 6 visplanes
 \par
 The previous screenshot was slightly misleading in order to ease comprehension. There are fourteen visplanes in that screenshot which is a lot for a simple room with a window. It is a problem in terms of memory consumption since a \cw{visplane\_t} struct is no less than 664 bytes. 9 KiB off storage for such a simple screen but imagine a scene with a staircase and two windows and the number of visplane could easily climb to 100s which would consum way too much for a game already struggling to fit into 4 MiB.\\
 \par
 To solve this problem, the engine merges visplanes as they are encountered. If two visplanes share the same texture, height, light intensity and if they don't overlad vertically, they are merged. In the previous example this brings the fourteen visplanes figure down to five.\\
 \par
 \fullimage{doom_visplanes_colored.png}{}
+\fullimage{108visplanes.png}{}
+
 \par
 \begin{verbatim}
 sizeof(visplane) = 664
@@ -174,6 +207,18 @@ sizeof(visplane) = 664
 framebuffers
 \end{verbatim}
 \fullimage{many_visplanes.png}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,8 +240,56 @@ R\_DrawPlanes: opening  overflow (\%i)"\\
 
 Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.
 
-\section{Three Screen Mode}
 
+
+
+\subsection{Diminishing Lighting}
+\begin{wrapfigure}[11]{r}{0.33\textwidth}
+\centering
+\scaledimage{0.33}{palette.png}
+\end{wrapfigure}
+So far our trip down the rendering pipeline assumed that values from the texture and sprite texels were used as is, indexing colors from the palette. That made things easier to understand but now is time to introduce diminished lightning.\\
+\par
+With the VGA, the mode Y allowed only 256 colors but as it turned out there was a smart way to fake more colors than available. Artists were allowed to use the full 256 primary colors and still get 32 shade of each without requiering $256 * 32 = 8192$ colors.\\
+\par
+ The trick to fake more colors than available is to reorganize the initial palette of 256 colors and for each values, try to use one of the other 255 available to fake 32 shades toward black. For some colors like skin, red, green, grey, brown or red it worked very well. For others not so much but given the speed of the game the human eye was forgiving.\\
+ \par
+ The trick implementation starts with a lump called \cw{COLORMAP} which looks like figure XX. The original palette indexes are unrolled in the first column. Fifteen additional columns are appended to the left of each colors. Notice that even though it may look like it has more, figure XXX only features 256 colors.\\
+\par
+In the source code, each column is refered to as a "lightmap". Before drawing starts, a lightmap column pointer is selected which acts as an indirection layer between the color in the asset and the shaded color to be rendered.\\
+\par
+\ccode{lightmap.c}
+\par
+The lightmap selection algorithm is different based on one of the three types of things renderered.\\
+\par
+\begin{itemize}
+\item Wall. dc\_colormap = walllights[index]; where index 
+\item Flat: start at sector light level [0,16] -> planezlight. index based on distance [0,128] ds\_colormap = planezlight[index];\\ lighttable\_t*    zlight[LIGHTLEVELS][MAXLIGHTZ]; How is zlight initialized?
+\item Masked.
+\end{itemize}
+\par
+\cscaledimage{1}{COLORMAP.png}{COLORMAP and its 32 lightmaps.}
+\par
+
+
+
+
+\begin{wrapfigure}[9]{r}{0.40\textwidth}
+\centering
+\scaledimage{0.40}{invOpenGL.png}
+\end{wrapfigure}
+Trivia: \cw{COLORMAP} contains a 17th lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus. This trick turned out to be a nightmware to replicate when developers ported \doom to hardware accelerated machines which where RGB based and not palette based. With OpenGL an exotic \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was usually attempted to give a result that was pretty close.
+\par
+Play with:
+\begin{verbatim}
+player->fixedcolormap
+\end{verbatim}
+
+TODO: With and witout screenshot\\
+\par
+TODO: With and witout screenshot2\\
+\par
+trivia: colormap hacks. Doom EGA and Doom CGA.\\
 
 \section{Door}
 Door code to make them open horizontally.
@@ -205,11 +298,12 @@ Persepctive correct was too expensive. But since only one axis had to be correct
 https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
 \par
 
-\subsection{Diminishing Lighting}
-Play with:
-\begin{verbatim}
-player->fixedcolormap
-\end{verbatim}
+
+
+\section{Masked}
+Things, masked walls and player sprite.\\
+\par
+
 \subsection{Things}
 \begin{verbatim}
 vissprite_t	vissprites[MAXVISSPRITES];
@@ -245,7 +339,25 @@ typedef struct vissprite_s {
     
 } vissprite_t;
 
+// While wall rendering, generate structure able to build a sprite clipping.
+drawseg_t	drawsegs[MAXDRAWSEGS];
+drawseg_t*	ds_p;
+
+short clipbot[SCREENWIDTH];
+short cliptop[SCREENWIDTH];
+
 \end{verbatim}
+
+Clipping is done via \cw{drawseg\_t	drawsegs[MAXDRAWSEGS];} array which is as big as the max \# of walls rendered.\\
+\par
+Drawing is done as columns: \cw{R\_DrawMaskedColumn}. Sprites are stored to please cachelines in reading.
+
+
+
+
+
+
+
 \subsection{Weapon}
 
 \subsection{Pot pourri}
@@ -258,3 +370,4 @@ DETAIL WOLF3D\\
 \par
 To lose fast intersections with aligned axis was a big problem. Not only drawing a scene correctly was going to be difficult, also gone were collision detection, sound propagation, and fast line of sight for monster I.A simulation.\\
 \par
+\trivia{Three Screen Mode}
