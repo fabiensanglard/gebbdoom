@@ -15,7 +15,7 @@ With NeXT, Jobs went back to a project he had contemplated while still at Apple 
 \par
 \fq{I want some kid at Stanford to be able to cure cancer in his dorm room.}{Steve Jobs, 1987}\\
 \par
-Steve Jobs spared no expenses. For \$100,000, Paul Rand was commissioned with a logo. An automated factory featuring "Surface Mount"\footnote{The Machine to Build The Machines.} capable of producing 10,000 units per month was built in Fremont, CA. The design firm Frogdesign which had proven itself with the Apple IIc was hired as well. The goal was to ship by the end of 19XX.\\
+Steve Jobs spared no expenses. For \$100,000, Paul Rand was commissioned with a logo. An automated factory featuring "Surface Mount"\footnote{The Machine to Build The Machines.} capable of producing 10,000 units per month was built in Fremont, CA. The design firm Frogdesign which had proven itself with the Apple IIc was hired. The goal was to ship by the end of 1986.\\
 \par
 The machine was to be perfect, following Alan Kay precept to create both the hardware and the software to run it.\\
 \par
@@ -40,46 +40,54 @@ The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footno
 
 
 
-\fullimage{next/NeXTcube_motherboard.png}
+\cfullimage{next/NeXTcube_motherboard.png}{NextCube motherboard}
 \par
-Opening the machine revealed the minutia and attention to details NeXT had adopted as its standard. The NextCube motherboard displayed above demonstrate that aesthetic was no scarified to performances.\\
+Opening the machine revealed the minutia NeXT had adopted as its standard. The NextCube motherboard above demonstrates that aesthetic was no scarified to performances.\\
 \par
-SPECS HERE
-\pagebreak
+One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. The machine shipped with 8 MiB of RAM (expendable to 16 via 1MiB Simms) which was much more than the standard 2 MiB in 1991.\\
+\par
+Surface Mounting allowed components to be placed much closer from each others than usual. All components fit on one board.
 
 \vspace{50 mm}
-\rawdrawing{NeXTCube_motherboard}
+\drawing{NeXTCube_motherboard}{NeXTCube mothboard diagram}
 \par
-Details of motherboard components HERE. 
-\circled{1},
-\circled{2},
-\circled{3},
-\circled{4},
-\circled{5},
-\circled{6},
-\circled{7},
-\circled{8},
-\circled{9},
-\circled{A},
-\circled{B},
-\circled{C},
-\circled{D},
-\circled{E},
-
+List of chipsets and components of the NextCube motherboard:\\
+\par 
+\circled{1} NeXTBus connector,
+\circled{2} VLSI NeXTbus Interface Chip,
+\circled{3} CPU Motorola 68040,
+\circled{4} 256~KiB~VRAM,
+\circled{5} DRAM Controller CS38PG017CG01,
+\circled{6} Integrated Channel Processor (DMA Controller Fujitsu MB610313),
+\circled{7} Optical Storage Processor (Fujitsu MB600310),
+\circled{8} 16 SIMM slot max 4MiB each for total 64 MiB,
+\circled{9} DSP-56001RC20,
+\circled{A} Battery,
+\circled{B} NeXT Prom BIOS,
+\circled{C} DSP 768K Slot,
+\circled{D} Hard-Drive and Floppy connectors.
+\circled{E} Many connectors (top to bottom): 56001 DSP, Serial Port A\&B, SCSI2, Printer, Ethernet RJ45\&CoaxBNC, DB19 Monitor. 
+\circled{F} Intel n82077 Disk controller.
+\circled{G} DSP SRAM (8KiB) MCM56824A.
+\circled{H} SCSI Controller (NCR 53C90A)
+\circled{I} 100.000Mhz Oscillator K1149AA
 
 
 
 \begin{figure}[H]
 \centering
-\scaledimage{1}{68030_blueprint.png}
+\cscaledimage{1}{68030_blueprint.png}{Motorola 68030}
 \end{figure}
+Released in 1987, the Motorola 68030 was a 32-bit microprocessor. It was the latest of the 68k Motorola product line. Given that most NeXT hardware engineers came from the Apple Macintoch division, it is likely their familiarity with the 68000 (which powered the mac) played a big part in the selection of the 68030.\\
+\par
+On the NextComputer it ran at 25Mhz and could produce close to 5 Mips. 273,000 transistors with on-chip instruction and data caches of 256 bytes each. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU. Its MMU allowed protected memory 
 \pagebreak
 \par
 
 
 \begin{figure}[H]
 \centering
-\scaledimage{1}{68030_layout.png}
+\cscaledimage{1}{68030_layout.png}{Motorola 68030 diagram}
 \end{figure}
 \pagebreak
  
@@ -97,16 +105,14 @@ Contrary to PCs which were a mess of wires, the NeXT computers formed a chain. T
 \par
 
 
-If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the bare configuration would turn out to be great for backup but way too slow for runtime. This made the "optional" \$3,500 SCSI hard-drive and absolute necessity which pushed the final price tag to \$10,000!\\
+If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the basic configuration would turn out to be great for backup but way too slow for runtime. Not only it was noisy and undreliable, it offered an access time of 90ms, it was 10 times slower than a hard-drive and made the operating system crawl. This rendered the "optional" \$3,500 330 MiB SCSI hard-drive an absolute necessity which pushed the final price tag to \$10,000!\\
 \par
 
 
 
 
 \section{Line of Products}
-With a factory tailed made to produce XXX units per week but week nearing XXX/month, NeXT upgraded its product line.\\
-\par
-In 1991 NeXT released four new products an upgraded NextComputer called NextCube. A smaller, flattened version of the NeXTCube which did not offer any expansion slots but with built-in color capability called NeXTStation. To offer color and video capture, the NeXTDimension expansion board.\\
+Given the low sales of the NeXT Computer, the original machine was discontinued and the line of product refreshed. In 1991 NeXT released four new products\footnote{Announced  September 18, 1990.}. The NextCube which was the direct successor of the NextComputer. A smaller, flattened version of the NeXTCube which did not offer any expansion slots but with optional built-in color capability called NeXTStation. Finally a graphic and video processor expansion board called NeXTDimension.\\
 \par
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
@@ -116,7 +122,7 @@ In 1991 NeXT released four new products an upgraded NextComputer called NextCube
   \toprule
   \textbf{Name} &  \textbf{Year} & \textbf{Specs} & \textbf{\$\$\$} & \textbf{\$(2018)}   \\
   \toprule 
-   NeXT Computer           & 1989 & 68030 25 Mhz & \$6,500 & \$12,938 \\
+   NeXTComputer           & 1989 & 68030 25 Mhz & \$6,500 & \$12,938 \\
 \toprule 
    NeXTStation             & 1991 & 68040 25 Mhz & \$4,995 & \$9,157 \\
    NeXTCube                & 1991 & 68040 25 Mhz & \$12 395 & \$21,171 \\
@@ -129,7 +135,7 @@ In 1991 NeXT released four new products an upgraded NextComputer called NextCube
    NeXTStation Turbo Color & 1992 & 68040 33 Mhz & \$8995 & \$17,904 \\
    \toprule
 \end{tabularx}
-\caption{Next products over the years\protect\footnotemark.}
+\caption{Next products from 1985 to 1993\protect\footnotemark.}
 \end{figure}
 \par
 \footnotetext{Source: kevra.org (Competing Hardware Comparisons), https://simson.net/ref/NeXT/specifications.htm, and "The Second Coming of Steve Jobs".}
@@ -145,10 +151,20 @@ In 1992, they buffed up their entire line with Turbo version and what would beco
 
 
 \section{NeXTCube}
-
+From the outside the NextCube 12" cube central unit looked exactly like it predecessor the NeXTComputer. However the inside told a difference story.\\
+\par
+ The CPU was bumped to the Motorola 68040, a chip capable of three times the 68030 throughput with 17.5 Mips. The machine RAM capacity was doubled with an out of factory 16 MiB, extensible to 64 MiB. The magneto optical disc was abandoned in favor of an HDD, a floppy disk reader, and an optional CD-ROM drive. The HDD capacity was a choice of 400 MB, 1.4GB or 2.8GB SCSI drive. The floppy disks were twice the capacity of PCs at 2.88 MB. The CD-ROM was built-in the magnesium case.\\
+\par
 \begin{minipage}{\textwidth}
-\scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}
+\scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}\\
 \end{minipage}
+\par
+The NextCube turbo released 1992 was essentially the same machine except the 68040 frequency was bumped to 33mhz and the maximum RAM capacity increased to 128 MB.\\
+\par
+The standard and color version only weakness remained the display. Shipping with 256 KiB of VRAM the machine could only output four colors (white, black and two shades of grey). To bring color to the NextCube, customers had to invest in a NeXTDimension board.\\
+\par
+%\trivia{The NeXTCube shape would see a third iteration. In 2000, with many NeXT people now at Apple, the company shipped an other cubic device: The Power Mac G4 Cube.}
+\trivia{The NeXTCube Turbo extension slot could welcome a Nitro board which replaced the 68040 33Mhz with a 68040 40 Mhz. Only 10 Nitro board are known to exist, they are extremely rare and highly seeked after by collectors.}
 \pagebreak
 
 
@@ -164,14 +180,17 @@ Since cost was the main issue with their product line, NeXT attempted to introdu
 \par 
 \cfullimage{cube_vs_slab.png}{A NextStation ad from 1991 NeXT promotional brochure.}
 \par
-No longer a perfect cube, the case nicknamed "The slab" and (unofficially) the "pizza box", was nonetheless well received by customers and quickly became the most successful computer NeXT produced.\\
+No longer a perfect cube, the case nicknamed "The slab" and (unofficially and a name banned by Steve Jobs) the "pizza box", was nonetheless well received by customers and quickly became the most successful computer NeXT produced.\\
 \par
 The system also introduced usage of the Apple Desktop Bus created by Steve Wozniak where input devices such as mouse and keyboard are connected as a daisy chain\footnote{ADB - The Untold Story: Space Aliens Ate My Mouse}.\\
 
 \par
 \fullimage{next/nextstation.png}
 \par
-SPECS
+In terms of specs, the NeXTStation had similar capabilities as the NeXTCube minus the extensibility. It featured the same 68040 CPU with the same speed and RAM capacity. The CD-ROM drive however was not built-in, it had to be bought separately.\\
+\par
+The major improvement over the NeXTCube was the built-in color capability thanks to the VRAM capacity of 1.5MB.\\
+\par
 \pagebreak
 
 
@@ -211,19 +230,25 @@ Depending on the setup of the Renderman context, a RIB stream can be spooled to 
 \par
 Like the NextCube motherboard, the NeXTDimension hardware was gorgeous. The most proponent component is of course the Intel 840. It had failed to beat the Intel 486 on the market but its eagerness to work on \doom allowed it to make its way here.\\
 \par
-\drawing{NeXTDimension_motherboard}{}
+\drawing{NeXTDimension_motherboard}{NeXTDimension board diagram}
 \par
-Details of motherboard components HERE. 
-\circled{1},
-\circled{2},
-\circled{3},
-\circled{4},
-\circled{5},
-\circled{6},
-\circled{7},
-\circled{8},
-\circled{9},
-\circled{A},
+List of chipsets and components of the NextDimension motherboard:\\
+\par 
+\circled{1} NeXTBus connector,
+\circled{2} VLSI NeXTBus Interface Chip (NBIC),
+\circled{3} Intel i860 CPU 33MHz 64-bit RISC CPU,
+\circled{4} Motorola U88,
+\circled{5} BT463 ramdac,
+\circled{6} Motorola U52,
+\circled{7} 4MB VRAM video memory ,
+\circled{8} 8MB RAM expendable to 32MB,
+
+\circled{9} Video color space conversion and video input (SAA 7191 WP \& SAA 7192 WP), 
+\circled{A} Many connectors (top to bottom): Video Out(EGA/VGA, S-Video, Composite), Video In(S-Video, Composite, Composite), DB19 Monitor.
+\circled{B} 33.000Mhz Oscillator K1100AA
+\circled{C} 100.000Mhz Oscillator K1149AA
+\par
+
 \cfullimage{next/NeXTDimension.png}{An early NeXTDimension ad from NeXT 1991 brochure. Noice the C-Cube Microsystems JPeg chip which had to be cut from the final design.}
 \pagebreak
 
@@ -299,16 +324,18 @@ The device layer takes the high level marking, imaging, and compositing operatio
 \section{NeXT at id Software}
 To say NeXT computers polarized professionals would be an understatement. It is fair to say that everybody had an opinion about them. Some developers hated it.\\
 \par
-\fq{Develop for it? I'll piss on it!}{- Bill Gates (for InfoWorld asked if Microsoft would develop for the NeXT).}\\
+\fq{Develop for it? I'll piss on it!}{- Bill Gates (InfoWorld, Will Microsoft develop for the NeXT?).}\\
 \par
 Some were interested by having access to an Unix system with a powerful GUI.\\
 \par
 \fq{
-When id Software was stationed in Madison, Wisconsin during the winter of 1991, most of us were gone for the Christmas holiday - except John Carmack. John's present, which he bought with \$11,000 of his own money, procured by walking through the snow and ice to remove from the bank, arrived during the holiday and he spent the whole time learning as much as he could about the computer and started working on vector quantization algorithms for compressing graphics. His test graphic was a 256-color screen from King's Quest 5.\\
+When id Software was stationed in Madison, Wisconsin during the winter of 1991, most of us were gone for the Christmas holiday - except John Carmack. John's present, which he bought with \$11,000 of his own money, procured by walking through the snow and ice to remove from the bank\footnotemark, arrived during the holiday and he spent the whole time learning as much as he could about the computer and started working on vector quantization algorithms for compressing graphics. His test graphic was a 256-color screen from King's Quest 5.\\
 \par
+
  After his research was done it was agreed that the entire company needed to develop our next game on NeXTSTEP.}{John Romero, rome.ro, December 20, 2006}\\
+ \footnotetext{Emptying his bank account in the process.}
 \par
-Given the timing of its purchase, the NeXT was first used for Wolfestein3D Hint Book. It DTP application \cw{FrameMaker.app} proved perfect for the task. After that, NeXT completely conquered id Software. PCs remained in use mostly for Deluxe Paint...and test the game they wanted to ship.\\
+Given the timing of its purchase, the NeXT was first used for Wolfestein3D Hint Book. One of the best DTP application at the time, \cw{FrameMaker.app} proved perfect for the task. After that, NeXT rapidly conquered id Software. PCs remained in use mostly for Deluxe Paint and also test the game they wanted to ship.\\
 \par
 As the needs of the studio evolved with more and more power, id took advantage of NeXTStep ability to run on various platforms from HP and Intel (called the "White hardware").\\
 \par
@@ -358,11 +385,11 @@ DOOM, DOOM II and Quake weren't the only games developed on NeXTSTEP. When I got
 
 
 \section{Downfall and Rebirth}
-As elegant and powerful as the black hardware was, its high price tag made them a deal breaker. Even the "cheaper" NeXTStation were well beyond most developer budget.\\
+As elegant and powerful as the black hardware was, its high price tag made them a deal breaker. Even the "cheaper" NeXTStations were well beyond most developer budget.\\
 \par
- In 1988, the factory was building 400 units/month, well below its maximun 10,000/month capacity. The end of 1989 was even worse with only 360 units sold that year. Production had to be slowed down to 100 unit/month to avoid overlowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw an improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what apple sold in a single week.\\
+ In 1988, the factory was building 400 units/month, well below its maximun 10,000/month capacity. The end of 1989 was even worse with only 360 units sold that year. Production had to be slowed down to 100 unit/month to avoid overflowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw an improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what apple sold in a single week. In 1992, sales reached \$140 millions and NeXT registered its first profitable quarter\footnote{The Next Big Thing.}, seven years after its creation.\\
 \par
-By the end of 1992 NeXT as a hardware manufacturer was sealed. Struggling to close deals and hemorrhaging cash (XX millions/year) it fired 300 of its 500 employee in February 1993 in order to become a software only company. NeXTStep was made portable and capable to run on Intel, SPARC, and MIPS CPUs. NeXTSTEP was sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN to build a lightweight version of NeXTStep called OpenSTEP.\\
+Despite the steady improvements of 1993, NeXT still lost \$40 millions that year. With only 50,000 NeXT machines sold over the course of seven years\footnote{In 1993 Apple sold 50,000 units every six days.} (including thousands to the then secret National US Reconnaissance Office), Jobs decided that NeXT has hardware manufacturer could not carry on. Struggling to close deals and hemorrhaging cash (40 millions/year) it fired 300 of its 500 employee in February to become a software only company. NeXTStep was made portable and capable to run on Intel, SPARC, and MIPS CPUs. NeXTSTEP was sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN to build a lightweight version of NeXTStep called OpenSTEP.\\
 \par
 Curiously NeXT never capitalized on id Software the success story reportedly due to Steve Jobs disdain for video games\footnote{comp.sys.next.advocacy: "DOOM: NeXTstep's Most Successful App".}.\\
 \par

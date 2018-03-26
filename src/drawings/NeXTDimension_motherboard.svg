@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.63117978"
-     inkscape:cx="534.20936"
-     inkscape:cy="626.96893"
+     inkscape:cx="477.17331"
+     inkscape:cy="500.22216"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -715,6 +715,68 @@
            x="-608.56952"
            id="tspan20042-83"
            sodipodi:role="line">A</tspan></text>
+    </g>
+    <rect
+       style="opacity:0.98000004;fill:#4993a5;fill-opacity:1;stroke:#000000;stroke-width:0.28231043;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect994"
+       width="8.8029594"
+       height="15.929164"
+       x="96.826317"
+       y="177.87657" />
+    <rect
+       style="opacity:0.98000004;fill:#4993a5;fill-opacity:1;stroke:#000000;stroke-width:0.28231043;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect996"
+       width="18.025106"
+       height="9.2221479"
+       x="116.10898"
+       y="223.14893" />
+    <circle
+       style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.28231043;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path998"
+       cx="208.33047"
+       cy="234.04784"
+       r="3.3535082" />
+    <g
+       id="g20049-7"
+       transform="matrix(0.18376665,0,0,0.18376665,204.58039,108.25013)">
+      <circle
+         r="30.99481"
+         cy="358.35526"
+         cx="-593.20685"
+         id="path20040-9"
+         style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.875;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text20044-38"
+         y="375.80057"
+         x="-608.56952"
+         style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9375"
+         xml:space="preserve"><tspan
+           style="font-size:50px;stroke-width:0.9375"
+           y="375.80057"
+           x="-608.56952"
+           id="tspan20042-0"
+           sodipodi:role="line">B</tspan></text>
+    </g>
+    <g
+       id="g20049-24"
+       transform="matrix(0.18376665,0,0,0.18376665,223.86306,157.29519)">
+      <circle
+         r="30.99481"
+         cy="358.35526"
+         cx="-593.20685"
+         id="path20040-83"
+         style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.875;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text20044-9"
+         y="375.80057"
+         x="-608.56952"
+         style="font-style:normal;font-weight:normal;font-size:7.5px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.9375"
+         xml:space="preserve"><tspan
+           style="font-size:50px;stroke-width:0.9375"
+           y="375.80057"
+           x="-608.56952"
+           id="tspan20042-05"
+           sodipodi:role="line">C</tspan></text>
     </g>
   </g>
 </svg>
