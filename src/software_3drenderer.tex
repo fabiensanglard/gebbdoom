@@ -1,5 +1,5 @@
 \section{3D Renderer}
-The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
+The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. Its most breathtaking characteristic is that it renders walls and flats with zero overdraw. For the environement, pixels in the framebuffer are all written exactly once\footnote{Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.}. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
 \par
 The big lines are as follow:\\
 \par
@@ -148,14 +148,87 @@ The first crude pass maintains a solidseg array which keeps track of which part 
 Ceiling start at -1 while floor start at viewheight (namely XXX).
 \par
 \ccode{hclipper.c}
+\par
+It is easier to use an example and proceed step by step. In the room below, the player is facing north and four walls need to be renderered.
+\par
+\pngdrawing{clip_map}{}
+\par
+
+Initially the occlusion array has two entry, one representing what is on the left of the screen, from infinity to -1 and one on the right of the screen from 320 to infinity.\\
+\par 
+\begin{minipage}{0.54\textwidth}
+\centering
+\ccode{clip0.c}
+\end{minipage}
+\begin{minipage}{0.46\textwidth}
+\centering
+\srawpngdrawing{0.95}{clip0}
+\end{minipage}
+\par
 
 
+
+
+
+
+The first wall is rendered. There is nothing to occlud it and it is in the middle of the screen. A entry is added to represent the occlusion state.\\
+\par
+\begin{minipage}{0.54\textwidth}
+\centering
+\ccode{clip1.c}
+\end{minipage}
+\begin{minipage}{0.46\textwidth}
+\centering
+\srawpngdrawing{0.95}{clip1}
+\end{minipage}
+\par
+
+
+
+The second wall is rendered. Its left side is clamped via angle adjustment and the right side if not occluded. Since it touch the left edge of the screen no entry in the occlusion array is added.
+\par
+\begin{minipage}{0.54\textwidth}
+\centering
+\ccode{clip2.c}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+\srawpngdrawing{0.95}{clip2}
+\end{minipage}
+\par
+
+
+
+
+
+The third wall is rendered. It happens to lie just next to the second wall. It is fully converted to a wall fragment and nothing is discarded. The occlusion array is updated
+\begin{minipage}{0.54\textwidth}
+\centering
+\ccode{clip3.c}
+\end{minipage}
+\begin{minipage}{0.46\textwidth}
+\centering
+\srawpngdrawing{0.95}{clip3}
+\end{minipage}
+\par
+
+
+Finally the last wall is rendered. While occluded against the array, it is slipt into two fragments. The occlusion array is updated. All segment ended up touching each others. 
+\begin{minipage}{0.54\textwidth}
+\centering
+\ccode{clip4.c}
+\end{minipage}
+\begin{minipage}{0.46\textwidth}
+\centering
+\srawpngdrawing{0.95}{clip4}
+\end{minipage}
+\par
+Notice that portal are also clipped against the occlusion array but do not update it since walls/portal behind can be seen thought it. The occlusion array allows crude reject at a cheap cost. It also allow to test if the full screen is occlude with a simple test. Offers reduced write and read.\\
 \par
 The second pass clips fragment vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. Each portal segment updates the vertical occlusion array. At the end of this step, fragments are converted into columns which are passed to the rasterizer \cw{colfunc()}\\
 \par
 \ccode{vclippers.c}
 \par
-
 
 
 

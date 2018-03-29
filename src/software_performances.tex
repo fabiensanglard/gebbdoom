@@ -58,6 +58,7 @@ Drawing walls and flats had been corretly identified as the \#1 bottleneck. The 
  \fixme{Graph ASM vs NO ASM}.
  \par
  STUDY ASM vs C version. Seems to write 8 pixels at at time, reusing offset, saving store instructions. Trying to stress registers.\\
+ \cw{FixedMul} is called 124 times in the source code. Good candidate for optimization. Benchmark disabling it.
  \par
 
 \subsection{Look up tables}
@@ -104,3 +105,5 @@ The kernel is made of 45 translation units and is common to all version of \doom
 \par
 
 \trivia{What are the dot during startup?}
+
+

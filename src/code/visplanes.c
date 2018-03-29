@@ -10,5 +10,6 @@ typedef struct {
   byte		bottom[SCREENWIDTH];
 } visplane_t;
 
+// Here comes the obnoxious "visplane".
 #define MAXVISPLANES	128
 visplane_t		visplanes[MAXVISPLANES];

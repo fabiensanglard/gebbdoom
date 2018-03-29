@@ -31,19 +31,22 @@
 % Create space filters images with bilinear sampling which messes up the small sprites 
 % to compensate I added a path to use 300dpi assets which are nearest upsampled sprites.
 
-\newcommand{ \fullimage}[1]{               \includegraphics[width=\textwidth]{screenshots/#1}                         }
-\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots/#1} \caption{#2}\end{figure}}
-\newcommand{ \scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
-\newcommand{ \scaledrawimage}[2]{\includegraphics[width=#1]{screenshots/#2}}
-\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots/#2} \caption{#3}\end{figure}}
+%\newcommand{\fullimage}[1]{               \includegraphics[width=\textwidth]{screenshots/#1}                         }
+%\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots/#1} \caption{#2}\end{figure}}
+%\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
+%\newcommand{\scaledrawimage}[2]{\includegraphics[width=#1]{screenshots/#2}}
+%\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots/#2} \caption{#3}\end{figure}}
 
-%\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1} }
-%\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots_300dpi/#1} \caption{#2}\end{figure}}
-%\newcommand{ \scaledrawimage}[2]{\includegraphics[width=#1]{screenshots_300dpi/#2}}
-%\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} }
-%\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} \caption{#3}\end{figure}}
+\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1} }
+\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots_300dpi/#1} \caption{#2}\end{figure}}
+\newcommand{\scaledrawimage}[2]{\includegraphics[width=#1]{screenshots_300dpi/#2}}
+\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} }
+\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} \caption{#3}\end{figure}}
 
-\newcommand{\ccode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage} }
+
+
+
+\newcommand{\ccode}[1]{{\lstset{showlines=true} \begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage}}}
 \newcommand{\cccode}[2]{\begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=C]{code/#1}\caption{#2}\end{figure}\end{minipage} }
 \newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
 \newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
@@ -306,6 +309,19 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \caption{#3}
 \end{figure}
 \par
+}
+
+\newcommand{\rawpngdrawing}[1]{
+    \includegraphics[width=\textwidth]{drawings/#1.png}
+  \par
+}
+
+\newcommand{\srawpngdrawing}[2]{
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=#1\textwidth]{drawings/#2.png}
+  \end{figure}    
+  
 }
 
 \newcommand{\pngdrawing}[2]{
