@@ -32,16 +32,16 @@ svgToPNG() {
   # Low RES assets
   # -nt = newer than. -ot = older than.
   if [ ${src} -nt ${dst} ]; then
-    echo "Convert $extensionless.svg to PNG (300dpi)."
-    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=300 ${src} > /dev/null 2>&1
+    echo "Convert $extensionless.svg to PNG (100dpi)."
+    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=100 ${src} > /dev/null 2>&1
   fi
 
   dst="`pwd`/screenshots_300dpi/$filename".png
   # High RES assets
   # -nt = newer than. -ot = older than.
   if [ ${src} -nt ${dst} ]; then
-    echo "Convert $extensionless.svg to PNG (600dpi)."
-    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=600 ${src} > /dev/null 2>&1
+    echo "Convert $extensionless.svg to PNG (300dpi)."
+    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=300 ${src} > /dev/null 2>&1
   fi
 
 }
