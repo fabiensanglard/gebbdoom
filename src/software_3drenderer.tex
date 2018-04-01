@@ -1,5 +1,7 @@
 \section{3D Renderer}
-The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. Its most breathtaking characteristic is that it renders walls and flats with zero overdraw. For the environement, pixels in the framebuffer are all written exactly once\footnote{Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.}. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
+The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. Its most breathtaking characteristic is that it renders walls and flats with zero overdraw. The design is is amusingly orthogonal to Wolfenstein 3D renderer. The latter's ties to the VGA made it render everything vertically while \doom's 486 cachelines made it render things horizontally as much as possible.\\
+\par
+ For the environment, pixels in the framebuffer are all written exactly once\footnote{Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.}. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
 \par
 The big lines are as follow:\\
 \par
@@ -312,7 +314,9 @@ R\_DrawPlanes: drawsegs overflow (\%i)\\
 R\_DrawPlanes: opening  overflow (\%i)"\\
 \par
 
-Lee Killough later lifted this limitation, replacing linear seach with a chained hash table implementation.
+\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine search complexity algorithm based on a linear search, making it a $O(n^})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: The Truth about Visplane Overflows}.
+\par
+\ccode{visplane_linear_search.c}
 
 
 

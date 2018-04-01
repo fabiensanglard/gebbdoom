@@ -1,39 +1,61 @@
 \section{Performances}
-There is a convenient and portable way to assess the performance of the game on \doom. Thanks to its fixed tics architecture, a demo can be replayed with frame skipping disabled. This means the machine will render the exact same game and a serie of exact same 3D views.\\
+There is a convenient and portable way to assess performances. Thanks to its fixed tics architecture, a demo can be replayed with frame skipping disabled. This replay mode (called timedemo) will produce the exact same game session and a series of exact same 3D views.\\
 \par
-The gold standard of benchmarks was created by XXX around 1994. Ove the last twenty five years, he has gathered metrics for more than hundrers of configuration. The method is simple, run a demo using the Ultimate Doom v1.9.\\
+The gold standard of benchmarks was created by Anton Ertl around 1994. Over the last twenty five years, he has gathered metrics for hundreds of configuration\footnote{Source: https://www.complang.tuwien.ac.at/misc/doombench.html}.  It is simple to run and only requires Doom shareware v1.9.\\
 \par
 \fakedosoutput{timedemo.txt}
 \par
-Which returns two values:\\
+These parameters run the prerecorded game session \#3 (probably recorded by John Romero). Because no frames are skipped, the session takes a variable time to finish. Upon completion two values are displayed.\\
 \par
 \fakedosoutput{timedemo_result.txt}
 \par
 
-gameticks is always equal to 2134, since this is the number of commands in \cw{DEMO1} and none are skipped. The second varible, \cw{realticks}, represents the walltime. The average frame per second is obtained with $$ fps = walltime/realticks * 35 $$. In the example above, ran on a small miniPC, the game ran at an average of $1065/2134*35 = 17$fps.
+\cw{gameticks} is the number of frames encountered. For \cw{demo3} it is always equal to 2134 since it comes from the record lump. The second value, \cw{realticks}, represents the walltime in ticks. It represent how fast the machine managed to replay the record.\\
 \par
-Testing various CPU and graphic cards gave fluctuating results.\\
+ The average frame per second is obtained with the following formula: $$ fps = walltime/realticks * 35 $$ 
+In the example above\footnote{On a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $1065/2134*35 = 17$ fps.\\
 \par
-TABLE HERE 386 DX 33   VLB  \\
-TABLE HERE 386 DX 33   ISA16\\
-TABLE HERE 386 DX 33   VLBISA 8\\
-TABLE HERE 486 SX 33   VLB\\
-TABLE HERE 486 SX 33   ISA16\\
-TABLE HERE 486 SX 33   ISA 8\\
-TABLE HERE 486 DX266   VLB\\
-TABLE HERE 486 DX266   ISA16\\
-TABLE HERE 486 DX266   VISA 8\\
-\par 
-Analysis of impact. VLB vs ISA. 386 vs 486
+Foone Turing was kind enough to volunteer his fleet of machine to assess performances upon release. Varying CPU and graphic cards gave fluctuating results.\\
+\par
+
+\begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{1}  R{0.3} R{2.4} R{1} R{0.3} }
+  \toprule
+   \textbf{CPU} & \textbf{Frequency} & \textbf{Graphic card} & \textbf{Bus} & \textbf{fps}\\
+  \toprule 
+  386DX & 33 & Tseng Labs ET3000    & ISA-8  &  4\\
+  386DX & 33 & Cirrus Logic CL-G05420 & ISA-16 &  7\\
+  \toprule 
+  486SX & 33 & Tseng Labs ET3000                & ISA-8  &  7\\
+  486SX & 33 & Cirrus Logic CL-G05420           & ISA-16 & 11\\ 
+  486SX & 33 & Diamond Stealth (Tseng ET4000)   & VLB    & 15\\
+  \toprule 
+  486DX2 & 66 & Tseng Labs ET3000               & ISA-8  &  8\\
+  486DX2 & 66 & Cirrus Logic CL-G05420          & ISA-16 & 13\\
+  486DX2 & 66 & Diamond Stealth (Tseng ET4000)  & VLB    & 24\\
+   \toprule
+ \end{tabularx}
+\caption{Benchmark with out-of-the-box Doom shareware}
+\end{figure}
+\par
+Without tweaking the configuration a top of the line machine could barely reach 25 fps\footnote{It would not be until Pentium with PCI buses came out that \doom could be maxed out at 35 fps}. Notice the importance of the bus, which yields a 3x performance hit/boost. At equal frequency a 486 provides twice the framerate of a 386.\\
+\par
+
+
+
+
+
+
 \subsection{Profiling}
-Without any special tools, it is possible to gain insight on which part of the engine are responsible for ressources consumptions thanks to built-in command line parameters.\\
+Even without any special tools, it is possible to gain insight on which part of the engine are responsible for ressources consumptions thanks to built-in command line parameters.\\
 \par
 Parameter \cw{-nodraw} skips rendering all together (including blitting).\\
 \par
 \par
 \fakedosoutput{timedemo_result_nodraw.txt}
 \par
-Without drawing, the game ran at close to 2000fps!\\
+Without drawing, the game ran at close to 202fps! 245 with no sounds.\\
 \par
 Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM which is a good way to assess the impact of the bus speed.\\
 \par
@@ -57,7 +79,8 @@ Drawing walls and flats had been corretly identified as the \#1 bottleneck. The 
 \par
  \fixme{Graph ASM vs NO ASM}.
  \par
- STUDY ASM vs C version. Seems to write 8 pixels at at time, reusing offset, saving store instructions. Trying to stress registers.\\
+ STUDY ASM vs C version. Seems to write 8 pixels at at time, reusing offset, saving store instructions. Trying to stress registers. On PC the rules separating the kernel and the video system are bent. The kernel's drawing routines such as \cw{R\_DrawColumn} and \cw{R\_DrawSpanFAB} are given privileged access to the VGA framebuffer and write in it directely. The status bar and the auto-map keep are not that lucky.\\
+ \par
  \cw{FixedMul} is called 124 times in the source code. Good candidate for optimization. Benchmark disabling it.
  \par
 
@@ -68,7 +91,60 @@ Bla. Usage of dirtybox here.
 \par
 \drawing{lod}{The ten 3D canvas configurations.}
 \par
+11 numblocks, [3,11]\\
+\par
+\ccode{R_ExecuteSetViewSize.c}
+\par
+
+
+\begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ C{1}  R{1} R{1} R{1}  R{1.4}  R{0.6} }
+  \toprule
+  \textbf{numblocks} & \textbf{Width} & \textbf{Height} & \textbf{\# Pixels} & \textbf{Percentage} & \textbf{fps}\\
+  \toprule 
+
+11 & 320 & 200 & 64,000 & 100 & 19 \\
+10 & 320 & 168 & 53,760 &  84 & 20 \\
+ 9 & 288 & 144 & 41,472 &  64 & 23 \\
+ 8 & 256 & 128 & 32,768 &  52 & 25 \\
+ \protect\footnotemark7 & 224 & 112 & 25,088 &  39 & 28 \\
+ 6 & 192 & 96 & 18,432 &  28 & 31  \\
+ 5 & 160 & 80 & 12,800 &  20 & 35  \\
+ 4 & 128 & 64 &  8,192 &  12 & 40  \\
+ 3 &  96 & 48 &  4,608 &   7 & 45  \\
+   \toprule
+\end{tabularx}
+\caption{Platform code specific.}
+\end{figure}
+
+\par
+
+\footnotetext{limit of playability}
+
 \section{High/Low details}
+
+\begin{figure}[H]
+\centering  
+\begin{tabularx}{0.7\textwidth}{ C{1}  C{1} C{1}}
+  \toprule
+  \textbf{numblocks} & \textbf{High details fps} &  \textbf{Low details fps}\\
+  \toprule 
+
+            
+11 &  19     &        30 \\
+10  &  XX      &      XX \\
+9  &  XX      &       XX \\
+8  &  XX      &       XX \\
+7  &  XX      &       XX \\
+6  &  XX      &       XX \\
+5  &  XX      &       XX \\
+4  &  XX      &       XX \\
+3  &  45      &       54 \\
+  \toprule
+\end{tabularx}
+\caption{Platform code specific.}
+\end{figure}
 
 \fullimage{high_res.png}\\
 \fullimage{low_res.png}\\
