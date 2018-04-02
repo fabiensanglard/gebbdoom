@@ -1,0 +1,2744 @@
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be40 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be40 in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=128, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=128, b1=167, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eb2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3eb2 in Update16_2FAB (src=0x455b88 "nnonoonnooooooooonnoonnoo\005\005", 'o' <repeats 14 times>, "n", '\005' <repeats 11 times>, "ooooo\005nnnoooooooooonnnn\005\005\005o\005nnoooooooonnooooooooonn\005\005oo", '\005' <repeats 13 times>, 'o' <repeats 15 times>, "nn\005\005on", 'o' <repeats 17 times>, "nnoo\005oonnoonn\005\005ooooo\005\005\005\005\005\005\005\005\005\005oooo\005\005\005mmnn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x42d4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for r_things.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x42d4 in FixedMul (a=11418, b=30850) at i_next.m:47
+#1  0x1eb46 in R_ProjectSprite (thing=0x7e2d60) at r_things.c:470
+#2  0x1ecde in R_AddSprites (sec=0x7c1bc2) at r_things.c:551
+#3  0x1aab6 in R_Subsector (num=57) at r_bsp.c:424
+#4  0x1ab0e in R_RenderBSPNode (bspnum=11418) at r_bsp.c:452
+#5  0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#6  0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#7  0x1ab72 in R_RenderBSPNode (bspnum=11418) at r_bsp.c:470
+#8  0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=11418) at r_bsp.c:467
+#12 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#13 0x72b2 in D_Display () at d_main.c:245
+#14 0x7576 in D_DoomLoop () at d_main.c:383
+#15 0x842a in D_DoomMain () at d_main.c:1180
+#16 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#17 0x6030458 in NXFindPboardType ()
+#18 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x17476 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for p_sight.c...done.
+Reading in symbols for p_enemy.c...done.
+Reading in symbols for p_mobj.c...done.
+Reading in symbols for p_tick.c...done.
+Reading in symbols for g_game.c...done.
+Reading in symbols for d_net.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x17476 in P_CrossSubsector (num=171) at p_sight.c:128
+#1  0x17602 in P_CrossBSPNode (bspnum=16160) at p_sight.c:217
+#2  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#3  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#4  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#5  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#6  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#7  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#8  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#9  0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#10 0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#11 0x17644 in P_CrossBSPNode (bspnum=16160) at p_sight.c:231
+#12 0x17772 in P_CheckSight (t1=0x7e25a4, t2=0x60f28) at p_sight.c:290
+#13 0xf16a in P_LookForPlayers (actor=0x7e25a4, allaround=false) at p_enemy.c:431
+#14 0xf2a0 in A_Look (actor=0x7e25a4) at p_enemy.c:526
+#15 0x143e2 in P_SetMobjState (mobj=0x7e25a4, state=-1) at p_mobj.c:42
+#16 0x149c2 in P_MobjThinker (mobj=0x2dc92) at p_mobj.c:373
+#17 0x19fbc in P_RunThinkers () at p_tick.c:669
+#18 0x1a048 in P_Ticker () at p_tick.c:708
+#19 0x9bfc in G_Ticker () at g_game.c:653
+#20 0x25de8 in TryRunTics () at d_net.c:756
+#21 0x7552 in D_DoomLoop () at d_main.c:379
+#22 0x842a in D_DoomMain () at d_main.c:1180
+#23 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#24 0x6030458 in NXFindPboardType ()
+#25 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ebe in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3ebe in Update16_2FAB (src=0x454790 "nnnnnnnnmmmlllml", 'm' <repeats 11 times>, "llmmmlllkllll", 'm' <repeats 35 times>, "nnnnnnoonnnnnnmmllllll", 'm' <repeats 21 times>, "lmmmmmmmlllmmmnmnnnmmmll", 'm' <repeats 11 times>, "lmmnnoooooonnooonnnnnn", 'm' <repeats 25 times>..., dest=0xc000000, rowbytes=2240) at VGAView.m:430
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be2a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be2a in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=24, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=24, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be24 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be24 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=27, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=27, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=22, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=22, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=24, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=24, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1d0ca in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_FindPlane (height=4718592, picnum=32, lightlevel=144) at r_plane.c:205
+#1  0x1aa98 in R_Subsector (num=61) at r_bsp.c:419
+#2  0x1ab0e in R_RenderBSPNode (bspnum=425744) at r_bsp.c:452
+#3  0x1ab72 in R_RenderBSPNode (bspnum=425744) at r_bsp.c:470
+#4  0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#5  0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#6  0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#7  0x1ab72 in R_RenderBSPNode (bspnum=425744) at r_bsp.c:470
+#8  0x1ab72 in R_RenderBSPNode (bspnum=425744) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=425744) at r_bsp.c:467
+#13 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#14 0x72b2 in D_Display () at d_main.c:245
+#15 0x7576 in D_DoomLoop () at d_main.c:383
+#16 0x842a in D_DoomMain () at d_main.c:1180
+#17 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#18 0x6030458 in NXFindPboardType ()
+#19 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ec4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x458a68 "\005\005\005\005\005\006\005\005\005\005\005\005\006\006\006\006\006\005\005\006", '\005' <repeats 13 times>, "\006\005\005\005\005\005\006\006\006\006\006\006", '\005' <repeats 19 times>, "\006\005\006\006\006\006\006\006\005\006\005\005\005\005\005\005\002\002\006", dest=0xc000000, rowbytes=2240) at VGAView.m:431
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1d832 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1d832 in R_RenderSegLoop () at r_segs.c:186
+#1  0x1e2ac in R_StoreWallRange (start=180, stop=17068) at r_segs.c:609
+#2  0x1a6c0 in R_ClipPassWallSegment (first=4571884, last=272) at r_bsp.c:140
+#3  0x1a86e in R_AddLine (line=0x7da480) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=57) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=424752) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=424752) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=424752) at r_bsp.c:467
+#13 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#14 0x72b2 in D_Display () at d_main.c:245
+#15 0x7576 in D_DoomLoop () at d_main.c:383
+#16 0x842a in D_DoomMain () at d_main.c:1180
+#17 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#18 0x6030458 in NXFindPboardType ()
+#19 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x2487c in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for w_wad.c...done.
+Reading in symbols for r_data.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x2487c in W_CacheLumpNum (lump=1946, tag=101) at w_wad.c:510
+#1  0x1af1c in R_GetColumn (tex=27, col=13) at r_data.c:257
+#2  0x1d9a2 in R_RenderSegLoop () at r_segs.c:245
+#3  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#4  0x1a6e4 in R_ClipPassWallSegment (first=1946, last=269) at r_bsp.c:149
+#5  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#6  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#7  0x1ab0e in R_RenderBSPNode (bspnum=13) at r_bsp.c:452
+#8  0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#12 0x1ab72 in R_RenderBSPNode (bspnum=13) at r_bsp.c:470
+#13 0x1ab72 in R_RenderBSPNode (bspnum=13) at r_bsp.c:470
+#14 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#17 0x1ab4a in R_RenderBSPNode (bspnum=13) at r_bsp.c:467
+#18 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#19 0x72b2 in D_Display () at d_main.c:245
+#20 0x7576 in D_DoomLoop () at d_main.c:383
+#21 0x842a in D_DoomMain () at d_main.c:1180
+#22 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#23 0x6030458 in NXFindPboardType ()
+#24 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=35, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=35, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be50 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:366
+#1  0x1cffc in R_MapPlane (y=31, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=31, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=154, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=154, b1=167, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be24 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be24 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=43, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=43, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x4304 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x4304 in FixedDiv2 (a=52428800, b=52171) at i_next.m:56
+#1  0x714e in FixedDiv (a=52428800, b=52171) at d_main.c:140
+#2  0x1c70a in R_PointToDist (x=16777216, y=-197132288) at r_main.c:287
+#3  0x1db60 in R_StoreWallRange (start=62, stop=68) at r_segs.c:341
+#4  0x1a5f0 in R_ClipSolidWallSegment (first=62, last=69) at r_bsp.c:77
+#5  0x1a87c in R_AddLine (line=0x7db060) at r_bsp.c:269
+#6  0x1aac8 in R_Subsector (num=89) at r_bsp.c:428
+#7  0x1ab0e in R_RenderBSPNode (bspnum=52171) at r_bsp.c:452
+#8  0x1ab72 in R_RenderBSPNode (bspnum=52171) at r_bsp.c:470
+#9  0x1ab72 in R_RenderBSPNode (bspnum=52171) at r_bsp.c:470
+#10 0x1ab72 in R_RenderBSPNode (bspnum=52171) at r_bsp.c:470
+#11 0x1ab72 in R_RenderBSPNode (bspnum=52171) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=52171) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=52171) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=52171) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=52171) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1da02 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1da02 in R_RenderSegLoop () at r_segs.c:262
+#1  0x1e2ac in R_StoreWallRange (start=145, stop=17068) at r_segs.c:609
+#2  0x1a708 in R_ClipPassWallSegment (first=4574046, last=179) at r_bsp.c:156
+#3  0x1a86e in R_AddLine (line=0x7da4c0) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=57) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=159) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=159) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=159) at r_bsp.c:467
+#13 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#14 0x72b2 in D_Display () at d_main.c:245
+#15 0x7576 in D_DoomLoop () at d_main.c:383
+#16 0x842a in D_DoomMain () at d_main.c:1180
+#17 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#18 0x6030458 in NXFindPboardType ()
+#19 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba3e in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1ba3e in R_DrawColumn () at r_draw.c:65
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=180, stop=17068) at r_segs.c:609
+#3  0x1a644 in R_ClipSolidWallSegment (first=180, last=182) at r_bsp.c:98
+#4  0x1a87c in R_AddLine (line=0x7da5a0) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=79) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=79) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=79) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=79) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1da0c in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1da0c in R_RenderSegLoop () at r_segs.c:264
+#1  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#2  0x1a6e4 in R_ClipPassWallSegment (first=4562594, last=269) at r_bsp.c:149
+#3  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=226) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=226) at r_bsp.c:470
+#11 0x1ab72 in R_RenderBSPNode (bspnum=226) at r_bsp.c:470
+#12 0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=226) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be50 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:366
+#1  0x1cffc in R_MapPlane (y=41, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=41, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eac in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x4557c0 'n' <repeats 24 times>, "oommmnnnnmmmmmnnnnoooo\005\005\005oooo", 'n' <repeats 27 times>, "mmmm", 'n' <repeats 23 times>, "mmnnooooooo\005\005ooooonnmnmmmmmmmnnnnnnnnnmm", 'n' <repeats 27 times>, "mmmmnnnnnnnoooo\005\005ooooonnnn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x24848 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for w_wad.c...done.
+Reading in symbols for r_data.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x24848 in W_CacheLumpNum (lump=1911, tag=101) at w_wad.c:501
+#1  0x1af1c in R_GetColumn (tex=70, col=44) at r_data.c:257
+#2  0x1d920 in R_RenderSegLoop () at r_segs.c:227
+#3  0x1e2ac in R_StoreWallRange (start=0, stop=17068) at r_segs.c:609
+#4  0x1a644 in R_ClipSolidWallSegment (first=0, last=56) at r_bsp.c:98
+#5  0x1a87c in R_AddLine (line=0x7da900) at r_bsp.c:269
+#6  0x1aac8 in R_Subsector (num=71) at r_bsp.c:428
+#7  0x1ab0e in R_RenderBSPNode (bspnum=44) at r_bsp.c:452
+#8  0x1ab72 in R_RenderBSPNode (bspnum=44) at r_bsp.c:470
+#9  0x1ab72 in R_RenderBSPNode (bspnum=44) at r_bsp.c:470
+#10 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=44) at r_bsp.c:470
+#12 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=44) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=27, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=27, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1e3d2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1e3d2 in R_StoreWallRange (start=1868, stop=337616) at r_segs.c:637
+#1  0x1a86e in R_AddLine (line=0x4f3) at r_bsp.c:265
+#2  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#3  0x1ab0e in R_RenderBSPNode (bspnum=269) at r_bsp.c:452
+#4  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#5  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#6  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=269) at r_bsp.c:470
+#9  0x1ab72 in R_RenderBSPNode (bspnum=269) at r_bsp.c:470
+#10 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#14 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#15 0x72b2 in D_Display () at d_main.c:245
+#16 0x7576 in D_DoomLoop () at d_main.c:383
+#17 0x842a in D_DoomMain () at d_main.c:1180
+#18 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#19 0x6030458 in NXFindPboardType ()
+#20 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ed0 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x459b80 "", dest=0xc000000, rowbytes=2240) at VGAView.m:432
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be22 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=164, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=164, b1=167, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3edc in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x455278 'n' <repeats 11 times>, "ooooo\005\005\005\005oo\005\005\005\005\005\005", 'o' <repeats 14 times>, "nnmmmmmnnnnmoonnnnnnnnmmmmnnnnnnnnommnnnmmnnnnnnnnnmnnoonnooooooo\005\005\005ooooo", 'n' <repeats 45 times>, "ooooooommnnnnnnnnnnoooo\005\005\005oooommmoonnnmn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:433
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eb2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3eb2 in Update16_2FAB (src=0x458df8 "\006\005", '\006' <repeats 23 times>, "\005\006\005\006\006\005", '\006' <repeats 17 times>, "\005\005\006\006\006\005", '\006' <repeats 14 times>, "\b\b\a\b", dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=35, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=35, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be28 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be28 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=32, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=32, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x42e0 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x42e0 in FixedMul (a=30808, b=0) at i_next.m:50
+#1  0x1d256 in R_MakeSpans (x=320, t1=9, b1=0, t2=424236, b2=151930) at r_plane.c:310
+#2  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#3  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#4  0x72b2 in D_Display () at d_main.c:245
+#5  0x7576 in D_DoomLoop () at d_main.c:383
+#6  0x842a in D_DoomMain () at d_main.c:1180
+#7  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#8  0x6030458 in NXFindPboardType ()
+#9  0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be40 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be40 in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=23, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=23, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be22 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=28, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=28, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=161, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=161, b1=167, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba4c in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:66
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=171, stop=17068) at r_segs.c:609
+#3  0x1a5b4 in R_ClipSolidWallSegment (first=171, last=179) at r_bsp.c:63
+#4  0x1a87c in R_AddLine (line=0x7da500) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=58) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=26) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=26) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=26) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=26) at r_bsp.c:467
+#15 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#16 0x72b2 in D_Display () at d_main.c:245
+#17 0x7576 in D_DoomLoop () at d_main.c:383
+#18 0x842a in D_DoomMain () at d_main.c:1180
+#19 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#20 0x6030458 in NXFindPboardType ()
+#21 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=28, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=28, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ec4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x4553b8 "nnmoonnnnnooo\005\005\005\005\005\005\005\005", 'o' <repeats 12 times>, "mnnooonnoonnmnnnnmmmmmmmmnnmmnnonnmmnnnnnnmmmnnmmmm", 'n' <repeats 12 times>, "mmmnnnnnnnoooo\005\005\005oooonnnnnoommmmm", 'n' <repeats 30 times>, "mmmnnooooommmmoomnnnnooooo\005\005ooooonnnnnmmn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:431
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be36 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be36 in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=21, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=21, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ed6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3ed6 in Update16_2FAB (src=0x457e38 "\005\005o", '\005' <repeats 23 times>, "o\005\005\005\005\006\005\006", '\005' <repeats 37 times>, "\006", '\005' <repeats 20 times>, "\006\006\006", '\005' <repeats 34 times>, "\006", '\005' <repeats 36 times>, "\006", '\005' <repeats 33 times>..., dest=0xc000000, rowbytes=2240) at VGAView.m:432
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eac in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x4542f0 "lmmmllmllmmmllmlllmmmmmmmmlllmmmnnnnnmmmlllmllmmmmmlllnnnmllmmmnnnnnooonnnnnn", 'm' <repeats 22 times>, "lll", 'm' <repeats 43 times>, "llmmmnnnoooooooonnnnnnmmmmmmllmlllllmmmnnnnnnmmlllmmmmm"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1aacc in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_Subsector (num=60) at r_bsp.c:430
+#1  0x1ab0e in R_RenderBSPNode (bspnum=269) at r_bsp.c:452
+#2  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#3  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#4  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#5  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#6  0x1ab72 in R_RenderBSPNode (bspnum=269) at r_bsp.c:470
+#7  0x1ab72 in R_RenderBSPNode (bspnum=269) at r_bsp.c:470
+#8  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=269) at r_bsp.c:467
+#12 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#13 0x72b2 in D_Display () at d_main.c:245
+#14 0x7576 in D_DoomLoop () at d_main.c:383
+#15 0x842a in D_DoomMain () at d_main.c:1180
+#16 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#17 0x6030458 in NXFindPboardType ()
+#18 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ec4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x4553c8 "\005\005\005\005\005", 'o' <repeats 12 times>, "mnnooonnoonnmnnnnmmmmmmmmnnmmnnonnmmnnnnnnmmmnnmmmm", 'n' <repeats 12 times>, "mmmnnnnnnnoooo\005\005\005oooonnnnnoommmmm", 'n' <repeats 30 times>, "mmmnnooooommmmoomnnnnooooo\005\005ooooonnnnnmmnnnnnmmmmmmmmnnnm"..., dest=0xc000000, rowbytes=2240) at VGAView.m:431
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eb2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3eb2 in Update16_2FAB (src=0x4559c0 "oooo", 'n' <repeats 22 times>, "mnnnnmmnnmm", 'n' <repeats 27 times>, "oooo\005\005ooooonnmnmmnnnmmnnoomm", 'n' <repeats 16 times>, "mmoonmnnnnnmmnnmnnnmnnnnnnmmmoonnmmnnnnnnonnmmnnoonnnnnmm", 'n' <repeats 11 times>, "oooo\005\005oooo", 'n' <repeats 14 times>..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ef4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x455f00 "\005\005\005\005\005\005\005\005oooo\005nmmnnoooooooonn", 'o' <repeats 12 times>, "noo\005\005\005\005\005\005oonnoonmnnnno\005\005\005\005\005\005oonnnnmmnnoooonooooooo\005\005oooonnooo\005\005\005\005\005\005oonnnnonmmnnno", '\005' <repeats 12 times>, 'o' <repeats 46 times>, "nnnn", '\005' <repeats 15 times>, "oo"..., dest=0xc000000, rowbytes=2240) at VGAView.m:435
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1c774 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1c774 in R_ScaleFromGlobalAngle (visangle=8472160) at r_main.c:360
+#1  0x1dbbc in R_StoreWallRange (start=57, stop=118) at r_segs.c:354
+#2  0x1a6e4 in R_ClipPassWallSegment (first=8234368, last=121) at r_bsp.c:149
+#3  0x1a86e in R_AddLine (line=0x7da580) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=59) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:452
+#6  0x1ab72 in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:470
+#7  0x1ab72 in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:470
+#8  0x1ab4a in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:467
+#9  0x1ab72 in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:470
+#10 0x1ab4a in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=8472160) at r_bsp.c:467
+#14 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#15 0x72b2 in D_Display () at d_main.c:245
+#16 0x7576 in D_DoomLoop () at d_main.c:383
+#17 0x842a in D_DoomMain () at d_main.c:1180
+#18 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#19 0x6030458 in NXFindPboardType ()
+#20 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=28, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=28, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ed0 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x455b50 "nnnnnoommnnnnmmmnnnnnnnnmmnnnnmnnnnmmnnmmmmmnnmmoooooooonnonoonnooooooooonnoonnoo\005\005", 'o' <repeats 14 times>, "n", '\005' <repeats 11 times>, "ooooo\005nnnoooooooooonnnn\005\005\005o\005nnoooooooonnooooooooonn\005\005oo", '\005' <repeats 13 times>, 'o' <repeats 15 times>, "nn\005\005onoo"..., dest=0xc000000, rowbytes=2240) at VGAView.m:432
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1d1be in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_CheckPlane (pl=0x69138, start=183, stop=200) at r_plane.c:270
+#1  0x1e29c in R_StoreWallRange (start=183, stop=17068) at r_segs.c:607
+#2  0x1a644 in R_ClipSolidWallSegment (first=168, last=200) at r_bsp.c:98
+#3  0x1a87c in R_AddLine (line=0x7da740) at r_bsp.c:269
+#4  0x1aac8 in R_Subsector (num=66) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=199) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=199) at r_bsp.c:470
+#9  0x1ab72 in R_RenderBSPNode (bspnum=199) at r_bsp.c:470
+#10 0x1ab72 in R_RenderBSPNode (bspnum=199) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=199) at r_bsp.c:467
+#15 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#16 0x72b2 in D_Display () at d_main.c:245
+#17 0x7576 in D_DoomLoop () at d_main.c:383
+#18 0x842a in D_DoomMain () at d_main.c:1180
+#19 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#20 0x6030458 in NXFindPboardType ()
+#21 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=30, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=30, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eb2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3eb2 in Update16_2FAB (src=0x45a480 "\001\002\002\002\001\001\001\001\216\225MML\225M\215\217\b", '\a' <repeats 18 times>, "\b\a\a\a\001\006\001O\017\017\017\017\017\017\017\016\227\r\217\005\005\006\006\006\006\001\005\001\002\002\001\001\006\002\001\002\006\a\a\a\b\b\a\a\a\a\a\a\a\a\a\a\006", '\a' <repeats 11 times>, "\006\a\a\002\a\002\a\a\006\a\006\006\a\006\a\006\006\006\006\006\a\a\a\006\006\006\006\006\006\006\006\006\005\001\001\001\002\006n\005no\215\213\213\214\213\215\016\216\213\225\214\215\217\217\216\214\214o\005\001\005on\005\005\002\005\005\005\005o\005o\005Oo\005ÌLJ\216o\217\215\003hnji\r\016mmn\017\016l\016"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be28 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be28 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=130, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=130, b1=167, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1b9b4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:54
+#1  0x1d9b0 in R_RenderSegLoop () at r_segs.c:246
+#2  0x1e2ac in R_StoreWallRange (start=287, stop=17068) at r_segs.c:609
+#3  0x1a6e4 in R_ClipPassWallSegment (first=1910, last=319) at r_bsp.c:149
+#4  0x1a86e in R_AddLine (line=0x7da680) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=63) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=8664093) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=24, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=24, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x42c6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x42c6 in FixedMul (a=-2892, b=35651583) at i_next.m:47
+#1  0x1d8ac in R_RenderSegLoop () at r_segs.c:208
+#2  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#3  0x1a6e4 in R_ClipPassWallSegment (first=4570597, last=269) at r_bsp.c:149
+#4  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=-2892) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be26 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be26 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=14, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=14, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba50 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:68
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=0, stop=17068) at r_segs.c:609
+#3  0x1a644 in R_ClipSolidWallSegment (first=0, last=56) at r_bsp.c:98
+#4  0x1a87c in R_AddLine (line=0x7da900) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=71) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=63) at r_bsp.c:452
+#7  0x1ab72 in R_RenderBSPNode (bspnum=63) at r_bsp.c:470
+#8  0x1ab72 in R_RenderBSPNode (bspnum=63) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=63) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=63) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x500834e in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_net.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x500834e in NXObjectMapPrototype ()
+#1  0x3fffbe4 in ?? ()
+#2  0x441c in I_GetTime () at i_next.m:142
+#3  0x25556 in NetUpdate () at d_net.c:358
+#4  0x73f6 in D_Display () at d_main.c:299
+#5  0x7576 in D_DoomLoop () at d_main.c:383
+#6  0x842a in D_DoomMain () at d_main.c:1180
+#7  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#8  0x6030458 in NXFindPboardType ()
+#9  0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be24 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be24 in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=25, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=25, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba4c in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:66
+#1  0x1d9b0 in R_RenderSegLoop () at r_segs.c:246
+#2  0x1e2ac in R_StoreWallRange (start=145, stop=17068) at r_segs.c:609
+#3  0x1a6e4 in R_ClipPassWallSegment (first=4561566, last=170) at r_bsp.c:149
+#4  0x1a86e in R_AddLine (line=0x7da540) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=58) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=46) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=46) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=46) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=46) at r_bsp.c:467
+#15 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#16 0x72b2 in D_Display () at d_main.c:245
+#17 0x7576 in D_DoomLoop () at d_main.c:383
+#18 0x842a in D_DoomMain () at d_main.c:1180
+#19 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#20 0x6030458 in NXFindPboardType ()
+#21 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1d8b6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1d8b6 in R_RenderSegLoop () at r_segs.c:209
+#1  0x1e2ac in R_StoreWallRange (start=180, stop=17068) at r_segs.c:609
+#2  0x1a644 in R_ClipSolidWallSegment (first=180, last=182) at r_bsp.c:98
+#3  0x1a87c in R_AddLine (line=0x7da5a0) at r_bsp.c:269
+#4  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:470
+#11 0x1ab72 in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:470
+#12 0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=-33662901) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ea2 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x4562c8 "ooooooooononn\005\005nnoooooooonnoon", 'o' <repeats 13 times>, "nnnnnnon\005\005\005\005\005nnooon\005\005\005\005\005\005\005\005\005oonnon", 'o' <repeats 17 times>, "nn\005\005oononnoooonnooooooonnoooo\005\005\005\005\005\005\005\005\005\005oooonnmnnnnnnnn", 'o' <repeats 21 times>, "nnnnooonmmnnoooo\005\005\005\005\005\005\005\005\005o\005oonn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:428
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ec4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x456380 "o\005\005\005\005\005\005\005\005\005o\005oonnnnnnoooo", '\005' <repeats 27 times>, 'o' <repeats 11 times>, '\005' <repeats 12 times>, "onooooonnoo\005onnoooooonmnnn", 'o' <repeats 11 times>, '\005' <repeats 22 times>, "oooooooooonn\005onnn", 'o' <repeats 35 times>, "\005\005\005\005\005\005\005nnnnoonn"..., dest=0xc000000, rowbytes=2240) at VGAView.m:431
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3ef6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3ef6 in Update16_2FAB (src=0x4613d0 '\a' <repeats 34 times>, "^ggccdccdhigggghfefdeecbgggggihjhigggggggfgggihjegffhhchh\005hiheihhjdhenj`ighiiiihfefdeecbgggggihjihiiihhejhiekjihggimjkjlmmihfffjjigfhdfghhfffj`beeegghiihiijiggghhihfi"..., dest=0xc000000, rowbytes=2240) at VGAView.m:435
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1d4e6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawPlanes () at r_plane.c:402
+#1  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#2  0x72b2 in D_Display () at d_main.c:245
+#3  0x7576 in D_DoomLoop () at d_main.c:383
+#4  0x842a in D_DoomMain () at d_main.c:1180
+#5  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#6  0x6030458 in NXFindPboardType ()
+#7  0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be36 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be36 in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=53, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=53, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=30, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=30, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eb8 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x456180 "\005\005\005\005\005\005", 'o' <repeats 14 times>, "nn\005\005oonnooooooooo\005nnoonnoooooooono\005\005oo\005\005\005\005\005\005oo", '\005' <repeats 12 times>, "non", 'o' <repeats 20 times>, "nnnnnnoo\005\005oonooooooonno", '\005' <repeats 14 times>, "ooooooon", 'o' <repeats 39 times>, "\005\005oooo\005\005\005\005\005\005\005\005\005"..., dest=0xc000000, rowbytes=2240) at VGAView.m:430
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=27, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=27, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=25, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=25, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=24, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=24, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1cec4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_MapPlane (y=25, x1=0, x2=319) at r_plane.c:118
+#1  0x1d256 in R_MakeSpans (x=320, t1=25, b1=55, t2=255, b2=0) at r_plane.c:310
+#2  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#3  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#4  0x72b2 in D_Display () at d_main.c:245
+#5  0x7576 in D_DoomLoop () at d_main.c:383
+#6  0x842a in D_DoomMain () at d_main.c:1180
+#7  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#8  0x6030458 in NXFindPboardType ()
+#9  0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=0, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=0, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=8, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=8, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=25, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=25, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba34 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:65
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=270, stop=17068) at r_segs.c:609
+#3  0x1a5f0 in R_ClipSolidWallSegment (first=270, last=272) at r_bsp.c:77
+#4  0x1a87c in R_AddLine (line=0x7da5c0) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=119) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=119) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=119) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=119) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be2a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be2a in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=18, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=18, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1a8f6 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_CheckBBox (bspcoord=0x7d6938) at r_bsp.c:332
+#1  0x1ab5c in R_RenderBSPNode (bspnum=9) at r_bsp.c:469
+#2  0x1ab72 in R_RenderBSPNode (bspnum=9) at r_bsp.c:470
+#3  0x1ab4a in R_RenderBSPNode (bspnum=9) at r_bsp.c:467
+#4  0x1ab4a in R_RenderBSPNode (bspnum=9) at r_bsp.c:467
+#5  0x1ab4a in R_RenderBSPNode (bspnum=9) at r_bsp.c:467
+#6  0x1ab4a in R_RenderBSPNode (bspnum=9) at r_bsp.c:467
+#7  0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#8  0x72b2 in D_Display () at d_main.c:245
+#9  0x7576 in D_DoomLoop () at d_main.c:383
+#10 0x842a in D_DoomMain () at d_main.c:1180
+#11 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#12 0x6030458 in NXFindPboardType ()
+#13 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=27, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=27, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=29, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=29, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1da46 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1da46 in R_RenderSegLoop () at r_segs.c:272
+#1  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#2  0x1a6e4 in R_ClipPassWallSegment (first=4570588, last=269) at r_bsp.c:149
+#3  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=220) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#7  0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=220) at r_bsp.c:470
+#11 0x1ab72 in R_RenderBSPNode (bspnum=220) at r_bsp.c:470
+#12 0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=220) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be3a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be3a in R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=23, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=23, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x42d4 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x42d4 in FixedMul (a=9027, b=8388464) at i_next.m:47
+#1  0x1d8ac in R_RenderSegLoop () at r_segs.c:208
+#2  0x1e2ac in R_StoreWallRange (start=145, stop=17068) at r_segs.c:609
+#3  0x1a708 in R_ClipPassWallSegment (first=4574039, last=179) at r_bsp.c:156
+#4  0x1a86e in R_AddLine (line=0x7da4c0) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=57) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=9027) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#9  0x1ab72 in R_RenderBSPNode (bspnum=9027) at r_bsp.c:470
+#10 0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=9027) at r_bsp.c:467
+#14 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#15 0x72b2 in D_Display () at d_main.c:245
+#16 0x7576 in D_DoomLoop () at d_main.c:383
+#17 0x842a in D_DoomMain () at d_main.c:1180
+#18 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#19 0x6030458 in NXFindPboardType ()
+#20 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be22 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=26, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=26, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba2e in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1ba2e in R_DrawColumn () at r_draw.c:63
+#1  0x1d9b0 in R_RenderSegLoop () at r_segs.c:246
+#2  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#3  0x1a6e4 in R_ClipPassWallSegment (first=4558407, last=269) at r_bsp.c:149
+#4  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=-4804932) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1da38 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_RenderSegLoop () at r_segs.c:271
+#1  0x1e2ac in R_StoreWallRange (start=145, stop=17068) at r_segs.c:609
+#2  0x1a6e4 in R_ClipPassWallSegment (first=-1, last=170) at r_bsp.c:149
+#3  0x1a86e in R_AddLine (line=0x7da540) at r_bsp.c:265
+#4  0x1aac8 in R_Subsector (num=58) at r_bsp.c:428
+#5  0x1ab0e in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:452
+#6  0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#7  0x1ab72 in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:470
+#8  0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#9  0x1ab72 in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:470
+#10 0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#11 0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=7471908) at r_bsp.c:467
+#14 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#15 0x72b2 in D_Display () at d_main.c:245
+#16 0x7576 in D_DoomLoop () at d_main.c:383
+#17 0x842a in D_DoomMain () at d_main.c:1180
+#18 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#19 0x6030458 in NXFindPboardType ()
+#20 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba4c in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawColumn () at r_draw.c:66
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=171, stop=17068) at r_segs.c:609
+#3  0x1a5b4 in R_ClipSolidWallSegment (first=171, last=179) at r_bsp.c:63
+#4  0x1a87c in R_AddLine (line=0x7da500) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=58) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=115) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#8  0x1ab72 in R_RenderBSPNode (bspnum=115) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=115) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=115) at r_bsp.c:467
+#15 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#16 0x72b2 in D_Display () at d_main.c:245
+#17 0x7576 in D_DoomLoop () at d_main.c:383
+#18 0x842a in D_DoomMain () at d_main.c:1180
+#19 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#20 0x6030458 in NXFindPboardType ()
+#21 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=46, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=46, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x42c0 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x42c0 in FixedMul (a=5061, b=35651583) at i_next.m:47
+#1  0x1d8ac in R_RenderSegLoop () at r_segs.c:208
+#2  0x1e2ac in R_StoreWallRange (start=183, stop=17068) at r_segs.c:609
+#3  0x1a6e4 in R_ClipPassWallSegment (first=4570255, last=269) at r_bsp.c:149
+#4  0x1a86e in R_AddLine (line=0x7da600) at r_bsp.c:265
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=5061) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=5061) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=5061) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=5061) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be2a in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be2a in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=25, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=25, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be30 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:363
+#1  0x1cffc in R_MapPlane (y=26, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=26, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be2e in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be2e in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=27, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=27, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be44 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  R_DrawSpan () at r_draw.c:364
+#1  0x1cffc in R_MapPlane (y=33, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=33, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eac in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  Update16_2FAB (src=0x45ddf0 "\006\006\006\006\005\005\005\005\005\005\005\005o", '\005' <repeats 13 times>, "o\006\a\006\005\006\006\005\005\005\005\005\005\005o\005o\aje_e\n\006o\236\237\n\005\005\005\005\005\005o\005\005\006\005\005\006\006\005\005mmmmmooo\006\006\005\005\005\005\006\006\006\006\006\006\a\177\177\177\177\006\006\006\006\006\005\005\005\005\005\a\006ooooooonnmmmllmllllmmnnno\005\005\005\005\005\005\005\005\005\005\006\006\a\006\006\006\006\006\177\006\006\006\006\006\006\006\177\177\006\177\006\006\005\005o\005\005\005\005\006\006\006\006\a\a\a\006\a\006\005\006\006\006\a\a\a\005\005\005\006\006\006\006\006\006\006\177\177"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba38 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1ba38 in R_DrawColumn () at r_draw.c:65
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=270, stop=17068) at r_segs.c:609
+#3  0x1a5f0 in R_ClipSolidWallSegment (first=270, last=272) at r_bsp.c:77
+#4  0x1a87c in R_AddLine (line=0x7da5c0) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=60) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=109) at r_bsp.c:452
+#7  0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#8  0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#9  0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#10 0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#11 0x1ab72 in R_RenderBSPNode (bspnum=109) at r_bsp.c:470
+#12 0x1ab72 in R_RenderBSPNode (bspnum=109) at r_bsp.c:470
+#13 0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#16 0x1ab4a in R_RenderBSPNode (bspnum=109) at r_bsp.c:467
+#17 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#18 0x72b2 in D_Display () at d_main.c:245
+#19 0x7576 in D_DoomLoop () at d_main.c:383
+#20 0x842a in D_DoomMain () at d_main.c:1180
+#21 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#22 0x6030458 in NXFindPboardType ()
+#23 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x3eae in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for VGAView.m...done.
+Reading in symbols for i_next.m...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x3eae in Update16_2FAB (src=0x4562b0 "oonooooo", '\005' <repeats 14 times>, 'o' <repeats 11 times>, "nonn\005\005nnoooooooonnoon", 'o' <repeats 13 times>, "nnnnnnon\005\005\005\005\005nnooon\005\005\005\005\005\005\005\005\005oonnon", 'o' <repeats 17 times>, "nn\005\005oononnoooonnooooooonnoooo\005\005\005\005\005\005\005\005\005\005oooonnmnnnnnnnn", 'o' <repeats 21 times>, "nnnnooo"..., dest=0xc000000, rowbytes=2240) at VGAView.m:429
+#1  0x4156 in -[VGAView drawSelf::] (self=0x3b79e4, _cmd=0x6180afe, rects=0x3fffba4, rectCount=1) at VGAView.m:534
+#2  0x601b79c in NXFindPboardType ()
+#3  0x60140f2 in NXFindPboardType ()
+#4  0x6013a74 in NXFindPboardType ()
+#5  0x3ada in -[VGAView updateView] (self=0x3b79e4, _cmd=0x9844b) at VGAView.m:170
+#6  0x451c in I_FinishUpdate () at i_next.m:225
+#7  0x7400 in D_Display () at d_main.c:305
+#8  0x7576 in D_DoomLoop () at d_main.c:383
+#9  0x842a in D_DoomMain () at d_main.c:1180
+#10 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#11 0x6030458 in NXFindPboardType ()
+#12 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1ba38 in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_segs.c...done.
+Reading in symbols for r_bsp.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1ba38 in R_DrawColumn () at r_draw.c:65
+#1  0x1d92e in R_RenderSegLoop () at r_segs.c:228
+#2  0x1e2ac in R_StoreWallRange (start=0, stop=17068) at r_segs.c:609
+#3  0x1a644 in R_ClipSolidWallSegment (first=0, last=56) at r_bsp.c:98
+#4  0x1a87c in R_AddLine (line=0x7da900) at r_bsp.c:269
+#5  0x1aac8 in R_Subsector (num=71) at r_bsp.c:428
+#6  0x1ab0e in R_RenderBSPNode (bspnum=5) at r_bsp.c:452
+#7  0x1ab72 in R_RenderBSPNode (bspnum=5) at r_bsp.c:470
+#8  0x1ab72 in R_RenderBSPNode (bspnum=5) at r_bsp.c:470
+#9  0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#10 0x1ab72 in R_RenderBSPNode (bspnum=5) at r_bsp.c:470
+#11 0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#12 0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#13 0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#14 0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#15 0x1ab4a in R_RenderBSPNode (bspnum=5) at r_bsp.c:467
+#16 0x1ce2a in R_RenderPlayerView (player=0x4bbc0) at r_main.c:794
+#17 0x72b2 in D_Display () at d_main.c:245
+#18 0x7576 in D_DoomLoop () at d_main.c:383
+#19 0x842a in D_DoomMain () at d_main.c:1180
+#20 0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#21 0x6030458 in NXFindPboardType ()
+#22 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11
+GDB is free software and you are welcome to distribute copies of it
+ under certain conditions; type "show copying" to see the conditions.
+There is absolutely no warranty for GDB; type "show warranty" for details.
+GDB 4.7 (NeXT 3.1), Copyright 1992 Free Software Foundation, Inc.
+
+0x1be2e in ?? ()
+Reading symbols from Doom.app/Doom...done.
+Reading in symbols for r_draw.c...done.
+Reading in symbols for r_plane.c...done.
+Reading in symbols for r_main.c...done.
+Reading in symbols for d_main.c...done.
+Reading in symbols for DRCoord.m...done.
+Reading in symbols for Doom_main.m...done.
+#0  0x1be2e in R_DrawSpan () at r_draw.c:362
+#1  0x1cffc in R_MapPlane (y=21, x1=0, x2=319) at r_plane.c:149
+#2  0x1d256 in R_MakeSpans (x=320, t1=21, b1=55, t2=255, b2=0) at r_plane.c:310
+#3  0x1d4e6 in R_DrawPlanes () at r_plane.c:403
+#4  0x1ce32 in R_RenderPlayerView (player=0x4bbc0) at r_main.c:796
+#5  0x72b2 in D_Display () at d_main.c:245
+#6  0x7576 in D_DoomLoop () at d_main.c:383
+#7  0x842a in D_DoomMain () at d_main.c:1180
+#8  0x3704 in -[DRCoord appDidInit:] (self=0x3b6374, _cmd=0x617fffd, sender=0x3aeac4) at DRCoord.m:58
+#9  0x6030458 in NXFindPboardType ()
+#10 0x422a in main (argc=3, argv=0x3ffff34) at Doom_main.m:11

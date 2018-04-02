@@ -1,0 +1,11 @@
+main 91
+main;D_DoomLoop 800
+main;D_DoomLoop;D_Display;R_RenderPlayerView;R_DrawMasked 898
+main;D_DoomLoop;D_Display;R_RenderPlayerView;R_DrawPlanes 2355
+main;D_DoomLoop;D_Display;R_RenderPlayerView;R_RenderBSPNode 4551
+main;D_DoomLoop;D_Display;I_UpdateNoBlit 81
+main;D_DoomLoop;S_UpdateSounds 33
+main;D_DoomLoop;M_Ticker 56
+main;D_DoomLoop;G_Ticker 1556
+main;D_DoomLoop;D_ProcessEvents 4
+main;D_DoomLoop;G_BuildTiccmd 6
