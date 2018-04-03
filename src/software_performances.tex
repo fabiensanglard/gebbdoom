@@ -82,23 +82,27 @@ We see that sound doesn't consume much since the only work to do is to retrieve 
 \subsection{Optimizations}
 For obvious reasons, the DOS version received special care. Two area of bottlnecks were identified in the math function and in the renderer.\\
 \par
-Since Fixed point operation were performed a lot, \cw{FixedMul} and  \cw{FixedDiv2}. \cw{FixedMul} optimized with inline assembly.\\
+Since Fixed point operation were performed a lot, \cw{FixedMul} and  \cw{FixedDiv2}. \cw{FixedMul} optimized with inline assembly and unrolled loops\footnote{There is almost no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are counted". That was without counting on Intel's Pentium which super-scalar architecture would require extra care by Michael Abrash for Quake.}.\\
+\par
+\cw{FixedMul} is called 124 times in the source code. Good candidate for optimization. Benchmark disabling it.\\
+TODO:Benchmark improvement.\\
+\par
+A more substantial optimization had to do with the layering. On DOS the rules separating the kernel and the video system were bent slightly. Parts like the status bar and the auto-map still function as originally designed but the drawing routines in the kernel such as \cw{R\_DrawColumn} and \cw{R\_DrawSpanFAB} are given privileged. They are able to access the VGA framebuffer discretely, bypassing framebuffer \#0. Since the menu module has to be able to draw on to of the 3D canvas, it is also granted direct VGA VRAM access.\\
+\par
+In the code this is achieved with \cw{\#ifdef \_\_WATCOMC\_\_} blocks. It granted a substantial 15\% frame rate improvement.\\
+ \par 
+TODO: Graph ASM vs NO ASM.\\
+ \par
+ 
+\section{Performance tuning}
+Despite all the care and optimizations, most user could not get more than 10fps at maximum resolution. Two tuning mechanisms helped to reduce the number of pixels to write in order to improve the frame rate.
+\begin{enumerate}
+\item High detail/Low detail toggle.
+\item Adjust size of 3D canvas.
+\end{enumerate}
 \par
 
-
-
-Drawing walls and flats had been corretly identified as the \#1 bottleneck. The DOS version had hand crafted XXX routines which improved performances by 15\%. These were the only assembly in doom. The compiler and \cw{libc} were becoming so good that there was no more need to. Only the drawing routines for the walls and flats were optimized wich resulted in a 15\% performance books. John Carmack even declared that "The days of assembly are counted". That was without counting on Intel's Pentium which super-scalar architecture would require extra care by Michael Abrash for Quake.\\
-\par
- \fixme{Graph ASM vs NO ASM}.
- \par
- STUDY ASM vs C version. Seems to write 8 pixels at at time, reusing offset, saving store instructions. Trying to stress registers. On PC the rules separating the kernel and the video system are bent. The kernel's drawing routines such as \cw{R\_DrawColumn} and \cw{R\_DrawSpanFAB} are given privileged access to the VGA framebuffer and write in it directely. The status bar and the auto-map keep are not that lucky.\\
- \par
- \cw{FixedMul} is called 124 times in the source code. Good candidate for optimization. Benchmark disabling it.
- \par
-
-\subsection{Look up tables}
-Bla
-\section{Reduce window size}
+\section{3D Canvas size adjustment}
 Bla. Usage of dirtybox here.
 \par
 \drawing{lod}{The ten 3D canvas configurations.}
@@ -159,6 +163,9 @@ Bla. Usage of dirtybox here.
 \end{figure}
 
 \fullimage{high_res.png}\\
+\par
+Above the resolution is 320x200. Below it is dropped to 160x200 with uneven columns duplicated. The resolution drop is particularly noticeable on the non-magnified sergeant and the door but only because diminished lightning and CRT scaling had been disabled for demonstration purposes. In practice the difference was subtle.\\
+\par
 \fullimage{low_res.png}\\
 
 
