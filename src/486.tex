@@ -7,14 +7,14 @@
 
 Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 386. However it's pricetag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom recommended CPU.\\
 \par
-The design has changed significantly compared to its predecessor, the 486. The pipeline was gifted with two extra stages, extending its depth to five. The floating point unit which used to be optionnal and somewhere on the motherboard became mandatory and built-in. Most importantly manufacturing improvements allowed the 486 to have a decent size L1 cache.\\
+The design has changed significantly compared to its predecessor, the 386. The pipeline was gifted with two extra stages, extending its depth to five. The floating point unit which used to be optionnal and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements allowed the 486 to finally have an integrated L1 cache.\\
 \par
 \fq{The 386 actually had small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
 \par
 
 \drawing{486_arch}{Intel 486 architecture}
 \par
-Like for the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version which was "slower". But while it was a deliberate design choice to offer a 386 which was slower but more affordable, the 486 SX was in fact a trick. Due to manufacturing problems, the first 486 CPU came out of the factories working normally but with faulty FPUs units. Instead of throwing the faulty CPUs away, Intel sold them at a discounted (50\%) price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers prefered getting a discount instead of a FPU they had little to no usage of}.\\
+Like for the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version which was "slower". But while it was a deliberate design choice to offer a 386 which was slower but more affordable, the 486 SX was in fact a marketing catchup. Due to manufacturing problems, the first 486 CPU came out of the factories working normally but with faulty FPUs units. Instead of throwing the faulty CPUs away, Intel sold them at a discounted (50\%) price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers prefered getting a discount instead of a FPU they had little to no usage of}.\\
 \par
 If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performances and sales\footnote{It was still manufactured as late as 2015 for routers}), it had to sustain a period of uncertaincy. Like the 386 had to face its brother (the XXX), the i486 also had to a competitor from the same company. Its archemesis name was Intel 860.\\
 \par
@@ -29,7 +29,7 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 \bigskip
 \par
 In practice however the i860 never stood a chance. Relying on an heavily pipelined superscaler architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which when efficently used allowed it to outperform the Intel 486.
-But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parralele when possible, the i860 architect allowed direct access to its parallel pipeline. The chip did nothing behind the scene and rely on compiler writers to sequence instructions appropriately.\\
+But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parralele when possible, the i860 architect allowed direct access to its parallel pipeline. The chip did nothing behind the scene and relied on compiler writers to sequence instructions appropriately.\\
 \par
 Unfortunately compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super scalar capability. the i860 was never able to reach its full potential. If only Intel had been willing to build the compilers it desperately needed the i860 history could have been different.\\
 \par
@@ -102,7 +102,7 @@ Even if the Prefetch Unit and the Execution Unit were properly fed, the Decode u
 \end{figure}
 
 \par
-To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI, the total throughput of the 486 was doubled, which doubled perfomances (as long as the pipeline never starved).\\
+To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI, the total throughput of the 486 was doubled, which doubled performances (as long as the pipeline never starved).\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/actual_486_instruction_pipeline.pdf}
@@ -115,9 +115,9 @@ To solve this problem, Intel simply decided to break the three stage pipeline in
 
 
 \subsection{Caching }
-Modifying the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 486 which had only three stages.\\
+Modifying the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386 which had only three stages.\\
 \par
- A frequently stalling 486 would have been slower than a 386. As it would turn out, avoid starvation was difficult. Starting in 1980, RAM speed had started to lag behind CPU speed. By 1989, RAM access tme was 10 times slower than CPU.\\
+ A frequently stalling 486 would have been slower than a 386. As it would turn out, avoid starvation was difficult. Starting in 1980, RAM speed had started to lag behind CPU speed. By 1989, RAM access time was 10 times slower than CPU.\\
 \par
 \pngdrawing{ram_vs_cpu}{}
 \par

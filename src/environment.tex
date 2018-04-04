@@ -1,23 +1,23 @@
 The PC environment had morphed significantly between the development of Wolfenstein 3D in 1991 and the development of Doom in 1993. The previous "recommend configuration" based on an Intel 386 CPU with 2~MiB of RAM and a VGA graphic card was no more.\\
 \par
-The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~Bus, \circled{3}~CPU, \circled{4}~RAM, \circled{5}~Video~output, and \circled{6}~Audio~output together forming a pipeline. Only each of these sub-systems had become faster or increased its capacity.\\
+The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~Bus, \circled{3}~CPU, \circled{4}~RAM, \circled{5}~Video~output, and \circled{6}~Audio~output together forming a pipeline. Only each of them had become faster or increased its capacity.\\
 \par
 \vspace{2mm}
 \drawing{pc_components}{The six components of an IBM PC.}
 \par
- Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom to what was available for Wolfenstein 3D (386s), it carries a sensation of abounding power which is deceiving. \\
+ Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom to what was available for Wolfenstein 3D, it carries a feeling of abounding power which is deceiving. \\
  \par
  Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing, write spreadsheet, accounting. Maybe sometimes display a static graph. The target was never to build something allowing real time, 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.} animations.\\ 
 \par 
 Looking back it is almost hard to believe that some studios focused solely on producing titles for a machine seemingly less capable than consoles. The list of problems is substantial.
 \begin{itemize}
-\item With a CPU unable to perform floating-point operations
-\item An archaic graphic system unable no double buffer and distorting images
-\item A sound system only capable of irritating "beeps", a PC was unappealing at best and probably less likely to generate good games and profit, especially compared to cheaper systems such as the Super Nintendo, the Sega Genesis, or the NeoGeo systemswhich were designed from the ground up for video games.
-\item Not to mention the pricetag where a top of line machine fetched close to \$13,000 adjusted to inflation. To compare with competitions, the SNES and the SEGA Genernis were both priced at US\$199 while the top of the line Neo-Geo was US\$649.99.
+\item A CPU unable to perform floating-point operations.
+\item An archaic graphic system unable no double buffer and distorting images.
+\item A sound system only capable of irritating "beeps" and a fragmented sound card ecosystem when the customer had elected to buy one.
+\item A pricetag where a top of line machine fetched close to \$13,000 adjusted to inflation. To compare with competitions, the SNES and the SEGA Genernis were both priced at US\$199 while the Neo-Geo which provided arcade-like experience was US\$649.99.
 \end{itemize}
 \par
-Obviously, given the title of the book you have in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of game (anything involving sprites) but they could excel at certain types of 3D engines.But keep in mine that on paper it was a challenge far from being trivial.\\
+ A PC was unappealing at best and seemingly less likely to generate good games and profit, especially compared to cheaper systems such as the Super Nintendo, the Sega Genesis, or the NeoGeo systemswhich were designed from the ground up for video games. Obviously, given the title of the book you have in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of game (anything involving sprites) but they could excel at certain types of 3D engines.But keep in mine that on paper it was a challenge far from being trivial.\\
 \par
 
 In figure ~\ref{ibm_ps1_top}, an ad from 1994 for an IBM PS1 featuring an Intel 486 CPU with two things to notice.
@@ -59,14 +59,14 @@ The best way to get an overview of the changes is to look at the component conne
 \par
 The most prominent novelty is of course the heart of the computer, the Intel i486 CPU (\circled{1}). Yet a closer looks reveals many more features which would turn out to be of paramount importance for the architecture of \doom engine.\\
 \par 
-If the black extension connectors show the traditional ISA bus ports, two 8 bit ones (\circled{2}), three dual slot 16 bit (\circled{3}) we can also see a set of three new type of connector with an additional brown slot (\circled{4}). These are VBL\footnote{Video Local Bus.}, a new type of bus up to 20x faster than ISA.
+If the black extension connectors show the traditional ISA bus ports, one 8 bit (\circled{2}), three dual slot 16 bit (\circled{3}) we can also see a set of three new type of connector with an additional brown slot (\circled{4}). These are VL-Bus\footnote{Video Local Bus.}, a new type of bus up to 20x faster than ISA.
 
 \drawing{px486p3}{Components diagram of the PX486P3.}
 \par
- Next in the upper right (\circled{5}), a new type of RAM had found its way into these new PC. In black, eight chips of Static RAM offered 256 KiB acting as "cache", a new system to prevent CPU starvation. see large rows of black chips, a new type of RAM called sRAM\footnote{Static RAM}, up to 10x faster than dRAM\footnote{Dynamic RAM} aiming at avoiding CPU stalls\footnote{SRAM was expensive and took a lot of space. Despite their size compared to the DRAM (in white), the eight chips could only stored 256 KiB with 20ns access time.}. \\
+ Next in the upper right (\circled{5}), a new type of RAM had found its way into these new PC. These eight black chips of Static RAM offered 256 KiB acting as "cache", a new system to prevent CPU starvation. SRAM\footnote{Static RAM} had an access time of 20ns, which was 10x faster than dRAM\footnote{Dynamic RAM}. It aimed at avoiding CPU stalls within the pipeline\footnote{SRAM was expensive and took a lot of space. SRAM was not only expensive, it also took a lot of space. Despite their size compared to the DRAM (in white), these eight chips could only stored 256 KiB with 20ns access time.}. \\
 \par
-The main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM installed (\circled{6}) had doubled to 4MiB\footnote{\doom would not run on PC equipped with "only" 2 MiB}.\\
-\par
+The main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM installed (\circled{6}) had doubled to 4MiB\footnote{\doom would not run on PC equipped with "only" 2 MiB}.
+
 
 \begin{center}
 \begin{tikzpicture}
