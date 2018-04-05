@@ -1,11 +1,11 @@
 \section{Video System}
-At first glance the video output system, the (VGA) Video Graphic Array, was still the same weird beast Wolfenstein 3D had to deal with. With its infamous 300 registers to configure it, its palette system limiting colors to 256, and the awkward four banks of 64 KiB mandating interleaved framebuffer the VGA was an unappealing programming interface.\\
+At first glance the video output system, the VGA (Video Graphic Array), was still the same weird beast Wolfenstein 3D had to deal with. With its infamous 300 registers to configure it, its palette system limiting colors to 256, and the awkward four banks of 64 KiB mandating interleaved framebuffer the VGA was an unappealing programming interface.\\
 \par
 A GC (Graphic Controller) and a (SC) Sequence Controller controlled access to 256 KiB of Video RAM. A CRTC (Cathode Ray Tube Controller) controlled how the framebuffer was sampled. And finally a DAC took care of converting Digital data to analogic toward the CRT monitor.\\
 \par 	
 \scaleddrawing{0.6}{vga}{}
 \par
-At this point in time, all video games used the VGA in tweaked mode 13h which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layout accross banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
+At this point in time, all video games used the VGA in tweaked mode 13h which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layout across banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
 \par
 \par
 \cscaledimage{0.9}{vga_ram_screen_layout}{\label{vga_ram_screen_layout}}
@@ -20,26 +20,26 @@ To access the 256 KiB of VRAM, Intel had established a hard-coded memory mapping
 \par
 \scaleddrawing{0.7}{vga_mapping}{\label{ram_vram_mapping}}
 \par
-And if all these difficulties were not enough, because the framebuffer aspect ratio did not match the CRT monitor aspect ratio, the framebuffer was distorted.\\
+If all these difficulties were not enough, because the framebuffer aspect ratio did not match the CRT monitor aspect ratio, the framebuffer was distorted.\\
 \par
+\cfullimage{circleframebuffer.png}{\label{circle_framebuffer}}
 \par
-\cfullimage{circleframebuffer.png}{\label{circleframebuffer}}
+In figure \ref{circle_framebuffer} a programmer drew a circle into the framebuffer, notice the $ 320/200 = 1.6 $ aspect ratio.
 \par
-In figure \label{circleframebuffer} a programmer drew a circle into the framebuffer, notice the $ 320/200 = 1.6 $ aspect ratio.
+\cfullimage{circlescreen.png}{}
 \par
-\cfullimage{circlescreen.png}{What the same framebuffer looked like on the monitor. Notice the $ 320/240 = 1.333 $ aspect ratio.}
+Figure \ref{circle_framebuffer} shows what the same framebuffer looked like when displayed on the monitor. Notice the $ 320/240 = 1.333 $ aspect ratio.\\
+
+
+
+
+
+
+
+\section{Hidden improvements}
+Despite this bleak description, a closer inspection of the world of graphic card unveiled two tremendous changes which ended up deeply impacting \doom. \\
 \par
-
-
-
-
-
-
-
-\section{A Witty Section Name Here}
-Despite this bleak description, a closer inspection of the world of PC graphic unveiled two tremendous changes which ended up deeply impacting \doom. \\
-\par
-Since 1992 with the released of Microsoft and IBM new operating systems (respectiely OS/2 2.0 and Microsoft Windows 3.1 (1992)), the demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 300,000 bytes\footnote{256 colors at 640x480}.\\
+Since 1992 with the released of Microsoft and IBM new operating systems (respectively OS/2 2.0 and Microsoft Windows 3.1 (1992)), the demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 300,000 bytes\footnote{256 colors at 640x480}.\\
 \par
 
 \cfullimage{Windows311workspace.png}{Despite its simple interface, Windows 3.11 640x480 16 colors was able to put PCs on their knees.}
@@ -47,15 +47,15 @@ Since 1992 with the released of Microsoft and IBM new operating systems (respect
 
 
 \subsection{VGA Chip manufacturer}
-The first improvement came from VGA chip manufacturers. Some of them such as ATI, Cirrus Logic and Tseng Labs went through great effort to achieve higher performances. Hardware GUI acceleration had not yet become mainstream, and so host-throughput was the dominating factor in a graphical-application's redraw speed. As many components went into a VGA cards. RAM, RamDAC, BIOS, Memory controller, Blitter, Ram Refresh, Cache controller, Timing Sequencer\footnote{Tseng Labs ET4000} to name only a few, they started to tighly integrate everything need into a single chip.\\
+The first improvement came from VGA chip manufacturers. Sensing that demand for performance was growing, companies such as ATI, Cirrus Logic, and Tseng Labs went through great effort to compete and achieve higher performances. Hardware GUI acceleration had not yet become mainstream, and so host-throughput was the dominating factor in a graphical-application's redraw speed. They started to tightly integrate every component of a VGA card into a single chip (RAM, RamDAC, BIOS, Memory controller, Blitter, Ram Refresh, Cache controller, Timing Sequencer\footnote{Tseng Labs ET4000} to name only a few).\\
 \par
 Some manufacture such as Cirrus Logic even adopted a fabless business model where they designed and sold semiconductor chips while outsourcing the fabrication.\\
 \par
-Graphic card designers also leveraged the fact that VGA RAM was often subject to write operations instead of read and optimized accordingly with FIFO SDRAM cache. Peeking at a card based on Tseng Labs's best seller, the ET4000 give a good overview of what a customer could purchase.\\ 
+An optimization among many other was to leverage the fact that VGA RAM was often subject to write operations instead of read. Using a FIFO SDRAM cache to buffer operation and return right away tremendously improved write operations. Peeking at a card based on one of the most notorious manufacturer of the era (Tseng Labs's), the ET4000 give a good overview of what a customer could purchase.\\ 
 \par
 \cfullimage{vlb_cards/tseng_lans_et4000_w32_vesa_local_illetw32.png}{ILLETW32 Britek Electronics. Photo courtesy \cw{http://www.amoretro.de/}}
 \par
-The card above was manufactured by Britek Electronics. By licensing the ET4000, they only had to provide RAM(\circled{1}), RAMDAC(\circled{2}) a Timer(\circled{3}) and a XXX(\circled{4}). The VGA BIOS chip (\circled{5}) could only be purchased from Tseng Labs.\\
+The card above was manufactured by Britek Electronics. By licensing the ET4000 (\circled{1}), they only had to provide RAM(\circled{2}), RAMDAC(\circled{3}), a Timer(\circled{4}) and apply a few customization via a Tibpal (\circled{5}). The VGA BIOS chip (\circled{6}) could only be purchased from Tseng Labs.\\
 \par
 \drawing{vga_vlb_arch}{}
 
@@ -64,21 +64,23 @@ The card above was manufactured by Britek Electronics. By licensing the ET4000, 
 
 
 \subsection{VL-Bus}
-As much as the video card manufacturer could optimize their product, there was still a huge bottleneck that was out of their control. Information written by the CPU still had to transit via the ISA bus. Introduce in 198X, After more than ten years of service\footnote{The ISA was introduced in 1981}, the 16-bit ISA running at 8.3 Mhz, was starting to show its age. It saw a performance boost when it was updated to support 16 bits but it was still a performance nightmare.\\
+As much as the video card manufacturer could optimize their product, there was still a huge bottleneck that was out of their control. Information written by the CPU still had to transit via the ISA bus.\\
+\par
+ Introduced in 1981, the first incarnation had an 8-bit data path running at 4.77 MHz. It was upgraded in 1984, bringing it to 16-bit running at 8 MHz. But after 10 years of service it was starting to show its age and was considered a huge bottleneck.\\
 \par
 \drawing{bus_isa}{ISA Bus}
 \par
-Fed up with the state of things, hardware manufacturer teamed together to form the VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated, the protocol was exactly the Intel 486 Bus Unit protocol which made it a friction less medium\footnote{This reliance on 486 Bus Unit protocol doomed VLB when Intel released its 586 (Pentium) which had a new and not backward compatible But Unit protocol}.\\
+Fed up with the state of things, hardware manufacturer teamed together to form the VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated, the protocol was exactly the Intel 486 Bus Unit protocol which made it a friction less medium.\\
 \par 
-The VLB doubled the bus data line of the ISA to reach 32-bit and it also increase its frequency to 33 Mhz.\\
+The VLB doubled the bus data line of the ISA to reach 32-bit and increased its frequency to 33 Mhz, making the VL-Bus 40 to 100 faster than an ISA.\\
 \par
 The chip design for the VLB controller was relativity simple, because many of the core instructions were hosted by the ISA circuits already on the motherboard, but the actual data passes were on the same local bus as the one used by the CPU.
 The speed of the system data bus is based on the clock rate of the motherboard's crystal. 
 \drawing{bus_vlb}{VLB Bus}
 \par
-With its larger bus and higher frequency, the VL-Bus could be 40 to 100 faster than an ISA. \\
+During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran at half that rate, far out pacing the ISA bus. Some cards ran as fast as 50 MHz, using the full speed of the souped-up system bus. That often caused system crashes, because 50 MHz was outside the VLB specification.\\
 \par
-During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran at half that rate, far outpacing the ISA bus. Some cards ran as fast as 50 MHz, using the full speed of the souped-up system bus. That often caused system crashes, because 50 MHz was outside the VLB specification.\\
+\trivia{The close tie of the VL-Bus architecture to the architecture of the 486 Bus brought unmatched performances. But it can at at price. When Intel released its Pentium, the Bus Unit protocol had changed (to match Intel's PCI protocol) and the VL-Bus found itself obsolete and unable to compete. The standard died shortly after.}\\
 \par
 
 \begin{figure}[H]
@@ -86,7 +88,7 @@ During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran
   \begin{tikzpicture}[font=\small]
     \begin{axis}[
       width=1.0\textwidth,
-      height=0.5\textwidth,
+      height=0.6\textwidth,
       ybar,
       bar width=70pt,
       ylabel={MIPS},
@@ -108,23 +110,29 @@ During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran
     \end{axis}
    
    \end{tikzpicture}
-   \caption{Comparison but bandwidth (MBytes/sec).}
+   \caption{Comparison bus bandwidth (MBytes/sec).}
  \end{figure}
 \par
 The design specification provides two other performance-boosting features: burst mode and bus mastering.\\
-\par In burst mode, VLB devices gain complete control of the external data bus for up to four bus cycles, passing up to 16 bytes (128 bits) of data in a single burst.\\
-\par Bus mastering allows the VLB controller to arbitrate data transfers between the external data bus and up to three VLB devices without assistance from the CPU. This limit of three devices also limited the maximum number of VLB slots to three and called for the use of a coprocessor. Display-system design is covered in more detail in Tutorial 11, "The Display System: Monitors and Adapters."\\
+\par In burst mode, VLB devices gain complete control of the external data bus for up to four bus cycles, passing up to 16 bytes (128 bits) of data in a single burst (which was conveniently exactly the size of a 486 cacheline).\\
+\par Bus mastering allows the VLB controller to arbitrate data transfers between the external data bus and up to three VLB devices without assistance from the CPU. This limit of three devices also limited the maximum number of VLB slots to three and called for the use of a co-processor.\\
 \par
-In the opposite page, three VGA cards available in 1993. The connectors instantly tell you what kind of bus and performances to expect.\\
+On the opposite page, three VGA cards available in 1994. The connectors instantly tell you what kind of bus and performances to expect.\\
 \begin{itemize}
 \item Top: an ATI 8800, with an ISA 8-bit interface.
 \item Middle: an ATI Mach32, with an ISA 16-bit interface.
 \item Bottom: a Cirrus Logic MachSpeed, with a VLB 32-bit interface.
 \end{itemize}
- \pagebreak
+Notice how the VLB connector uses only the 8-bit part of the ISA connector but has no teeth for the 16 other bits.
+ 
 \scaledimage{0.93}{vlb_cards/ati8800.png}\\
-\par
+
+\vspace{5mm}
+
 \scaledimage{0.93}{vlb_cards/ati_mach32.png}\\
-\par
-\scaledimage{0.93}{vlb_cards/Cirrus_Logic_CL-GD5429.png}\\
+
+\vspace{5mm}
+
+\scaledimage{0.93}{vlb_cards/Cirrus_Logic_CL-GD5429.png}
+
 
