@@ -1,29 +1,37 @@
 \section{RAM - Dos Extender}
-With the price dropping, PC manufactures were able to ship twice as more RAM with their machines. Game developers now could count on 4 MiB, which mostly translated into more assets available at runtime. But the most important improvement for \doom came from how memory was accessed.\\
+With the price of RAM dropping, game developers now could count on 4 MiB, which translated into more assets available at runtime. This increase would have been a good news it had not been for the infamous way memory had to be managed.\\
 \par
-While improving and adding features to its line of CPU, Intel also had to face the orthogonal problem to maintain backward compatibility. This dilemma resulted in two operating modes. Protected Mode allowing the CPU full power with 32-bit registers and flat address space of up to 4 GiB. And Real Mode, emulating a 8086 from 1976 with 16 registers and segmented addressing. Because DOS ran in Real Mode, developers were stuck with it.\\
+The fault fell a little bit on Intel and a lot on Microsoft. The initial IBM PC was built around Intel's 16-bit 8088 CPU. The machine came with 64 KiB of RAM which was all a 16-bit register could address. But they also decided to allow more than 64Kib to be addressed than to an abomination called segmented addressing.\\
 \par
-The worse aspect of all was how the language had to be patched with new keywords to support segmented addressing. It made the code DOS only and non-portable.\\
+With segmented addressing, two 16-bit were combined to form a 20-bit address.\\
+\par
+
+\drawing{register_combination_20_bits_address}{}
+
+\par
+Over the years, Intel improved its CPU with new features. To not compromise backward compatibility, Intel created two modes. The default Real mode which made the CPU behave like a 8088 and the Protected mode which unleashed all the power of the CPU\footnote{Most notably, 32-bit register and flat RAM address space in the case of 386/486.}.\\
+\par
+Things would have worked out if the operating system had been able to run both modes. However Microsoft's DOS could only handle Real Mode. As a result programmers were stuck in Real-Mode and segmented joy. Besides mandating XMS/EMS memory managers, the worse aspect of segmented addressing was how the C language had to be patched with new keywords which made MS-DOS C not only ugly but also non-portable to UNIX systems.\\
 \par
 \ccode{real_mode_c.c}
+%\par
+%In the previous code sample, notice the DOS only \cw{near}, \cw{far} keywords and the usage of the non-standard \cw{mallocnear} memory allocator.\\
 \par
-In the previous code sample, notice the DOS only \cw{near}, \cw{far} keywords and the usage of the non-standard \cw{mallocnear} memory allocator.\\
+Among the growing frustration of Real Mode, people saw an opportunity. Two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler managed to allow developers to use Protected Mode on an operating system which did not support it.\\
 \par
-With the growing fustration some people saw an opportunity. Namely two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler would had a deep impact on the industry.\\
-\par
-\pagebreak
+
 
 \subsection{DOS/4GW Extender}
-Under DOS the "normal" way of opeation was to have everything in Real Mode. The way to perform what we call now a "system call" was to use sofware interrupt \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
+Under DOS the normal way to perform a "system call" was to use a software interrupt instruction with parameter \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
 \par
 \drawing{realmode_app_limk}{}
-With an application wanting to run in Protected Mode there had to be a middle layer. This layer would come as being named "DOS Extender".\\
+To bridge the two worlds, a middle layer called "DOS Extender" able to run in any mode inserted itself between the program and the operating system.\\
 
 \par
 \drawing{realmode_app_limk_extender}{}
-On startup, the DOS Extender would place hooks in the software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, there was no need to change anything in the program. For perform calls not hooked by the extender (e.g: \cw{int 0x33} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h}.\\
+Upon startup, the DOS Extender would place hooks in the software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, there was no need to change anything from the developer standing point. To perform a system calls not hooked by the extender (e.g: \cw{int 0x33} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h}.\\
 \par
-\trivia{DMPI was orignally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}
+\trivia{DMPI was orignally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}\\
 \par
 When the extender intercepted an operating system call, it had to do a lot of work:
 \begin{enumerate}
@@ -45,5 +53,5 @@ A lot of work and reverse engineering went into making these operation as fast a
 \par 
 \trivia{The extender was briefly visible when starting up \doom. When running \cw{DOOM.EXE} what was really staring was \cw{DOS/4GW} Real Mode bootstrap. After showing the following text, it would ouput prompty switch the CPU into Protected Mode, load \doom into memory and branch to its \cw{\_main} method.}\\
 \par
-\tcode{dos4gw.txt}
+\fakedosoutput{dos4gw.txt}
 \par
