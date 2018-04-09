@@ -6,24 +6,27 @@
 \end{wrapfigure}
 
 
-The DOS extender was magical but it was hard to setup as a standalone product. A bootstrap which would locate \cw{DOS/4GW}, the program and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. If there was no impact on the program itself, the build process was affected. The ramp up time was significant and raise the entry barrier. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable.\\ 
+The DOS extender was magical but it was hard to setup in a standalone product. A bootstrap which would locate \cw{DOS4GW.EXE}, the program and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. The ramp up time was significant and raised the entry barrier. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable. The solution would once again come from Canada.\\ 
 \par
 
-In 1993 the best compiler available on MS-DOS was irrevocably Watcom C 9.0\footnote{Editor's choice -- PC Magazine, April 1995} \footnote{PC Magazine ran a comparative study of a collection of C compilers.  They hailed WATCOM C/C++ v9.5 for producing the fastest code (by a *wide* margin).}. Started in 1986 when a team of undergraduate students at the University of Waterloo in Canada developed a FORTRAN compiler. The small team of three\footnote{The company success quickly grew the compiler team to 8 peoples.} made of Fred Crigger, Ian McPhee, and Jack Schueler improved the compiler to support multiple language and platforms. Their had chosen a lightning for their logo to advertise their focus on performances. On BSS you could ran into these kind of claims:\\
+Watcom compiler project was started in 1979 at the University of Waterloo in Canada. Initially only supporting BASIC, it was improved over the years by students with support for new OS and languages. In 1988, three of them, Fred Crigger, Ian McPhee, and Jack Schueler made it the first C compiler running on IBM-PC.\\
 \par
-\fq{WATCOM C/C++ will produce code which is at *least* twice as fast as your current 16 bit compiler, and more typically around five times as fast.}{rec.games.programmer}
-\\
-You could not open a computer magazine without finding a full page advertising Watcom's compiler. All ads ostensibly underlined the presence of a Dos Extender.
+Sensing commercial potential, they incorporated Watcom International Corporation and picked a lightning for their logo to advertise their focus on performances. Five years later, in 1993, Watcom C had considerably improved. The latest version (9.0), retailing for only \$639,  was deemed the best available on MS-DOS\footnote{Editor's choice -- PC Magazine, April 1995} \footnote{PC Magazine ran a comparative study of a collection of C compilers.}. \\
 \par
+Not only they were talented programmers, they were also good marketer. In early 90s, a customer could not open a computer magazine without finding a full page advertising Watcom's compiler. All ads ostensibly underlined the presence of a Dos Extender.
+\par
+\label{watcomad}
 \fullimage{watcom_ad.png}
 \par
-\trivia{People at Watcom were knew how to produce good compiler and they were also clever about marketing it. There was never a 1.0 or 2.0. They started directly at "version 6". This was at least one version ahead of their competitors (Borland and Microsoft). A higher number undoublty uncounciously carried a "more advanced than its competitor" feeling. Version one was also likely to features many bugs whereas the sixth installement was likely to have been battle hardened.}
+Not only they were in the press, they also made sure they were known on BBS.\\
 \par
+\fq{WATCOM C/C++ will produce code which is at *least* twice as fast as your current 16 bit compiler, and more typically around five times as fast.}{rec.games.programmer}\\
+\par
+\trivia{They were also astuce marketers. There was never a Watcom 1.0 or even a Watcom 2.0 version. They started directly at "version 6". This was at least one version ahead of their competitors (Borland and Microsoft). A higher number unconsciously carried a notion of "more advanced than its competitor". Version one was also likely to features many bugs whereas the sixth installment was likely to have been battle hardened.}\\
 
-At a cost of \$639\footnote{Byte Magazine March 1992} (a standard price for a compiler at the time), it was not cheap but opened was a small price to pay for the door to a new world of possibilities it opened to id Software. The DOS Extender would be the corner stone bridging between PC and NeXT workstation.\\
 
 \subsubsection{Popularity}
-id Software were not the only team to value Watcom solution. Many other studios enthrusted it with their code and as a result many emblematic software of the 90s were built with Watcom technology.\\
+id Software were not the only team to value Watcom solution. Many other studios entrusted it with their code and as a result many emblematic software of the 90s were built with Watcom technology.\\
 \begin{enumerate}
 \item id Softare 
        \begin{enumerate}
@@ -50,3 +53,15 @@ id Software were not the only team to value Watcom solution. Many other studios 
       \end{enumerate}
 \end{enumerate}
 \par
+
+
+\subsection{ANSI C}
+Not only the watcom/extender combo made programming simpler, it also made programs run faster. There was an other aspect, slightly less obvious yet of paramount impact on \doom.\\
+\par
+To bring C to DOS Real Mode and accomodate for segments manipulation, the language had been "augmented". A example from Wolfenstein 3D Memory Manager summarize well what "C for DOS" looked liked.\\
+\par
+\ccode{real_mode_c.c}
+\par
+Notice the wart keywords such as \cw{near}, \cw{far}, macros like as \cw{FP\_OFF} and \cw{FP\_SEG}, and the \cw{DOS.H} library function such as \cw{mallocnear}, \cw{coreleft}, and \cw{farcoreleft}. None of those were part of ANSI C standard, this language was not portable.\\
+\par
+ It was impossible to take an UNIX program and compile it directly on DOS. Using Watcom compiler, C could be written using ANSI standard which opened the door to authoring programs on different machines running a different operating system. One company in particular would end up catching id Software attention. Its name was \NeXT.

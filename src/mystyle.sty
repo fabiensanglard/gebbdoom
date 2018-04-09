@@ -46,15 +46,6 @@
 
 
 
-\newcommand{\ccode}[1]{{\lstset{showlines=true} \begin{minipage}{\textwidth}\lstinputlisting[language=C]{code/#1}\end{minipage}}}
-\newcommand{\cccode}[2]{\begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=C]{code/#1}\caption{#2}\end{figure}\end{minipage} }
-\newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
-\newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
-
-\newcommand{\smallfakedosoutput}[1]{{\lstset{ backgroundcolor=\color{Black}, basicstyle=\ttfamily\footnotesize\color{White}} \tcode{#1}}}
-\newcommand{\fakedosoutput}[1]{{\lstset{ backgroundcolor=\color{Black}, basicstyle=\ttfamily\color{White}} \tcode{#1}}}
-
-
 
 % Allow to include urls in pdf
 \usepackage[pdftex]{hyperref}
@@ -158,6 +149,11 @@
 %For pretty equations
 \usepackage{amsmath}
 
+
+ 
+
+
+%----------------------------------- LISTINGS  -----------------------------------
 %For pretty source code
 \usepackage{listings}
 \usepackage{color}
@@ -167,7 +163,7 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.9,0.9,0.9}
- 
+
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour}, 
     %basicstyle=\scriptsize,
@@ -185,10 +181,25 @@
     frame=single,
     tabsize=2,
     xleftmargin=0in,
-    morekeywords={NULL, true, false, boolean},
+    %morekeywords={near, far, void, long int, short, unsigned, signed, FP_OFF, FP_SEG, coreleft, farmalloc},
 }
  
 \lstset{style=mystyle}
+
+\lstdefinelanguage{OldC}{%
+  language     = C,
+  morekeywords={near, far, void, long int, short, unsigned, signed, FP_OFF, FP_SEG, coreleft, farmalloc},
+}
+
+\newcommand{\ccode}[1]{{\lstset{showlines=true } \begin{minipage}{\textwidth}\lstinputlisting[language=OldC]{code/#1}\end{minipage}}}
+\newcommand{\cccode}[2]{\begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=OldC]{code/#1}\caption{#2}\end{figure}\end{minipage} }
+\newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
+\newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
+
+\newcommand{\smallfakedosoutput}[1]{{\lstset{showlines=true, backgroundcolor=\color{Black}, basicstyle=\ttfamily\footnotesize\color{White}} \tcode{#1}}}
+\newcommand{\fakedosoutput}[1]{{\lstset{showlines=true, backgroundcolor=\color{Black}, basicstyle=\ttfamily\color{White}} \tcode{#1}}}
+%----------------------------------- LISTINGS  -----------------------------------
+
 
 
 % To fix table of content spacing 
@@ -361,3 +372,6 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 
 % Use to do nd, th and so forth: 
 \newcommand{\ts}{\textsuperscript}
+
+
+
