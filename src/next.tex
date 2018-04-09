@@ -40,55 +40,26 @@ The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footno
 
 
 
-\cfullimage{next/NeXTcube_motherboard.png}{NextCube motherboard}
-\par
-Opening the machine revealed the minutia NeXT had adopted as its standard. The NextCube motherboard above demonstrates that aesthetic was no scarified to performances.\\
-\par
-One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. The machine shipped with 8 MiB of RAM (expendable to 16 via 1MiB Simms) which was much more than the standard 2 MiB in 1991.\\
-\par
-Surface Mounting allowed components to be placed much closer from each others than usual. All components fit on one board.
-
-\vspace{50 mm}
-\drawing{NeXTCube_motherboard}{NeXTCube mothboard diagram}
-\par
-List of chipsets and components of the NextCube motherboard:\\
-\par 
-\circled{1} NeXTBus connector,
-\circled{2} VLSI NeXTbus Interface Chip,
-\circled{3} CPU Motorola 68040,
-\circled{4} 256~KiB~VRAM,
-\circled{5} DRAM Controller CS38PG017CG01,
-\circled{6} Integrated Channel Processor (DMA Controller Fujitsu MB610313),
-\circled{7} Optical Storage Processor (Fujitsu MB600310),
-\circled{8} 16 SIMM slot max 4MiB each for total 64 MiB,
-\circled{9} DSP-56001RC20,
-\circled{A} Battery,
-\circled{B} NeXT Prom BIOS,
-\circled{C} DSP 768K Slot,
-\circled{D} Hard-Drive and Floppy connectors.
-\circled{E} Many connectors (top to bottom): 56001 DSP, Serial Port A\&B, SCSI2, Printer, Ethernet RJ45\&CoaxBNC, DB19 Monitor. 
-\circled{F} Intel n82077 Disk controller.
-\circled{G} DSP SRAM (8KiB) MCM56824A.
-\circled{H} SCSI Controller (NCR 53C90A)
-\circled{I} 100.000Mhz Oscillator K1149AA
-
-
 
 \begin{figure}[H]
 \centering
 \cscaledimage{1}{68030_blueprint.png}{Motorola 68030}
 \end{figure}
-Released in 1987, the Motorola 68030 was a 32-bit microprocessor. It was the latest of the 68k Motorola product line. Given that most NeXT hardware engineers came from the Apple Macintoch division, it is likely their familiarity with the 68000 (which powered the mac) played a big part in the selection of the 68030.\\
 \par
-On the NextComputer it ran at 25Mhz and could produce close to 5 Mips. 273,000 transistors with on-chip instruction and data caches of 256 bytes each. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU. Its MMU allowed protected memory 
-\pagebreak
+One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. The machine shipped with 8 MiB of RAM (expendable to 16 via 1MiB Simms) which was much more than the standard 2 MiB in 1991.\\
 \par
+Released in 1987, the Motorola 68030 was a 32-bit microprocessor. It was the latest of the 68k Motorola product line. Given that most NeXT hardware engineers came from the Apple Macintosh division, it is likely their familiarity with the 68000 (which powered the mac) played a big part in the selection of the 68030. Running at 25Mhz, it was able to generate close to 5 Mips\footnote{Of course, Motorola documentation claimed almost double that with 12 Mips!}. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU on the motherboard.
+
 
 
 \begin{figure}[H]
 \centering
 \cscaledimage{1}{68030_layout.png}{Motorola 68030 diagram}
 \end{figure}
+\par
+Above, the 273,000 transistors of the 68030 made of \circled{1} Memory Management Unit, \circled{2} $\mu$ROM, \circled{3} nROM, \circled{4} Control Section, \circled{5} Inst Pipe, \circled{6} Program Counter Execution Unit, \circled{7} Address Execution Unit, \circled{8} Data Execution Unit, \circled{9} 256 bytes i-cache, \circled{A} 256 bytes d-cache, \circled{B} Clock Generator.\\         
+\par
+It is unclear how much of a performance the two caches provided. Their small size of 256 bytes each would have incurred a significant cache miss (Intel had discarded on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Six-teen generate purpose registers were available which is pretty common for a RISC architecture where load and store have to be done manually\footnote{Intel's CISC based 486 had eight.}.
 \pagebreak
  
 
@@ -105,7 +76,7 @@ Contrary to PCs which were a mess of wires, the NeXT computers formed a chain. T
 \par
 
 
-If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the basic configuration would turn out to be great for backup but way too slow for runtime. Not only it was noisy and undreliable, it offered an access time of 90ms, it was 10 times slower than a hard-drive and made the operating system crawl. This rendered the "optional" \$3,500 330 MiB SCSI hard-drive an absolute necessity which pushed the final price tag to \$10,000!\\
+If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the basic configuration would turn out to be great for backup but way too slow for runtime. Not only it was noisy and unreliable, it offered an access time of 90 ms, it was 10 times slower than a hard-drive and made the operating system crawl. This rendered the "optional" \$3,500 330 MiB SCSI hard-drive an absolute necessity which pushed the final price tag to \$10,000!\\
 \par
 
 
@@ -120,7 +91,7 @@ Given the low sales of the NeXT Computer, the original machine was discontinued 
 \centering  
 \begin{tabularx}{\textwidth}{ L{1.7}  R{0.3}  R{1.4}  R{0.8}  R{0.8}}
   \toprule
-  \textbf{Name} &  \textbf{Year} & \textbf{Specs} & \textbf{\$\$\$} & \textbf{\$(2018)}   \\
+  \textbf{Name} &  \textbf{Year} & \textbf{CPU} & \textbf{Price} & \textbf{in 2018}   \\
   \toprule 
    NeXTComputer           & 1989 & 68030 25 Mhz & \$6,500 & \$12,938 \\
 \toprule 
@@ -158,15 +129,50 @@ From the outside the NextCube 12" cube central unit looked exactly like it prede
 \begin{minipage}{\textwidth}
 \scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}\\
 \end{minipage}
+
 \par
-The NextCube turbo released 1992 was essentially the same machine except the 68040 frequency was bumped to 33mhz and the maximum RAM capacity increased to 128 MB.\\
+The NextCube turbo released 1992 was essentially the same machine except the 68040 frequency was bumped to 33 Mhz and the maximum RAM capacity increased to 128 MB.\\
 \par
-The standard and color version only weakness remained the display. Shipping with 256 KiB of VRAM the machine could only output four colors (white, black and two shades of grey). To bring color to the NextCube, customers had to invest in a NeXTDimension board.\\
+The standard and color version only weakness remained the display. Shipping with 256 KiB of VRAM the machine could only output four colors (white, black and two shades of gray). To bring color to the NextCube, customers had to invest in a NeXTDimension board.\\
 \par
-%\trivia{The NeXTCube shape would see a third iteration. In 2000, with many NeXT people now at Apple, the company shipped an other cubic device: The Power Mac G4 Cube.}
-\trivia{The NeXTCube Turbo extension slot could welcome a Nitro board which replaced the 68040 33Mhz with a 68040 40 Mhz. Only 10 Nitro board are known to exist, they are extremely rare and highly seeked after by collectors.}
+
+\trivia{The NeXTCube Turbo extension slot could welcome a Nitro board which replaced the 68040 33Mhz with a 68040 40 Mhz. Only 10 Nitro board are known to exist, they are extremely rare and highly seek after by collectors.}
 \pagebreak
 
+
+\cfullimage{next/NeXTcube_motherboard.png}{NextCube motherboard}
+\par
+Opening the machine revealed the minutia NeXT had adopted as its standard. The NextCube motherboard above demonstrates that aesthetic was no scarified to performances.Surface Mounting allowed components to be placed much closer from each others than usual. All components fit on one board.\\
+\par
+Hidden under a passive heat-sink in the lower right, the Motorola 68040 was a big step up compared to the 68030. Its Harvard architecture (physically separated storage and signal pathways for instructions and data) coupled with an internal cache of 8 KiB (4 KiB data and 4 KiB instructions) and an integrated FPU nearly doubled throughput compared to the 68030.
+
+
+
+
+
+\vspace{50 mm}
+\drawing{NeXTCube_motherboard}{NeXTCube motherboard diagram}
+\par
+List of chipsets and components of the NextCube motherboard:\\
+\par 
+\circled{1} NeXTBus connector,
+\circled{2} VLSI NeXTbus Interface Chip,
+\circled{3} CPU Motorola 68040,
+\circled{4} 256~KiB~VRAM,
+\circled{5} DRAM Controller CS38PG017CG01,
+\circled{6} Integrated Channel Processor (DMA Controller Fujitsu MB610313),
+\circled{7} Optical Storage Processor (Fujitsu MB600310),
+\circled{8} 16 SIMM slot max 4MiB each for total 64 MiB,
+\circled{9} DSP-56001RC20,
+\circled{A} Battery,
+\circled{B} NeXT Prom BIOS,
+\circled{C} DSP 768K Slot,
+\circled{D} Hard-Drive and Floppy connectors.
+\circled{E} Many connectors (top to bottom): 56001 DSP, Serial Port A\&B, SCSI2, Printer, Ethernet RJ45\&CoaxBNC, DB19 Monitor. 
+\circled{F} Intel n82077 Disk controller.
+\circled{G} DSP SRAM (8KiB) MCM56824A.
+\circled{H} SCSI Controller (NCR 53C90A)
+\circled{I} 100.000Mhz Oscillator K1149AA
 
 
 
@@ -210,7 +216,7 @@ The card was packed with video and graphic processing hardware. At some point it
 \par
 \fq{NeXT has eliminated the C-Cube Microsystems CL-550 JPEG chip from NeXTdimension. This is because our supplier, C-Cube Microsystems, has failed to deliver chips that meet their specifications.}{Felipe\_Fuster\at NeXT.COM}\\
 \par
-To categorize the NeXTDimension as an extension card is actually innacurate. It was really a computer within the computer with its own operating system, RAM, and VRAM which communicated with NeXTStep via Mach messages.\\
+To categorize the NeXTDimension as an extension card is actually inaccurate. It was really a computer within the computer with its own operating system, RAM, and VRAM which communicated with NeXTStep via Mach messages.\\
 \par
 \fq{The NeXTdimension ran a custom kernel which was designed to do soft realtime management of multiple threads within a single address space, provide demand paged virtual memory, and provide a source-compatible Mach API subset and full Mach messaging interface, along with a minimal UNIX system call API, just enough to implement the RenderMan back end and the PostScript device layer. The kernel was called "Graphics aCcelerator Kernel, or "GaCK". Yes, this was a jape at the funny capitalization of the company name. It was not Mach, or BSD, or Minix, or Linux.}{M Paquette}
 \par
@@ -219,7 +225,7 @@ The card was a powerhouse which came with no driver, no SDK, and documentation. 
 \par
 \fullimage{NeXTtv.png}
 \par
-Because of Steve Jobs's "hobby" venture with Pixar, the NeXTDimension had close tie with RenderMan. It had a builtin hardware acceleration module called Quick RenderMan.\\
+Because of Steve Jobs's "hobby" venture with Pixar, the NeXTDimension had close tie with RenderMan. It had a built-in hardware acceleration module called Quick RenderMan.\\
 \par
 % Renderman uses a similar architecture. The 3DKit and RI C binding reside on the m68k (otherwise you couldn't link with them). 
 \fq{
@@ -237,9 +243,9 @@ List of chipsets and components of the NextDimension motherboard:\\
 \circled{1} NeXTBus connector,
 \circled{2} VLSI NeXTBus Interface Chip (NBIC),
 \circled{3} Intel i860 CPU 33MHz 64-bit RISC CPU,
-\circled{4} Motorola U88,
+\circled{4} Motorola U88 Memory Controller,
 \circled{5} BT463 ramdac,
-\circled{6} Motorola U52,
+\circled{6} Motorola U52 Data Formatter,
 \circled{7} 4MB VRAM video memory ,
 \circled{8} 8MB RAM expendable to 32MB,
 
@@ -303,7 +309,7 @@ However actually getting the chip at top speed usually requires using assembly l
 ~
 }\\
 \par
-The first three points were the hardware team responsibility. However the rest was on the software team and the amout of work ahead of them was overwhelming. No operating system was capable of delivering their vision so they would have to build one. To create an OS from scratch would have been an humongous effort. To save time the software team decided to build it on top of BSD. It was a time before Linux kernel emergence. The GNU fundation had no kernel at the time so they selected a micro kernel called Mach from Carnegie Mellon University. \footnote{That is why despite Apple taste for closed environment, they had to publish the source of their Darwin operating system.}
+The first three points were the hardware team responsibility. However the rest was on the software team and the amount of work ahead of them was overwhelming. No operating system was capable of delivering their vision so they would have to build one. To create an OS from scratch would have been an humongous effort. To save time the software team decided to build it on top of BSD. It was a time before Linux kernel emergence. The GNU foundation had no kernel at the time so they selected a micro kernel called Mach from Carnegie Mellon University. \footnote{That is why despite Apple taste for closed environment, they had to publish the source of their Darwin operating system.}
 \par
 \cfullimage{next/nextstep.png}{NextStep running on an early cube in four color mode.}
 \par
