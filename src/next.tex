@@ -30,12 +30,12 @@ Using their experience from Apple and particularly their work on the Macintosh, 
 \section{The NeXT Computer}
 The first machine shipped in 1989 after three years of hard work. Not meeting the initial release target was not a problem according to Jobs who famously replied to a journalist inquiring about the delay: "Late? This computer is five years ahead of its time!".\\
 \par
-Based on a Motorola 68030 25 Mhz and featuring powerful co-processors such a DSP and a FPU, the hardware delivered high performances. The machine also happened to be gorgeous. In an era where all computers case were made of plastic and beige, the elegance of the one foot perfect cube made of painted magnesium stood out.\\
+Based on a Motorola 68030 25 Mhz with 8 MiB RAM and featuring powerful co-processors such a DSP and a FPU, the hardware delivered high performances. The machine also happened to be gorgeous. In an era where all computers case were made of plastic and beige, the elegance of the one foot perfect cube made of painted magnesium stood out.\\
 \par
 \cfullimage{NEXT_Cube}{The Next Computer}
 
 
-The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footnote{At the time, a 14" monitor delivering a resolution of 640x480 was high-end standard on PC.} resolution of 1120 x 832 pixels with a density of 92 DPI (just shy of a true Megapixel at 931,840 total pixels). At launch the supply chain was so tight that when ordering a NeXTComputer, the customer received two parcels. One from Fremont containing the Central Unit, the keyboard and the mouse. And an other one directly from Sony containing the MegaDisplay.
+The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footnote{At the time, a 14" monitor delivering a resolution of 640x480 was high-end standard on PC.} resolution of 1120 x 832 pixels with a density of 92 DPI. The Cube's 256 KiB of VRAM allowed four shades of gray per pixel. At launch the supply chain was so tight that when ordering a NeXTComputer, the customer received two parcels. One from Fremont containing the Central Unit. And an other one directly from Sony containing the MegaDisplay.
 
 
 
@@ -46,9 +46,9 @@ The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footno
 \cscaledimage{1}{68030_blueprint.png}{Motorola 68030}
 \end{figure}
 \par
-One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. The machine shipped with 8 MiB of RAM (expendable to 16 via 1MiB Simms) which was much more than the standard 2 MiB in 1991.\\
+One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. According to Steve Jobs, it was supposed to allow users to "take their whole world in their backpacks".\\
 \par
-Released in 1987, the Motorola 68030 was a 32-bit microprocessor. It was the latest of the 68k Motorola product line. Given that most NeXT hardware engineers came from the Apple Macintosh division, it is likely their familiarity with the 68000 (which powered the mac) played a big part in the selection of the 68030. Running at 25Mhz, it was able to generate close to 5 Mips\footnote{Of course, Motorola documentation claimed almost double that with 12 Mips!}. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU on the motherboard.
+Released in 1987, the 32-bit 68030 was the latest in Motorola's 68000 series. A choice likely influenced by the experience NeXT hardware engineers had built while working on Apple's Macintosh and Lisa (both were powered by a 68000). Running at 25Mhz, it was able to generate close to 5 Mips\footnote{Of course, Motorola documentation claimed almost double that with 12 Mips!}. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU on the motherboard.
 
 
 
@@ -59,7 +59,7 @@ Released in 1987, the Motorola 68030 was a 32-bit microprocessor. It was the lat
 \par
 Above, the 273,000 transistors of the 68030 made of \circled{1} Memory Management Unit, \circled{2} $\mu$ROM, \circled{3} nROM, \circled{4} Control Section, \circled{5} Inst Pipe, \circled{6} Program Counter Execution Unit, \circled{7} Address Execution Unit, \circled{8} Data Execution Unit, \circled{9} 256 bytes i-cache, \circled{A} 256 bytes d-cache, \circled{B} Clock Generator.\\         
 \par
-It is unclear how much of a performance the two caches provided. Their small size of 256 bytes each would have incurred a significant cache miss (Intel had discarded on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Six-teen generate purpose registers were available which is pretty common for a RISC architecture where load and store have to be done manually\footnote{Intel's CISC based 486 had eight.}.
+It is unclear how much of a performance boost the two caches provided. Their small size of 256 bytes each would have incurred a significant cache miss (Intel had discarded on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Six-teen generate purpose registers were available which is pretty common for a RISC architecture where load and store have to be done manually\footnote{Intel's CISC based 486 had eight.}.
 \pagebreak
  
 
@@ -76,14 +76,14 @@ Contrary to PCs which were a mess of wires, the NeXT computers formed a chain. T
 \par
 
 
-If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the basic configuration would turn out to be great for backup but way too slow for runtime. Not only it was noisy and unreliable, it offered an access time of 90 ms, it was 10 times slower than a hard-drive and made the operating system crawl. This rendered the "optional" \$3,500 330 MiB SCSI hard-drive an absolute necessity which pushed the final price tag to \$10,000!\\
+If initially the NeXTComputer was acclaimed for its specs, there was a serious issue with the price. Market studies showed that students and researchers wanted a workstation priced at \$3,000. The NeXT Computer started at more than twice the ideal price at \$6,500. To make it worse, the optical drive which powered the basic configuration would turn out to be great for backup but way too slow for runtime. Not only it was noisy and unreliable, it offered an access time of 90 ms, it was 10 times slower than a hard-drive and made the operating system crawl. This rendered the "optional" \$3,500 330 MiB SCSI hard-drive an absolute necessity which pushed the final price tag to \$10,000! A big price to pay for machine not even able to output color.\\
 \par
 
 
 
 
 \section{Line of Products}
-Given the low sales of the NeXT Computer, the original machine was discontinued and the line of product refreshed. In 1991 NeXT released four new products\footnote{Announced  September 18, 1990.}. The NextCube which was the direct successor of the NextComputer. A smaller, flattened version of the NeXTCube which did not offer any expansion slots but with optional built-in color capability called NeXTStation. Finally a graphic and video processor expansion board called NeXTDimension.\\
+Given the low sales of the NeXT Computer, the original machine was discontinued and the line of product refreshed. In 1991 NeXT released four new products\footnote{Announced four months in advance on September 18, 1990.}. The NextCube which was the direct successor of the NextComputer. A smaller, flattened version of the NeXTCube which did not offer any expansion slots but with optional built-in color capability called NeXTStation. Finally a graphic and video processor expansion board called NeXTDimension.\\
 \par
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
@@ -124,7 +124,7 @@ In 1992, they buffed up their entire line with Turbo version and what would beco
 \section{NeXTCube}
 From the outside the NextCube 12" cube central unit looked exactly like it predecessor the NeXTComputer. However the inside told a difference story.\\
 \par
- The CPU was bumped to the Motorola 68040, a chip capable of three times the 68030 throughput with 17.5 Mips. The machine RAM capacity was doubled with an out of factory 16 MiB, extensible to 64 MiB. The magneto optical disc was abandoned in favor of an HDD, a floppy disk reader, and an optional CD-ROM drive. The HDD capacity was a choice of 400 MB, 1.4GB or 2.8GB SCSI drive. The floppy disks were twice the capacity of PCs at 2.88 MB. The CD-ROM was built-in the magnesium case.\\
+ The CPU was bumped to the Motorola 68040, a chip capable of three times the 68030 throughput with 15 Mips\footnote{Source: "Fast New Systems from NeXT", B.Y.T.E Nov 1990}. The machine RAM capacity was doubled with an out of factory 16 MiB, extensible to 64 MiB. The magneto optical disc was abandoned in favor of an HDD, a floppy disk reader, and an optional CD-ROM drive. The HDD capacity was a choice of 400 MB, 1.4GB or 2.8GB SCSI drive. The floppy disks were twice the capacity of PCs at 2.88 MB. The CD-ROM was built-in the magnesium case.\\
 \par
 \begin{minipage}{\textwidth}
 \scaledimage{0.5}{next/next-crt-top.png} \scaledimage{0.5}{next/next-cube-top.png}\\
@@ -142,9 +142,9 @@ The standard and color version only weakness remained the display. Shipping with
 
 \cfullimage{next/NeXTcube_motherboard.png}{NextCube motherboard}
 \par
-Opening the machine revealed the minutia NeXT had adopted as its standard. The NextCube motherboard above demonstrates that aesthetic was no scarified to performances.Surface Mounting allowed components to be placed much closer from each others than usual. All components fit on one board.\\
+Opening the machine revealed the minutia NeXT had adopted as its standard. The NextCube motherboard above demonstrates that aesthetic was no scarified to performances. Surface Mounting allowed components to be placed much closer from each others than usual.\\
 \par
-Hidden under a passive heat-sink in the lower right, the Motorola 68040 was a big step up compared to the 68030. Its Harvard architecture (physically separated storage and signal pathways for instructions and data) coupled with an internal cache of 8 KiB (4 KiB data and 4 KiB instructions) and an integrated FPU nearly doubled throughput compared to the 68030.
+Hidden under a heat-sink\footnote{Heat dissipation was always a problem for the 68040 which prevented high frequencies, a handicap against Intel's 486 capable of 66 Mhz.}, packing 1.2 millions transistors, the CPU was a big step up. The Harvard architecture ( separated storage and signal pathways for instructions and data), write-back capability, 8 KiB cache (4 KiB data and 4 KiB instructions), and an integrated FPU tripled throughput compared to the 68030.
 
 
 
@@ -180,23 +180,26 @@ List of chipsets and components of the NextCube motherboard:\\
 
 
 \section{NeXTStation}
-Since cost was the main issue with their product line, NeXT attempted to introduce a new product that would drive down prices significantly. They designed something close to the NeXTCube but with a trade off removing non essential elements in order to produce a cheaper, all-in-one machine.\\
+Since cost was the main issue with their product line, NeXT attempted to introduce a new product that would drive down prices significantly. They designed something close to the NeXTCube but with a trade off removing non essential elements in order to produce a three times cheaper, all-in-one machine.\\
 \par
- The design removed the three NeXTBUS extension slots which dramatically reduced the dimension of the central unit. A 2.88MiB floppy disk was added on the right side. The CD-ROM drive was axed. Since there was no room for a NeXTDimension, the VRAM was increased to provide built-in 4,096 colors display from a palette of 16 million colors. Surprisingly the designers managed to pack as much computing power as in the more imposing NextCube.\\
+The NeXTStation pricing and appearance make it a direct competitor of SPARCstation. No longer a perfect cube, the case nicknamed "The slab" and (unofficially and a name banned by Steve Jobs) the "pizza box", was nonetheless well received by customers and quickly became the most successful computer NeXT produced.\\
 \par 
 \cfullimage{cube_vs_slab.png}{A NextStation ad from NeXTWorld 1991 magazine.}
 \par
-No longer a perfect cube, the case nicknamed "The slab" and (unofficially and a name banned by Steve Jobs) the "pizza box", was nonetheless well received by customers and quickly became the most successful computer NeXT produced.\\
+Designer picked elements from the NextCube and the NeXTDimension in order to produce an all-in-on, non extensible machine. The three NeXTBUS extension slots were removed and so was the CD-ROM. A 2.88MiB floppy disk was added on the right side.\\
+\par
+ The most notable difference came from the Color version which contained 2 MiB of VRAM, making the machine capable of 16-bit (444) RGB colors. To accommodate for the increased bandwidth requirements, the motherboard was redesigned to include a Bt463 Ramdac.\\
 \par
 The system also introduced usage of the Apple Desktop Bus created by Steve Wozniak where input devices such as mouse and keyboard are connected as a daisy chain\footnote{ADB - The Untold Story: Space Aliens Ate My Mouse}.\\
 
 \par
-\fullimage{next/nextstation.png}
+\cfullimage{next/nextstation.png}{A NeXTStation Turbo Color (non-ADB)}
 \par
-In terms of specs, the NeXTStation had similar capabilities as the NeXTCube minus the extensibility. It featured the same 68040 CPU with the same speed and RAM capacity. The CD-ROM drive however was not built-in, it had to be bought separately.\\
+In an unmistakable theoretic, many components were renamed to emphasis subtle differences. The central unit fan was called a "whisper fan"\footnote{Source: "Fast New Systems from NeXT", B.Y.T.E Nov 1990}.  The power supply was a 120-watt unit using a new technology called "parallel resonance switching" which allegedly allowed a much smaller form factor than conventional power supplies.\\
 \par
-The major improvement over the NeXTCube was the built-in color capability thanks to the VRAM capacity of 1.5MB.\\
+Amazingly, despite its reduced size, the NeXStation performances did not suffer compared to the more imposing NeXTCube. Available in three variant, the NeXTStation, the NeXTStation Color, and the NeXTStation Turbo Color all relied on the 68040 and shipped with 12 MiB of RAM.\\
 \par
+\trivia{Notice on the picture that no button or switch are visible on the computer itself. The machine could only be turned on and off via the keyboard (a novelty at the time).}
 \pagebreak
 
 
@@ -208,20 +211,20 @@ The major improvement over the NeXTCube was the built-in color capability thanks
 
 
 \section{NeXTDimension}
-The initial graphic capability of the Next cubes were mediocre. The XXXKiB of VRAM only allowed four shades of gray. The NeXTDimension was to take the workstation to a whole new level. Shipping with XX MiB of VRAM, it allowed multiple display, 24-bit color per pixel, realtime recording of video, realtime playback of video. Because it was based a NeXTBus extension card, an user could buy three of them and drive four screens.\\
+The initial graphic capability of the Next cubes were mediocre. The 256 KiB of VRAM only allowed four shades of gray. The NeXTDimension was to take the workstation to a whole new level. Shipping with 4 MiB of RAM (extensible to 32), it allowed multiple display, 24-bit color per pixel, realtime recording of video, realtime playback of video. Since it build on a NeXTBus extension card, an user could buy three of them and drive four screens.\\
 \par
-To demonstrate its capabilities on the invitation-only presentation day event, Steve Jobs picked a scene from Alice in Wonderland film and had it played in realtime on the computer. The audience was impressed that a movie would be played on a computer. At first the movie frames were black and white but as Alice progressed through Wonderland they became more colorful. The audience went berserk.\\
+It is difficult to convey how ground breaking video manipulation was at the time. To demonstrate its capabilities on presentation day, Steve Jobs played a scene from Alice in Wonderland Black and White movie. The audience was impressed yet the best was to come. As Alice progressed through Wonderland, frame progressively turned from B\&W to color. And with color movies, audience went berserk.\\
 \par
 The card was packed with video and graphic processing hardware. At some point it even was supposed to feature realtime video compression. Problems due to manufacturer prevented it.\\
 \par
 \fq{NeXT has eliminated the C-Cube Microsystems CL-550 JPEG chip from NeXTdimension. This is because our supplier, C-Cube Microsystems, has failed to deliver chips that meet their specifications.}{Felipe\_Fuster\at NeXT.COM}\\
 \par
-To categorize the NeXTDimension as an extension card is actually inaccurate. It was really a computer within the computer with its own operating system, RAM, and VRAM which communicated with NeXTStep via Mach messages.\\
+The NeXTDimension was not a mere extension board, it was really an actual computer within the computer. With its own operating system, RAM, and VRAM which communicated with NeXTStep via Mach messages.\\
 \par
 \fq{The NeXTdimension ran a custom kernel which was designed to do soft realtime management of multiple threads within a single address space, provide demand paged virtual memory, and provide a source-compatible Mach API subset and full Mach messaging interface, along with a minimal UNIX system call API, just enough to implement the RenderMan back end and the PostScript device layer. The kernel was called "Graphics aCcelerator Kernel, or "GaCK". Yes, this was a jape at the funny capitalization of the company name. It was not Mach, or BSD, or Minix, or Linux.}{M Paquette}
 \par
 \par
-The card was a powerhouse which came with no driver, no SDK, and documentation. \cw{NeXTTV.app} allowed video editing and frame capture.\\
+The card was a powerhouse which came with no driver, no SDK, and documentation. Only \cw{NeXTTV.app} allowed video editing and frame capture.\\
 \par
 \fullimage{NeXTtv.png}
 \par
@@ -244,11 +247,10 @@ List of chipsets and components of the NextDimension motherboard:\\
 \circled{2} VLSI NeXTBus Interface Chip (NBIC),
 \circled{3} Intel i860 CPU 33MHz 64-bit RISC CPU,
 \circled{4} Motorola U88 Memory Controller,
-\circled{5} BT463 ramdac,
+\circled{5} Bt463 ramdac,
 \circled{6} Motorola U52 Data Formatter,
-\circled{7} 4MB VRAM video memory ,
-\circled{8} 8MB RAM expendable to 32MB,
-
+\circled{7} 4 MiB default RAM,
+\circled{8} SiMM RAM extension slots up to 8x4= 32MiB,
 \circled{9} Video color space conversion and video input (SAA 7191 WP \& SAA 7192 WP), 
 \circled{A} Many connectors (top to bottom): Video Out(EGA/VGA, S-Video, Composite), Video In(S-Video, Composite, Composite), DB19 Monitor.
 \circled{B} 33.000Mhz Oscillator K1100AA
