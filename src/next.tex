@@ -211,20 +211,20 @@ Amazingly, despite its reduced size, the NeXStation performances did not suffer 
 
 
 \section{NeXTDimension}
-The initial graphic capability of the Next cubes were mediocre. The 256 KiB of VRAM only allowed four shades of gray. The NeXTDimension was to take the workstation to a whole new level. Shipping with 4 MiB of RAM (extensible to 32), it allowed multiple display, 24-bit color per pixel, realtime recording of video, realtime playback of video. Since it build on a NeXTBus extension card, an user could buy three of them and drive four screens.\\
+The 256 KiB of VRAM on the NeXTCube only allowed a mediocre four shades of gray. The NeXTDimension was to take the workstation to a whole new level. Shipping with 4 MiB of RAM (extensible to 32 MiB), it allowed 24-bit color per pixel GUI and realtime recording/playback of video signals. Since the board was connected via a NeXTBus port, up to three NeXTDimensions could be connected, allowing the NeXTCube to drive four extended screens simultaneously.\\
 \par
-It is difficult to convey how ground breaking video manipulation was at the time. To demonstrate its capabilities on presentation day, Steve Jobs played a scene from Alice in Wonderland Black and White movie. The audience was impressed yet the best was to come. As Alice progressed through Wonderland, frame progressively turned from B\&W to color. And with color movies, audience went berserk.\\
+On presentation day Steve Jobs managed to demonstrate the groundbreaking capabilities in his signature spectacular fashion. A scene from black and white movie Alice in Wonderland movie was played live. The audience was impressed yet the best was to come. As Alice progressed through Wonderland, frames progressively turned to color. The audience went berserk.\\
 \par
-The card was packed with video and graphic processing hardware. At some point it even was supposed to feature realtime video compression. Problems due to manufacturer prevented it.\\
+At some point it even was supposed to feature realtime video compression but Problems due to manufacturer prevented it.\\
 \par
 \fq{NeXT has eliminated the C-Cube Microsystems CL-550 JPEG chip from NeXTdimension. This is because our supplier, C-Cube Microsystems, has failed to deliver chips that meet their specifications.}{Felipe\_Fuster\at NeXT.COM}\\
 \par
-The NeXTDimension was not a mere extension board, it was really an actual computer within the computer. With its own operating system, RAM, and VRAM which communicated with NeXTStep via Mach messages.\\
+The NeXTDimension was not a mere extension board, it was full featured computer within the computer. It had its own operating system, RAM, and clock generator which communicated with NeXTStep via Mach messages.\\
 \par
 \fq{The NeXTdimension ran a custom kernel which was designed to do soft realtime management of multiple threads within a single address space, provide demand paged virtual memory, and provide a source-compatible Mach API subset and full Mach messaging interface, along with a minimal UNIX system call API, just enough to implement the RenderMan back end and the PostScript device layer. The kernel was called "Graphics aCcelerator Kernel, or "GaCK". Yes, this was a jape at the funny capitalization of the company name. It was not Mach, or BSD, or Minix, or Linux.}{M Paquette}
 \par
 \par
-The card was a powerhouse which came with no driver, no SDK, and documentation. Only \cw{NeXTTV.app} allowed video editing and frame capture.\\
+The card was a powerhouse which unfortunately came with neither drivers, SDK, or documentation. Only \cw{NeXTTV.app} allowed video editing and frame capture.\\
 \par
 \fullimage{NeXTtv.png}
 \par
@@ -235,9 +235,15 @@ Because of Steve Jobs's "hobby" venture with Pixar, the NeXTDimension had close 
 Depending on the setup of the Renderman context, a RIB stream can be spooled to Photorealistic Renderman running on the host CPU (the m68K for black hardware), or to a Quick Renderman implementation loaded on demand into the Window Server. The Quick Renderman implementation in the Window Server may then, if the target window is on a NeXTdimension, forward the rendering operations to a Quick Renderman context running on the NeXTdimension board.}{M Paquette} 
 \par
 
+
+
+
+
+
 \cfullimage{next/NextDimension_board.png}{NeXTDimension board}
 \par
-Like the NextCube motherboard, the NeXTDimension hardware was gorgeous. The most proponent component is of course the Intel 840. It had failed to beat the Intel 486 on the market but its eagerness to work on \doom allowed it to make its way here.\\
+Like the NextCube motherboards, the NeXTDimension hardware was gorgeous and benefited from the same "Surface Mounting" manufacturing process. The most proponent component is of course the Intel 840.\\
+\par It had failed to beat Intel's 486 CPU on the market but its eagerness to particilate on \doom allowed it to land a gig on the tool team.\\
 \par
 \drawing{NeXTDimension_motherboard}{NeXTDimension board diagram}
 \par
@@ -247,7 +253,7 @@ List of chipsets and components of the NextDimension motherboard:\\
 \circled{2} VLSI NeXTBus Interface Chip (NBIC),
 \circled{3} Intel i860 CPU 33MHz 64-bit RISC CPU,
 \circled{4} Motorola U88 Memory Controller,
-\circled{5} Bt463 ramdac,
+\circled{5} Bt463 Ramdac,
 \circled{6} Motorola U52 Data Formatter,
 \circled{7} 4 MiB default RAM,
 \circled{8} SiMM RAM extension slots up to 8x4= 32MiB,
@@ -257,7 +263,7 @@ List of chipsets and components of the NextDimension motherboard:\\
 \circled{C} 100.000Mhz Oscillator K1149AA
 \par
 
-\cfullimage{next/NeXTDimension.png}{An early NeXTDimension ad from NeXT 1991 brochure. Noice the C-Cube Microsystems JPeg chip which had to be cut from the final design.}
+\cfullimage{next/NeXTDimension.png}{An early NeXTDimension ad from NeXT 1991 brochure. Notice the C-Cube Microsystems JPeg chip which had to be cut from the final design.}
 \pagebreak
 
 
@@ -295,47 +301,50 @@ However actually getting the chip at top speed usually requires using assembly l
  \par
 \begin{enumerate}
 \item A new architecture optimized for total system throughput, not just individual component benchmarks.
-
 \item A pioneering technology for vast and reliable storage, opening the door for new ways to access and use information.
-
 \item Built-in CD-quality sound, allowing sound to be integrated into applications that are used every day.
-
 \item A unified imaging system - Display PostScript - for both the display and the printer. So what you see on the screen is unequivocally what you get on paper.
-
 \item An intuitive interface that gives everyone access to UNIX, with all of its power for networking and multitasking.
-
 \item A multimedia mail system that enables communication combining text, graphics, and voice.
-
 \item A new development environment that dramatically cuts the time it takes to create and customize software.
 \end{enumerate}
 ~
 }\\
 \par
-The first three points were the hardware team responsibility. However the rest was on the software team and the amount of work ahead of them was overwhelming. No operating system was capable of delivering their vision so they would have to build one. To create an OS from scratch would have been an humongous effort. To save time the software team decided to build it on top of BSD. It was a time before Linux kernel emergence. The GNU foundation had no kernel at the time so they selected a micro kernel called Mach from Carnegie Mellon University. \footnote{That is why despite Apple taste for closed environment, they had to publish the source of their Darwin operating system.}
+
+
+The first three points were the hardware team responsibility. However the rest was on the software team and the amount of work ahead of them was overwhelming. No operating system was capable of delivering their vision. They had to build it.\\
+\par
+ To create an OS from scratch would have been an humongous effort. To save time the software team decided to reuse available components. They selected a micro kernel called Mach from Carnegie Mellon University and combined it with BSD (from University of California, Berkeley) elements such a network stack, multi-user, multi-process and file-system. That was enough to bring the machine up to a command prompt.
 \par
 \subsection{GUI}
+ To achieve the "unified imaging system", Next engineers started from the language designed by Adobe for high-end printer, PostScript and modified it to meet the need of a GUI in terms of look and feel, and performances. The result was called DPS (Display PostScript\footnote{When OpenStep was used to build Rhapsody at Apple, the display system was changed to Portable Document Format (PDF) imaging model.}).\\
+\par
 \cfullimage{next/nextstep.png}{NextStep 1.0 running on a NeXTComputer in four color mode.}
 \par
-To architecture their operating system around Unix provided multi-user and networking out of the box. The major task remaining was to build the GUI.\\
-\par
- To achieve the "unified imaging system" they started from the language designed by Adobe for high-end printer, PostScript and modified it to meet the need of a GUI in terms of look and feel, and performances. The result was called Display PostScript\footnote{When OpenStep was used to build Rhapsody at Apple, the display system was changed to Portable Document Format (PDF) imaging model.}
-\par
+The result was the place of numerous impressive features. While some were raw power accomplishments like for example the ability to see the content of a window while moving it (On all other GUI based OSes, windows had to be moved with only the outline visible because of graphic card and bandwidth limitations). Some others were purely based on superior design. Some of them were so solid that they reminded in a form or an other all the way up to MacOS X. The desktop metaphor, the unified titlebar scheme, the Dock, and File Manager column view flow to name only a few.
+
+
+
+
 \fq{The Display PostScript system can be broken into two pieces, the PostScript interpreter and the device. The interpreter processes the language, and passes marking, imaging, and compositing directions to the device layer.\\ 
 \par
 The device layer takes the high level marking, imaging, and compositing operations and (eventually) converts these to bitmap level operations. The Display PostScript system spends the majority of it's time down here. In the case of the NeXTdimension board, the device layer is implemented on the NeXTdimension board. Marking, imaging, and compositing operations are asynchronously transmitted to the NeXTdimension for processing while additional PostScript is interpreted on the 68K processor. A good degree of parallelism is achieved in normal operation. \\}{M Paquette} 
 %The NXPing() AppKit call is interpreted by the Display PostScript system as a request to synchronize the NeXTdimension, PostScript interpreter, and app, and will not return until PostScript rendering is complete on the NeXTdimension.
 \par
 %Running on a color capable machine, the GUI was the most beautiful interface of its time.\\ 
-\vspace{4mm}
+\vspace{6mm}
 % \scaledimage{0.95}{nextstep_color.png}
 \fullimage{nextstep_color.png}
+\par
+On the previous page, NeXTSTep running on a color capable machine. Notice the opened \cw{Mail.app} featuring an email from Steve Jobs vaunting the merits of Object Oriented Programming.
 
 \section{NeXT at id Software}
 To say NeXT computers polarized professionals would be an understatement. It is fair to say that everybody had an opinion about them. Some developers hated it.\\
 \par
 \fq{Develop for it? I'll piss on it!}{- Bill Gates (InfoWorld, Will Microsoft develop for the NeXT?).}\\
 \par
-Some were interested by having access to an Unix system with a powerful GUI.\\
+Some were interested to have access to an Unix system combining a powerful GUI.\\
 \par
 \fq{
 When id Software was stationed in Madison, Wisconsin during the winter of 1991, most of us were gone for the Christmas holiday - except John Carmack. John's present, which he bought with \$11,000 of his own money, procured by walking through the snow and ice to remove from the bank\footnotemark, arrived during the holiday and he spent the whole time learning as much as he could about the computer and started working on vector quantization algorithms for compressing graphics. His test graphic was a 256-color screen from King's Quest 5.\\
@@ -344,47 +353,35 @@ When id Software was stationed in Madison, Wisconsin during the winter of 1991, 
  After his research was done it was agreed that the entire company needed to develop our next game on NeXTSTEP.}{John Romero, rome.ro, December 20, 2006}\\
  \footnotetext{Emptying his bank account in the process.}
 \par
-Given the timing of its purchase, the NeXT was first used for Wolfestein3D Hint Book. One of the best DTP application at the time, \cw{FrameMaker.app} proved perfect for the task. After that, NeXT rapidly conquered id Software. PCs remained in use mostly for Deluxe Paint and also test the game they wanted to ship.\\
+Given the timing of its purchase, the NeXT was first used to produce Wolfestein3D Hint Book. One of the best DTP application at the time, \cw{FrameMaker.app} proved perfect for the task. After that, NeXT rapidly conquered id Software for all other operations. PCs remained in use mostly for Deluxe Paint and also test the game they wanted to ship.\\
 \par
 As the needs of the studio evolved with more and more power, id took advantage of NeXTStep ability to run on various platforms from HP and Intel (called the "White hardware").\\
 \par
-The studio bought so much hardware that twenty five years later, accounts differ on what was the first piece of hardware they bought. For John Romero, it was a NextCube, for John Carmack it was a NeXTStation.\\
+The studio bought so much hardware over the years that twenty five years later, accounts differ on what was the first kind of NeXT machine was purchased. According to John Carmack it was a NeXTStation.\\
 \par
 
 
-\fq{The NeXTCube was purchased in December 1991 and was the only NeXT Computer we had until December 1992 when we decided we would develop DOOM with them so we bought 3 NeXTStations: mine, John Carmack's new one, Tom Hall's. John C's original NeXTCube was the computer used to scan the clay models, gun toys, and latex models.}{John Romero}
-\par
-\vspace{4mm}
-\par
 \fq{
 I bought our first NeXT (a ColorStation) just out of personal interest. Jason Blochowiak had talked to me about the advantages of Unix based systems from his time at college, and I was interested in seeing what Steve Job's next big thing was. It is funny to look back - I can remember honestly wondering what the advantages of a real multi process development environment would be over the DOS and older Apple environments we were using. Actually using the NeXT was an eye opener, and it was quickly clear to me that it had a lot of tangible advantages for us, so we moved everything but pixel art (which was still done in Deluxe Paint on DOS) over. Using Interface Builder for our game editors was a NeXT unique advantage, but most Unix systems would have provided similar general purpose software development advantages (the debugger wasn't nearly as good as Turbo Debugger 386, though!). Kevin Cloud even did our game manuals, starting with Wolfenstein 3D, in Framemaker on a NeXT.\\
 \par
 This was all in the context of DOS or Windows 3.x; it was revelatory to have a computer system that didn't crash all the time. By the time Quake 2 came around, Windows NT was in a similar didn't-crash-all-the-time state, it had hardware accelerated OpenGL, and Visual Studio was getting really good, so I didn't feel too bad moving over to it. At that transition point I did evaluate most of the other Unix workstations, and didn't find a strong enough reason not to go with Microsoft for our desktop systems.\\
 \par
-Over the entire course of Doom and Quake 1's development we probably spent \$100,000 on NeXT computers, which isn't much at all in the larger scheme of development. We later spent more than that on Unix SMP server systems (first a quad Alpha, then an eventually 16-way SGI system) to run the time consuming lighting and visibility calculations for the Quake series. I remember one year looking at the Top 500 supercomputer list and thinking that if we had expanded our SGI to 32 processors, we would have just snuck in at the bottom.}{John Carmack, quora.com}
+Over the entire course of Doom and Quake 1's development we probably spent \$100,000 on NeXT computers, which isn't much at all in the larger scheme of development. We later spent more than that on Unix SMP server systems (first a quad Alpha, then an eventually 16-way SGI system) to run the time consuming lighting and visibility calculations for the Quake series. I remember one year looking at the Top 500 supercomputer list and thinking that if we had expanded our SGI to 32 processors, we would have just snuck in at the bottom.}{John Carmack, quora.com}\\
 \par
-
-
-
-
-
-
-
-
+However when prompting other team members such as John Romero, it was a black and white NextCube.\\
 \par
-\fq{
+\fq{The NeXTCube was purchased in December 1991 and was the only NeXT Computer we had until December 1992 when we decided we would develop DOOM with them so we bought 3 NeXTStations: mine, John Carmack's new one, Tom Hall's. John C's original NeXTCube was the computer used to scan the clay models, gun toys, and latex models.\\
+\par
 id's first NeXT hardware was all black - both Cubes and Stations. We upgraded through the years to the Turbo model then to other hardware like the HP Gecko and then Intel hardware at the end. We were building fat binaries of the tools for all 3 processors in the office - one .app file that had code for all 3 processors in it and executed the right code depending on which machine you ran it on. All our data was stored on a Novell 3.11 server and we constantly used the NeXTSTEP Novell gateway object to transparently copy our files to and from the server as if it was a local NTFS drive. This was back in 1993!\\
 \par
-In fact, with the superpower of NeXTSTEP, one of the earliest incarnations of DoomEd had Carmack in his office, me in my office, DoomEd running on both our computers and both of us editing one map together at the same time. I could see John moving entities around on my screen as I drew new walls. Shared memory spaces and distributed objects. Pure magic.\\}{John Romero}
+In fact, with the superpower of NeXTSTEP, one of the earliest incarnations of DoomEd had Carmack in his office, me in my office, DoomEd running on both our computers and both of us editing one map together at the same time. I could see John moving entities around on my screen as I drew new walls. Shared memory spaces and distributed objects. Pure magic.\\}{John Romero}\\
 \par
-id Software and John Romero in particular liked their production pipeline so much that they successfully advertised it to other studio.\\
+John Romero in particular liked their production pipeline so much that he made it its champion. He managed to successfully advertise it to other gaming studio.\\
 \par
 \fq{
 DOOM, DOOM II and Quake weren't the only games developed on NeXTSTEP. When I got Raven Software to agree to develop Heretic for us I had them buy several Epson NeXT computers (Intel based) and I flew up to Madison, WI to get them all set up and teach them how to develop the game with our tools and engine. It was a great time I'll never forget - seeing their team get excited about the power of the new environment and that they got the game developed and released in under a year. They signed on for another title and developed Hexen on NeXTSTEP as well.}{John Romero, rome.ro, December 20, 2006}\\
 \par
-
-\pagebreak
-
+Curiously NeXT never capitalized on id Software the success story reportedly due to Steve Jobs disdain for video games\footnote{comp.sys.next.advocacy: "DOOM: NeXTstep's Most Successful App".}.
 
 
 
@@ -393,15 +390,23 @@ DOOM, DOOM II and Quake weren't the only games developed on NeXTSTEP. When I got
 
 
 
-\section{Downfall and Rebirth}
+
+
+\section{Rollercoaster}
+During its seven years in activity, NeXT lead a tumultuous life. Carried on by Steve Jobs's aura, the company was praise for several years while it still yet had to produce something. Glorified upon each announcement and owing a lot to marketing genius, the hardware was both praised and booed.
+
+\subsection{Downfall}
 As elegant and powerful as the black hardware was, its high price tag made them a deal breaker. Even the "cheaper" NeXTStations were well beyond most developer budget.\\
 \par
- In 1988, the factory was building 400 units/month, well below its maximun 10,000/month capacity. The end of 1989 was even worse with only 360 units sold that year. Production had to be slowed down to 100 unit/month to avoid overflowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw an improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what apple sold in a single week. In 1992, sales reached \$140 millions\footnote{Source:The Next Big Thing.} and NeXT claimed its first profitable quarter\footnote{In fact it was \$40 millions from breaking even. Source: "The Next Big Thing"}, seven years after its creation.\\
+ In 1988, the factory was building 400 units/month, well below its maximun 10,000/month capacity. Sales worsened over 1989 with only 360 units/month sold over the year. Production had to be slowed down to 100 unit/month to avoid overflowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw yet an improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what apple sold in a single week. In 1992, sales reached \$140 millions\footnote{Source:The Next Big Thing.} and NeXT claimed its first profitable quarter\footnote{In fact it was \$40 millions from breaking even. Source: "The Next Big Thing"}, seven years after its creation.\\
 \par
-Despite the steady improvements of 1993, NeXT still lost \$40 millions that year. With only 50,000 NeXT machines sold over the course of seven years\footnote{In 1993 Apple sold 50,000 units every six days.} (including thousands to the then secret National US Reconnaissance Office), Jobs decided that NeXT has hardware manufacturer could not carry on. Struggling to close deals and hemorrhaging cash (40 millions/year) it fired 300 of its 500 employee in February to become a software only company. NeXTStep was made portable and capable to run on Intel, SPARC, and MIPS CPUs. NeXTSTEP was sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN to build a lightweight version of NeXTStep called OpenSTEP.\\
+Despite the steady improvements, NeXT still lost \$40 millions that year. With only 50,000 NeXT machines sold over the course of seven years\footnote{In 1993 Apple sold 50,000 units every six days.} (including thousands to the then secret National US Reconnaissance Office), Jobs decided that NeXT has hardware manufacturer could not carry on. Struggling to close deals and hemorrhaging cash it fired 300 of its 500 employee on a Black Tuesday of February 1993 to become a software only company.\\
 \par
-Curiously NeXT never capitalized on id Software the success story reportedly due to Steve Jobs disdain for video games\footnote{comp.sys.next.advocacy: "DOOM: NeXTstep's Most Successful App".}.\\
+ The purpose of NeXTSTEP was changed. From operating system in charge of making the black hardware sing, it was to become a white hardware enabled and the sole money maker. It was re-factored to be portable and capable to run on Intel, SPARC, and MIPS CPUs. NeXTSTEP was sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN to build a lightweight version of NeXTStep called OpenSTEP.\\
 \par
+
+
+\subsection{Rebirth}
 In an Hollywoodian turn of events, Apple Computer bought NeXT in 1996 for \$429 million in cash after its own efforts to upgrade the Macintosh operating system failed.  Steve Jobs returned to the company he had co-founded twenty years earlier. After the sale, Steve Jobs first began working as an advisor but was later appointed acting-CEO, and then finally CEO of the company.\\
 \par
 OpentSTEP was used as foundation for Apple's Rhapsody project which became Darwin (a.k.a MacOS X). Even if not for the kernel, it is likely some of the code that once ran on NeXTStep and contributed to \doom now runs on the many millions apple and iOS computer across the world.\\
