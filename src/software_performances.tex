@@ -85,7 +85,7 @@ For obvious reasons, the DOS version received special care. Two area of bottlnec
 Since Fixed point operation were performed a lot, \cw{FixedMul} and  \cw{FixedDiv2}. \cw{FixedMul} optimized with inline assembly and unrolled loops\footnote{There is almost no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are counted". That was without counting on Intel's Pentium which super-scalar architecture would require extra care by Michael Abrash for Quake.}.\\
 \par
 \cw{FixedMul} is called 124 times in the source code. Good candidate for optimization. Benchmark disabling it.\\
-TODO:Benchmark improvement.\\
+TODO:Benchmark improvement. Also \fixme{Self-modifying code}\\
 \par
 A more substantial optimization had to do with the layering. On DOS the rules separating the kernel and the video system were bent slightly. Parts like the status bar and the auto-map still function as originally designed but the drawing routines in the kernel such as \cw{R\_DrawColumn} and \cw{R\_DrawSpanFAB} are given privileged. They are able to access the VGA framebuffer discretely, bypassing framebuffer \#0. Since the menu module has to be able to draw on to of the 3D canvas, it is also granted direct VGA VRAM access.\\
 \par

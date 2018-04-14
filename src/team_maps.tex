@@ -1,12 +1,17 @@
 
 
 \section{Maps}
-To create a map, a design worked with only a few elements: \cw{VERTEX}, \cw{LINE}, \cw{SIDEDEF}, and \cw{SECTORS}.\\
+Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything could be done in 2D. A designed worked with only a few elements: \cw{VERTEX}\footnote{Vertices corrdinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
-\pngdrawing{doom_map_basics}{}
+\drawing{doom_map_basics}{}
 \par
-\pagebreak
-
+A \cw{SECTOR} is an area surrounded by \cw{LINE}s with a specified floor height, floor texture, ceiling height, ceiling texture, and a light level.\\
+\par
+A \cw{LINE} could either be a solid wall or a portal between two \cw{SECTOR}s. The difference was in the number of \cw{SIDEDEF} associated with it. A wall had only one \cw{SIDEDEF} on its right side. A portal had two \cw{SIDEDEF}s.\\
+\par
+A \cw{SIDEDEF} describe one side of a line. To accomodate walls and portals texturing it can have up to three textures. A middle texture used by wall for the full area they covered. There was also a lower texture and an upper texture for portal connecting \cw{SECTOR}s with different ceiling/floor height. If the portal led to a sector with higher floor, the lower texture is used to render the "step". If the \cw{SECTOR} connects to a sector with lower ceiling, the upper texture is used to render the "down step". To help aligment with door and buttons, \cw{SIDEDEF} textures could also be offseted vertically and horizontally.\\
+\par
+A \cw{THING}s is must simpler in comparaison. It only had one \cw{VERTEX} coordinate, an angle and an identifier telling its type. As the minimum a map must have one playe spawning location \cw{THING} type. 
 
 WINDOW EXAMPLE HERE\\
 \par
@@ -26,7 +31,7 @@ The release of the source code in April 2015 showed how much work went into it. 
 \par
 \tcode{cloc_doomed.txt}
 \par
-\trivia{The editor startups with a growling imp!}\\
+\trivia{DoomED icon is an Imp. Upon startup a growling sound is played.}\\
 \par
 \fullimage{doomed/all_widgets.png}
 \par
