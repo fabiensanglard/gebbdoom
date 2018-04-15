@@ -5,7 +5,7 @@ Maps were designed in a top-down view. The only limitation was that walls were p
 \par
 \drawing{doom_map_basics}{}
 \par
-A \cw{SECTOR} is an area surrounded by \cw{LINE}s with a specified floor height, floor texture, ceiling height, ceiling texture, and a light level.\\
+A \cw{SECTOR} is an area surrounded by \cw{LINE}s with a specified floor height, floor texture, ceiling height, ceiling texture, and a light level. A sector could be concave, but lines could not cross each others.\\
 \par
 A \cw{LINE} could either be a solid wall or a portal between two \cw{SECTOR}s. The difference was in the number of \cw{SIDEDEF} associated with it. A wall had only one \cw{SIDEDEF} on its right side. A portal had two \cw{SIDEDEF}s.\\
 \par
