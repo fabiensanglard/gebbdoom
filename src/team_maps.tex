@@ -65,68 +65,90 @@ DWD was designed with space efficiency in mind but rather to be easy to parse si
 
 
 \section{Map Preprocessor (Node Builder)}
-Map preprocessing was not something new at id. Since 1991, Wolfenstein 3D maps had been preprocessed to allow fast sound propagation. However with \doom, it had to be taken to a whole new level in terms of complexity and processing delay. The free form of the walls made the DDA\footnote{Digital differential analyzer, see Game Engine Black Book: Wolfenstein 3D} algorithm unusable. With the lose of DDA, gone were fast and cheap collision detection/wall sorting.\\
+Map preprocessing was not something new at id. In 1991 with Wolfenstein 3D maps were already pre-processed to allow fast sound propagation. With \doom, it was taken to a whole new level both in terms of complexity and processing time.\\
 \par
-To allow runtime to achieve an acceptable framerate, special optimized datastructures had to be generated. This was the task of 
-\cw{doombsp}.\\
+The main issue at hand was to maintain the same algorithm complexity despite relaxing the orthogonal grid constraint of Wolfenstein\footnote{DDA (Digital Differential Analyzer) was used extensively for VSD (Visual Surface Determination), collision detection and light of sight calculation. This was all gone with \doom.}. The solution chosen was to create for each map a multitude of accelerating data structures, each dedicated to solving a particular task.\\
 \par
- processes output from DoomED (XXX files) into XXX, XXX, and XXX. It was released very shorty after Doom shareware on April, 6th 1994. It is a small code base which was critical to the modding community since it enabled enthusiast to compile and inject their own maps into Doom.\\
+ The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputed a \cw{.WAD}. Not only the map was expressed in a space efficient manner (e.g: Expressing vertices only once and referencing them via index), three sections were generated alongside. A Binary Space Partitioned version of the map expressed a node tree to speed up rendition. A blockmap to accelerate collision detection. And finally a reject table to accelerate I.A detection.\\
+ \par
+\trivia{The Binary Partitioning step took a significant amount of time. A full \cw{doombsp} of \cw{E1M1} took XX minutes. To compile all the ten maps of the shareware took XX minutes. The full thirty maps of the registered version took a staggering XX minutes. This was a problem for designers...yet it was little compared to what Quake's \cw{qbsp} would be three years later.}\\
 \par
 \tcode{cloc_doombsp.txt}
 \par
-\trivia{How long did it take to preprocess one map? All maps in Doom?}
+ \trivia{\cw{DoomED.app}, \cw{doom} and \cw{doombsp} were tightly integrated. One button in the editor was enough to save the map, invoke the nodebuilder and start the game with the WIP map.}
 
 
-
-
-\pagebreak
-\par
+%
 \begin{figure}[H]
+\vspace*{3mm}
 \centering
 \includegraphics[width=\textwidth]{drawings/E1M1_lines.pdf}
 \end{figure}
 \par
-The map as it is generated via the editor (DoomED) on NextStation.\\
+The map as it is generated via DoomED.\\
 \par
 \begin{figure}[H]
+\vspace*{2mm}
 \centering
 \includegraphics[width=\textwidth]{drawings/E1M1_fab.pdf}
 \end{figure}
-\par
-Binary space partition. Slice all sectors into convex sub-spaces called subsectors.\\
-\par
+The BSP node tree where all sectors become convex sub-spaces called sub-sectors.
+
+
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/E1M1_blockmap.pdf}
 \end{figure}
 \par
-Block based line index.\\
+Blockmap slicing where each block is 128x128 to accelerate collision detections.\\
 \par
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/E1M1_sides.pdf}
 \end{figure}
 \par
-Reject map based on enemies and monsters line of sight.\\
+The Reject datastructure based on enemies and monsters line of sight.
+\pagebreak
 
+
+The source code of the node builder was released shortly after the game in May 1994. It was the NeXTSTEP version but it was quicky converted to DOS and released under the name IDBSP to the delight of a hoard of modders.\\
+\par
+\cfullimage{doombsp_compiling.png}{Building doombsp on NeXTSTEP.}
+\par
+Map data was packed into lumps and bundled in a \cw{.wad} archive (explained on page \pageref{wad_explained}).\\
+
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.15} L{0.75} }
+  \toprule
+  \textbf{Lump Name} &  \textbf{Explanation} \\
+  \toprule 
+   
+   \cw{EXMY} & Map start marker where X is the episode and Y the map number. All subsequent lumps are part of this map "block". Subsequent version of the engine also used \cw{MAPXY} lump name for the same purpose.\\
+   
+   \cw{VERTEXES} & An array of \cw{signed short} X, Y pairs. All coordinates in this map block are indexes into this array.\\
+   \cw{SECTORS} & An array of struct describing ceiling and floor textures/heights with light properties.\\
+   \cw{LINEDEFS} & An array of lines referencing two vertices\\
+   \cw{SIDEDEFS} & \\
+   \cw{THINGS} & \\
+   \cw{SEGS} & \\
+   \cw{SSECTORS} & \\
+   \cw{NODES} & \\
+   
+   \cw{REJECT} & \\
+   \cw{BLOCKMAP} & \\
+   \toprule
+\end{tabularx}
+%\caption{Map Data lumps]\protect\footnotemark.}
+\end{figure}
+\par
+\footnotetext{Source:The Unofficial Doom Specs v1.666.}
 
 \pagebreak
-\cfullimage{doombsp_compiling.png}{Building doombsp.}
-\par
-\cw{doombsp} generated several lumps and packaged them into a \cw{.wad} file\footnote{Explained on page XXX}.
-\par
-ARRAY OF LUMPS.
-E1M1\\
-THINGS\\
-LINEDEFS\\
-SIDEDEFS\\
-VERTEXES\\
-SEGS\\
-SSECTORS\\
-NODES\\
-SECTORS\\
-REJECT\\
-BLOCKMAP\\
+
+The slicing of the map via Binary Partition was complex and highly depend on what line was selected to split a subspace. A debug mode \cw{-draw} allowed to monitor what was happening.\\
 \par
 \cfullimage{doombsp_run.png}{Running doombsp in debug mode show splitter selection.}
 \par

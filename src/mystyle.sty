@@ -189,11 +189,12 @@
 \lstdefinelanguage{OldC}{%
   language     = C,
   morekeywords={near, far, void, long int, short, unsigned, signed, FP_OFF, FP_SEG, coreleft, farmalloc},
+  showlines=true,
 }
 
 \newcommand{\ccode}[1]{{\lstset{showlines=true } \begin{minipage}{\textwidth}\lstinputlisting[language=OldC]{code/#1}\end{minipage}}}
-\newcommand{\cccode}[2]{\begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=OldC]{code/#1}\caption{#2}\end{figure}\end{minipage} }
-\newcommand{\tcode}[1]{\begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }
+\newcommand{\cccode}[2]{{\lstset{showlines=true } \begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=OldC]{code/#1}\caption{#2}\end{figure}\end{minipage} }}
+\newcommand{\tcode}[1]{ {\lstset{showlines=true } \begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }}
 \newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
 
 \newcommand{\smallfakedosoutput}[1]{{\lstset{showlines=true, backgroundcolor=\color{Black}, basicstyle=\ttfamily\footnotesize\color{White}} \tcode{#1}}}
