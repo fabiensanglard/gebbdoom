@@ -27,7 +27,7 @@ Among the growing frustration and pain of 16-bit programming, people saw an oppo
 \subsection{DOS/4GW Extender}
 Under DOS the normal way to perform a "system call" was to use a software interrupt instruction with parameter \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
 \par
-\drawing{realmode_app_limk}{}
+\rawdrawing{realmode_app_limk}
 To allow the app to run in one mode and the OS to run in an other, the two worlds had to be bridged. A middle layer called "DOS Extender" able to run in any mode inserted itself between the program and the operating system.\\
 
 \par

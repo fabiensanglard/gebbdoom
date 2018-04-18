@@ -1,0 +1,1 @@
+objc_msgSend(obj, @selector(message));

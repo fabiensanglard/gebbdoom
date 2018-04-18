@@ -8,11 +8,30 @@ Migrating from Borland C++ editor on DOS to TextEdit on NeXTSTEP was a trade-off
 \par
 \fullimage{TextEditApp.png}
 
-\subsection{Interface Builder}
-The list of tool would not be complete without mentioning the crown jewel, Application Builder. 
-Created by Jean-Marie Hullot. Coupled with Project Builder and Objective-c (never crash send message to null).\footnote{Source: "NeXT vs Sun: A world of a difference", 1991 promotional video}
-
-\fq{In my 20 years in this industry, I have never seen a revolution as profound as [object-oriented-programming]. You can build software literally 5 to 10 times faster, and that software is much more reliable, much easier to maintain and much more powerful... All software will be written using this object technology someday. No question about it.}{Steve Job, Rolling Stone, June 16, 1994.}
+\subsection{Interface Builder, OOP and Objective-C}
+The list of tool would not be complete without mentioning what many considered at the time the killer app of NeXTSTEP, Application Builder.\\
 \par
-\section{Doom Battle Book}
-NeXT was also used for Doom Battle Book\\
+"IB" was first written in Lisp by Jean Marie Hullot in 1984 and commercialized in 1986 under the same "SOS Interface"\footnote{Source: "A Brief History of Human Computer Interaction Technology".}, Hullot was hired by NeXT, Inc. where along with a team he created a similar tool revolving around Objective-C.\\
+\par
+The NeXTSTEP version managed to reduce construction cost of GUI by a factor of 10\footnote{Source: "NeXT vs Sun: A world of a difference", 1991 promotional video.}. The proble at hand was twofold. First draw a UI, then connect the UI elements to Object models.\\
+\par
+The first part was "insanely easy" since builing an interface was done by a series of drag and drop from a palette to a canvas. An inspector allowed to see the properties of an element. Everything from XXX to the size could be adjusted easily. Connecting the visual elements to the business logic objects was also done with the mouse by connecting visual boxes to target/actions (tie a checkbox to a boolean property of tie a button pressed to a method call).\\
+\par
+The developer could focus its time on implementing only the business logic.
+\pagebreak
+
+Beyond its revolutionary design, IB was nicely completed by the OOP (Oriented Object Programming) provided by a programmer friendly language called : Objective-C.\\
+\par
+\fq{In my 20 years in this industry, I have never seen a revolution as profound as [object-oriented-programming]. You can build software literally 5 to 10 times faster, and that software is much more reliable, much easier to maintain and much more powerful... All software will be written using this object technology someday. No question about it.}{Steve Job, Rolling Stone, June 16, 1994.}\\
+\par
+OOP's encapsulation, inheritance and polymorphism allowed to push back the limits of complexity a human programmer could deal with. It allowed to think of a program as a collection of potentially nested sub-systems. The mental image did not have to be a complex monolytic block. It could be decomposed in smaller easier to summarize opaque systems.\\
+\pagebreak
+\par
+The creator 
+From the drawing board, Brad Cox's goal had  creator of Obj-C summarized the phylosophy of the language.\\
+\par
+At the heart of Obj-C runtime lies the message dispatching method \cw{objc\_msgSend} which is called millions of time by the time a Mac has booted. Unsuprisingly it is hand optimized in assembly\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mikea Ash.}.\\
+\objccode{obj.message}
+\objccode{objc_msgSend.m}
+\pagebreak
+
