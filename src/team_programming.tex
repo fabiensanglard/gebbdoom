@@ -9,29 +9,51 @@ Migrating from Borland C++ editor on DOS to TextEdit on NeXTSTEP was a trade-off
 \fullimage{TextEditApp.png}
 
 \subsection{Interface Builder, OOP and Objective-C}
-The list of tool would not be complete without mentioning what many considered at the time the killer app of NeXTSTEP, Application Builder.\\
+The list of tool would not be complete without mentioning what many considered at the time the killer app of NeXTSTEP, Application Builder which was instrumental to DoomED.\\
 \par
 "IB" was first written in Lisp by Jean Marie Hullot in 1984 and commercialized in 1986 under the same "SOS Interface"\footnote{Source: "A Brief History of Human Computer Interaction Technology".}, Hullot was hired by NeXT, Inc. where along with a team he created a similar tool revolving around Objective-C.\\
 \par
-The NeXTSTEP version managed to reduce construction cost of GUI by a factor of 10\footnote{Source: "NeXT vs Sun: A world of a difference", 1991 promotional video.}. The proble at hand was twofold. First draw a UI, then connect the UI elements to Object models.\\
+The NeXTSTEP version he managed to produce would reduce construction cost of GUI by a factor of 5-10\footnote{Source: "NeXT vs Sun: A world of a difference", 1991 promotional video.}.\\
 \par
-The first part was "insanely easy" since builing an interface was done by a series of drag and drop from a palette to a canvas. An inspector allowed to see the properties of an element. Everything from XXX to the size could be adjusted easily. Connecting the visual elements to the business logic objects was also done with the mouse by connecting visual boxes to target/actions (tie a checkbox to a boolean property of tie a button pressed to a method call).\\
+\fullimage{ib.png}{}
 \par
-The developer could focus its time on implementing only the business logic.
-\pagebreak
+ With IB all GUI authoring work was done with a mouse within the blink of an eye. The "tedious" part involving writing code was reserved for the actual meat of the application in the business logic layer. Creating the GUI was a two steps processe. First draw all elements, then connect the UI elements to the Object models.\\
+\par
+The first part was "insanely easy" since building an interface was done by a series of drag and drop from a palette to a canvas. An inspector allowed to see the properties of an element. Everything from min/max of a slider to the default value of a textfield could be adjusted easily.\\
+\par
+The second part, connecting the visual elements to the business logic objects, was also done with the mouse by connecting visual boxes to target/actions. The target could be a boolean property in the case of a checkbox UI element or it could be a method in the case of a button UI element.
+%\par
+%The developer could focus its time on implementing only the business logic.\\
 
+\subsubsection{Object Oriented Programming}
 Beyond its revolutionary design, IB was nicely completed by the OOP (Oriented Object Programming) provided by a programmer friendly language called : Objective-C.\\
 \par
 \fq{In my 20 years in this industry, I have never seen a revolution as profound as [object-oriented-programming]. You can build software literally 5 to 10 times faster, and that software is much more reliable, much easier to maintain and much more powerful... All software will be written using this object technology someday. No question about it.}{Steve Job, Rolling Stone, June 16, 1994.}\\
 \par
-OOP's encapsulation, inheritance and polymorphism allowed to push back the limits of complexity a human programmer could deal with. It allowed to think of a program as a collection of potentially nested sub-systems. The mental image did not have to be a complex monolytic block. It could be decomposed in smaller easier to summarize opaque systems.\\
-\pagebreak
+OOP's encapsulation, inheritance and polymorphism allowed to push back the limits of complexity a human programmer could deal with. A program would be conceptualized as a collection of potentially nested sub-systems. The mental image did not have to be a complex monolithic block. It could be decomposed in smaller easier to summarize opaque systems.\\
+
 \par
-The creator 
-From the drawing board, Brad Cox's goal had  creator of Obj-C summarized the phylosophy of the language.\\
+\subsubsection{Objective-C}
+In is interesting to notice that Objective-C was developed around the same time as C++. However as the co-creator Brad Cox describes it, the two had radically opposed philosophy where C++ put performance first while Objective-C put programmer's productivity first.\\
 \par
-At the heart of Obj-C runtime lies the message dispatching method \cw{objc\_msgSend} which is called millions of time by the time a Mac has booted. Unsuprisingly it is hand optimized in assembly\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mikea Ash.}.\\
+\fq{
+	FAB TO ADJUST. Back in 1980 when both our language were under construction, I came down and met with Bjarne Stroustrup. We had radically different view on what our languages would be designed. The key concept was the relative importance of machine efficiency vs programmer efficiency. Eventually, we agreed to disagree.
+} {Brad Cox}\\
+\par
+
+
+\par
+The version shipping with NeXT computer featured an important library called Foundation Kit. One of its component, \cw{NSObject}, freed developer from the error prone memory management burden by offering reference counting via its \cw{retain} and \cw{release} method. A collection of swiss knife containers \cw{NSArray}, \cw{NSDictionary}, \cw{NSSet}, \cw{NSData} avoided the need to write one.\\
+\par
+\trivia{Initially using the prefix NX, all objects in Foundation were rename with a leading NS for OpenSTEP. NS stands for the alliance NeXT/Sun\_Microsystems). All these objects are still the core of MacOSX and iOS today, the prefix NS was never removed.}\\
+\par
+The very design of the language based on message routed via a dispatching method \cw{objc\_msgSend} allowed program to be more resilient to errors. By far the most amazing was the ability to send message to null. When a developer sent a message to an object via the following syntax.\\ \par
 \objccode{obj.message}
+What really happened behind the scene was a call to the dispatch.\\
+\par
 \objccode{objc_msgSend.m}
-\pagebreak
+The highly optimized, hand written assembly was called millions of time by the time a NeXT had booted. The list of capabilities was impressive\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mikea Ash.}. Despite the complex mutable nature of ObjC objects (a method can be added at runtime, changing its duck type\footnote{Duck typing uses the principle "If it walks like a duck and it quacks like a duck, then it must be a duck.".}) \cw{objc\_msgSend} was able to march an inheritance chain at runtime to find the proper target. More importantly, it was also able to detect a \cw{nullptr} and simply returning the value \cw{0} instead of bringing the entire process down.\\
+\par
+
+All together, it is likely the three pillar of NeXT development environment speed up development of DoomED, doombsp, wadlink and all NeXT based tools by a factor of 2-3. \fixme{CITATION NEEDED JOHN?}\
 
