@@ -14,7 +14,7 @@
    viewBox="0 0 675.28568 412.24601"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    sodipodi:docname="dev_setup.svg">
   <defs
      id="defs4" />
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.71421875"
-     inkscape:cx="186.75684"
+     inkscape:cx="-87.668887"
      inkscape:cy="284.52101"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -66,7 +66,7 @@
        y="-58.866577"
        ry="21.124245" />
     <rect
-       style="fill:#faffd9;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#f1ecd4;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4136-9"
        width="282.63083"
        height="359.63489"
@@ -91,16 +91,15 @@
        ry="13.7554" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="470"
        y="249.50507"
-       id="text4164"
-       sodipodi:linespacing="125%"><tspan
+       id="text4164"><tspan
          sodipodi:role="line"
          id="tspan4166"
          x="470"
          y="249.50507"
-         style="font-size:35px">NFS SERVER</tspan></text>
+         style="font-size:35px;line-height:1.25;font-family:sans-serif">NFS SERVER</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4162-0"
@@ -111,40 +110,37 @@
        ry="13.7554" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="82.857162"
        y="250.93364"
-       id="text4164-5"
-       sodipodi:linespacing="125%"><tspan
+       id="text4164-5"><tspan
          sodipodi:role="line"
          id="tspan4166-4"
          x="82.857162"
          y="250.93364"
-         style="font-size:35px">NFS CLIENT</tspan></text>
+         style="font-size:35px;line-height:1.25;font-family:sans-serif">NFS CLIENT</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="134.28571"
        y="9.5050621"
-       id="text4189"
-       sodipodi:linespacing="125%"><tspan
+       id="text4189"><tspan
          sodipodi:role="line"
          id="tspan4191"
          x="134.28571"
          y="9.5050621"
-         style="font-size:70px">PC</tspan></text>
+         style="font-size:70px;line-height:1.25;font-family:sans-serif">PC</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="478.04324"
        y="20.700304"
-       id="text4189-2"
-       sodipodi:linespacing="125%"><tspan
+       id="text4189-2"><tspan
          sodipodi:role="line"
          id="tspan4191-2"
          x="478.04324"
          y="20.700304"
-         style="font-size:70px">NEXT</tspan></text>
+         style="font-size:70px;line-height:1.25;font-family:sans-serif">NEXT</tspan></text>
     <circle
        id="path4213"
        style="fill:#000000;stroke:none"
@@ -163,27 +159,25 @@
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="435.44214"
        y="175.07977"
-       id="text4251"
-       sodipodi:linespacing="125%"><tspan
+       id="text4251"><tspan
          sodipodi:role="line"
          id="tspan4253"
          x="435.44214"
          y="175.07977"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;font-family:'Courier New';-inkscape-font-specification:'Courier New'">/home/johnc/doom</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:1.25;font-family:'Courier New';-inkscape-font-specification:'Courier New'">/home/johnc/doom</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="111.06922"
        y="178.41365"
-       id="text4251-7"
-       sodipodi:linespacing="125%"><tspan
+       id="text4251-7"><tspan
          sodipodi:role="line"
          id="tspan4253-7"
          x="111.06922"
          y="178.41365"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;font-family:'Courier New';-inkscape-font-specification:'Courier New'">Z:\DOOM\</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:1.25;font-family:'Courier New';-inkscape-font-specification:'Courier New'">Z:\DOOM\</tspan></text>
   </g>
 </svg>

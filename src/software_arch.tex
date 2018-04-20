@@ -1,36 +1,44 @@
 \section{Architecture}
-Before diving into the code and its structure, let's take the time to understand how the developers worked. Until \doom, everything was done on a PC. Code was written, compiler generated an executable which ran on the same machine. With the introduction of \NeXT workstations, things had to be different.\\
+Before diving into the code and its structure, let's take the time to understand how the developers worked. Before \doom, everything had been done on a PC. Code was written, compiler compiled and the executable was started on the same machine. With the introduction of \NeXT workstations in the toolchain, things had to be different.\\
 \par
-A developer had two machines, a \NeXT workstation and a PC. All work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ar} and ran. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed.\\
+A developer had two machines, a \NeXT workstation and a PC. All work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and tested there. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence.}.\\
 \par
-Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair to the PC where the \NeXT workstation hard-drive was mounted over NFS. On this side, the PC compiled the same source code\footnote{With some platform specifics.} using \cw{WATCOM.EXE}, linked with \cw{WLINK.EXE} which generated \cw{DOOM.EXE}.\\
+Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair to the PC where the \NeXT workstation hard-drive was mounted over NFS. On this side, the PC compiled the same source code\footnote{With some platform specifics.} using \cw{WATCOM.EXE}, linked with \cw{WLINK.EXE} which generated \cw{DOOM.EXE}. \\
 \par
- In this setup the PC was relegated to "only" running the game. the PC harddrive was used to boot the machine and host the compiler. Everything else including the DOS executable was stored on the \NeXT SCSI HDD.\\
+ In this setup the PC was relegated to "only" running the game and assessing performances. The PC hard-drive was actually used only to boot the machine and host \cw{WATCOM} compiler. Everything else including \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
 \par
-There were significant obstacle to sharing the source code. First of all, DOS program had direct access to the hardware whereas NeXT process had to use "official" APIs. Second and perhaps most importantly, the two machines had different endianess. PCs ran on Intel CPUs which were little-endian whereas \NeXT were using Motorola 68040 CPU which were big-endian.\\
+There were significant obstacle to this methodology. First of all, DOS programs had direct access to the hardware whereas NeXT process had to use "official" APIs. Second and perhaps most importantly, the two machines had different endianess. PCs ran on Intel CPUs which were little-endian whereas \NeXT were using Motorola 68040 CPU which were big-endian.\\
+\vspace{2mm}
 \par
 \begin{figure}[H]
 \centering
-\scaleddrawing{0.7}{dev_setup}{Next HDD user home folder is mounted on DOS machine as Z drive.}
+\scaleddrawing{0.8}{dev_setup}{Next HDD user home folder is mounted on DOS machine as Z drive.}
 \end{figure}
 \par
 
 
 
 \subsection{Endianness}
-A stream of byte can be interpreted differently based on the machine internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On a little-endian machine, it will be read as \cw{0x78563412}. On a big endian machine, it will be read \cw{01234567}.\\
+Endianness was a term introduced by Danny Cohen in his essay "On holy wars and a plea for peace". His satire, based on Gulliver's Travels in which civil war erupts over whether the big end or the little end of a boiled egg is the proper end to crack open, made an analogy between two school of thoughts among CPU manufacturers. Some wanted byte organized in memory left to right, some wanted them right to left. Each side viewed their way as the best one.\\
 \par
-\spngdrawing{0.3}{endianness}{}
+In a war where price was paid by programmers, no side had incentives toward peace.\\
 \par
-In the source code this issue could easily be solved with a simple macro.\\
+If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On a little-endian machine, it will be become \cw{0x78563412}. On a big endian machine, it will become \cw{01234567}.\\
+\par
+\drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
+\par
+At the game engine level, the problem was solved via a layer of indirection with a simple macro\footnote{As of 2018 it seems a side finally put an end to the holy war. The little endian tribe of Intel, AMD, and ARM have won.}. When reading from disk, the engine always uses either \cw{LONG} or \cw{SHORT}.\\
 \par
 \ccode{big_little_endian.c}
 \par
-Even though \doom was written on a \NeXT the platform would always put itself at a disadvantage because players would use MS-DOS. Data was stored in little-endian so \cw{LONG} was a no-op on consumer hardware.\\
-\par
 \ccode{LongSwap.c}
 \par
-Accommodating the needs of running on different architecture was more challenging. The solution id programmers came up with was to have a "kernel" common to all platforms tapping into sub-systems specific to the platform they targeted.\\
+Even though \doom was written first on a \NeXT, the platform still intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer hardware.\\
+
+\par
+
+\subsection{APIs}
+Accommodating the needs of running on different architecture was more challenging. The solution was to have a common "core" which was platform agnostic. To perform I/O, the core would tap into sub-systems specific to the platform they targeted.\\
 \par
 \begin{figure}[H]
 \centering
@@ -38,15 +46,28 @@ Accommodating the needs of running on different architecture was more challengin
 \caption{Doom kernel and its I/O platform-dependent systems.}
 \end{figure}
 \par
-For example, the video system would be implemented with VGA backing on MS-DOS but with \cw{NSWindow} API on \NeXT.
-To implement this kernel/systems architecture, they leveraged the C compiler linker. While building a C program, all compilation units (\cw{.c} files) are compiled in sequence to generate \cw{obj} files. At this stage, all symbols need not to be resolved. Taking the example of \cw{s\_sound.c}, this translation unit can use function such as \cw{I\_PlaySong} or \cw{I\_StartSound} which are defined somewhere else. \\
+In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSWindow} API on \NeXT. A naive implementation would have required a layer of indirection to dispatch each I/O call. There was a better solution which leveraged C's linking step.\\
+\par
+ While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} have been transformed into object (\cw{.o}) files. Object files maybe calling each others but because they were created independently, they have "holes" called "Unresolved Symbols".\\
+\par
+ To generate an executable, all objects are given to a linker which will recognize Unresolved Symbols from all objects and patches all holes.\\
+ \par
+ Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o} this translation unit is found to use function such as \cw{I\_PlaySong} or \cw{I\_StartSound} which are defined in the platform specific sound system. \\
 \par
 \tcode{s_sound_linker.txt}
 \par
-Only when the linker runs to combine all \cw{obj} file into the final executable, all symbols have to be resolved.\\
+After the linker is done, there are no more unresolved symbols. The final executable is ready to run.\\
 \par
-DRAWING\\
+\drawing{linking}\\
+
+
+
+
 \pagebreak
+\drawing{doom_code_arch}{}
+\par
+In white, the core components. In grey the I/O system which require platform specific code. On DOS these are provided by six extra files: \cw{i\_main.c}, \cw{i\_ibm.c}, \cw{planar.asm}, \cw{i\_ibm\_a.asm}, \cw{i\_sound.c} and, \cw{i\_cyber.c}.\\
+
 
 
 
@@ -58,30 +79,54 @@ DRAWING\\
 
 
 
-\drawing{doom_code_arch}{}
-\par
 
-
-
-In grey the I/O system which require platform specific code. On DOS these are provided by six extra files: \cw{i\_main.c}, \cw{i\_ibm.c}, \cw{planar.asm}, \cw{i\_ibm\_a.asm}, \cw{i\_sound.c} and, \cw{i\_cyber.c}.\\
 \par
 \trivia{Notice the prefix one file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implemention specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
 
 The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the kernel and the platform specific code needs not to be touched anymore.\\
 \par
-\trivia{Because portability was not an afterthought but part of the development process, \doom code layering is never violated. This rigourous design explains partly why \doom has been ported on so many systems.}\\
+\trivia{Because portability was not an afterthought but part of the development process, \doom code layering is never violated. This rigorous design explains partly why \doom has been ported on so many systems. Having to comply with several compiler such as gcc or watcom also make the code more standard compliant and robust.}\\
 
-\section{Structure of the code}
-The volume of code is twice as much as Wolfenstein 3D.\\
+\section{Diving In!}
+Just before finally jumping in, a few quick \cw{cloc} stats just to know what volume to expect. There is twice as much code as in Wolfenstein 3D.\\
 \par
 \tcode{cloc.txt}
 \par
-
-
-
-
-
 \trivia{\NeXT platform specific were all written in Objective-C: \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, \cw{r\_debug.m},  }\\
+\par
+\begin{figure}[H]
+\centering
+  \begin{tikzpicture}[font=\small]
+    \begin{axis}[
+      width=\textwidth,
+      height=0.55\textwidth,
+      ybar=0.6\textwidth,
+      bar width=20pt,
+      ylabel={Lines of Code},
+      ymin=0,
+      ytick=\empty,
+      xtick=data,
+      axis x line=bottom,
+      axis y line=left,
+      enlarge x limits=0.11,
+      symbolic x coords={Wolf 3D,Doom,Quake,Quake 2,Quake 3, Doom 3},
+      xticklabel style={},
+      yticklabel style={},
+      nodes near coords={\pgfmathprintnumber[fixed,precision=0]\pgfplotspointmeta}
+    ]
+      \addplot[fill=black!20,draw=black] coordinates {
+        (Wolf 3D,27223)
+        (Doom,37686)
+        (Quake,78961)
+        (Quake 2, 138240)
+        (Quake 3, 233952)
+        (Doom 3, 601047)
+      };
+    \end{axis}
+   \end{tikzpicture} 
+   \caption{Lines of code from id Software game engines.}
+ \end{figure}
+ 
 \par
  \begin{figure}[H]
 \centering  
