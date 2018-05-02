@@ -18,7 +18,7 @@ There were significant obstacle to this methodology. First of all, DOS programs 
 
 
 
-\subsection{Endianness}
+\subsection{Solving Endianness}
 Endianness was a term introduced by Danny Cohen in his essay "On holy wars and a plea for peace". His satire, based on Gulliver's Travels in which civil war erupts over whether the big end or the little end of a boiled egg is the proper end to crack open, made an analogy between two school of thoughts among CPU manufacturers. Some wanted byte organized in memory left to right, some wanted them right to left. Each side viewed their way as the best one.\\
 \par
 In a war where price was paid by programmers, no side had incentives toward peace.\\
@@ -37,7 +37,7 @@ Even though \doom was written first on a \NeXT, the platform still intentionally
 
 \par
 
-\subsection{APIs}
+\subsection{Solving APIs}
 Accommodating the needs of running on different architecture was more challenging. The solution was to have a common "core" which was platform agnostic. To perform I/O, the core would tap into sub-systems specific to the platform they targeted.\\
 \par
 \begin{figure}[H]
@@ -81,25 +81,25 @@ In white, the core components. In grey the I/O system which require platform spe
 
 
 \par
-\trivia{Notice the prefix one file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implemention specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
+\trivia{Notice the prefix one file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
 
 The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the kernel and the platform specific code needs not to be touched anymore.\\
 \par
-\trivia{Because portability was not an afterthought but part of the development process, \doom code layering is never violated. This rigorous design explains partly why \doom has been ported on so many systems. Having to comply with several compiler such as gcc or watcom also make the code more standard compliant and robust.}\\
+\trivia{Because portability was not an afterthought but part of the development process, \doom code layering is never violated. This rigorous design explains partly why \doom has been ported on so many systems. Having to work with different compilers such gcc or watcom not only permitted to surface many bugs, it also sure the code would be ANSI standard compliant.}\\
 
 \section{Diving In!}
 Just before finally jumping in, a few quick \cw{cloc} stats just to know what volume to expect. There is twice as much code as in Wolfenstein 3D.\\
 \par
 \tcode{cloc.txt}
 \par
-\trivia{\NeXT platform specific were all written in Objective-C: \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, \cw{r\_debug.m},  }\\
+
 \par
 \begin{figure}[H]
 \centering
   \begin{tikzpicture}[font=\small]
     \begin{axis}[
       width=\textwidth,
-      height=0.75\textwidth,
+      height=0.47\textwidth,
       ybar=0.6\textwidth,
       bar width=20pt,
       ylabel={Lines of Code},
@@ -126,8 +126,14 @@ Just before finally jumping in, a few quick \cw{cloc} stats just to know what vo
    \end{tikzpicture} 
    \caption{Lines of code from id Software game engines.}
  \end{figure}
-
 \par
+
+\subsection{Where Is My Main?}
+Exploring a source code always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{On Microsoft Windows that is \cw{WinMain()}}. In the case of \doom the entry point for DOS is not in the core but rather in the platform specific \cw{i\_main.c} \footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
+\par
+Regardless of the platform, all entry points converge to the "real" main located in the core, \cw{D\_DoomMain}.\\ 
+\par
+
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.22} | C{0.39} | C{0.39} }
@@ -147,50 +153,63 @@ Just before finally jumping in, a few quick \cw{cloc} stats just to know what vo
 
 \par
 
+\trivia{\NeXT platform specific were all written in Objective-C: \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, \cw{r\_debug.m},  }\\
 
-The \cw{main} function can be found in \cw{i\_main.c} translation unit\footnote{On \NeXT there is no \cw{main} function since it is part of the window system. \cw{D\_DoomMain} is directly called from there.}. It jumps right into \cw{D\_DoomMain} which initialize all systems in order.\\
+
+\par
+
+
+
 \par
 \ccode{main_loop.c}
-\pagebreak
-
-The function calls match exactly what players could see in the DOS prompt upong starting the game.\\
 \par
+No surprises in \cw{D\_DoomMain}, the engine starts by initializing all its sub-systems before jumping inside a loop which will never returns (\cw{D\_DoomLoop}.).\\
+\par
+Because C has no namespace, an other system was used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} for Menu, \cw{Z\_} for Zone Memory Allocator, \cw{R\_}, \cw{P\_} for gamePlay, \cw{I\_} for Implementation Dependant, \cw{D\_} for main Doom, \cw{S\_} for Sound, \cw{HU\_} for HUD, and \cw{ST\_} for STatus bar.\\
+\par
+The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode show to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted, the DOS screen on the right matches well the code listing.\\
+\par
+\trivia{This step was fairly fast except for the excruciating render part (\cw{R\_Init()}). It featured not only a line but also a progress bar which took minutes to complete with the full version. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
+\par
+\trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"" which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was pretty hard to configure the hardware's cryptic IRQs and DMAs.}\\
+\par
+\begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
-% InitTextures 
-% InitFlats........  
-% InitSprites 
-% InitColormaps 
-% R_InitData 
-% R_InitPointToAngle 
-% R_InitTables 
-% R_InitPlanes 
-% R_InitLightTables 
-% R_InitSkyMaP 
-% R_InitTranslationsTables 
-\par
-\fixme{Startup screen is inacurate. Trivia about dot? Due to textures loading from S\_START to S\_END.}
+\label{fig:dosloading}
+\caption{}
+\end{figure}
 
-\section{Fixed time steps}
-Peeking inside \cw{D\_DoomLoop} reveals a pretty standard loop where the world is updated and then rendered to the audio and video output.\\
+\par
+\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. The two functions \cw{FindResponseFile} and \cw{IdentifyVersion} simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
+\par
+\trivia{Doom I \& II were released in English language and one other. A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translating DoomII.}\\
+\par
+
+
+
+
+\section{Fixed Time Steps}
+Peeking inside \cw{D\_DoomLoop} reveals a standard loop where the machine runs as fast as possible to update the game simulation according to user input and A.I, and then generate visual and audio outputs.\\
 \par
 \ccode{doomloop.c}
-The method \cw{TryRunTics} will immediately catch the eye of an experience game developer.\\
+The game simulation happens in \cw{TryRunTics} and uses fixed time steps. The body of the function is summarized as follow:\\
 \par
-\ccode{TryRunTics.c}
+\ccode{TryRunTics.c}\\
 \par
-\doom engine uses fixed time step and runs at 35Hz. Under this architecture, the game renders as fast as possible. However before rendition occurs, the world is updated in small fixed size timeslice increment. In the case of \doom, a timeslice is 1/35\ts{th} of a second which is the equivalent of 28ms.\\
+\doom's unit of time is the \cw{tic}. There are 35 tics in a second (which means a tic is 28ms) and 
+\cw{Get\_Time} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculate how many tics have elapsed and advance the simulation by that amount. Only fully elapsed tics are simulated. The value of 35 was not random, it is half the frequency of the VGA adapter. Once the game state has been updated, video and audio are generated.\\
 \par
 \drawing{fixed}{}
 \par
-This design choice would end up being controversial. One one side it solved the issue of recording a game session and being able to playback on any machine without desync. It also enabled network play and multiscreen play. On the other side, it meant that no matter how fast the renderer could run, the game would only update at 35Hz which would cap the next generation based on Pentium CPUs.\\
+This design choice would end up being controversial. One one side it solved the issue of recording a game session and being able to playback on any machine without desync. It also enabled network play and multiscreen play. On the other side, it meant that no matter how fast the renderer could run, the game would only update at 35Hz which would cap the next generation of PCs based on Pentium CPUs.\\
 \par
 
 
 
-\section{Game thread/Sound thread}
-The second interesting thing in \cw{D\_DoomLoop} is \cw{S\_UpdateSounds} which give a clue on how sound is done. MS-DOS did not support process or thread. Yet video and audio must happen in parallel. As a result, the audio system was interrupt based. This is explained in detail in the audio section on page \pageref{dmx_section}\\
-\drawing{three_systems}{}
-\trivia{Notice the audio system is also in charge of generating heartbeat which \doom uses to pace itself and run at 35Hz.}
+\section{Game Thread/Sound Thread}
+MS-DOS did not support process or thread yet video and audio had to happen in parallel. To make this happen, the audio system is based on interrupts generated at a regular interval. This is explained in detail in the audio section on page \pageref{dmx_section}.\\
+\scaleddrawing{0.9}{three_systems}{}
+\trivia{Notice how the audio system updates a shared variable \cw{volatile int ticcount} which is what is returned by \cw{I\_GetTime}.}
 
 
 
@@ -198,29 +217,64 @@ The second interesting thing in \cw{D\_DoomLoop} is \cw{S\_UpdateSounds} which g
 
 
 
-\section{Fixed arithemetic}
-Before digging further inside the internals of the engine, a few words on how \doom performed mathematics. With floating points unavailable, the engine was forced to do all calculations requiring fraction tracking using fixed point.\\
+\section{Fixed-point arithmetic}
+Since the Intel 486 CPU was unable to execute floating point instructions fast enough, the programmers had to find a way to manipulate and store fractional values during calculations. The answer to this problem was to use fixed point arithmetic.\\
 \par
-Conveniently, there is only one type of fixed point in the codebase which is \cw{16:16}.\\
+Designers at Intel had designed their CPUs to manipulate two types of 32-bit integers. Unsigned integers where each bit represents a value from $0$ to $2^{32}-1$.\\
 \par
-
-\ccode{fixed_t.c}{}
+\begin{figure}[H]
+ \centering
+  \input{drawings/uint.tex}
+ \caption{32-bit unsigned integer bit values} 
+\end{figure}
 \par
-As a quick recap, under normal operations, a 32-bit \cw{int} is encoded as follows.\\
+And signed integer, using two complement where all bit represent a positive value except for the last one representing a negative value able to represent values from from $-2^{31}$ to $2^{31}-1$.\\
 \par
 \begin{figure}[H]
  \centering
   \input{drawings/int.tex}
- \caption{32-bit signed two complement encoded integer.} \label{fig:mips}
+ \caption{32-bit signed two complement bit values} 
 \end{figure}
+\par
 
+
+\doom's chose a fixed point format \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part.\\
+\par
 \begin{figure}[H]
  \centering
   \input{drawings/fp.tex}
- \caption{Fixed point layout 16:16 (16 bits for the integer part and 16 bits for the fractional part).} \label{fig:mips}
+  \caption{32-bit \doom fixed point bit values}
 \end{figure}
+\par 
+In the code to help differentiate from regular integer, a typedef \cw{fixed\_t} is used.\\
+\par
+\ccode{fixed_t.c}{}\\
+\par
+The beauty of fixed point system is that it "just works" at the ALU level. The CPU execute instructions the same way. To convert from one type to an other was very simple. From integer to fixed point is a simple \cw{<< 16} left bit shift. From fixed point to integer is the reverse operation \cw{>> 16} right bit shift.\\
 
-\pagebreak
-Bla
+
+
+As an example, $0.5 + 3 = 3.5$ yields the correct result bitwise.\\
+\par
+\begin{figure}[H]
+ \centering
+  \input{drawings/fp05.tex}
+  
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \input{drawings/fp3.tex}
+  
+\end{figure}
+\begin{figure}[H]
+ \centering
+  \input{drawings/fp35.tex}
+  
+\end{figure}
+\par
+All bitwise operation such as left shift (<<) and right shift (>>) also work.\\
+\par
+ The programmer only has to be careful not to mix types.
+
 \pagebreak
 

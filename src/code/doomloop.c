@@ -1,9 +1,9 @@
 void D_DoomLoop (void) {
 	I_InitGraphics ();
 	while (1) {                                                               
-		I_StartFrame ();   // frame syncronous IO operations
-		TryRunTics ();   // will run at least one tic
-		S_UpdateSounds (players[consoleplayer].mo);// move positional sounds
-		D_Display ();
+		I_StartFrame ();   // frame synchronous IO operations.
+		TryRunTics ();     // Simulate based on I/O and A.I.
+		S_UpdateSounds (); // Generate audio.
+		D_Display ();      // Generate visio.
 	}
 }

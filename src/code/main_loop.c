@@ -1,20 +1,20 @@
 void main (int argc, char **argv) {
    void D_DoomMain (void} {
-      FindResponseFile ();
-      IdentifyVersion ();   // WTF IS THIS?
+      FindResponseFile (); // Search doom.wad, doom1.wad...
+      IdentifyVersion ();  // shareware or registered?
       
-      V_Init ();
-      M_LoadDefaults ();  
-      Z_Init ();
-      M_Init ();
-      R_Init ();
-      P_Init ();
-      I_Init ();
-      D_CheckNetGame ();
-      S_Init (sfxVolume*8,musicVolume*8);
-      HU_Init ();   // WTF Headup display?
-      ST_Init ();
+      V_Init ();           // Video system.
+      M_LoadDefaults ();   // Load params from default.cfg
+      Z_Init ();           // Zone Memory Allocator
+      M_Init ();           // Menu
+      R_Init ();           // Renderer
+      P_Init ();           // gamePlay
+      I_Init ();           // Implementation dependant
+      D_CheckNetGame ();   // 
+      S_Init ();           // Sound 
+      HU_Init ();          // HUD
+      ST_Init ();          // Status Bar
 
-      D_DoomLoop ();  // never returns
+      D_DoomLoop ();       // never returns
    }
 }

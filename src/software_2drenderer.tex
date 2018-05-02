@@ -64,9 +64,11 @@ With regards to interation with the video system, the status bar is similar to t
 \end{wrapfigure}
 There are ten menus and they are all hard-coded in \cw{m\_menu.c} and \cw{m\_misc.c}. The design is simple with \cw{menu\_t} containing a list of \cw{menuitem\_t}. A \cw{name} field for each menuitem is used to retrieve the appropriate sprite.\\
 \par
-A \cw{menu\_t*} is consumed by the menu drawing routine and a skull is drawn on the left of the currently selected \cw{menuitem\_t}.\\
-\par
+
 \ccode{menu_item.c}
+
+\par
+A \cw{menu\_t*} is consumed by the menu drawing routine and a skull is drawn on the left of the currently selected \cw{menuitem\_t}.\\
 \par
 \begin{minipage}{0.55\textwidth}
 \ccode{main_menu.c}

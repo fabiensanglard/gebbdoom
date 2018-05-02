@@ -15,3 +15,5 @@ output\*
 **/.idea
 **/*.WAD
 cmake-build-debug
+CMakeFiles
+cmake-fab

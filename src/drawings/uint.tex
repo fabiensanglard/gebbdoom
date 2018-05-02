@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=0.41, every node/.style={scale=0.85}]
+
+
+\colorlet{LighterMark}{black!50}
+
+% Dark marks
+\draw[thick,black] (0,0) -- (32,0);
+\draw[thick,black] (0,1) -- (32,1);
+
+\draw[thick,black] (0,1) -- (0,0);
+\draw[thick,black] (32,1) -- (32,0);
+
+% Light marks
+\foreach \i in {1,...,32}
+{
+     \draw[thick,LighterMark] (\i,1) -- (\i,0);
+}
+
+
+% Labels      
+\node[] at (31+0.5,1.5){$2^{0}$  }  ;      
+\node[] at (00+0.6,1.5){$2^{31}$  }  ;     
+
+
+\end{tikzpicture}

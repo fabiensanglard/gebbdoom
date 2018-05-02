@@ -1,0 +1,59 @@
+\begin{tikzpicture}[scale=0.41, every node/.style={scale=0.85}]
+
+
+\colorlet{LighterMark}{black!50}
+
+% Dark marks
+\draw[thick,black] (0,0) -- (32,0);
+\draw[thick,black] (0,1) -- (32,1);
+
+\draw[thick,black] (0,1) -- (0,0);
+
+\draw[thick,black] (32,1) -- (32,0);
+
+% Light marks
+\foreach \i in {1,...,32}
+{
+     \draw[thick,LighterMark] (\i,1) -- (\i,0);
+}
+
+\draw[thick,black] (16,1) -- (16,0);
+
+% Labels      
+\node[] at (31.5,0.5){$0$}  ;  
+\node[] at (30.5,0.5){$0$}  ;    
+\node[] at (29.5,0.5){$0$}  ;    
+\node[] at (28.5,0.5){$0$}  ;    
+\node[] at (27.5,0.5){$0$}  ;    
+\node[] at (26.5,0.5){$0$}  ;    
+\node[] at (25.5,0.5){$0$}  ;    
+\node[] at (24.5,0.5){$0$}  ;    
+\node[] at (23.5,0.5){$0$}  ;    
+\node[] at (22.5,0.5){$0$}  ;    
+\node[] at (21.5,0.5){$0$}  ;    
+\node[] at (20.5,0.5){$0$}  ;    
+\node[] at (19.5,0.5){$0$}  ;    
+\node[] at (18.5,0.5){$0$}  ;    
+\node[] at (17.5,0.5){$0$}  ; 
+\node[] at (16.5,0.5){$1$}  ; 
+
+\node[] at (15.5,0.5){$1$}  ;
+\node[] at (14.5,0.5){$1$}  ;    
+\node[] at (13.5,0.5){$0$}  ;    
+\node[] at (12.5,0.5){$0$}  ;    
+\node[] at (11.5,0.5){$0$}  ;    
+\node[] at (10.5,0.5){$0$}  ;    
+\node[] at (09.5,0.5){$0$}  ;    
+\node[] at (08.5,0.5){$0$}  ;    
+\node[] at (07.5,0.5){$0$}  ;    
+\node[] at (06.5,0.5){$0$}  ;    
+\node[] at (05.5,0.5){$0$}  ;    
+\node[] at (04.5,0.5){$0$}  ;    
+\node[] at (03.5,0.5){$0$}  ;    
+\node[] at (02.5,0.5){$0$}  ;    
+\node[] at (01.5,0.5){$0$}  ;   
+ 
+\node[] at (00.5,0.5){$0$}  ; 
+
+
+\end{tikzpicture}

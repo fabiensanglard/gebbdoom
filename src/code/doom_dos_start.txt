@@ -1,25 +1,28 @@
-                     DOOM System Startup v1.9
+                 DOOM System Startup v1.9
+P_Init: Checking cmd-line parameters...                  
 V_Init: allocate screens.
 M_LoadDefaults: Load system defaults. 
 Z_Init: Init zone memory allocation daemon. 
 DPMI memory: 0xd59000, 0x800000 allocated for zone
-W_Init: Init WAD files. 
- adding ./doom.wad 
-============================================================
-          Commercial product - do not distribute! 
+W_Init: Init WADfiles. 
+        adding ./doom.wad 
+        registered version.
+===========================================================
+      This version is NOT SHAREWARE,  do not distribute! 
   Please report software piracy to the SPA: 1-800-388-PIR8 
-============================================================
+===========================================================
 M_Init: Init miscellaneous info. 
-R_Init: Init DOOM refresh daemon [........................] 
+R_Init: Init DOOM refresh daemon - [......................] 
 P_Init: Init Playloop state. 
 I_Init: Setting on machine state. 
-I_InitSound: I_StartupSound: Hope you hear a pop.
+I_StartupDPMI
+I_StartupJoystick
+I_StartupSound
+I_StartupTimer()
+  calling DMX_Init
+D_CheckNetGame: Checking network game status.
+startskill 2 deathmatch: 0 startmap: 1 startepisode: 1
+player 1 of 1 (1 nodes)
 S_Init: Setting up sound. 
-S_Init: default sfx volume 8 
 HU_Init: Setting up heads up display. 
 ST_Init: Init status bar. 
-
-
-
-
- 
