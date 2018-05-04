@@ -1,28 +1,64 @@
-\section{Memory Manager}
+\section{Zone Memory Manager}
 Like all game engine of the era, \doom did not trust stock \cw{malloc}, not even the one provided by Watcom with \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. They were also wasteful for optimized for big chunk allocation which is not what the engine does. They also lacked good debugging tools. For all these reason \doom uses its own memory manager (MM).\\
 \par
 
-The engine runs on a very clearly established memory budget. Upon starting up on \NeXT the MM allocates 4 MiB of RAM an not a byte more.On DOS the MM checks whether the machine has at least 4 MiB but will use more if there is available to improve its cache retention.\\
+The engine runs on a clearly established memory budget. Upon starting up on \NeXT the memory manager allocates 4 MiB of RAM and not a byte more. This is done in order to make sure the advertise minimum 4MiB configuration is sufficient. On DOS the memory manager checks whether the machine has at least 4 MiB but will use up to 8 MiB if available in order to improve its cache retention.\\
 \par
-The original based on zones gave its name to the system and as a result this part is hosted in \cw{z\_zone.c}. However the concept was abandoned in favor of a tag system allowing memory block allocated to be marked and recognized for a certain purpose.\\
+The first incentation of the memory manager was based on zones. Each zone had a memory pool from which RAM could be allocated. The design gave the allocator its name "Zone Allocator", with it prefix \cw{Z\_}, and filename \cw{z\_zone.c}. Later the multi-zone idea was abandoned (maybe thanks to DOS4GW which unified the RAM) in favor of a design featuring one zone made of a chain of blocks.\\
 \par
-\ccode{memory_zone.c}
+Looking at the structure used shred lights on how it is structured.\\
 \par
-\cw{PU\_LEVEL} for example allows \doom to free all memory between levels without any tracking. The engine simply ask the zone memory manage to free all blocks tagged \cw{PU\_LEVEL}. An other powerful tag is \cw{PU\_CACHE} which allows the memory system to free a block by itself if it cannot complete an allocation request. \\
+\ccode{memblock_t.c}\\
 \par
-  
+The memory allocator uses only one zone for the entire RAM available. This "main" zone is a double linked circular list made of blocks. A block can represented in-use RAM (is it has a \cw{**user} value) or it can represent free RAM if \cw{user} is \cw{NULL}. At all time the block chain maps all the RAM.\\
 \par
-\trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
-\par \tcode{zone_undefined.txt}}
+
+
+
+Each block is marked with a purge hint so the allocator can know whether i can free this block while responding to an allocation request.\\
 \par
+\ccode{memory_zone.c}\\
+\par
+In its initial start, all ram is in a free block. To make the drawing simpler, let's assume the entire ram is 8000 bytes. The block has been marked \cw{STATIC}. It has a \cw{NULL} owner. Its size is 8000. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
+\par
+\rawdrawing{zalloc_start}
+\par
+For each calls to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it create a block and shrinks the free block. Two calls sizes 1000 and 3000 result in three blocks in the chain. Notice the default \cw{owner} value which is a weird "\cw{2}" (why not \cw{42} ?).\\
+\par
+\rawdrawing{zalloc_allocs}
+
+Eventually the allocator will receive a request for an amount of RAM which the "free" block pointed to by the rover doesn't have. In the following configuration, the free block has only 500 bytes anything request asking more than that amount would be a problem.\\
+\par
+\rawdrawing{zalloc_fail}
+\par
+To answer a memory request, the rover will start by marking its current position and scanning for a free block big enough. If the rover comes back to the same position, there are no free block big enough to satisfy the request. Here the engine will throw an error and terminate.\\
+\par
+What is likely to have happened is that some blocks had been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighbouring free block are merged. In the previous configuration, block B would have been marked \cw{NULL} and when block C was deallocated they would have been both merged into on "free" block.\\
+\par
+\rawdrawing{zalloc_freed}
+\par
+The rover will simply "roll over" to discover this new free block and use it to return block \cw{E}.\\
+\par
+\rawdrawing{zalloc_saved}
+\par
+There is a third case which is vastly more interesting. So far we have only talked about statically allocated block such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belong to the "purgable" category.\\
+\par
+ It is mostly used by the wad/lump manager descrived in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a near future. However the memory allocator is allowed to free it.In the following configuration where there is not enough space in any block to succesfully allocated 1000 bytes.\\
+\par
+\rawdrawing{zalloc_cache_before}
+\par
+The rover will follow the chain and find block \cw{F}, deallocate it and use it. The result will be the new block \cw{F} followed by a free block of size 3000.\\
+\par
+\rawdrawing{zalloc_cache_after}
+\par
+
+There are many other features in the allocator which libc \cw{malloc} did not have. Canari\\
+Debug two consecutive free blocks\\
+Inspection: Z\_DumpHeap\\
+Integriry check: Z\_CheckHeap\\
+% \trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
+% \par \tcode{zone_undefined.txt}}
+% \par
 %\trivia{Dave Taylor had his own TAG: \cw{PU\_DAVE}, which was used for "anything else Dave wants static". Unfortunately this tag was never used.}
 
-
-DRAWING\\
-MEmory budget:\\
-- Video system
-- visplanes\\
-I\_AllocLow\\
-\par
-Maybe memory footprint of -timedemo demo3?\\
 \pagebreak

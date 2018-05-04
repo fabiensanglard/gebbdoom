@@ -167,11 +167,11 @@ No surprises in \cw{D\_DoomMain}, the engine starts by initializing all its sub-
 \par
 Because C has no namespace, an other system was used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} for Menu, \cw{Z\_} for Zone Memory Allocator, \cw{R\_}, \cw{P\_} for gamePlay, \cw{I\_} for Implementation Dependant, \cw{D\_} for main Doom, \cw{S\_} for Sound, \cw{HU\_} for HUD, and \cw{ST\_} for STatus bar.\\
 \par
-The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode show to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted, the DOS screen on the right matches well the code listing.\\
+The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode show to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted, the DOS screen on the right matches well the source code.\\
 \par
-\trivia{This step was fairly fast except for the excruciating render part (\cw{R\_Init()}). It featured not only a line but also a progress bar which took minutes to complete with the full version. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
+\trivia{This step was fairly fast except for the excruciating render initialization (\cw{R\_Init()}) which could take minutes depending on your HDD speed. It featured not only a line but also a progress bar which took minutes to complete with the full version. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
 \par
-\trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"" which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was pretty hard to configure the hardware's cryptic IRQs and DMAs.}\\
+\trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}" which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was pretty hard to configure the hardware's cryptic IRQs and DMAs.}\\
 \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
@@ -180,10 +180,9 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \end{figure}
 
 \par
-\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. The two functions \cw{FindResponseFile} and \cw{IdentifyVersion} simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
+\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. The two functions \texttt{\justify FindResponseFile} and \cw{IdentifyVersion} simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
 \par
-\trivia{Doom I \& II were released in English language and one other. A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translating DoomII.}\\
-\par
+\trivia{Doom I \& II were released in English language and one other. A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translating DoomII.}
 
 
 
@@ -220,7 +219,7 @@ MS-DOS did not support process or thread yet video and audio had to happen in pa
 \section{Fixed-point arithmetic}
 Since the Intel 486 CPU was unable to execute floating point instructions fast enough, the programmers had to find a way to manipulate and store fractional values during calculations. The answer to this problem was to use fixed point arithmetic.\\
 \par
-Designers at Intel had designed their CPUs to manipulate two types of 32-bit integers. Unsigned integers where each bit represents a value from $0$ to $2^{32}-1$.\\
+Designers at Intel had designed their CPUs to manipulate two types of 32-bit integers. Unsigned integers where each bit represents a value from $0$ to $2^{31}$ for a decimal range of [0 to 4,294,967,295].\\
 \par
 \begin{figure}[H]
  \centering
@@ -228,7 +227,7 @@ Designers at Intel had designed their CPUs to manipulate two types of 32-bit int
  \caption{32-bit unsigned integer bit values} 
 \end{figure}
 \par
-And signed integer, using two complement where all bit represent a positive value except for the last one representing a negative value able to represent values from from $-2^{31}$ to $2^{31}-1$.\\
+And signed integer, using two complement where all bits represent a positive value except for the last one which is negative value. Signed integers are able to represent values from $-2^{31}$ to $2^{31}-1$ yeilding a decimal range of [-2,147,483,648 to 2,147,483,647].\\
 \par
 \begin{figure}[H]
  \centering
@@ -238,7 +237,9 @@ And signed integer, using two complement where all bit represent a positive valu
 \par
 
 
-\doom's chose a fixed point format \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part.\\
+For certain types of calculation, \doom's resorted to using a different layout. The fixed point format used is \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{
+Lower value is ($-2^{15}$) = -32768. Upper value is  
+ ($2^{14} + 2^{13} + 2^{12} + 2^{11} + 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}+ 2^{-3}+ 2^{-4}+ 2^{-5}+ 2^{-6}+ 2^{-7}+ 2^{-8}+ 2^{-9}+ 2^{-10}+ 2^{-11}+ 2^{-12}+ 2^{-13}+ 2^{-14}+ 2^{-15}+ 2^{-16}$) = 32767.9999847.}.\\
 \par
 \begin{figure}[H]
  \centering
@@ -250,31 +251,34 @@ In the code to help differentiate from regular integer, a typedef \cw{fixed\_t} 
 \par
 \ccode{fixed_t.c}{}\\
 \par
-The beauty of fixed point system is that it "just works" at the ALU level. The CPU execute instructions the same way. To convert from one type to an other was very simple. From integer to fixed point is a simple \cw{<< 16} left bit shift. From fixed point to integer is the reverse operation \cw{>> 16} right bit shift.\\
-
+The beauty of fixed point system is that it "just works" at the ALU level. The CPU execute instructions the same way. To convert from one type to an other was very simple. From integer to fixed point is a cheap "\verb!<< 16!" bitwise left shift. From fixed point to integer is the reverse operation "\verb|>> 16|" bitwise right shift.\\
+\par
 
 
 As an example, $0.5 + 3 = 3.5$ yields the correct result bitwise.\\
 \par
 \begin{figure}[H]
- \centering
+  \centering
   \input{drawings/fp05.tex}
-  
+  \caption{Fixed Point representation of 0.5}
 \end{figure}
 \begin{figure}[H]
- \centering
-  \input{drawings/fp3.tex}
-  
+  \centering
+  \input{drawings/fp375.tex}
+  \caption{Fixed Point representation of 3.75}
 \end{figure}
 \begin{figure}[H]
- \centering
-  \input{drawings/fp35.tex}
-  
+  \centering
+  \input{drawings/fp425.tex}
+  \caption{Fixed Point representation of 4.25}
 \end{figure}
 \par
-All bitwise operation such as left shift (<<) and right shift (>>) also work.\\
-\par
- The programmer only has to be careful not to mix types.
+Even trick bitwise operations such as fast divide/multiply with left shift "\verb!<<!" and right shift ("\verb|>>|") also work but there are a few limitations:\\
+\begin{itemize} 
+\item Overflows have to be avoided at all cost. Or handled manually. This type does not over the automaticaly overflow managment of floating points.
+\item Integers and fixed points variable cannot be fixed during operations. The programmer has to manually convert from one to an otherm the language will not "promote" types automatically.
+\item Additions and Substractions work as usual but multiplication is a special case. Multiply two 32-bit value result in a 64-bit value which is shifted right 16-bit and clipped to 32-bit. This can result in an annoying lose of precision if data was in bits [16-0]and a potentially catastrophic lose of information if data was in bits [63-48]. Again, floating point unit operating at 80-bit precision avoid this but there is no such thing in fixed point.
+\end{itemize}
 
 \pagebreak
 

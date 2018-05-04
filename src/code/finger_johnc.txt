@@ -1,41 +1,42 @@
 $ finger johnc@idsoftware.com
 
 [idsoftware.com]
-
 Welcome to id Software's Finger Service V1.5!
 
-Name: John Carmack
-Email:
-Description: Programmer
-Project:
+Login name: johnc In real life: John Carmack
+Directory: /raid/nardo/johnc Shell: /bin/csh
+Never logged in.
 Plan:
------------------------------------------
-John Carmack's .plan for Feb 18, 1996
------------------------------------------
 
-*	page flip crap
-*	stretch console
-*	faster swimming speed
-*	damage direction protocol
-*	armor color flash
-*	gib death
-*	grenade tweaking
-*	brightened alias models
-*	nail gun lag
-*	dedicated server quit at game end
+This is my daily work ...
 
+When I accomplish something, I write a * line that day.
+
+Whenever a bug / missing feature is mentioned during the 
+day and I don’t fix it, I make a note of it. Some things 
+get noted many times before they get fixed.
+
+Occasionally I go back through the old notes and mark 
+with a + the things I have since fixed.
+
+--- John Carmack
+
+= feb 18 ===================================
+* page flip crap
+* stretch console
+* faster swimming speed
+* damage direction protocol
+* armor color flash
+* gib death
+* grenade tweaking
+* brightened alias models
+* nail gun lag
+* dedicated server quit at game end
 + scoreboard
 + optional full size
 + view centering key
 + vid mode 15 crap
 + change ammo box on sbar
-+ allow "restart" after a program error
++ allow “restart” after a program error
 + respawn blood trail?
 + -1 ammo value on rockets
-+ light up characters
-
-vsync on high framerates
-
-
-
-
