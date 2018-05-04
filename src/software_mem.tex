@@ -4,7 +4,7 @@ Like all game engine of the era, \doom did not trust stock \cw{malloc}, not even
 
 The engine runs on a clearly established memory budget. Upon starting up on \NeXT the memory manager allocates 4 MiB of RAM and not a byte more. This is done in order to make sure the advertise minimum 4MiB configuration is sufficient. On DOS the memory manager checks whether the machine has at least 4 MiB but will use up to 8 MiB if available in order to improve its cache retention.\\
 \par
-The first incentation of the memory manager was based on zones. Each zone had a memory pool from which RAM could be allocated. The design gave the allocator its name "Zone Allocator", with it prefix \cw{Z\_}, and filename \cw{z\_zone.c}. Later the multi-zone idea was abandoned (maybe thanks to DOS4GW which unified the RAM) in favor of a design featuring one zone made of a chain of blocks.\\
+The first incantation of the memory manager was based on zones. Each zone had a memory pool from which RAM could be allocated. The design gave the allocator its name "Zone Allocator", with it prefix \cw{Z\_}, and filename \cw{z\_zone.c}. Later the multi-zone idea was abandoned (maybe thanks to DOS4GW which unified the RAM) in favor of a design featuring one zone made of a chain of blocks.\\
 \par
 Looking at the structure used shred lights on how it is structured.\\
 \par
@@ -33,7 +33,7 @@ Eventually the allocator will receive a request for an amount of RAM which the "
 \par
 To answer a memory request, the rover will start by marking its current position and scanning for a free block big enough. If the rover comes back to the same position, there are no free block big enough to satisfy the request. Here the engine will throw an error and terminate.\\
 \par
-What is likely to have happened is that some blocks had been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighbouring free block are merged. In the previous configuration, block B would have been marked \cw{NULL} and when block C was deallocated they would have been both merged into on "free" block.\\
+What is likely to have happened is that some blocks had been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighboring free block are merged. In the previous configuration, block B would have been marked \cw{NULL} and when block C was deallocated they would have been both merged into on "free" block.\\
 \par
 \rawdrawing{zalloc_freed}
 \par
@@ -41,9 +41,9 @@ The rover will simply "roll over" to discover this new free block and use it to 
 \par
 \rawdrawing{zalloc_saved}
 \par
-There is a third case which is vastly more interesting. So far we have only talked about statically allocated block such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belong to the "purgable" category.\\
+There is a third case which is vastly more interesting. So far we have only talked about statically allocated block such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belong to the "purgeable" category.\\
 \par
- It is mostly used by the wad/lump manager descrived in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a near future. However the memory allocator is allowed to free it.In the following configuration where there is not enough space in any block to succesfully allocated 1000 bytes.\\
+ It is mostly used by the wad/lump manager described in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a near future. However the memory allocator is allowed to free it.In the following configuration where there is not enough space in any block to successfully allocated 1000 bytes.\\
 \par
 \rawdrawing{zalloc_cache_before}
 \par
@@ -52,10 +52,14 @@ The rover will follow the chain and find block \cw{F}, deallocate it and use it.
 \rawdrawing{zalloc_cache_after}
 \par
 
-There are many other features in the allocator which libc \cw{malloc} did not have. Canari\\
-Debug two consecutive free blocks\\
-Inspection: Z\_DumpHeap\\
-Integriry check: Z\_CheckHeap\\
+The memory manager has many other features over libc's \cw{malloc}.\\
+\par
+\begin{itemize}
+\item The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). 
+\item \cw{Z\_Free} is able to detect mismanagements such as double free. 
+\item A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection.
+\item An integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others or that there are no two consecutive free blocks.
+\end{itemize}
 % \trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
 % \par \tcode{zone_undefined.txt}}
 % \par

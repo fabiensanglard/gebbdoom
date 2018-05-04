@@ -1,8 +1,10 @@
 \section{Filesystem}
-The shareware shipped the engine (\cw{DOOM.EXE}) along with an archive \cw{DOOM.WAD} which was an id proprietary format used to neatly store all the game assets.\\ 
+\doom barely interacts with the operating system file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive.\\ 
 \par
 \trivia{The extension name was coined by Tom Halls, when John Carmack asked him "How do you call a file where's all the data?". Tom's answer was a "WAD" (Where's All the Data).}\\
-
+\par
+Among all version of \doom distributed, the engine executabler was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
+\par
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{1.3}  L{0.7} R{1}}
@@ -26,97 +28,84 @@ French Doom II & \cw{DOOM2F.WAD} & 14,607,420\\
   Hexen: Deathkings & \cw{HEXEDD.WAD} & 4,440,584\\
    \toprule
 \end{tabularx}
-\caption{WAD files in \protect\footnotemark}
+\caption{WAD files in the many versions of doom\protect\footnotemark}
 \end{figure}
 \par
 \footnotetext{Source: doomgod.com "Internal War Allocation Daemons"}
 
-The goal of a wad is to contain \cw{LUMP}s, they are the atomic unit of the archive. A wad is structured in three parts:
-\begin{itemize}
- \item A header containing a magic number, the number of lumps, and an offset to the lumps directory.  \
- \item All the lumps.
- \item The lump directory with each entry containing the offset of the lump from the beginning of the file, the size of the lump, and the lump name.
- \end{itemize}
+Lumps are identified by an unique name on eight characters (which conveniently matches DOS filename length limitation). The smallest wad, \cw{DOOM1.WAD} is made of 1264 lumps.\\
 \par
+\ccode{lumpinfo_t.c}{}
+\pagebreak
 
-\begin{verbatim}
-struct WadHeader {
-    char magic[4];
-    int32_t numLumps;
-    int32_t offsetToLumps;
-};
-
-struct LumpDirectoryEntry {
-    int32_t offset;
-    int32_t size;
-    char name[8];
-};
-\end{verbatim}
-\par
-DRAWING WAD STRUCTURE\\
-\par
-The design of the container had several advantages. The first obvious one is that the full archive can be parsed without knowlege of what each lump contains. In the worse case scenario the game engine would have a lump off unknown format but all the others will be correctly referenced\footnote{An other popular format, IFF also allowed parsing and was extensively used at Origins and particularely on WingCommander and Strike Commander.}.\\
-\par
- The second advantage is incremental updates. With each map requiring computationally expensive pre-processing and artist adding assets and designers adding more maps, it was a huge time waster to rebuild the archive from scratch every time. With this design a new lump can be added for cheap:
-\begin{itemize}
- \item Cut the lump directory at the end (it is 1KiB).
- \item Append the new lump at the end of the wad.
- \item Reattach the lump.
- \item Add a entry to the directory.
- \item Increase lump count in the header.
-\end{itemize}
-
-\subsection{Lump access and Caching}
-At startup the wad file is loaded and the lump directory parsed so all lumps are known. At runtime when an asset is needed it is requested and refered to by its lump name.\\
-\par
-\ccode{W_CacheLumpName.c}
-\par
- Upon completing a request, the memory zone system usually was instructed to keep the lump cached in RAM.\\
-\par
-DRAWING CACHING\\
-\par
 \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.2}  L{0.8}}
   \toprule
-  \textbf{Lump Name} &  \textbf{Description} \\
+  \textbf{Lump Name} &  \textbf{Usage} \\
    
   \toprule 
-  \cw{PLAYPAL} & Main palette \\
-  \cw{COLORMAP} &  \\
-  \cw{DEMO.?} &  \\
+  \cw{PLAYPAL} & The fourteen palettes used at runtime. Detailed on page \pageref{label_palettes} \\
+  \cw{COLORMAP} & Translation tables to simulate 32 shades of each 256 colors. Detailed on page \pageref{diminishedlightning}. \\
+  \cw{DEMO?} &  Record of game sessions by id Software members. Played when the game startup as demo.\\
   \toprule
-  \cw{MAP.?.?} &  \\
-  \cw{THINGS} &  \\
-  \cw{LINESDEFS} &  \\
-  \cw{SIDEDEFS} &  \\
-  \cw{VERTEXES} &  \\
-  \cw{SEGS} &  \\
-  \cw{SSECTORS} &  \\
-  \cw{NODES} &  \\
-  \cw{SECTORS} &  \\
-  \cw{REJECT} &  \\
-  \cw{BLOCKMAP} &  \\
+  \cw{MAP??} & Zero sized lump serving as marker for the beginning of a series of map lumps. The first ? is the episode number and the second ? is the map id.\\
+  \cw{THINGS} & All monsters, weapons, ammo and sprite contained in the map designed by the last map marker.\\
+  \cw{LINESDEFS} & All lines referenced by \cw{SECTORS}.\\
+  \cw{SIDEDEFS} & All side referenced by \cw{LINESDEFS}. A line can have up to two sides.\\
+  \cw{VERTEXES} & All vertices in the current map.\\
+  \cw{NODES} & A binary tree allowing to sort line segments efficiently. \\
+  \cw{SSECTORS} &  The Sub-Sectors, leaves of the binary tree in \cw{NODES}.  \\
+  \cw{SEGS} &  The segments pointed to by the \cw{SSECTORS} lumps.\\
+  \cw{SECTORS} &  Referenced by subsectors. Details ceiling/floor height, texture, and lighting properties.\\
+  \cw{REJECT} &  An A.I acceleration datastructure to detect if monsters can see a player.\\
+  \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map 128x128. Provide fast access to all LINESDEFS neighboring any point on the map. Detailed on page \pageref{blockmapdetails} \\
   \toprule
-  \cw{DP.*} &  \\
-  \cw{DS.*} &  \\
-  \cw{D\_.*} &  \\
+  \cw{DP.*} &  SFX in PC Speaker format.\\
+  \cw{DS.*} &  SFX in PCM Mono, 8-bit 11,025Hz.\\
+  \cw{D\_.*} & Music in MUS format (a slightly altered MIDI format).\\
   \toprule
-  \cw{ENDOOM} &  \\
-  \cw{DMXGUSC} &  \\
-  \cw{GENMIDI} &  \\
-  \cw{PNAMES} &  \\
-  \cw{TEXTURE.?} &  \\  
-  \cw{S\_START} &  \\  
-  \cw{S\_END} &  \\  
-  \cw{F\_START} &  \\  
-  \cw{F\_END} &  \\  
-  \cw{.*} &  \\  
+  \cw{ENDOOM} & Text-mode exit screen to entice players to by the full version. \\
+  \cw{DMXGUS} & Translation table to match a MIDI instrument with a Gravis Ultra Sound sample file.\\
+  \cw{GENMIDI} &  Bank of instrument data to play MIDI music with an OPL audio chip.\\
+  \cw{PNAMES} &  Lists all lump names used as wall patches.\\
+  \cw{TEXTURE1} &  A dictionary of all walls textures lumps referenced by \cw{SIDEDEFS}. Used to speed up access and allocation at runtime.\\  
+  \cw{F\_START} &  Zero sized lump marking the beginning of flats textures.\\  
+  \cw{F\_END} &   Zero sized lump marking the end of flats textures.\\  
+  \cw{S\_START} & Zero sized lump marking start of item/monster "sprite" section. \\  
+  \cw{S\_END} & Zero sized lump marking end of item/monster "sprite" section. \\  
+  \cw{P\_START} & Zero sized lump marking the beginning of wall textures.\\
+  \cw{P\_END} & Zero sized lump marking the end of wall textures.\\
+  \cw{.*} &  Many others, fonts, \cw{TITLEPIC}, \cw{HELP} screens, intermission screens, \cw{VICTORY} screen... \\  
    \toprule
 \end{tabularx}
-\caption{WAD lump types}
+%\caption{WAD lump types}
 \end{figure}
 \par
+\pagebreak
+
+
+
+
+
+
+\subsection{Lumps}
+The lump system is the less glamoruos part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
+\par
+When it starts, the system looks at every wad archive provided and indexes every single lump found into a gigantic array of \cw{lumpinfo\_t} cunningly named \cw{lumpinfo}. 
+Additional wad archives can be provided thanks to \cw{-file} command-line parameter. In this case, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lumpinfo} first.\\
+\par
+\vspace{4in}
+\par
+The wad lumpsystem provide access to each lump prodideda lump name and a hint indicating how it will be used. The first task is to find out where the lump in in the \cw{wad}. To this effect a lump dictionary takes care of translating a \cw{char[8]} into a lumpinfo index. The search is sequencial but to speed up comparaision the string of eight is treated as two integers of 32-bit.\\
+\par
+\ccode{W_CheckNumForName.c}{}\\
+\par
+
+
+At startup the wad file is loaded and the lump directory parsed so all lumps are known. At runtime when an asset is needed it is requested and refered to by its lump name.\\
+\par
+\ccode{W_CacheLumpName.c}
 
 
 \subsection{Inheritance system}
@@ -126,10 +115,3 @@ Upon starting the engine automatically looked for known wads such as \cw{DOOM1.W
 \par
  This elegant design allowed modders to overwrite some aspect of stock wad while keeping the rest. For mappers this meant only shipping a small \cw{PWAD} with the map lumps and still be able to use the textures from the \cw{IPWAD}.\\
  \par
-
-\subsection{Big/Little abstraction}
-To abstract away the endianess of the system, the wad filesystem does not read byte directly from the hard-drive, instead it uses a set of macros.\\
-\par
-\ccode{endianess.c}
-\par
-Note that wad data was stored in little endian so the target players who used PCs suffered zero performance penalty. This would be a problem later when porting to consoles which were all big endian. Since these machines were already struggling, the wad archives had to be re-generated in big endian and the macro were adjusted.
