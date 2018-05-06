@@ -3,8 +3,7 @@ The 3D renderer is an uncanny combination of proper 3D techniques and screen spa
 \par
  For the environment, pixels in the framebuffer are all written exactly once\footnote{Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.}. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
 \par
-The big lines are as follow:\\
-\par
+The big lines are as follow:
 \begin{itemize}
 \item Render walls segments, sorted near to far from the player point of view. Both wall ends are projected into screenspace axis X. Based on the distance and floor/ceiling the wall sectors belongs to, calculate a column Y offset and an height. 
 \item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:

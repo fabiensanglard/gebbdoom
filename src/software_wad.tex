@@ -90,28 +90,48 @@ Lumps are identified by an unique name on eight characters (which conveniently m
 
 
 \subsection{Lumps}
-The lump system is the less glamoruos part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
+The lump system is the less glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
-When it starts, the system looks at every wad archive provided and indexes every single lump found into a gigantic array of \cw{lumpinfo\_t} cunningly named \cw{lumpinfo}. 
-Additional wad archives can be provided thanks to \cw{-file} command-line parameter. In this case, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lumpinfo} first.\\
+Upon starting up, it looks at every wad archive provided and indexes every lumps found into a gigantic array of \cw{lumpinfo\_t} cunningly named \cw{lumpinfo}. 
+If additional archives are provided via \cw{-file} command-line parameter, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lump info} first.\\
 \par
-\vspace{4in}
+In the following example, \doom was started with the command-line:\\
 \par
-The wad lumpsystem provide access to each lump prodideda lump name and a hint indicating how it will be used. The first task is to find out where the lump in in the \cw{wad}. To this effect a lump dictionary takes care of translating a \cw{char[8]} into a lumpinfo index. The search is sequencial but to speed up comparaision the string of eight is treated as two integers of 32-bit.\\
+\fakedosoutput{dos_doom_wad}
+\par
+Which results in the following lump dictionary:\\
+\par
+\pngdrawing{lumpsManager}{For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archive have only one lump each.}
+\par
+Request to the lump system are sent via a \cw{char[8]} name. The first task to make the lump available is to find out in which wad it is and at which offset. The dictionary is searched sequentially in function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight character each times, it compares two integers of 32-bit.\\
 \par
 \ccode{W_CheckNumForName.c}{}\\
 \par
-
-
-At startup the wad file is loaded and the lump directory parsed so all lumps are known. At runtime when an asset is needed it is requested and refered to by its lump name.\\
+In the code listing above, you will notice that the dictionary is searched starting from the end. This done intentionally to embrass the modding community and allow fan made wad archives to overwrite id software lumps.\\
+\par
+The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten, maps, music, sfx, to graphics\footnote{With the exception of A.I which is backed in the executable} could be swapped with a simple command-line.\\
+\par
+\trivia{To differentiate official wad from fan made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan made were requested to use \cw{PWAD}.}\\
+\par
+Once a lump location has been found, a memory block is requested from the memory allocator. The content of the lump is copied to RAM and returned to the caller. \\
+\par
+The lump system features a fuzzy caching system. The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array. Every time a lump is requested, the cache is looked up first. The lump cache slot set itself as the \cw{user} of the memory block which means the cache is automatically invalidated if the block is freed.\\
+\par
+DRAWING\\
+\vspace{7cm}
+DRAWING\\
 \par
 \ccode{W_CacheLumpName.c}
 
 
-\subsection{Inheritance system}
-Upon starting the engine automatically looked for known wads such as \cw{DOOM1.WAD}, \cw{DOOM.WAD}, or \cw{DOOM2.WAD}. It also accepted a parameter \cw{-file} allowing to load additional wad. These additional WADs took precedence over the stock wads in the sense that when a lump was requested the engine looked it that directory first. If that failed, the lookup went down the wad chain.\\
+
+Some fan used the overwritting system to replace almost every aspect of the original game. These mods were know as "Total Conversion". The most notorious of them all, was name Alien Total Conversion.\\
 \par
-\trivia{Additional wad had to use the magic number \cw{PWAD} for Player WAD while the magic number IWAD was reserved for Id Software WADs.}\\
+Released in December 1994, it took Justin Fisher one year of hard work. Amusingly the result ended up fulfilling the aliens motion picture theme id Software briefly considered before going for demons.\\
 \par
- This elegant design allowed modders to overwrite some aspect of stock wad while keeping the rest. For mappers this meant only shipping a small \cw{PWAD} with the map lumps and still be able to use the textures from the \cw{IPWAD}.\\
+ \fullimage{alientc.png}{}
  \par
+ The list of modifications was impressive at the time. Many sound effects such as doors, weaponry, and explosions were straight from the movie. Actors signatures "Let's rock" screams had been digitized. All demons had been replaced with aliens, eggs, facehuggers and even the alien queen.
+The weapons also received the treatment. The Pulse Rifle, the Grenade Launcher, the Smart-Gun are there and even the chainsaw was replaced with the "Caterpillar P-5000 Work Loader".\\
+\par
+Map design was far from being neglected. AlienTC did a breathtaking job at replicating Aliens worrisome and intriguing atmosphere. In order to build up paranoia, the first level features no enemies.

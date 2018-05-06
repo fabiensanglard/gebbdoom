@@ -1,53 +1,59 @@
 \section{Video Manager}
-The rendition system is located in the kernel. It maintains and expose two data structures, a set of five framebuffers, and one dirtybox. It is the brain which signal the video system when a frame is ready to be presented to the player.\\
+Before continuying our trip down the code and look at the rendition in  \cw{D\_Display}, let's take a few pages to study the graphic stack where each frame are stored and manipulated. The video system is located in the core. It maintains and expose two data structures. A set of five framebuffers, and one dirtybox. All write operations update the framebuffers and the box.\\
 \par
 \cccode{kernel_renderer.c}{Five framebuffers.}
 \par
 \par
 \cccode{kernel_renderer_dbox.c}{The dirtybox.}
 \par
-The video system implementation must provide four functions to the rendition system to work properly.\\ 
+The video system implementation must provide four functions to the core. \cw{I\_InitGraphics} to be told when to initialized itself. \cw{I\_UpdateNoBlit} to be told when a portion of the framebuffer has been modified. \cw{I\_FinishUpdate} when the framebuffer is fully composed and should be presented to the screen. \cw{I\_WaitVBL} to block and return on next V-Sync.\\ 
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.27} | L{0.73} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Method} & \textbf{DOS Description} \\
+  \textbf{Method} & \textbf{DOS Implementation} \\
   \specialrule{1pt}{0pt}{0pt}
 \cw{I\_InitGraphics} & Set VGA in Mode-Y.\\
 \cw{I\_UpdateNoBlit} & Send updated area of the screen to the VGA.\\
-\cw{I\_FinishUpdate} & Flip buffer (update CRTC start scan address.\\
+\cw{I\_FinishUpdate} & Flip buffer (update CRTC start scan address).\\
 \cw{I\_WaitVBL} & Wait V-Sync (Used to wait before update palette).\\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
-\caption{Video system interface}
+%\caption{Video system interface}
 \end{figure}
 \par
-\trivia{To host the framebuffer in the kernel and not in the video system allowed fast access to it. There was no more need to play with VGA banks. It also opened the door to reading back what would become pixels. This capability opened the door to new effects such as "predator" transparency opponents such as the "spectre". Moreover if you refer back to the architecture of a VLB system, it allowed transfer of one framebuffer to the video system while the next frame was being generated which allowed two systems to work in parallel for an improved output.}
+To host the framebuffer in the core and not in the video system itself was an audacious trade-off. It was a performance hit since data had to be copied twice before reaching the screen. But it tremendously improved portability since the framebuffer had been abstracted. It also opened the door to reading back from the core framebuffer. This capability allowed new effects such as "predator" transparency seen with the "spectre" demon.\\
 \par
+ The performance hit was not too back on VLB systems. If you refer back to the architecture on page \pageref{vlbarchitecture}, you will see that it allowed transfer of one framebuffer to the video system while the next frame was being generated in the cachelines. This parallel pipeline allowed the framerate to be 90\% of what it would have been with direct access to the VGA.\\
+\par
+
 \drawing{renderer_full_pipeline}{}
+\pagebreak
 %\par
 %\trivia{Notice how the VGA framebuffer are not exactyl 320x200=0x3E80 in size but 0x4000 instead. This is done because updating the CRTC start address can be don atomically.}
 \par
-The pipeline is a follow:
+A full decription of the pixel pipeline is as follow:
 \begin{enumerate}
-\item When the engine runs, it always write to framebuffer 0. In the process it updates the \cw{dirtybox}.
-\item When the engine is done, it calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer 0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS it copies its content to the VGA in the last used area. This is usually an expensive operation. Note that each VGA buffer update is also traced via an \cw{updatebox}.
-\item Once transfer has been completed, the kernel calls \cw{I\_FinishUpdate}  which flips the used buffer on the VGA. This is as fast as updating the start address of the CRTC.
+\item For the duration of a frame, what the engine wants to see on the screen must up in framebuffer \#0. Every times the engine updates this buffer, it also updates the \cw{dirtybox}.
+\item When it feels necessary, the engine calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer \#0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS it copies its content to the VGA in the last used area which an expensive operation. Note that each VGA buffer update is also traced via an \cw{updatebox}.
+\item Once a frame has been completed, the core calls \cw{I\_FinishUpdate}  which signal the video system that framebuffer \#0 is ready for display. On DOS, the implementation of \cw{I\_FinishUpdate} simply updates the start address of the CRTC which is a lightweight operation.
 \end{enumerate}
 \par
-The four other framebuffers are rarely used.
+\ccode{I_FinishUpdate.c}
+%\par
+%On \NeXT system, the video implementation is very different. Calls to \cw{I\_UpdateNoBlit} are ignored. Only when \cw{I\_FinishUpdate} is called the framebuffer \#0 is copied and sent to Display PostScript subsystem. The \NeXT video system is detailed in the Annex on page \pageref{label_next_video_system}.\\
+\par
+The four other framebuffers are used intermittently for temporary storage.
 \begin{itemize} 
-\item Framebuffer 1 is also used when taking a screenshot. Finally Framebuffer 1 is used for \cw{r\_FillBlackScreen}.
+\item Framebuffer 1 is used when taking a screenshot but also to store the background when the 3D view is not full screen (\cw{r\_FillBackScreen}).
 
 \item FrameBuffer 2 and 3 are used during the wipe animation to store the start and end screen while compositing into framebuffer (see detailed wipe system in the Annex on page \pageref{label_melt}). 
 \item FrameBuffer 4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. 
 \end{itemize}
 \par
 
-\trivia{The implementation of the video system on DOS and \NeXT are very different. DOS application have total access to the hardware whereas \NeXT apps must use API. The \NeXT video system is detailled in the Annex on page \pageref{label_next_video_system}.}\\
-\par
-\ccode{I_FinishUpdate.c}
-\par
+
+
 The code of function \cw{I\_UpdateBox} to transfer data from RAM to VRAM may look surprising. After all the hardware discussion about 32-bit CPU and 32-bit VL-Bus it is uncanny to see the transfer loop do it 16-bit at a time (\cw{short *dest;}). It turns out it was a deliberate choice.\\
 \par
 \fq{Our artwork was always done in 8x8 blocks, or "ebes" as Tom called them.  A 32 bit inner loop would have needed more code to handle widths that were an odd number of ebes.  It might have been a speedup, but both the bus and video card would have to have handled full 32 bit writes, and I don't recall that being common back then.  Even many VL-Bus cards were still the same basic chipset used on the ISA cards, and often still 16 bit, which meant that a 32 bit write just took twice as long.}{John Carmack}

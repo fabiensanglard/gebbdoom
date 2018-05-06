@@ -1,23 +1,23 @@
 \pagebreak
-\section{2D Renderers}
-There are many instances during which \doom needs to render 2D elements. All of this work was my the self proclaimed "spackle coder" of the team, Dave Taylor.\\
+\section{2D Renderers (Drawers)}
+All drawers of \doom were the work of  Dave Taylor. The self proclaimed "spackle coder" of the team was only hired three months before the game shipped but he still managed to produce many systems.
 \begin{itemize}
-\item Status Bar
+\item Status Bar (\cw{ST\_Drawer()})
 \item Automap
-\item Intermission
-\item HUD
-\item Menus
+\item Intermission (\cw{WI\_Drawer()})
+\item HUD (\cw{HU\_Drawer()})
+\item Menus (\cw{M\_Drawer()})
 \item Transition screens (wipe)
 \end{itemize} 
 \par
-\trivia{The cheatcode \cw{iddt} allowing to see everything in the automap is named after Dave Taylor.}
+
 
 
 
 \subsection{Intermission}
 The intermission screen is faily simple in nature and fully contained in \cw{wi\_stuff.c} translation unit. It start by loading a virgin background map from the wad archive to RAM and placing it in FrameBuffer \#1.\\
 \par
-\scaledimage{0.8}{intermissions/WIMAP0.png}\\
+\fullimage{intermissions/WIMAP0.png}\\
 \par
 Everytime a screen refresh is needed, the intermission code does a \cw{memcpy} (called "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draw sprites and text on top of it.\\
 \par
@@ -36,7 +36,7 @@ The design of the status bar is similar to intermission and contains in \cw{st\_
 \par
 \fullimage{stbar.png}
 \par
-\trivia{Head shows where damage came from.}\\
+%\trivia{Head shows where damage came from.}\\
 
 \par
 \fullimage{faces.png}\\
@@ -92,7 +92,7 @@ In the previous code sample describing the main menu, notice how the strings \cw
 
 
 
-\subsection{HUD (HeadUP)}
+\subsection{HUD (Head Up Display)}
 In its early instances, \doom featured a full pleaged HUD occupying 50\% of the screen.\\
 \par
 \fullimage{alpha_hud.png}
@@ -104,6 +104,19 @@ Over time the design changed and the HUD shrinked to be reduced to lines of text
 %\trivia{Despite being a small market, french characters receveid special attention in this module.}
 
 
+
+\subsection{Automap}
+The automap is a small and simple component contained in \cw{am\_map.c}. As the players discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
+\par
+It is not possible to play the game in this mode since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
+\par
+\fullimage{automap.png}
+\par
+\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids but was left unfinished.}\\
+\par
+\fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
+\par
+%\trivia{The cheatcode \cw{iddt} allowing to see everything in the automap is named after Dave Taylor.}
 
 
 
@@ -121,26 +134,16 @@ Also known as the "Screen melt", wipe is used to transition between sections of 
 \scaledimage{.9}{melt/melt3.png}\\
 
 \par
-The wipe module (as it is known internally) takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output in FrameBuffer \#0 (FrameBuffer \#1 is left available in case a screenshot request was received in the middle of a wipe.).\\
+It takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output in FrameBuffer \#0.\\% (FrameBuffer \#1 is left available in case a screenshot request was received in the middle of a wipe.).\\
 \par
 The first step is to reorganize the two sources of data from row major to column major. This is done so the vertical strip play nicely with the 486 cachelines.\\
 \par
 \fullimage{face_rawmajorized.png}
 \par
 After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value are within 16 units of their two neighbors.\\
-\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped of the screen. During the animation, columns two pixels wide and 240 pixels tall are copies repeatedly from src and dest to FB \#0. All columns falls at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.\\
+\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped of the screen. During the animation, columns two pixels wide and 240 pixels tall are copies repeatedly from src and dest to Framebuffer \#0. All columns falls at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
 %The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as \\
 
 
 
-\subsection{Automap}
-The automap is a small and simple component contained in \cw{am\_map.c}. As the players discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
-\par
-It is not possible to play the game in this mode since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
-\par
-\fullimage{automap.png}
-\par
-\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids but was left unfinished.}\\
-\par
-\fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
-\par
+

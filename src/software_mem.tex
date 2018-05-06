@@ -19,11 +19,11 @@ Each block is marked with a purge hint so the allocator can know whether i can f
 \par
 \ccode{memory_zone.c}\\
 \par
-In its initial start, all ram is in a free block. To make the drawing simpler, let's assume the entire ram is 8000 bytes. The block has been marked \cw{STATIC}. It has a \cw{NULL} owner. Its size is 8000. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
+In its initial start, all ram is in a free block. To make the drawing simpler, let's assume the entire ram is 8000 bytes. The block has been marked \cw{STATIC}. It has a \cw{NULL} \cw{user}. Its size is 8000. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
 \par
 \rawdrawing{zalloc_start}
 \par
-For each calls to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it create a block and shrinks the free block. Two calls sizes 1000 and 3000 result in three blocks in the chain. Notice the default \cw{owner} value which is a weird "\cw{2}" (why not \cw{42} ?).\\
+For each calls to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it create a block and shrinks the free block. Two calls sizes 1000 and 3000 result in three blocks in the chain. Notice the default \cw{user} value which is a weird "\cw{2}" (explained later).\\
 \par
 \rawdrawing{zalloc_allocs}
 
@@ -43,7 +43,7 @@ The rover will simply "roll over" to discover this new free block and use it to 
 \par
 There is a third case which is vastly more interesting. So far we have only talked about statically allocated block such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belong to the "purgeable" category.\\
 \par
- It is mostly used by the wad/lump manager described in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a near future. However the memory allocator is allowed to free it.In the following configuration where there is not enough space in any block to successfully allocated 1000 bytes.\\
+ It is mostly used by the wad/lump manager described in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a near future. However the memory allocator is allowed to free it. In the following configuration where there is not enough space in any block to successfully allocated 1000 bytes.\\
 \par
 \rawdrawing{zalloc_cache_before}
 \par
@@ -52,14 +52,9 @@ The rover will follow the chain and find block \cw{F}, deallocate it and use it.
 \rawdrawing{zalloc_cache_after}
 \par
 
-The memory manager has many other features over libc's \cw{malloc}.\\
+The memory manager has many other features over libc's \cw{malloc}. The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). \cw{Z\_Free} is able to detect mismanagements such as double free. A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection.  An integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others or that there are no two consecutive free blocks.\\
 \par
-\begin{itemize}
-\item The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). 
-\item \cw{Z\_Free} is able to detect mismanagements such as double free. 
-\item A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection.
-\item An integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others or that there are no two consecutive free blocks.
-\end{itemize}
+\trivia{Blocks can be "retagged" via function \cw{Z\_ChangeTag}. It is frequent for the engine to allocate memory blocks with a \cw{PU\_STATIC} tag while working with assets only to change the tag to \cw{PU\_CACHED} after it is done with it. This allow memory to be freed if needed while potentially avoiding a round trip to the HDD if the block is still in RAM.}
 % \trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
 % \par \tcode{zone_undefined.txt}}
 % \par

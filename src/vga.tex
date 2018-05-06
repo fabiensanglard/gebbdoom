@@ -77,6 +77,7 @@ The VLB doubled the bus data line of the ISA to reach 32-bit and increased its f
 The chip design for the VLB controller was relativity simple, because many of the core instructions were hosted by the ISA circuits already on the motherboard, but the actual data passes were on the same local bus as the one used by the CPU.
 The speed of the system data bus is based on the clock rate of the motherboard's crystal. 
 \drawing{bus_vlb}{VLB Bus}
+\label{vlbarchitecture}
 \par
 During the heyday of the VLB, this was usually 33 MHz, and VLB cards usually ran at half that rate, far out pacing the ISA bus. Some cards ran as fast as 50 MHz, using the full speed of the souped-up system bus. That often caused system crashes, because 50 MHz was outside the VLB specification.\\
 \par
