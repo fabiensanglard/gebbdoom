@@ -87,13 +87,13 @@ void SVGRenderer::render(MapReader::Maps maps) {
 }
 
 void SVGRenderer::renderMap(Map &map) {
-//    renderNodes(map);
+    renderNodes(map);
     renderLineDefs(map);
-//    renderSegs(map);
-//    renderSubSectors(map);
-//    renderNodesAndSubSectors(map);
-//    renderBlockmap(map);
-//    renderBluePrint(map);
+    renderSegs(map);
+    renderSubSectors(map);
+    renderNodesAndSubSectors(map);
+    renderBlockmap(map);
+    renderBluePrint(map);
     renderBspTree(map);
 }
 
@@ -294,7 +294,7 @@ void SVGRenderer::renderSegs(Map &map) {
                    << "\" y2=\"" << -seg.end.y
                    << "\" stroke-width=\""
                    << 7
-                   << "\" stroke=\"black\" marker-end=\"url(#arrow)\" />"
+                   << "\" stroke=\"black\" />" //marker-end=\"url(#arrow)\" />"
                    << std::endl;
 
         outputFile << "    <circle cx=\""
@@ -313,6 +313,20 @@ void SVGRenderer::renderSegs(Map &map) {
                    << 10
                    << "\"/>"
                    << std::endl;
+    }
+
+    for(Splitter splitter: map.splitters()) {
+        if (splitter.depth > 2)
+            continue;
+
+        float opacity = 1.0f;
+
+        outputFile << "<line x1=\"" << splitter.start.x << "\" y1=\"" << -splitter.start.y
+                   << "\"    x2=\"" << splitter.end.x << "\" y2=\"" << -splitter.end.y
+                   << "\" stroke-width=\"" << 25 << "\" stroke=\"black\" "
+                   << "stroke-opacity=\"" << opacity << "\" "
+                   << "fill-opacity=\"" << opacity << "\""
+                   << "/>" << std::endl;
     }
 
     outputFile << epilogue << std::endl;
@@ -467,8 +481,8 @@ void SVGRenderer::renderBspTree(Map &map) {
     generateSVGHeader(outputFile, map);
 
     for(Splitter splitter: map.splitters()) {
-//        if (splitter.depth > 5)
-//            continue;
+        if (splitter.depth > 1)
+            continue;
 
 
 //        int r, g, b;

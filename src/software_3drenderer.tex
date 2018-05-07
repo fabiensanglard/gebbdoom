@@ -1,9 +1,16 @@
 \section{3D Renderer}
-The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. Its most breathtaking characteristic is that it renders walls and flats with zero overdraw. The design is is amusingly orthogonal to Wolfenstein 3D renderer. The latter's ties to the VGA made it render everything vertically while \doom's 486 cachelines made it render things horizontally as much as possible.\\
+The 3D renderer is an uncanny combination of proper 3D techniques and screen space tricks. A summary inspection of its main function (\cw{R\_RenderPlayerView}) reveals it is capable to render three things.\\
 \par
- For the environment, pixels in the framebuffer are all written exactly once\footnote{Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.}. It can be broken down in four sections dedicated to rendering walls, flats (ceilings and floors), transparent elements, and current weapon.\\
+\ccode{R_RenderPlayerView.c}{}
 \par
-The big lines are as follow:
+\begin{itemize}
+	\item Segments (walls and portals which are always vertical).
+	\item Flats (ceilings and floors which are always horizontal).
+	\item Things (also called "Masked") which are all monsters, weapons, ammo, and sprites in general.
+\end{itemize}
+ Its most breathtaking aspect of it is its ability to renders walls and flats with zero overdraw. Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.\\
+\par
+The full life of a frame can be summarized as follow:
 \begin{itemize}
 \item Render walls segments, sorted near to far from the player point of view. Both wall ends are projected into screenspace axis X. Based on the distance and floor/ceiling the wall sectors belongs to, calculate a column Y offset and an height. 
 \item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
@@ -13,47 +20,60 @@ The big lines are as follow:
    \end{itemize}      
 \item Render all ceiling and floors from the visplanes.
 \item Render transparent elements in far to near order.
-\item Render player sprite (overlay view).
+\item Render player sprite (the weapon the marine is holding).
 \end{itemize}
 \par
-The different sections can easily be identified in the code.\\
+The most important part (and what \doom engine is most famous for) is the ability to sort walls and things extremely efficiently thanks to its Binary Space Partition tree. Interestingly, there is a bit of a back story about how the BSP came to be a central part of the game engine.\\
 \par
-\ccode{R_RenderPlayerView.c}{}
-\par
-\trivia{Wolfenstein 3D and Doom have orthogonal architectures. Where the former tried to draw everything vertically to favor the VGA, the latter tried to draw everything horizontally to favor the 486 cachelines.}
+\pagebreak
+%\trivia{Wolfenstein 3D and Doom have orthogonal architectures. Where the former tried to draw everything vertically to favor the VGA, the latter tried to draw everything horizontally to favor the 486 cachelines.}
 
-\subsection{Walls}
-There are two ways to render walls in a correct way. Either go with a painter algorithm which draw far to near and involves no book-keeping but generate a lot of overdraw. Or draw near to far, keeping track of what has been drawn which is more compicated but has zero overdraw. In both strategy lies the problem of sorting them according to the player point of view. Given the high cost of rendition, \doom went for the latter approach.\\
+% \subsection{Walls}
+% There are two ways to render walls in a correct way. Either go with a painter algorithm which draw far to near and involves no book-keeping but generate a lot of overdraw. Or draw near to far, keeping track of what has been drawn which is more compicated but has zero overdraw. In both strategy lies the problem of sorting them according to the player point of view. Given the high cost of rendition, \doom went for the latter approach.\\
+% \par
+
+% \subsubsection{Sorting walls}
+In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals, traversing the map in a near to far fashion. Each portal lead to adjacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
+\par
+\srawpngdrawing{0.7}{duke_map}
+\vspace{1cm}
+\fq{The engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
+\par
+Things indeed slowed down significantly with a particular map of John Romero creation.\\
+\par
+\fq{I was working on E1M2 around April 1993, and I created a set of circular stairs. John C. wrote the renderer with a sector list to know what should be rendered. The problem is that this set of stairs made his sector list building code take a really long amount of time to execute because the same sectors needed to be put into the list over and over due to how the algorithm worked.}{John Romero}\\
+\par
+\fullimage{SCREEN01.png}%{Notice the HUD using a huge portion of the 3D canvas.} 
+\label{HUD_screenshot}
+\par
+As the news that the technology was not good enough to ship, around the same time an other very serious issue arose.\\
+\par
+Back in August 1992, id Software had landed a contract with Nintendo to port Wolfenstein 3D to SNES. They subcontracted the project and forgot about it to focus on \doom. In April 1994, the contractor was nowhere in sight. They had nothing to deliver to Nintendo. It was a big deal involving a huge penalty.\\
+\par
+ Development for \doom stopped completely as the team desperately banged they old game together into a machine not remotely built to do what they wanted. While Tom Halls dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
 \par
 
-\subsubsection{Sorting walls}
-In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals. Each portal lead to ajacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
-\par
-DRAWING\\
-\par
-Most of the time it worked well. But when designers stated to build complex maps with staircases, performances collapsed like it in this early map made by John Romero for an alpha version.\\
-\par
-\cfullimage{SCREEN00.png}{Notice the HUD using a huge portion of the 3D canvas.} \label{HUD_screenshot}
-\par
-\fq{The engine was still built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn’t have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
-\par
-Concave and convex sectors proved to be too much complexity for the engine to deal with and maintain a descent frame rate. This was a huge issue. They did not have much time to work on it thought, since around the same time this issue was discovered, work on \doom had to stop in order to respond to an emergency.\\
-\par
-Back in June 1992, id had promised to deliver Wolfenstein 3D for SNES. They subcontracted the project and kinda forgot about it. Six month later they could not get in touch with the contractor. They had nothing to show to Nintendo and it was a big deal involving a huge penalty.  \doom development stopped completely and desperatly banged they old game together into a machine not remotely built to do what they wanted. While Tom Halls dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolf relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}. It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
-\par
 
 
+\fq{John started searching around for 3D research papers. He had several VHS tapes of math conferences, and compendiums of graphics papers from conferences because game books were a rare thing back then, and there was nothing printed that could help us create the engine we were building -- he had to figure out where to get information that was not directly applicable to games and figure out how to adapt it to his problem.\\
+\par
+Bruce Naylor's May 1993 AT\&T Bell Labs paper was titled "Constructing Good Partitioning Trees" and was published in the proceedings of Graphics Interface '93. John had this book in his collection. Bruce's explanation of BSPs was mostly to cull backfaces from 3D models, but the algorithm seemed like the right direction, so John adapted it for Wolfenstein 3D.}{John Romero}\\
+\par
+\fq{I do remember clearly that I first used BSP for the SNES version of Wolfenstein, which was a gentle introduction with everything being axial and easier to visualize, which gave me more confidence I would be able to make it work when I went back to working on Doom}{John Carmack}\\
+% Concave and convex sectors proved to be too much complexity for the engine to deal with and maintain a descent frame rate. This was a huge issue. They did not have much time to work on it thought, since around the same time this issue was discovered, work on \doom had to stop in order to respond to an emergency.\\
+% \par
+With a visual surface determination not based on raycasting but rather on BSP, Wolfenstein 3D SNES managed to reach an acceptable framerate\footnote{}. Within three weeks the managed to produce "something".\\
+\par
+Due to Nintendo strict non-violence policy the game had to be heavily censored to reach a child-friendly quality. Blood was replaced with sweat. guard dogs are replaced with mutant rats and Hitler was renamed "Staatmeister" (which translates to State Master).\\
+\par
+And with that problem solved, by the end of April, the whole team was back on \doom.
+\pagebreak
 
+\cfullimage{bsp_paper.png}{Bruce Naylor's paper: "Constructing Good Partitioning Trees"}
+\pagebreak
 
-\subsubsection{Binary Space Partitioning: Theory}
-In early 1993, Bruce Taylor paid a visit to his friend at id Software. At that point, he had been working in the Computer Graphics field for nearly two decade at University of Texas. He did not come empty handed, he had brought with him many papers about CG. One of them was his own, published in 1988 for SIGGRAPH in collaboration with H.Futchs and Zvi Kedem. It was titled "ON VISIBLE SURFACE GENERATION BY A PRIORITI TREE STRUCTURES".\\
-\par
-The technique explained a favorable trade-off where a bit of preprocessing on a set of polygon allowed a formidable runtime speed up. The preprocessing was dead simple. By recursively spiting a space in two, any set of complex polygons could be transformed into a set of convex polygon associated with a navigable binary tree.\\
-\par
-\cfullimage{bsp_paper.png}{ON VISIBLE SURFACE GENERATION BY A PRIORITI TREE STRUCTURES}
-\par
- \trivia{The paper mentions 1988 hardware, "moderately-priced (\$40,000-80,000) real-time line-drawing systems" capable of line drawing only. A good example of the improvement of performances within five years only.}\\
- \par
+\subsection{Binary Space Partitioning: Theory}
+Binary Space Partitioning trees have many applications. The one we are interested in is how \doom uses them to perform VSD (Visible Surface Determination). Bruce Naylor's thesis paper "ON VISIBLE SURFACE GENERATION BY A PRIORITI TREE STRUCTURES" features a pretty good summary.\\
 
  \begin{verbatim}
 In order to determine the visible surface at each pixel, traditionally
@@ -67,75 +87,118 @@ for each polygon.
 \end{verbatim}
 
 \par
-\fq{When I did the early work on BSPs, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}
+\fq{When I did the early work on BSPs\footnote{That was while working on Quake, John and Bruce met only after \doom shipped.}, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}\\
+\par
+To understand how BSPs work, let's take the example of a map which could easily have been created with DoomED.\\
+\par
+ For simplicity the map we will be working with is made of eight vertices linked together to form a room made of four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room a pillar which is also made of four walls (\cw{E}, \cw{F}, \cw{G}, and \cw{G}). The map is made of only one complex sector (it has a hole in it). Despite is simplicity it is obvious how it is a difficult problem to solve to a renderer since depending on the point of view the order in which the wall must be drawn will vary. A naive solution would require a complex sorting algorithm. Notice that all lines have a direction and all lines have only one side (on their right side).\\
 
 \par
-\subsubsection{Step by Step}
-Let's take the example of a simple map which could have been drawn in DoomED. It features a single sector with a pillar inside it. Eight vertices and eight lines. Despite is simplicity it forms a difficult problem to solve to a renderer aiming at scene correctness. Depending on the player position the order in which the wall must be drawn will vary. \\
+\rawdrawing{doom_map}
 \par
-\pngdrawing{doom_map}{}
+To build the BSP from the map, the core idea is to repeatedly select a line to spit the map in two. Split lines become \cw{SEGMENTS} and split sectors become {SUB-SECTORS}.\\ 
 \par
-The science of Node building is to select the best splitting line. A list of poor choices would to select \cw{A}, then \cw{B}, then \cw{C} then \cw{D} which would accomplish nothing but to create a costy linked list with more data at the end.\\ 
+In our example, a list of poor choices of splitters would be \cw{A}, then \cw{B}, \cw{C}, and \cw{D} since they would not divide data well.\\ 
 \par
-In the case where \cw{H} is chosen, the map is divided in two. Some line fit entirely on the right side of the spliting plan, some on the left. Line on both sides must be slit into segments.\\
+Let's say our heuristic selected line \cw{H} which conveniently cut  the room in half. Some lines are entirely on the left of H and some are entirely on its right. Lines on both sides must be slit into segments.  After the split, the two leaves in the BSP contains two sub-sectors. One is convex (\cw{\{A, B1, H D1\}}) and will not be touched anymore. The other one is concave (\cw{\{E, F, G, B2, C, D2\}}) and will need further splitting. The process is repeated until all subsectors are convex.\\
 \par
-\pngdrawing{doom_map_split1}{}
+\drawing{doom_map_split1}{}
 \par
-The process is repeated until the map is made of convex spaces. Notice how the binary tree grows, with splitting plan as nodes and segments in the leave. 
+The process is repeated until every node is reduced to a convex sub-space. Notice how the binary tree grows, with splitting plan as nodes and segments in the leave. 
 \par
-\pngdrawing{doom_map_split2}{}
+\rawdrawing{doom_map_split2}
 \par
-After the last spliting operation, all segments in the leaves form a convex subspace called a Sub-Sector (\cw{SSECTOR}).\\
+At this point in the splitting we are still not done. The area between \cw{B2}, \cw{C2}, \cw{F}, and \cw{F} is concave. We need one last split.\\ 
 \par
-\pngdrawing{doom_map_split3}{}
+\drawing{doom_map_split3}{}
 \par
-Notice that this is only one of the many possible BSP tree which could have been generated. A different (yet reasonable) set of splitter would have given something different yet equivalent.\\
+With all sub-sectors in the leave convex, the BSP construction ends. The number of vertices and segments to deal has increased by 50\% but we now have a data structure capable of sorting all segments, from any point of view, at the cost of only three comparison.\\
+\rawdrawing{doom_map_split4}
 \par
-\pngdrawing{doom_map_alternate}{}
-\par
-At first sight it may look like all these operations were counter productive. The map started with 8 lines and now it has twelve which is 50\% more work. But by using the binary tree the entire scene can be sorted in only three tests regardless of the player position.
-\par
-EXAMPLE, PLAYER in SSector 1\\
-\par
-EXAMPLE, PLAYER in SSector 2\\
+This is only one of the many possible trees which could have been generated with the map. Choosing splitters in an alphabetical order would have produced an inefficient BSP.\\
 
 
 
 
-
-\subsubsection{Binary Space Partitioning: Practice}
-Input:\cw{LINE} and \cw{SECTOR} figure XX.\\
-Output:\cw{SEG} and \cw{SSECTOR} and \cw{NODE} figure YY.\\
-TODO: How long did it take to preprocess all maps?\\
+\rawdrawing{doom_map_bad}{}
 \par
-If the cost of preprocessing map was invisible to players and only affected designers, there was a second side effect which was much more of an issue. Because the BSP sliced the map, wall position was set in stone, there was no way to move. Floor and ceiling levels remained unaffected.\\
-\par
-Only after April 1993, when the team had to do Wolfenstein 3D within three weeks, did the engine renderer change.\\
 
+\subsubsection{Usage}
+
+\begin{wrapfigure}[10]{r}{0.5\textwidth}
+\centering
+\includegraphics[width=.5\textwidth]{drawings/doom_map_walk.pdf}
+\end{wrapfigure}
+To use the BSP, we only need to traverse it depth first and choose a branch based on a position on the map. Let's take two example using the BSP in figure XXX. For convenience of notation, sub-sectors have been labeled \cw{1} to \cw{4} and only the splitting lines are marked.\\
+\par
+From point of view \cw{P1}, traversing the BSP takes three tests. \cw{P1} is on the right of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. Which give the order near to far: \cw{1,2,3,4}. Notice that once the subsector is determined, it doesn't matter what order segments within a subsector are drawn since all subsectors are convex.\\
+\par
+From point of view \cw{P2}, traversing the BSP also takes three tests. \cw{P2} is on the left of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. Which give the order near to far: \cw{3,2,4,1}.\\
+\par
+The beauty of binary trees is that traversing them is a constant cost. No matter where we try to place the player on the map, it will always take three tests to sort all subsectors and their segments.
+\pagebreak
+
+
+
+
+\subsection{Binary Space Partitioning: Practice}
+For \doom~, maps were preprocessed on a NeXTStation Turbo via the in-house tool node builder named \cw{doombsp}.\\
+\par
+For the tool to build the best BSP possible a splitter selection heuristic had to be established. A good splitter divides the map as evenly as possible (and therefore limit the depth of the tree) and is either horizontal or vertical (to be easier to debug).\\
+\par
+ \cw{doombsp} recursively inspect all lines in a subspace and give a splitting score to each of them. At the end of the evaluation, the highest scoring line is selected. Map is split in two and the process is repeated until only convex subsectors remain. This is a CPU intensive task which took XXXs for a E1M1 featured in Figure \ref{E1M1_lines}. And a total of XXX for all thirty maps of \cw{DOOM.WAD}.\\
+\par
+\drawing{E1M1_lines}{E1M1, a.k.a Episode 1 Map 1.}
+\par
+Figure \ref{E1M1_segs} shows the seven first splitters selected on E1M1. First level in red, second level in blue and the third level in green.\\
+\par
+Switching from sectors flooring to Binary Space Partition not only cost preprocessing time and frustration to map designers. There was a second side effect which was much more of an issue since it affected the players. Because the BSP sliced the map and created new vertices, wall positions was set in stone, there was no way to move walls.
+
+\drawing{E1M1_segs}{Seven first splitters in the E1M1 BSP}
+\drawing{E1M1_fab}{All subsectors at the end of E1M1 tree construction, each is a convex leaf.}
+
+\par
+
+
+\subsection{Drawing Walls}
+With the expert knowledge of BSP in mind, we can take a look at the first step of a scene rendition. Namely, to render walls. No surprise here, \cw{R\_RenderBSPNode} traverses the tree near to far and send sub-sectors found to be rendered.\\
+\par
 \ccode{R_RenderBSPNode.c}
 \par
 
-\subsubsection{Binary Space traversing}
-The theory to traverse a binary tree is straight forward. Recursively determine on what side of a plan a point is. To perform the side test, any geometry book will describe how to represent the plan with a parametric equation $$ P = P0 + (P1 - P0) * t$$
+
+To perform the side test, any geometry book will describe how to represent the plan with a parametric equation $$ P = P0 + t * (P1 - P0) $$
 and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point on a line perpendicular to the plan. The sign of the result tell if the point is in front or in the back of the plan.\\
 \par
-This technique is far from optimal in the context of \doom for the simple reason it requires either floating point or fixed point arithmetic. There is a much better way which involves not the magic of the dot product but the awesomeness of the cross product.\\
+This technique is far from optimal since it requires either floating point or fixed point arithmetic. There is a better way which involves not the magic of the dot product but the awesomeness of the cross product.\\
 \par
-\pngdrawing{line_dot_product}{}
-\pngdrawing{line_cross_product}{}
-
-
 \ccode{R_PointOnSide.c}
+\pagebreak
 
-\subsubsection{Wall projection}
-BAM\\
+
+\begin{wrapfigure}[8]{r}{0.25\textwidth}
+\centering
+\includegraphics[width=.25\textwidth]{drawings/line_cross_product.png}
+\end{wrapfigure}
+Notice in the previous code listing how nodes are not stored as coordinate of two vertices \cw{Point 1}, \cw{Point 2} but rather as \cw{Point 1}, \cw{Delta to Point 2}. This storage technique made the cross-product faster to generate since one of the vector (from the node) was already calculated.\\
+\par
+
+
+\subsubsection{Wall Projection}
+We are not down in \cw{R\_Subsector} function where all segments in a subsectors are rendered in order. This part of the pipeline relies heavily on BAM (Binary Angular Measurement) where degrees in interval \cw{[0, 360]} are mapped in the full range of a 32-bit integer.\\
 \par
 \ccode{bam.c}
 \par
+The angle of both end of the segment with respect to the player position are calculated. Segment with a negative angle (angleP2 - angleP2 < 0) are culled since they are not facing the camera. Segment passing the angle test are projected onto the screen via a double translation table. First the BAM is reduced from 32-bit to 13-bit. Then the angle is injected into a lookup table \cw{viewangletox} to give a screepspace \cw{X} coordinate.\\
+ \par
+
 \pngdrawing{projectionExplained}{}
 \par
+\cw{viewangletox} is generated to give the player 90 degree angle of vision and project to the border of the screen anything else. 
+\par
 \pngdrawing{angletoxTable}{}
-
+\par
+With the sector floor and height a column dimension and vertical offset are calculated. With the distance to the player, scaling is applied. At this point the engine has the dimension of both ends of a segment calculated. But it is not time to draw yet. A little bit of clipping must occur. 
 
 
 
@@ -143,7 +206,7 @@ BAM\\
 
 
 \subsubsection{Wall clipping}
-As segments are elected for rendition in a back to front order, they must be clipped before they reach the rasterizer. Clipping is done in two steps using an horizontal occlusion array and a vertical occlusion structure.\\
+Clipping occurs with a two steps process using an horizontal occlusion array and a vertical occlusion structure.\\
 \par
 The first crude pass maintains a solidseg array which keeps track of which part of the screen received wall segment. Segments can be completely rejected or split into multiple fragments. Note that since they allow things to be drawn behind them, portal segment have no impact on the horizontal occlusion array.\\
 \par
