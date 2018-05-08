@@ -205,18 +205,23 @@ With the sector floor and height a column dimension and vertical offset are calc
 
 
 
-\subsubsection{Wall clipping}
-Clipping occurs with a two steps process using an horizontal occlusion array and a vertical occlusion structure.\\
+\subsubsection{Wall Clipping}
+At this point, we need to differentiate two types of segments. Segments with only one side (connected with only one sector) which are opaque and I will call walls. Segments with two sides (connecting two sectors) which are often transparent in the middle and which I will call portals.\\
 \par
-The first crude pass maintains a solidseg array which keeps track of which part of the screen received wall segment. Segments can be completely rejected or split into multiple fragments. Note that since they allow things to be drawn behind them, portal segment have no impact on the horizontal occlusion array.\\
+Clipping is a two steps process happening in screen space. The first, crude, step is horizontally based. Only walls affects the horizontal occlusion array but all segments are clipped against it.\\
 \par
-Ceiling start at -1 while floor start at viewheight (namely XXX).
+The second, fine, step is vertically based. Both walls and portals affects the vertical occlusion array and both are clipped against it.\\
+\par
+\pagebreak
+
+\subsubsection{Horizontal Crude Wall Clipping}
+The pass maintains a \cw{solidseg} array which keeps track of the walls horizontal occlusion. Since portal can be seen through, they have no impact on \cw{solidseg}. Since walls can be split due to occlusion, this pass output was is called "fragments".\\
 \par
 \ccode{hclipper.c}
 \par
-It is easier to use an example and proceed step by step. In the room below, the player is facing north and four walls need to be renderered.
+Let's take a simple example and proceed step by step. In the room below, the player is facing north and four walls need to be rendered.
 \par
-\pngdrawing{clip_map}{}
+\rawpngdrawing{clip_map}
 \par
 
 Initially the occlusion array has two entry, one representing what is on the left of the screen, from infinity to -1 and one on the right of the screen from 320 to infinity.\\
@@ -288,13 +293,17 @@ Finally the last wall is rendered. While occluded against the array, it is slipt
 \srawpngdrawing{0.95}{clip4}
 \end{minipage}
 \par
-Notice that portal are also clipped against the occlusion array but do not update it since walls/portal behind can be seen thought it. The occlusion array allows crude reject at a cheap cost. It also allow to test if the full screen is occlude with a simple test. Offers reduced write and read.\\
-\par
-The second pass clips fragment vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. Each portal segment updates the vertical occlusion array. At the end of this step, fragments are converted into columns which are passed to the rasterizer \cw{colfunc()}\\
+
+\subsubsection{Vertical Fine Wall Clipping}
+The second pass clips fragments vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. While walls will mark a column as completely occluded, portals will only update the occlusion columns with what their upper and lower part cover.\\
 \par
 \ccode{vclippers.c}
 \par
+Let's take an other example with a simple room with two portal in the middle. Walls \cw{A}, \cw{C}, and \cw{D} mark the occlusion column fully while portal \cw{B} makes clipping limit progress toward the screen center.
+\pagebreak
 
+At the end of this step, fragments are converted into columns which are passed to the rasterizer \cw{colfunc()}
+\pagebreak
 
 
 \subsubsection{Wall drawing}
@@ -416,22 +425,29 @@ The lightmap selection algorithm is different based on one of the three types of
 
 
 
-\begin{wrapfigure}[9]{r}{0.40\textwidth}
-\centering
-\scaledimage{0.40}{invOpenGL.png}
-\end{wrapfigure}
-Trivia: \cw{COLORMAP} contains a 17th lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus. This trick turned out to be a nightmware to replicate when developers ported \doom to hardware accelerated machines which where RGB based and not palette based. With OpenGL an exotic \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was usually attempted to give a result that was pretty close.
+\cw{COLORMAP} contains a 17th lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus.\
+\par 
+\fullimage{idbeholdv.png}
+\par
+This trick turned out to be a nightmware to replicate when developers ported \doom to hardware accelerated machines which where RGB based and not palette based. With OpenGL an exotic \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was usually attempted to give a result that was pretty close.\\
+\par
+\fullimage{invOpenGL.png}
 \par
 Play with:
 \begin{verbatim}
 player->fixedcolormap
 \end{verbatim}
 
+
 TODO: With and witout screenshot\\
 \par
 TODO: With and witout screenshot2\\
 \par
 trivia: colormap hacks. Doom EGA and Doom CGA.\\
+
+
+
+
 
 \section{Door}
 Door code to make them open horizontally.
@@ -529,9 +545,5 @@ The early 1993 press release written by Tom Halls (see Annexe page \pageref{labe
 \par
 \par
 Some of the annouced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environement including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
-\par
-DETAIL WOLF3D\\
-\par
-To lose fast intersections with aligned axis was a big problem. Not only drawing a scene correctly was going to be difficult, also gone were collision detection, sound propagation, and fast line of sight for monster I.A simulation.\\
 \par
 \trivia{Three Screen Mode}
