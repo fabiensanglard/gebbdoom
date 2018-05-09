@@ -295,21 +295,35 @@ Finally the last wall is rendered. While occluded against the array, it is slipt
 \par
 
 \subsubsection{Vertical Fine Wall Clipping}
-The second pass clips fragments vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. While walls will mark a column as completely occluded, portals will only update the occlusion columns with what their upper and lower part cover.\\
+The second pass clips fragments vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. It describes how much screenspace is still available for each column in the canvas.\\
+\par
+ Each segment rendered updates the structure by making \cw{ceilingclip} increase up  and \cw{floorclip} decrease down. A column is considered fully opaque when \cw{ceilingclip} height and \cw{floorclip} height are equal to each others. Walls mark a column as completely occluded while portals will only update the occlusion columns with what their actually cover in screenspace.\\
 \par
 \ccode{vclippers.c}
 \par
-Let's take an other example with a simple room with two portal in the middle. Walls \cw{A}, \cw{C}, and \cw{D} mark the occlusion column fully while portal \cw{B} makes clipping limit progress toward the screen center.
+Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{E}) and and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a hight floor and lower ceiling to it looks like a window.\\
+\par
+
+\begin{wrapfigure}[16]{f}{0.45\textwidth}
+\centering
+\includegraphics[width=.45\textwidth]{drawings/vcclip_map.pdf}
+\end{wrapfigure}
+
+
+Subsectors are rendered near to far in order \cw{1}, \cw{2}, and \cw{3}. Which means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G},\cw{F}\} (assuming the map was split on line \cw{B} and \cw{F}. On the opposite side you can see the effect of each wall and portals on the vertical occlusion double array.\\
+\par
+Walls \cw{A}, \cw{E}, \cw{C}, and \cw{D} mark the full height opaque for each of their columns. The first portal \cw{B} is rendered with an upper texture (to accommodate for subsector 2 lower ceiling) and a lower texture (to accommodate for subsector 2 higher floor) and adjust the occlusion array accordingly.\\
+\par
+Notice how portal \cw{F} which lower and upper texture are not rendered still updates the occlusion array. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space.
+
+
+\fullimage{simple_room.png}
+\par
+ %Walls \cw{A}, \cw{C}, and \cw{D}\\ %mark the occlusion column fully while portal \cw{B} makes clipping limit progress toward the screen center.\\
+ 
+
+\fullimage{simple_room_clip}
 \pagebreak
-
-At the end of this step, fragments are converted into columns which are passed to the rasterizer \cw{colfunc()}
-\pagebreak
-
-
-\subsubsection{Wall drawing}
-Interpolation
-\trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90degrees left).}
-
 
 
 
@@ -323,18 +337,37 @@ Interpolation
 
 
 \subsection{Flats}
-At this point in the rendering pipeline, the framebuffer \#1 looks like mashed potatoes. A scene that would end up looking this way:\\
+After the clipping we have already seen, walls and portal are rendered. Walls are drawn as a set of full column of pixels while portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture.\\
 \par
-\fullimage{mashed_potatoes1.png}
+\trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90 degrees left).}\\
 \par
-As been partially drawn like this:\\
+ If we were to take a look at the framebuffer at this point in the rendition of a frame, it would look like mashed potatoes (see opposite page).\\
+\par
+To render the flats, the engine uses a database generated while walls and portals were being rendered. A database made of what is called "visplanes".\\
+\par
+\ccode{visplanes.c}\\
+\par
+The concept of visplane is the most difficult aspect of \doom to understand. The comments in the source code manifest of their esoteric nature and also attests that even people closely related to id Software did not fully grasp what they were.\\
+\par
+A visplan describes in screen space an area representing either a ceiling or a floor. It had a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.\\
+\par
+
+
+\fullimage{mashed_potatoes1.png}\\
+Above, the final frame. Below, the current state of the frame. Flats are colored white to ease visualization. Doom never clears the framebuffer so instead of white there would be whatever was there last frame.\\
 \fullimage{mashed_potatoes2.png}
 \par
 
+
+\trivia{Visplane rendition is deferred. They had to be stored while walls were rendered. 664 bytes per visplane (and 128 visplanes) represented a significant amount (84,992 bytes) for a game limited to 4MiB.}\\
+\par
+Let's take the example of the small room with a window again but let's focus instead on how visplanes were generated.\\
+\par
+\fullimage{simple_room_visplanes}
+
  All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
 \par
-\ccode{visplanes.c}
-\par
+
 In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
 \par
 \fullimage{doom_visplanes.png}{}\\
