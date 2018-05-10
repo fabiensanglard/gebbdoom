@@ -361,9 +361,39 @@ Above, the final frame. Below, the current state of the frame. Flats are colored
 
 \trivia{Visplane rendition is deferred. They had to be stored while walls were rendered. 664 bytes per visplane (and 128 visplanes) represented a significant amount (84,992 bytes) for a game limited to 4MiB.}\\
 \par
-Let's take the example of the small room with a window again but let's focus instead on how visplanes were generated.\\
+Visplan represent the vertical "gaps" between wall and screen border or between walls and portals. 
+To understand better how they are generated, let's take and example and go back to the simple room we just studied but this time we will focus on how the \cw{visplanes} array is populated.\\
 \par
-\fullimage{simple_room_visplanes}
+
+\begin{wrapfigure}[16]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=.45\textwidth]{drawings/vcclip_map.pdf}
+\end{wrapfigure}
+Like in the previous example, segments are rendered near to far in the following order: \cw{A}, \cw{B}, \cw{C}, \cw{D}, \cw{B}, \cw{E}, \cw{F}, \cw{B}, \cw{G}, and \cw{H}.
+When wall \cw{A} is rendered, it is clipped horizontally and vertically. Since it use all the vertical space, no visplane is created.\\
+\par
+ Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplaces \cw{1}, \cw{2}, \cw{3}, and \cw{4} are created and stored in the visplane array.\\
+ \par
+  Likewise when portal \cw{C} is rendered, there are gaps above its upper texture and below its lower texture, so two visplanes additional visplanes (\cw{5} and \cw{6}) are added.\\
+\par
+Wall \cw{E} is an other new case. The gap above and below are not between a wall and the screen but between  \cw{E} and the portal \cw{C} upper and lower parts. To detect the previous boundaries, the vertical occlusion array seen previously is used.\\
+\par
+Portal \cw{F} is yet and other special case. Since from this point of view it is connecting to a sector with higher ceiling, connecting to a sector with lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{7} and  \cw{8}.\\
+\par
+Fron this point pn, this is the same process over and over again. Wall \cw{G} rendition generates visplanes \cw{9} and  \cw{10} and Wall \cw{H} rendition generates visplanes \cw{11} and  \cw{12}
+\pagebreak
+
+
+
+
+
+
+
+
+\fullimage{simple_room_visplanes}\\
+Below, the engine was modified to draw walls and flats in plain color permit to confirm the drawing above. Hu Ho, wait a minute, this is not what was expected. Something is fishy here.\\  
+\fullimage{small_room_visplanes.png}
+\pagebreak
 
  All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
 \par
