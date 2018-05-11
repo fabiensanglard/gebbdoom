@@ -13,4 +13,4 @@ typedef struct {
 // Here comes the obnoxious "visplane".
 #define MAXVISPLANES    128
 visplane_t   visplanes[MAXVISPLANES];
-visplane_t*  nextvisplanes;
+visplane_t*  lastvisplane;

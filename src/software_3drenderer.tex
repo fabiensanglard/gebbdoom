@@ -206,7 +206,7 @@ With the sector floor and height a column dimension and vertical offset are calc
 
 
 \subsubsection{Wall Clipping}
-At this point, we need to differentiate two types of segments. Segments with only one side (connected with only one sector) which are opaque and I will call walls. Segments with two sides (connecting two sectors) which are often transparent in the middle and which I will call portals.\\
+At this point, we need to differentiate two types of segments. Segments with only one side (connected with only one sector) which are opaque and have only a "middle texture". I call these "walls". Segments with two sides (connecting two sectors) which are often transparent in the middle and have only an "upper texture" and a "lower texture". I call these "portals".\\
 \par
 Clipping is a two steps process happening in screen space. The first, crude, step is horizontally based. Only walls affects the horizontal occlusion array but all segments are clipped against it.\\
 \par
@@ -312,9 +312,9 @@ Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, an
 
 Subsectors are rendered near to far in order \cw{1}, \cw{2}, and \cw{3}. Which means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G},\cw{F}\} (assuming the map was split on line \cw{B} and \cw{F}. On the opposite side you can see the effect of each wall and portals on the vertical occlusion double array.\\
 \par
-Walls \cw{A}, \cw{E}, \cw{C}, and \cw{D} mark the full height opaque for each of their columns. The first portal \cw{B} is rendered with an upper texture (to accommodate for subsector 2 lower ceiling) and a lower texture (to accommodate for subsector 2 higher floor) and adjust the occlusion array accordingly.\\
+Walls \cw{A}, \cw{E}, \cw{C}, and \cw{D} mark the full height opaque for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2 lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and adjust the occlusion array accordingly.\\
 \par
-Notice how portal \cw{F} which lower and upper texture are not rendered still updates the occlusion array. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space.
+Notice how portal \cw{F} which lower and upper texture are not rendered still updates the occlusion array. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space.\\
 
 
 \fullimage{simple_room.png}
@@ -323,7 +323,6 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
  
 
 \fullimage{simple_room_clip}
-\pagebreak
 
 
 
@@ -336,11 +335,13 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
 
 
 
-\subsection{Flats}
+
+
 After the clipping we have already seen, walls and portal are rendered. Walls are drawn as a set of full column of pixels while portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture.\\
 \par
 \trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90 degrees left).}\\
 \par
+\subsection{Drawing Flats}
  If we were to take a look at the framebuffer at this point in the rendition of a frame, it would look like mashed potatoes (see opposite page).\\
 \par
 To render the flats, the engine uses a database generated while walls and portals were being rendered. A database made of what is called "visplanes".\\
@@ -391,67 +392,73 @@ Fron this point pn, this is the same process over and over again. Wall \cw{G} re
 
 
 \fullimage{simple_room_visplanes}\\
-Below, the engine was modified to draw walls and flats in plain color permit to confirm the drawing above. Hu Ho, wait a minute, this is not what was expected. Something is fishy here.\\  
+Below, the engine was modified to draw walls and flats in plain color permit to confirm the drawing above. Sait a minute, this is not what was expected. Something is not right here.\\  
+\par
 \fullimage{small_room_visplanes.png}
-\pagebreak
-
- All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
-\par
-
-In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
-\par
-\fullimage{doom_visplanes.png}{}\\
-\fullimage{doom_visplanes_colored.png}{} 22 visplanes
-%\fullimage{doom_visplanes_colored_merged.png}{} 6 visplanes
-\par
-The previous screenshot was slightly misleading in order to ease comprehension. There are fourteen visplanes in that screenshot which is a lot for a simple room with a window. It is a problem in terms of memory consumption since a \cw{visplane\_t} struct is no less than 664 bytes. 9 KiB off storage for such a simple screen but imagine a scene with a staircase and two windows and the number of visplane could easily climb to 100s which would consum way too much for a game already struggling to fit into 4 MiB.\\
-\par
-To solve this problem, the engine merges visplanes as they are encountered. If two visplanes share the same texture, height, light intensity and if they don't overlad vertically, they are merged. In the previous example this brings the fourteen visplanes figure down to five.\\
-\par
-\fullimage{doom_visplanes_colored.png}{}
-\fullimage{108visplanes.png}{}
-
-\par
-\begin{verbatim}
-sizeof(visplane) = 664
-(664) * 128 = 84992
-framebuffers
-\end{verbatim}
-\fullimage{many_visplanes.png}
 
 
 
 
+\fullimage{complex_scene_plain_light.png}
+To save memory, visplanes are merged. It can be very helpful in complex scenes like this one (reproduced below without diminished lightning for "clarity").\\
+\fullimage{complex_scene_plain.png}
 
 
 
+\fullimage{complex_scene_multivis.png}\\
+Without merging (above) the frame required 179 visplanes. With merging (below), only 28 visplanes were used.\\ 
+\fullimage{complex_lowvis.png}
 
 
 
-
-
-
-
-
-
-
-
-
-
-\subsection{Visplanes and DrawPlanes overflow}
-Even with visplane merging, the number of visplanes could still get out of hand. Storage was not dynamic, it was capped at 128 units. If the engine encountered condition where 129 visplanes were required it would quit with the following mysterious message:\\
-\begin{verbatim}
-"R\_FindPlane: no more visplanes"\\
-\end{verbatim}
-\par
-R\_DrawPlanes: visplane overflow (\%i)\\
-R\_DrawPlanes: drawsegs overflow (\%i)\\
-R\_DrawPlanes: opening  overflow (\%i)"\\
-\par
-
-\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine search complexity algorithm based on a linear search, making it a $O(n^})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: The Truth about Visplane Overflows}.
+There are several conditions required to merge two visplanes. They have to have the same height, light and texture. Even if these conditions are met, the datastructure has to be able to absorb each others. This is only possible if visplanes are side by side. Even one pixel above or below and other makes two visplanes ineligible for merging.\\
 \par
 \ccode{visplane_linear_search.c}
+\par
+DRAWING\\
+\vspace{4cm}
+\par
+
+\subsection{Drawing Flats (For Real)}
+
+With all this background about visplanes in mind, we can finally read the flat drawing routines which simply iterates over the array of visplanes created when the walls were rendered.\\
+\par
+Each visplane is converted into lines (called \cw{spans} in the code). The visplane data combined with the player height and rotation are all what is needed for the \cw{spanfunc} to render each lines.\\
+\par
+\ccode{R_DrawPlanes.c}
+\par
+FORMULA\\
+\vspace{4cm}
+\par
+
+
+\subsection{Drawing Skies}
+Each portion of the sky are stored in visplanes and drawn as span of pixels. A sectort just have a special ceiling texture number which the engine recognize in which case, height is 0, lightmap is 0 and perspective is disabled ot the sky is rendered flat on the canvas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -462,70 +469,43 @@ R\_DrawPlanes: opening  overflow (\%i)"\\
 \centering
 \scaledimage{0.33}{palette.png}
 \end{wrapfigure}
-So far our trip down the rendering pipeline assumed that values from the texture and sprite texels were used as is, indexing colors from the palette. That made things easier to understand but now is time to introduce diminished lightning.\\
+So far, in order to introduce complexity gradually, our trip down the rendering pipeline has completely ignored diminishing lighting. It was assumed that values from texture and sprites texels were used as is and written directly to the framebuffer. Now it time to introduce the concept of lightmaps.\\
 \par
-With the VGA, the mode Y allowed only 256 colors but as it turned out there was a smart way to fake more colors than available. Artists were allowed to use the full 256 primary colors and still get 32 shade of each without requiering $256 * 32 = 8192$ colors.\\
+In order to convey a scary atmosphere of it was decided since day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off but also dim it if necessary. To response to this requirement, the engine had to be able to draw shades of a color. With a VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artist to use 16 colors and use the 245 other slots to generate 15 shades of each "primary" colors.\\
 \par
- The trick to fake more colors than available is to reorganize the initial palette of 256 colors and for each values, try to use one of the other 255 available to fake 32 shades toward black. For some colors like skin, red, green, grey, brown or red it worked very well. For others not so much but given the speed of the game the human eye was forgiving.\\
+This would have severely impaired the work of the artist, not to mention it would have looked poor during outdoor scene where light is not diminished with distance. Once again a clever trick was to allow bith artists to use the full 256 colors for their assets and not 16 but 32 shades of the same color. One paper that would have meant $256 * 32 = 8192$ colors ... which the VGA did not have.\\
+\par
+ The trick to fake more colors than available is to use an indirection "light table" where the other 255 colors are used to approximate a gradient of each 256 entries. The lightmap is 256 entries tall (one for each index) and 32 wide (one column for each shade). In figure XXX you can see how the original palette lines are unrolled vertically in the left most column (notice the isolated white at the top and the pink at the bottom). Each row is a 32 values gradient toward black, using the same 256 colors. The right most column is all black. The system has its limits. It works well for red, not too much for crimson and yellow.\\
  \par
- The trick implementation starts with a lump called \cw{COLORMAP} which looks like figure XX. The original palette indexes are unrolled in the first column. Fifteen additional columns are appended to the left of each colors. Notice that even though it may look like it has more, figure XXX only features 256 colors.\\
-\par
-In the source code, each column is refered to as a "lightmap". Before drawing starts, a lightmap column pointer is selected which acts as an indirection layer between the color in the asset and the shaded color to be rendered.\\
-\par
+ To use the lightmap, take the original texel value \cw{T} which is between [0,255]. This will be the line coordinate. Take a light value \cw{L}, with 0 being the brightness and 31 being the darkest. This will be the column coordinate. The value to write in the framebuffer is \cw{lightmap[T][L]}\\
+ \par
+\cscaledimage{1}{COLORMAP.png}{Lump \cw{COLORMAP} and its 32 shades of 256 colors.}
+
+
+
+
+
+\trivia{Lightmap \cw{COLORMAP} contains a 32th column made of 256 shades of grey. It is used when the player picks up the invulnerability bonus. However there is a bug in the visplane rendition routine special case in charge of skies. It forgot to account for lightmaps. Skies are always rendered normally}\\
+\par 
 \ccode{lightmap.c}
 \par
-The lightmap selection algorithm is different based on one of the three types of things renderered.\\
-\par
-\begin{itemize}
-\item Wall. dc\_colormap = walllights[index]; where index 
-\item Flat: start at sector light level [0,16] -> planezlight. index based on distance [0,128] ds\_colormap = planezlight[index];\\ lighttable\_t*    zlight[LIGHTLEVELS][MAXLIGHTZ]; How is zlight initialized?
-\item Masked.
-\end{itemize}
-\par
-\cscaledimage{1}{COLORMAP.png}{COLORMAP and its 32 lightmaps.}
-\par
+\fullimage{idbeholdv.png}
 
 
 
 
-\cw{COLORMAP} contains a 17th lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus.\
-\par 
+
 \fullimage{idbeholdv.png}
 \par
-This trick turned out to be a nightmware to replicate when developers ported \doom to hardware accelerated machines which where RGB based and not palette based. With OpenGL an exotic \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was usually attempted to give a result that was pretty close.\\
+This trick turned out to be a nightmare to replicate with hardware accelerated system which use 24-bit color instead of a palette system. On OpenGL ES, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used and gave mixed results.\\
 \par
-\fullimage{invOpenGL.png}
-\par
-Play with:
-\begin{verbatim}
-player->fixedcolormap
-\end{verbatim}
+\fullimage{invOpenGL.png} 
+\pagebreak
+\subsection{Drawing Masked}
+With the environment rendered, what remains are the sprites which are called "masked" in the code.
+ There is only on thing particularly difficult about that.\\
+ \par
 
-
-TODO: With and witout screenshot\\
-\par
-TODO: With and witout screenshot2\\
-\par
-trivia: colormap hacks. Doom EGA and Doom CGA.\\
-
-
-
-
-
-\section{Door}
-Door code to make them open horizontally.
-\section{Texture Mapping}
-Persepctive correct was too expensive. But since only one axis had to be corrected, there was a way to get away with fast affine texture mapping.\\
-https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
-\par
-
-
-
-\section{Masked}
-Things, masked walls and player sprite.\\
-
-\null\newpage % Make toc appear on right side
-\par
 
 \scaledimage{0.25}{cacodemon1.png}\scaledimage{0.25}{cacodemon2.png}\scaledimage{0.25}{cacodemon3.png}\scaledimage{0.25}{cacodemon4.png}\\
 
@@ -534,9 +514,12 @@ Things, masked walls and player sprite.\\
 \scaledimage{0.25}{cacodemon17.png}\scaledimage{0.25}{cacodemon18.png}\scaledimage{0.25}{cacodemon19.png}\scaledimage{0.25}{cacodemon20.png}\\
 
 \scaledimage{0.25}{cacodemon25.png}\scaledimage{0.25}{cacodemon26.png}\scaledimage{0.25}{cacodemon27.png}\scaledimage{0.25}{cacodemon28.png}\\
-
 \pagebreak
 
+
+With height and distance a screen space coordinate is calculated. With the sector light value, a lightmap is selected. With the thing orientation and the player rotation, on of the eight sprite "pose" is selected. The only problem is, how to clip them properly?\\
+\par
+\vspace{2mm}
 \scaledimage{0.25}{cacodemon5.png}\scaledimage{0.25}{cacodemon6.png}\scaledimage{0.25}{cacodemon7.png}\scaledimage{0.25}{cacodemon8.png}\\
 
 \scaledimage{0.25}{cacodemon13.png}\scaledimage{0.25}{cacodemon14.png}\scaledimage{0.25}{cacodemon15.png}\scaledimage{0.25}{cacodemon16.png}\\
@@ -609,4 +592,53 @@ The early 1993 press release written by Tom Halls (see Annexe page \pageref{labe
 \par
 Some of the annouced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environement including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
 \par
+
+ All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
+\par
+
+In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
+\par
+\fullimage{doom_visplanes.png}{}\\
+\fullimage{doom_visplanes_colored.png}{} 22 visplanes
+%\fullimage{doom_visplanes_colored_merged.png}{} 6 visplanes
+\par
+The previous screenshot was slightly misleading in order to ease comprehension. There are fourteen visplanes in that screenshot which is a lot for a simple room with a window. It is a problem in terms of memory consumption since a \cw{visplane\_t} struct is no less than 664 bytes. 9 KiB off storage for such a simple screen but imagine a scene with a staircase and two windows and the number of visplane could easily climb to 100s which would consum way too much for a game already struggling to fit into 4 MiB.\\
+\par
+To solve this problem, the engine merges visplanes as they are encountered. If two visplanes share the same texture, height, light intensity and if they don't overlad vertically, they are merged. In the previous example this brings the fourteen visplanes figure down to five.\\
+\par
+\fullimage{doom_visplanes_colored.png}{}
+\fullimage{108visplanes.png}{}
+
+\par
+\begin{verbatim}
+sizeof(visplane) = 664
+(664) * 128 = 84992
+framebuffers
+\end{verbatim}
+\fullimage{many_visplanes.png}
+
+closeup
+16
+106
+
 \trivia{Three Screen Mode}
+
+
+
+\subsection{Visplanes and DrawPlanes overflow}
+Even with visplane merging, the number of visplanes could still get out of hand. Storage was not dynamic, it was capped at 128 units. If the engine encountered condition where 129 visplanes were required it would quit with the following mysterious message:\\
+\begin{verbatim}
+"R\_FindPlane: no more visplanes"\\
+\end{verbatim}
+\par
+R\_DrawPlanes: visplane overflow (\%i)\\
+R\_DrawPlanes: drawsegs overflow (\%i)\\
+R\_DrawPlanes: opening  overflow (\%i)"\\
+\par
+
+\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine search complexity algorithm based on a linear search, making it a $O(n^})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: The Truth about Visplane Overflows}.
+\par
+\ccode{visplane_linear_search.c}
+
+https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
+\par
