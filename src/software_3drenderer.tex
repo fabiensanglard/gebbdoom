@@ -12,14 +12,14 @@ The 3D renderer is an uncanny combination of proper 3D techniques and screen spa
 \par
 The full life of a frame can be summarized as follow:
 \begin{itemize}
-\item Render walls segments, sorted near to far from the player point of view. Both wall ends are projected into screenspace axis X. Based on the distance and floor/ceiling the wall sectors belongs to, calculate a column Y offset and an height. 
+\item Render walls segments, sorted front to back from the player point of view. Both wall ends are projected into screenspace axis X. Based on the distance and floor/ceiling the wall sectors belongs to, calculate a column Y offset and an height. 
 \item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
    \begin{itemize}
      \item record screenspace vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) or floor (if below miscreen) and stored the area into an array of structure called "visplanes".
      \item Store sprites to be drawn into an array of struct "vissprites".
    \end{itemize}      
 \item Render all ceiling and floors from the visplanes.
-\item Render transparent elements in far to near order.
+\item Render transparent elements in back to front order.
 \item Render player sprite (the weapon the marine is holding).
 \end{itemize}
 \par
@@ -33,7 +33,7 @@ The most important part (and what \doom engine is most famous for) is the abilit
 % \par
 
 % \subsubsection{Sorting walls}
-In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals, traversing the map in a near to far fashion. Each portal lead to adjacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
+In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals, traversing the map in a back to front fashion. Each portal lead to adjacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
 \par
 \srawpngdrawing{0.7}{duke_map}
 \vspace{1cm}
@@ -427,7 +427,7 @@ Each visplane is converted into lines (called \cw{spans} in the code). The vispl
 \par
 \ccode{R_DrawPlanes.c}
 \par
-FORMULA\\
+FORMULA or trivia about no more visplanes\\
 \vspace{4cm}
 \par
 
