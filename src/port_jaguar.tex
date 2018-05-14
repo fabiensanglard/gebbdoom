@@ -1,0 +1,159 @@
+\begin{wrapfigure}[4]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{jaguar_logo.png}}
+\end{wrapfigure}
+Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design a 32-bit Panther and a 64-bit Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".}. Known as the console "bit wars" this was an era when the power of a console was assessed based on its number of "bits". How many bits a console had was of course greatly a matter of marketing.\\
+\par
+With the Jaguar project ahead of schedule, Atari decided to abandon the Panther and released the 64-bit Jaguar in November 1993.\\
+\par
+\fullimage{consoles/Jaguar.png}
+\par
+Martin Brennan and John Mathieson from Flare Technology made opinionated design decisions. Besides the 18 buttons joysticks, the machine had no less than five processors to jungle with.\\
+\par
+On the audio side, a 32-bit 27MHz DSP nickname "Jerry" . On the video side, no less than three processors all contained in a 32-bit 27MHz chip nickname "Tom" with a GPU, a Blitter, and an Object processor. To orchestrate everything 2 MiB of RAM and a 16/32-bit 13Mhz 68000. An to connect them all, to the delight of marketing, a 64-bit data bus.\\
+\par
+The bold ad "Do the Math!" and its featured 64-bit claim triggered mostly suspicion from potential customers.  No matter how John Mathieson attempted to explain it in interviews the machine felt like a misleading attempt from an already suspicious Atari marketing department. How Atari could have managed to manufacture something four times better than its competitors Nintendo and Sega with their Super Nintendo and Genesis was not clear.
+\drawing{jaguar_arch}{Architecture of the Jaguar. Notice the uneven buses.}
+\par
+Cautious purchasers on one side were met by incredulous game developers on the other side. The five processor architecture was powerful but highly unusual for people used to deal with one processor on the 8-bit Nintendo Entertainment System or Sega Master System. Programming the Jaguar was an art that few took the time to learn.\\
+\par
+The low volume of games available at launch prevented a critical mass of customers to form. Low sales made developers less likely to invest in the Jaguar which in turn prevented sales to improve. Over the three years of its lifetime, Atari sold about 100,000 units. 
+
+
+\fullimage{jagua_motherboard.png}\\
+\par
+Inside the machine: \circled{1} TOM, \circled{2} 2MiB RAM, \circled{3} JERRY, \circled{4} Motorola 68000, \circled{5} Operating System ROM, \circled{6} Cartridge slot, \circled{7} Joystick ports, \circled{8} AC Adapter Jack, \circled{9} DSP Port, \circled{A} Monitor (composite, component, and S-Video) Port, and \circled{B} Channel switch, TV port.\\
+\par
+\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64 bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64 bit processors for this.}{John Mathieson}
+
+
+
+\rawdrawing{jaguar_motherboard}
+\par
+John Mathieson granted many interviews giving more insight on the type of constraints a hardware engineer has to deal with. From cost related pressure to plain edit from Atari to use CPU from Motorola, grass on the hardware side is not greener than on the software side.\\
+\par
+\fq{Atari were keen to use a 68K family device, and we looked closely at various members.  We did actually build a couple of 68030 versions of the early beta developers systems, and for a while were going to use a 68020. However, this turned out too expensive.  We also considered the possibility of no [Motorola 680x0 chip] at all.  I always felt it was important to have some normal processor, to give developers a warm feeling when they start. The 68K is inexpensive and does that job well.}{John Mathieson}
+
+
+
+
+
+
+
+\subsection{Programming The Jaguar}
+To unleash the beast meant to have all five processors work in parallel\footnote{Source: "Jaguar Technical Reference Manual: Tom \& Jerry".}. It was complicated in theory and it was complicated in practice.\\
+\par
+\fq{The 68000 may be the CPU in
+   the sense that it's the center of operation, and boot-straps the machine,
+   and starts everything else going; however, it is not the center of Jaguar's
+   power. ... The 68000 is like a manager who does no real work, but tells
+   everybody else what to do.\\
+   \par
+     I maintain that it's only there to read the joysticks.}{John Mathieson}
+
+\subsubsection{Theory}
+\par
+The Motorola 68000 is used as a manager. It deals with the outside world and manage resources for the other processors. It is the highest control level and has complete control over the system.\\
+\par
+The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per pixel CRY (Cyan-Red-Yellow) color model was uncanny to say the least. One byte is an (\cw{X,Y}) coordinate in a RGB cube flattened in a plane which gives a color. The other byte give the color brightness.\\
+\par
+\scaledimage{0.8}{CRY.png}
+\par
+\pagebreak
+\par
+\scaledimage{0.8}{CRY.png}
+\par
+The Graphic Processor is the powerhouse with a fast instruction throughput, a powerful ALU with a
+parallel multiplier, a barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also to its local program instructions.\\
+\par
+The Blitter perform fast RAM block move and fill operations. It can generate strips of pixels for Gouraud shaded Z-buffered polygons and is also capable of slipping pixels (based on Z-testing). It
+is also capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It was also in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
+\par
+Jerry the DSP is the twin brother of the Graphic Processor. However its bigger local RAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones.\\
+\par
+All RAM everywhere was addressable by any components. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while The DSP is king in order to avoid extremely unpleasant audio glitches.\\
+\par
+
+
+
+\subsubsection{Practice}
+On paper things did not look simple. In practice things were even more complicated. The hardware had many bugs, especially at the Memory Controller level, making multitasking had to rely on and very hard to debug.\\
+\par
+It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instructions set. The programmer could program the Motorola with whatever it wanted but the GPU/DSP toolchain involved first learning their instruction set, then writing your code and then writing your own assembler. For \doom, John Carmack wrote its own C compiler backend to generate Tom\&Jerry RISC instructions.\\
+\par
+One aspect of the machine stand out as tailor made for \doom since the 16-bit per pixel based on a color/intensity model allowed for a visual result superior to PCs.\\
+\par
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Doom On Jaguar}
+John Carmack took an early interest in the Jaguar and did the port himself with Dave Taylor taking care of the multi-player code. It was not its first contact with the machine.\\
+\par
+\fq{I converted Wolfesnenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}
+\par
+They had something up and running two weeks after they signed on the port.\footnote{Source: EDGE Magazine, June 1994.} (even thought it was running at a wretched rate)
+
+
+\par
+\ccode{jaguar_visplanes.c}
+\fullimage{doom_jaguar2.png}
+\par
+\fullimage{doom_jaguar3.png}
+
+\fq{The memory, bus, blitter and video processor were 64 bits wide, but the
+processors (68k and two custom risc processors) were 32 bit.\\
+\par
+The blitter could do basic texture mapping of horizontal and vertical spans,
+but because there wasn't any caching involved, every pixel caused two
+ram page misses and only used 1/4 of the 64 bit bus. Two 64 bit buffers
+would have easily trippled texture mapping performance. Unfortunate.\\
+\par
+It could make better use of the 64 bit bus with Z buffered, shaded triangles,
+but that didn't make for compelling games.\\
+\par
+It offered a usefull color space option that allowed you to do lighting effects
+based on a single channel, isntead of RGB.\\
+\par
+The video compositing engine was the most innovative part of the console.
+All of the characters in Wolf3D were done with just the back end
+scalar instead of blitting. Still, the experience with the limitations and
+hard failure cases of that gave me good amunition to rail against microsoft's
+(thankfully aborted) talisman project.\\
+\par
+The little risc engined were decent processors. I was surprised that they
+didn't use off the shelf designs, but they basically worked ok. They had
+some design hazards (write after write) that didn't get fixed, but the only
+thing truly wrong with them was that they had scratchpad memory instead
+of caches, and couldn't execute code from main memory. I had
+to chunk the DOOM renderer into nine sequentially loaded overlays to
+get it working (with hindsight, I would have done it differently in about
+three...).\\
+\par
+The 68k was slow. This was the primary problem of the system. You options
+were either taking it easy, running everything on the 68k, and going
+slow, or sweating over lots of overlayed parallel asm chunks to make
+something go fast on the risc processors.\\
+\par
+That is why playstation kicked so much ass for development - it was programmed
+like a single serial processor with a single fast accelerator.
+If the jaguar had dumped the 68k and offered a dynamic cache on the
+risc processors and had a tiny bit of buffering on the blitter, it could have put up a reasonable fight against sony.} {John Carmack}
+\par
+Peeking inside the Jaguar port source code we can find the following:\\
+\par
+\ccode{jaguar_src.c}
+\par
+\cw{MARS} was the code name of the Sega Genesis X32 expansion. Jaguar ran at resolution of 320x240. Due to limitations the 3D scene is actually renderer in 160 x 180 (vertical lines doubled) with 60 pixels at the botton.\\
+Simulator means when they were running on PC.
+\par
+No music due to DSP used for collision detection.\\
+\par
+Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar.\\
+\par The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
+\pagebreak
