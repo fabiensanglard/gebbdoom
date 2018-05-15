@@ -67,19 +67,17 @@ parallel multiplier, a barrel-shifter, and a divide unit, in addition to the nor
 The Blitter perform fast RAM block move and fill operations. It can generate strips of pixels for Gouraud shaded Z-buffered polygons and is also capable of slipping pixels (based on Z-testing). It
 is also capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It was also in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
 \par
-Jerry the DSP is the twin brother of the Graphic Processor. However its bigger local RAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones.\\
+Jerry the DSP is the twin brother of the Graphic Processor. However its bigger local SRAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones. The versatility is such that the Jad-Link to connect two Jaguar together is plugged in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
 \par
-All RAM everywhere was addressable by any components. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while The DSP is king in order to avoid extremely unpleasant audio glitches.\\
+All RAM (even SRAM in the RISC CPUs) was addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while The DSP is king in order to avoid extremely unpleasant audio glitches.\\
 \par
 
 
 
 \subsubsection{Practice}
-On paper things did not look simple. In practice things were even more complicated. The hardware had many bugs, especially at the Memory Controller level, making multitasking had to rely on and very hard to debug.\\
+On paper things did not look simple. In practice things were even more complicated. The hardware had several bugs, especially at the Memory Controller level, making multitasking had to rely on and even harder to debug.\\
 \par
-It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instructions set. The programmer could program the Motorola with whatever it wanted but the GPU/DSP toolchain involved first learning their instruction set, then writing your code and then writing your own assembler. For \doom, John Carmack wrote its own C compiler backend to generate Tom\&Jerry RISC instructions.\\
-\par
-One aspect of the machine stand out as tailor made for \doom since the 16-bit per pixel based on a color/intensity model allowed for a visual result superior to PCs.\\
+It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instructions set. The intended work flow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then writing assembly code, use the provided assembler to generate machine code and finally write a full pipeline to store and later deliver the machine code to Tom \& Jerry local program SRAM.\\
 \par
 
 
@@ -95,16 +93,32 @@ One aspect of the machine stand out as tailor made for \doom since the 16-bit pe
 \subsection{Doom On Jaguar}
 John Carmack took an early interest in the Jaguar and did the port himself with Dave Taylor taking care of the multi-player code. It was not its first contact with the machine.\\
 \par
-\fq{I converted Wolfesnenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}
+\fq{I converted Wolfesnenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}\\
 \par
-They had something up and running two weeks after they signed on the port.\footnote{Source: EDGE Magazine, June 1994.} (even thought it was running at a wretched rate)
-
-
+They had something up and running two weeks after they signed on the port \footnote{Source: EDGE Magazine, June 1994.} even thought it was running at a wretched rate!\\
+\par
+\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{gcc} C compiler backend which generated Tom\&Jerry RISC instructions.}\\
+\par
+To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure XXX and compare it with the PC version (Figure XXX on page YYY). See how  the floor blue texture is gone and there is only one step instead of two.\\
+\par
+The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. These few KiB overlays were swapped in and out of the SRAM at runtime based on needs.
+\par
+\cfullimage{doom_jaguar3.png}{}
+\par
+The source code of \doom for Jaguar was released in May, 2003 by Carl Forhan of Songbird Productions. Peeking inside reveals the details of how memory footprint was reduced. Visplanes storage size was reduce from 128 to 64.\\
 \par
 \ccode{jaguar_visplanes.c}
+\par
+A big decision was to cut music playback during game. This was due to the lack of performance of Tom which was not able to handle the game engine on its own. To resolve this performance problem\footnote{The game ended up managing a solid 20 framerate per second.}, Jerry (the so called DSP) was used to run collision detections. There was still enough juice in Jerry to play sound effects.\\
+\par
+The 3D rendition was done at a resolution of 160x180. The vertical line were double to reach 320x180 and 60 pixels at the botton for the status bar brought the overall thing to 320x240. In many occurences the graphic result was better than PC. Thanks to is tailor made 16-bit CRY mode, the Jaguar had real 65,536 colors with no color banding in sight.\\
+\par
 \fullimage{doom_jaguar2.png}
 \par
-\fullimage{doom_jaguar3.png}
+Further inspection show the Jaguar codee also contains the Sega X32 version (\cw{MARS} was the code name of the Sega Genesis X32). Development was done on NextSTEP which had a "Simulator" mode.\\
+\par
+\ccode{jaguar_src.c}
+\par
 
 \fq{The memory, bus, blitter and video processor were 64 bits wide, but the
 processors (68k and two custom risc processors) were 32 bit.\\
@@ -144,16 +158,8 @@ That is why playstation kicked so much ass for development - it was programmed
 like a single serial processor with a single fast accelerator.
 If the jaguar had dumped the 68k and offered a dynamic cache on the
 risc processors and had a tiny bit of buffering on the blitter, it could have put up a reasonable fight against sony.} {John Carmack}
-\par
-Peeking inside the Jaguar port source code we can find the following:\\
-\par
-\ccode{jaguar_src.c}
-\par
-\cw{MARS} was the code name of the Sega Genesis X32 expansion. Jaguar ran at resolution of 320x240. Due to limitations the 3D scene is actually renderer in 160 x 180 (vertical lines doubled) with 60 pixels at the botton.\\
-Simulator means when they were running on PC.
-\par
-No music due to DSP used for collision detection.\\
-\par
-Like the PC version, this version of Doom was developed on the NEXTSTEP platform, and compiled to run on the Jaguar.\\
-\par The bulk of the engine was programmed by John Carmack, while Dave Taylor handled the multiplayer code. Unlike most console ports, the source code of the Jaguar version is available.\\
-\pagebreak
+
+
+
+
+

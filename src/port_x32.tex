@@ -1,0 +1,65 @@
+\begin{wrapfigure}[4]{r}{0.4\textwidth}{
+\centering \scaledimage{0.4}{sega_x32_logo.png}}
+\end{wrapfigure}
+Development on the X32 began in January 1994 at CES '94 Las Vegas. Eager to response to the perceived treat of the Jaguar and the 3DO, Sega Japan summoned Sega of America executive in a conference call. With its 32-bit Jupiter system nowhere in sight, Sega needed something to keep its 32 millions of Genesis owners happy and it needed it fast. The result of the talk was to abandon the idea of a new console (project "Jupiter") and work on an add-on booster for the Genesis.\\
+\par
+ The nicknamed "Mars" project responsibility fell on Sega of America, Inc. It would give birth to the 32X and see its release only nine months later in November 1994.\\
+\par
+\cfullimage{consoles/32X.png}{Sega Genesis (a.ka. MegaDrive) with a 32X booster on top of it.}
+
+
+
+To connect to a Genesis, the 32X is inserted into the system like a standard game cartridge. Game cartridges inserted directly into the 32X had access to the whole machine, including the 7.6 MHz Motorola 68000 and the 3.58 MHz Zilog Z80.\\
+\par
+The key innovation was its mirrored architecture based on two Hitashi RISC CPUs running at 23 MHz, each with their own framebuffer which could be used either as a master/slave or a pair in order to double the framerate.\\
+\par
+Despite unfavorable time constraints , Sega of America did manage to deliver within time and cost. What ensued however is well summarized by Retrogamer edition of May 2010.\\
+\par
+
+
+
+\par
+\drawing{x32_arch}{Sega X32 architecture.}
+\par
+   Released Nov, 1994\\
+   CPU: 2x SH-2 \\
+   32-bit 23 MHz\\
+   RAM: 256 KiB\\
+   VRAM: 2x128 KiB\\
+   From the Genesis:\\
+   \par
+John Carmach himself took care of this port. 3D section ran at 128x144 translated 256x244 and floating inside the 320x224 resolution of whole screen.\\
+\par
+
+Sound idea, but addon cost as much as whole new system. Also Saturn was released earlier than expected and cannabalized both CPU resources and advertising. Sega biggest mistake.\\
+\par
+\fq{How do you take half a decade's worth
+of critical and commercial success and  flush it down the toilet?\\
+\par
+ Easy: you release a device like the Sega 32X.}{Damien McFerran for RetroGamer \#77}
+
+\subsection{Doom On X32}
+If porting \doom to Jaguar had been a tour de force, repeating the feat on a system even less powerful was to require nothing short than a miracle. Once again John Carmack invested himself totally in the project.\\
+\par
+\fq{I spent weeks working with Id Software's John Carmack, who literally camped out at the Sega of America building in Redwood City trying to get Doom ported. That guy worked his ass off and he still had to cut a third of the levels to get it done in time.\\ 
+\par
+What amazes me now is that with all that going on, nobody at Sega was willing to say "Wait a minute, what are we doing? Why don't we just stop?" Sega should have killed the 32X in the spring of 1994, but we didn't. We stormed the hill, and when we got to the top we realized it was the wrong damn hill. }{Scot Bayless, Senior Producer at Sega of America}
+\par
+No spectre, remove all poses but one -> no infightingh. No save game. Maps cut down even more, to the point the BFG9000 cannot be picked up. 17 maps even more heavily edited.
+\par
+Despite the hardware impressive claims, the machine struggled, likely due to a cache too small resulting in cache misses and stalled CPUS. The game had to be significantly tuned down.\\ 
+Levels had to be cut, from the original 30, only 15 remained. Enemies eight positions had to be reduced to one to always face the player. With the side effect of removing monster infighting. Enemies were removed all together (cyberdemon, spiderdemon or spectre). Worse than all, the active window had to be made smaller. Running in a resolution of 320x224, only a 256 x 144 is actually updated every frames.\\
+\par
+\cfullimage{consoles/x32_screenshot.png}{}
+\par
+In the previous screenshot notice how E1M1 blue texture had to be replaced with a brown one to limit cache misses. The number of stairs was also lowered in order to reduce the number of visplanes generated.\\
+\par
+\trivia{Upon finishing the game, instead of looping back to level one, the player is presented with a DOS prompt (\cw{C:\textbackslash \textbackslash DOOM>}) and the game stop without showing the end! \fixme{WHHAAAT?}}
+\par
+With all these compromises the framerate managed to remain within the 20 fps which was a pleasant experience.
+
+\pngdrawing{x32_fullarch}{}
+Called their console after planets (Jupiter, Mars, Saturn).\\
+
+\trivia{The Sega Neptune was a two-in-one Genesis and 32X console which Sega planned to release in fall 1995, with the retail price planned to be something less than US\$200.[21] Sega cancelled the Neptune in October 1995, citing fears that it would dilute their marketing for the Saturn while being priced too close to the Saturn to be a viable competitor.}\\
+\pagebreak
