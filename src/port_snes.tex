@@ -1,0 +1,77 @@
+\begin{wrapfigure}[4]{r}{0.4\textwidth}{
+\centering \scaledimage{0.4}{snes_logo.png}}
+
+\end{wrapfigure}
+
+
+
+With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely platform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as usual hackers found a way.\\
+\par
+\cfullimage{consoles/SNES.png}{The Super Famicom by Nintendo.}
+\par
+
+Argonaut Games, plc was a British video game developer founded by teenager Jez San in 1982. Although originally focused on the C64 market, they latter leaned toward the NES and then the SNES.\\
+\par Around 1993, the gifted hackers managed to impresse Nintendo and landed a contract for a game nicknamed "NesGlider" which would later become the legendary "Starfox". The project was to become a features real-time 3D graphicsAs good as they were, there was only that much they could do with the hardware. What they needed was more raw power.\\
+\par
+\fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
+\par
+Jez's team made good usage of Nintendo's investment. They came up with something originally codenamed Mathematical Argonaut Rotation I/O, or "MARIO". So powerful was the Super FX chip, the joke was that the Super NES was just a box to hold the chip. Since there was no way to modify the console, the chip was soldered on each new games.\\
+\par
+The GSU\footnote{Graphics Support Unit} as its official name would be had a simple design based on a RISC processor running at 21.4 Mhz. Its sole purpose was to draw polygons to a frame buffer in the RAM sitting next to it where its data would be periodically transfered to the main system RAM via DMA.\\
+\par
+
+\par
+\begin{wrapfigure}[11]{r}{0.25\textwidth}
+\centering
+\scaledimage{0.25}{superfx.png}
+\end{wrapfigure}
+When Sculptured Software was tasked to port \doom to SNES, its head of development, Randy Linden, immediately decided to use Argonaut's Super DX 2 chip\footnote{The Super FX 2 was almost identical to the Super FX 1 except for a tighter packing allowing more bus address pin resulting in more ROM and more RAM.}. However even with the hundreds of polygons per seconds the chip could render, the original quality of PC \doom was still unattainable.\\
+\par
+ Randy Linden ended up writing a new renderer which he called "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
+\par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas. With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement.\\
+
+
+
+
+
+\fq{DOOM was a truly ground-breaking title and I wanted to make it possible for gamers without a PC to play the game, too. DOOM on the Super Nintendo was another one of those programming challenges that I knew could be accomplished.\\
+\par
+
+I started the project independently and demo'd it to Sculptured Software when I had a fully operational prototype running. A bunch of people at Sculptured helped complete the game so it could be released in time for the holidays.\\
+\par
+The development was challenging for a few reasons, notably there were no development systems for the SuperFX chip at the time. I wrote a complete set of tools — assembler, linker and debugger — before I could even start on the game itself.\\
+\par
+The development hardware was a hacked-up StarFox cartridge (because it included the SuperFX chip) and a modified pair of game controllers that were plugged into both SNES ports and connected to the Amiga's parallel port. A serial protocol was used to communicate between the two for downloading code, setting breakpoints, inspecting memory, etc.\\
+\par
+I wish there could have been more levels but unfortunately the game used the largest capacity ROM available and filled it almost completely. I vaguely recall there were roughly 16 bytes free, so there wasn't any more space available anyway! However, I did manage to include support for the SuperScope, Mouse and XBand modem! … Yes, you could actually play against someone online!}
+{Randy Linden (Interview with gamingreinvented.com)}
+\par
+Almost no censorship from Nintendo except for removing red blood.
+\par
+
+\scaledimage{0.3}{doom_red_cartridge.png}
+
+\cfullimage{consoles/snes/wide.png}{}
+\par
+\cfullimage{consoles/snes/enemy.png}{}
+
+
+\trivia{From 199X to 199X, 721 games were produced for the Super Nintendo in North America. Some people have built impressive collection. You can always spot if \doom cartridge is these, even from 20 feet. Only three cartridge were ever allowed to not be gray. Two red: \doom and Maximum Carnage while and Killer Instinct was black.}
+\par
+\drawing{snes_cartridge}{SNES 721 games library. Zelda stands apart. Because Zelda stands apart.}
+\par
+\rawdrawing{snes_cartridge2}
+resolution = 256 x 224 but inside black frame.
+
+\fullimage{snes_cartridge.png}
+\rawdrawing{snes_board}
+
+   % Super FX2:
+   % Released 1993\\
+   % GSU: 23 MHz\\
+   % VRAM: 32 KiB\\
+   
+   % SNES:\\
+   % Released 1990\\
+   % CPU: 5A22 3.58 MHz\\
+   % Audio: SPC700\\

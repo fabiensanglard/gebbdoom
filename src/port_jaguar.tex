@@ -101,7 +101,7 @@ They had something up and running two weeks after they signed on the port \footn
 \par
 To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure XXX and compare it with the PC version (Figure XXX on page YYY). See how  the floor blue texture is gone and there is only one step instead of two.\\
 \par
-The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. These few KiB overlays were swapped in and out of the SRAM at runtime based on needs.
+The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. Nine overlays were swapped in and out of the SRAM at runtime based on engine "phases".
 \par
 \cfullimage{doom_jaguar3.png}{}
 \par
