@@ -61,38 +61,29 @@ Looking back on this era and reading interviews is a bitter feeling when you kee
 
 
 
-Scot Bayless \\
+Scot Bayless testimony on the death march necessary to ship within nine months is eloquent.\\
 \par
 \fq{Games
-in the queue were effectively jammed into a box as fast as possible, which meant massive cutting of corners in every conceivable way. Even from the outset, designs of those games were deliberately conservative because of the time crunch. By the time they shipped they were even more conservative; they did nothing to show off what the hardware was capable of.\\
+in the queue were effectively jammed into a box as fast as possible, which meant massive cutting of corners in every conceivable way. Even from the outset, designs of those games were deliberately conservative because of the time crunch. By the time they shipped they were even more conservative; they did nothing to show off what the hardware was capable of.}{Scot Bayless}\\
 \par
-
+His analysis of deeper issued explains later mistakes rooted in Sega, Inc culture.\\
+\par
+\fq{
 The 32X is a great case study in two things:\\
 \par
 First, messaging: your number one job in marketing
 is to establish the value proposition. Even with all the rushed hardware and late software, if Sega had been able
 to convince people that the 32X was really worth having, it might have had
-a chance to succeed. But we never did that; we never managed to explain to anyone in any credible way what was so unique and worthy about the 32X. The result is exactly what you’d expect: Sony ate our lunch.\\
+a chance to succeed. But we never did that; we never managed to explain to anyone in any credible way what was so unique and worthy about the 32X. The result is exactly what you'd expect: Sony ate our lunch.\\
 \par
- Second: honesty; not in the legal sense, nor in the public sense, but internally. I remember when I arrived at Microsoft in 1998 I attended an executive orientation briefing on my first day. The VP who met with us said: 'The one thing we demand of every one of you guys is to say what you think.’'' That attitude was what kept Microsoft vibrant, healthy and successful for
+ Second: honesty; not in the legal sense, nor in the public sense, but internally. I remember when I arrived at Microsoft in 1998 I attended an executive orientation briefing on my first day. The VP who met with us said: 'The one thing we demand of every one of you guys is to say what you think.' That attitude was what kept Microsoft vibrant, healthy and successful for
 more than 20 years.
- Sega, by contrast, lacked that ruthless honesty. Nobody wanted to hurt anyone’s feelings. Even when everybody knew the 32X and Saturn were way behind the power curve, nobody was willing to stand
+ Sega, by contrast, lacked that ruthless honesty. Nobody wanted to hurt anyone's feelings. Even when everybody knew the 32X and Saturn were way behind the power curve, nobody was willing to stand
 up and say so. And it wasn’t just the hardware; during the same period, Sega published some of the oddest games it ever released. Games that were deeply flawed. Games that completely failed
 to connect. And all the while everyone was smiling and saying, 'Gosh, aren't we great?'' I wasn’t able to articulate all this at the time, but I know I felt it intuitively. I knew there was something wrong, that we were losing our way.
-}{Scot Bayless}\\
-\par
+}{Scot Bayless}
 
 
-\pagebreak
-
-
-   % Released Nov, 1994\\
-   % CPU: 2x SH-2 \\
-   % 32-bit 23 MHz\\
-   % RAM: 256 KiB\\
-   % VRAM: 2x128 KiB\\
-   % From the Genesis:\\
-   \par
 
 
 
@@ -103,28 +94,33 @@ If porting \doom to Jaguar had been a tour de force, repeating the feat on a sys
 \par
 What amazes me now is that with all that going on, nobody at Sega was willing to say "Wait a minute, what are we doing? Why don't we just stop?" Sega should have killed the 32X in the spring of 1994, but we didn't. We stormed the hill, and when we got to the top we realized it was the wrong damn hill.\\
 \par
-Looking back now I’d say that really was the beginning of the end for Sega’s credibility as a hardware company.}{Scot Bayless}\\
+Looking back now I'd say that really was the beginning of the end for Sega's credibility as a hardware company.}{Scot Bayless}\\
 \par
-John Carmach himself took care of this port. 3D section ran at 128x144 translated 256x244 and floating inside the 320x224 resolution of whole screen.\\
+To make the game fit in the little RAM the 32X had, even more features than the Jaguar version had to be cut. An other enemy was removed (Spectre). All eight poses of each monsters was removed except for the one facing the player. Since they could no longer point at each others, monster infighting was also removed. There were no save games. Only seventeen heavily edited maps made the cut and since none of theme had the BFG9000, the weapon is unavailable without cheating.\\
 \par
-
-Sound idea, but addon cost as much as whole new system. Also Saturn was released earlier than expected and cannabalized both CPU resources and advertising. Sega biggest mistake.\\
+There was also a significant problem of performances. Even with its twin SuperH, the machine was unable to render at the original resolution.\\
 \par
-No spectre, remove all poses but one -> no infightingh. No save game. Maps cut down even more, to the point the BFG9000 cannot be picked up. 17 maps even more heavily edited.
-\par
-Despite the hardware impressive claims, the machine struggled, likely due to a cache too small resulting in cache misses and stalled CPUS. The game had to be significantly tuned down.\\ 
-Levels had to be cut, from the original 30, only 15 remained. Enemies eight positions had to be reduced to one to always face the player. With the side effect of removing monster infighting. Enemies were removed all together (cyberdemon, spiderdemon or spectre). Worse than all, the active window had to be made smaller. Running in a resolution of 320x224, only a 256 x 144 is actually updated every frames.\\
+\fq{I liked the 32X -- it was basically two decent 32 bit processors (SH2) and a framebuffer, so you programmed like on a PC, but with SMP long before it was mainstream on PC.  It was still pretty underpowered compared to even a 386, so resolution was low.}{John Carmack}\\
 \par
 \cfullimage{consoles/x32_screenshot.png}{}
+
+In figure \ref{consoles/x32_screenshot.png} notice how, like on Jaguar, E1M1 blue floor texture had to be replaced with a brown one to limit RAM consumption. Likewise, the number of steps on the stairs was also lowered in order to reduce the number of visplanes generated.\\
 \par
-In the previous screenshot notice how E1M1 blue texture had to be replaced with a brown one to limit cache misses. The number of stairs was also lowered in order to reduce the number of visplanes generated.\\
+The game ran at a resolution of 320x224 but CPUs struggled so much that the active window was reduced to 128x144 (with horizontal line doubled to reach 256x144, leaving 100 vertical pixels for the status bar and the brown filling background. With all these compromises the framerate managed to remain within the 20 fps which was a pleasant experience\footnote{Source}.\\
 \par
-\trivia{Upon finishing the game, instead of looping back to level one, the player is presented with a DOS prompt (\cw{C:\textbackslash \textbackslash DOOM>}) and the game stop without showing the end! \fixme{WHHAAAT?}}
-\par
-With all these compromises the framerate managed to remain within the 20 fps which was a pleasant experience.
+\trivia{Sega named all its project after a planet of the solar system. Besides Saturn and Mars, two others are known of. Neptune was a two-in-one Genesis and 32X console which Sega planned to release in fall 1995. It was cancelled because of fears that it would dilute their marketing for the Saturn while being priced too close to the Saturn to be a viable competitor.}
 
 
-Called their console after planets (Jupiter, Mars, Saturn).\\
 
-\trivia{The Sega Neptune was a two-in-one Genesis and 32X console which Sega planned to release in fall 1995, with the retail price planned to be something less than US\$200.[21] Sega cancelled the Neptune in October 1995, citing fears that it would dilute their marketing for the Saturn while being priced too close to the Saturn to be a viable competitor.}\\
-\pagebreak
+\fullimage{32xe1m1.png}
+\par
+Map rework necessary could be very subtle or chainsaw style. Above, E1M1 main room was stripped of many textures. Below, the "pit" of E1M2 was been flattened to lower visplane count.\\
+\par
+\fullimage{32xe1m2.png}
+%\trivia{Upon finishing the game, instead of looping back to level one, the player is presented with a DOS prompt (\cw{C:\textbackslash \textbackslash DOOM>}) and the game stop without showing the end! \fixme{WHHAAAT?}}
+%\pagebreak
+
+
+
+
+

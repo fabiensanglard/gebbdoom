@@ -1,8 +1,8 @@
-\begin{wrapfigure}[4]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{jaguar_logo.png}}
+\begin{wrapfigure}[5]{r}{0.35\textwidth}{
+\centering \scaledimage{0.35}{jaguar_logo.png}}
 \end{wrapfigure}
-Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design a 32-bit Panther and a 64-bit Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".}. Known as the console "bit wars" this was an era when the power of a console was assessed based on its number of "bits". How many bits a console had was of course greatly a matter of marketing.\\
-\par
-With the Jaguar project ahead of schedule, Atari decided to abandon the Panther and released the 64-bit Jaguar in November 1993.\\
+Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design not only one but two new game system simulaneously. The company was to design a fourth generation, 32-bit, system called Panther and audacious 64-bit system called Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".}.\\
+\par Three years later, with the Jaguar project ahead of schedule, Atari decided to abandon the Panther and released the 64-bit Jaguar on November 1993.\\
 \par
 \fullimage{consoles/Jaguar.png}
 \par
@@ -10,7 +10,7 @@ Martin Brennan and John Mathieson from Flare Technology made opinionated design 
 \par
 On the audio side, a 32-bit 27MHz DSP nickname "Jerry" . On the video side, no less than three processors all contained in a 32-bit 27MHz chip nickname "Tom" with a GPU, a Blitter, and an Object processor. To orchestrate everything 2 MiB of RAM and a 16/32-bit 13Mhz 68000. An to connect them all, to the delight of marketing, a 64-bit data bus.\\
 \par
-The bold ad "Do the Math!" and its featured 64-bit claim triggered mostly suspicion from potential customers.  No matter how John Mathieson attempted to explain it in interviews the machine felt like a misleading attempt from an already suspicious Atari marketing department. How Atari could have managed to manufacture something four times better than its competitors Nintendo and Sega with their Super Nintendo and Genesis was not clear.
+The bold ad "Do the Math!" and its featured 64-bit claim triggered mostly suspicion from potential customers.  No matter how John Mathieson attempted to explain it in interviews the machine felt like a misleading attempt from an already suspicious Atari marketing department. How Atari could have managed to manufacture something four times better than its Nintendo and Sega's 16-bit Super Nintendo and Genesis was not clear.
 \drawing{jaguar_arch}{Architecture of the Jaguar. Notice the uneven buses.}
 \par
 Cautious purchasers on one side were met by incredulous game developers on the other side. The five processor architecture was powerful but highly unusual for people used to deal with one processor on the 8-bit Nintendo Entertainment System or Sega Master System. Programming the Jaguar was an art that few took the time to learn.\\
@@ -97,7 +97,7 @@ John Carmack took an early interest in the Jaguar and did the port himself with 
 \par
 They had something up and running two weeks after they signed on the port \footnote{Source: EDGE Magazine, June 1994.} even thought it was running at a wretched rate!\\
 \par
-\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{gcc} C compiler backend which generated Tom\&Jerry RISC instructions.}\\
+\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{lcc} compiler backend which generated Tom\&Jerry RISC instructions.\footnote{\cw{lcc} was also used for Quake 3 to generate the VMs bytecode.}}\\
 \par
 To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure XXX and compare it with the PC version (Figure XXX on page YYY). See how  the floor blue texture is gone and there is only one step instead of two.\\
 \par

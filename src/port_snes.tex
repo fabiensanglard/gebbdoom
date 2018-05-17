@@ -1,24 +1,54 @@
-\begin{wrapfigure}[4]{r}{0.4\textwidth}{
+\begin{wrapfigure}[3]{r}{0.4\textwidth}{
 \centering \scaledimage{0.4}{snes_logo.png}}
-
 \end{wrapfigure}
-
-
-
-With its Ricoh 5A22 CPU running at 3.58 MHz accounting for \fixme{} MIPS, the SNES was an unlikely platform to run \doom. The system was proven barely able to run the much less sophisticated title Wolfesntein 3D and its was using a very low resolution at that (\fixme{}). But as usual hackers found a way.\\
+The Super Nintendo Entertainment System was released in 1990 in Japan and the following years in USA and Europe. It was the 16-bit replacement to the 8-bit NES. In Japan, the Super Fami-Com ("FAMIly COMputer") was an instant success with the initial shipment of 300,000 units sold out within hours. The frenzy was such that the government requested Nintento to release its future systems on weekends to avoid further disturbances.\\
+\par
+Nintendo had established a merciless system to ensure quality of the games. Publisher were only allowed five games per year. To make sure this rule was enforced, only Nintendo was allowed to produce cartridges. Publisher had to buy them from Nintendo. To make sure everybody played by the rules (and also protect games from being copied) the SNES looked for a CIC lockout chip before a game was allowed to start. It was a powerful mechanism which was only cracked as the SNES had been replaced.\\
+\par
+During its nine years lifespan\footnote{The Super Nintendo was discontinued in 1999.} 721 games were published among them both technical and financial success such as Super Mario World, Zelda III, Mario Kart, Z-Zero, Super Metroid, or Donkey Kong Country. Having sold close to 50 million units it is arguably one of the best console of all times both in terms of sales and catalog.\\
 \par
 \cfullimage{consoles/SNES.png}{The Super Famicom by Nintendo.}
 \par
+From a technical standing point, the SNES exceled at 2D. Its 65C816 3.58 MHz CPU piloted a PPU Picture Processing Unit to generate video large sprites using up to 256 colors at a resolution of 256x240. On the audio side a powerful combo made of an 8-bit SPC700, and a 16-bit DSP with 64 KiB of dedicated SRAM.\\
+\par
 
+Needless to say that despite it impressive 2D sprite engine capabilities, \doom was never doing to fly on a SNES. As fate would have it, a small UK firm would make it happen.\\
+\par
 Argonaut Games, plc was a British video game developer founded by teenager Jez San in 1982. Although originally focused on the C64 market, they latter leaned toward the NES and then the SNES.\\
-\par Around 1993, the gifted hackers managed to impresse Nintendo and landed a contract for a game nicknamed "NesGlider" which would later become the legendary "Starfox". The project was to become a features real-time 3D graphicsAs good as they were, there was only that much they could do with the hardware. What they needed was more raw power.\\
+\par Around 1993, the gifted hackers managed to impresse Nintendo\footnote{Source: \cw{eurogamer.net} article "Born slippy: the making of Star Fox".} and landed a contract for a game nicknamed "NesGlider" which would later become the legendary "Starfox". The project was to become a features real-time 3D graphics. As gifted and creative programmers as they were, there was only that much they could do with the hardware. What they needed was more raw power.\\
 \par
 \fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
 \par
-Jez's team made good usage of Nintendo's investment. They came up with something originally codenamed Mathematical Argonaut Rotation I/O, or "MARIO". So powerful was the Super FX chip, the joke was that the Super NES was just a box to hold the chip. Since there was no way to modify the console, the chip was soldered on each new games.\\
+Jez's team made good usage of Nintendo's investment. They came up with something originally codenamed Mathematical Argonaut Rotation I/O, or "MARIO". The "Super FX" as it would be later marketed was so powerful, it was joked the Super NES was just a box to hold the chip. Since there was no way to modify the console, the chip was soldered on each new game cartridge which increased MSRP significantly.\\
 \par
-The GSU\footnote{Graphics Support Unit} as its official name would be had a simple design based on a RISC processor running at 21.4 Mhz. Its sole purpose was to draw polygons to a frame buffer in the RAM sitting next to it where its data would be periodically transfered to the main system RAM via DMA.\\
+The GSU\footnote{Graphics Support Unit} as its technical name would be\footnote{I agree. These are a lot of names for a chip.} had a simple design based on a RISC processor running at 21.4 Mhz. Its sole purpose was to draw polygons to a frame buffer in the RAM sitting next to it where its data would be periodically transfered to the main system RAM via DMA.\\
 \par
+
+
+
+
+\fullimage{snes_cartridge.png}
+\par
+To open a \doom game cartridge reveals all comoponents previously discussed. \circled{1} The 32-bit GSU-2, \circled{2}the 512 KiB framebuffer where the GSU writes, \circled{3} ROM where the game code is stored, \circled{4} XXX, \circled{5} the copy protection CIC chip.\\
+\par
+The first generation of GSU-1 powered five games: Dirt Racer, Dirt Trax FX, Star Fox, Stunt Race FX and, Vortex. The GSU-2 was the same processor with extra pins soldered to the bus to increase the size of the addressable framebuffer. It was used in three games Doom, Super Mario World 2: Yoshi's Island, and Winter Gold\footnote{Star Fox 2 was finished but canceled at the last minute to not amped the imminent release of the Nintendo64.}
+\rawdrawing{snes_board}
+
+
+
+But as usual hackers found a way. Initial claim: 10x faster. Result. 40x times faster. Development was backward. They added features based on Nintendo needs. Not to make a generic processor.\\
+\par
+
+\trivia{Some passionate fans have managed to collected all 791 games of the SNES catalog. Seeeing them on a shelve is impressive. You can usually spot \doom cartridge from 20 feet away. Only three games were ever allowed to not be made of the standard gray. Two were red: "DooM" and "Maximum Carnage" while "Killer Instinct" was black.}
+\pagebreak
+
+
+\drawing{snes_cartridge}{SNES 721 games library. Zelda stands apart. Because Zelda stands apart.}
+\par
+\rawdrawing{snes_cartridge2}
+
+
+\subsection{Doom On Super Nintendo}
 
 \par
 \begin{wrapfigure}[11]{r}{0.25\textwidth}
@@ -55,16 +85,8 @@ Almost no censorship from Nintendo except for removing red blood.
 \par
 \cfullimage{consoles/snes/enemy.png}{}
 
+\pagebreak
 
-\trivia{From 199X to 199X, 721 games were produced for the Super Nintendo in North America. Some people have built impressive collection. You can always spot if \doom cartridge is these, even from 20 feet. Only three cartridge were ever allowed to not be gray. Two red: \doom and Maximum Carnage while and Killer Instinct was black.}
-\par
-\drawing{snes_cartridge}{SNES 721 games library. Zelda stands apart. Because Zelda stands apart.}
-\par
-\rawdrawing{snes_cartridge2}
-resolution = 256 x 224 but inside black frame.
-
-\fullimage{snes_cartridge.png}
-\rawdrawing{snes_board}
 
    % Super FX2:
    % Released 1993\\

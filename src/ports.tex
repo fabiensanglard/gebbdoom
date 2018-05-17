@@ -9,30 +9,31 @@ The success of the PC version and its mind numbing sales figure made it an extre
 % INSER ARRAY HERE: Console, Year, Authors, Avg framerate, price, CPUS, RAM.
 % \bigskip
 
-\begin{figure}[H]
-\centering  
-\begin{tabularx}{\textwidth}{ L{1}  R{1} R{0.5} R{0.5} R{0.5} R{0.5} }
-  \toprule
-   \textbf{Year} & \textbf{System} & \textbf{\#CPUs} & \textbf{RAM} & \textbf{Resolution} & \textbf{Price} \\
-  \toprule 
-            1994 & Atari Jaguar.   &  5              & 2 MiB.       &  320x240            & BLA\\
-            1994 & Sega 32X        &  3              & ISA-8        &  8                  & BLA\\
-            1995 & Super Nintendo  &                 & ISA-16       & 13                  & BLA\\
-            1995 & Sony Playstation&                 & VLB          & 24                  & BLA\\
-            1996 & 3DO             &                 & VLB          & 24                  & BLA\\
-            1997 & Sega Saturn     &                 & VLB          & 24                  & BLA\\
-   \toprule
- \end{tabularx}
-\caption{Ports of \doom to video game console from 1995 to 1997}
-\end{figure}
+% \begin{figure}[H]
+% \centering  
+% \begin{tabularx}{\textwidth}{ L{1}  R{1} R{0.5} R{0.5} R{0.5} R{0.5} }
+%   \toprule
+%    \textbf{Year} & \textbf{System} & \textbf{\#CPUs} & \textbf{RAM} & \textbf{Resolution} & \textbf{Price} \\
+%   \toprule 
+%             1994 & Atari Jaguar.   &  5              & 2 MiB.       &  320x240            & BLA\\
+%             1994 & Sega 32X        &  3              & ISA-8        &  8                  & BLA\\
+%             1995 & Super Nintendo  &                 & ISA-16       & 13                  & BLA\\
+%             1995 & Sony Playstation&                 & VLB          & 24                  & BLA\\
+%             1996 & 3DO             &                 & VLB          & 24                  & BLA\\
+%             1997 & Sega Saturn     &                 & VLB          & 24                  & BLA\\
+%    \toprule
+%  \end{tabularx}
+% \caption{Ports of \doom to video game console from 1995 to 1997}
+% \end{figure}
 
-
+This time period is known as the "console war" during which the generation of a system was associated to its "bitness". Third generation, 8-bit based, NES and Sega Master System had dissapeared. The fourth, 16-bit generation, made of Nintendo's SNES, TurboGrafx-16 and Sega's Genesis was reaching end of life. The fifth, 32-bit, generation 
+was starting to appear with Sony's Playstation1 and Sega Saturn with marketers trying to play on words with systems branded 64-bit like the Nintendo64 or the Jaguar\footnote{After that, consumers either got tired or the "bits" or realized the silliness of the whole nomenclature. Bitness was forgotten.}.. In retrospect, it was a rich period, propice to hardware innovation which contrast vividly when compared to 2018 uniform world of Sony vs Microsoft where system only differ by their name.\\
 \par
 The architecture of the engine based on a core with "only" sub-system to implement may lead to conclude it was an easy task to get \doom to run on a console. This feeling could not be further from the truth. From design trade-off due to restricted resources, crazy schedules, to anecdote of a lone hero programmer trying to make the everything fit in, all versions have an unique and rich story.\\
 \par
 From a technical standing point, the common problem to solve was to deal with less memory than originally intended. PCs minimum requirement was to have 4 MiB installed on the machine. It was of course not possible to ask customers to add more RAM to their console. Developers sometimes had to deal little as little as 512 KiB of RAM.\\
 \par
-The second difficulty was to deal with exotic hardware. The PC was designed around one "big iron" CPU while all consoles were a made of a constellation of CPUs and co-processors.
+The second difficulty was to deal with exotic hardware. The PC was designed around one "big iron" CPU while consoles were a made of a constellation of processors.
 
 
 
@@ -47,20 +48,6 @@ The second difficulty was to deal with exotic hardware. The PC was designed arou
 
 \section{Jaguar (1994)}
 \subfile{port_jaguar} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -127,7 +114,10 @@ Source: NEXT Generation Issue \#6 June 1995, "Inside the Playstation".\\
 \circled{B} Video decoder and encoder (NTSC or PAL) to TV.
 
 
-
+\fq{I worked with Aaron Seeler on the Nintendo 64 (which was a fairly different game) and Playstation versions.  Those were the first versions that weren’t written “to the metal”, since both Sony and Nintendo were forcing (at least third party) developers to write to API instead of just handing them hardware register documentation.  The SGI culture in particular cramped developers at the start, but Nintendo eventually walked it back a bit.\\
+\par
+Funny story on Playstation development:  Aaron and I started out with a different engine architecture that rendered the world with triangles, since they were fully hardware accelerated.  That worked great on the N64, which had subpixel accurate, perspective correct rendering (that SGI influence), but Playstation had integer coordinate, affine texture mapping, and the big wall and floor triangles looked HORRIBLE.  Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said “back everything up (no source control back then!), we’re going to do something completely different”.  We wound up using the hardware to render triangles that were one pixel wide columns or rows, just like the PC asm code, and it worked well.  The more common Playstation approach turned out to be tessellating  geometry in two axis, but I was always pretty happy with how Doom felt less “wiggly” than most other Playstation games of the time.}{John Carmack}\\
+\par
 
 
 
