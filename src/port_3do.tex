@@ -1,0 +1,47 @@
+\begin{wrapfigure}[22]{r}{0.25\textwidth}{
+\centering \scaledimage{0.25}{3do_logo.png}}
+\end{wrapfigure}
+The 3DO Company was founded by ex Electronic Arts Trip Hawkins. The story behind the abysmal 3DO version of Doom is absolutely remarkable,
+\par
+Ahead of its time.\\
+RetroGamer \#122\\
+Overpriced, firmware changes until last minutes. Manufacturers had to make a profit while console like Nintendo and Sega sold them at lose.\\
+\par
+Designed on a restaurant napkin in 1989, the 3DO was to free game developer from royalities fees and restricted content they had to deal with on Sega and Nintendo.\\
+\fq{Under the hood the 3DO used an ARM60 RISC
+Processor and had two powerful custom graphics
+chips and an animation processor. It also sported 3Mb
+RAM and a multitasking OS. Uniquely for a console,
+developers wrote games for the OS and not the
+hardware, ensuring backwards compatibility. }{RetroGamer 122}\\
+\par
+
+\fullimage{3D0_motherboard.png}
+\par
+Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
+\par
+\fullimage{consoles/3DO.png}
+\par
+\par
+Released Dec 1993\\
+   CPU: ARM60 12.5 MHz\\
+   RAM: 2 MB\\
+   VRAM:1 MB\\
+\fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
+\par
+Uh... No...\\
+\par
+My friends at 3DO were begging for DOOM to be on their platform and with christmas 1995 coming soon (I took this job in August of 1995, with a mid October golden master date), I literally lived in my office, only taking breaks to take a nap and got this port completed.\\
+\par
+Shortcuts made...\\
+\par
+I had no time to port the music driver, so I had a band that Art Data hired to redo the music so all I needed to do is call a streaming audio function to play the music. This turned out to be an excellent call because while the graphics were lackluster, the music got rave reviews.\\
+\par
+3DO's operating system was designed around running an app and purging, there was numerous bugs caused by memory leaks. So when I wanted to load the Logicware and id software logos on startup, the 3DO leaked the memory so to solve that, I created two apps, one to draw the 3do logo and the other to show the logicware logo. After they executed, they were purged from memory and the main game could run without loss of memory.\\
+\par
+There was a Electronic Arts logo movie in the data, because there was a time that EA was going to be distributing the game, however the deal fell through.\\
+\par
+The vertical walls were drawn with strips using the cell engine. However, the cell engine can't handle 3D perspective so the floors and ceilings were drawn with software rendering. I simply ran out of time to translate the code to use the cell engine because the implementation I had caused texture tearing.\\
+\par
+I had to write my own string.h ANSI C library because the one 3DO supplied with their compiler had bugs! string.h??? How can you screw that up!?!?! They did! I spent a day writing all of the functions I needed in ARM 6 assembly.}{Rebecca Ann Heineman}
+\pagebreak

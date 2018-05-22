@@ -71,53 +71,11 @@ The second difficulty was to deal with exotic hardware. The PC was designed arou
 
 
 \section{Playstation 1 (1995)}
-
-\begin{wrapfigure}[14]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{psx_logo.png}}
-\hrule 
-   Released Dec 1994\\
-   MIPS R3000 33 MHz\\
-   GTE Copro, 33 MHz\\
-   RAM: 2 MiB\\
-   VRAM: 1 MiB\\
-   Audio: Sony SPU
-\hrule 
-\end{wrapfigure}
-
-The screen resolution was changed from 320x200 to 256x240, which is stretched to roughly 293x240 via NTSC rasterization.\\
-modified version of the Doom engine used in the Atari Jaguar port. This version spent six months in development. The Arch-vile monster from Doom II is not present; according to one of the game's designers, Harry Teasley, this was because he had twice as many frames as any other monster, and the team felt that they "just couldn't do him justice" on the PlayStation. A new monster however was added: Nightmare spectre (subtractively blended against the background graphics).\\
-\par
- These include sector-based coloured lighting, an animated, flame-filled sky, and a new animation for the player's mug shot, which shows the Doomguy's head exploding if the player character is gibbed. translucent Spectres are drawn without the cascade effect \\
-\par
-r Next Generation said the PlayStation version succeeded in "putting previous efforts for 32X, Jaguar, and especially Super NES, to shame" 
-\par
-Harry Teasley: http://5years.doomworld.com/interviews/harryteasley/\\
-\par
-\fullimage{consoles/PSX.png}
-How PSX renders doom: https://www.youtube.com/watch?time\_continue=58\&v=MS9MGSm4gng\\
-\par
-\fullimage{Sony-PlayStation-SCPH-1000-Motherboard}
-\pagebreak
-\rawdrawing{psx_motherboard}
-\par
-Source: NEXT Generation Issue \#6 June 1995, "Inside the Playstation".\\
-\par
-\circled{1}, R3000 CPU (30 Mips) also containing the 88 Mips Geometry Transfer Engine (GTE), the DMA Controller and Sony's 80 Mips MDEC video decompression hardware.
-\circled{2} Operating System ROM.
-\circled{3} GPU.
-\circled{4} 2 MiB RAM.
-\circled{5} 1 MiB VRAM.
-\circled{6} DSP.
-\circled{7} 512 KiB DSP RAM.
-\circled{8} CD Controoler: Contains a CD ROM-XA converter (allowing up to eight simultaneous streams of mixed audio and CD data) and a small amount of buffer RAM.
-\circled{9} CD-dribe DSP.
-\circled{A} 16-bit video digital converted.
-\circled{B} Video decoder and encoder (NTSC or PAL) to TV.
+\subfile{port_psx}
 
 
-\fq{I worked with Aaron Seeler on the Nintendo 64 (which was a fairly different game) and Playstation versions.  Those were the first versions that weren’t written “to the metal”, since both Sony and Nintendo were forcing (at least third party) developers to write to API instead of just handing them hardware register documentation.  The SGI culture in particular cramped developers at the start, but Nintendo eventually walked it back a bit.\\
-\par
-Funny story on Playstation development:  Aaron and I started out with a different engine architecture that rendered the world with triangles, since they were fully hardware accelerated.  That worked great on the N64, which had subpixel accurate, perspective correct rendering (that SGI influence), but Playstation had integer coordinate, affine texture mapping, and the big wall and floor triangles looked HORRIBLE.  Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said “back everything up (no source control back then!), we’re going to do something completely different”.  We wound up using the hardware to render triangles that were one pixel wide columns or rows, just like the PC asm code, and it worked well.  The more common Playstation approach turned out to be tessellating  geometry in two axis, but I was always pretty happy with how Doom felt less “wiggly” than most other Playstation games of the time.}{John Carmack}\\
-\par
+
+
 
 
 
@@ -125,51 +83,7 @@ Funny story on Playstation development:  Aaron and I started out with a differen
 
 
 \section{3DO (1996)}
-\begin{wrapfigure}[22]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{3do_logo.png}}
-\hrule 
-   Released Dec 1993\\
-   CPU: ARM60 12.5 MHz\\
-   RAM: 2 MB\\
-   VRAM:1 MB\\
-\hrule 
-\end{wrapfigure}
-
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB\\ 
-\par
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB \\
-\par
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB BLAB 
-Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
-\par
-\fullimage{consoles/3DO.png}
-\par
-\fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
-\par
-Uh... No...\\
-\par
-My friends at 3DO were begging for DOOM to be on their platform and with christmas 1995 coming soon (I took this job in August of 1995, with a mid October golden master date), I literally lived in my office, only taking breaks to take a nap and got this port completed.\\
-\par
-Shortcuts made...\\
-\par
-I had no time to port the music driver, so I had a band that Art Data hired to redo the music so all I needed to do is call a streaming audio function to play the music. This turned out to be an excellent call because while the graphics were lackluster, the music got rave reviews.\\
-\par
-3DO's operating system was designed around running an app and purging, there was numerous bugs caused by memory leaks. So when I wanted to load the Logicware and id software logos on startup, the 3DO leaked the memory so to solve that, I created two apps, one to draw the 3do logo and the other to show the logicware logo. After they executed, they were purged from memory and the main game could run without loss of memory.\\
-\par
-There was a Electronic Arts logo movie in the data, because there was a time that EA was going to be distributing the game, however the deal fell through.\\
-\par
-The vertical walls were drawn with strips using the cell engine. However, the cell engine can't handle 3D perspective so the floors and ceilings were drawn with software rendering. I simply ran out of time to translate the code to use the cell engine because the implementation I had caused texture tearing.\\
-\par
-I had to write my own string.h ANSI C library because the one 3DO supplied with their compiler had bugs! string.h??? How can you screw that up!?!?! They did! I spent a day writing all of the functions I needed in ARM 6 assembly.}{Rebecca Ann Heineman}
-
+\subfile{port_3do}
 
 
 
@@ -200,28 +114,9 @@ See author comments: https://www.doomworld.com/forum/topic/86671-dissecting-sega
 \fullimage{affine_texture_mapping/post_near.png}\\
 \par
 \fullimage{affine_texture_mapping/door.png}\\
-\par
-\fullimage{affine_texture_mapping/hallway.png}\\
-\par
-\begin{minipage}{\textwidth}
-\scaledimage{0.4}{affine_texture_mapping/tex_perp_pc_repeat_nearest_replace.png}
-\scaledimage{0.4}{affine_texture_mapping/tex_perp_no_pc_repeat_nearest_replace.png}\\
-\par
 
-\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace.png}
-\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace.png}\\
-\par
 
-\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace_sharp.png}
-\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace.png}\\
-\par
-\end{minipage}
-\par
-Explanation:\\
-\par
-\fullimage{affine_texture_mapping/affine2.png}
-There are solutions to this:\\
-\par
+
 \fullimage{affine_texture_mapping/subdivision_sample.png}
 
 \par 

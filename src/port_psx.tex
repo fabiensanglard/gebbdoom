@@ -1,0 +1,210 @@
+\begin{wrapfigure}[11]{r}{0.3\textwidth}{
+\centering \scaledimage{0.3}{psx_logo.png}}
+\end{wrapfigure}
+The history of the PlayStation started in 1988 when Nintendo collaborated with Sony to produce a CD-ROM reader add-on for the SNES. Under the terms of the contract, Sony was allowed to develop and would retain control over the "Super Disc" format, an unusual concession on Nintendo's part.\\
+\par
+ The project moved forward until CES '91 where Sony announced the joined venture called "Play Station". The next day, during the same event, Nintendo announced it had instead partnered with Philips (with much advantageous terms) much to Sony's surprise. Betrayed and publicly humiliated, Sony attempted to turn to Sega's Board of Directors who promptly vetoed the idea. In a 2013 interview then CEO Tom Kalinske remembered the board's conclusion:\\
+\par
+\rawfq{That's a stupid idea, Sony doesn't know how to make hardware. They don't know how to make software either. Why would we want to do this?}\\
+\par
+They were not wrong. Sony had little experience with gaming. It also had almost not interest in trying either, most of its involvement so far had relieved on one man, Ken Kutaragi. It is when he saw his daughter play a Nintendo Famicom that Ken realized the potential of the consoles. He had been advocating for Sony to enter the market, even designing Nintendo's audio chip (the SPC700) for their SNES against Sony VPs advices.\\
+\par
+ Despite being considered a risky gamble by other Sony executives, Kutaragi managed the support of Sony CEO Norio Ohga. In June 1992 Ken got the green light to build a gaming system from scratch. The "Father of the PlayStation" as he would later called had to be transfered to a financially separate Sony Music to appease the board but he could set himself to work on what would become the "PlayStation" (without space).\\
+\par
+There was originally some uncertainty about the architecture which could focus either on 2D sprite graphics or 3D polygon graphics. The success of Sega's Oct 1993 Virtua Fighter in Japanese arcades cleared all doubts\footnote{Source: "How Virtua Fighter Saved PlayStation's Bacon". WIRED. Sept 2012.}.\\
+\par
+The project would culminate two years later with the creation of Sony Computer Entertainment and a Japanese release on December 3, 1994. It was an instant success selling over 2 million units within its first six months and totaling 102 millions units over its lifetime.\\
+\par
+\cfullimage{consoles/PSX.png}{Sony PlayStation}
+
+
+\subsubsection{Keys to success}
+Every success stories are made of a lot of hard work, right decisions and a little bit of luck.\\
+\par
+ Among the numerous good choices, Sony decided to listen developers requirements and bumped the machine RAM from 1MiB to 2MiB. More than listening to feedback, Sony adopted a developer centric attribute where the development cycle was easy, tools updated frequency and downloadable online, with third party technical support teams and sometimes direct development support to third party companies. And course there is the decision to make the console an 100\% 3D platform.\\
+\par
+The stroke of luck was to land Psy-Q which made the SDK a programmer's nirvana. Psygnosis was an UK game developer company working for Atari ST, Amiga and SNES. Nintendo purchased and tasked them with the secret PlayStation games \textit{Wipeout} and \textit{Destruction Derby} to showcase the PlayStation upon launch.\\
+\par
+Until them, Sony had envisioned development for the PlayStation to be based on dedicated Sony NEWS MW~.2 workstations\footnote{"The development system", Next Generation June 1995.}. These were colossal and expensive machines based on MIPS R4000 and manufactured by Sony. Psygnosis disliked that solution, especially when they compared the development experience to using their regular tool (Psy-Q) which was produced by a company called SN Systems.\\
+\par
+\begin{wrapfigure}[10]{r}{0.2\textwidth}{
+\centering \scaledimage{0.2}{psyq_logo.png}}
+\end{wrapfigure}
+Around Christmas '93, SN Systems co-owner Andy Beveridge and Martin Day were given an MW~.2 by Psygnosis with a request: Make Psy-Q) run on it!\\
+\par
+ The pair worked around the clock and managed to port the GNU toolchain (\cw{cc} compiler, \cw{ld} linker, lib builder \cw{ar}, and \cw{gdb} debugger) to PC connected to a Sony's MW.2 box and demoed it at CES Las Vegas in early '94.\\
+\par
+ Sony liked what the saw and promptly ordered 700 dev kits. At the end of spring '94, Sony managed to condensate the PlayStation hardware into two ISA cards which could be plugged into a standard PC.\\
+
+\rawpngdrawing{psx_isa_devkit}
+\par
+\circled{1} ISA card containing the PlayStation CPU, GPU, VRAM, and DRAM, RGB, with Composite video out and a nine-pin comms link socket, \circled{2} ISA card with the CD I/O, PC interface, kernel boot ROM, and joypad sockets, \circled{3} CD emulator card by SN Systems, \circled{4} PC motherboard, \circled{5} HDD, \circled{6} PlayStation-spec CD-ROM drive. \\
+\par
+To leverage PC had a double effect. Not only it significantly reduced the financial cost to become a developer, it also lowered the intellectual barrier since most developers were already familiar with DOS/Windows operating system.\\
+\par Between September 1993 and June 1995, 500 licensees worldwide jumped on the opportunity to publish on Sony's dream machine\footnote{"Sony's PlayStation game plan", Next Generation June 1995.}.
+
+
+
+
+
+
+
+Programming the PlayStation was an unbelievably pleasant experience. Most programming was intended be done in C while allowing handcrafted assembly if necessary. Psy-Q provided a compiler driver able to take a list of file and output a PlayStation executable in one keystroke.\\
+\par
+The PSX programming philosophy was to not make developer jungle with multiple systems. The 1MiB Video framebuffer for example could not be accessed by the programmer directly, delegation to the GPU was mandatory. This sample from the PSX Developer Tools summarizes well how much care was taken to lift burden of programmers.\\
+\par
+\rawfq{
+The CPU is only involved in giving the dedicated hardware very small amounts of data such as the
+display location and the start address for data transmission. Data is transfered via the DMA Controller and consumed by the GPU. The result of this parallel processing is that the CPU can devote almost all of its time to creating drawing command lists}\\
+\par
+\srawpngdrawing{1}{psx_arch}
+\par
+
+
+
+
+
+
+
+
+
+\fullimage{Sony-PlayStation-SCPH-1000-Motherboard}
+\par
+Opening a PlayStation and taking a look at the motherboard revealed no less than fifteen chips\footnote{Source: NEXT Generation Issue \#6 June 1995, "Inside the Playstation".}\\
+\par
+\circled{1}, 32-bit 33MHz R3000 CPU (30 Mips) with  4KiB i-cache and 1KiB d-cache. Also contains the 88 Mips Geometry Transfer Engine (GTE), the DMA Controller and Sony's 80 Mips MDEC video decompression hardware.
+\circled{2} Operating System ROM.
+\circled{3} GPU.
+\circled{4} 2 MiB RAM.
+\circled{5} 1 MiB VRAM.
+\circled{6} DSP.
+\circled{7} 512 KiB DSP RAM.
+\circled{8} CD Controoler: Contains a CD ROM-XA converter (allowing up to eight simultaneous streams of mixed audio and CD data) and a small amount of buffer RAM.
+\circled{9} CD-dribe DSP.
+\circled{A} 16-bit video digital converted.
+\circled{B} Video decoder and encoder (NTSC or PAL) to TV.
+
+
+\rawdrawing{psx_motherboard}
+\par
+\begin{wrapfigure}[10]{r}{0.4\textwidth}{
+\centering \scaledimage{0.4}{trex.png}}
+\end{wrapfigure}
+What took most potential players and developers breath away was not a game but the "dino" tech demo.\\
+\par
+ Jurrasic Park had just been released the year before in 1993 and was still fresh in geeks memory as a monumental engineering achievement. To see the T-Rex move and be able to control it in realtime was breathtaking.\\
+ \par
+ The demo ran at 50 frames per second at a resolution of 512x256. It processed about 1800 polygons per frame, and drew up to 1300 polygons per frame. 
+
+
+
+\subsection{Doom on PlayStation}
+\doom was ported to the PSX by Williams Entertainment. It took a little bit less than a year to a team of five\footnote{Three designers/artists and two programmers.} to recast the engine, change the assets, and make everything work with "only" 3 MiB of RAM. The final result is universally considered the best port with some aspects even outmatching the PC version.\\
+\par
+Work did not start from scratch. In fact the team leveraged all the work done from the Jaguar version and in particular the simplified maps using less textures and less walls.\\
+\par
+\fq{The graphics were reduced: the textures chopped down in size, the sprites, monsters, and weapons reduced in size. [...] Sometimes animations had frames cut.}{Harry}\\
+\par
+  The restrictions did not have to be as drastic at for Atari's console. Thanks to the CD-ROM capacity, 59 maps (30 from Doom and 30 from Doom II) shipped. To compensate for the slow access time and the restricted amount of RAM, all maps are stored in their own \cw{WAD} archive. On the opponents side, most monsters are present except for the archvile.\\
+\par
+\fq{The archvile had twice as many frames of animation as any other monster, and we just couldn't do him justice on the PSX.  Couldn't lose his attack, and couldn't lose his ressurecting power.  He was just too big to include.}{Harry Teasley (Designer) for \cw{doomworld.com}}\\
+\par
+What may come as a surprise are the improvements over the PC version.\\
+\par
+Sound was improved by taking advantage of the SPU processor to render reverberation in small rooms. The Spectre which faked transluctency via a Predator like  "shimmering" was converted to alpha blending. And of course music was CD quality (44KHz, 16-bit, stereo).\\
+\par
+ The most impressive improvement was the colored lightnings which was done by adding a color to sectors and alpha blending all textures with it. In some case this feature was used to improve game mechanisms like on the opposite page where a red light indicates a door requiring the red key. To perfect the illusion, the player hand is also colored accordingly.\\
+\par
+
+
+\fullimage{psx_screen_door.png}\\
+
+\fullimage{psx_screen_wall.png}\\
+\par
+
+
+There were many other subtle additions such as transparency, and animated skies. In the following screenshot, the mariner is in Hell and the sky is made of flames.\\
+\par
+\fullimage{psx_screen_sky.png}\\
+\par
+In many aspects, this port embodied the bittersweet deal of hardware rendering over software rendering.\\
+\par
+On one side the hardware acceleration allowed more complex worlds with many skeletally animated and textured mapped models for less code written. New enemies such as the Nightmare Spectre (subtractively blended against the background) were added.\\
+\par
+ On the other side, the freedom of software rendering allowed innovative tricks which were now impossible to achieve. A prime example is the palette shift to red when damage occurs why could not be done and is absent from the PlayStation version. An other example are sprites and textures which must be of power of two dimensions to improve texture sampling (a 64x64 texture lookup at coordinate \cw{(u,v)} can be optimized \cw{64 << u + v}).\\
+\par
+In this occurrence the bitterness was taken to an extreme. It seems the technical difficulties were so considerable that some of the developers on the team doubted it could be done.
+
+
+\fq{I worked with Aaron Seeler on the Nintendo 64 (which was a fairly different game) and Playstation versions.  Those were the first versions that weren't written "to the metal", since both Sony and Nintendo were forcing (at least third party) developers to write to API instead of just handing them hardware register documentation.  The SGI culture in particular cramped developers at the start, but Nintendo eventually walked it back a bit.\\
+\par
+Funny story on Playstation development:  Aaron and I started out with a different engine architecture that rendered the world with triangles, since they were fully hardware accelerated.  That worked great on the N64, which had subpixel accurate, perspective correct rendering (that SGI influence), but Playstation had integer coordinate, affine texture mapping, and the big wall and floor triangles looked HORRIBLE.}{John Carmack}\\
+\par
+Affine Texture Mapping is the process of performing texture mapping in screen space without taking perspective into account. Thanks to from user \cw{Lollie} from \cw{doomworld.com} we can take a look at what \doom looked like with improper texturing.\\
+\par
+\fullimage{affine_texture_mapping/hallway.png}\\
+\par
+The issue is particularly visible on the left wall where the black strip is not parallel to the ground anymore but seems to zig-zag up and down.\\
+
+
+
+\par
+Let's take an example to understand the issue better. In the case of a wall, it is first cut in two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain, For each lines of pixels (called scanlines), interpolate linearly between two (start and end) textured fragment with screenspace coordinate \cw{(X,Y)} and texture coordinate \cw{(u,v)}\footnote{ Even drawing a quad would still be correct. The heights of the texture squares would not get smaller as they get further away, even though the widths would.}.\\
+\par
+This algorithm gives the weird looking result featured in Figure XXX. Notice how all lines are parallel and there is no perspective (which is the main issue).\\
+\par
+\fullimage{affine_texture_mapping/affine2.png}
+\par
+To get texturing right and interpolate a vertex attribute correctly, it has to be divided by the z-coordinate then and only then perform linearly interpolate and finally multiply the result by Z. The implementation is expensive since linear interpolation has to be done between \cw{(u/z,v/z)} and the final result has to be multiplied by \cw{1/z}. 
+\pagebreak
+
+
+
+
+\par
+\begin{minipage}{\textwidth}
+\scaledimage{0.4}{affine_texture_mapping/tex_perp_pc_repeat_nearest_replace.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_perp_no_pc_repeat_nearest_replace.png}\\
+\par
+
+\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace.png}\\
+\par
+
+\scaledimage{0.4}{affine_texture_mapping/tex_pc_repeat_nearest_replace_sharp.png}
+\scaledimage{0.4}{affine_texture_mapping/tex_no_pc_repeat_nearest_replace_sharp.png}\\
+\par
+\end{minipage}
+\par
+The perspetive artifact become exacerbated as the angle of the wall increases.\\
+\pagebreak
+
+The PlayStation did not have enough power to perform z interpolation and as a result texturing was incorrect with regard to projection. There would have been a way to fix this by subdividing each triangle in smaller units but in order to get a satisfactory visual result, the number of triangle was too high.\\
+\par
+\fullimage{affine_texture_mapping/subdivision_sample.png}
+\par
+In short, they had a big problem at hands and some were really nervous about it.\\
+\par
+\fq{Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said "back everything up (no source control back then!), we're going to do something completely different".\\
+\par
+  We wound up using the hardware to render triangles that were one pixel wide columns or rows, just like the PC asm code, and it worked well.  The more common Playstation approach turned out to be tessellating  geometry in two axis, but I was always pretty happy with how Doom felt less "wiggly" than most other Playstation games of the time.}{John Carmack}\\
+
+
+  \par
+  % \fullimage{psx_screen_trap.png}\\
+
+
+
+The screen resolution was changed from 320x200 to 256x240, which is stretched to roughly 293x240 via NTSC rasterization.\\
+modified version of the Doom engine used in the Atari Jaguar port. This version spent six months in development. The Arch-vile monster from Doom II is not present; according to one of the game's designers, Harry Teasley, this was because he had twice as many frames as any other monster, and the team felt that they "just couldn't do him justice" on the PlayStation. A new monster however was added: Nightmare spectre (subtractively blended against the background graphics).\\
+\par
+ These include sector-based coloured lighting, an animated, flame-filled sky, and a new animation for the player's mug shot, which shows the Doomguy's head exploding if the player character is gibbed. translucent Spectres are drawn without the cascade effect \\
+\par
+r Next Generation said the PlayStation version succeeded in "putting previous efforts for 32X, Jaguar, and especially Super NES, to shame" 
+\par
+Harry Teasley: http://5years.doomworld.com/interviews/harryteasley/\\
+
+\fq{256 x 240, and it didn’t run full screen}{John C}
+
+
+\pagebreak
