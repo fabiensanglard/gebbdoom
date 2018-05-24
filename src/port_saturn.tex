@@ -1,0 +1,96 @@
+\begin{wrapfigure}[10]{r}{0.30\textwidth}{
+\centering \scaledimage{0.30}{saturn_logo.png}}
+\end{wrapfigure}
+Development of the Sega Saturn started in June 1992\footnote{Source: "Console Wars: Sega, Nintendo, and the Battle That Defined a Generation".} as a replacement for the insanely popular yet aging Genesis. At this point in time, the Genesis has sold more than 30 millions units and had a "cool" image build with many good games and massive TV advertising campaigns. It was a colossal yet mandatory undertaking to at least match its predecessor.\\
+\par
+After two years of hard work, Sega announced the Saturn during Tokyo Toy Show in June 1994. Unknown to them, it would trigger the collapse of Sega International sales and image.\\
+\par
+During its development, Sega worked in partnership with Hitachi to develop a new CPU tailored to its needs. The join venture resulted in the "SuperH RISC Engine" (a.k.a SH-2) at the end of 1993 which Sega used in dual configuration as foundation for the Saturn.\\
+\par
+ On the graphic side, one video display processor (VDP) was to do most of the job. However reports of the PlayStation capabilities prompted Sega to add a second VDP to improve the system's 2D performance and texture-mapping.\\
+\par
+\fullimage{consoles/Saturn.png}\\
+
+
+DRAWING ARCH OF THE SATURN\\
+\par
+\vspace{10cm}
+\par
+Sega had managed to release before the dreaded PSX and sales were initially promising. Games such as Daytona USA and especially Virtua Fighter were well received. The success was exceptionally strong in Japan where Virtua Fighter was more popular than Sonic, Mario, and Tetris\footnote{Source: 2006 poll for Top 100 games.}.\\
+\par
+The console only had six games upon release and despite being reasonably priced \$399, it was still more expensive than the PSX. As it would turn out it was also less powerful.\\
+\par
+ Two weeks after release, the PSX came out with Ridge Racer and took the world by storm. Games such as Daytona USA which used to look good now had blatant issues when put side by side with Ridge Racer. The lower framerate, polygon pop-up and letter-boxed presentation begged for mercy.\\
+\par
+The fatal mistake of Sega was that its console was not well equipped for 3D games which everybody now wanted. The hardware was a modified last-generation 2D system which was rapidly outgunned first by the PlayStation, then by the Nintendo 64 in June 1996.
+
+
+
+
+
+
+
+
+\cfullimage{Sega-Saturn-Motherboard.png}{Sega Saturn motherboard}
+\par
+Opening a Sega Saturn and taking a look at the motherboard reveals no less than twenty chips.\\
+\par
+\circled{1} 32-bit 28.6 MHz SH-2, 
+\circled{2} 32-bit 28.6 MHz SH-2, 
+\circled{3} VDP2, 
+\circled{4} The YMF292, aka SCSP (Saturn Custom Sound Processor), 
+\circled{5} SCU DSP Math coprocessor @ 14.31818 MH, 
+\circled{6} BIOS, 
+\circled{7} SMPC (System Management \& Peripheral Control), 
+\circled{8} Motorola 68CE00, 
+\circled{9} 32 KiB Battery-backed SRAM, 
+\circled{A} 4 MiB RAM (2MiB RAM + 1.5MiB VRAM + 540KiB Audio RAM), 
+\circled{B} VDP1 
+\circled{C} Hitachi CD-ROM I/O data controller
+\circled{D} 32-bit 20 Mhz SH1  microcontroller with 64k internal ROM.
+
+
+\rawdrawing{saturn_motherboard}
+\par
+Rushed release to undercut PlayStation. Developers not given enough time (only six games at launch). Even suppliers were taken by surprise. 1995 saw improvement with Virtua Cop and Virtua Fighte 2 but mostly in Japan  But PlayStation sold 3x more. In June 1996 an other competitor Nintendo64 achieved the Saturn.
+\par
+Rushed release.\\
+Panzer Dragoon missed their deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}.
+Supply issues. Same day announcement made the console scarce.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Doom on Saturn}
+\fullimage{affine_texture_mapping/post_far.png}\\
+\fullimage{affine_texture_mapping/post_near.png}\\
+https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
+\par
+JIMSDOOM.WAD, obviously named after Jim Bagley.\\
+The wad is a 1:1 copy of PSXDOOM.WAD\\
+John Carmack shut down their original plan to use a hardware-accelerated renderer\\
+\par
+
+\fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
+\par
+
+
+\fq{Difficult to program, it used quads and messy 3D maths}{David Shea, Alien Trilogy developer}
+Had to be programmed straight to the metal.\\
+Retro-Gamer-134 is a gold mine of information.\\
+
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extrating all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circunstances could I use the 3D harware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.
+\par
+However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}
+
+\par
+Years later, in 2014, Carmack had reconsidered.\\
+\par
+\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
