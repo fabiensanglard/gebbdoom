@@ -12,9 +12,7 @@ During its development, Sega worked in partnership with Hitachi to develop a new
 \fullimage{consoles/Saturn.png}\\
 
 
-DRAWING ARCH OF THE SATURN\\
-\par
-\vspace{10cm}
+\srawpngdrawing{0.6}{arch_saturn}
 \par
 Sega had managed to release before the dreaded PSX and sales were initially promising. Games such as Daytona USA and especially Virtua Fighter were well received. The success was exceptionally strong in Japan where Virtua Fighter was more popular than Sonic, Mario, and Tetris\footnote{Source: 2006 poll for Top 100 games.}.\\
 \par
@@ -60,7 +58,7 @@ Supply issues. Same day announcement made the console scarce.
 
 
 
-
+"Certain jeux n'utilisent par exemple qu'un seul des SH2". Fabien Autrel
 
 
 
@@ -69,6 +67,22 @@ Supply issues. Same day announcement made the console scarce.
 
 
 \subsection{Doom on Saturn}
+Port to the Saturn was done by Rage Software, starting from the PlayStation version (itself based on the Jaguar). The console had the same technical fallout when it came to texture sampling as remembers Jim Bagley.\\
+\par
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extrating all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circunstances could I use the 3D harware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.
+\par
+However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}\\
+\par
+Years later, in 2014, Carmack had reconsidered.\\
+\par
+\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}\\
+\par
+The hardware accelerated sixty fps engine was tossed. Due to time constraints, Jim did not have the time to change the renderer to work with one pixel wide triangles like the PlayStation. Wihtout assisntace from the VDP chips, the Saturn was an overclocked X32. The game managed a framerate of 10-15 fps at a full screen resolution of 281x235. To compensate for the low framerate, designers of the game slowed down all movement which was frowned upon by the player community.\\
+\par
+\trivia{An other effect of the rushed schedule was a pretty big bug with the audio system which made all sound effects to be panned left. Players were forced to play in mono to hear from both speakers.\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}}\\
+\par
+Pinky monster dithering. Transprent surface dithering.
+\par
 \fullimage{affine_texture_mapping/post_far.png}\\
 \fullimage{affine_texture_mapping/post_near.png}\\
 https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
@@ -77,7 +91,9 @@ JIMSDOOM.WAD, obviously named after Jim Bagley.\\
 The wad is a 1:1 copy of PSXDOOM.WAD\\
 John Carmack shut down their original plan to use a hardware-accelerated renderer\\
 \par
-
+VDP2 used for status bar. Also for visplanes.\\
+VDP1 used for walls.\\
+\par
 \fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
 \par
 
@@ -86,11 +102,4 @@ John Carmack shut down their original plan to use a hardware-accelerated rendere
 Had to be programmed straight to the metal.\\
 Retro-Gamer-134 is a gold mine of information.\\
 
-\fq{When I started the project, I had to do a demo for id Software to approve. I started by extrating all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circunstances could I use the 3D harware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.
-\par
-However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}
-
-\par
-Years later, in 2014, Carmack had reconsidered.\\
-\par
-\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
+\fq{After years of waiting, doom finally arrives on Saturn. Unforunately it is A breath-takingly bad conversion of a classic game.}{Sega Saturn Magazine #16, February 1997}\\
