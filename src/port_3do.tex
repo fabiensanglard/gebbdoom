@@ -39,10 +39,11 @@ Ironically, 3DO also suffered from its media support, the CD-ROM. With a capacit
 By 1995 less than 700,000 consoles had been sold\footnote{Source Next Generation magazine, Feb 1995.}. The machines lost momentum, and soon died.
 
 
-\cfullimage{3D0_motherboard.png}{3DO FZ-10 System Board}
+\cfullimage{3D0_motherboard.png}{3DO Panasonic model "FZ-10 R.E.A.L" System Board}
 \par
-Panasonic, Goldstar, and Sanyo all designed their own motherboards but they had the same functionality. Opening the  Panasonic model "FZ-10 R.E.A.L" reveals no less than seventeen chips!\\
+Panasonic, Goldstar, and Sanyo all designed their own motherboards but they had the same functionality. Opening the  "FZ-10" reveals no less than seventeen chips!\\
 \par
+\subsubsection{Chips}
 \circled{1} 25 MHz CEL Engine CLIO, 
 \circled{2} 25 MHz CEL Engine  Madam, 
 \circled{3} 2 MiB RAM, 
@@ -56,14 +57,13 @@ Panasonic, Goldstar, and Sanyo all designed their own motherboards but they had 
 \circled{B} DSP, 
 \circled{C} CD signal processing LSI, 
 \circled{D} CD-ROM Controller MN1882410, 
-\circled{E} CD-ROM Firmware.
+\circled{E} CD-ROM Firmware, All connected via 50 MiB/s and 36 DMA channels.
+\subsubsection{Connections}
 \circled{F} Gamepad connector,
 \circled{G} Expansion port,
 \circled{H} Composite and S-Video ports, 
-\circled{I} RF Output jack, 
-\par
-50 MB/s bus speed (synchronous 32-bit @20 MHz bus)\\
-36 DMA channels\\
+\circled{I} RF Output jack. 
+
 
 \rawdrawing{3do_motherboard}
 \par
@@ -75,13 +75,21 @@ Developer for the 3DO were forbidden direct access to the hardware (except for h
 \pagebreak
 
 \subsection{3DO Programming}
-CEL engine\\
+Graphic programing was done via the 3DO "CEL engine", powered by chips Clio and Madam. A CEL is a just a fancy name for a sprite. Each CEL can be drawn in screenspace with three associated vectors HD, VD, and HDD. Together they allow operations such as scaling, rotation, skewing, and even something labeled "perspective" in the 3DO programmer manual. The CEL engine was able to process several CELs simultaneously.\\
 \par
-architecture of the machine.
-\pagebreak
+If HD and VD are self explanatory, the differencial vector HDD deserve more explanation. Here is how it is described in the manual.\\
 
-HERE GOES THE DRAWING TO SCALE AND ROTATE BALBLB\\
-\pagebreak
+\fq{
+When fixed HDX and HDY values set the horizontal offset of a cel and VDX and VDY values set the vertical offset of a cel, the result is always a strict parallelogram-all the row edges are parallel as are all the column edges. Although you change the size and angles of the parallelogram, you cannot get any perspective effects with row edges converging or diverging. To add perspective, the projector uses the HDDX and HDDY offset pair.
+HDDX and HDDY change HDX and HDY values by a set amount at the beginning of each row edge. When one row edge is calculated, the projector adds HDDX to HDX and adds HDDY to HDY. It then uses the new HDX and HDY values to calculate the next row edge. Because HDDX and HDDY can change the row slope and pixel spacing from row edge to row edge, they can create converging or diverging row edges.}{3DO Programmer Guide}\\
+\par
+\circled{1} normal, \circled{2} rotation, \circled{3} perspective (incorrect), \circled{4} skewing with upscaling. \\
+\par
+% \trivia{Despite its name, the "perspective" is not correct.}
+\fullimage{3do_vectors.png}
+
+\scaledimage{0.90}{CEL_examples.png}
+
 
 \subsection{Doom on 3DO}
 Given the specs of the machine the 3DO had the potential to be the best console host for \doom. The jaguar version had been received positively, it would have been logical that with more RAM and a superior graphic hardware, the result would make gamers and publishers happy. Alas, in a crazy turn of events, what was released was a massacre of the original universally disliked.\\  
@@ -104,25 +112,22 @@ After accepting the contract Rebecca asked ADI for the source code she assumed t
 \par
 \cfullimage{doom_3do.png}{Doom on 3DO}
 \par
-The CEL engine was leveraged to render walls but a bug forced her to render flats in software. There was no time to write a music converter so Rebecca recorded the PC version and sent them to the CEO of ADI who was also the guitarist of a band and asked them to record music.\\ 
+The CEL engine was leveraged to render walls (one pixel wide columns like the PSX) but a bug forced her to render flats in software. There was no time to write an audio driver for the music so Rebecca recorded the PC version and sent them to the CEO of ADI who was also the guitarist of a band and asked them to record music. Their cover was played directly from the CD.\\ 
 \par
  Performances were terrible, upon seeing the result id Software demanded the active window size to be reduced from fullscreen to 1/3 of the screen. Framerate was abysmal within a single digit most of the time.\\
 \par
-ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manufacturing fees. The only hope for the company to recover its expense was to sell every single copies. With an estimated base of 250,000 users with AAA titles selling between 10,000 to 20,000 copies. That was a huge gamble.\\
-\par
-Unfortunately yet quite logically, the gaming press destroyed the game upon release.\\
+ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manufacturing fees. The only hope for the company to recover its expense was to sell every single copies. With an estimated base of 250,000 users with AAA titles selling between 10,000 to 20,000 copies, that was a huge gamble. Unfortunately yet quite logically, the gaming press destroyed the game upon release and ADI declared bankruptcy.\\
 \par
 \fq{Although it's still Doom, it's a real duffer of a conversion.}{Ed Lomas for CVG  - Rated 60\%}\\
 \par
- The game sold a few thousand copies and ADI promptly declared bankruptcy.
+BELOW IS A PLACEHOLDER, MAKE A DRWAWING OF ARCH INSTEAD.\\
+\fullimage{doom_3do.png}
 
-\par
-HERE GOES AN OTHER SCREENSHOT
 
-\par
-Lots of good stuff here: https://github.com/Olde-Skuul/doom3do
-\par
- CornerEngine - RISC processor, capable of vertex calculation and transformation, and 4*4 matrix math : multiplication by another 4*4 matrix, multiplication by vector, dot product, rotation.
+% \par
+% Lots of good stuff here: https://github.com/Olde-Skuul/doom3do
+% \par
+%  CornerEngine - RISC processor, capable of vertex calculation and transformation, and 4*4 matrix math : multiplication by another 4*4 matrix, multiplication by vector, dot product, rotation.
 
 
 
