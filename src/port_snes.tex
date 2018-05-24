@@ -45,7 +45,7 @@ At the time, it was not in Nintendo's habit to deal with outsides or even foreig
 \fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
 \par
 
-Boldly promised a "10x" performances increase by Jez, Nintendo embrased the offer to get special hardware designed for their game. "Pilot Wings" would ship with sprite planes to be able to be released at the same time as the Super Famicom but the "Super FX" chip as it would be marketed later was to be used for an other project Nintendo had in sleeves.\\
+Boldly promised a "10x" performances increase by Jez, Nintendo embraced the offer to get special hardware designed for their game. "Pilot Wings" would ship with sprite planes to be able to be released at the same time as the Super Famicom but the "Super FX" chip as it would be marketed later was to be used for an other project Nintendo had in sleeves.\\
 \par
 The name was "StarFox".
 
@@ -117,9 +117,9 @@ But it allowed us to over-promise and yet also over-deliver. Instead of achievin
 
 \subsection{Doom On Super Nintendo}
 
-Doom on SNES happned thanks to the genius and determination of a single man: Randy Linden. The man had an admiration for the game and decided to port it to SNES. Randy never had access to the source code or the assets from neither the PC nor the console version. He started from nothing.\\
+Doom on SNES happened thanks to the genius and determination of a single man: Randy Linden. The man had an admiration for the game and decided to port it to SNES. Randy never had access to the source code or the assets from neither the PC nor the console version. He started from nothing.\\
 \par
-To retrieve the assets, Randy was able to leveral the "Unofficial Doom Specs" by Matthew Fell which explained the \cw{.wad} lumps layout well. The sprites, textures, music, sound effecrs and maps were extracted from \cw{DOOM.WAD}. The engine was an entirely different story.\\
+To retrieve the assets, Randy was able to leverage the "Unofficial Doom Specs" by Matthew Fell which explained the \cw{.wad} lumps layout well. The sprites, textures, music, sound effects and maps were extracted from \cw{DOOM.WAD}. The engine was an entirely different story.\\
 \par
 
 \fq{DOOM was a truly ground-breaking title and I wanted to make it possible for gamers without a PC to play the game, too. DOOM on the Super Nintendo was another one of those programming challenges that I knew could be accomplished.\\
@@ -146,8 +146,8 @@ What is remarkably with this version is how Rany decided to cut different corner
 \par
 \cfullimage{consoles/snes/snes_e1m1.png}{}
 \par
-The starting screen of E1M1 (figure \ref{consoles/snes/snes_e1m1.png}) is a good summary. Despite having only 600 KiB RAM, see how the blue flooring was not removed. Likewise regarding the geometry were all steps are visible (compare with the PC version page \pageref{} and Jaguar version page \pageref{doom_jaguar3.png}).\\
-\par Randy's engine, Reality engine, was able to deal with PC geometry but must have had issues with fillrate or texture sampling because ceiling and floor textures were removed.\\
+The starting screen of E1M1 (figure \ref{consoles/snes/snes_e1m1.png}) is a good summary. Despite having only 600 KiB RAM, see how the blue flooring was not removed (althought this is a plain color and not a texture now). Likewise regarding the geometry where all steps are visible (compare with the PC version page \pageref{} and Jaguar version page \pageref{doom_jaguar3.png}).\\
+\par The Reality engine as Randy name it, was able to deal with PC map geometry but must have had issues with fillrate or texture sampling because ceiling and floor textures were removed altogether.\\
 \par
 
 
@@ -163,8 +163,11 @@ The starting screen of E1M1 (figure \ref{consoles/snes/snes_e1m1.png}) is a good
 
 \cfullimage{consoles/snes/wide.png}{}
 \par
-Not full screen. "Reality engine". Many sacrifices had to be done to make the game run with the most notable being no textured flat, duplicated horizontal lines, no sound propagation and always front facing enemies.\\
-\par Even with all these restriction, the Reality Engine still had to reduce the rendering area. Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas (32 pixels tall for the status bar). With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement. SuperFX could only do 319 lines?\\
+In the screenshot above we can see the window is actually not fullscreen. This was not an issue exclusive to \doom since StarFox, StarFox2 and all games using a SuperFX had to reduce the active area size which was likely due to the SNES limited bandwidth which did not permit a DMA transfer for a fullscreen\footnote{Although some like \cw{anthrofox.org} theorized that the SuperFX cannot render more than 192 lines.}.\\
+\par
+Horizontal lines are duplicated and out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas (32 pixels tall for the status bar). With horizontal lines doubles, it means Reality Engine was actually rendering at 108x144 to reach an average of 10 fps which was still a remarkable achievement.\\
+\pagebreak
+
 
 
 
@@ -174,10 +177,13 @@ Not full screen. "Reality engine". Many sacrifices had to be done to make the ga
 
 \cfullimage{consoles/snes/enemy.png}{}
 \par
-Almost no censorship from Nintendo except for removing red blood.\\
-\scaledimage{0.3}{doom_red_cartridge.png}\\
-\par
-Black bands are always there. Reportedly because GSU could only render 192 lines?
+Black bands are always there. Reportedly because GSU could only render 192 lines?\\
+, no sound propagation and always front facing enemies.\\
+\par Even with all these restriction, the Reality Engine still had to reduce the rendering area.  SuperFX could only do 319 lines?\\
+Almost no censorship fr\\
+om Nintendo except for removing red blood.\\
+% \scaledimage{0.3}{doom_red_cartridge.png}\\
+
 \pagebreak
 
 

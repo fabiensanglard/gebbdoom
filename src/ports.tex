@@ -89,16 +89,20 @@ The second difficulty was to deal with exotic hardware. The PC was designed arou
 
 
 \section{Saturn (1997)}
-\begin{wrapfigure}[12]{r}{0.25\textwidth}{\centering \scaledimage{0.25}{saturn_logo.png}}
-\hrule 
-\bigskip
-   Released 19XX\\
-   CPU: 
-   RAM:\\
-   VRAM:\\
-   Audio: SPC700\\
-\hrule 
+\begin{wrapfigure}[8]{r}{0.25\textwidth}{
+\centering \scaledimage{0.25}{saturn_logo.png}}
 \end{wrapfigure}
+Replacement for the insanely popular yet aging Nemesis.
+The Sega Saturn was rapidely outgunned by its competitors. It brought back the dominance on the japanase market which Sega wanted so much but also precipited the collapse of its international empire.\\
+\par
+ Saturn got a good start with Daytona USA and Virtua Fighter being impressive. However Tekken and Ridge Racer on PlayStation two weeks later put the Saturb to shame. Putting Ridge Racher and Daytona next to each others revealed the low framrate, polygon popup issues and letter-boxed presentation\\
+\par
+\fullimage{consoles/Saturn.png}\\
+\par
+Rushed release to undercut PlayStation. Developers not given enough time (only six games at launch). Even suppliers were taken by surprise. 1995 saw improvement with Virtua Cop and Virtua Fighte 2 but mostly in Japan where FV was more popular than Sonic, Mario or Tetris\footnote{Source: 2006 poll for Top 100 games.} But PlayStation sold 3x more. In June 1996 an other competitor Nintendo64 achieved the Saturn.
+\par
+The fatal mistake of the Sega Saturn is that it was not well equipped for 3D gamnes and 3D games were all the rage.
+\par
 Biggest mistake: "designing the Saturn as a modified last-generation 2D system when clearly 3D was going to be the next big thing".\\
 https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/\\
 \par
@@ -107,17 +111,27 @@ The wad is a 1:1 copy of PSXDOOM.WAD\\
 John Carmack shut down their original plan to use a hardware-accelerated renderer\\
 \par
 See author comments: https://www.doomworld.com/forum/topic/86671-dissecting-sega-saturn-doom/?page=2\#comment-1580057\\
-\par
-\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
-\fullimage{consoles/Saturn.png}\\
+
+
 \fullimage{affine_texture_mapping/post_far.png}\\
 \fullimage{affine_texture_mapping/post_near.png}\\
+% \par
+% \fullimage{affine_texture_mapping/door.png}\\
+Two SH-2 and two VDP chips plus Motorola 68EC000. 
+
+\fq{Difficult to program, it used quads and messy 3D maths}{David Shea, Alien Trilogy developer}
+Had to be programmed straight to the metal.\\
+Retro-Gamer-134 is a gold mine of information.\\
+
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extrating all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circunstances could I use the 3D harware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.
 \par
-\fullimage{affine_texture_mapping/door.png}\\
+However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}
 
+\par
+Years later, in 2014, Carmack had reconsidered.\\
+\par
+\fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}
 
-
-\fullimage{affine_texture_mapping/subdivision_sample.png}
 
 \par 
 \fixme{Watch https://www.youtube.com/watch?v=784MUbDoLjQ before closing this chapter.}

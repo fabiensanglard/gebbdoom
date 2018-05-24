@@ -1,39 +1,138 @@
-\begin{wrapfigure}[22]{r}{0.25\textwidth}{
+\begin{wrapfigure}[14]{r}{0.25\textwidth}{
 \centering \scaledimage{0.25}{3do_logo.png}}
 \end{wrapfigure}
-The 3DO Company was founded by ex Electronic Arts Trip Hawkins. The story behind the abysmal 3DO version of Doom is absolutely remarkable,
+The 3DO Company was founded in 1991 by ex-Electronic Arts and Apple employee Trip Hawkins. Without the means to actually produce the hardware the goal was to develop not a machine but a standard. 3DO offered to license the specification of a machine. In exchange of fees a potential manufacturer received the blueprints which considerably cut the R\&D cost. The business model was to collect a royalty on each console sold and on each game manufactured.\\
+
+ Sony briefly considered it for its PSX project, even visiting San Mateo office to see the prototype but they eventually declined. Several companies did end up acquiring the rights to build a 3DO (Samsung, Toshiba, and AT\&T) but never built anything.\\
+ \par
+Finally in October 1993, Panasonic, Goldstar, and Sanyo each released their own machine (Panasonic 3DO FZ-1, Sanyo TRY 3DO, and Goldstar 3DO). Later on, Creative released an ISA card you could plug into a PC.\\
 \par
-Ahead of its time.\\
-RetroGamer \#122\\
-Overpriced, firmware changes until last minutes. Manufacturers had to make a profit while console like Nintendo and Sega sold them at lose.\\
+\cfullimage{consoles/3DO.png}{Panasonic FZ-1 implementation of 3DO specs}
 \par
-Designed on a restaurant napkin in 1989, the 3DO was to free game developer from royalities fees and restricted content they had to deal with on Sega and Nintendo.\\
+\trivia{The specs of the machine were originally written on the napkin of a restaurant in 1989 by Dave Needle and RJ Mical\footnote{Source: RetroGamer \#122 "Ahead of its time"}.}\\
+\pagebreak
+
+
+
+Announced during CES '92, the concept and the specs made the 3DO an immediate sensation. It was the first of the 32-bit fifth generation era and there was nothing as powerful on the market.\\
+\par
+
+
 \fq{Under the hood the 3DO used an ARM60 RISC
 Processor and had two powerful custom graphics
 chips and an animation processor. It also sported 3Mb
 RAM and a multitasking OS. Uniquely for a console,
 developers wrote games for the OS and not the
 hardware, ensuring backwards compatibility. }{RetroGamer 122}\\
+
+\par
+ 3DO had bigger plans than just gaming. Thanks to its CD format, it had the ambition to replace the VCR and enable movie streaming via internet.\\
+\par
+But things would take an ugly turn. In February 1993, \cw{wired.com} ran a full article "3DO: HIP OR HYPE?" raising many concerns with the viability of the 3DO.\\
+\par
+One of the problem was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a lose and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far) the most expensive console on the market. For comparaison, the PlayStation launch price was less than half the price at only \$299.\\
+\par
+The other aspect which poisoned the 3DO was its game library. At launch it was rather small with only six games of low quality besides "Crash 'N Burn". Firmware changes and devkit modification until the last minute had hampered game studio in their efforts to have something ready for launch day.\\
+\par
+Ironically, 3DO also suffered from its media support, the CD-ROM. With a capacity more than 10 times superior to what they were used (650MiB) game studio experimented with lengthy pixelated cut-scene and borderline interactive movie which turned out not fun at all.\\
+\par
+By 1995 less than 700,000 consoles had been sold\footnote{Source Next Generation magazine, Feb 1995.}. The machines lost momentum, and soon died.
+
+
+\cfullimage{3D0_motherboard.png}{3DO FZ-10 System Board}
+\par
+Panasonic, Goldstar, and Sanyo all designed their own motherboards but they had the same functionality. Opening the  Panasonic model "FZ-10 R.E.A.L" reveals no less than seventeen chips!\\
+\par
+\circled{1} 25 MHz CEL Engine CLIO, 
+\circled{2} 25 MHz CEL Engine  Madam, 
+\circled{3} 2 MiB RAM, 
+\circled{4} 1 MiB VRAM (framebuffer), 
+\circled{5} 12.5 MHz ARM60 main CPU, 
+\circled{6} Digital Video Encoder, 
+\circled{7} 1 MiB OS ROM, 
+\circled{8} Digital Video Encoder, 
+\circled{9} 32 KiB Battery backed SRAM,  
+\circled{A} ARM CPU 32 KiB SRAM, 
+\circled{B} DSP, 
+\circled{C} CD signal processing LSI, 
+\circled{D} CD-ROM Controller MN1882410, 
+\circled{E} CD-ROM Firmware.
+\circled{F} Gamepad connector,
+\circled{G} Expansion port,
+\circled{H} Composite and S-Video ports, 
+\circled{I} RF Output jack, 
+\par
+50 MB/s bus speed (synchronous 32-bit @20 MHz bus)\\
+36 DMA channels\\
+
+\rawdrawing{3do_motherboard}
+\par
+Developer for the 3DO were forbidden direct access to the hardware (except for hand-crafted assembly for the ARM processor). This was done to ensure forware compatibilty with the next generation of 3DO hardware.\\
+\par
+ The M2 project which began as an accelerator add-on for the 3DO\footnote{"3DO Press Release" August 1994.} morphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. Due to financial and technological difficulties, the M2 project was never completed.\\
+\par
+\trivia{Some games, aware of the M2, had hidden cheat code to improve graphics for the new hardware. The sequence "Up, Right, L, Up, Right, Right, R, A, Left" on \doom allowed to increase the active window size all the way to full screen.}\\
+\pagebreak
+
+\subsection{3DO Programming}
+CEL engine\\
+\par
+architecture of the machine.
+\pagebreak
+
+HERE GOES THE DRAWING TO SCALE AND ROTATE BALBLB\\
+\pagebreak
+
+\subsection{Doom on 3DO}
+Given the specs of the machine the 3DO had the potential to be the best console host for \doom. The jaguar version had been received positively, it would have been logical that with more RAM and a superior graphic hardware, the result would make gamers and publishers happy. Alas, in a crazy turn of events, what was released was a massacre of the original universally disliked.\\  
+\par
+% How could they screw this up? Easily in fact, just give a lone developer ten weeks to do it and ship it.\\
+% \par
+In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequence with real actor to build up the story.\\
+\par
+\cfullimage{doom_3do_fmv.png}{The FMV shooting set.}
 \par
 
-\fullimage{3D0_motherboard.png}
+
+The project was promptly subcontracted to a gaming company with actual experience in game development. Art Data Interactive quickly learned that port was much more expensive than what they thought. It would cost a million dollar and a year of development to which they agreed to.\\
 \par
-Lots of good stuff here: https://github.com/Olde-Skuul/doom3do\\
+By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of Octobre 1995 looming over their head, Art Data Interactive reached to a contractor which had previously done an amazing work on porting Wolfesntein 3D to the 3DO. The name of the poor soul who who accepted the project was Rebecca Ann Heineman from Logicware.\\
 \par
-\fullimage{consoles/3DO.png}
+After accepting the contract Rebecca asked ADI for the source code she assumed they had received upon signing the contract. Nothing came. After a few weeks she received a disk. It contained the commercial copy of \doom with the compiled binary. Rebecca had to explain ADI what source code was and how she could not work starting from the binary. After a few weeks of back and forth, she finally emailed John Carmack whom sent her the source code for the Jaguar version.\\
 \par
+ At this point only ten weeks remained until the Gold master had to be sent in October. Within ten weeks, Rebecca heroicly managed to reach the deadline but with great casualties\footnote{Burgertime 7/12/2015: DOOM 3DO.}.\\
 \par
-Released Dec 1993\\
-   CPU: ARM60 12.5 MHz\\
-   RAM: 2 MB\\
-   VRAM:1 MB\\
-\fq{this was the product of ten intense weeks of work due to the fact that I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
+\cfullimage{doom_3do.png}{Doom on 3DO}
 \par
-Uh... No...\\
+The CEL engine was leveraged to render walls but a bug forced her to render flats in software. There was no time to write a music converter so Rebecca recorded the PC version and sent them to the CEO of ADI who was also the guitarist of a band and asked them to record music.\\ 
+\par
+ Performances were terrible, upon seeing the result id Software demanded the active window size to be reduced from fullscreen to 1/3 of the screen. Framerate was abysmal within a single digit most of the time.\\
+\par
+ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manufacturing fees. The only hope for the company to recover its expense was to sell every single copies. With an estimated base of 250,000 users with AAA titles selling between 10,000 to 20,000 copies. That was a huge gamble.\\
+\par
+Unfortunately yet quite logically, the gaming press destroyed the game upon release.\\
+\par
+\fq{Although it's still Doom, it's a real duffer of a conversion.}{Ed Lomas for CVG  - Rated 60\%}\\
+\par
+ The game sold a few thousand copies and ADI promptly declared bankruptcy.
+
+\par
+HERE GOES AN OTHER SCREENSHOT
+
+\par
+Lots of good stuff here: https://github.com/Olde-Skuul/doom3do
+\par
+ CornerEngine - RISC processor, capable of vertex calculation and transformation, and 4*4 matrix math : multiplication by another 4*4 matrix, multiplication by vector, dot product, rotation.
+
+
+
+\fq{I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
+% \par
+% Uh... No...\\
 \par
 My friends at 3DO were begging for DOOM to be on their platform and with christmas 1995 coming soon (I took this job in August of 1995, with a mid October golden master date), I literally lived in my office, only taking breaks to take a nap and got this port completed.\\
-\par
-Shortcuts made...\\
+% \par
+% Shortcuts made...\\
 \par
 I had no time to port the music driver, so I had a band that Art Data hired to redo the music so all I needed to do is call a streaming audio function to play the music. This turned out to be an excellent call because while the graphics were lackluster, the music got rave reviews.\\
 \par
@@ -44,4 +143,6 @@ There was a Electronic Arts logo movie in the data, because there was a time tha
 The vertical walls were drawn with strips using the cell engine. However, the cell engine can't handle 3D perspective so the floors and ceilings were drawn with software rendering. I simply ran out of time to translate the code to use the cell engine because the implementation I had caused texture tearing.\\
 \par
 I had to write my own string.h ANSI C library because the one 3DO supplied with their compiler had bugs! string.h??? How can you screw that up!?!?! They did! I spent a day writing all of the functions I needed in ARM 6 assembly.}{Rebecca Ann Heineman}
-\pagebreak
+
+
+
