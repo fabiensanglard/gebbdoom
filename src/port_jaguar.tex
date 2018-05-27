@@ -1,14 +1,14 @@
 \begin{wrapfigure}[5]{r}{0.35\textwidth}{
 \centering \scaledimage{0.35}{jaguar_logo.png}}
 \end{wrapfigure}
-Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design not only one but two new game system simulaneously. The company was to design a fourth generation, 32-bit, system called Panther and audacious 64-bit system called Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".}.\\
+Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design not only one but two new game system simulaneously. A fourth generation, 32-bit, system called Panther and an audacious 64-bit system called Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".} were to be developed.\\
 \par Three years later, with the Jaguar project ahead of schedule, Atari decided to abandon the Panther and released the 64-bit Jaguar on November 1993.\\
 \par
 \fullimage{consoles/Jaguar.png}
 \par
 Martin Brennan, Ben Cheese, and John Mathieson from Flare Technology made opinionated design decisions. Besides the 18 buttons joysticks, the machine had no less than five processors to jungle with.\\
 \par
-On the audio side, a 32-bit 27MHz DSP nickname "Jerry" . On the video side, no less than three processors all contained in a 32-bit 27MHz chip nickname "Tom" with a GPU, a Blitter, and an Object processor. To orchestrate everything 2 MiB of RAM and a 16/32-bit 13Mhz 68000. An to connect them all, to the delight of marketing, a 64-bit data bus.\\
+On the audio side, a 32-bit 27MHz RISC nickname "Jerry". On the video side, no less than three processors all contained in a 32-bit 27MHz RISC chip nickname "Tom" with a GPU, a Blitter, and an Object processor. To orchestrate everything 2 MiB of RAM and a 16/32-bit 13Mhz 68000. To connect them all, to the delight of marketing, a 64-bit data bus.\\
 \par
 The bold ad "Do the Math!" and its featured 64-bit claim triggered mostly suspicion from potential customers.  No matter how John Mathieson attempted to explain it in interviews the machine felt like a misleading attempt from an already suspicious Atari marketing department. How Atari could have managed to manufacture something four times better than its Nintendo and Sega's 16-bit Super Nintendo and Genesis was not clear.
 \drawing{jaguar_arch}{Architecture of the Jaguar. Notice the uneven buses.}
@@ -28,7 +28,7 @@ Inside the machine: \circled{1} TOM, \circled{2} 2MiB RAM, \circled{3} JERRY, \c
 
 \rawdrawing{jaguar_motherboard}
 \par
-John Mathieson granted many interviews giving more insight on the type of constraints a hardware engineer has to deal with. From cost related pressure to plain edit from Atari to use CPU from Motorola, grass on the hardware side is not greener than on the software side.\\
+John Mathieson granted many interviews giving more insight on the type of constraints a hardware engineer has to deal with. From cost related pressure to plain edit from Atari to use CPU from Motorola. Grass on the hardware side is not greener than on the software side.\\
 \par
 \fq{Atari were keen to use a 68K family device, and we looked closely at various members.  We did actually build a couple of 68030 versions of the early beta developers systems, and for a while were going to use a 68020. However, this turned out too expensive.  We also considered the possibility of no [Motorola 680x0 chip] at all.  I always felt it was important to have some normal processor, to give developers a warm feeling when they start. The 68K is inexpensive and does that job well.}{John Mathieson}
 
@@ -62,20 +62,20 @@ The Object Processor is connected to the TV and is in charge of generating displ
 \scaledimage{0.8}{CRY.png}
 \par
 The Graphic Processor is the powerhouse with a fast instruction throughput, a powerful ALU with a
-parallel multiplier, a barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also to its local program instructions.\\
+parallel multiplier, a barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also its local program instructions.\\
 \par
 The Blitter perform fast RAM block move and fill operations. It can generate strips of pixels for Gouraud shaded Z-buffered polygons and is also capable of slipping pixels (based on Z-testing). It
-is also capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It was also in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
+is capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It is in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
 \par
 Jerry the DSP is the twin brother of the Graphic Processor. However its bigger local SRAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones. The versatility is such that the Jad-Link to connect two Jaguar together is plugged in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
 \par
-All RAM (even SRAM in the RISC CPUs) was addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while The DSP is king in order to avoid extremely unpleasant audio glitches.\\
+All RAM (even SRAM in the RISC CPUs) was addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while the DSP is king in order to avoid extremely unpleasant audio glitches.\\
 \par
 
 
 
 \subsubsection{Practice}
-On paper things did not look simple. In practice things were even more complicated. The hardware had several bugs, especially at the Memory Controller level, making multitasking had to rely on and even harder to debug.\\
+The hardware had several bugs, especially at the Memory Controller level, making multitasking had to rely on and even harder to debug.\\
 \par
 It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instructions set. The intended work flow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then writing assembly code, use the provided assembler to generate machine code and finally write a full pipeline to store and later deliver the machine code to Tom \& Jerry local program SRAM.\\
 \par
@@ -91,31 +91,31 @@ It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had di
 
 
 \subsection{Doom On Jaguar}
-John Carmack took an early interest in the Jaguar and did the port himself with Dave Taylor taking care of the multi-player code. It was not its first contact with the machine.\\
+John Carmack took an early interest in the Jaguar and did the port himself with Dave Taylor taking care of the multi-player code. It was not his first contact with the machine.\\
 \par
 \fq{I converted Wolfesnenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}\\
 \par
-They had something up and running two weeks after they signed on the port \footnote{Source: EDGE Magazine, June 1994.} even thought it was running at a wretched rate!\\
+For \doom, the duo had something up and running two weeks after they signed on the port even thought it was running at a wretched rate\footnote{Source: EDGE Magazine, June 1994.}.\\
 \par
-\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{lcc} compiler backend which generated Tom\&Jerry RISC instructions.\footnote{\cw{lcc} was also used for Quake 3 to generate the VMs bytecode.}}\\
+\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{lcc} compiler backend. Ouptut were optimized further by hand.\footnote{It was not the last time id Software would use the excellent \cw{lcc}. in 1999, it was used for Quake 3 to generate the VMs bytecode.}}\\
 \par
-To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure XXX and compare it with the PC version (Figure XXX on page YYY). See how  the floor blue texture is gone and there is only one step instead of two.\\
+To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure \ref{doom_jaguar3.png} and compare it with the PC version (on page \pageref{mashed_potatoes1.png}). See how  the floor blue texture is gone and there is only one step instead of two.\\
 \par
 The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. Nine overlays were swapped in and out of the SRAM at runtime based on engine "phases".
 \par
 \cfullimage{doom_jaguar3.png}{}
 \par
-The source code of \doom for Jaguar was released in May, 2003 by Carl Forhan of Songbird Productions. Peeking inside reveals the details of how memory footprint was reduced. Visplanes storage size was reduce from 128 to 64.\\
+The source code of \doom for Jaguar was released in May, 2003 by Carl Forhan of Songbird Productions. Peeking inside reveals the details of how memory footprint was reduced. Visplanes storage size for example, was reduce from 128 to 64.\\
 \par
 \ccode{jaguar_visplanes.c}
 \par
-A big decision was to cut music playback during game. This was due to the lack of performance of Tom which was not able to handle the game engine on its own. To resolve this performance problem\footnote{The game ended up managing a solid 20 framerate per second.}, Jerry (the so called DSP) was used to run collision detections. There was still enough juice in Jerry to play sound effects.\\
+A big decision was to cut music playback during game. This was due to the lack of performance of Tom which was not able to handle the game engine on its own. To resolve this problem\footnote{The game ended up managing a solid 20 framerate per second.}, Jerry (the so called DSP) was used to run collision detections. Thankfully, there was still enough juice in Jerry to play sound effects and the engine managed a solid 20 fps.\\
 \par
-The 3D rendition was done at a resolution of 160x180. The vertical line were double to reach 320x180 and 60 pixels at the botton for the status bar brought the overall thing to 320x240. In many occurences the graphic result was better than PC. Thanks to is tailor made 16-bit CRY mode, the Jaguar had real 65,536 colors with no color banding in sight.\\
+The 3D rendition was done at a resolution of 160x180. The vertical line were double to reach 320x180 with 60 pixels at the bottom for the status bar brought the overall thing to 320x240. In many occurrences the graphic result was better than PC. Thanks to is tailor made 16-bit CRY mode, the Jaguar really had 65,536 colors with no color banding in sight.\\
 \par
 \fullimage{doom_jaguar2.png}
 \par
-Further inspection show the Jaguar codee also contains the Sega X32 version (\cw{MARS} was the code name of the Sega Genesis X32). Development was done on NextSTEP which had a "Simulator" mode.\\
+Further inspection show the Jaguar code also contains a few artifacts from the Sega X32 version (\cw{MARS} was the code name of the Sega Genesis X32). We can also learn there that development was done on NextSTEP which was called "Simulator" mode.\\
 \par
 \ccode{jaguar_src.c}
 \par
