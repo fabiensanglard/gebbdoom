@@ -6,7 +6,7 @@ The 3D renderer is an uncanny combination of proper 3D techniques and screen spa
 \begin{itemize}
 	\item Segments (walls and portals which are always vertical).
 	\item Flats (ceilings and floors which are always horizontal).
-	\item Things (also called "Masked") which are all monsters, weapons, ammo, and sprites in general.
+	\item Things (also called "Masked") which are not only monsters, weapons, ammo, and sprites but also partially transparent walls.
 \end{itemize}
  Its most breathtaking aspect of it is its ability to renders walls and flats with zero overdraw. Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.\\
 \par
@@ -161,7 +161,7 @@ Switching from sectors flooring to Binary Space Partition not only cost preproce
 
 
 \subsection{Drawing Walls}
-With the expert knowledge of BSP in mind, we can take a look at the first step of a scene rendition. Namely, to render walls. As expected, \cw{R\_RenderBSPNode} traverses the binary tree in near to far order. Each sub-sectors leaves are sent down to the renderer via \cw{R\_Subsector}.\\
+With the expert knowledge of BSP in mind, let's take a look at the first step of a scene rendition. Namely, to render walls. As expected, \cw{R\_RenderBSPNode} traverses the binary tree in near to far order. Each sub-sectors leaves are sent down to the renderer via \cw{R\_Subsector}.\\
 \par
 \ccode{R_RenderBSPNode.c}
 \par
@@ -198,7 +198,8 @@ The angle of both ends of the segment with respect to the player position are ca
 \par
 \pngdrawing{angletoxTable}{}
 \par
-With the sector floor and height a column dimension and vertical offset are calculated. With the distance to the player, scaling is applied. At this point the engine has the dimension of both ends of a segment calculated. But it is not time to draw yet. A little bit of clipping must occur. 
+%With the sector floor and height a column dimension and vertical offset are calculated. With the distance to the player, scaling is applied. 
+At this point the engine has calculated the screen space \cw{X} coordinates of both ends of a segment. But it is not time to draw yet. A little bit of clipping must occur. 
 
 
 
@@ -206,7 +207,7 @@ With the sector floor and height a column dimension and vertical offset are calc
 
 
 \subsubsection{Wall Clipping}
-At this point, we need to differentiate two types of segments. Segments with only one side (connected with only one sector) which are opaque and have only a "middle texture". I call these "walls". Segments with two sides (connecting two sectors) which are often transparent in the middle and have only an "upper texture" and a "lower texture". I call these "portals".\\
+Here the code branch depending on two types of segments which can be encountered in a subsector. There are segments with only one side (connected with only one sector) which are opaque and have only a "middle texture". I call these "walls". There are segments with two sides (connecting two sectors) which are often transparent with no middle texture but with an "upper texture" and a "lower texture". I call these "portals".\\
 \par
 Clipping is a two steps process happening in screen space. The first, crude, step is horizontally based. Only walls affects the horizontal occlusion array but all segments are clipped against it.\\
 \par
@@ -214,24 +215,31 @@ The second, fine, step is vertically based. Both walls and portals affects the v
 \par
 \pagebreak
 
+
+
+
+
+
+
+
+
 \subsubsection{Horizontal Crude Wall Clipping}
-The pass maintains a \cw{solidseg} array which keeps track of the walls horizontal occlusion. Since portal can be seen through, they have no impact on \cw{solidseg}. Since walls can be split due to occlusion, this pass output was is called "fragments".\\
+The first clipping pass maintains a \cw{solidseg} array which keeps track of the walls horizontal occlusion. Since portals can be seen through, they have no impact on \cw{solidseg}. Segments entering this step come out as segment "fragments" since they may be split due to occlusion.\\
 \par
 \ccode{hclipper.c}
 \par
-Let's take a simple example and proceed step by step. In the room below, the player is facing north and four walls need to be rendered.
+Let's take a simple example and proceed step by step. In the room below, the player is facing north and four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}) need to be rendered.\\
 \par
 \rawpngdrawing{clip_map}
 \par
 
-Initially the occlusion array has two entry, one representing what is on the left of the screen, from infinity to -1 and one on the right of the screen from 320 to infinity.\\
+Initially the occlusion array has two entries, one representing what is on the left of the screen, from infinity to -1 and one on the right of the screen from 320 to infinity.
 \par 
 \begin{minipage}{0.54\textwidth}
-\centering
+\vspace*{2.5mm}
 \ccode{clip0.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
-\centering
 \srawpngdrawing{0.95}{clip0}
 \end{minipage}
 \par
@@ -241,10 +249,10 @@ Initially the occlusion array has two entry, one representing what is on the lef
 
 
 
-The first wall is rendered. There is nothing to occlud it and it is in the middle of the screen. A entry is added to represent the occlusion state.\\
+The first wall is rendered. There is nothing to occlude it and it is in the middle of the screen. A entry is added to represent the occlusion state.
 \par
 \begin{minipage}{0.54\textwidth}
-\centering
+\vspace*{2.5mm}
 \ccode{clip1.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
@@ -258,7 +266,7 @@ The first wall is rendered. There is nothing to occlud it and it is in the middl
 The second wall is rendered. Its left side is clamped via angle adjustment and the right side if not occluded. Since it touch the left edge of the screen no entry in the occlusion array is added.
 \par
 \begin{minipage}{0.54\textwidth}
-\centering
+\vspace*{2.5mm}
 \ccode{clip2.c}
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
@@ -271,9 +279,9 @@ The second wall is rendered. Its left side is clamped via angle adjustment and t
 
 
 
-The third wall is rendered. It happens to lie just next to the second wall. It is fully converted to a wall fragment and nothing is discarded. The occlusion array is updated
+The third wall is rendered. It happens to lie just next to the second wall. It is fully converted to a wall fragment and nothing is discarded. The occlusion array is updated.
 \begin{minipage}{0.54\textwidth}
-\centering
+\vspace*{2.5mm}
 \ccode{clip3.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
@@ -285,7 +293,7 @@ The third wall is rendered. It happens to lie just next to the second wall. It i
 
 Finally the last wall is rendered. While occluded against the array, it is slipt into two fragments. The occlusion array is updated. All segment ended up touching each others. 
 \begin{minipage}{0.54\textwidth}
-\centering
+\vspace*{2.5mm}
 \ccode{clip4.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
@@ -293,15 +301,17 @@ Finally the last wall is rendered. While occluded against the array, it is slipt
 \srawpngdrawing{0.95}{clip4}
 \end{minipage}
 \par
+Notice how little RAM was used to maintain the occlusion state and how fast it is to check if the fullscreen is occluded. All the engine has to do is to check the array is size 1 and that the range goes from -infinity to +infinity.
+
 
 \subsubsection{Vertical Fine Wall Clipping}
-The second pass clips fragments vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. It describes how much screenspace is still available for each column in the canvas.\\
+The second pass clips segments fragments vertically. A data structure based on two arrays as wide as the 3D canvas is maintained. It describes how much screenspace is still available for each column in the canvas.\\
 \par
- Each segment rendered updates the structure by making \cw{ceilingclip} increase up  and \cw{floorclip} decrease down. A column is considered fully opaque when \cw{ceilingclip} height and \cw{floorclip} height are equal to each others. Walls mark a column as completely occluded while portals will only update the occlusion columns with what their actually cover in screenspace.\\
+ Each segment rendered updates the structure by making \cw{ceilingclip} increase up  and \cw{floorclip} decrease down. A column is considered fully opaque when \cw{ceilingclip} height and \cw{floorclip} height are equal to each others. Walls fragments will mark a column as completely occluded while portals fragments will only update the occlusion columns with what their actually cover in screenspace.\\
 \par
 \ccode{vclippers.c}
 \par
-Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{E}) and and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a hight floor and lower ceiling to it looks like a window.\\
+Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{F}) and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a higher floor and lower ceiling to it looks like a window.\\
 \par
 
 \begin{wrapfigure}[16]{f}{0.45\textwidth}
@@ -310,16 +320,20 @@ Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, an
 \end{wrapfigure}
 
 
-Subsectors are rendered near to far in order \cw{1}, \cw{2}, and \cw{3}. Which means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G},\cw{F}\} (assuming the map was split on line \cw{B} and \cw{F}. On the opposite side you can see the effect of each wall and portals on the vertical occlusion double array.\\
+Subsectors are rendered near to far in order \cw{1}, \cw{2}, and \cw{3}. Which means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G},\cw{F}\} (assuming the map was split on line \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portals on the vertical occlusion double array.\\
 \par
 Walls \cw{A}, \cw{E}, \cw{C}, and \cw{D} mark the full height opaque for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2 lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and adjust the occlusion array accordingly.\\
 \par
-Notice how portal \cw{F} which lower and upper texture are not rendered still updates the occlusion array. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space.\\
+Notice how portal \cw{F} which lower and upper texture are not rendered still updates the occlusion array. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space).
 
 
 \fullimage{simple_room.png}
-\par
- %Walls \cw{A}, \cw{C}, and \cw{D}\\ %mark the occlusion column fully while portal \cw{B} makes clipping limit progress toward the screen center.\\
+
+% \vspace{3mm}
+
+Blablablba bla.
+
+\vspace{2mm}
  
 
 \fullimage{simple_room_clip}
@@ -337,12 +351,11 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
 
 
 
-After the clipping we have already seen, walls and portal are rendered. Walls are drawn as a set of full column of pixels while portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture.\\
-\par
-\trivia{To play nicely with cachelines (at least for read operations), texture data are stored as column major (rotated 90 degrees left).}\\
+During the vertical clipping step, walls and portal screenspace coordinate are completed. For each fragment ends, n \cw{Y} offset is calculated based on sector floor and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a set of full columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture while walls are only middle texture). Rendition is done via \cw{colfunc} function pointer (detailed in the "performance" page XXX).\\
+
 \par
 \subsection{Drawing Flats}
- If we were to take a look at the framebuffer at this point in the rendition of a frame, it would look like mashed potatoes (see opposite page).\\
+ If we were to take a look at the framebuffer at this point in the rendition of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization. Doom never clears the framebuffer so instead of white there would be whatever was there last frame.).\\
 \par
 To render the flats, the engine uses a database generated while walls and portals were being rendered. A database made of what is called "visplanes".\\
 \par
@@ -350,93 +363,111 @@ To render the flats, the engine uses a database generated while walls and portal
 \par
 The concept of visplane is the most difficult aspect of \doom to understand. The comments in the source code manifest of their esoteric nature and also attests that even people closely related to id Software did not fully grasp what they were.\\
 \par
-A visplan describes in screen space an area representing either a ceiling or a floor. It had a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.\\
+A visplan describes in screen space an area representing either a ceiling or a floor. It had a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.
 \par
 
 
-\fullimage{mashed_potatoes1.png}\\
-\label{mashed_potatoes1.png}
-Above, the final frame. Below, the current state of the frame. Flats are colored white to ease visualization. Doom never clears the framebuffer so instead of white there would be whatever was there last frame.\\
+\fullimage{mashed_potatoes1.png} \label{mashed_potatoes1.png}
+
+Above, the final frame. Below, the current state of the frame with missing visplanes.
+
+\vspace{2mm}
 \fullimage{mashed_potatoes2.png}
-\par
 
 
 \trivia{Visplane rendition is deferred. They had to be stored while walls were rendered. 664 bytes per visplane (and 128 visplanes) represented a significant amount (84,992 bytes) for a game limited to 4MiB.}\\
 \par
-Visplan represent the vertical "gaps" between wall and screen border or between walls and portals. 
-To understand better how they are generated, let's take and example and go back to the simple room we just studied but this time we will focus on how the \cw{visplanes} array is populated.\\
+Visplan represent the screen space vertical "gaps" between fragments and screen border or between walls and portals. To understand better how they are generated, let's take and example and go back to the simple room we just studied. This time we will focus on how the \cw{visplanes} array is populated.\\
 \par
 
 \begin{wrapfigure}[16]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=.45\textwidth]{drawings/vcclip_map.pdf}
 \end{wrapfigure}
-Like in the previous example, segments are rendered near to far in the following order: \cw{A}, \cw{B}, \cw{C}, \cw{D}, \cw{B}, \cw{E}, \cw{F}, \cw{B}, \cw{G}, and \cw{H}.
+Like in the previous example, segments are rendered near to far in the following order: \cw{A}, \cw{B}, \cw{C}, \cw{D}, \cw{B}, \cw{E}, \cw{F}, \cw{G}, and \cw{H}.
 When wall \cw{A} is rendered, it is clipped horizontally and vertically. Since it use all the vertical space, no visplane is created.\\
 \par
- Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplaces \cw{1}, \cw{2}, \cw{3}, and \cw{4} are created and stored in the visplane array.\\
+ Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplanes per fragments \cw{1}, \cw{2}, \cw{3}, and \cw{4} are created and stored in the visplane array.\\
  \par
   Likewise when portal \cw{C} is rendered, there are gaps above its upper texture and below its lower texture, so two visplanes additional visplanes (\cw{5} and \cw{6}) are added.\\
 \par
-Wall \cw{E} is an other new case. The gap above and below are not between a wall and the screen but between  \cw{E} and the portal \cw{C} upper and lower parts. To detect the previous boundaries, the vertical occlusion array seen previously is used.\\
+Wall \cw{E} is an other new case. The gap above and below are not between a wall and the screen but between  \cw{E} and the portal \cw{C} upper and lower parts. To detect the previous boundaries, the vertical occlusion array seen previously is used to create \cw{7} and  \cw{8}.\\
 \par
-Portal \cw{F} is yet and other special case. Since from this point of view it is connecting to a sector with higher ceiling, connecting to a sector with lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{7} and  \cw{8}.\\
+Portal \cw{F} is yet an other special case. Since from this point of view it is connecting to a sector with higher ceiling, connecting to a sector with lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{9} and  \cw{10}.\\
 \par
-Fron this point pn, this is the same process over and over again. Wall \cw{G} rendition generates visplanes \cw{9} and  \cw{10} and Wall \cw{H} rendition generates visplanes \cw{11} and  \cw{12}
-\pagebreak
-
-
-
-
-
-
-
-
-\fullimage{simple_room_visplanes}\\
-Below, the engine was modified to draw walls and flats in plain color permit to confirm the drawing above. Sait a minute, this is not what was expected. Something is not right here.\\  
+Fron this point on, this is the same process over and over again. Wall \cw{G} rendition generates visplanes \cw{11} and  \cw{12} and Wall \cw{H} rendition generates visplanes \cw{13} and  \cw{14}.\\
 \par
+This algorithm generates a lot of visplanes and consume a lot of RAM. To address this issue, \doom merges visplanes.
+
+
+
+
+
+
+
+
+
+\fullimage{simple_room_visplanes}
+
+% \vspace{3mm}
+
+Below, the engine was modified to draw walls and flats in plain color to show merging.
+
+\vspace{2mm}
 \fullimage{small_room_visplanes.png}
 
 
 
 
-\fullimage{complex_scene_plain_light.png}
-\label{complex_scene_plain_light.png}
-To save memory, visplanes are merged. It can be very helpful in complex scenes like this one (reproduced below without diminished lightning for "clarity").\\
+\fullimage{complex_scene_plain_light.png} \label{complex_scene_plain_light.png}
+
+% \vspace{3mm}
+
+
+E1M1 benefits from merging. Reproduced below without diminished lightning for clarity.
+
+\vspace{2mm}
 \fullimage{complex_scene_plain.png}
 
 
 
-\fullimage{complex_scene_multivis.png}\\
-Without merging (above) the frame required 179 visplanes. With merging (below), only 28 visplanes were used.\\ 
+\fullimage{complex_scene_multivis.png}
+
+% \vspace{3mm}
+
+Without merging (above) the frame required 179 visplanes. With merging (below), only 28.
+
+\vspace{2mm}
 \fullimage{complex_lowvis.png}
 
 
-
-There are several conditions required to merge two visplanes. They have to have the same height, light and texture. Even if these conditions are met, the datastructure has to be able to absorb each others. This is only possible if visplanes are side by side. Even one pixel above or below and other makes two visplanes ineligible for merging.\\
+On the previous page, the modified engine shows how a visplane does not need to be horizontally continuous. The red floor visplane for example is made of three parts yet just use on entry in the visplane array, validating the judicious choice to represent visplanes as array of columns\footnote{It would have been easy to use an array of lines since visplanes are rendered as lines.}.\\
+\par
+There are several conditions required to merge two visplanes. Mergable visplanes must have the same height, light and texture. Even if these conditions are met, the datastructure has to be able to absorb each others. This is only possible if visplanes are side by side. Even one pixel above or below with the same \cw{X} coordinate make two visplanes ineligible for merging. Function \cw{R\_FindPlane} looks for candidate, mergability is tested elsewhere.\\
 \par
 \ccode{visplane_linear_search.c}
 \par
-DRAWING\\
-\vspace{4cm}
-\par
+Notice the overflow check which modders feared more than anything since it terminated execution. The error message was less not helpful in figuring out what was wrong and how to fix the map. Many legends and theories circulated until the source code was released. 
+
+
+
+
 
 \subsection{Drawing Flats (For Real)}
-
-With all this background about visplanes in mind, we can finally read the flat drawing routines which simply iterates over the array of visplanes created when the walls were rendered.\\
-\par
-Each visplane is converted into lines (called \cw{spans} in the code). The visplane data combined with the player height and rotation are all what is needed for the \cw{spanfunc} to render each lines.\\
+We can finally read the flat drawing routine (\cw{R\_DrawPlanes}) which simply iterates over the array of visplanes.\\
 \par
 \ccode{R_DrawPlanes.c}
 \par
-FORMULA and trivia about no more visplanes and BANDING !!\\
-\vspace{4cm}
+Notice how the flat texture resource is not freed at the end of each iteration but rather marked as \cw{PU\_CACHE} accordingly to what was described in the memory manager section.\\
 \par
+It may seem odd that each visplane is converted into lines (called \cw{spans} in the code) since walls were rendered as columns. This is to optimize the process of something we have ignored so far in order to introduce complexity progressively. It is diminished lighting.
 
 
-\subsection{Drawing Skies}
-Each portion of the sky are stored in visplanes and drawn as span of pixels. A sector just have a special ceiling texture number which the engine recognize in which case, height is 0, lightmap is 0 and perspective is disabled ot the sky is rendered flat on the canvas.
 
+
+
+
+\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine search complexity algorithm based on a linear search, making it a $O(n^})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: "The Truth about Visplane Overflows".}.
 
 
 
@@ -473,17 +504,40 @@ Each portion of the sky are stored in visplanes and drawn as span of pixels. A s
 \end{wrapfigure}
 So far, in order to introduce complexity gradually, our trip down the rendering pipeline has completely ignored diminishing lighting. It was assumed that values from texture and sprites texels were used as is and written directly to the framebuffer. Now it time to introduce the concept of lightmaps.\\
 \par
-In order to convey a scary atmosphere of it was decided since day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off but also dim it if necessary. To response to this requirement, the engine had to be able to draw shades of a color. With a VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artist to use 16 colors and use the 245 other slots to generate 15 shades of each "primary" colors.\\
+In order to convey a scary atmosphere, \`a la Aliens, it was decided since day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off but also dim it if necessary. To response to this requirement, the engine had to be able to draw shades of a color. With a VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artist to use 16 colors and use the 245 other slots to generate 15 shades of each "primary" colors.\\
 \par
-This would have severely impaired the work of the artist, not to mention it would have looked poor during outdoor scene where light is not diminished with distance. Once again a clever trick was to allow bith artists to use the full 256 colors for their assets and not 16 but 32 shades of the same color. One paper that would have meant $256 * 32 = 8192$ colors ... which the VGA did not have.\\
+This would have severely impaired the work of the artist, not to mention it would have looked poor during outdoor scene where light is not diminished with distance. Once again a clever trick was to allow artists to use the full 256 colors for their assets and not 16 but 32 shades of the same color. One paper that would have meant $256 * 32 = 8192$ colors ... which the VGA did not have.\\
 \par
- The trick to fake more colors than available is to use an indirection "light table" where the other 255 colors are used to approximate a gradient of each 256 entries. The lightmap is 256 entries tall (one for each index) and 32 wide (one column for each shade). In figure XXX you can see how the original palette lines are unrolled vertically in the left most column (notice the isolated white at the top and the pink at the bottom). Each row is a 32 values gradient toward black, using the same 256 colors. The right most column is all black. The system has its limits. It works well for red, not too much for crimson and yellow.\\
+ The trick to fake more colors than available is to use an indirection "light table" where the other 255 colors are used to approximate a gradient of each 256 entries. The lightmap is 256 entries tall (one for each index) and 32 wide (one column for each shade). In figure \ref{COLORMAP.png} you can see how the original palette lines are unrolled vertically in the left most column (notice the isolated white at the top and the pink at the bottom). Each row is a 32 values gradient toward black, using the same 256 colors. The right most column is all black. The trick has its limits. It works well for red but not too well for crimson and yellow.\\
  \par
- To use the lightmap, take the original texel value \cw{T} which is between [0,255]. This will be the line coordinate. Take a light value \cw{L}, with 0 being the brightness and 31 being the darkest. This will be the column coordinate. The value to write in the framebuffer is \cw{lightmap[T][L]}\\
+ To use the lightmap, take the original texel value \cw{T} which is between [0,255]. This will be the \cw{X} coordinate. Take a light value \cw{L}, with 0 being the brightness and 31 being the darkest. This will be the \cw{Y} coordinate. The value to write in the framebuffer is \cw{lightmap[X][Y]}.\\
  \par
-\cscaledimage{1}{COLORMAP.png}{Lump \cw{COLORMAP} and its 32 shades of 256 colors.}
+\cscaledimage{1}{COLORMAP.png}{The \cw{COLORMAP} is 32 shades of 256 colors yet still 256 colors total.}
 
 
+
+
+
+\fullimage{diminishedlight2.png}
+
+Above, normal engine (without sprites). Below same scene with lightmaps disabled.
+\vspace{2mm}
+
+\fullimage{diminishedlight1.png}
+
+
+\cfullimage{diminishedlight3.png}{\doom engine with texture disabled and no sprites}
+\par
+The visual effect of lightmaps can sometimes be subtle. On the opposite page, a normal scene (above) shows no banding. Disabling lightmap altogether (opposite page, below) makes the colors appear washeout. Disabling texturing by rendering walls in white (\cw{0x04}) and flats in brown (\cw{0x80}) (as in figure \ref{diminishedlight3.png}) makes lightmaps apparent.\\
+\par
+Because calculating which lightmap to use is based on the distance from the player and also on the sector light level, it is a slightly expensive operation.\\
+$$ lightmapId = sectorLightLevel + z * diminishingFactor $$
+$$   color = lightmapId[textureTexel] $$
+\par
+ To reduce lightmap arithmetics, the scene drawing is dictated by where the lightmap value is constant. Walls are drawn as columns and flat are drawn as lines. Lightmap calculation are cached for flats. Since a visplane can be horizontally discontinue, \\
+ \par
+ Walls are twicked a bit. Vertical lightmap--, horizontal++. Diagonal untouched.\\
+\pagebreak
 
 
 
@@ -491,21 +545,35 @@ This would have severely impaired the work of the artist, not to mention it woul
 \par 
 \ccode{lightmap.c}
 \par
-\fullimage{idbeholdv.png}
-
+\fullimage{invulnerable.png}\\
+\par
+\trivia{
+Each portion of the sky are stored in visplanes and drawn as span of pixels. A sector just have a special ceiling texture number which the engine recognize in which case, height is 0, lightmap is 0 and perspective is disabled ot the sky is rendered flat on the canvas.}\\
 
 
 
 
 \fullimage{idbeholdv.png}
 \par
-This trick turned out to be a nightmare to replicate with hardware accelerated system which use 24-bit color instead of a palette system. On OpenGL ES, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used and gave mixed results.\\
+This effect was diffcult to replicate with hardware accelerated system which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used.\\
 \par
 \fullimage{invOpenGL.png} 
-\pagebreak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Drawing Masked}
-With the environment rendered, what remains are the sprites which are called "masked" in the code.
- There is only on thing particularly difficult about that.\\
+With the environment rendered, what remains are "masked" elements. This category emcomparse not only all sprites but also partially transparent walls and also the player's hand.\\
  \par
 
 
@@ -519,7 +587,7 @@ With the environment rendered, what remains are the sprites which are called "ma
 \pagebreak
 
 
-With height and distance a screen space coordinate is calculated. With the sector light value, a lightmap is selected. With the thing orientation and the player rotation, on of the eight sprite "pose" is selected. The only problem is, how to clip them properly?\\
+The function responsible for this task is called \cw{R\_DrawMasked}. It is the last step in the rendering pipeline. Contrary to the environment which is rendered in front to back order, this step proceeed in back to front (which is the only way to get transparency right).\\
 \par
 \vspace{2mm}
 \scaledimage{0.25}{cacodemon5.png}\scaledimage{0.25}{cacodemon6.png}\scaledimage{0.25}{cacodemon7.png}\scaledimage{0.25}{cacodemon8.png}\\
@@ -530,117 +598,109 @@ With height and distance a screen space coordinate is calculated. With the secto
 
 \scaledimage{0.25}{cacodemon29.png}\scaledimage{0.25}{cacodemon30.png}\scaledimage{0.25}{cacodemon31.png}\scaledimage{0.25}{cacodemon32.png}\\
 
+\pagebreak
+
+
+
+
+
+
+\begin{wrapfigure}[12]{r}{0.5\textwidth}
+\centering
+\includegraphics[width=.5\textwidth]{drawings/masked_map.pdf}
+\end{wrapfigure}
+
+Before diving into the function responsible for drawing masked elements, let's take a simple example to understand what needs to be done.\\
+\par
+ A simple room with four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}), a pillar also made of four walls (\cw{E}, \cw{F}, \cw{G}, and \cw{H}), a transparent wall \cw{I}, a barrel (in grey, a player spawning point (in green) and three enemies (in red: a Baron of Hell, a Cacodemon, and a Demon).\\
+\par
+The result as rendered by \doom engine is visible in figure \ref{masked.png} Notice how the Baron is drawn on top of wall \cw{I}. How the Cacodemon is partially occluded by wall \cw{I}. How parts of the demon are completely clipped behind the pillar. Also notice how the barrel must be drawn in front of the Baron for correctness. Notice how wall \cw{I} needs to be clipped againt the pillar.\\
+\par
+\cfullimage{masked.png}{}
+\par
+With the target in mind, let's go back to where we were with walls and flats rendered in the framebuffer. In the case of the same room, it would look like \ref{masked_nomasked.png}.\\
+\par
+\cfullimage{masked_nomasked.png}{}
+\par
+To get from figure \ref{masked.png} to figure \ref{masked_nomasked.png}, the engine needs a list of maskable (also simply called sprites in the code), sort then in back to front order, iterate over the sorted list and for each of them perform clipping, and finally render them as columns of pixels.\\
+\par
+\subsubsection{List Of Things}
+ The list of things was build while the BSP was traversed. Each time a subsector was sent to rendition (in \cw{R\_Subsector}) the list of things it contained were also added to an array of \cw{vissprite\_t}. Note that Things are pseudo-ordered and therefore the order is not usable. In our example the barrel and the baron would be added based on the subsector they were in, but in no precise order (in the subsector list of things, the baron could be returned before the barrel).\\
+ \par
+ \subsubsection{Clipping Information}
+ The clipping information was also built while rendering walls. Anything that could potentially apperar on the screen was stored in an array of \cw{drawseg\_t}.\\
 \par
 
-\subsection{Things}
+The "drawn segments" array \cw{drawsegs} is made of the following \cw{drawseg\_t} struct.\\
+\par
+\ccode{drawseg_t.c}\\
+\par
+The array \cw{drawsegs} can be seen as a log of what was rendered to the screen.\\
+\begin{itemize} 
+	\item For each wall which generated pixels in the framebuffer, a \cw{drawseg\_t} is added.
+	\item For each portal, up to two \cw{drawseg\_t} are added (one for the upper part and one for the lower part if there the portal had no middle texture).
+	\item For each masked segments (like the grid \cw{I} in our example) which were skipped, one \cw{drawseg\_t} entry is added to record what should have been drawn.
+\end{itemize}
+A \cw{drawseg\_t} contains all the screenspace information to perform either clipping or rendering. There is a pointer to the line (\cw{curline} which contains the textureID), the screenspace horizontal boundaries (\cw{x1} and \cw{x2}) as well as their respective scale (\cw{scale1} and \cw{scale2}). Scale represent how magnified or minified a sprite should be. All sprites share the same unit and since scale is based on the distance from the player the engine uses it to compare \cw{z} distances.\\
+\par
+The screenspace horizontal top and bottom edge of a wall are obtained from pointers \cw{sprtopclip} and \cw{sprbottomclip} which point to an array shared by all \cw{drawseg\_t}.\\
+\par
+\ccode{openings.c} 
+\pagebreak
+
+\par
+DRAWING OF OPENINGS\\
+\vspace{4.5cm}
+\par
+The visible sprites (\cw{visprites}) storage is considerably easier to understand than the drawn segment storage.\\
+\par
+\ccode{vissprites.c}
+\par
+A vissprite entry contains eveything need to render a sprite on screen. It features information similar to the drawn segments such as the screen space horizontal boundaries (\cw{x1} and \cw{x2}), its scale, its texture id (\cw{patch}) and the lightlevel (\cw{colormap}) to be used for shading.\\
+\par
+Notice the \cw{prev} and \cw{next} fields. Even though vissprite are stored in a linear array, they need to be sorted in back to front order. Instead of performing an expensive copy of all elements, the sorting method only updates the double linked list. This way all elements remain in the same position in the array but a sorted list can be obtained by follwoing the \cw{next} pointers.\\
+\par
+
+Let's finally look at how all these data are used to render the sprites and masked segments in \cw{R\_DrawMasked}.\\
+\par
+\ccode{R_DrawMasked.c}\\
+\par
+As expected, the list of visible sprites is sorted based on their distance to the player. This process is very fast since only \cw{scale} has to be compared and no data is copied, only the double linked list is updated.\\
+\par
+Then all sprites are rendered, one by one, in a back to front fashion. The method taking care of this \cw{R\_DrawSprite}) scans linearly the array of \cw{drawseg} to find what is in front of the sprite and clips it accordingly. Since the search is based on the scale of each \cw{drawseg_t} and the screenspace \cw{X} boundaries it is a fast operation. 
+
+
+
+Clipping is done via \cw{drawseg\_t	drawsegs[MAXDRAWSEGS];} array which is as big as the max \# of walls rendered.\\
+\par
+Drawing is done as columns: \cw{R\_DrawMaskedColumn}. Sprites are stored to please cachelines in reading.\\
+\par
+While in development and until v1.2, \doom had a "three screens mode".\\
+\par
+\fullimage{three_screens_mode.png}
+
+
+
+
 \begin{verbatim}
-vissprite_t	vissprites[MAXVISSPRITES];
 
-typedef struct vissprite_s {
-    
-    struct vissprite_s*	prev; // Doubly linked list.
-    struct vissprite_s*	next;
-    
-    int			x1;
-    int			x2;
-    
-    fixed_t		gx; // for line side calculation
-    fixed_t		gy;		
 
-    fixed_t		gz; // global bottom / top for silhouette clipping
-    fixed_t		gzt;
 
-    fixed_t		startfrac;     // horizontal position of x1
-    
-    fixed_t		scale;
-        
-    fixed_t		xiscale;	 // negative if flipped
-
-    fixed_t		texturemid;
-    int			patch;
-
-    // for color translation and shadow draw,
-    //  maxbright frames as well
-    lighttable_t*	colormap;
-   
-    int			mobjflags;
-    
-} vissprite_t;
-
-// While wall rendering, generate structure able to build a sprite clipping.
-drawseg_t	drawsegs[MAXDRAWSEGS];
-drawseg_t*	ds_p;
 
 short clipbot[SCREENWIDTH];
 short cliptop[SCREENWIDTH];
 
+
+// This is like a log of what was rendered.
+#define MAXOPENINGS	SCREENWIDTH*64
+short			openings[MAXOPENINGS];
+short*			lastopening;
+
 \end{verbatim}
 
-Clipping is done via \cw{drawseg\_t	drawsegs[MAXDRAWSEGS];} array which is as big as the max \# of walls rendered.\\
-\par
-Drawing is done as columns: \cw{R\_DrawMaskedColumn}. Sprites are stored to please cachelines in reading.
 
 
+\subsection{Drawing Masked Player}
+The player's hand, usually holding a weapon is drawn last.\\
 
 
-
-
-
-\subsection{Weapon}
-
-\subsection{Pot pourri}
-The early 1993 press release written by Tom Halls (see Annexe page \pageref{label_press_release}) made some bold statements. Besides promising the best game of all time, it was remarkably accurate with regards to features the 3D renderer would end up shipping with:\\
-\par
-\par
-Some of the announced features had already been achieved by John Carmack. The game engine he had written during his research and licensed to Shadowcaster\footnote{See more details about Shadowcaster on page \pageref{label_shadowcaster}.} featured a fully texture mapped environment including flats (walls and ceilings). Light dminishing was also relatively easily implemented. However non-orthogonal walls was a big promise.\\
-\par
-
- All walls are correct but there are huge gaps in between which need to be filled. This is where the visplanes are used. How floors and ceilings are drawn is the most difficult part to understand. The puzzled command in the source code "Now what is a visplane, anyway?" tells a lot about the mystery surrounding them.\\
-\par
-
-In a nutshell, a visplane stores the screen space area of a ceiling or a floor which needs to be drawn. A modified version of the engine, drawing visplane in plain color help to visualize them.\\
-\par
-\fullimage{doom_visplanes.png}{}\\
-\fullimage{doom_visplanes_colored.png}{} 22 visplanes
-%\fullimage{doom_visplanes_colored_merged.png}{} 6 visplanes
-\par
-The previous screenshot was slightly misleading in order to ease comprehension. There are fourteen visplanes in that screenshot which is a lot for a simple room with a window. It is a problem in terms of memory consumption since a \cw{visplane\_t} struct is no less than 664 bytes. 9 KiB off storage for such a simple screen but imagine a scene with a staircase and two windows and the number of visplane could easily climb to 100s which would consum way too much for a game already struggling to fit into 4 MiB.\\
-\par
-To solve this problem, the engine merges visplanes as they are encountered. If two visplanes share the same texture, height, light intensity and if they don't overlad vertically, they are merged. In the previous example this brings the fourteen visplanes figure down to five.\\
-\par
-\fullimage{doom_visplanes_colored.png}{}
-\fullimage{108visplanes.png}{}
-
-\par
-\begin{verbatim}
-sizeof(visplane) = 664
-(664) * 128 = 84992
-framebuffers
-\end{verbatim}
-\fullimage{many_visplanes.png}
-
-closeup
-16
-106
-
-\trivia{Three Screen Mode}
-
-
-
-\subsection{Visplanes and DrawPlanes overflow}
-Even with visplane merging, the number of visplanes could still get out of hand. Storage was not dynamic, it was capped at 128 units. If the engine encountered condition where 129 visplanes were required it would quit with the following mysterious message:\\
-\begin{verbatim}
-"R\_FindPlane: no more visplanes"\\
-\end{verbatim}
-\par
-R\_DrawPlanes: visplane overflow (\%i)\\
-R\_DrawPlanes: drawsegs overflow (\%i)\\
-R\_DrawPlanes: opening  overflow (\%i)"\\
-\par
-
-\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine search complexity algorithm based on a linear search, making it a $O(n^})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: The Truth about Visplane Overflows}.
-\par
-\ccode{visplane_linear_search.c}
-
-https://www.doomworld.com/forum/topic/86977-doom-affine-texture-mapping-edition/\\
-\par

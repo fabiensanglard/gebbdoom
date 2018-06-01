@@ -1,12 +1,13 @@
-void R_DrawMasked (void) {
+void R_DrawMasked (void){
   vissprite_t  *spr;
-  drawseg_t   *ds;
+  drawseg_t    *ds;
   
   R_SortVisSprites ();
 
+  // draw all vissprites back to front
   if (vissprite_p > vissprites) {
-    // draw all vissprites back to front
-    for (spr = vsprsortedhead.next; spr != &vsprsortedhead; spr=spr->next)
+    for (spr= vsprsortedhead.next ; spr != &vsprsortedhead; 
+         spr = spr->next)
       R_DrawSprite (spr);
   }
 
@@ -15,8 +16,7 @@ void R_DrawMasked (void) {
     if (ds->maskedtexturecol)
       R_RenderMaskedSegRange (ds, ds->x1, ds->x2);
 
-
   // draw the psprites on top of everything
-  if (!viewangleoffset)    // don't draw on side views
+  if (!viewangleoffset)   // don't draw on side views
     R_DrawPlayerSprites ();
 }

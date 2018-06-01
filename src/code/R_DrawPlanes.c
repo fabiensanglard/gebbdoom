@@ -23,7 +23,8 @@ void R_DrawPlanes (void) {
     
     stop = pl->maxx + 1;
     for (x=pl->minx ; x<= stop ; x++)
-      R_MakeSpans (x,pl->top[x-1],pl->bottom[x-1] ,pl->top[x],pl->bottom[x]);
+      R_MakeSpans (x,pl->top[x-1],pl->bottom[x-1] ,
+      pl->top[x],pl->bottom[x]);
     
     Z_ChangeTag (ds_source, PU_CACHE);
   }
