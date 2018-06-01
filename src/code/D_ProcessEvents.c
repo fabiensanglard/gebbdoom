@@ -1,9 +1,10 @@
 void D_ProcessEvents (void) {
+
   event_t     *ev;  
   event_t     *head = eventhead;
   event_t     *tail = eventtail;
-  for (;tail != head ;tail = (++tail)&(MAXEVENTS-1) )
-  {
+
+  for (;tail != head ;tail = (++tail)&(MAXEVENTS-1) ) {
     ev = &events[tail];
     if (M_Responder (ev))
       continue;     // menu ate the event
@@ -12,12 +13,16 @@ void D_ProcessEvents (void) {
   eventhead = eventtail;
 }
 
+
 boolean G_Responder (event_t *ev) {
   ...
+  
   if (HU_Responder (ev)) 
       return true;    // chat ate the event 
+
   if (ST_Responder (ev)) 
       return true;    // status window ate it 
+
   if (AM_Responder (ev)) 
       return true;    // automap ate it 
 

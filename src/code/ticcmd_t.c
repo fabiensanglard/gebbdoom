@@ -1,3 +1,4 @@
+
 typedef struct { 
   char            forwardmove;   // *2048 for move 
   char            sidemove;      // *2048 for move 
@@ -6,3 +7,4 @@ typedef struct {
   unsigned char   chatchar; 
   unsigned char   buttons; 
 } ticcmd_t; 
+

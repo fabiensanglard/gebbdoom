@@ -16,25 +16,26 @@ Eight palettes (from \#1 to \#8) were used for emphasis damage and let the playe
 \scaledimage{0.25}{palette_damage5.png}
 \scaledimage{0.25}{palette_damage6.png}
 \scaledimage{0.25}{palette_damage7.png}
-\scaledimage{0.25}{palette_damage8.png}
+\scaledimage{0.25}{palette_damage8.png}\\
 \par
-However palette \#1 was never used. Take a good look at the code selecting the damage palette:\\
+Due to an off-by-one bug, palette \#1 is never used. Take a good look at the code selecting the damage palette in \cw{ST\_doPaletteStuff}, It can only generate values within [2..9].\\
+\par
+\ccode{ST_doPaletteStuff0.c}\\
 \par
 \ccode{ST_doPaletteStuff.c}\\
 \par
-It can only generate values within [2..9].\\
-\par
-Four palettes (from \#9 to \#12) are used briefly when an item is picked up.\\
+Palettes \#9 to \#12 are used briefly when an item is picked up.\\
 \par
 \scaledimage{0.25}{palette_item1.png}
 \scaledimage{0.25}{palette_item2.png}
 \scaledimage{0.25}{palette_item3.png}
-\scaledimage{0.25}{palette_item4.png}
+\scaledimage{0.25}{palette_item4.png}\\
 \par
-For the same of-by-one miscalculation, palette \#9 is never used. The palette selector can only generate offset between [1..3] whereas [0..3] was needed.\\
+Because of the same off-by-one miscalculation, palette \#9 is never used. The palette selector can only generate offset between [1..3] whereas a [0..3] range was needed.\\
 \par
-\ccode{ST_doPaletteStuff2.c}\\
+% \ccode{ST_doPaletteStuff2.c}\\
 \par
-Lastly, palette \#13 is not used for a fading effect but as a permanent set when the player is wearing the radiation suit \\ \par
+The last palette (\#13) is not used for a fading effects but as a permanent swap when the player is wearing the radiation suit.\\ 
+\par
 
 \scaledimage{0.25}{palette_radiationsuit.png}

@@ -1,6 +1,6 @@
 x\section{Audio System}
 \label{dmx_section}
-Like every other I/O in the engine, the audio system was abstracted behind an interface. To fulfit \doom's kernel such a system had to implement not less than twenty functions covering SFX, Music, and also Timer.\\
+Like every other I/O in the engine, the audio system was abstracted behind an interface. To fulfit \doom's Core expectations such a system had to implement not less than twenty functions covering SFX, Music, and also Timer.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -47,26 +47,26 @@ I\_ShutdownTimer &\\
 
 
 
-On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfesnstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than 15 chips available, all with different types of bugs, kirks and technologies.\\
+On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfesnstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, kirks and technologies.\\
 \par
-To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the situation by throwing money at it and licenced DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all majour sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoublty saved id several months of development.\\
+To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.\\
 \par
 The abstraction layer provided by DMX was a colossal task. The comment before the function in charge of detecting the hardware leaves no ambiguity regarding how big an issue it was to tackle.\\
 \par
 \ccode{whypcssucks.c}
 \par
-With DMX backing the sound system, \doom managed to support 10 chipsets on PC.\\
+With DMX backing the sound system, \doom managed to support ten audio chipsets.\\
 \par
 \ccode{cardenum_t.c}
 \par
-Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simulatenously. An attentive will remember the hardware section mentioning the motherboard two chipset i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC).\\
+Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simultaneously. An attentive will remember the hardware section mentioning the motherboard two chipset i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC).\\
 \par
 What DMX did at startup was to install itself as a TSR via the PIC and the TIC to interrupt \doom engine at 140Hz\footnote{The way PIC and TIC interact is extensively detailled in Game Engine Black Book: Wolfesntein 3D}. Upong aweakening the TSR took care of feeding the audio device with music and sound effect data. Since the were no other source of time on the machine DMX was also in charge of generating the heartbeat via variable \cw{ticcount}.
 \par
 
 
 \scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
-This architecture explains why sound memory allocation had a special treatment in the zone memory allocator. Because the audio system runs in an interrupt, each interruption must be aknowledged as fast as posssible. This system simply had no time to recover from a memory miss. Audio data had to be ready at all time while it could be used.\\
+This architecture explains why sound memory allocation had a special treatment in the zone memory allocator. Because the audio system runs in an interrupt, each interruption must be acknowledged as fast as possible. This system simply had no time to recover from a memory miss. Audio data had to be ready at all time while it could be used.\\
 \par
 
 Dealing with so much complexity proved difficult for DMX. Some of the craziness Paul Radek had to deal with surfaced in a post on \cw{vogons.org}\footnote{Forum thread: "Gravis Ultrasound - Hardware Mixing Game List".}.
@@ -88,7 +88,7 @@ Something more serious happened due to API change. The version \\
 \par
 \ccode{dmx_before.c}
 \par
-\doom was supposed to emit sounds at random pitch to avoid monotony. The DMX API was modified to accomodate this need in vXXX:\\
+\doom was supposed to emit sounds at random pitch to avoid monotony. The DMX API was modified to accommodate this need in vXXX:\\
 \par
 \ccode{dmx_after.c}
 \par
@@ -96,7 +96,7 @@ It may not be immediately apparent but function \cw{SFX\_PlayPatch} parameters h
 \par
 \ccode{I_StartSound.c}
 \par
-In retrospect John Carmack regretted using DMX because it led to issues when open sourcing the game engine (it is unknown if Paul Radek was unwilling to open source DMX or if id software was unwilling to negociate with him).\\
+In retrospect John Carmack regretted using DMX because it led to issues when open sourcing the game engine (it is unknown if Paul Radek was unwilling to open source DMX or if id software was unwilling to negotiate with him).\\
 \par
 \fq{
 Our biggest mistake during DOOM development was the contracting of an  

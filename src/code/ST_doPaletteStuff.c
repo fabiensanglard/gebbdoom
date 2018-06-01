@@ -1,6 +1,3 @@
-#define    STARTREDPALS    1
-#define    NUMREDPALS      8
-
 void ST_doPaletteStuff(void) {
   int palette;
   int cnt = plyr->damagecount;
