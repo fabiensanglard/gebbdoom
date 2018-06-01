@@ -649,7 +649,7 @@ The screenspace horizontal top and bottom edge of a wall are obtained from point
 \pagebreak
 
 \par
-DRAWING OF OPENINGS\\
+DRAWING OF OPENINGS DATABASE\\
 \vspace{4.5cm}
 \par
 The visible sprites (\cw{visprites}) storage is considerably easier to understand than the drawn segment storage.\\
@@ -665,42 +665,26 @@ Let's finally look at how all these data are used to render the sprites and mask
 \par
 \ccode{R_DrawMasked.c}\\
 \par
-As expected, the list of visible sprites is sorted based on their distance to the player. This process is very fast since only \cw{scale} has to be compared and no data is copied, only the double linked list is updated.\\
+As expected, the list of visible sprites is sorted based on their distance to the player (\cw{R\_SortVisSprites}). This process is very fast since only \cw{scale} has to be compared and no data is copied, only the double linked list is updated.\\
 \par
-Then all sprites are rendered, one by one, in a back to front fashion. The method taking care of this \cw{R\_DrawSprite}) scans linearly the array of \cw{drawseg} to find what is in front of the sprite and clips it accordingly. Since the search is based on the scale of each \cw{drawseg_t} and the screenspace \cw{X} boundaries it is a fast operation. 
-
-
-
-Clipping is done via \cw{drawseg\_t	drawsegs[MAXDRAWSEGS];} array which is as big as the max \# of walls rendered.\\
+Next, all sprites are rendered one by one in a back to front fashion. The method taking care of this (\cw{R\_DrawSprite}) scans linearly the array of \cw{drawseg} to find what wall fragment was drawn in front of the sprite and clips it accordingly. Since the search is based on the scale of each \cw{drawseg\_t} and the screenspace \cw{X} boundaries it is a fast operation.\\
 \par
-Drawing is done as columns: \cw{R\_DrawMaskedColumn}. Sprites are stored to please cachelines in reading.\\
+The last step is to render the masked segments which were skipped during BPS traversal. This is done in method \cw{R\_RenderMaskedSegRange}. Notice that as explained (render all sprites then render all masked segments), there is no way the grid in figure  \ref{masked.png} could be interleaved with the sprites. To address this, there is a little "hack" in (\cw{R\_DrawSprite}) method during the linear scan for occluding \cw{drawseg\_t}. It detect which segment was a "masked" and skipped, and render them.\\
 \par
-While in development and until v1.2, \doom had a "three screens mode".\\
+\trivia{To speed up sprite rendition, sprites textures are stored and drawn as columns in order to please the Intel 486 cachelines.}\\
 \par
-\fullimage{three_screens_mode.png}
-
-
-
-
-\begin{verbatim}
-
-
-
-
-short clipbot[SCREENWIDTH];
-short cliptop[SCREENWIDTH];
-
-
-// This is like a log of what was rendered.
-#define MAXOPENINGS	SCREENWIDTH*64
-short			openings[MAXOPENINGS];
-short*			lastopening;
-
-\end{verbatim}
 
 
 
 \subsection{Drawing Masked Player}
-The player's hand, usually holding a weapon is drawn last.\\
+The last piece to render is the easiest of all. The Player Sprite (\cw{psprite}) is drawn on top of everything. These is no clipping in effect here, only the need to account for the lightmap induced by the sector the player is currenyly standing in and making the hand wave left and right when moving/running.\\
+\par
+You may have notice in \cw{R\_DrawMasked} that the player hand is drawn only if the viewing angle is not equal to zero (\cw{viewangleoffset}). This is an artifact from a feature which was disabled before shipping. Until v1.2, \doom supported a "three screens mode" where three computers with three monitors could be running in network in order to render a wide field of view.\\
+\par
+\fullimage{three_screens_mode.png}
+\par
+It is likely this feature was inspired to John Carmack when he visited Alaska Airline training center where he was able to see a multi-million dollar wide screen flight simulator\footnote{Source: "http://leeland.stores.yahoo.net/earlydoomstuff.html"}. The visual quality was not satisfactory in the end and part of the code to enable it was promptly removed...but some part of the feature survived.\\
+\par
+\trivia{To speed up psprite rendition, all player sprites are stored and drawn as columns in order to please the Intel 486 cachelines.}\\
 
-
+\trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}
