@@ -36,10 +36,6 @@ I\_UpdateSoundParams & Set pitch, left/right position and volume\\
 I\_StartupTimer &\\
 I\_ShutdownTimer &\\
 
-  \toprule 
-
-
-
    \toprule
 \end{tabularx}
 \caption{\doom audio system interface}
@@ -55,21 +51,49 @@ The abstraction layer provided by DMX was a colossal task. The comment before th
 \par
 \ccode{whypcssucks.c}
 \par
-With DMX backing the sound system, \doom managed to support ten audio chipsets.\\
+With DMX backing the sound system, ten audio chipsets were supported.\\
 \par
 \ccode{cardenum_t.c}
 \par
-Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simultaneously. An attentive will remember the hardware section mentioning the motherboard two chipset i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC).\\
+Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simultaneously.\\
 \par
-What DMX did at startup was to install itself as a TSR via the PIC and the TIC to interrupt \doom engine at 140Hz\footnote{The way PIC and TIC interact is extensively detailled in Game Engine Black Book: Wolfesntein 3D}. Upong aweakening the TSR took care of feeding the audio device with music and sound effect data. Since the were no other source of time on the machine DMX was also in charge of generating the heartbeat via variable \cw{ticcount}.
+ An attentive reader will have noticed the hardware section mentioning the PC two chipsets i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC). Together they can be setup to stop (a.k.a interrupt :P) the engine execution and call into DMX routine\footnote{The way PIC and TIC interact is extensively detailed in "Game Engine Black Book: Wolfesntein 3D".}.\\
+\par
+Upon initialization, DMX installs itself as a TSR via the PIC and the TIC to be called at 140Hz. Upon awakening the TSR took care of feeding the audio device with music and sound effect data which had been provided by the engine. Since the were no other source of time on the machine, DMX was also in charge of generating the heartbeat via a variable counter called \cw{ticcount}.
 \par
 
 
 \scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
-This architecture explains why sound memory allocation had a special treatment in the zone memory allocator. Because the audio system runs in an interrupt, each interruption must be acknowledged as fast as possible. This system simply had no time to recover from a memory miss. Audio data had to be ready at all time while it could be used.\\
+With such an architecture there are actually two systems but the TSR has additional constraints. The engine makes sure the audio data is in RAM and instruct DMX of what to play. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card buffers and go back to sleep.\\
 \par
+ This is why audio allocation get a special treatment in the zone allocator. The audio system simply has no time to recover from a memory miss (nor could it since it has no access to the wad or memory allocator. Audio data had to be ready at all time it could be used.
+\pagebreak
 
-Dealing with so much complexity proved difficult for DMX. Some of the craziness Paul Radek had to deal with surfaced in a post on \cw{vogons.org}\footnote{Forum thread: "Gravis Ultrasound - Hardware Mixing Game List".}.
+\subsubsection{Audio Data: Formats and Lumps}
+The wad archive contains hundreds of lumps containing five type of audio data.
+\begin{itemize}
+  \item PC Speaker Sound Effects
+  \item Soundcard Sound Effects
+  \item Music
+  \item GENMIDI
+  \item DMXGUS
+\end{itemize}
+\par
+PC Speaker audio was meant for PC equipped with no sound card. The PC Speaker was actually a beeper capable of only square waves and meant to emit boot up diagnostic noise. There were ways to make it generate something less irritating by changing the square frequency every 1/140th of a second. This is exactly the format \doom is using with a stream of byte dictating frequencies. These samples are stored in lumps starting with \cw{DP}.\\
+\par
+ Digitized audio sample are recorded as 8-bit, 11025 Hz, mono PCM stream without even a header. It is a format DMX can use directly without transformation.  These samples are stored in lumps starting with \cw{DS}.\\
+\par
+Music are stored in Genera MIDI format. With eight channels for instruments and a ninth for the drums. Channels were limited to 9 by early Sound Blaster cards. These samples are stored in lumps starting with \cw{D\_}.\\
+\par
+GENMIDI, TODO: Dig inside article "The dark and forgotten art of GENMIDI".\\\\
+\par
+DMXGUS\\
+\par
+\pagebreak
+
+
+
+Dealing with so much complexity proved difficult for DMX. Some of the craziness Paul Radek had to deal with surfaced in a post on \cw{vogons.org}\footnote{Forum thread: "Gravis Ultrasound - Hardware Mixing Game List".}.\\
 
 
 
@@ -82,19 +106,23 @@ Sorry, but that's the way it has to be :(\\
 {Paul Radek, Digital Expressions, Inc.}\\
 \par
 
-The library evolved during the development of \doom and sometimes introduced bugs. Gravis UltraSound was broken with beta vXX. It was promptly restored in vYY. Support for Audio Spectrum was also broken but it was not too bad since the card had an option to emulate sound blasters.\\
+The library evolved during the development of \doom and sometimesAPI changes introduced bugs. Gravis UltraSound was broken with v1.666. Support for Audio Spectrum was also broken but it was not too bad since the card had an option to emulate sound blasters\footnote{Source: John Romero post on \cw{alt.games.doom}.}.\\
 \par
-Something more serious happened due to API change. The version \\
+The problem was partly due to poor API practices on Digital Expressions side and probably hasty support on id Software part. \doom did ship with a significant bug. The engine was originally supposed to emit sounds at random pitch to avoid monotony for which it used DMX function \cw{SFX\_PlayPatch}.\\
 \par
 \ccode{dmx_before.c}
+
+
+
+
+
+However the DMX API was latter modified in an interesting way. It may not be immediately apparent but function \cw{SFX\_PlayPatch} parameters have been reversed.\\
 \par
-\doom was supposed to emit sounds at random pitch to avoid monotony. The DMX API was modified to accommodate this need in vXXX:\\
+\ccode{dmx_after.c}\\
 \par
-\ccode{dmx_after.c}
+ The game shipped without the random pitch feature, instead randomly balancing sound between the left and right channel.\\
 \par
-It may not be immediately apparent but function \cw{SFX\_PlayPatch} parameters have been reversed. Moreover function \cw{SFX\_SetOrigin} new parameter was added as the first argument instead of the last. id Software did not properly update the parameter. As a result the game shipped without the random pitch feature, instead randomly balancing sound between the left and right channel.\\
-\par
-\ccode{I_StartSound.c}
+\ccode{I_StartSound.c}\\
 \par
 In retrospect John Carmack regretted using DMX because it led to issues when open sourcing the game engine (it is unknown if Paul Radek was unwilling to open source DMX or if id software was unwilling to negotiate with him).\\
 \par
@@ -105,33 +133,68 @@ functionality coming, I didn't simulate it under NS.  BAAAAAD mistake.
 All future work will be entirely developed under NS, with only DMA  
 buffer flipping being the hardware layer.  We will probably also run  
 midi under NS for music (which will be dynamically tuned to the game  
-situation in Quake).}
-{John Carmack}
-
-Judging by usenet message posted by John Romero, it sounds like relationship between Radek and id software were tense:\\
+situation in Quake).}{John Carmack}\\
 \par
-\fq{Hey, everybody!  Thanks a lot for downloading DOOM II -- that's really "cool".   
-We love it when we send evaluation copies to magazine editors and some piece of  
-shit uploads the thing.  The DOOM II out there is the master copy we sent to GT  
-Interactive, our distributor.  If your GUS sound doesn't work, it's probably  
-because your IRQ is > 7.  Our sound code dork broke part of the sound support  
-while he was "expanding" it, so IRQs > 7 don't work, Pro Audio Spectrum owners  
-now have to run their SB-emulation driver (no more native support), etc.  The  
-sound guy is a real shithead.  All these fuckups are in v1.666 as well --  
-sorry.  We have NO time to wait and hope that sound-dork fixes these problems,  
-as he's demonstrated in the past year and a half that he's incompetent.}{John Romero (alt.games.doom)}
+Judging by usenet message posted by John Romero, it sounds like relationship between Radek and id software were tense with bad names being thrown\footnote{Source: John Romero post on \cw{alt.games.doom}.}.\\
+% \par
+% \fq{Hey, everybody!  Thanks a lot for downloading DOOM II -- that's really "cool".   
+% We love it when we send evaluation copies to magazine editors and some piece of  
+% shit uploads the thing.  The DOOM II out there is the master copy we sent to GT  
+% Interactive, our distributor.  If your GUS sound doesn't work, it's probably  
+% because your IRQ is > 7.  Our sound code dork broke part of the sound support  
+% while he was "expanding" it, so IRQs > 7 don't work, Pro Audio Spectrum owners  
+% now have to run their SB-emulation driver (no more native support), etc.  The  
+% sound guy is a real shithead.  All these fuckups are in v1.666 as well --  
+% sorry.  We have NO time to wait and hope that sound-dork fixes these problems,  
+% as he's demonstrated in the past year and a half that he's incompetent.}{John Romero (alt.games.doom)}
 
 
 
 \section{Sound Propagation}
-How did it work? Looks like they had sectors which could block sound. Use Romero quote p29 in Scarydarkfast\\
+How well enemies react to sounds made by the player plays a significant part in how smart A.I is perceived.
+Ever since Wolfenstein 3D (and well into their more advanced engines such as Doom III), id Software made sure sound propagation was accurate.\\
 \par
-\fq{We used sound zones in Wolfenstein 3D as another way to alert enemies to your presence. In DOOM, we did the same thing but used sectors as the conduits of audio travel. This was a really important part of making the game scary, as sound could leak all over the place and alert demons. You might see lots of little sector pipes that connect sectors together just to alert monsters—sectors that you’d never see because we put them way up high in the corner of a room. So, we paid a lot of attention to the sound flooding.}{John Romero}\\
-\par
-Fist noise does activate monsters (unless they are deaf).\\
-If a monster yells at a player, it will alert other monsters to the player\\
-\par
-Sound Blaster 1.0 support was included in v1.1, Pro Audio Spectrum 16 stereo in v1.2, and Sound Blaster AWE32 in v1.666.\\
-\par
-TODO: Dig inside article "The dark and forgotten art of GENMIDI".
+\ccode{P_RecursiveSound.c}\\
+\pagebreak
 
+ Where Wolfenstein 3D used preprocessed "areas", \doom is able to do it at runtime using only the map data available. Given the sectors/portals based format, the algorithm is fairly easy. Start in the current player sector and flood-fill into adjacent sectors via portals (two-sided lines). Sound is stopped when two "sound blockers" (such as a closed doom) are encountered. Since most doors have of two lines (for thickness) sound propagation stops there but secret door which are usually one line thin only "weaken" the sound.\\
+\par
+You will notice that function \cw{P\_RecursiveSound} mention "waking up all monsters" but it never iterate over the list of things in the level. This is an interesting speed-up trick aimed at avoiding an expensive search to find all monsters to be awakened in each sector. Monsters always look up for the current sector's \cw{soundtarget} to pick a target. By simply assigning a value to \cw{sec->soundtarget}, all monsters in \cw{sec} automatically acquire the same target.\\
+\par
+MAP OF E1M1 audio ?\\
+\vspace{8cm}
+\par
+\subsubsection{Ambushing}
+Like in its previous engine, map designers want to have sneaky monsters that would hide and wait to jump on a player. This is achieved via the MF\_AMBUSH that can be assigned to monsters. Contrary to popular belief that doesn't make monsters deaf, it only makes them not seek the player.\\
+\par
+\subsubsection{Super Ambushing}
+Sound propagation was used in a inventive way for map E1M9 super ambush.  The designers wanted the player to be ambushed after it had walked through the center of a pentagram.\\
+\par
+ As soon as it happened, monsters would start flooding the room, teleporting in the center of the "star". But without a scripting language available that was next to impossible to do since, as we will see in the A.I section, monsters can do only three things: Stay dormant, Pursue a target, and when they bump into walls and things, try a new direction.\\
+\par
+\begin{wrapfigure}[22]{r}{0.48\textwidth}
+\centering
+\includegraphics[width=.48\textwidth]{drawings/e1m9_sides.pdf}
+\end{wrapfigure}
+
+\par
+
+To achieve the effect, they create an unaccessible "monster pool" room next to where they wanted the super ambush and filled it with monsters (red circles in the drawing). In the right bottom of the room, they place a teleporter, protected by walls.\\
+\par
+They created a very tiny pipe to allow sound to flow through so when the player was fighting in this room, all monsters in the "pool" room would have been awakened and tried to reach the player. Without a way to get there (the monsters at too big to go through the pipe and also the pipe is at ceiling level) monsters started to run in circle with a tendency to go toward the player location.\\
+\par
+The last piece of the super ambush was to have four lines around the center of the "star" which lowered the walls around the teleporter and place a bait on it (such a lots of health and ammunitions) to make sure the player would go there. The trap was set.\\
+\par
+
+As soon as the player walked on the trigger in the "star" room, the walls around the teleporter lowered, monsters moved toward it and "spawned". \\
+\par
+\trivia{Comments in the code suggest that monsters screaming awaken other monsters but it is not the case. It is unknonw why this feature was cut. Maybe it was too buggy or too expensive.}\\
+\pagebreak
+
+John Romero himself described how they placed the "pipes".\\
+\par
+\fq{We used sound zones in Wolfenstein 3D as another way to alert enemies to your presence. In DOOM, we did the same thing but used sectors as the conduits of audio travel. This was a really important part of making the game scary, as sound could leak all over the place and alert demons. You might see lots of little sector pipes that connect sectors together just to alert monsters-sectors that you'd never see because we put them way up high in the corner of a room. So, we paid a lot of attention to the sound flooding.}{John Romero, p29 in Scarydarkfast}\\
+\par
+The audio pipe in E1M9 super ambush is so well hidden in the ceiling that it is very hard to notice it with the vanilla engine. However opening the map with an editor such as Slade release the stratagem.\\
+\par
+\cfullimage{sound_conduit.png}{The audio conduit to awaken monsters and make them go to the teleporter is visible in the upper right corder.}

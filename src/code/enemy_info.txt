@@ -1,24 +1,25 @@
 ; Imps
-
 $ MT_TROOP
 
 doomednum      3001
-spawnstate     S_TROO_STND
 spawnhealth    60
-seestate       S_TROO_RUN1
-seesound       sfx_bgsit1
-attacksound    0
-painstate      S_TROO_PAIN
+speed          8
 painchance     200
-painsound      sfx_popain
+radius         20*FRACUNIT
+height         56*FRACUNIT
+flags          MF_SOLID|MF_SHOOTABLE|MF_COUNTKILL
+
+spawnstate     S_TROO_STND
+seestate       S_TROO_RUN1
 meleestate     S_TROO_ATK1
 missilestate   S_TROO_ATK1
 deathstate     S_TROO_DIE1
 xdeathstate    S_TROO_XDIE1
 raisestate     S_TROO_RAISE1
-deathsound     sfx_bgdth1
-speed          8
-radius         20*FRACUNIT
-height         56*FRACUNIT
+painstate      S_TROO_PAIN
+
+attacksound    0
 activesound    sfx_bgact
-flags          MF_SOLID|MF_SHOOTABLE|MF_COUNTKILL
+deathsound     sfx_bgdth1
+seesound       sfx_bgsit1
+painsound      sfx_popain
