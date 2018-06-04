@@ -1,22 +1,23 @@
-\pagebreak
 \section{Performances}
-There is a convenient and portable way to assess performances of the engine. Thanks to its fixed tics architecture, a demo can be replayed with frame skipping disabled. This replay mode (called timedemo) will produce the exact same game session and a series of exact same 3D views on any machine.\\
+There is a convenient and portable way to assess performances. Thanks to its fixed tics architecture, a demo can be recorded and replayed with exactitude. With frame skipping disabled, a \cw{timedemo} (as it is called) will produce the exact same sequence of frames to render regardless of the machine architecture and power.\\
 \par
-The gold standard of benchmarks was created by Anton Ertl around 1994. Over the last twenty five years, he has gathered metrics for hundreds of configuration\footnote{Source: https://www.complang.tuwien.ac.at/misc/doombench.html}.  It is simple to run and only requires Doom shareware v1.9.\\
+The gold standard of \doom benchmarking was created by Anton Ertl around 1994. It simply consist in playing the default timedemo from the free Doom shareware v1.9.\\
 \par
 \fakedosoutput{timedemo.txt}
 \par
-These parameters run the prerecorded game session \#3 (probably recorded by John Romero). Because no frames are skipped, the session takes a variable time to finish. Upon completion two values are displayed.\\
+Over the last twenty five years, Anton has gathered metrics for hundreds of configuration\footnote{Source: https://www.complang.tuwien.ac.at/misc/doombench.html} on a game session \#3 recorded by John Romero. Because no frames are skipped, the session takes a variable time to finish. Upon completion two values are displayed.\\
 \par
 \fakedosoutput{timedemo_result.txt}
 \par
 
-\cw{gameticks} is the number of frames encountered. For \cw{demo3} it is always equal to 2134 since it comes from the record lump. The second value, \cw{realticks}, represents the walltime in ticks. It represent how fast the machine managed to replay the record.\\
+The first value, \cw{gameticks}, is the number of frames encountered. For \cw{demo3} it is always equal to 2134 since it comes from the record lump. The second value, \cw{realticks}, represents the walltime in ticks. It represent how fast the machine managed to replay the record.\\
 \par
  The average frame per second is obtained with the following formula: $$ fps = walltime/realticks * 35 $$ 
-In the example above\footnote{On a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $1065/2134*35 = 17$ fps.\\
+In the example above\footnote{On a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $1065/2134*35 = 17$ fps. \\
 \par
-Foone Turing was kind enough to volunteer his fleet of machine to assess performances upon release. Varying CPU and graphic cards gave fluctuating results.\\
+\fixme{Just make the formula bigger for padding. also fix division with a fraction}\\
+\par
+This mechanism allowed to run a series of benchmarks. Foone Turing was kind enough to volunteer his fleet of machine to assess performances with the real hardware of the time when the game was released. The results are visible in figure \ref{bnechmarsks} on page \pageref{bnechmarsks}. Varying CPU and graphic cards gave fluctuating results.\\
 \par
 
 \begin{figure}[H]
@@ -38,6 +39,7 @@ Foone Turing was kind enough to volunteer his fleet of machine to assess perform
    \toprule
  \end{tabularx}
 \caption{Benchmark with out-of-the-box Doom shareware}
+\label{bnechmarsks}
 \end{figure}
 \footnotetext{For reference, this configuration was able to run Wolfenstein 3D at 20 fps.}
 \par
@@ -57,12 +59,15 @@ Parameter \cw{-nodraw} skips rendering all together (but does blit).\\
 \par
 \fakedosoutput{timedemo_result_nodraw.txt}
 \par
-Without drawing, the game ran at close to 202fps.\\
+Without drawing, the game framerate improved from 17fps to 202fps.\\
 \par
 Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM which is a good way to assess the impact of the bus speed. Because of optimization described later this parameter was only available on non-DOS versions.\\
 \par
 \tcode{timedemo_result_noblit.txt}
-\par
+\fixme{Analyse above result}
+
+
+\subsection{Profiling With A Profiler}
 An excellent performance visualizer are flamegraphs. They are built by repeatedly interrupting a process, unwinding the stack starting from the Program Counter to generate a backtrace. The process is repeated hundreds of time over the course of the demo. When the demo is done, all backtrace are merged together.\\
 \par
  This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a  visual representation of were was the CPU during each part of a frame. On NeXTStep, thank to the multiprocess capability of the OS is easy to use \cw{gdb} from a second terminal and gather backtraces. The result looks as follow.\\

@@ -1,3 +1,5 @@
+doomcom_t doomcom;
+
 void I_InitNetwork (void)  { 
   int             i; 
  

@@ -193,7 +193,7 @@ Peeking inside \cw{D\_DoomLoop} reveals a standard loop where the machine runs a
 \ccode{doomloop.c}
 The game simulation happens in \cw{TryRunTics} and uses fixed time steps. The body of the function is summarized as follow:\\
 \par
-\ccode{TryRunTics.c}\\
+\ccode{TryRunTics.c}\label{TryRunTics.c}\\
 \par
 \doom's unit of time is the \cw{tic}. There are 35 tics in a second (which means a tic is 28ms) and 
 \cw{Get\_Time} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculate how many tics have elapsed and advance the simulation by that amount. Only fully elapsed tics are simulated. The value of 35 was not random, it is half the frequency of the VGA adapter. Once the game state has been updated, video and audio are generated.\\

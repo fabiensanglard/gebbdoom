@@ -42,7 +42,7 @@ Each ticks, the event queue is emptied. Events are sent one by one down a chain 
 \par
 Most responders consume events in their raw (\cw{event\_t}) but the 3D renderer normalize them into a \cw{ticcmd\_t} which contains not inputs but player actions. These "commands" as they are called have no timestamps since they are part of the game logic stream which runs at a fixed 35Hz frequency. \\
 \par
-\ccode{ticcmd_t.c}
+\ccode{ticcmd_t.c} \label{cmd_t_type}
 \par
 The "commands" abstraction unlock many features. \\
 \par

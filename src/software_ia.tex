@@ -81,7 +81,7 @@ When in \cw{S\_TROO\_XDIE1} state, according to \cw{multigen.txt}, the engine mu
 \par
 Taking a look at one of the frame for the Cyberdemon in figure \ref{cyber_sprite} give a good idea of the collosal work requiered from artists. Twelve monsters times eight states times average of five frames per animation would have required close to 480 drawings (for the monsters only). The power of the NextDimension made a tremendous different in this department.\\
 \par
-The cyberdemon however is an extreme case since it is not symetric. Imps sprite storage is optimized to take advantage of its symetry. If the engine needs \cw{TROOA6} but doesn't find it in the \cw{WAD}, it uses its opposite (\cw{TROOA4}) and draws it horizontally inverted. 
+The cyberdemon however is an extreme case since it is not symetric. Imps sprite storage is optimized to take advantage of its symetry. If the engine needs \cw{TROOA6} but doesn't find it in the \cw{WAD}, it uses its opposite (\cw{TROOA4}) and draws it horizontally inverted.\\ 
 \par
 \trivia{You may have noticed in the list of state, a non obvious one named \cw{RAISE}. It is used when the Arch-vile enemy resurrects a dead monsters. The animation plays the dying frame in reverse. Not that there are no reverse gibing so Arch-vile doesn't revive gibbed monsters.}
 
@@ -149,17 +149,44 @@ But as soon as the player picks it up, all light go off and the combined sound o
 \par
 To implement this effects, two set of lines were used. The first one (in blue) targets the door sector via tag YY where the monsters were hiding. Action XX opens it. The second one (in red) targets the current sector via tag XX and set the light level to "very dark".\\
 \par
-\cfullimage{e4m6.png}{E4M6 few AA lines and many triggers make you appreciate the collosal effort of map design.}
 
 
 
+\par
+\begin{wrapfigure}[22]{l}{0.5\textwidth}
+\centering
+\includegraphics[width=.5\textwidth]{drawings/E1M3_sides2.pdf}
+\end{wrapfigure}
+An other intersting effect in E1M3 is the rising stair which leads to the small room containing the exit to level 4. It is implemented by having a line with special code "BuildStairs" (\#8) targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} which looks up the target sector via the tag then uses a flood fill algorithm.\\
+\par Adjacent sectors are repeatidly looked up and a little bit of height is added each iteration.\\
+\par To avoid raising the whole level, the algorithm stops flowing when the next sector texture is different from the last elevated sector.\\
+\par
+Before and after screenshots can be seen on page \pageref{stairs}.
 
 
-
-\pagebreak
 \cfullimage{Doom-E1M3-Ingame2.png}{Finally, the blue key!}
 \par
 \cfullimage{Doom-E1M3-Ingame3.png}{It's a TRAP!}
+
+
+\fullimage{e1m3_after_stairs.png}\\
+
+Above, all steps of the stairs are at the same level. Below, a line triggered "BuildStairs". \label{stairs}
+
+\vspace{2mm}
+\fullimage{e1m3_before_stairs.png}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \pagebreak
 \section{Game tics Architecture}
@@ -167,6 +194,22 @@ With knownledge of how opponents and map elements work, we can pickup the code w
 \par
 \ccode{G_Ticker.c}
 \par
-Actors are organized as "Thinkers".\\
+Most of the meat in this part is in the gamePlay (\cw{P\_Ticker}) function.\\
 \par
 \ccode{P_Ticker.c}
+\par
+Players are update "immediately" based on the cmd\_t which we already studied on page \pageref{cmd_t_type}. \cw{P\_RespawnSpecials} is only here to spawn life, weapons, and ammo for deathmatch.\\
+\par \cw{P\_UpdateSpecials} takes care of animating special texture such as water, or living walls. It also takes care of switching the texture when a button is pushed.\\
+\par \cw{P\_RunThinkers} is how the map and monsters "think". Anything that must occur over more than one frame is placed in a thinker. Thinker are struct with a function pointer and some data for the function pointer parameters. Thinkers are stored in a double linked list. Each gameplay tic, it let's every thinker in the list "think". Thinker which are done thinking set their function pointer to -1 so they are dropped from the list.
+
+\ccode{thinker_t.c}\\
+\par
+The engine hacks a system of polymorphism with a primitive yet effectively fools the C compiler into implementing C++ vtable. Semantically, \cw{think\_t} are stored in the linked list. But since all thinkers start with a function pointer, the engine stores the function pointer and the data parameter payload with a single pointer. \\
+\par
+\ccode{floormove_t.c}\\
+\par
+\cw{EV\_BuildStairs} which creates a thinker to elevate floors, shows how to use the system.\\
+\par
+\ccode{EV_BuildStairs.c}\\
+\par
+For this thinker, what ends up being called during a game tic is \cw{floor->thinker(floor)}.
