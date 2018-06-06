@@ -80,8 +80,8 @@ Charting the 486 MIPs performances along with the previous generation make the p
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 
-The way it achieves higher performances is through a higher average throughput. According to its documentation the 386 was a smooth three stage pipelined processor. Under ideal conditions, figure \ref{386_doc_pipeline} shows how it should have in theory been able to execute one instruction per cycle. In practice the CPU behaved as shown in figure \ref{386_real_pipeline}.\\
-\par
+The way it achieves higher performances is through a higher average throughput. According to its documentation the 386 was a smooth three stage pipelined processor. Under ideal conditions, figure \ref{386_doc_pipeline} shows how it should have in theory been able to execute one instruction per cycle. In practice the CPU behaved as shown in figure \ref{386_real_pipeline}, twice slower than suggested.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/386_instruction_pipeline.pdf}
@@ -103,7 +103,8 @@ Even if the Prefetch Unit and the Execution Unit were properly fed, the Decode u
 \end{figure}
 
 \par
-To solve this problem, Intel simply decided to break the three stage pipeline into four (plus an other stage explained later). With all stages performing at 1 CPI (Cycle Per Instruction), the total throughput of the 486 was doubled (as long as the pipeline never starved).\\
+To solve this problem, Intel broke down the three stage pipeline into five (Prefetch, Decode1, Decode2, Execute, WriteBack). With all stages performing at 1 CPI\footnote{Cycle Per Instruction.}, the total throughput of the 486 was doubled (as long as the pipeline never starved).\\
+\par
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/actual_486_instruction_pipeline.pdf}

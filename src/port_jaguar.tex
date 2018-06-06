@@ -53,13 +53,12 @@ To unleash the beast meant to have all five processors work in parallel\footnote
 \par
 The Motorola 68000 is used as a manager. It deals with the outside world and manage resources for the other processors. It is the highest control level and has complete control over the system.\\
 \par
-The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per pixel CRY (Cyan-Red-Yellow) color model was uncanny to say the least. One byte is an (\cw{X,Y}) coordinate in a RGB cube flattened in a plane which gives a color. The other byte give the color brightness.\\
+The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per pixel CRY (Cyan-Red-Yellow) color model was uncanny to say the least. One byte is an (\cw{X,Y}) coordinate in a sRGB cube flattened in a square which gives a color. The other byte give the brightness for a total of 65536 colors.\\
 \par
-\scaledimage{0.8}{CRY.png}
+\fullimage{CRY.png}\\
 \par
-\pagebreak
-\par
-\scaledimage{0.8}{CRY.png}
+
+\fullimage{CRY_persp.png}
 \par
 The Graphic Processor is the powerhouse with a fast instruction throughput, a powerful ALU with a
 parallel multiplier, a barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also its local program instructions.\\
@@ -69,7 +68,7 @@ is capable of rotating bit-maps, line-drawing, character-painting, and a range o
 \par
 Jerry the DSP is the twin brother of the Graphic Processor. However its bigger local SRAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones. The versatility is such that the Jad-Link to connect two Jaguar together is plugged in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
 \par
-All RAM (even SRAM in the RISC CPUs) was addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while the DSP is king in order to avoid extremely unpleasant audio glitches.\\
+All RAM (even SRAM in the RISC CPUs) was addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while the DSP is king in order to avoid extremely unpleasant audio glitches.
 \par
 
 
@@ -101,7 +100,7 @@ For \doom, the duo had something up and running two weeks after they signed on t
 \par
 To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure \ref{doom_jaguar3.png} and compare it with the PC version (on page \pageref{mashed_potatoes1.png}). See how  the floor blue texture is gone and there is only one step instead of two.\\
 \par
-The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. Nine overlays were swapped in and out of the SRAM at runtime based on engine "phases".
+The 3D renderer had to be rewritten to work in small chunk of asm to run on the RISCs. Nine overlays were swapped in and out of the SRAM at runtime based on engine "phases".\\
 \par
 \cfullimage{doom_jaguar3.png}{}
 \par

@@ -7,22 +7,23 @@ The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~Bu
 \par
  Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom to what was available for Wolfenstein 3D, it carries a feeling of abounding power which is deceiving. \\
  \par
- Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing, write spreadsheet, accounting. Maybe sometimes display a static graph. The target was never to build something allowing real time, 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.} animations.\\ 
+ Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing, write spreadsheet, and accounting. Maybe occasionaly display a static graph but the intent was never to build something allowing real time, 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.} animations.\\ 
 \par 
-Looking back it is almost hard to believe that studios focused solely on producing titles for a machine seemingly less capable than consoles. The list of problems is substantial.
+Looking back it is almost hard to believe that studios focused solely on producing titles for a machine "obviously" less capable than consoles. The list of problems was substantial.
 \begin{itemize}
 \item A CPU unable to perform floating-point operations.
 \item An archaic graphic system unable no double buffer and distorting images.
 \item A sound system only capable of irritating "beeps" and a fragmented sound card ecosystem when the customer had elected to buy one.
-\item A pricetag where a top of line machine fetched close to \$6,000 adjusted to inflation. To compare with competitions, the SNES and the SEGA Genernis were both priced at US\$199 while the Neo-Geo which provided arcade-like experience was US\$649.99\footnote{Adjusted to inflation the figure would be \$10,476 for a PC, \$377.00 for a SNES/Nemesis, and \$1,134 for a Neo-Geo.}.
+\item A pricetag where a top of line machine fetched close to \$6,000. To compare with competitions, the SNES and the SEGA Genernis were both priced at US\$199 while the Neo-Geo which provided arcade-like experience was priced at US\$649.99\footnote{Adjusted to inflation the figure would be \$10,476 for a PC, \$377.00 for a SNES/Nemesis, and \$1,134 for a Neo-Geo.}.
 \end{itemize}
 \par
  A PC was unappealing at best and seemingly less likely to generate good games, especially compared to cheaper systems which had been built with 60Hz animation in mind and benefited from a sprite engine.\\
  \par
-  Obviously, given the title of the book in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of game but they could excel at certain types of 3D engines. Just keep in mine that on paper it was a challenge far from being trivial.\\
+  Obviously, given the title of the book in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of game but they could excel at certain types of 3D engines. Just keep in mine that on paper and in a world without internet and little documentation, it was a challenge far from being trivial.\\
 \par
 
-On the opposite page, figure ~\ref{ibm_ps1_top} is a reproduction of a 1994 ad for an IBM PS1 featuring an Intel 486 CPU. Notice the emphasis on office work and static screen office apps capability, the only way to justify the outrageous price of the machine (\$2,000\footnote{\$13,000 in 2017.}). Also worth mentioning, the "huge" standard 14" CRT which must have weighted close to 20 pounds!\\
+\trivia{On the opposite page, figure ~\ref{ibm_ps1_top} is a reproduction of a 1994 ad for an IBM PS1 featuring an Intel 486 CPU. Notice the emphasis on office work and static screen office apps capability, the only way to justify the outrageous price of the machine.}\\
+ % (\$2,000\footnote{\$13,000 in 2017.}). Also worth mentioning, the "huge" standard 14" CRT which must have weighted close to 20 pounds!\\
 \par
 \begin{figure}[H] \centering
 \fullimage{ibm_ps1_top}
@@ -64,6 +65,23 @@ If the black extension connectors show the traditional ISA bus ports, one 8 bit 
 The main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM installed (\circled{6}) would be 4MiB\footnote{\doom would not run on PC equipped with "only" 2 MiB}.
 
 
+
+% \begin{enumerate}
+% \item RAM prices had dropped significantly. The standard 2 MiB was not a whooping 4 MiB. 
+% \item Bandwidth hungry GUI and had lead motherboard manufacturers to come up with a faster bus called VLB.
+% \item The sound generator ecosystems was even more fragmented than before with more and more manufacturer producing sound cards.
+% \item Not visible on the drawing, the operating system shortcomings were being addressed by independent developers via something called "DOS eXtenders".
+% \item Unsurprisingly the impossible to program VGA was still the standard but manufacturers were now competing to produce the faster DACs and \fixme{"RAMDAC"}?.
+% \item CACHE
+% \end{enumerate}
+\pagebreak
+\trivia{Several of the most impressive game studio of the era speculated on the projected price drop. Big titles of 1994 all required a minimum of 4 MiB installed. Strike Commander, Ultima 8, and Commanche Maximum Overkill are prime examples.
+
+\begin{center}
+\scaledimage{0.31}{box_strike_commander.png} \scaledimage{0.31}{box_ultima8.png} \scaledimage{0.31}{box_comanche.png}
+\end{center}
+}
+Ironically this time period would end up coinciding with the great RAM shortage of 1994 which saw the price go back up. The legend attributes the surge to a resin factory burning in Taiwan. In all likelihood the fluctuation is due to the release of the new operating system by Microsoft, Windows 95 which recommended a machine with 8 MiB RAM.\\
 \begin{center}
 \begin{tikzpicture}
 
@@ -108,23 +126,6 @@ The main memory system had grown in capacity, speed and complexity. Thanks to a 
 \end{tikzpicture}
 \end{center}
 \footnotetext{Source: John C. McCallum survey.}
-% \begin{enumerate}
-% \item RAM prices had dropped significantly. The standard 2 MiB was not a whooping 4 MiB. 
-% \item Bandwidth hungry GUI and had lead motherboard manufacturers to come up with a faster bus called VLB.
-% \item The sound generator ecosystems was even more fragmented than before with more and more manufacturer producing sound cards.
-% \item Not visible on the drawing, the operating system shortcomings were being addressed by independent developers via something called "DOS eXtenders".
-% \item Unsurprisingly the impossible to program VGA was still the standard but manufacturers were now competing to produce the faster DACs and \fixme{"RAMDAC"}?.
-% \item CACHE
-% \end{enumerate}
-\par
-\trivia{Several of the most impressive game studio of the era speculated on the projected price drop. Big titles of 1994 all required a minimum of 4 MiB installed. Strike Commander, Ultima 8, and Commanche Maximum Overkill are prime examples.
-
-\begin{center}
-\scaledimage{0.31}{box_strike_commander.png} \scaledimage{0.31}{box_ultima8.png} \scaledimage{0.31}{box_comanche.png}
-\end{center}
-}
-Ironically this time period would end up coinciding with the great RAM shortage of 1994 which saw the price go back up. The legend attributes the surge to a resin factory burning in Taiwan. In all likelihood the fluctuation is due to the release of the new operating system by Microsoft, Windows 95 which recommended a machine with 8 MiB RAM.
-\break
 
 
 
