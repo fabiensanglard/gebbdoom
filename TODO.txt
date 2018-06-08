@@ -1,0 +1,79 @@
+Graphics 
+	Drawing walls
+	Drawing flats
+	Diminshed lighting
+	Drawing skies
+    Drawing masked
+	Drawing weapon
+	Palette effects
+Inputs
+Audio System
+*  Architecture
+   Propagation 
+I.A
+   Architecture 
+   Things State machine (monsters, door)
+   Monsters infighting
+   Animations
+   Collision detection (blockmap)
+   Reject (rejectmap) 
+   Map triggers
+Networking
+   Architecture   
+Performances
+
+
+========================================
+
+
+void R_Subsector (int num) {
+    int			count;
+	seg_t		*line;
+	subsector_t	*sub;
+
+    sub = &subsectors[num];
+    count = sub->numlines;
+	line = &segs[sub->firstline];
+
+    R_AddSprites (...);	
+
+	while (count--){
+		R_AddLine (line);
+		line++;
+	}
+}
+
+void R_AddLine (seg_t *line) {
+
+    angle1 = R_PointToAngle (line->v1->x, line->v1->y);
+	angle2 = R_PointToAngle (line->v2->x, line->v2->y);
+
+	angle1 = (angle1+ANG90)>>ANGLETOFINESHIFT;
+	angle2 = (angle2+ANG90)>>ANGLETOFINESHIFT;
+	x1 = viewangletox[angle1];
+	x2 = viewangletox[angle2];
+
+	clippass:
+		R_ClipPassWallSegment (x1, x2-1);	
+		return;
+			
+	clipsolid:
+		R_ClipSolidWallSegment (x1, x2-1);
+}
+
+
+void R_ClipSolidWallSegment (int first, int last) {
+	R_StoreWallRange (next->last + 1, last);
+}
+
+// Draw a fragment and update drawseg
+void R_StoreWallRange (int start, int stop) {
+	// Calculate scales
+	R_RenderSegLoop ();	
+}
+
+
+void R_RenderSegLoop (void) {
+	colfunc ();
+}
+

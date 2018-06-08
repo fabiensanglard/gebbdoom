@@ -79,9 +79,9 @@ In white, the core components. In grey the I/O system which require platform spe
 
 
 
-
+\trivia{A full DOS build took an average of 3m19s. Linking alone took 19 seconds. Even incremental build were time consuming (e.g: change \cw{r\_sky.c} = 27s).}\\
 \par
-\trivia{Notice the prefix one file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
+\trivia{Notice the prefixed file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
 
 The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the kernel and the platform specific code needs not to be touched anymore.\\
 \par

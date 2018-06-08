@@ -14,7 +14,7 @@
    viewBox="0 0 680 116.72461"
    id="svg133"
    sodipodi:docname="dos_flamegraph.svg"
-   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+   inkscape:version="0.91 r13725">
   <metadata
      id="metadata137">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -44,9 +44,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.90073814"
-     inkscape:cx="332.65548"
-     inkscape:cy="-6.4035859"
+     inkscape:zoom="3.6029526"
+     inkscape:cx="60.314184"
+     inkscape:cy="10.125537"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -545,32 +545,22 @@
        id="text57"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g67"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title61">D_DoomLoop (10,340 samples, 99.13%)</title>
-    <rect
-       x="15.9"
-       y="85"
-       width="674.09998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect63"
-       style="fill:#fca831" />
-    <text
-       text-anchor=""
-       x="18.93"
-       y="95.5"
-       font-size="12"
-       id="text65"
-       style="font-size:12px;font-family:Verdana;fill:#000000">D_DoomLoop</text>
-  </g>
+  <rect
+     style="fill:#fca831"
+     id="rect63"
+     ry="2"
+     rx="2"
+     height="15"
+     width="674.09998"
+     y="69.724609"
+     x="5.8999996" />
+  <text
+     style="font-size:12px;font-family:Verdana;fill:#000000"
+     id="text65"
+     font-size="12"
+     y="80.224609"
+     x="8.9300003"
+     text-anchor="">D_DoomLoop</text>
   <g
      class="func_g"
      onmouseover="s(this)"
@@ -675,32 +665,22 @@
        id="text97"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g107"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title101">main (10,431 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="101"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect103"
-       style="fill:#ee8723" />
-    <text
-       text-anchor=""
-       x="13"
-       y="111.5"
-       font-size="12"
-       id="text105"
-       style="font-size:12px;font-family:Verdana;fill:#000000">main</text>
-  </g>
+  <rect
+     style="fill:#ee8723"
+     id="rect103"
+     ry="2"
+     rx="2"
+     height="15"
+     width="680"
+     y="85.724609"
+     x="0" />
+  <text
+     style="font-size:12px;font-family:Verdana;fill:#000000"
+     id="text105"
+     font-size="12"
+     y="114.22461"
+     x="3"
+     text-anchor="">main</text>
   <g
      class="func_g"
      onmouseover="s(this)"
@@ -779,4 +759,11 @@
        id="text129"
        style="font-size:12px;font-family:Verdana;fill:#000000">G_Ticker</text>
   </g>
+  <text
+     style="font-size:12px;font-family:Verdana;fill:#000000"
+     id="text65-7"
+     font-size="12"
+     y="97.120773"
+     x="1.9145968"
+     text-anchor="">D_DoomMain</text>
 </svg>

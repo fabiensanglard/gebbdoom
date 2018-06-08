@@ -13,7 +13,7 @@ The video system implementation must provide four functions to the core. \cw{I\_
   \specialrule{1pt}{0pt}{0pt}
   \textbf{Method} & \textbf{DOS Implementation} \\
   \specialrule{1pt}{0pt}{0pt}
-\cw{I\_InitGraphics} & Set VGA in Mode-Y.\\
+\cw{I\_InitGraphics} & Set VGA in Mode-Y (320x200 256 colors stretched to 4:3).\\
 \cw{I\_UpdateNoBlit} & Send updated area of the screen to the VGA.\\
 \cw{I\_FinishUpdate} & Flip buffer (update CRTC start scan address).\\
 \cw{I\_WaitVBL} & Wait V-Sync (Used to wait before update palette).\\
