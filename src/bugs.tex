@@ -1,28 +1,59 @@
 \section{Bugs}
-Like every software, \doom shipped with bugs. They were rare occurences, the game was very stable but a few amusing issues could occasionaly occur.
+\doom is known for its stability thanks to a development process using seven compilers and systems. Nonethelss it shipped with a few bugs.
 
 
 
-\subsection{Slime trail}
-
-\fq{There is a roundoff error in the map partitionaer that can cause a few pixe-wide segment of a line to be drawn in the wrong order. This results in a narrow strip of a floor and ceiling texture being drawn past the line that should have stopped it. ksome of the artwork was drawn wide...}{John Carmack}
-
-\par
-
-\fq{BTW, there IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
-}{John Carmack}
-\par
-\fullimage{slime_trail.png}
 
 
-\subsection{Mysterious bug}
-Clue\footnote{Doom strategy guide}\\
-\fq{There are a few remaining bugs in the refresh code that are unlikely to get fixed. Sometimes you will see a one-pixel-wide column stretching from the top to the bottom of the screen. This is a result of drawing a line that has its two endpoints transformed to almost exactly the same polar angle. The fixed point arithmetic that calculates the scale for the column sometimes overflow, and the column goes to the maximum possible scale of 64 times normal height. Cuts on the floor or ceiling that are nearly vertical will also sometimes show an error.}{John Carmack}
-\par
-\subsection{sound pitch}
 
 
 
 \subsection{Flawed collision detection}
-technical explanation by Colin "cph" Phipps.\\
-\fullimage{Flawed_collision_detection.png}
+There is rare collision detection bug which an obvious (lack of) impact. It was explained in depth by Colin "cph" Phipps in his article ""Shooting Through Things".\\
+\par
+\fq{A monster is getting too close for confort. You shoot at it, and miss. If you are unlucky, the monster kills you. But you were so sure that you were pointing right into the monster, that so close as you were you couldn't have missed. Perhaps it was the chaingun playing up, shooting all the bullets off to one side. Perhaps the game was written by a bunch of losers who failed their high-school geometry. Or perhaps, in the heat of the moment, you really did miss; nobody's perfect.\\
+\par
+Well I have good news. You can blame your tools.}{Colin Phipps}\\
+\par
+Some enemies can be really big, almost ten times bigger than the player (16) in the case of the Spider Mastermind (128). As we saw on page XXX, \doom uses blockmaps to speed up intersection with walls and things. If a think is on the edge of block and the player is a bit unlucky a miss can be calculated when it should have been a hit.
+
+\fullimage{beasts_sizes.png}
+\vspace{-1cm}
+\fullimage{beasts_sizes2.png}
+
+
+\rawdrawing{collision_miss}
+\par
+It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon).\\
+\par
+ The line of the bullet and the radius of the monster clearly overlap. This should be a hit. But only blockmaps \cw{0}, \cw{1}, and \cw{2} will be checked resulting in test with walls \cw{D}, \cw{A}, and \cw{B}. The enemy is in block \cw{5} and since the bullet doesn't cross it, it will be ignored.\\
+ \par
+ This issue is not reserved to very large monsters. It can happen with any enemies depending on how close they are to the player and the blockmaps aligment.
+
+\subsection{Slime trail}
+A slime trail happens when \\
+\par
+
+\fq{BTW, there IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
+}{John Carmack}\\
+\par
+
+
+\fullimage{slime_trail.png}
+
+
+
+
+
+\fq{There is a roundoff error in the map partitionaer that can cause a few pixe-wide segment of a line to be drawn in the wrong order. This results in a narrow strip of a floor and ceiling texture being drawn past the line that should have stopped it. ksome of the artwork was drawn wide...}{John Carmack}\\
+\par
+
+
+
+
+% \subsection{Mysterious bug}
+% Clue\footnote{Doom strategy guide}\\
+% \fq{There are a few remaining bugs in the refresh code that are unlikely to get fixed. Sometimes you will see a one-pixel-wide column stretching from the top to the bottom of the screen. This is a result of drawing a line that has its two endpoints transformed to almost exactly the same polar angle. The fixed point arithmetic that calculates the scale for the column sometimes overflow, and the column goes to the maximum possible scale of 64 times normal height. Cuts on the floor or ceiling that are nearly vertical will also sometimes show an error.}{John Carmack}
+% \par
+
+

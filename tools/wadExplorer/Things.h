@@ -15,15 +15,14 @@
 #define THING_DEAF             0x0008
 #define THING_NO_SINGLE_PLAYER 0x0010
 
-enum Class {Artifact, Pickup, Weapon, Monster, Obstacle, Hang};
+enum Class {Artifact, Pickup, Weapon, Monster, Obstacle, Hang, PlayerSpawn};
 
 struct ThingDef {
     ThingDef(): sprite("") {
     }
 
-    ThingDef(uint8_t v, uint8_t r, std::string s, Class k) :  version(v), radius(r), sprite(s), klass(k) {}
-
-
+    ThingDef(uint8_t version, uint8_t radius, std::string sprite, Class k) :
+            version(version), radius(radius), sprite(sprite), klass(k) {}
     uint8_t version;
     uint8_t radius;
     std::string sprite;
@@ -31,6 +30,7 @@ struct ThingDef {
 };
 
 bool isMonster(size_t type);
+bool isPlayer(size_t type);
 extern std::unordered_map<int,ThingDef> thingsDefs;
 
 #endif //WADEXPLORER_THINGS_H

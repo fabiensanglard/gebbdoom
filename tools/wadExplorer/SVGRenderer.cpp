@@ -87,14 +87,14 @@ void SVGRenderer::render(MapReader::Maps maps) {
 }
 
 void SVGRenderer::renderMap(Map &map) {
-    renderNodes(map);
+//    renderNodes(map);
     renderLineDefs(map);
-    renderSegs(map);
-    renderSubSectors(map);
-    renderNodesAndSubSectors(map);
-    renderBlockmap(map);
-    renderBluePrint(map);
-    renderBspTree(map);
+//    renderSegs(map);
+//    renderSubSectors(map);
+//    renderNodesAndSubSectors(map);
+//    renderBlockmap(map);
+//    renderBluePrint(map);
+//    renderBspTree(map);
 }
 
 
@@ -218,15 +218,28 @@ void SVGRenderer::renderLineDefs(Map &map) {
 
     // Draw things now.
     for (Thing thing : map.getThings()) {
+        struct color {
+                int r;
+            int g;
+            int b;} color = {0,0,0};
         if (isMonster(thing.type)) {
+            color = {165, 28, 28};
+        }
+        if (isPlayer(thing.type)) {
+            color = {77, 193, 60};
+        }
+        uint16_t radius = 15;
+        if (thingsDefs.find(thing.type) != thingsDefs.end()) {
             ThingDef &def = thingsDefs.at(thing.type);
+            radius = def.radius;
+        }
             // Show level 1 only
 //            if ((thing.flags & THING_LEVEL1_2) != THING_LEVEL1_2)
 //                continue;
 
             // Show level 1-2-3
-            if ((thing.flags & THING_LEVEL3) != THING_LEVEL3)
-                continue;
+//            if ((thing.flags & THING_LEVEL3) != THING_LEVEL3)
+//                continue;
 //
             // Show all
 //            if ((thing.flags & THING_LEVEL4_5) != THING_LEVEL4_5)
@@ -236,44 +249,43 @@ void SVGRenderer::renderLineDefs(Map &map) {
 //            if (level  > 2)
 //                continue;
 
-            outputFile << "    <circle cx=\""
-                       << thing.position.x
-                       << "\" cy=\""
-                       << -thing.position.y
-                       << "\" r=\""
-                       << (uint16_t) def.radius
-                       << "\" stroke=\"rgb("
-                       << 255 * ((thing.flags & 0x4) >> 2)
-                       << ","
-                       << 255 * ((thing.flags & 0x2) >> 1)
-                       << ","
-                       << 255 * (thing.flags & 0x1)
-                       << ")"
+        outputFile << "    <circle cx=\""
+                   << thing.position.x
+                   << "\" cy=\""
+                   << -thing.position.y
+                   << "\" r=\""
+                   << radius
+                   << "\" stroke=\"rgb(0,0,0)\" stroke-width=\"5\" fill=\"rgb("
+                   << color.r
+                   << ","
+                   << color.g
+                   << ","
+                   << color.b
+                   << ")"
 
-                       << "\"/>"
-                       << std::endl;
+                   << "\"/>"
+                   << std::endl;
 
-            // Draw vision field
-            continue;
-            Point leftTriangle = {530, 230};
-            Point rightTriangle = {530, -230};
-            leftTriangle.rotate(thing.angle);
-            rightTriangle.rotate(thing.angle);
-            outputFile << "<polygon points=\""
-                       << thing.position.x
-                       << ","
-                       << -thing.position.y
-                       << " "
-                       << thing.position.x + leftTriangle.x
-                       << ","
-                       << -(thing.position.y + leftTriangle.y)
-                       << " "
-                       << thing.position.x + rightTriangle.x
-                       << ","
-                       << -(thing.position.y + rightTriangle.y)
-                       << "\" style=\"fill:blue;stroke:dark;stroke-width:1\" opacity=\"0.25\" />"
-                       << std::endl;
-        }
+        // Draw vision field
+        continue;
+        Point leftTriangle = {530, 230};
+        Point rightTriangle = {530, -230};
+        leftTriangle.rotate(thing.angle);
+        rightTriangle.rotate(thing.angle);
+        outputFile << "<polygon points=\""
+                   << thing.position.x
+                   << ","
+                   << -thing.position.y
+                   << " "
+                   << thing.position.x + leftTriangle.x
+                   << ","
+                   << -(thing.position.y + leftTriangle.y)
+                   << " "
+                   << thing.position.x + rightTriangle.x
+                   << ","
+                   << -(thing.position.y + rightTriangle.y)
+                   << "\" style=\"fill:blue;stroke:dark;stroke-width:1\" opacity=\"0.25\" />"
+                   << std::endl;
     }
     outputFile << epilogue << std::endl;
     outputFile.close();

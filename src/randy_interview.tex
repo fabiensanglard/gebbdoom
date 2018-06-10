@@ -1,0 +1,177 @@
+\qaq{Can you give a little bit of background about yourself, how old you were at the time, what country you are from and what your had programmed to this point?}
+\qaa{ DOOM/FX was published in 1995 and I was 25 y/o.  I'm Canadian, born and raised in Toronto, Ontario.  My first program was published when I was 13. Here is a list of what I have worked on:
+	\begin{itemize}
+      \item Bubbles A Centipede-style game for the Commodore 64.
+      \item The 64 Emulator An Amiga program that emulated the Commodore 64.
+      \item Dragon's Lair Another Amiga program that was the first full-screen full-colour animated game on any home computer -- Dragon's Lair was also the first game which streamed data in real-time from six floppy discs during gameplay!
+      \item DOOM A version of the popular "2 1/2 D" FPS for Super Nintendo running on an original game engine designed for the SuperFX RISC processor (aka "GSU2A") designed by Argonaut Software in the UK.
+     \end{itemize}
+     fsd
+}
+ 
+
+% DOOM for SNES was one of the very few titles which worked with most of the SNES hardware accessories including the mouse and light gun.
+
+ 
+
+% DOOM also supported the XBAND hardware modem and two players could complete head-to-head in one of the truly rare online games for SNES.
+
+ 
+
+% I built a custom development system (Assembler, Linker, Debugger, etc.) which used a modified (ie. hacked apart) StarFox game cartridge to provide the CPU and communication to the Amiga-based toolchain used a serial-based interface which plugged into both joystick ports on the SNES.
+
+ 
+
+% Support for Nintendo's official hardware development system for the GSU2A was added later in the development because no games had been released at that point which could be "modified" for use (StarFox used the original GSU which ran at half the clock rate of the GSU2A and had less memory among other hardware changes and enhancements.)
+
+ 
+
+% http://doom.wikia.com/wiki/Super_NES
+
+ 
+
+% http://itrunsdoom.tumblr.com/post/65279999602/the-snes-yeah-it-runs-doom-this-port-was
+
+ 
+
+% https://www.forbes.com/forbes/2000/0221/6504146a.html
+
+ 
+
+% "RANDY LINDEN LOVES A good challenge. In 1995 he developed the Super Nintendo version of Doom, granddaddy of the blood-and-guts videogame genre, when naysayers said the Nintendo lacked the muscle to run it."
+
+ 
+
+% bleem! / bleem! for Dreamcast
+
+ 
+
+% bleem! was a PC-based emulator for Playstation games – the program was entirely in x86.
+
+ 
+
+% bleem! for Dreamcast was a Playstation emulator written entirely in SH4 for the Sega Dreamcast.
+
+ 
+
+% I reverse-engineered Playstation software and hardware, wrote a run-time optimizing recompiler for the game logic and added PC enhancements like higher resolution and 3D graphics card support.
+
+% I was awarded four patents as a sole inventor for the technologies and techniques I developed for bleem! and bleem! for Dreamcast.
+
+ 
+
+% https://en.wikipedia.org/wiki/Bleem!
+
+ 
+
+% http://www.escapistmagazine.com/articles/view/video-games/issues/issue_117/2295-Best-Little-Emulator-Ever-Made
+
+ 
+
+% https://planetdc.segaretro.org/features/previews/bleem/index.html
+
+ 
+
+% https://www.docketalarm.com/cases/California_Northern_District_Court/3--99-cv-01590/Sony_Computer_Enter_v._Bleem_LLC_et_al/
+
+
+
+
+% Cyboid
+
+ 
+
+%                 https://www.randrdigital.com/
+
+ 
+
+% Cyboid is a high-speed 3D FPS (first-person shooter) which features single- and two-player split-screen gaming and eight-player online multiplayer across a variety of play modes – think “Quake” and that’s pretty much it.
+
+
+% The game features VR support, In-App purchasing, Achievements and Leaderboards, Advertising for multiple mediators and Multiplayer Internet gaming for up to eight players online -- all of which runs on multiple platforms from Google and Amazon.
+
+% The game is written in ARM assembly, native C/C++ and Java and the entire package (code, data, graphics, sound and music) is eight megabytes (… smaller than a single graphics texture in games/apps these days!)
+
+% The custom engines have all been highly optimized to support the widest range of devices possible, including lower-powered hardware (such as the Amazon Fire TV Stick) or older devices running Android API 17 "Jellybean"
+
+% Cyboid was published on the Amazon AppStore on October 20, 2016 and on Google Play on March 25, 2017.
+
+% There's a bunch of screenshots and videos online which showcase the game in action, but if you're a fan of 3D FPS's, or curious to see what's possible in a program that's only 8 Megs (or you just want something for free!), contact me for a "Google Play Promotional Code"
+
+
+
+
+\qaq{It seems the GSU-2 was not able to render fullscreen. I have read several theories online. Some mention a hardware limitation limiting the processor to 192 lines. Some mention bandwidth issues related to DMA (to read from the GSU RAM). Do you have more insight about this?}
+\qaa{As you know, the Super NES (“SNES”) was a character-based graphics architecture which used a “font” that defined each character’s image and “map” which specified what character to display in each position on the screen.\\
+\par
+ In effect, the the “Super/FX” (aka GSU “Graphics Support Unit”) enabled bitmap emulation on the SNES using a combination of fast, custom hardware and a carefully designed instruction set that was optimized for graphics processing.\\
+\par
+ The GSU was a truly incredible RISC custom chip designed by Jez San and Argonaut Software – It is one of my favourite hardware architectures of all time for many reasons, in particular, the elegance and simplicity of the opcodes were both powerful and efficient and the entire design is very similar to the architecture of the ARM processor (which is one of my other favourite hardware systems!).\\
+\par
+ BTW, I agree 100000\% with Jez’s comments about the GSU – absolutely true!!!\\
+\par
+ The original GSU, used in StarFox, ran at 10.74 Mhz, the GSU/2A used in DOOM/FX ran at 21.48Mhz.\\
+\par
+ All standard ALU operations were supported (add, subtract, eor, etc.), plus a variety of fast multiplication operations, multiple memory load/store operations (based on whether you were accessing ROM or RAM), a “LOOP” command and the “PLOT” command.  Code could run from ROM, RAM or an on-board 512 byte cache (which DOOM/FX used extensively!)\\
+\par
+ What made the GSU really special was the large register set (16 general purpose registers compared to the 65816) plus the opcode prefixes “FROM/TO/WITH” which allowed you to specify a source register (“FROM”) and destination register (“TO”) or operate on the same register using “WITH” – This type of operation is very standard these days, particularly on the ARM architecture, but back then it was both unique and powerful!\\
+\par
+ Bandwidth was never an issue for me – here are two examples:
+\begin{enumerate}
+
+ 
+
+\item       The ‘PLOT” command writes to the emulated bitmap using “X” and “Y” coordinates and a “COLOUR” and can update single pixels at a time.  I wrote code which timed how fast the plot command executed, and discovered that since the underlying memory is still effectively a character-based array, each time you “plotted” to a new character “line” (8-pixels wide), the hardware fetched that character’s memory (basically eight bytes that form the 256 colour “plane”) into an internal cache so that subsequent plots to the same character “line” executed much faster.
+
+
+I used this knowledge in DOOM/FX by “pre-writing” multiple pixels the first time a “new line” was written – in effect, instead of plotting a single pixel at a time, I wrote multiple pixels using the same colour so the hardware quickly updated the internal “character line” cache and then overwrote the same pixels with the correct individual colours at high speed (typically 1 clock per pixel!)
+
+ 
+
+\item       The GSU ran SO much faster than the SNES 65816, the vast majority of the game (close to 95\%) is all GSU code – the 65816 is basically halted waiting for various interrupts to update memory, swap screens, read the joysticks, etc. – but otherwise the 65816 is pretty much idle!
+\end{enumerate}
+ 
+
+The GSU had four different rendering heights (128, 160 and 192 pixels) plus an “OBJ” mode for sprites as well as three options for pixel “depth” (4, 16 or 256 colours).\\
+\par
+ DOOM/FX used the 192 pixel / 256 colour mode.\\
+\par
+ Here’s something most people don’t know: DOOM/FX was the second-most expensive cartridge to manufacture because it included the GSU/2A, had the largest ROM (2 Megabytes) and RAM configuration available and a custom red plastic cartridge … the only option missing was the battery backup!}
+
+\qaq{I speculated that you used the unofficial doom bible to extract all the asserts, am I correct ?}
+\qaa{I used a variety of online resources to reverse-engineer the DOOM data formats – without the tremendous amount of work from all those other people, DOOM/FX wouldn’t have been possible in the amount of time!}
+
+\qaq{Can you describe the Reality engine in its big lines. I assume you used the BSP but did you also create the equivalent of visplanes ?}
+\qaa{The Reality Engine is basically a highly-custom 2 ½ D game engine that’s almost all written in GSU code. All the code is designed to run in small blocks so they fit into the GSU’s internal cache which runs at high-speed. The architecture is similar to DOOM in that it uses a 2D BSP, sectors, segments, etc. – there are a number of optimizations that minimize the processing required to figure out what to draw, etc.}
+
+\qaq{Did you get any help from id Software at all?}
+\qaa{I demo’d the game to Sculptured Software when I had a fully operational prototype running – graphics, texturing, movement, enemies, etc. – it was obviously “DOOM” to anyone looking at what I had running on the hardware.\\
+\par
+Id software was shown the game a few weeks later and even though it was an early version, there wasn’t much left for them to help with since it was much further along than a typical prototype or “proof of concept.”\\
+\par
+Of course, there was still a lot of work to do before the game could be published … for example: sound, music, the rest of the levels, testing, etc. – and it was with the help of multiple people at Sculptured Software that the game was finally done.}
+
+\qaq{How long did it take you to build the toolchain, then how long to code the game ? }
+\qaa{IIRC, the game was developed in roughly eight months, give or take. There were multiple toolchains used to create the game, graphics, sound and data...\\
+\par
+The code was developed using a custom development system I wrote that included an assembler, linker, source-level debugger, etc. – I had written multiple projects with the development system (NES, SNES among others) and it was built over a number of years.  Adding support for the SuperFX only took a couple weeks, though. I also wrote a number of tools and utilities to extract and convert the original assets from the PC game into the optimized formats for the Reality Engine. Sound and Music used a toolchain from Sculptured Software so all I had to do was convert the extracted assets into the appropriate formats for processing.}
+
+\qaq{How did you get in touch with the publisher? Did you try several publishers before Sculptured Software accepted it?}
+\qaa{Sculptured Software was the only publisher I considered – I worked at Sculptured for a few years and knew many people there – all of whom were awesome!}
+
+\qaq{What is difficult to comply with Nintendo "no violence, no blood" policy at the time?}
+\qaa{ Nintendo was incredibly easy to work with – they had very few requirements, minimal changes and it was an easy submission process in general.}
+
+\qaq{Anything you want to mention, lookink back at this game/part of your life (Some people lament that programming is more complex nowadays but i feel it was harder back then, just to even get the programming manuals).}
+\qaa{  IMO, programming these days is very different than the “old days...\\
+\par
+ It was so much easier to write something for a single piece of hardware like the SNES – you could spend time focusing on the game and improving performance, etc.\\
+\par
+The same was true of the Commodore 64, Amiga and Sega Dreamcast – each of which had unique technical aspects and advances which provided opportunities to make something stand out in ways that is much harder to do these days…\\
+\par
+In comparison, writing an Android app is a huge amount of work for many reasons, many of which are out of the developers’ control...\\
+\par
+ There’s a lot of hardware out there (with many differences in what is/isn’t supported as far as graphics, sound, input, etc.), there are multiple versions of the OS (each of which have their own “quirks”, limitations, differences and changes) and although it’s truly wonderful that Google provides comprehensive components like Firebase and Google Play, the frequent updates, changes and differences require a huge amount of time and overhead just to keep your app “current”\\
+These days it’s fairly painless and even easy to create a simple “app” that works on a bunch of Android devices … but writing something which takes advantage of the unique aspects of as many different devices as possible takes a lot of time, resources and effort -- and I think that’s why there are so many similar games, apps and titles out there – sure, there’s uniqueness in many of them, but far less than there used to be – we don’t see things like “Lode Runner”, “Archon” or “Sword of Sodan” anymore.\\
+\par
+A friend recently recommended a FPS that was over 1Gig to download! … and then the game required a constant internet connection for updates, resources and even to play the game… we’ve sure come a long way from Dragon’s Lair on the Amiga which was an 8K program and 5 Megs of data.}

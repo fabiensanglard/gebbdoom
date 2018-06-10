@@ -14,17 +14,27 @@ std::unordered_map<int, ThingDef> thingsDefs = {
     {72, {2, 16, "KEEN", Class::Monster}}, // Commander Keen
     {16, {2, 40, "CYBR", Class::Monster}}, // Cyberdemon
     {3002, {2, 30, "SARG", Class::Monster}}, // Demon
-    {3004, {2, 20, "POSS", Class::Monster}}, // Former Human Trooper
+    {3004, {2, 20, "POSS", Class::Monster}}, // Former Human Trooper (MT_POSSESSED)
     {9, {2, 20, "SPOS", Class::Monster}}, // Sergeant
     {69, {2, 24, "BOS2", Class::Monster}}, // Hell Knight
     {3001, {2, 20, "TROO", Class::Monster}}, // Imp
     {3006, {2, 16, "SKUL", Class::Monster}}, // Lost Soul
     {67, {2, 48, "FATT", Class::Monster}}, // Mancubus
-    {71, {2, 31, "PAIN", Class::Monster}}, // ain Elemental
+    {71, {2, 31, "PAIN", Class::Monster}}, // Pain Elemental
     {66, {2, 20, "SKEL", Class::Monster}}, // Revenant
     {58, {2, 30, "SARG", Class::Monster}}, // Spectre
     {7, {2, 128, "SPID", Class::Monster}}, // Spider Mastermind
-    {84, {2, 20, "SSWV", Class::Monster}}  // Wolfenstein SS
+    {84, {2, 20, "SSWV", Class::Monster}},  // Wolfenstein SS
+
+    // Human spawn
+    {1 , {2, 16, "PLAY", Class::PlayerSpawn }},
+    {2 , {2, 16, "PLAY", Class::PlayerSpawn }},
+    {3 , {2, 16, "PLAY", Class::PlayerSpawn }},
+    {4 , {2, 16, "PLAY", Class::PlayerSpawn }},
+    {11, {2, 16, "PLAY", Class::PlayerSpawn }},
+
+    // Health
+
 };
 
 bool isMonster(size_t type) {
@@ -32,4 +42,11 @@ bool isMonster(size_t type) {
         return false;
     }
     return thingsDefs[type].klass == Class::Monster;
+}
+
+bool isPlayer(size_t type) {
+    if (thingsDefs.find(type) == thingsDefs.end()) {
+        return false;
+    }
+    return thingsDefs[type].klass == Class::PlayerSpawn;
 }
