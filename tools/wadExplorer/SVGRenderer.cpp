@@ -87,14 +87,14 @@ void SVGRenderer::render(MapReader::Maps maps) {
 }
 
 void SVGRenderer::renderMap(Map &map) {
-//    renderNodes(map);
+    renderNodes(map);
     renderLineDefs(map);
-//    renderSegs(map);
-//    renderSubSectors(map);
-//    renderNodesAndSubSectors(map);
-//    renderBlockmap(map);
-//    renderBluePrint(map);
-//    renderBspTree(map);
+    renderSegs(map);
+    renderSubSectors(map);
+    renderNodesAndSubSectors(map);
+    renderBlockmap(map);
+    renderBluePrint(map);
+    renderBspTree(map);
 }
 
 
@@ -493,8 +493,8 @@ void SVGRenderer::renderBspTree(Map &map) {
     generateSVGHeader(outputFile, map);
 
     for(Splitter splitter: map.splitters()) {
-        if (splitter.depth > 1)
-            continue;
+//        if (splitter.depth > 1)
+//            continue;
 
 
 //        int r, g, b;

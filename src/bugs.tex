@@ -24,36 +24,69 @@ Some enemies can be really big, almost ten times bigger than the player (16) in 
 
 \rawdrawing{collision_miss}
 \par
-It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon).\\
+It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon). The blue grid shows the blockmap alignment.\\
 \par
  The line of the bullet and the radius of the monster clearly overlap. This should be a hit. But only blockmaps \cw{0}, \cw{1}, and \cw{2} will be checked resulting in test with walls \cw{D}, \cw{A}, and \cw{B}. The enemy is in block \cw{5} and since the bullet doesn't cross it, it will be ignored.\\
  \par
- This issue is not reserved to very large monsters. It can happen with any enemies depending on how close they are to the player and the blockmaps aligment.
+ This issue is not reserved to very large monsters. It can happen with any enemies depending on how close they are to the player and the blockmaps alignment.
+
+
+
+
+
+
 
 \subsection{Slime trail}
-A slime trail happens when \\
+A slime trail happens when there is an horizontal screen space gap between two walls. Visplanes "leaks" between the space, resulting in graphic glitches. This was a known issue during development that due to deadline and rarity of the occurrence was never fixed. John Carmack mentioned it when \cw{doombsp} source code was released.\\
 \par
-
-\fq{BTW, there IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
+\fq{There IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
 }{John Carmack}\\
 \par
 
 
 \fullimage{slime_trail.png}
 
+The issue can actually be far wider than four pixels if one knows where to look.\\
+\par
+\fullimage{big_slime_trail.png}
+\par
+This particular instance of slime trail has to do with the way maps were preprocessed via \cw{doombsp}. As it was explained on page \pageref{Binary Space Partitioning: Theory}, the technique looked like "sunshine and rainbows" but when applied to a system with finite precision, subtle issues arose.\\
+\par
+ Once again, let's take an example. The two previous screenshot where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first sight, there is nothing unusual here but when taking a look at how it was sliced during binary partition, an interesting special case appears.\\
+\par
+Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C, D, E and F however. It is not really clear whar happened. \\
+\par
+If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between integer coordinates. Since map vertices coordinates are stored as integers, a split is impossible. The error is small so \cw{doombsp} treats the vertex like if it was exactly on the splitting line.
 
-
-
-
-\fq{There is a roundoff error in the map partitionaer that can cause a few pixe-wide segment of a line to be drawn in the wrong order. This results in a narrow strip of a floor and ceiling texture being drawn past the line that should have stopped it. ksome of the artwork was drawn wide...}{John Carmack}\\
+\begin{minipage}{0.47\textwidth}
+\rawscaleddrawing{1}{E1M1_slimetrail}
+\end{minipage}
+\hspace{4mm}
+\begin{minipage}{0.47\textwidth}
+\rawscaleddrawing{1}{E1M1_slimetrail_split}
+\end{minipage} 
+\par
+\vspace{1mm}
+\rawdrawing{E1M1_slimetrail_zoom}
 \par
 
 
 
+\fullimage{leak_opposite.png}
+\par
+\begin{wrapfigure}[23]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=.45\textwidth]{drawings/E1M1_slimetrail_split.pdf}
+\end{wrapfigure}
+Let's position the player along the same split line we just studied but facing the opposite direction (the scene is simpler with less walls. The player still had segment \cw{E} and \cw{F} (which was not splited even though mathematically it should have).\\
+\par
+The frame starts with a blank canvas. Segment \cw{E} is rendered first into the green section \circled{2}. Since it is a lower texture, the screen space below is inferred to be a flooring pink visplane \circled{2}. Now what should have been rendered is \cw{F1}, the left part of \cw{F} which was on the left of the split. Since the split never happened, the renderer carries on (front to back) and renders \cw{G1}, the left part of \cw{G}.\\
+\par
+At this point in the life of this frame, things start to get weird and the bug happens.
+ 
 
-% \subsection{Mysterious bug}
-% Clue\footnote{Doom strategy guide}\\
-% \fq{There are a few remaining bugs in the refresh code that are unlikely to get fixed. Sometimes you will see a one-pixel-wide column stretching from the top to the bottom of the screen. This is a result of drawing a line that has its two endpoints transformed to almost exactly the same polar angle. The fixed point arithmetic that calculates the scale for the column sometimes overflow, and the column goes to the maximum possible scale of 64 times normal height. Cuts on the floor or ceiling that are nearly vertical will also sometimes show an error.}{John Carmack}
-% \par
-
-
+\fullimage{leak_opposite_explained.png}\\
+\par
+Segment \cw{G1} is renderer. Its boundaries are mathematically accurate since it was an actual split so it spread juuuuust a little bit more to the right than \cw{E} \circled{3}. Three pixels more to the right to be accurate. Since \cw{G1} had a lower texture, everything in screenspace below \cw{G1} is a yellow visplane \circled{4}.\\
+ \par
+ After that, line \cw{F} is rendered but since the visplane already squeezed itself next to \cw{E}, it is clipped.
