@@ -685,7 +685,16 @@ You may have notice in \cw{R\_DrawMasked} that the player hand is drawn only if 
 \par
 It is likely this feature was inspired to John Carmack when he visited Alaska Airline training center where he was able to see a multi-million dollar wide screen flight simulator\footnote{Source: "http://leeland.stores.yahoo.net/earlydoomstuff.html"}. The visual quality was not satisfactory in the end and part of the code to enable it was promptly removed...but some part of the feature survived.\\
 \par
-\trivia{To speed up psprite rendition, all player sprites are stored and drawn as columns in order to please the Intel 486 cachelines.}\\
+\trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}\\
 
-\trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}
-\pagebreak
+\subsection{Sprite format}
+To speed up psprite rendition, all player sprites are stored and drawn as columns in order to please the Intel 486 cachelines.\\
+\fullimage{sprite_format.png}\\
+\par
+
+\subsection{Sprite aspect ratio}
+Keep in mind how the framebuffer was distored when transfered from the VGA to the CRT screen\footnote{See page \pageref{vga_ratio}}. It was not a striking difference for the walls and flats making the environement. For sprites however, the 4:3 aspect ratio makes pixels 33\% taller than they were wide, making sprites visibly stretched vertically.\\
+\par
+This distortion had not been an issue when working on a title like Wolfenstein 3D where everything was drawn with Deluxe Paint (which used mode 13h and also distored the framebuffer) but it was something to factor in when id switched to using scanned image from the NextDimension.\\
+\par
+\fullimage{sprites_ratio.png}

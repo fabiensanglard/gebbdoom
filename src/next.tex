@@ -48,7 +48,7 @@ The monitor was a piece of art itself. The 17" MegaDisplay allowed a high\footno
 \par
 One of the many innovation of the NextComputer was its reliance on the 256 MiB Magneto Optical Drive, an hybrid between HDD and floppy disk aiming at filling both usecases. According to Steve Jobs, it was supposed to allow users to "take their whole world in their backpacks".\\
 \par
-Released in 1987, the 32-bit 68030 was the latest in Motorola's 68000 series. A choice likely influenced by the experience NeXT hardware engineers had built while working on Apple's Macintosh and Lisa (both were powered by a 68000). Running at 25Mhz, it was able to generate close to 5 Mips\footnote{Of course, Motorola documentation claimed almost double that with 12 Mips!}. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU on the motherboard.
+Released in 1987, the 32-bit 68030 was the latest in Motorola's 68000 series. A choice likely influenced by the experience NeXT hardware engineers had built while working on Apple's Macintosh and Lisa (both were powered by a 68000). Running at 25Mhz, it was able to generate close to 5 Mips. The chip did not feature a built-in FPU so a Motorola 68882 was placed next to the CPU on the motherboard. %\footnote{Of course, Motorola documentation claimed almost double that with 12 Mips!}
 
 
 
@@ -57,6 +57,7 @@ Released in 1987, the 32-bit 68030 was the latest in Motorola's 68000 series. A 
 \cscaledimage{1}{68030_layout.png}{Motorola 68030 diagram}
 \end{figure}
 \par
+\vspace{-3mm}
 Above, the 273,000 transistors of the 68030 made of \circled{1} Memory Management Unit, \circled{2} $\mu$ROM, \circled{3} nROM, \circled{4} Control Section, \circled{5} Inst Pipe, \circled{6} Program Counter Execution Unit, \circled{7} Address Execution Unit, \circled{8} Data Execution Unit, \circled{9} 256 bytes i-cache, \circled{A} 256 bytes d-cache, \circled{B} Clock Generator.\\         
 \par
 It is unclear how much of a performance boost the two caches provided. Their small size of 256 bytes each would have incurred a significant cache miss (Intel had discarded on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Six-teen generate purpose registers were available which is pretty common for a RISC architecture where load and store have to be done manually\footnote{Intel's CISC based 486 had eight.}.
@@ -403,7 +404,7 @@ As elegant and powerful as the black hardware was, its high price tag made them 
 \par
 Despite the steady improvements, NeXT still lost \$40 millions that year. With only 50,000 NeXT machines sold over the course of seven years\footnote{In 1993 Apple sold 50,000 units every six days.} (including thousands to the then secret National US Reconnaissance Office), Jobs decided that NeXT has hardware manufacturer could not carry on. Struggling to close deals and hemorrhaging cash it fired 300 of its 500 employee on a Black Tuesday of February 1993 to become a software only company.\\
 \par
- The purpose of NeXTSTEP was changed. From operating system in charge of making the black hardware sing, it was to become a white hardware enabled and the sole money maker. It was re-factored to be portable and capable to run on Intel, SPARC, and MIPS CPUs. NeXTSTEP was sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN to build a lightweight version of NeXTStep called OpenSTEP.\\
+ The purpose of NeXTSTEP was changed. From operating system in charge of making the black hardware sing, it was to become a white hardware enabler and the sole money maker. It was re-factored to be portable and capable to run on Intel, SPARC, and MIPS CPUs. Sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN on a light version of NeXTStep called OpenSTEP.\\
 \par
 Even in its darkest hours, NeXT curiously never capitalized on id Software's love\footnote{comp.sys.next.advocacy: "DOOM: NeXTstep's Most Successful App".}.. Reportedly due to Steve Jobs disdain for video games, they even turned down and opportunity which could have helped them tremendously.\\
 \par
@@ -416,7 +417,7 @@ Even in its darkest hours, NeXT curiously never capitalized on id Software's lov
 \subsection{Rebirth}
 In an incredible turn of events, Apple Computer's failed attempt at an operating system called Copland placed the company in a precarious situation with nothing to replace its outdated System 7. After briefly considering BeOS, Apple elected to buy NeXT in 1996 for \$429 million in cash. Steve Jobs returned to the company he had co-founded twenty years earlier. After the sale, Steve Jobs first began working as an advisor but was later appointed acting-CEO, and then finally CEO of the company.\\
 \par
-NeXTSTEP was used as foundation for Apple's Rhapsody project which became Darwin (a.k.a MacOS X). Even if not for the kernel, it is likely some of the code that once ran on NeXTStep and contributed to \doom now runs on the many millions apple and iOS computer across the world.\\
+NeXTSTEP was used as foundation for Apple's Rhapsody project which became Darwin (a.k.a MacOS X). Even if not for the kernel, it is likely some of the code that once ran on NeXTSTEP and contributed to \doom now runs on the many millions apple and iOS computer across the world.\\
 
 
 

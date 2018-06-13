@@ -53,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Things.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Things.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Things.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
@@ -98,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SVGRenderer.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SVGRenderer.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SVGRenderer.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
@@ -432,11 +432,12 @@
       <workItem from="1528568126689" duration="5227000" />
       <workItem from="1528654916601" duration="11000" />
       <workItem from="1528658322549" duration="100000" />
+      <workItem from="1528870333028" duration="324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157344000" />
+    <option name="totallyTimeSpent" value="157668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="22" y="73" width="1379" height="877" extended-state="0" />
@@ -462,23 +463,23 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.47820672" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="CMake" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15067407" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2735257" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32873276" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3688833" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.23212045" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32873276" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.23212045" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="CMake" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -814,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Things.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SVGRenderer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -828,6 +822,13 @@
           <folding>
             <element signature="e#52#70#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Things.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="53" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="54" />
         </state>
       </provider>
     </entry>
