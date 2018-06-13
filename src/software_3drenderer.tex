@@ -669,7 +669,7 @@ As expected, the list of visible sprites is sorted based on their distance to th
 \par
 Next, all sprites are rendered one by one in a back to front fashion. The method taking care of this (\cw{R\_DrawSprite}) scans linearly the array of \cw{drawseg} to find what wall fragment was drawn in front of the sprite and clips it accordingly. Since the search is based on the scale of each \cw{drawseg\_t} and the screenspace \cw{X} boundaries it is a fast operation.\\
 \par
-The last step is to render the masked segments which were skipped during BPS traversal. This is done in method \cw{R\_RenderMaskedSegRange}. Notice that as explained (render all sprites then render all masked segments), there is no way the grid in figure  \ref{masked.png} could be interleaved with the sprites. To address this, there is a little "hack" in (\cw{R\_DrawSprite}) method during the linear scan for occluding \cw{drawseg\_t}. It detect which segment was a "masked" and skipped, and render them.\\
+The last step is to render the masked segments which were skipped during BSP traversal. This is done in method \cw{R\_RenderMaskedSegRange}. Notice that as explained (render all sprites then render all masked segments), there is no way the grid in figure  \ref{masked.png} could be interleaved with the sprites. To address this, there is a little "hack" in (\cw{R\_DrawSprite}) method during the linear scan for occluding \cw{drawseg\_t}. It detect which segment was a "masked" and skipped, and render them.\\
 \par
 \trivia{To speed up sprite rendition, sprites textures are stored and drawn as columns in order to please the Intel 486 cachelines.}\\
 \par
@@ -685,16 +685,26 @@ You may have notice in \cw{R\_DrawMasked} that the player hand is drawn only if 
 \par
 It is likely this feature was inspired to John Carmack when he visited Alaska Airline training center where he was able to see a multi-million dollar wide screen flight simulator\footnote{Source: "http://leeland.stores.yahoo.net/earlydoomstuff.html"}. The visual quality was not satisfactory in the end and part of the code to enable it was promptly removed...but some part of the feature survived.\\
 \par
-\trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}\\
+% \trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}\\
 
-\subsection{Sprite format}
-To speed up psprite rendition, all player sprites are stored and drawn as columns in order to please the Intel 486 cachelines.\\
+\subsection{Picture format}
+Since sprites are written one vertical column at a time, they are stored in a way to cuddle the i486 cachelines during read operations. Each sprite is stored in its own lump and consist in a collection of line describing the vertical column in the sprite (in essence, sprites a stored rotated 90degres CCW).\\
+\par
+Each column (also called "post" in the code) is a set of "spans" with one byte giving the vertical offset where the span starts, then one byte giving the size of the payload and finally the texel payload.
+\pagebreak
+
+Row \cw{44} is 4 bytes (one span \cw{0xXX}, \cw{0xXX}, \cw{0xXX}, \cw{0xXX}). Row \cw{33} and \cw{10} are both made of two spans accounting respecitvely for XX bytes and XXX bytes. The entire Lost Soul sprite is 44x47 and fits in 1360 bytes.\\
+\par
 \fullimage{sprite_format.png}\\
 \par
 
 \subsection{Sprite aspect ratio}
-Keep in mind how the framebuffer was distored when transfered from the VGA to the CRT screen\footnote{See page \pageref{vga_ratio}}. It was not a striking difference for the walls and flats making the environement. For sprites however, the 4:3 aspect ratio makes pixels 33\% taller than they were wide, making sprites visibly stretched vertically.\\
+The framebuffer was distored when transfered from the VGA to the CRT screen. It was not a striking difference for the walls and flats making the environement. For sprites however, the 4:3 aspect ratio makes pixels 33\% taller than they were wide, making sprites visibly stretched vertically.\\
 \par
-This distortion had not been an issue when working on a title like Wolfenstein 3D where everything was drawn with Deluxe Paint (which used mode 13h and also distored the framebuffer) but it was something to factor in when id switched to using scanned image from the NextDimension.\\
+This distortion had not been an issue when working with Deluxe Paint since the tool could be setup in 320x200 (so artists did not have squared pixels) but it was something to factor in when id switched to using scanned image from the NextDimension.\\
 \par
-\fullimage{sprites_ratio.png}
+\cfullimage{sprites_ratio_demon.png}{Demon}
+\par
+The cacodemon was purposely drawn and rendered ellipctically but effectively stored as a rounded shape. Many asset extractors programmers never accounted for the CRT distortion.\\
+\par
+\cfullimage{sprites_ratio_cacodemon.png}{Cacodemon}
