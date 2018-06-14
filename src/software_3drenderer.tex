@@ -33,14 +33,22 @@ The most important part (and what \doom engine is most famous for) is the abilit
 % \par
 
 % \subsubsection{Sorting walls}
-In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals, traversing the map in a back to front fashion. Each portal lead to adjacent sector where the process was repeated recursively\footnote{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}.\\
+In its early instance the engine consumed exactly what the designer produced, namely lines and sectors. Starting in the sector containing the player, the engine would look for double sided lines and treat them as portals, traversing the map in a back to front fashion. Each portal lead to adjacent sector where the process was repeated recursively.\\
 \par
-\srawpngdrawing{0.7}{duke_map}
-\vspace{1cm}
-\fq{The engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}
+\rawscaleddrawing{0.7}{duke_map}
 \par
-Things indeed slowed down significantly with a particular map of John Romero creation.\\
+\vspace{4mm}
+In the map above, with a player located in sector \cw{0}, the renderer will flood into other sectors using the red portals. A convex sector \cw{1} is relatively easy to deal with.  Things get considerably more complicated when encountering a concave sector like \cw{4}. An even worse case, is when nesting occurs like where sector \cw{2} contains an other sector \cw{3}.\\
 \par
+\trivia{That was the same design Ken Silverman's build engine would settle on to power Duke Nukem 3D. However in 1996 Pentium had taken over and were more than able to deal with complex polygons.}\\
+\par
+\fq{The engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}\\
+\par
+Things indeed slowed down significantly with a particular map of John Romero creation.
+
+
+
+
 \fq{I was working on E1M2 around April 1993, and I created a set of circular stairs. John C. wrote the renderer with a sector list to know what should be rendered. The problem is that this set of stairs made his sector list building code take a really long amount of time to execute because the same sectors needed to be put into the list over and over due to how the algorithm worked.}{John Romero}\\
 \par
 \fullimage{SCREEN01.png}%{Notice the HUD using a huge portion of the 3D canvas.} 
@@ -178,7 +186,7 @@ This technique is far from optimal since it requires either floating point or fi
 
 \begin{wrapfigure}[8]{r}{0.25\textwidth}
 \centering
-\includegraphics[width=.25\textwidth]{drawings/line_cross_product.png}
+\includegraphics[width=.25\textwidth]{drawings/cross_product.pdf}
 \end{wrapfigure}
 Notice in the previous code listing how nodes are not stored as coordinate of two vertices (\cw{Point 1}, \cw{Point 2}) but rather as (\cw{Point 1}, \cw{Delta to Point 2}). This storage technique made the cross-product faster to generate since one of the vector (from the node) was already calculated.\\
 \par
@@ -189,14 +197,15 @@ We are now down in \cw{R\_Subsector} function where all segments in a subsectors
 \par
 \ccode{bam.c}
 \par
-The angle of both ends of the segment with respect to the player position are calculated. Segment with a negative angle (angleP2 - angleP2 < 0) are culled since they are not facing the camera. Segment passing the angle test are projected onto the screen via a double translation table. First the BAM is reduced from 32-bit to 13-bit. Then the angle is injected into a lookup table \cw{viewangletox} to give a screepspace \cw{X} coordinate.\\
+The angle of both ends of the segment with respect to the player position are calculated. Segment with a negative angle (\cw{angle1} - \cw{angle2} < 0) are culled since they are not facing the camera. Segment passing the angle test are projected onto the screen via a double translation table. First the BAM is reduced from 32-bit to 13-bit. Then the angle is injected into a lookup table \cw{viewangletox} to give a screenspace \cw{X} coordinate.\\
  \par
-
-\pngdrawing{projectionExplained}{}
+\vspace{2mm}
+\drawing{segtobam}{}
 \par
 \cw{viewangletox} is generated to give the player 90 degree angle of vision and project to the border of the screen anything else. 
 \par
-\pngdrawing{angletoxTable}{}
+\vspace{1cm}
+\drawing{angletoxTable}{}
 \par
 %With the sector floor and height a column dimension and vertical offset are calculated. With the distance to the player, scaling is applied. 
 At this point the engine has calculated the screen space \cw{X} coordinates of both ends of a segment. But it is not time to draw yet. A little bit of clipping must occur. 
@@ -230,9 +239,9 @@ The first clipping pass maintains a \cw{solidseg} array which keeps track of the
 \par
 Let's take a simple example and proceed step by step. In the room below, the player is facing north and four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}) need to be rendered.\\
 \par
-\rawpngdrawing{clip_map}
+\rawdrawing{clip_map}
 \par
-
+\vspace{-3mm}
 Initially the occlusion array has two entries, one representing what is on the left of the screen, from infinity to -1 and one on the right of the screen from 320 to infinity.
 \par 
 \begin{minipage}{0.54\textwidth}
@@ -240,7 +249,7 @@ Initially the occlusion array has two entries, one representing what is on the l
 \ccode{clip0.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
-\srawpngdrawing{0.95}{clip0}
+\rawscaleddrawing{0.95}{clip0}
 \end{minipage}
 \par
 
@@ -257,7 +266,7 @@ The first wall is rendered. There is nothing to occlude it and it is in the midd
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
 \centering
-\srawpngdrawing{0.95}{clip1}
+\rawscaleddrawing{0.95}{clip1}
 \end{minipage}
 \par
 
@@ -271,7 +280,7 @@ The second wall is rendered. Its left side is clamped via angle adjustment and t
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
 \centering
-\srawpngdrawing{0.95}{clip2}
+\rawscaleddrawing{0.95}{clip2}
 \end{minipage}
 \par
 
@@ -286,7 +295,7 @@ The third wall is rendered. It happens to lie just next to the second wall. It i
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
 \centering
-\srawpngdrawing{0.95}{clip3}
+\rawscaleddrawing{0.95}{clip3}
 \end{minipage}
 \par
 
@@ -298,7 +307,7 @@ Finally the last wall is rendered. While occluded against the array, it is slipt
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
 \centering
-\srawpngdrawing{0.95}{clip4}
+\rawscaleddrawing{0.95}{clip4}
 \end{minipage}
 \par
 Notice how little RAM was used to maintain the occlusion state and how fast it is to check if the fullscreen is occluded. All the engine has to do is to check the array is size 1 and that the range goes from -infinity to +infinity.
@@ -641,7 +650,7 @@ The array \cw{drawsegs} can be seen as a log of what was rendered to the screen.
 	\item For each portal, up to two \cw{drawseg\_t} are added (one for the upper part and one for the lower part if there the portal had no middle texture).
 	\item For each masked segments (like the grid \cw{I} in our example) which were skipped, one \cw{drawseg\_t} entry is added to record what should have been drawn.
 \end{itemize}
-A \cw{drawseg\_t} contains all the screenspace information to perform either clipping or rendering. There is a pointer to the line (\cw{curline} which contains the textureID), the screenspace horizontal boundaries (\cw{x1} and \cw{x2}) as well as their respective scale (\cw{scale1} and \cw{scale2}). Scale represent how magnified or minified a sprite should be. All sprites share the same unit and since scale is based on the distance from the player the engine uses it to compare \cw{z} distances.\\
+A \cw{drawseg\_t} contains all the screenspace information to perform sprite clipping (or transparent segments rendering). There is a pointer to the line (\cw{curline} which contains the textureID), the screenspace horizontal boundaries (\cw{x1} and \cw{x2}) as well as their respective scale (\cw{scale1} and \cw{scale2}). Scale represent how magnified or minified a sprite should be. All sprites share the same unit and since scale is based on the distance from the player the engine uses it to compare \cw{z} distances.\\
 \par
 The screenspace horizontal top and bottom edge of a wall are obtained from pointers \cw{sprtopclip} and \cw{sprbottomclip} which point to an array shared by all \cw{drawseg\_t}.\\
 \par
@@ -649,8 +658,7 @@ The screenspace horizontal top and bottom edge of a wall are obtained from point
 \pagebreak
 
 \par
-DRAWING OF OPENINGS DATABASE\\
-\vspace{4.5cm}
+\rawdrawing{openings_db}
 \par
 The visible sprites (\cw{visprites}) storage is considerably easier to understand than the drawn segment storage.\\
 \par
@@ -658,8 +666,12 @@ The visible sprites (\cw{visprites}) storage is considerably easier to understan
 \par
 A vissprite entry contains eveything need to render a sprite on screen. It features information similar to the drawn segments such as the screen space horizontal boundaries (\cw{x1} and \cw{x2}), its scale, its texture id (\cw{patch}) and the lightlevel (\cw{colormap}) to be used for shading.\\
 \par
-Notice the \cw{prev} and \cw{next} fields. Even though vissprite are stored in a linear array, they need to be sorted in back to front order. Instead of performing an expensive copy of all elements, the sorting method only updates the double linked list. This way all elements remain in the same position in the array but a sorted list can be obtained by follwoing the \cw{next} pointers.\\
-\par
+Notice the \cw{prev} and \cw{next} fields. Even though vissprite are stored in a linear array, they need to be sorted in back to front order. Instead of moving around array elements, the sorting method only updates the double linked list. This way elements remain at the same array position but a sorted list can be obtained by follwoing the \cw{next} pointers.
+
+
+
+
+
 
 Let's finally look at how all these data are used to render the sprites and masked segments in \cw{R\_DrawMasked}.\\
 \par

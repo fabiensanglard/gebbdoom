@@ -56,7 +56,7 @@ The four other framebuffers are used intermittently for temporary storage.
 
 The code of function \cw{I\_UpdateBox} to transfer data from RAM to VRAM may look surprising. After all the hardware discussion about 32-bit CPU and 32-bit VL-Bus it is uncanny to see the transfer loop do it 16-bit at a time (\cw{short *dest;}). It turns out it was a deliberate choice.\\
 \par
-\fq{Our artwork was always done in 8x8 blocks, or "ebes" as Tom called them.  A 32 bit inner loop would have needed more code to handle widths that were an odd number of ebes.  It might have been a speedup, but both the bus and video card would have to have handled full 32 bit writes, and I don't recall that being common back then.  Even many VL-Bus cards were still the same basic chipset used on the ISA cards, and often still 16 bit, which meant that a 32 bit write just took twice as long.}{John Carmack}
+\fq{Our artwork was done in 8x8 blocks, or "ebes" as Tom called them.  A 32-bit loop would have needed more code to handle widths that were an odd number of ebes.  It might have been a speedup, but the bus and video card would have to have handled full 32 bit writes, and I don't recall that being common back then.  Many VL-Bus cards were still the same basic chipset used on the ISA cards, and often still 16 bit, which meant that a 32 bit write just took 2x as long.}{John Carmack}\\
 \par
 \ccode{I_UpdateBox.c}
 \par
