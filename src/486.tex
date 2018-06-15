@@ -121,16 +121,16 @@ Modifying the pipeline and make each stage run as fast as each others was one st
 \par
   As it would turn out, it was a difficult constraint to fulfill for physical reasons. Starting in 1980, RAM speed had started to lag behind CPU speed. By 1989, RAM access latency was 10 times slower than CPU cycle.\\
 \par
-\pngdrawing{ram_vs_cpu}{}
+\drawing{ram_vs_cpu}{}
 \par
 Until the 486, a CPU requesting either instructions or datas from the RAM always had to go through its Bus unit and communicate with the Bus which would route request to the RAM. As optimized as the bus protocol was, it took at the very minimum two cycles.\\
 \par One cycle to init the bus request, place the address on the address line and set the control line (Read/Write). And at least one wait cycle (which Intel called Wait State since while waiting on the Bus, the CPU did absolutely nothing) while the device on the other side of the bus fulfilled the request.\\
 \par
-\pngdrawing{cpu_chipset_bus}{}
+\drawing{cpu_chipset_bus}{}
 \par
 If a device was able to answer the bus request within the first wait state, the CPU was able to resume operations, having reached a Zero Wait state. Otherwise, Wait States were inserted in order to wait for the request to complete. From a performance perspective, these WAIT STATEs were a disaster. Not only because it took longer for the instruction to be executed but also because of the disturbance on all other instructions waiting behind.\\
 \par
-\pngdrawing{cpu_wait_states}{}
+\drawing{cpu_wait_states}{}
 
 
 
@@ -140,7 +140,7 @@ Temporality relied on how program are made of loops. Will in a loop an instructi
 \par
 By leveraging these two properties, a cache located between the CPU and the Bus unit would often already contains the data or instruction requested, making a bus request useless.\\
 \par
-\pngdrawing{cpu_cache}{}
+\drawing{cpu_cache}{}
 
 
 
