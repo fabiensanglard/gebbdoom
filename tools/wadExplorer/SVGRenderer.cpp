@@ -87,16 +87,118 @@ void SVGRenderer::render(MapReader::Maps maps) {
 }
 
 void SVGRenderer::renderMap(Map &map) {
-    renderNodes(map);
-    renderLineDefs(map);
-    renderSegs(map);
-    renderSubSectors(map);
-    renderNodesAndSubSectors(map);
-    renderBlockmap(map);
-    renderBluePrint(map);
-    renderBspTree(map);
+//    renderNodes(map);
+    renderSpecialLines(map);
+//    renderLineDefs(map);
+//    renderSegs(map);
+//    renderSubSectors(map);
+//    renderNodesAndSubSectors(map);
+//    renderBlockmap(map);
+//    renderBluePrint(map);
+//    renderBspTree(map);
 }
 
+void SVGRenderer::renderSpecialLines(Map &map) {
+    std::ostringstream str;
+    str << "E" << map.episode() << "M" << map.id() << "_special_lines.svg";
+    std::string filename = str.str();
+    std::ofstream outputFile(filename);
+    generateSVGHeader(outputFile, map);
+
+    for (LineDef line : map.lines()) {
+        outputFile << "<line x1=\"" << line.start.x
+                   << "\" y1=\"" << -line.start.y
+                   << "\" x2=\"" << line.end.x
+                   << "\" y2=\"" << -line.end.y
+                   << "\" stroke-width=\"";
+        if (line.isOneSided()) {
+            outputFile << 7;
+            outputFile << "\" stroke=\"black\" />";
+        } else {
+            if (line.isBlockSound()) {
+                outputFile << 17;
+                outputFile << "\" stroke=\"red\" />";
+            } else {
+            outputFile << 7;
+            outputFile << "\" stroke=\"gray\" />";
+            }
+        }
+        outputFile << std::endl;
+
+        outputFile << "    <circle cx=\""
+                   << line.start.x
+                   << "\" cy=\""
+                   << -line.start.y
+                   << "\" r=\""
+                   << 10
+                   << "\"/>";
+
+        outputFile << "    <circle cx=\""
+                   << line.end.x
+                   << "\" cy=\""
+                   << -line.end.y
+                   << "\" r=\""
+                   << 10
+                   << "\"/>"
+                   << std::endl;
+    }
+
+    // Draw things now.
+    for (Thing thing : map.getThings()) {
+        struct color {
+            int r;
+            int g;
+            int b;} color = {0,0,0};
+        if (isMonster(thing.type)) {
+            color = {165, 28, 28};
+        }
+        if (isPlayer(thing.type)) {
+            color = {77, 193, 60};
+        }
+        uint16_t radius = 15;
+        if (thingsDefs.find(thing.type) != thingsDefs.end()) {
+            ThingDef &def = thingsDefs.at(thing.type);
+            radius = def.radius;
+        }
+        // Show level 1 only
+//            if ((thing.flags & THING_LEVEL1_2) != THING_LEVEL1_2)
+//                continue;
+
+        // Show level 1-2-3
+//            if ((thing.flags & THING_LEVEL3) != THING_LEVEL3)
+//                continue;
+//
+        // Show all
+//            if ((thing.flags & THING_LEVEL4_5) != THING_LEVEL4_5)
+//                continue;
+
+//            int level = thing.flags & 12;
+//            if (level  > 2)
+//                continue;
+
+        outputFile << "    <circle cx=\""
+                   << thing.position.x
+                   << "\" cy=\""
+                   << -thing.position.y
+                   << "\" r=\""
+                   << radius
+                   << "\" stroke=\"rgb(0,0,0)\" stroke-width=\"5\" fill=\"rgb("
+                   << color.r
+                   << ","
+                   << color.g
+                   << ","
+                   << color.b
+                   << ")"
+
+                   << "\"/>"
+                   << std::endl;
+
+
+    }
+
+    outputFile << epilogue << std::endl;
+    outputFile.close();
+}
 
 void SVGRenderer::renderBluePrint(Map &map) {
     std::ostringstream str;

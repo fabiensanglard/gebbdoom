@@ -61,7 +61,7 @@ The driver must start first and install itself as a tiny TSR interrupt handler i
 
 \fakedosoutput{doomnet.c}
 \par
- At this point, the engine had everything it needed to communicate in a generic way. It writes or read from \cw{doomcom\_t} and to trigger read/write, it uses the interrupt \# also provided in \cw{doomcom\_t}.\\
+ At this point, the engine has everything it needed to communicate in a generic way. It writes or read from \cw{doomcom\_t} and triggers read/write via the interrupt number (also provided in \cw{doomcom\_t}).\\
 \par
 \pngdrawing{net_drivers}{}
 \par

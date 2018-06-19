@@ -1,7 +1,7 @@
 doomcom_t doomcom;
 
 void I_InitNetwork (void)  { 
-  int             i; 
+  int    i; 
  
   i = M_CheckParm ("-net"); 
   if (!i) { // single player game

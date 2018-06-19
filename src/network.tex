@@ -28,9 +28,10 @@ The cheapest way and what most people used was the \$20 cable known as "Null Mod
 
 
 
-\subsection{BNC LAN (Local Area Network)}
+\subsection{BNC 10Base2 LAN (Local Area Network)}
 To play with more than two players was substantially more difficult. Besides the relatively easy financial burden to pay for the equipment, you had to overcome the much more difficult task to convince a parent to let four teenagers come to their house where they would scream all night. The famous saying: "Shame on me if you fool me once, shame on you if you fool me twice" is often rumored to have originated from betrayed mothers and fathers whom had been \textit{dommed} all night.\\
 \par
+
 
 
 \begin{wrapfigure}[7]{r}{0.25\textwidth}
@@ -38,22 +39,25 @@ To play with more than two players was substantially more difficult. Besides the
 \scaledimage{.25}{BNC_T-piece.png}
 \end{wrapfigure}
 
-Leaving creative ways to ask for forgiveness aside, on the technical side a player had to plug a BNC network card via the ISA bus.\\
-\par The card had a BNC connector upon which was to be plugged a T-shaped connector. Each PC was connected to two other machines via a 10-Base-5 coaxial cables. There was no central point in this type of networking, all machines involved in the networked formed a chain. At both ends the chain had to be plugged signal terminator in order to prevent an RF signal from being reflected back from each end, causing interference, or power loss.\\
-\par
+Leaving creative ways to ask for forgiveness aside, on the technical side a player had to plug a 10Base2 network card via the ISA bus. \\
+\par The card had a BNC connector upon which was to be plugged a T-shaped connector. Each node was connected to up to two other nodes via a 10-Base-2 coaxial cables. There was no central point in this type of networking, all machines involved in the networked formed a chain. At both ends the chain had to be plugged signal terminator in order to prevent an RF signal from being reflected back from each end, causing interference, or power loss.
 
-\begin{figure}
+
+\begin{wrapfigure}[11]{r}{0.5\textwidth}
 \centering
-\scaledimage{0.7}{BNC_connector_50_ohm_male.png}
-\end{figure}
-
+\scaledimage{.5}{BNC_connector_50_ohm_male}
+\end{wrapfigure}
+The coaxial cable are bulky. Connecting an end to a T-Shape connector is fully achieved with a cool quarter turn of the coupling nut.\\
 \par
-Once physically connected, there was no IP configuration required. The Network card MAC address were enough to run the Ethernet protocol which all games used.\\
-\pngdrawing{10base5bncConnector}{10-Base-5 BNS Connector.}
+ Once physically connected, there was no configuration required (IPX is a network level protocol like Ethernet). The Network card MAC address were enough to run the IPX protocol which most games used.\\
+ \par
+\drawing{10base5bncConnector}{10-Base-2 BNS based network.}
 \par
-
-\trivia{Adding new machine on the network meant all other machines lost connectivity. Everybody remember this one friend who was always late to the LAN and forcing everybody to disconnect so he could join.}
-
+In figure \ref{10base5bncConnector} the four elements of a 1994 LAN. \circled{1} the T-Shaped connector connecting all \circled{2} coaxial cable, forming a link. Each ends of the chain must be closed with two load terminators \circled{3}. The network card connects to both the PC via its ISA bus extension slots (\circled{4}) and the LAN T-base slots.\\
+\par
+\trivia{Adding new machine on the network meant either unpluging one of the T-shaped connector or unplugging the chain terminator. In both cases, the central bus was broken and all other machines lost connectivity. Everybody remember this one friend who was always late to the LAN and forcing everybody to disconnect so he could join. The banwidth was shared and the theoretical 10Mb/s was often closer to 5Mb/s. This does not account for friends who wanted to exchange music in wav format (there was no mp3 at the time!).}\\
+\par
+\trivia{Really really fancy people could use 10baseT network which requires a "hub" central device resulting in a star shaped network.}
 
 
 

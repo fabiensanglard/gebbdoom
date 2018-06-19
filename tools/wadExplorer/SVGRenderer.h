@@ -29,6 +29,8 @@ private:
 
     void renderBluePrint(Map &map);
 
+    void renderSpecialLines(Map& map);
+
 public:
     void renderNodesAndSubSectors(Map &map);
 

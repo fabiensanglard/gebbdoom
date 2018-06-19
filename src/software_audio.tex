@@ -151,22 +151,24 @@ Judging by usenet message posted by John Romero, it sounds like relationship bet
 
 
 \section{Sound Propagation}
-How well enemies react to sounds made by the player plays a significant part in how smart A.I is perceived.
-Ever since Wolfenstein 3D (and well into their more advanced engines such as Doom III), id Software made sure sound propagation was accurate.\\
+How well enemies react to sounds makes a huge difference about how smart A.I is perceived. id Software made sure sound propagation was accurate. When a shot is fired in a sector, a fill flood algorithm propagates the noise.\\
 \par
 \ccode{P_RecursiveSound.c}\\
-\pagebreak
 
- Where Wolfenstein 3D used preprocessed "areas", \doom is able to do it at runtime using only the map data available. Given the sectors/portals based format, the algorithm is fairly easy. Start in the current player sector and flood-fill into adjacent sectors via portals (two-sided lines). Sound is stopped when two "sound blockers" (such as a closed doom) are encountered. Since most doors have of two lines (for thickness) sound propagation stops there but secret door which are usually one line thin only "weaken" the sound.\\
+\begin{wrapfigure}[10]{r}{0.48\textwidth}
+\centering
+\includegraphics[width=.48\textwidth]{drawings/sound_blockers.pdf}
+\end{wrapfigure}
+  The sectors/portals format is leveraged, starting in the current player sector and flood-filling into adjacent sectors via portals (two-sided lines). Sound is stopped when either a door is encountered or when two "sound blockers" lines have been crossed. Map E3M9 features section with no less than 38 monsters. To lower A.I cost, three line blockers helped to maintain half of them dormant.\\
 \par
-You will notice that function \cw{P\_RecursiveSound} mention "waking up all monsters" but it never iterate over the list of things in the level. This is an interesting speed-up trick aimed at avoiding an expensive search to find all monsters to be awakened in each sector. Monsters always look up for the current sector's \cw{soundtarget} to pick a target. By simply assigning a value to \cw{sec->soundtarget}, all monsters in \cw{sec} automatically acquire the same target.\\
+Notice function \cw{P\_RecursiveSound} mention "waking up all monsters" but it never iterate over the list of things in the level. This is an interesting speed-up trick aimed at avoiding an expensive search to find all monsters to be awakened in each sector. Monsters always look up for the current sector's \cw{soundtarget} to pick a target. By simply assigning a value to \cw{sec->soundtarget}, all monsters in \cw{sec} automatically acquire the same target.\\
 \par
-MAP OF E1M1 audio ?\\
-\vspace{8cm}
+\rawdrawing{E1M1_audio_sections}
 \par
 \subsubsection{Ambushing}
-Like in its previous engine, map designers want to have sneaky monsters that would hide and wait to jump on a player. This is achieved via the MF\_AMBUSH that can be assigned to monsters. Contrary to popular belief that doesn't make monsters deaf, it only makes them not seek the player.\\
-\par
+Map designers wanted to have sneaky monsters that could hide and wait to jump on a player. This is achieved via the MF\_AMBUSH that can be assigned to monsters. It doesn't make monsters deaf, it only makes them not seek the player until they make visual contact.
+
+
 \subsubsection{Super Ambushing}
 Sound propagation was used in a inventive way for map E1M9 super ambush.  The designers wanted the player to be ambushed after it had walked through the center of a pentagram.\\
 \par

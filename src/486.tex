@@ -151,10 +151,10 @@ Hopefully it is now abundantly clear the cache was the cornerstone of the entire
 \subsubsection{DRAM vs SRAM}
 The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to  much faster access time. DRAM typically had an access time of 150ns while SRAM was capable of 10ns, 150\% faster. DRAM was "slow" greatly because it was unavailable some of the time. The design of each cells was simple, based on one transistor and one storage capacitor. Two elements allowed for tight packing and high capacity. The problem was with the capacitor losing its charge over time. The only way to keep the RAM integrity was to periodically refresh it every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
 \par
-\spngdrawing{0.5}{DRAM}{Dynamic RAM}
+\scaleddrawing{0.5}{DRAM}{Dynamic RAM}
 The DRAM also had the disadvantage to being far away. Located "somewhere" on the motherboard so to access it, the CPU had to request it to its Bus Unit. And not only is was slow and far away, the bus to access it had to be shared with other I/O devices.\\
 \par
-\spngdrawing{0.5}{SRAM}{Static RAM}
+\scaleddrawing{0.7}{SRAM}{Static RAM}
 \par
 Located inside the chip, the SRAM had not of these drawbacks. Accessing it did not require an expensive bus request. Its design involving no less than six transistors removed the need periodic refresh. And to top it all, the CPU did not have to share the data path with other devices.
 \par
@@ -195,13 +195,8 @@ If a value was to be written an all cacheline in the four ways are valid, the ca
 \trivia{What about increasing the number of ways? What about the cache size? An 8 KiB four ways grant the best trade-off\footnote{Computer Architecture: A Quantitative Approach}. A two ways cache yields a 14\% miss rate, a four-ways 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment appears vividly once charted on a graph.}\\
 \par
 
+\scaleddrawing{0.9}{set_state_caches}{}
 
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{drawings/set_cache_stats.png}
-    \caption{}
-  \end{figure}
-  \par
 
 
 \subsection{Netburst}
@@ -209,7 +204,7 @@ Any cache miss within the 486 pipeline triggered the eviction of a cacheline and
 \par
 The principle was simple: While waiting for data to arrive, latch the next request so the bus can execute like (a little bit like a two stages pipeline).\\
 \par
-\pngdrawing{netburst}{NetBurst allows for 65\% faster cacheline filling.}
+\drawing{netburst}{NetBurst allows for 65\% faster cacheline filling.}
 
 
 

@@ -99,9 +99,9 @@ In the following example, \doom was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par
-Which results in the following lump dictionary:\\
+In the following lump dictionary, see how latest lump name overwrite older ones.\\
 \par
-\pngdrawing{lumpsManager}{For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archive have only one lump each.}
+\drawing{lumpsMaster}{For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archive have only one lump each.}
 \par
 Request to the lump system are sent via a \cw{char[8]} name. The first task to make the lump available is to find out in which wad it is and at which offset. The dictionary is searched sequentially in function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight character each times, it compares two integers of 32-bit.\\
 \par
@@ -115,11 +115,9 @@ The beauty of this system means that the original \cw{DOOM1.WAD} never had to be
 \par
 Once a lump location has been found, a memory block is requested from the memory allocator. The content of the lump is copied to RAM and returned to the caller. \\
 \par
-The lump system features a fuzzy caching system. The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array. Every time a lump is requested, the cache is looked up first. The lump cache slot set itself as the \cw{user} of the memory block which means the cache is automatically invalidated if the block is freed.\\
+The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot set itself as the \cw{user} of the memory block which means the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{1} \& \cw{2} are not in the cache and will request wad access.\\
 \par
-DRAWING\\
-\vspace{7cm}
-DRAWING\\
+\drawing{lumpcache}{}
 \par
 \ccode{W_CacheLumpName.c}
 
