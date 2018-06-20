@@ -2,7 +2,7 @@
 
 
 
-If the 3D renderer was breathtaking, it was the networking capability and its famous deathmatches which really took \doom to a new level. The ability to connect two PCs and interact with human players was something completely new back then. Early one during development it was apparent this aspect of the game was going to be amazing.\\
+If the 3D renderer was breathtaking, it was the networking capability and its famous deathmatchs which really took \doom to a new level. The ability to connect two PCs and interact with human players was something completely new back then. Early one during development it was apparent this aspect of the game was going to be amazing.\\
 \par
 \fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
 \par
@@ -12,7 +12,7 @@ I was strafing back and forth on one system and looking over my shoulder at the 
 
 
 \subsection{Architecture}
-Most modern FPS games are designed around a concept of Client/Server where there are many PC clients and one source of truth (the Server). Clients can join a game anytime, they send their commands to the server, receive world updates from the Server, and perform prediction to minimize communicatons latency.\\
+Most modern FPS games are designed around a concept of Client/Server where there are many PC clients and one source of truth (the Server). Clients can join a game anytime, they send their commands to the server, receive world updates from the Server, and perform prediction to minimize communications latency.\\
 \par
 \begin{wrapfigure}[8]{r}{0.3\textwidth}
 \centering
@@ -54,7 +54,7 @@ With the proliferation of networking medium, the embedded IPX support started to
 
 
 \subsection{PC Network drivers}
-In this model, the game engine deals with a datastructure named \cw{doomcom\_t} (detailed on \pageref{doomcom_t.c}) located in shared memory. Receiving or emitting packet is done via interrupts. How this all worked together is a magnificent hack like only an unprotected OS allowed.\\
+In this model, the game engine deals with a datastructure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared memory. Receiving or emitting packet is done via interrupts. How this all worked together is a magnificent hack like only an unprotected OS allowed.\\
 \par
 The driver must start first and install itself as a tiny TSR interrupt handler in RAM. The driver then start \cw{DOOM.EXE} with a special parameter \cw{-net X} where X was the address of the TSR \cw{doomcom\_t} variable. The engine literaly did a \cw{(doomcom\_t*)(atoi(param))} to access the structure fields.\\
 \par
@@ -63,12 +63,11 @@ The driver must start first and install itself as a tiny TSR interrupt handler i
 \par
  At this point, the engine has everything it needed to communicate in a generic way. It writes or read from \cw{doomcom\_t} and triggers read/write via the interrupt number (also provided in \cw{doomcom\_t}).\\
 \par
-\pngdrawing{net_drivers}{}
+\drawing{net_drivers}{}
 \par
-Figure \ref{net_drivers} summarizes how components interact together. \circled{1}, \circled{2}, \circled{3}.\\
+\circled{1} \cw{IPXSERVER.EXE} starts, becomes a TSR and register itself in the software Interrupt Vector Table, \circled{2} \cw{IPXSERVER.EXE} start \cw{DOOM.EXE} and pass the address of its \cw{doomcom\_t} variable, \circled{3} \cw{DOOM.EXE} write/read in the \cw{doomcom\_t} \cw{payload} field and trigger transfer via interrupt number found in \cw{intnum} field, \circled{4} the doom network driver communicate with the network card driver, \circled{5} the network card driver communicate with the actual network card.\\
 \par
-Two drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem.\\
-\pagebreak
+Two drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem.
 
 
 
@@ -110,7 +109,7 @@ The fields are self explanatory but notice \cw{command} which indicate the drive
 
 
 
-At a high level, the Core uses a central method called \cw{Net\_Update} to do all I/O. Notice how it is called in a loop as long as all the game tick for all peers have not been received, allowing only menus to keep on working. Eexcept for running menus, nothing else will run.\\
+At a high level, the Core uses a central method called \cw{Net\_Update} to do all I/O. Notice how it is called in a loop as long as all the game tick for all peers have not been received, allowing only menus to keep on working. Except for running menus, nothing else will run.\\
 \par
 \ccode{net_loop_wait.c}\\
 \par
@@ -146,3 +145,10 @@ Given the complexity of the commandline parameters to setup a network game, seve
 
 
 \trivia{The "official" (as stated in the IPXSETUP source code) IPX socket number for Doom is 869C hex (34460 decimal). This was apparently registered with Novell, as it appears in the list of well-known IPX sockets published by Novell.}
+
+\fullimage{deathmatch.png}\\
+\par
+\vspace{4cm}
+AN OTHER SCREENSHOT OF DEATHMATCH HERE.\\
+\pagebreak
+

@@ -19,7 +19,7 @@ struct Point {
     void rotate(float degree) {
         float radianAngle = degree * 2 * 3.1415 / 360;
         int16_t newX = cos(radianAngle) * x - sin(radianAngle) * y;
-        int16_t newY = sin(radianAngle) * x - cos(radianAngle) * y;
+        int16_t newY = sin(radianAngle) * x + cos(radianAngle) * y;
         x = newX;
         y = newY;
     }

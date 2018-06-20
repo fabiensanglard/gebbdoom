@@ -87,15 +87,15 @@ void SVGRenderer::render(MapReader::Maps maps) {
 }
 
 void SVGRenderer::renderMap(Map &map) {
-//    renderNodes(map);
+    renderNodes(map);
     renderSpecialLines(map);
-//    renderLineDefs(map);
-//    renderSegs(map);
-//    renderSubSectors(map);
-//    renderNodesAndSubSectors(map);
-//    renderBlockmap(map);
-//    renderBluePrint(map);
-//    renderBspTree(map);
+    renderLineDefs(map);
+    renderSegs(map);
+    renderSubSectors(map);
+    renderNodesAndSubSectors(map);
+    renderBlockmap(map);
+    renderBluePrint(map);
+    renderBspTree(map);
 }
 
 void SVGRenderer::renderSpecialLines(Map &map) {
@@ -295,7 +295,7 @@ void SVGRenderer::renderLineDefs(Map &map) {
 //                outputFile << "\" stroke=\"blue\" />";
 //            } else {
                 outputFile << 7;
-                outputFile << "\" stroke=\"red\" />";
+                outputFile << "\" stroke=\"gray\" />";
 //            }
         }
         outputFile << std::endl;
@@ -340,8 +340,8 @@ void SVGRenderer::renderLineDefs(Map &map) {
 //                continue;
 
             // Show level 1-2-3
-//            if ((thing.flags & THING_LEVEL3) != THING_LEVEL3)
-//                continue;
+            if ((thing.flags & THING_LEVEL3) != THING_LEVEL3)
+                continue;
 //
             // Show all
 //            if ((thing.flags & THING_LEVEL4_5) != THING_LEVEL4_5)
@@ -351,43 +351,49 @@ void SVGRenderer::renderLineDefs(Map &map) {
 //            if (level  > 2)
 //                continue;
 
-        outputFile << "    <circle cx=\""
-                   << thing.position.x
-                   << "\" cy=\""
-                   << -thing.position.y
-                   << "\" r=\""
-                   << radius
-                   << "\" stroke=\"rgb(0,0,0)\" stroke-width=\"5\" fill=\"rgb("
-                   << color.r
-                   << ","
-                   << color.g
-                   << ","
-                   << color.b
-                   << ")"
 
-                   << "\"/>"
-                   << std::endl;
 
         // Draw vision field
-        continue;
-        Point leftTriangle = {530, 230};
-        Point rightTriangle = {530, -230};
-        leftTriangle.rotate(thing.angle);
-        rightTriangle.rotate(thing.angle);
-        outputFile << "<polygon points=\""
-                   << thing.position.x
-                   << ","
-                   << -thing.position.y
-                   << " "
-                   << thing.position.x + leftTriangle.x
-                   << ","
-                   << -(thing.position.y + leftTriangle.y)
-                   << " "
-                   << thing.position.x + rightTriangle.x
-                   << ","
-                   << -(thing.position.y + rightTriangle.y)
-                   << "\" style=\"fill:blue;stroke:dark;stroke-width:1\" opacity=\"0.25\" />"
-                   << std::endl;
+//        continue;
+        if (isMonster(thing.type)) {
+
+            outputFile << "    <circle cx=\""
+                       << thing.position.x
+                       << "\" cy=\""
+                       << -thing.position.y
+                       << "\" r=\""
+                       << radius
+                       << "\" stroke=\"rgb(0,0,0)\" stroke-width=\"5\" fill=\"rgb("
+                       << color.r
+                       << ","
+                       << color.g
+                       << ","
+                       << color.b
+                       << ")"
+
+                       << "\"/>"
+                       << std::endl;
+
+            Point leftTriangle = {730, 430};
+            Point rightTriangle = {730, -430};
+//            thing.angle = 70;
+            leftTriangle.rotate(thing.angle);
+            rightTriangle.rotate(thing.angle);
+            outputFile << "<polygon points=\""
+                       << thing.position.x
+                       << ","
+                       << -thing.position.y
+                       << " "
+                       << thing.position.x + leftTriangle.x
+                       << ","
+                       << -(thing.position.y + leftTriangle.y)
+                       << " "
+                       << thing.position.x + rightTriangle.x
+                       << ","
+                       << -(thing.position.y + rightTriangle.y)
+                       << "\" style=\"fill:blue;stroke:dark;stroke-width:1\" opacity=\"0.25\" />"
+                       << std::endl;
+        }
     }
     outputFile << epilogue << std::endl;
     outputFile.close();
