@@ -1,16 +1,17 @@
 \section{Sound System}
-Thanks to its aggressive marketing, superior technology, and cheaper cards, Creative Labs dominated the market of sound cards. In order to hope surviving the market, any newcomer had to label itself "Creative Labs compatible". The unofficial standard meant OPL2 based FM synthesize capability for music and a DSP able to playback digitized sounds at 44Khz, 8-bit per sample in stereo.\\
+PC were equipped with a "PC Speaker", a device able to produce monotonic and annoying "beeps". The intend was to help diagnose system health at startup (one short beep meant the system was ok). But serious gamers always invested in a sound card. Thanks to its aggressive marketing, superior technology, and cheaper cards, Creative Labs dominated the market. In order to hope surviving, any newcomer had to label itself "Creative Labs compatible". The unofficial standard meant OPL2 based FM synthesize capability for music and a DSP able to playback digitized sounds at 22Khz, 8-bit per sample in stereo.\\
 \par
- The early 90s were the theater of the last wave of innovation for PC audio gaming and saw the extinction of a previously key manufacturer named AdLib\footnote{Which ironically had established the OPL2. chipset necessity.}. Two cards nonetheless managed to bring something new and were favorably met by customers. They were the Sound Blaster 16 by Creative Labs and the Gravis Ultrasound by Advanced Gravis Computer Technology Ltd\footnote{An other Canadian company!}.\\
-\par
+ The early 90s were the theater of the last wave of innovation for audio gaming and saw the extinction of a previously key manufacturer named AdLib\footnote{Which ironically had established the OPL2 chipset necessity.}. Two cards nonetheless managed to bring something new to the table. They were the Sound Blaster 16 by Creative Labs and the Gravis Ultrasound by Advanced Gravis Computer Technology Ltd.\\
+
+\vspace{-2mm}
 \subsection{Sound Blaster 16}
- In June 1992, with the release of the Sound Blaster 16, Creative Labs solved the problem of audio for games on PC forever with a card capable of CD quality playback, 44Khz, 16-bit sample on stereo. It was an instant hit and immensely successful on the market.\\
+ In June 1992, with the release of the Sound Blaster 16, Creative Labs solved the problem of PC audio for gaming forever with a card capable of CD quality playback, 44Khz, 16-bit sample on stereo. It was an instant hit and immensely successful with customers.\\
 \par
 \fullimage{SoundBlaster_16_ASP_CT1740.png}
 \par
-Solving the audio problem turned out to be a problem in itself for Creative Labs business. Even though they subsequently managed to release new products, those mainly interested audio professional. A few attempts to innovate for games with ASP, and EAX technologies were made but consumers remained deaf to the melody of these improvements. As audio chips became cheaper to make and with the technical requirements stagnating, manufacturers started to provide audio capability built-in the motherboard.\\
+Solving the audio problem turned out to be a problem of its own for Creative Labs business. Even though they subsequently managed to release new products, those mainly interested audio professional. A few attempts to innovate with ASP, and EAX technologies were made but consumers remained deaf to the melody of these improvements. As audio chips became cheaper to make and with the technical requirements stagnating, manufacturers started to provide audio capability built-in the motherboard.\\
 \par
-For a short time the extra IDE connectors allowing connection of a CD-ROMs allowed them to survive in bundle offers. But that was not enough to save them. Within ten years the market of audio cards disappeared.\\
+For a short time the extra IDE connectors allowing connection of a CD-ROMs allowed sound cards to survive, in bundle products. But that was not enough to save them. Within ten years the market of audio cards disappeared.\\
 \par
 \rawdrawing{sb16}
 \par
@@ -37,6 +38,6 @@ The concept was aggressive and so were the hardware that came out of Gravis fact
 \par
 The cost of this technology was twofold. First the card needed audio samples. This problem was "solved" via Gravis driver which installed more than 12 MiB of sound samples\footnote{That was enormous at the time, the full version of \doom was 12 MiB as a matter of comparison.}. Second, the card had to be able to access the sample at runtime which mean its had to have its own RAM. Since samples are much more voluminous than sin equations, the original GUS shipped with 256 KiB and could be boosted to 1 MiB.\\
 \par
-It rapidly developed a cult following among demo-makers who loved the high music quality it could achieve. On the lambda customer side however, things were more complicated. The GF1 CPU had difficulties emulating the OPL2 and setup was complicated (a huge TSR emulator had to be loaded manually by the user). The GUS also suffered of an unfortunate release date concurrent to the RAM shortage of 1993/1994. Players were reluctant to fork the \$169 it cost which was \$40 more than a Sound Blaster 16. With sales plummeting, Gravis almost went bankrupt.\\
+It rapidly developed a cult following among demo-makers who loved the high music quality it could achieve. On the lambda customer side however, things were more complicated. The GUS's GF1 main chip had difficulties emulating the OPL2 and setup was complicated (a huge TSR emulator had to be loaded manually by the user). The GUS also suffered of an unfortunate release date concurrent to the RAM shortage of 1993/1994. Players were reluctant to fork the \$169 it cost which was \$40 more than a Sound Blaster 16. With sales plummeting, Gravis almost went bankrupt.\\
 \par
- \doom was one of the few title to support the Gravis Ultra Sound. It provided a \cw{.PAT} file which was a simple mapping of 256 values to translate midi ID instruments to Gravis ID instruments. Listening to the electric guitars and drums of "At Doom's Gate" from Doom soundtrack on a GUS is quite an experience which make the FM version pale in comparison.
+ id Software was one of the rare companies to support the Gravis Ultra Sound. \doom~provided a \cw{.PAT} file which was a simple mapping of 256 values to translate FM encoded midi \cw{id} instruments to Gravis ID instruments. Listening to the electric guitars and drums of "At Doom's Gate" from Doom soundtrack is make the FM version pale in comparison. Most success story include the right timing. Sadly the GUS was way ahead of its time.

@@ -11,21 +11,21 @@ Pointer manipulation was error prone since different segment/offset combinations
 \par
 With the release of the 386 and later 486 things worsened. The bus address width was increased to 32-bit which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were profusely covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which  bank switching created a window into the RAM beyond 1 MiB.\\
 
-There would have been a simple solution. Intel allowed its CPUs to function in two modes. The backward compatible Real mode which made the CPU behave like a very fast 8088 and the Protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board.\\
+There would have been a simple solution. Intel allowed its CPUs to function in two modes. The backward compatible Real mode which made the CPU behave like a very fast 8088 and the Protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
 \par
-Things would have worked out if the operating system had been able to run in Protected Mode. However Microsoft's DOS could only handle Real Mode.\\ 
+It would have worked out if the operating system had been able to run in Protected Mode. However Microsoft's DOS could only handle Real Mode and its infamous 16-bit programming.\\ 
 \par
 
 
 
 
 \par
-Among the growing frustration and pain of 16-bit programming, people saw an opportunity. Two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler managed release a product that would allow an application to run in Protected Mode on an operating system which did not support it.\\
+Among the growing frustration and pain of 16-bit programming, people saw an opportunity. Two companies, Rational Systems and Watcom International Corporation, respectively producing a DOS Extender and a compiler managed to release a product that would allow an application to run in Protected Mode on an operating system which did not support it.\\
 \par
 
 
 \subsection{DOS/4GW Extender}
-Under DOS the normal way to perform a "system call" was to use a software interrupt instruction with parameter \cw{21h}. This was usually abstracted away via \cw{DOS.H} which did all the work behind the scene.\\
+Under DOS the normal way to perform a "system call" is to use a software interrupt instruction with parameter \cw{21h}. In C programming, this was abstracted away by header \cw{DOS.H} which performed all the lower level work behind the scene.\\
 \par
 \drawing{realmode_app_limk}{}
 To allow the app to run in one mode and the OS to run in an other, the two worlds had to be bridged. A middle layer called "DOS Extender" able to run in any mode inserted itself between the program and the operating system.\\
@@ -52,7 +52,7 @@ The performance sensitive operations were of course switching between Real mode 
 \acode{switch_to_protected_mode.asm}
 \par
 
-\doom used DOS/4GW extender by Rational Systems. Its presence could briefly be seen on startup. Executing \cw{DOOM.EXE} triggered DOS to only load the tiny extender. Once loaded, the DOS/4GW switched the CPU into Protected Mode, loaded \doom's code into memory and branched to \cw{\_main} symbol.\\
+\doom~used DOS/4GW extender by Rational Systems. Its presence could briefly be seen on startup. Executing \cw{DOOM.EXE} triggered DOS to only load the tiny extender. Once loaded, the DOS/4GW switched the CPU into Protected Mode, loaded \doom's code into memory and branched to \cw{\_main} symbol.\\
 \par
 \fakedosoutput{dos4gw.txt}
 
