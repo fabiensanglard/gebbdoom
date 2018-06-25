@@ -304,7 +304,7 @@ Design at Intel -- A CAD History.}.\\
 \subsection{Programming the 486}
 With the architecture in mind we can now understand how a programmer could take best advantage of the 486. The good news was that most of the performance improvement was the characterized free-lunch of the 90s. The exact same binary would run twice as fast on the new CPU.\\
 \par
-Albeit a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cacheline and maximized time and space locality\footnote{And avoid branching, the 486 had no branch predictor. A \cw{jmp} instruction was a guaranteed pipeline flush.}, the CPU would fly to process integers. Floating point operations had improved a lot (the i487 FPU can \cw{FMUL} faster than the i386 can \cw{IMUL}) and floating point operations performances had improved by a factor 2 compared to the i386's FPU (i387).\\
+Albeit a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cacheline and maximized time and space locality\footnote{And avoid branching. Without a branch predictor, \cw{jmp} are ignored and usually incur a two cycles stale.}, the CPU would fly to process integers. Floating point operations had improved a lot (the i487 FPU can \cw{FMUL} faster than the i386 can \cw{IMUL}) and floating point operations performances had improved by a factor 2 compared to the i386's FPU (i387).\\
 \par
 \begin{figure}[H]
 \centering
