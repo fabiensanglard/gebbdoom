@@ -9,4 +9,3 @@ typedef struct {
     int32_t size;             // Size of the lump
     char name[8];             // Name of the lump
 } directoryEntry;
-

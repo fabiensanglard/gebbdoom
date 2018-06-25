@@ -1,0 +1,32 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[nodes = {font=\sffamily}]
+\node (a) at (6,0) {};
+  \node (b) at (-6,0) {};
+  \foreach \percent/\name in {
+      52.9/Graphics,
+      29.1/Map,
+       9.9/Music,
+       8.1/{Sound Effects},
+    } {
+      \ifx\percent\empty\else               % If \percent is empty, do nothing
+        \global\advance\cyclecount by 1     % Advance cyclecount
+        \global\advance\ind by 1            % Advance list index
+        \ifnum3<\cyclecount                 % If cyclecount is larger than list
+          \global\cyclecount=0              %   reset cyclecount and
+          \global\ind=0                     %   reset list index
+        \fi
+        \pgfmathparse{\cyclelist[\the\ind]} % Get color from cycle list
+        \edef\color{\pgfmathresult}         %   and store as \color
+        % Draw angle and set labels
+        \draw[fill={\color!50},draw={black}] (0,0) -- (\angle:\radius)
+          arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+        \node at (\angle+0.5*\percent*3.6:0.7*\radius) {\percent\,\%};
+        \node[pin=\angle+0.5*\percent*3.6:\name]
+          at (\angle+0.5*\percent*3.6:\radius) {};
+        \pgfmathparse{\angle+\percent*3.6}  % Advance angle
+        \xdef\angle{\pgfmathresult}         %   and store in \angle
+      \fi
+    };
+\end{tikzpicture}
+\end{figure}
