@@ -3,6 +3,6 @@ With the graphic stack in mind, it is now time to dive inside the rendition rout
 \par
 \ccode{D_Display.c}\\
 \par
- There are several 2D renderers (called "Drawer" in the code) and one 3D renderer. Different portions of \cw{D\_Display} are enable depending on \cw{gamestate}.\\
+ There are several 2D renderers (called "Drawer" in the code) and one 3D renderer. Different portions of \cw{D\_Display} are enable via a switch case depending on \cw{gamestate}.\\
  \par
-  The way 2D renderers and 3D renderers work together is via a painter algorithm. Most 2D elements are requested to draw first, then comes the turn of the 3D view, then the \cw{HUD} (the text indicating what was picked up) and finally the menu on top of everything if it is visible.\\
+  Most Drawers are requested to draw before 3D view, then comes the \cw{HUD} (the text indicating what was picked up) and finally the menu on top of everything else if it is visible.

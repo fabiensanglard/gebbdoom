@@ -1,9 +1,9 @@
 \section{Architecture}
-Before diving into the code and its structure, let's take the time to understand how the developers worked. Before \doom, everything had been done on a PC. Code was written, compiler compiled and the executable was started on the same machine. With the introduction of \NeXT workstations in the toolchain, things had to be different.\\
+Before diving into the code and its structure, let's take the time to understand how id developers worked. Before \doom, all work was done on a PC. Code was written, compiled and the resulting executable started on the same machine. With the introduction of \NeXT workstations in the toolchain, the process had to be different.\\
 \par
-A developer had two machines, a \NeXT workstation and a PC. All work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and tested there. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence.}.\\
+A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence.}.\\
 \par
-Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair to the PC where the \NeXT workstation hard-drive was mounted over NFS. On this side, the PC compiled the same source code\footnote{With some platform specifics.} using \cw{WATCOM.EXE}, linked with \cw{WLINK.EXE} which generated \cw{DOOM.EXE}. \\
+Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair to the PC where the \NeXT workstation hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time, using \cw{WATCOM.EXE}, and \cw{WLINK.EXE} linker which generated \cw{DOOM.EXE}. \\
 \par
  In this setup the PC was relegated to "only" running the game and assessing performances. The PC hard-drive was actually used only to boot the machine and host \cw{WATCOM} compiler. Everything else including \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
 \par
@@ -19,11 +19,13 @@ There were significant obstacle to this methodology. First of all, DOS programs 
 
 
 \subsection{Solving Endianness}
-Endianness was a term introduced by Danny Cohen in his essay "On holy wars and a plea for peace". His satire, based on Gulliver's Travels in which civil war erupts over whether the big end or the little end of a boiled egg is the proper end to crack open, made an analogy between two school of thoughts among CPU manufacturers. Some wanted byte organized in memory left to right, some wanted them right to left. Each side viewed their way as the best one.\\
+Endianness was a term introduced by Danny Cohen in his essay "On holy wars and a plea for peace". His satire, based on Gulliver's Travels in which civil war erupts over whether the big end or the little end of a boiled egg is the proper end to crack open, made an analogy between two school of thoughts among CPU manufacturers. Some wanted bytes organized in memory left to right, some wanted them right to left. Each side viewed their way as the best one.\\
 \par
-In a war where price was paid by programmers, no side had incentives toward peace.\\
-\par
-If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On a little-endian machine, it will be become \cw{0x78563412}. On a big endian machine, it will become \cw{01234567}.\\
+In a war where price was paid by programmers, no side had incentives toward peace.
+
+
+
+If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big endian machine, it will become \cw{01234567}.\\
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
@@ -33,7 +35,7 @@ At the game engine level, the problem was solved via a layer of indirection with
 \par
 \ccode{LongSwap.c}
 \par
-Even though \doom was written first on a \NeXT, the platform still intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer hardware.\\
+Even though \doom~was written first on a \NeXT, the platform intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer Intel based hardware.\\
 
 \par
 
@@ -46,19 +48,19 @@ Accommodating the needs of running on different architecture was more challengin
 \caption{Doom kernel and its I/O platform-dependent systems.}
 \end{figure}
 \par
-In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSWindow} API on \NeXT. A naive implementation would have required a layer of indirection to dispatch each I/O call. There was a better solution which leveraged C's linking step.\\
+In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSWindow} API on \NeXT. A naive implementation would have required a function pointer acting as a layer of indirection to dispatch each I/O call. A better solution leveraged C's linking step.\\
 \par
- While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} have been transformed into object (\cw{.o}) files. Object files maybe calling each others but because they were created independently, they have "holes" called "Unresolved Symbols".\\
+ While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} have been transformed into object (\cw{.o}) files. Object files may be calling each others but because they were created independently, they have "holes" called "Unresolved Symbols".\\
 \par
  To generate an executable, all objects are given to a linker which will recognize Unresolved Symbols from all objects and patches all holes.\\
  \par
- Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o} this translation unit is found to use function such as \cw{I\_PlaySong} or \cw{I\_StartSound} which are defined in the platform specific sound system. \\
+ Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o}, we can see this translation unit uses functions such as \cw{I\_PlaySong} and \cw{I\_StartSound} which are defined in the platform specific sound system. \\
 \par
 \tcode{s_sound_linker.txt}
 \par
 After the linker is done, there are no more unresolved symbols. The final executable is ready to run.\\
 \par
-\drawing{linking}\\
+\drawing{linking}{}
 
 
 
@@ -78,17 +80,17 @@ In white, the core components. In grey the I/O system which require platform spe
 \smallfakedosoutput{dos_compilation2.txt}
 
 
-
+\vspace{-4mm}
 \trivia{A full DOS build took an average of 3m19s. Linking alone took 19 seconds. Even incremental build were time consuming (e.g: change \cw{r\_sky.c} = 27s).}\\
 \par
 \trivia{Notice the prefixed file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
 
-The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the kernel and the platform specific code needs not to be touched anymore.\\
+The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the core and the platform specific code needs not to be touched anymore.\\
 \par
-\trivia{Because portability was not an afterthought but part of the development process, \doom code layering is never violated. This rigorous design explains partly why \doom has been ported on so many systems. Having to work with different compilers such gcc or watcom not only permitted to surface many bugs, it also sure the code would be ANSI standard compliant.}\\
+\trivia{Because portability was not an afterthought but an integral part of the development process, \doom~code layering is never violated. This rigorous design explains partly why \doom~has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.}\\
 
 \section{Diving In!}
-Just before finally jumping in, a few quick \cw{cloc} stats just to know what volume to expect. There is twice as much code as in Wolfenstein 3D.\\
+Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
 \par
 \tcode{cloc.txt}
 \par
@@ -129,9 +131,9 @@ Just before finally jumping in, a few quick \cw{cloc} stats just to know what vo
 \par
 
 \subsection{Where Is My Main?}
-Exploring a source code always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{On Microsoft Windows that is \cw{WinMain()}}. In the case of \doom the entry point for DOS is not in the core but rather in the platform specific \cw{i\_main.c} \footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
+Exploring a source code repository always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{Of course, on Microsoft Windows it is different and you have to search for \cw{WinMain().}}. In the case of \doom~there is one entry point per OS and they are all in implementation specific (\cw{I\_*}) files. For DOS it is in \cw{i\_main.c}\footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
 \par
-Regardless of the platform, all entry points converge to the "real" main located in the core, \cw{D\_DoomMain}.\\ 
+Regardless of the platform, all entry points converge to the core main, function \cw{D\_DoomMain} located in \cw{d\_main.c}.\\ 
 \par
 
  \begin{figure}[H]
@@ -163,15 +165,15 @@ Regardless of the platform, all entry points converge to the "real" main located
 \par
 \ccode{main_loop.c}
 \par
-No surprises in \cw{D\_DoomMain}, the engine starts by initializing all its sub-systems before jumping inside a loop which will never returns (\cw{D\_DoomLoop}.).\\
+No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-systems before jumping inside a loop which will never returns (\cw{D\_DoomLoop}.).\\
 \par
-Because C has no namespace, an other system was used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} for Menu, \cw{Z\_} for Zone Memory Allocator, \cw{R\_}, \cw{P\_} for gamePlay, \cw{I\_} for Implementation Dependant, \cw{D\_} for main Doom, \cw{S\_} for Sound, \cw{HU\_} for HUD, and \cw{ST\_} for STatus bar.\\
+Because C has no namespace, a code convention is used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependant, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
 \par
-The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode show to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted, the DOS screen on the right matches well the source code.\\
+The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
 \par
-\trivia{This step was fairly fast except for the excruciating render initialization (\cw{R\_Init()}) which could take minutes depending on your HDD speed. It featured not only a line but also a progress bar which took minutes to complete with the full version. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
+\trivia{The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made of dots which required several minutes to complete on the full version depending on the machine's harddrive access time. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
 \par
-\trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}" which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was pretty hard to configure the hardware's cryptic IRQs and DMAs.}\\
+\trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was an achievement itself to configure the sound cards mysterious IRQs and DMAs values.}\\
 \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
@@ -180,9 +182,9 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \end{figure}
 
 \par
-\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. The two functions \texttt{\justify FindResponseFile} and \cw{IdentifyVersion} simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
+\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
 \par
-\trivia{Doom I \& II were released in English language and one other. A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translating DoomII.}
+\trivia{Doom I \& II were released in English...and French?! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translation.}
 
 
 
@@ -208,7 +210,7 @@ This design choice would end up being controversial. One one side it solved the 
 \section{Game Thread/Sound Thread}
 MS-DOS did not support process or thread yet video and audio had to happen in parallel. To make this happen, the audio system is based on interrupts generated at a regular interval. This is explained in detail in the audio section on page \pageref{dmx_section}.\\
 \scaleddrawing{0.9}{three_systems}{}
-\trivia{Notice how the audio system updates a shared variable \cw{volatile int ticcount} which is what is returned by \cw{I\_GetTime}.}
+\trivia{To disable compiler optimizations, the variable written by the interrupt based sound system and read by doom engine is declared \cw{volatile int ticcount}.}
 
 
 
@@ -237,17 +239,17 @@ And signed integer, using two complement where all bits represent a positive val
 \par
 
 
-For certain types of calculation, \doom's resorted to using a different layout. The fixed point format used is \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{
+For certain types of calculation, \doom's resorted to using a different layout. The fixed point format used is \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part. The decimal range is [32767.9999847 to -32768.0]\footnote{
 Lower value is ($-2^{15}$) = -32768. Upper value is  
  ($2^{14} + 2^{13} + 2^{12} + 2^{11} + 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}+ 2^{-3}+ 2^{-4}+ 2^{-5}+ 2^{-6}+ 2^{-7}+ 2^{-8}+ 2^{-9}+ 2^{-10}+ 2^{-11}+ 2^{-12}+ 2^{-13}+ 2^{-14}+ 2^{-15}+ 2^{-16}$) = 32767.9999847.}.\\
 \par
 \begin{figure}[H]
  \centering
   \input{drawings/fp.tex}
-  \caption{32-bit \doom fixed point bit values}
+  \caption{32-bit \doom~fixed point bit values}
 \end{figure}
 \par 
-In the code to help differentiate from regular integer, a typedef \cw{fixed\_t} is used.\\
+To help differenciat "regular" variables to "fixed point variable, a simple typedef \cw{fixed\_t} is used.\\
 \par
 \ccode{fixed_t.c}{}\\
 \par
@@ -260,25 +262,36 @@ As an example, $0.5 + 3 = 3.5$ yields the correct result bitwise.\\
 \begin{figure}[H]
   \centering
   \input{drawings/fp05.tex}
-  \caption{Fixed Point representation of 0.5}
+  \caption{Fixed Point representation of \cw{0.5}}
 \end{figure}
 \begin{figure}[H]
   \centering
   \input{drawings/fp375.tex}
-  \caption{Fixed Point representation of 3.75}
+  \caption{Fixed Point representation of \cw{3.75}}
 \end{figure}
 \begin{figure}[H]
   \centering
   \input{drawings/fp425.tex}
-  \caption{Fixed Point representation of 4.25}
+  \caption{Fixed Point representation of \cw{4.25}}
 \end{figure}
 \par
-Even trick bitwise operations such as fast divide/multiply with left shift "\verb!<<!" and right shift ("\verb|>>|") also work but there are a few limitations:\\
-\begin{itemize} 
-\item Overflows have to be avoided at all cost. Or handled manually. This type does not over the automaticaly overflow managment of floating points.
-\item Integers and fixed points variable cannot be fixed during operations. The programmer has to manually convert from one to an otherm the language will not "promote" types automatically.
-\item Additions and Substractions work as usual but multiplication is a special case. Multiply two 32-bit value result in a 64-bit value which is shifted right 16-bit and clipped to 32-bit. This can result in an annoying lose of precision if data was in bits [16-0]and a potentially catastrophic lose of information if data was in bits [63-48]. Again, floating point unit operating at 80-bit precision avoid this but there is no such thing in fixed point.
+Even trick bitwise operations such as fast divide/multiply with left shift ("\verb!<<!") and right shift ("\verb|>>|") work.\\
+\par
+\begin{figure}[H]
+  \centering
+  \input{drawings/fp85.tex}
+  \caption{Fixed Point representation of \cw{4.25 << 1} = 8.5}
+\end{figure}
+\par
+
+ There are a only two limitations to this system:
+\begin{itemize}
+  \item Contrary to floating point, there is no sliding window compensation to avoid overflow and adjust precision. Overflows have to be avoided otherwise information is lost (extremely large map display bugs tied to this specific problem). 
+  \item Integers and fixed points variable cannot be mixed during operations. The programmer has to manually convert from one to the other since the C language will not "promote" types automatically.
 \end{itemize}
+ 
+
+% Additions and Substractions work as usual but multiplication is a special case. Multiply two 32-bit value result in a 64-bit value which is shifted right 16-bit and clipped to 32-bit. This can result in an annoying lose of precision if data was in bits [16-0]and a potentially catastrophic lose of information if data was in bits [63-48]. Again, floating point unit operating at 80-bit precision avoid this but there is no such thing in fixed point.
 
 \pagebreak
 

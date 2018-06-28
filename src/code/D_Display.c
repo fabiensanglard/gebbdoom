@@ -3,7 +3,10 @@ void D_Display (void) {
 
   // do 2D drawing
   switch (gamestate) {
-    case GS_LEVEL:ST_Drawer (); break;
+    case GS_LEVEL:    
+       if (automapactive)
+          AM_Drawer ();
+       ST_Drawer (); break;
     case GS_INTERMISSION: WI_Drawer (); break;
     case GS_FINALE: F_Drawer (); break;
     case GS_DEMOSCREEN: D_PageDrawer (); break; 

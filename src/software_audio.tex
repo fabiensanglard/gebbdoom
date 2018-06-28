@@ -1,6 +1,6 @@
-x\section{Audio System}
+\section{Audio System}
 \label{dmx_section}
-Like every other I/O in the engine, the audio system was abstracted behind an interface. To fulfit \doom's Core expectations such a system had to implement not less than twenty functions covering SFX, Music, and also Timer.\\
+Like every other I/O in the engine, the audio system is abstracted behind an interface. To fulfill \doom's Core expectations such a system has to implement not less than twenty functions covering SFX, Music, and also Timer.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -13,28 +13,29 @@ Like every other I/O in the engine, the audio system was abstracted behind an in
   I\_SetChannels & Set number of channels and sample rate\\
   \toprule 
    
-I\_RegisterSong & \\
-I\_SetMusicVolume &\\
-I\_PlaySong &\\
-I\_PauseSong &\\
-I\_ResumeSong &\\
-I\_StopSong &\\
-I\_UnRegisterSong & \\
+I\_RegisterSong & Upload a music lump and get back an ID.\\
+I\_SetMusicVolume & Self explanatory.\\
+I\_PlaySong & Hm.\\
+I\_PauseSong & Yea.\\
+I\_ResumeSong & Maybe...\\
+I\_StopSong & Maybe this array was not a good idea after all.\\
+I\_UnRegisterSong & Free music using ID obtained in \cw{I\_RegisterSong}.\\
 
 
 
 
   \toprule 
-I\_GetSfxLumpNum & Load audio sample from WAD and associate it with an id.\\
-I\_StartSound & Start playing SFX sample\\
-I\_StopSound & Stop playing SFX sample\\
-I\_SoundIsPlaying & Test is SFX is playing\\
-I\_UpdateSoundParams & Set pitch, left/right position and volume\\
+I\_GetSfxLumpNum & Upload audio sample from WAD and return an ID.\\
+I\_SetSfxVolume & Self explanatory.\\
+I\_StartSound & Start playing SFX sample.\\
+I\_StopSound & Stop playing SFX sample and free it.\\
+I\_SoundIsPlaying & Test if SFX is playing.\\
+I\_UpdateSoundParams & Set pitch, left/right position and volume.\\
 
   \toprule 
   
-I\_StartupTimer &\\
-I\_ShutdownTimer &\\
+I\_StartupTimer & On DOS triggers audio system to hook into the Intel 8259 PIC. No-op on other platforms.\\
+I\_ShutdownTimer & On DOS remove the hook.  No-op on other platforms.\\
 
    \toprule
 \end{tabularx}
@@ -45,8 +46,12 @@ I\_ShutdownTimer &\\
 
 On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfesnstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, kirks and technologies.\\
 \par
-To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.\\
-\par
+To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.
+
+
+
+
+
 The abstraction layer provided by DMX was a colossal task. The comment before the function in charge of detecting the hardware leaves no ambiguity regarding how big an issue it was to tackle.\\
 \par
 \ccode{whypcssucks.c}
@@ -59,15 +64,14 @@ Running on an operating system supporting neither threads nor processes, there w
 \par
  An attentive reader will have noticed the hardware section mentioning the PC two chipsets i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC). Together they can be setup to stop (a.k.a interrupt :P) the engine execution and call into DMX routine\footnote{The way PIC and TIC interact is extensively detailed in "Game Engine Black Book: Wolfesntein 3D".}.\\
 \par
-Upon initialization, DMX installs itself as a TSR via the PIC and the TIC to be called at 140Hz. Upon awakening the TSR took care of feeding the audio device with music and sound effect data which had been provided by the engine. Since the were no other source of time on the machine, DMX was also in charge of generating the heartbeat via a variable counter called \cw{ticcount}.
+Upon initialization, DMX installs itself as a TSR via the PIC and the TIC to be called at 140Hz. Upon awakening the TSR takes care of feeding the audio device with music and sound effect data which had been provided by the engine. Since the were no other source of time on the machine, DMX was also in charge of generating the heartbeat via a variable counter called \cw{ticcount}.
 \par
 
 
 \scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
-With such an architecture there are actually two systems but the TSR has additional constraints. The engine makes sure the audio data is in RAM and instruct DMX of what to play. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card buffers and go back to sleep.\\
+With such an architecture there are two systems running concurrently. The audio TSR has more constraints than the other. The engine makes sure the audio data is in RAM and instruct DMX of what to play, it has no timing constraint and be as slow at it wants. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card buffers and go back to sleep. If DMX is too slow, it can delay video rendition or mask other interrupts.\\
 \par
- This is why audio allocation get a special treatment in the zone allocator. The audio system simply has no time to recover from a memory miss (nor could it since it has no access to the wad or memory allocator. Audio data had to be ready at all time it could be used.
-\pagebreak
+ This explains why audio assets allocation get a special treatment in the zone allocator. The audio system has no time to recover from a memory miss (nor could it since it has no access to the wad or memory allocator). Audio data had to be ready at all time it can be used.
 
 \subsubsection{Audio Data: Formats and Lumps}
 The wad archive contains hundreds of lumps containing five type of audio data.
@@ -79,7 +83,7 @@ The wad archive contains hundreds of lumps containing five type of audio data.
   \item DMXGUS
 \end{itemize}
 \par
-PC Speaker audio was meant for PC equipped with no sound card. The PC Speaker was actually a beeper capable of only square waves and meant to emit boot up diagnostic noise. There were ways to make it generate something less irritating by changing the square frequency every 1/140th of a second. This is exactly the format \doom is using with a stream of byte dictating frequencies. These samples are stored in lumps starting with \cw{DP}.\\
+PC Speaker audio was meant for PC equipped with no sound card. The PC Speaker was actually a beeper capable of only square waves and meant to emit boot up diagnostic noise. There were ways to make it generate something less irritating by changing the square frequency every 1/140th of a second\footnote{PC Speaker are detailed in "Game Engine Black Book: Wolfenstein 3D".}. This is exactly the format \doom~is using with a stream of byte dictating frequencies. The data rate is one byte per 1/140th of a second. These samples are stored in lumps starting with \cw{DP}.\\
 \par
  Digitized audio sample are recorded as 8-bit, 11025 Hz, mono PCM stream without even a header. It is a format DMX can use directly without transformation.  These samples are stored in lumps starting with \cw{DS}.\\
 \par
@@ -106,9 +110,9 @@ Sorry, but that's the way it has to be :(\\
 {Paul Radek, Digital Expressions, Inc.}\\
 \par
 
-The library evolved during the development of \doom and sometimesAPI changes introduced bugs. Gravis UltraSound was broken with v1.666. Support for Audio Spectrum was also broken but it was not too bad since the card had an option to emulate sound blasters\footnote{Source: John Romero post on \cw{alt.games.doom}.}.\\
+The library evolved during the development of \doom~and sometimesAPI changes introduced bugs. Gravis UltraSound was broken with v1.666. Support for Audio Spectrum was also broken but it was not too bad since the card had an option to emulate sound blasters\footnote{Source: John Romero post on \cw{alt.games.doom}.}.\\
 \par
-The problem was partly due to poor API practices on Digital Expressions side and probably hasty support on id Software part. \doom did ship with a significant bug. The engine was originally supposed to emit sounds at random pitch to avoid monotony for which it used DMX function \cw{SFX\_PlayPatch}.\\
+The problem was partly due to poor API practices on Digital Expressions side and probably hasty support on id Software part. \doom~did ship with a significant bug. The engine was originally supposed to emit sounds at random pitch to avoid monotony for which it used DMX function \cw{SFX\_PlayPatch}.\\
 \par
 \ccode{dmx_before.c}
 
@@ -190,7 +194,7 @@ The last piece of the super ambush was to have four lines around the center of t
 
 As soon as the player walked on the trigger in the "star" room, the walls around the teleporter lowered, monsters moved toward it and "spawned". \\
 \par
-\trivia{Comments in the code suggest that monsters screaming awaken other monsters but it is not the case. It is unknonw why this feature was cut. Maybe it was too buggy or too expensive.}\\
+\trivia{Comments in the code suggest that monsters screaming awaken other monsters but it is not the case. It is unknown why this feature was cut. Maybe it was too buggy or too expensive.}\\
 \pagebreak
 
 John Romero himself described how they placed the "pipes".\\

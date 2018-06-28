@@ -1,9 +1,9 @@
 \section{Input}
-The input system is abstracted with the notions of events which are generated when sampling devices and responders which can consume events. Key strokes, joystick, and mouse inputs type are stored in an \cw{event\_t} structure.\\
+The input system is abstracted with the notions of events which are generated when devices are sampled in subsystems and responders which can consume these events in the core. Key strokes, joystick, and mouse inputs type are stored in an \cw{event\_t} structure.\\
 \par
 \ccode{events.c}
 \par
-The core system notify the input system when a new frame start or when a game tick start which give it an opportunity to sample devices for inputs, wrap them into an \cw{event\_t} and use a callback method to post it to notify the core.\\
+The core system notify the input system when a new frame start or when a game tick start which give it an opportunity to sample devices for inputs, wrap them into an \cw{event\_t} and use a callback method to post it in the core event buffer.\\
 \par
 \begin{figure}[H]
 \centering  
@@ -11,24 +11,23 @@ The core system notify the input system when a new frame start or when a game ti
   \toprule
   \textbf{Method} &  \textbf{Usage}\\
   \toprule 
-  I\_StartTick &\\
-  I\_StartFrame &\\
-  D\_PostEvent & \\
+  I\_StartFrame & Called by the core before a visual frame is rendered.\\
+  I\_StartTick & Called by the core when a game tic is rendered.\\
+  
+  D\_PostEvent & Called by the input system to send an event to the core.\\
    \toprule
 \end{tabularx}
 \caption{\doom input system interface}
 \end{figure}
 \par
-Incoming events are stored in the code system via a circular buffer.\\
+Events are stored in the core via a circular buffer audaciously name \cw{events}.\\
 \par
 \ccode{events_storage.c}
 
 \par
-Each ticks, the event queue is emptied. Events are sent one by one down a chain of responders.\\
+Each game tic, the event queue is emptied. Events are sent one by one down a chain of responders. Each responder has the choice to ignore the event, in which case it is passed further down.\\
 \par
-\ccode{D_ProcessEvents.c}
-\par
- Each responder has the choice to consume the event or not so it is passed to the next responder.\\
+\ccode{D_ProcessEvents.c}\\
  \par If the event is consumed ("eaten" in the code) then it is not passed to subsequent responders. Note the 3D renderer is the last responder in the chain.\\
  
 
@@ -38,22 +37,23 @@ Each ticks, the event queue is emptied. Events are sent one by one down a chain 
 \end{wrapfigure}
 \trivia{The file \cw{i\_cyber.c} has nothing to do with the enemy called "cyberdemon". It is a driver especially written to support a curious device manufactured by Logitec around 1992 called the "CyberMan".\\
 \par
- It was an hybrid input device providing six degrees of freedom. Think of it as a joystick upon which would be mounted a mouse. Support for its \cw{SWIFT} API seems to have been added later since it doesn't generate events like the keyboard, mouse, and joystick but instead generate a tick command directly directly into the tick command stream.}\\
+ It was an hybrid input device providing six degrees of freedom. Think of it as a joystick upon which would be mounted a mouse. Support for its \cw{SWIFT} API seems to have been added later since it doesn't generate events like the keyboard, mouse, and joystick but instead generate a tic command directly directly into the tic command stream.}\\
 \par
-Most responders consume events in their raw (\cw{event\_t}) but the 3D renderer normalize them into a \cw{ticcmd\_t} which contains not inputs but player actions. These "commands" as they are called have no timestamps since they are part of the game logic stream which runs at a fixed 35Hz frequency. \\
+Most responders consume events in their raw (\cw{event\_t}) form but the 3D renderer normalize them into a \cw{ticcmd\_t} which contains not inputs but player actions. These "commands" as they are called have no timestamps since they are part of the game logic stream which runs at a fixed 35Hz frequency. \\
 \par
 \ccode{ticcmd_t.c} \label{cmd_t_type}
 \par
-The "commands" abstraction unlock many features. \\
+The "commands" design pattern unlocks many features. \\
 \par
 Commands are obviously consumed by the 3D engine but they can also be stored to disk when recording a demo. Later they can be re-injected in the engine to replay the exact same session. The beauty of this system is that player were able to exchange replays even if they had computer capable of different framerate.\\
 \par
-This feature allowed \doom to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t} meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
+This feature allowed \doom~to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t} meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
 % \par
 % Structure \cw{ticcmd\_t} is transmitted as-is on the network when running in multiplayer mode.
 % \par
 
 \scaleddrawing{1}{event_arch}{}
 \par
-Putting it all together, \circled{1} The Core calls into the Input System once per frame and once per tick to allow it to operate. \circled{2} Events are sent to the Core. \circled{3} Events received are stored in a circular event buffer. \circled{4} Events are dispatched to various responders. If the 3D renderer is active, the events are combined into a \cw{ticcmd\_t} which can be consumed, sent on the network, or stored on disk in the context of a demo recording. During demo playback the input system is disabled, tic commands are read from disk and "artifically" injected into the pipeline.
+Putting it all together, \circled{1} the core calls into the Input System once per frame and once per game tic to allow it to sample devices. \circled{2} Events are sent to the Core. \circled{3} Events received are stored in a circular event buffer. \circled{4} Events are dispatched to various responders. If the 3D renderer is active, the events are combined into a \cw{ticcmd\_t} which can be consumed, sent on the network, or stored on disk in the context of a demo recording.\\
 \par
+ During demo playback the input system is disabled, tics commands are read from disk and "artifically" injected into the pipeline.

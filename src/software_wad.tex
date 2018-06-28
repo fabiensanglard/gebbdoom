@@ -1,31 +1,31 @@
 \section{Filesystem}
-\doom barely interacts with the operating system file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive.\\ 
+\doom~barely interacts with the OS file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
+ \par
+\trivia{There was no need for an \cw{I\_*} abstraction layer to access the OS filesystem. Luckily, all offered now standard functions such as \cw{open}, \cw{open}, \cw{lseek}, \cw{read}, and \cw{close}.}\\
 \par
-\trivia{The extension name was coined by Tom Halls, when John Carmack asked him "How do you call a file where's all the data?". Tom's answer was a "WAD" (Where's All the Data).}\\
-\par
-Among all version of \doom distributed, the engine executabler was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
+Among all versions of \doom~distributed, the engine executable was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{1.3}  L{0.7} R{1}}
+\begin{tabularx}{\textwidth}{ L{1.3} L{0.7} R{1} R{1}}
   \toprule
-  \textbf{Game} &  \textbf{Archive name} & \textbf{Size in bytes}\\
+  \textbf{Game} &  \textbf{Archive name} & \textbf{\# Lumps} & \textbf{Size in bytes}\\
 
   \toprule 
-  Doom Shareware & \cw{DOOM1.WAD} &  4,196,020 \\
-  Doom Registered & \cw{DOOM.WAD} & 11,159,840 \\
-  Doom II: Hell on Earth & \cw{DOOM2.WAD} & 14,604,584\\
-  Ultimate Doom & \cw{UDOOM.WAD} & 12,408,292\\
-  The Plutonia Experiment & \cw{PLUTONIA.WAD} & 17,420,824\\
-TNT: Evilution &  \cw{TNT.WAD} & 18,195,736\\
-French Doom II & \cw{DOOM2F.WAD} & 14,607,420\\
+  Doom Shareware          & \cw{DOOM1.WAD}    & 1264 & 4,196,020 \\
+  Doom Registered         & \cw{DOOM.WAD}     & 2194 &11,159,840 \\
+  Doom II: Hell on Earth  & \cw{DOOM2.WAD}    & 2918 &14,604,584\\
+  Ultimate Doom           & \cw{UDOOM.WAD}.   & 2306 &12,408,292\\
+  The Plutonia Experiment & \cw{PLUTONIA.WAD} & 2984 &17,420,824\\
+  TNT: Evilution          &  \cw{TNT.WAD}     & 3101 &18,195,736\\
+  French Doom II          & \cw{DOOM2F.WAD}   & 2913 &14,607,420\\
    \toprule
-  Heretic Shareware & \cw{HERETIC1.WAD} & 5,120,920\\
-    Heretic Registered & \cw{HERETIC.WAD} & 14,189,976\\
+    Heretic Shareware     & \cw{HERETIC1.WAD} & 1374 &5,120,920\\
+    Heretic Registered    & \cw{HERETIC.WAD}  & 2633 &14,189,976\\
    \toprule
-  Hexen Shareware & \cw{HEXENDEMO.WAD} & 10,644,136\\
-  Hexen Registered & \cw{HEXEN.WAD} & 20,083,672\\
-  Hexen: Deathkings & \cw{HEXEDD.WAD} & 4,440,584\\
+  Hexen Shareware         & \cw{HEXENDEMO.WAD}& 2856 &10,644,136\\
+  Hexen Registered.       & \cw{HEXEN.WAD}    & 4270 &20,083,672\\
+  Hexen: Deathkings       & \cw{HEXEDD.WAD}   &  326 & 4,440,584\\
    \toprule
 \end{tabularx}
 \caption{WAD files in the many versions of doom\protect\footnotemark}
@@ -33,7 +33,8 @@ French Doom II & \cw{DOOM2F.WAD} & 14,607,420\\
 \par
 \footnotetext{Source: doomgod.com "Internal War Allocation Daemons"}
 
-Lumps are identified by an unique name on eight characters (which conveniently matches DOS filename length limitation). The smallest wad, \cw{DOOM1.WAD} is made of 1264 lumps.\\
+
+Lumps are identified by an unique name off up to eight characters (which conveniently matches DOS filename max length limitation).\\
 \par
 \ccode{lumpinfo_t.c}{}
 \pagebreak
@@ -49,8 +50,8 @@ Lumps are identified by an unique name on eight characters (which conveniently m
   \cw{COLORMAP} & Translation tables to simulate 32 shades of each 256 colors. Detailed on page \pageref{diminishedlightning}. \\
   \cw{DEMO?} &  Record of game sessions by id Software members. Played when the game startup as demo.\\
   \toprule
-  \cw{MAP??} & Zero sized lump serving as marker for the beginning of a series of map lumps. The first ? is the episode number and the second ? is the map id.\\
-  \cw{THINGS} & All monsters, weapons, ammo and sprite contained in the map designed by the last map marker.\\
+  \cw{EXMY} & Zero sized lump serving as marker for the beginning of a series of map lumps. \cw{X} is the episode number and \cw{Y} is the map id. \cw{MAPXY} variant was used later for the same purpose.\\
+  \cw{THINGS} & All monsters, weapons, ammo and sprite contained in the current map.\\
   \cw{LINESDEFS} & All lines referenced by \cw{SECTORS}.\\
   \cw{SIDEDEFS} & All side referenced by \cw{LINESDEFS}. A line can have up to two sides.\\
   \cw{VERTEXES} & All vertices in the current map.\\
@@ -58,11 +59,12 @@ Lumps are identified by an unique name on eight characters (which conveniently m
   \cw{SSECTORS} &  The Sub-Sectors, leaves of the binary tree in \cw{NODES}.  \\
   \cw{SEGS} &  The segments pointed to by the \cw{SSECTORS} lumps.\\
   \cw{SECTORS} &  Referenced by subsectors. Details ceiling/floor height, texture, and lighting properties.\\
-  \cw{REJECT} &  An A.I acceleration datastructure to detect if monsters can see a player.\\
+  
   \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map 128x128. Provide fast access to all LINESDEFS neighboring any point on the map. Detailed on page \pageref{blockmapdetails} \\
+  \cw{REJECT} &  A.I acceleration datastructure to detect when monsters can see a player.\\
   \toprule
   \cw{DP.*} &  SFX in PC Speaker format.\\
-  \cw{DS.*} &  SFX in PCM Mono, 8-bit 11,025Hz.\\
+  \cw{DS.*} &  SFX in PCM Mono, 8-bit 11,025Hz format.\\
   \cw{D\_.*} & Music in MUS format (a slightly altered MIDI format).\\
   \toprule
   \cw{ENDOOM} & Text-mode exit screen to entice players to by the full version. \\
@@ -89,25 +91,25 @@ Lumps are identified by an unique name on eight characters (which conveniently m
 
 
 
-\subsection{Lumps}
+\subsection{Lumps} \label{wad_detailled}
 The lump system is the less glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
 Upon starting up, it looks at every wad archive provided and indexes every lumps found into a gigantic array of \cw{lumpinfo\_t} cunningly named \cw{lumpinfo}. 
-If additional archives are provided via \cw{-file} command-line parameter, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lump info} first.\\
+If additional archives are provided via \cw{-file} command-line parameter, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lump info} array first.\\
 \par
-In the following example, \doom was started with the command-line:\\
+In the next example, shareware \doom~was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par
-In the following lump dictionary, see how latest lump name overwrite older ones.\\
+For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archives have only one lump each. In the following lump index, see how lump name can appear several times (there are two lumps with name \cw{MUSIC1}.\\
 \par
-\drawing{lumpsMaster}{For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archive have only one lump each.}
+\drawing{lumpsMaster}{Lump system index}
 \par
-Request to the lump system are sent via a \cw{char[8]} name. The first task to make the lump available is to find out in which wad it is and at which offset. The dictionary is searched sequentially in function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight character each times, it compares two integers of 32-bit.\\
+Request to the lump system are sent via a \cw{char[8]} name. The first task to make the lump available is to find out in which wad it is in and at which offset. The index is searched sequentially in function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight character each times, it compares two  32-bit integers.\\
 \par
 \ccode{W_CheckNumForName.c}{}\\
 \par
-In the code listing above, you will notice that the dictionary is searched starting from the end. This done intentionally to embrass the modding community and allow fan made wad archives to overwrite id software lumps.\\
+In the code listing above, you will notice that the index is searched starting from the end. This is done intentionally to allow modders to provide their own assets in wad archives to overwrite id software's lumps.\\
 \par
 The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten, maps, music, sfx, to graphics\footnote{With the exception of A.I which is backed in the executable} could be swapped with a simple command-line.\\
 \par
@@ -117,15 +119,15 @@ Once a lump location has been found, a memory block is requested from the memory
 \par
 The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot set itself as the \cw{user} of the memory block which means the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{1} \& \cw{2} are not in the cache and will request wad access.\\
 \par
-\drawing{lumpcache}{}
+\drawing{lumpcache}{Lump \cw{1} is in the cache. Lumps \cw{0} and \cw{2} are not.}
 \par
 \ccode{W_CacheLumpName.c}
 
 
 
-Some fan used the overwritting system to replace almost every aspect of the original game. These mods were know as "Total Conversion". The most notorious of them all, was name Alien Total Conversion.\\
+Some fan used the overwriting system to replace almost every aspect of the original game. These mods were know as "Total Conversion". The most notorious of them all, was named Alien Total Conversion.\\
 \par
-Released in December 1994, it took Justin Fisher one year of hard work. Amusingly the result ended up fulfilling the aliens motion picture theme id Software briefly considered before going for demons.\\
+Released in December 1994, it took Justin Fisher one year of hard work to complete it. Amusingly the result ended up fulfilling the Aliens motion picture theme id Software briefly considered before going for demons.\\
 \par
  \fullimage{alientc.png}{}
  \par

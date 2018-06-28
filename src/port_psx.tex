@@ -146,11 +146,9 @@ Affine Texture Mapping is the process of performing texture mapping in screen sp
 \par
 \fullimage{affine_texture_mapping/hallway.png}\\
 \par
-The issue is particularly visible on the left wall where the black strip is not parallel to the ground anymore but seems to zig-zag up and down.\\
+The issue is particularly visible on the left wall where the black strip is not parallel to the ground anymore but seems to zig-zag up and down.
 
 
-
-\par
 Let's take an example to understand the issue better. In the case of a wall, it is first cut in two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain, For each lines of pixels (called scanlines), interpolate linearly between two (start and end) textured fragment with screenspace coordinate \cw{(X,Y)} and texture coordinate \cw{(u,v)}\footnote{ Even drawing a quad would still be correct. The heights of the texture squares would not get smaller as they get further away, even though the widths would.}.\\
 \par
 This algorithm gives the weird looking result featured in figure \ref{affine_texture_mapping/affine2.png}. Notice how all lines are parallel and there is no perspective (which is the main issue).\\

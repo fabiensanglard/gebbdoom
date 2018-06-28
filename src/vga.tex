@@ -5,18 +5,21 @@ A GC (Graphic Controller) and a (SC) Sequence Controller controlled access to 25
 \par 	
 \scaleddrawing{0.6}{vga}{}
 \par
-During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layed out across banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.\\
-\par
-\par
+During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layed out across banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.
+
+
+
+
 \cscaledimage{0.9}{vga_ram_screen_layout}{\label{vga_ram_screen_layout}}
 \par
 In figure \ref{vga_ram_screen_layout}, notice how the first pixel \cw{0} is stored in bank 0, pixel \cw{1} is stored in bank 1 and so on. With an horizontal resolution of 320 lines, 80 non horizontally adjacent pixels are stored in each banks.\\
 \par
 To access the 256 KiB of VRAM, IBM had established a hard-coded memory mapping in RAM from \cw{0xA0000} to \cw{0xAFFFF}. An eye accustomed to hexadecimal will have immediately noticed that \cw{0xFFFF} translates to 64KiB addresses, far fewer than the total available VRAM.\\
 \par
- To compensate for the lack of addresses, IBM had designed a bank switching system managed through a \textit{map mask register}. In practice this meant a RAM address within \cw{0xA0000} to \cw{0xAFFFF} could correspond to four locations in VRAM as shown in figure \ref{ram_vram_mapping}. The mask was cumbersome but allowed magic such as writing four pixels in one write operations\footnote{Every VGA mask tricks are discussed in \it{Game Engine Black Book: Wolfenstein 3D}.}.\\
+ To compensate for the lack of addresses, IBM had designed a bank switching system managed through a \textit{map mask register}. In practice this meant a RAM address within \cw{0xA0000} to \cw{0xAFFFF} could correspond to four locations in VRAM as shown in figure \ref{ram_vram_mapping}. The mask was cumbersome but allowed magic such as writing four pixels in one write operations\footnote{Every VGA mask tricks are discussed in \it{Game Engine Black Book: Wolfenstein 3D}.}.
 
-\par
+
+
 \scaleddrawing{0.7}{vga_mapping}{\label{ram_vram_mapping}} \label{vga_ratio}
 \par
 \vspace{-2mm}
@@ -39,8 +42,7 @@ Figure \ref{circle_framebuffer} shows what the same framebuffer looked like when
 \section{Hidden improvements}
 Despite this bleak description, a closer inspection of the world of graphic cards unveiled two tremendous changes which ended up deeply impacting \doom. \\
 \par
-Since 1992 with the released of Microsoft and IBM new operating systems (respectively OS/2 2.0 and Microsoft Windows 3.1), demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 147,200 bytes\footnote{16 colors at 640x480}.\\
-\par
+Since 1992 with the released of Microsoft and IBM new operating systems (respectively OS/2 2.0 and Microsoft Windows 3.1), demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 147,200 bytes\footnote{16 colors at 640x480}.
 
 \fullimage{Windows311workspace.png}\\
 \par 
@@ -51,8 +53,9 @@ Despite its simple interface, Windows 3.11 640x480, 16 colors was able to put PC
 \subsection{VGA Chip manufacturer}
 The first improvement came from VGA chip manufacturers. Sensing that demand for performance was growing, companies such as ATI, Cirrus Logic, and Tseng Labs went through great effort to compete and achieve higher performances. Hardware GUI acceleration had not yet become mainstream so host-throughput was the dominating factor in a graphical-application's redraw speed. They started to tightly integrate every component of a VGA card into a single chip (RAM, RamDAC, BIOS, Memory controller, Blitter, Ram Refresh, Cache controller, Timing Sequencer\footnote{Tseng Labs ET4000} to name only a few).\\
 \par
-Some manufacture such as Cirrus Logic even adopted a fabless business model where they designed and sold semiconductor chips while outsourcing the fabrication.\\
-\par
+Some manufacture such as Cirrus Logic even adopted a fabless business model where they designed and sold semiconductor chips while outsourcing the fabrication.
+
+
 An optimization among many other was to leverage the fact that VGA RAM was often subject to write operations instead of read. Using a FIFO SDRAM cache to buffer operations and return right away tremendously improved screen bliting. Peeking at a card based on one of the most notorious manufacturer of the era (Tseng Labs's), the ET4000 give a good overview of what a customer could purchase.\\ 
 \par
 \cfullimage{vlb_cards/tseng_lans_et4000_w32_vesa_local_illetw32.png}{ILLETW32 Britek Electronics. Photo courtesy \cw{http://www.amoretro.de/}}
