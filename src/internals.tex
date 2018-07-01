@@ -7,15 +7,15 @@ It took one year to make this book, mostly on evenings and weekends, from Octobe
 \par
 To improve compilation time, \cw{book.tex} is a simple list of \cw{\textbackslash subfile} commands. Based on which section of the book was being worked on, other lines were commented. This decreased the build time from several minutes to a few seconds.\\
 \par
- Drawing were made with InkScape, saved to \cw{.svg} and converted to \cw{.eps} to be incorporated nicely with \cw{pdflatex} compiler. Screenshots were cleaned up with Adobe Photoshop CC. The font used is Computer Modern Sans Serif, size 10pts.\\
+ Drawing were made with InkScape, saved to \cw{.svg} and converted to \cw{.eps} to incorporate nicely with \cw{pdflatex} compiler. Screenshots were cleaned up with Adobe Photoshop CC. The font used is Computer Modern Sans Serif, size 10pts.\\
  \par
 A few numbers...\\
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.3} | R{0.3} }
+\begin{tabularx}{\textwidth}{ L{1} | C{1} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Description} & \textbf{Size} \\
+  \textbf{Description} & \textbf{Value} \\
   \specialrule{1pt}{0pt}{0pt}
   Number of files: & 880 \\
 Total \cw{.tex}\cw{.sty} file size & 95 \\
@@ -29,17 +29,7 @@ Build time (150 dpi) & 47 seconds\\
 Final PDF size (150 dpi) & 89,060,075 byte\\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
-%\caption{Video system interface}
 \end{figure}
-
-\pagebreak
-\begin{verbatim}
-find src | grep -v eps | grep -v pdf | wc
-find src | grep ".tex" | wc
-find src | grep ".png" | wc
-find src | grep ".svg" | wc
-time `./make.sh && ./make.sh`
-\end{verbatim}
 
 
 
