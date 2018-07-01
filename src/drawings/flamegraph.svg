@@ -9,14 +9,14 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="680"
-   height="453.11719"
+   height="436.72461"
    onload="init(evt)"
-   viewBox="0 0 680 453.11719"
-   id="svg7154"
-   sodipodi:docname="flamegraph.svg"
-   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+   viewBox="0 0 680 436.72461"
+   id="svg5719"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="flamegraph.svg">
   <metadata
-     id="metadata7158">
+     id="metadata7246">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -36,25 +36,25 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="772"
-     inkscape:window-height="480"
-     id="namedview7156"
+     inkscape:window-width="1392"
+     inkscape:window-height="920"
+     id="namedview7244"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.46285714"
-     inkscape:cx="231.97531"
-     inkscape:cy="217"
+     inkscape:zoom="0.85557769"
+     inkscape:cx="410.12806"
+     inkscape:cy="271.12806"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg7154" />
+     inkscape:current-layer="svg5719" />
   <!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
   <!-- NOTES:  -->
   <defs
-     id="defs6308">
+     id="defs5721">
     <linearGradient
        id="background"
        y1="0"
@@ -64,21 +64,21 @@
       <stop
          stop-color="#eeeeee"
          offset="5%"
-         id="stop6303" />
+         id="stop5724" />
       <stop
          stop-color="#eeeeb0"
          offset="95%"
-         id="stop6305" />
+         id="stop5726" />
     </linearGradient>
   </defs>
   <style
      type="text/css"
-     id="style6310">
+     id="style5728">
 	.func_g:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
 </style>
   <script
      type="text/ecmascript"
-     id="script6312"><![CDATA[
+     id="script5730"><![CDATA[
 	var details, searchbtn, matchedtxt, svg;
 	function init(evt) {
 		details = document.getElementById("details").firstChild;
@@ -396,14 +396,14 @@
   <text
      text-anchor=""
      x="0"
-     y="470.11719"
+     y="469.72461"
      font-size="12"
      id="details"
      style="font-size:12px;font-family:Verdana;fill:#000000" />
   <text
      text-anchor=""
      x="0"
-     y="9.1171875"
+     y="8.7246094"
      font-size="12"
      id="unzoom"
      onclick="unzoom()"
@@ -411,17 +411,7 @@
   <text
      text-anchor=""
      x="580"
-     y="9.1171875"
-     font-size="12"
-     id="search"
-     onmouseover="searchover()"
-     onmouseout="searchout()"
-     onclick="search_prompt()"
-     style="font-size:12px;font-family:Verdana;opacity:0.1;fill:#000000">Search</text>
-  <text
-     text-anchor=""
-     x="580"
-     y="470.11719"
+     y="469.72461"
      font-size="12"
      id="matched"
      style="font-size:12px;font-family:Verdana;fill:#000000" />
@@ -430,25 +420,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6328"
-     transform="translate(-10,-14.882813)">
+     id="g5740"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6322">P_CrossBSPNode (1 samples, 1.02%)</title>
+       id="title5742">R_StoreWallRange (9 samples, 3.04%)</title>
     <rect
-       x="683.09998"
-       y="165"
-       width="6.9000001"
+       x="513.09998"
+       y="117"
+       width="20.700001"
        height="15"
        rx="2"
        ry="2"
-       id="rect6324"
-       style="fill:#e22b26" />
+       id="rect5744"
+       style="fill:#f53309" />
     <text
        text-anchor=""
-       x="686.06"
-       y="175.5"
+       x="516.10999"
+       y="127.5"
        font-size="12"
-       id="text6326"
+       id="text5746"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -456,25 +446,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6336"
-     transform="translate(-10,-14.882813)">
+     id="g5748"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6330">I_GetTime (1 samples, 1.02%)</title>
+       id="title5750">HUlib_drawSText (1 samples, 0.34%)</title>
     <rect
-       x="155.7"
+       x="10"
        y="325"
-       width="7"
+       width="2.3"
        height="15"
        rx="2"
        ry="2"
-       id="rect6332"
-       style="fill:#d5a011" />
+       id="rect5752"
+       style="fill:#ecd21d" />
     <text
        text-anchor=""
-       x="158.71001"
+       x="13"
        y="335.5"
        font-size="12"
-       id="text6334"
+       id="text5754"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -482,25 +472,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6344"
-     transform="translate(-10,-14.882813)">
+     id="g5756"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6338">P_CrossBSPNode (1 samples, 1.02%)</title>
+       id="title5758">R_RenderSegLoop (3 samples, 1.01%)</title>
     <rect
-       x="683.09998"
-       y="149"
+       x="423.5"
+       y="53"
        width="6.9000001"
        height="15"
        rx="2"
        ry="2"
-       id="rect6340"
-       style="fill:#e51000" />
+       id="rect5760"
+       style="fill:#cdc018" />
     <text
        text-anchor=""
-       x="686.06"
-       y="159.5"
+       x="426.51001"
+       y="63.5"
        font-size="12"
-       id="text6342"
+       id="text5762"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -508,25 +498,207 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6352"
-     transform="translate(-10,-14.882813)">
+     id="g5764"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6346">R_AddLine (4 samples, 4.08%)</title>
+       id="title5766">R_PointOnSide (2 samples, 0.68%)</title>
     <rect
-       x="585.90002"
-       y="149"
-       width="27.799999"
+       x="664.70001"
+       y="197"
+       width="4.5999999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6348"
-       style="fill:#e2d11d" />
+       id="rect5768"
+       style="fill:#e59627" />
     <text
        text-anchor=""
-       x="588.91998"
-       y="159.5"
+       x="667.72998"
+       y="207.5"
        font-size="12"
-       id="text6350"
+       id="text5770"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5772"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5774">R_ProjectSprite (2 samples, 0.68%)</title>
+    <rect
+       x="588.90002"
+       y="133"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5776"
+       style="fill:#de7a1f" />
+    <text
+       text-anchor=""
+       x="591.91998"
+       y="143.5"
+       font-size="12"
+       id="text5778"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5780"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5782">V_DrawPatch (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="245"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5784"
+       style="fill:#f36503" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="255.5"
+       font-size="12"
+       id="text5786"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5788"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5790">?? (60 samples, 20.27%)</title>
+    <rect
+       x="127.2"
+       y="197"
+       width="137.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5792"
+       style="fill:#d32b24" />
+    <text
+       text-anchor=""
+       x="130.16"
+       y="207.5"
+       font-size="12"
+       id="text5794"
+       style="font-size:12px;font-family:Verdana;fill:#000000">??</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5796"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5798">R_PointToDist (2 samples, 0.68%)</title>
+    <rect
+       x="490.10001"
+       y="85"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5800"
+       style="fill:#f6b513" />
+    <text
+       text-anchor=""
+       x="493.14001"
+       y="95.5"
+       font-size="12"
+       id="text5802"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5804"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5806">R_StoreWallRange (24 samples, 8.11%)</title>
+    <rect
+       x="533.79999"
+       y="117"
+       width="55.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5808"
+       style="fill:#fa370b" />
+    <text
+       text-anchor=""
+       x="536.78003"
+       y="127.5"
+       font-size="12"
+       id="text5810"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Sto..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5812"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5814">?? (1 samples, 0.34%)</title>
+    <rect
+       x="265"
+       y="261"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5816"
+       style="fill:#f0be1e" />
+    <text
+       text-anchor=""
+       x="268"
+       y="271.5"
+       font-size="12"
+       id="text5818"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5820"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5822">R_DrawColumn (12 samples, 4.05%)</title>
+    <rect
+       x="602.70001"
+       y="101"
+       width="27.6"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5824"
+       style="fill:#d95d16" />
+    <text
+       text-anchor=""
+       x="605.70001"
+       y="111.5"
+       font-size="12"
+       id="text5826"
        style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
   </g>
   <g
@@ -534,25 +706,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6360"
-     transform="translate(-10,-14.882813)">
+     id="g5828"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6354">R_RenderSegLoop (2 samples, 2.04%)</title>
+       id="title5830">P_TryMove (2 samples, 0.68%)</title>
     <rect
-       x="641.40002"
-       y="117"
-       width="13.9"
+       x="664.70001"
+       y="245"
+       width="4.5999999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6356"
-       style="fill:#e41a34" />
+       id="rect5832"
+       style="fill:#cf0c05" />
     <text
        text-anchor=""
-       x="644.42999"
-       y="127.5"
+       x="667.72998"
+       y="255.5"
        font-size="12"
-       id="text6358"
+       id="text5834"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -560,25 +732,233 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6368"
-     transform="translate(-10,-14.882813)">
+     id="g5836"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6362">R_StoreWallRange (3 samples, 3.06%)</title>
+       id="title5838">FixedDiv2 (2 samples, 0.68%)</title>
     <rect
-       x="655.29999"
-       y="149"
-       width="20.799999"
+       x="490.10001"
+       y="53"
+       width="4.5999999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6364"
-       style="fill:#e4ad30" />
+       id="rect5840"
+       style="fill:#e26c0b" />
     <text
        text-anchor=""
-       x="658.31"
+       x="493.14001"
+       y="63.5"
+       font-size="12"
+       id="text5842"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5844"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5846">R_DrawColumn (2 samples, 0.68%)</title>
+    <rect
+       x="310.89999"
+       y="261"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5848"
+       style="fill:#d63a20" />
+    <text
+       text-anchor=""
+       x="313.95001"
+       y="271.5"
+       font-size="12"
+       id="text5850"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5852"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5854">NXFindPboardType (1 samples, 0.34%)</title>
+    <rect
+       x="267.29999"
+       y="261"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5856"
+       style="fill:#d5b023" />
+    <text
+       text-anchor=""
+       x="270.29999"
+       y="271.5"
+       font-size="12"
+       id="text5858"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5860"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5862">R_DrawColumn (4 samples, 1.35%)</title>
+    <rect
+       x="520"
+       y="85"
+       width="9.1999998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5864"
+       style="fill:#de5b20" />
+    <text
+       text-anchor=""
+       x="523"
+       y="95.5"
+       font-size="12"
+       id="text5866"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5868"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5870">?? (1 samples, 0.34%)</title>
+    <rect
+       x="267.29999"
+       y="245"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5872"
+       style="fill:#fcc002" />
+    <text
+       text-anchor=""
+       x="270.29999"
+       y="255.5"
+       font-size="12"
+       id="text5874"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5876"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5878">STlib_updateNum (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="277"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5880"
+       style="fill:#de200f" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="287.5"
+       font-size="12"
+       id="text5882"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5884"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5886">I_StartTic (7 samples, 2.36%)</title>
+    <rect
+       x="673.90002"
+       y="357"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5888"
+       style="fill:#e25407" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="367.5"
+       font-size="12"
+       id="text5890"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5892"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5894">NXObjectMapPrototype (2 samples, 0.68%)</title>
+    <rect
+       x="122.6"
+       y="181"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5896"
+       style="fill:#e98826" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="191.5"
+       font-size="12"
+       id="text5898"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5900"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5902">P_CrossBSPNode (1 samples, 0.34%)</title>
+    <rect
+       x="669.29999"
+       y="149"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5904"
+       style="fill:#e62225" />
+    <text
+       text-anchor=""
+       x="672.32001"
        y="159.5"
        font-size="12"
-       id="text6366"
+       id="text5906"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -586,25 +966,233 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6376"
-     transform="translate(-10,-14.882813)">
+     id="g5908"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6370">R_DrawPlanes (46 samples, 46.94%)</title>
+       id="title5910">R_SortVisSprites (1 samples, 0.34%)</title>
     <rect
-       x="162.7"
-       y="325"
-       width="319.10001"
+       x="315.5"
+       y="309"
+       width="2.3"
        height="15"
        rx="2"
        ry="2"
-       id="rect6372"
-       style="fill:#ec1a14" />
+       id="rect5912"
+       style="fill:#e82f30" />
     <text
        text-anchor=""
-       x="165.64999"
+       x="318.54001"
+       y="319.5"
+       font-size="12"
+       id="text5914"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5916"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5918">STlib_updatePercent (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="293"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5920"
+       style="fill:#cf4f2b" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="303.5"
+       font-size="12"
+       id="text5922"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5924"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5926">NXFindPboardType (6 samples, 2.03%)</title>
+    <rect
+       x="673.90002"
+       y="309"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5928"
+       style="fill:#f3c205" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="319.5"
+       font-size="12"
+       id="text5930"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5932"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5934">NXFindPboardType (5 samples, 1.69%)</title>
+    <rect
+       x="673.90002"
+       y="261"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5936"
+       style="fill:#e23105" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="271.5"
+       font-size="12"
+       id="text5938"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5940"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5942">Z_ChangeTag2 (2 samples, 0.68%)</title>
+    <rect
+       x="646.40002"
+       y="325"
+       width="4.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5944"
+       style="fill:#d6af30" />
+    <text
+       text-anchor=""
+       x="649.34998"
        y="335.5"
        font-size="12"
-       id="text6374"
+       id="text5946"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5948"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5950">NXFindPboardType (7 samples, 2.36%)</title>
+    <rect
+       x="673.90002"
+       y="341"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5952"
+       style="fill:#ef2c34" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="351.5"
+       font-size="12"
+       id="text5954"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5956"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5958">R_StoreWallRange (13 samples, 4.39%)</title>
+    <rect
+       x="600.40002"
+       y="133"
+       width="29.9"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5960"
+       style="fill:#de7d19" />
+    <text
+       text-anchor=""
+       x="603.40997"
+       y="143.5"
+       font-size="12"
+       id="text5962"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5964"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5966">V_MarkRect (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="229"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5968"
+       style="fill:#d93925" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="239.5"
+       font-size="12"
+       id="text5970"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g5972"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title5974">R_DrawPlanes (41 samples, 13.85%)</title>
+    <rect
+       x="317.79999"
+       y="325"
+       width="94.199997"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect5976"
+       style="fill:#d97e28" />
+    <text
+       text-anchor=""
+       x="320.84"
+       y="335.5"
+       font-size="12"
+       id="text5978"
        style="font-size:12px;font-family:Verdana;fill:#000000">R_DrawPlanes</text>
   </g>
   <g
@@ -612,545 +1200,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6384"
-     transform="translate(-10,-14.882813)">
+     id="g5980"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6378">R_RenderBSPNode (28 samples, 28.57%)</title>
+       id="title5982">R_Subsector (16 samples, 5.41%)</title>
     <rect
-       x="488.79999"
-       y="229"
-       width="194.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6380"
-       style="fill:#d4e135" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="239.5"
-       font-size="12"
-       id="text6382"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6392"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6386">-[VGAView updateView] (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="325"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6388"
-       style="fill:#f8db22" />
-    <text
-       text-anchor=""
-       x="13"
-       y="335.5"
-       font-size="12"
-       id="text6390"
-       style="font-size:12px;font-family:Verdana;fill:#000000">-[VGAView updateVi..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6400"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6394">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="309"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6396"
-       style="fill:#de3418" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="319.5"
-       font-size="12"
-       id="text6398"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6408"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6402">R_RenderPlayerView (75 samples, 76.53%)</title>
-    <rect
-       x="162.7"
-       y="341"
-       width="520.40002"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6404"
-       style="fill:#f41106" />
-    <text
-       text-anchor=""
-       x="165.64999"
-       y="351.5"
-       font-size="12"
-       id="text6406"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderPlayerView</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6416"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6410">P_Ticker (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="325"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6412"
-       style="fill:#f75d12" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="335.5"
-       font-size="12"
-       id="text6414"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6424"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6418">P_CheckSight (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="229"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6420"
-       style="fill:#dd1a02" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="239.5"
-       font-size="12"
-       id="text6422"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6432"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6426">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
+       x="593.5"
        y="181"
-       width="6.9000001"
+       width="36.799999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6428"
-       style="fill:#ed5130" />
+       id="rect5984"
+       style="fill:#de9b2c" />
     <text
        text-anchor=""
-       x="686.06"
+       x="596.51001"
        y="191.5"
        font-size="12"
-       id="text6430"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6440"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6434">NXFindPboardType (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="277"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6436"
-       style="fill:#eec61e" />
-    <text
-       text-anchor=""
-       x="13"
-       y="287.5"
-       font-size="12"
-       id="text6438"
-       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6448"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6442">R_StoreWallRange (1 samples, 1.02%)</title>
-    <rect
-       x="572"
-       y="117"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6444"
-       style="fill:#cf8335" />
-    <text
-       text-anchor=""
-       x="575.03998"
-       y="127.5"
-       font-size="12"
-       id="text6446"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6456"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6450">R_PointToDist (1 samples, 1.02%)</title>
-    <rect
-       x="634.5"
-       y="117"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6452"
-       style="fill:#fa0300" />
-    <text
-       text-anchor=""
-       x="637.48999"
-       y="127.5"
-       font-size="12"
-       id="text6454"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6464"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6458">P_RunThinkers (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="309"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6460"
-       style="fill:#d86805" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="319.5"
-       font-size="12"
-       id="text6462"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6472"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6466">D_DoomMain (98 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="389"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6468"
-       style="fill:#fb6202" />
-    <text
-       text-anchor=""
-       x="13"
-       y="399.5"
-       font-size="12"
-       id="text6470"
-       style="font-size:12px;font-family:Verdana;fill:#000000">D_DoomMain</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6480"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6474">R_RenderSegLoop (2 samples, 2.04%)</title>
-    <rect
-       x="613.70001"
-       y="117"
-       width="13.9"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6476"
-       style="fill:#e99f29" />
-    <text
-       text-anchor=""
-       x="616.66998"
-       y="127.5"
-       font-size="12"
-       id="text6478"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6488"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6482">R_RenderBSPNode (18 samples, 18.37%)</title>
-    <rect
-       x="488.79999"
-       y="181"
-       width="124.9"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6484"
-       style="fill:#d6df22" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="191.5"
-       font-size="12"
-       id="text6486"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6496"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6490">FixedMul (1 samples, 1.02%)</title>
-    <rect
-       x="669.20001"
-       y="117"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6492"
-       style="fill:#f18a0c" />
-    <text
-       text-anchor=""
-       x="672.17999"
-       y="127.5"
-       font-size="12"
-       id="text6494"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6504"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6498">P_LookForPlayers (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="245"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6500"
-       style="fill:#e2b219" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="255.5"
-       font-size="12"
-       id="text6502"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6512"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6506">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="53"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6508"
-       style="fill:#e1500b" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="63.5"
-       font-size="12"
-       id="text6510"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6520"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6514">?? (1 samples, 1.02%)</title>
-    <rect
-       x="155.7"
-       y="309"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6516"
-       style="fill:#d5931f" />
-    <text
-       text-anchor=""
-       x="158.71001"
-       y="319.5"
-       font-size="12"
-       id="text6518"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6528"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6522">R_AddSprites (1 samples, 1.02%)</title>
-    <rect
-       x="676.09998"
-       y="181"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6524"
-       style="fill:#d25b05" />
-    <text
-       text-anchor=""
-       x="679.12"
-       y="191.5"
-       font-size="12"
-       id="text6526"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6536"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6530">W_CacheLumpNum (1 samples, 1.02%)</title>
-    <rect
-       x="537.29999"
-       y="53"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6532"
-       style="fill:#e26501" />
-    <text
-       text-anchor=""
-       x="540.34998"
-       y="63.5"
-       font-size="12"
-       id="text6534"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6544"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6538">R_Subsector (6 samples, 6.12%)</title>
-    <rect
-       x="613.70001"
-       y="181"
-       width="41.599998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6540"
-       style="fill:#e1bb2b" />
-    <text
-       text-anchor=""
-       x="616.66998"
-       y="191.5"
-       font-size="12"
-       id="text6542"
+       id="text5986"
        style="font-size:12px;font-family:Verdana;fill:#000000">R_S..</text>
   </g>
   <g
@@ -1158,77 +1226,77 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6552"
-     transform="translate(-10,-14.882813)">
+     id="g5988"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6546">R_ClipSolidWallSegment (4 samples, 4.08%)</title>
+       id="title5990">FixedDiv2 (2 samples, 0.68%)</title>
     <rect
-       x="585.90002"
-       y="133"
-       width="27.799999"
+       x="588.90002"
+       y="101"
+       width="4.5999999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6548"
-       style="fill:#f20e2f" />
+       id="rect5992"
+       style="fill:#eaab1e" />
     <text
        text-anchor=""
-       x="588.91998"
-       y="143.5"
+       x="591.91998"
+       y="111.5"
        font-size="12"
-       id="text6550"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
+       id="text5994"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
      class="func_g"
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6560"
-     transform="translate(-10,-14.882813)">
+     id="g5996"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6554">R_DrawColumn (2 samples, 2.04%)</title>
+       id="title5998">rlsDefaultParameterVector (60 samples, 20.27%)</title>
     <rect
-       x="523.5"
-       y="69"
+       x="127.2"
+       y="213"
+       width="137.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6000"
+       style="fill:#cf0113" />
+    <text
+       text-anchor=""
+       x="130.16"
+       y="223.5"
+       font-size="12"
+       id="text6002"
+       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamet..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6004"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6006">R_DrawVisSprite (6 samples, 2.03%)</title>
+    <rect
+       x="276.5"
+       y="277"
        width="13.8"
        height="15"
        rx="2"
        ry="2"
-       id="rect6556"
-       style="fill:#f9190a" />
+       id="rect6008"
+       style="fill:#ef6405" />
     <text
        text-anchor=""
-       x="526.46997"
-       y="79.5"
-       font-size="12"
-       id="text6558"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6568"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6562">P_SetMobjState (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="277"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6564"
-       style="fill:#f76721" />
-    <text
-       text-anchor=""
-       x="686.06"
+       x="279.48999"
        y="287.5"
        font-size="12"
-       id="text6566"
+       id="text6010"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -1236,493 +1304,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6576"
-     transform="translate(-10,-14.882813)">
+     id="g6012"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6570">R_ClipSolidWallSegment (4 samples, 4.08%)</title>
+       id="title6014">host_os_type (2 samples, 0.68%)</title>
     <rect
-       x="544.29999"
-       y="117"
-       width="27.700001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6572"
-       style="fill:#d56d03" />
-    <text
-       text-anchor=""
-       x="547.28998"
-       y="127.5"
-       font-size="12"
-       id="text6574"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6584"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6578">R_GetColumn (1 samples, 1.02%)</title>
-    <rect
-       x="606.70001"
-       y="85"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6580"
-       style="fill:#da8002" />
-    <text
-       text-anchor=""
-       x="609.72998"
-       y="95.5"
-       font-size="12"
-       id="text6582"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6592"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6586">-[DRCoord appDidInit:] (98 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="405"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6588"
-       style="fill:#f7421a" />
-    <text
-       text-anchor=""
-       x="13"
-       y="415.5"
-       font-size="12"
-       id="text6590"
-       style="font-size:12px;font-family:Verdana;fill:#000000">-[DRCoord appDidInit:]</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6600"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6594">R_RenderBSPNode (28 samples, 28.57%)</title>
-    <rect
-       x="488.79999"
-       y="213"
-       width="194.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6596"
-       style="fill:#fe4e1f" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="223.5"
-       font-size="12"
-       id="text6598"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6608"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6602">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="293"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6604"
-       style="fill:#d11d23" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="303.5"
-       font-size="12"
-       id="text6606"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6616"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6610">R_ClipSolidWallSegment (3 samples, 3.06%)</title>
-    <rect
-       x="634.5"
-       y="149"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6612"
-       style="fill:#f59c0a" />
-    <text
-       text-anchor=""
-       x="637.48999"
-       y="159.5"
-       font-size="12"
-       id="text6614"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6624"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6618">R_MakeSpans (45 samples, 45.92%)</title>
-    <rect
-       x="169.60001"
-       y="309"
-       width="312.20001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6620"
-       style="fill:#e65213" />
-    <text
-       text-anchor=""
-       x="172.59"
-       y="319.5"
-       font-size="12"
-       id="text6622"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_MakeSpans</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6632"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6626">R_Subsector (4 samples, 4.08%)</title>
-    <rect
-       x="655.29999"
-       y="197"
-       width="27.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6628"
-       style="fill:#e7da17" />
-    <text
-       text-anchor=""
-       x="658.31"
-       y="207.5"
-       font-size="12"
-       id="text6630"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6640"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6634">NXFindPboardType (98 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="421"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6636"
-       style="fill:#e1a226" />
-    <text
-       text-anchor=""
-       x="13"
-       y="431.5"
-       font-size="12"
-       id="text6638"
-       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6648"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6642">NXFindPboardType (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="293"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6644"
-       style="fill:#de1318" />
-    <text
-       text-anchor=""
-       x="13"
-       y="303.5"
-       font-size="12"
-       id="text6646"
-       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6656"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6650">R_RenderBSPNode (14 samples, 14.29%)</title>
-    <rect
-       x="488.79999"
-       y="165"
-       width="97.099998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6652"
-       style="fill:#f96427" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="175.5"
-       font-size="12"
-       id="text6654"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSP..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6664"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6658">R_ScaleFromGlobalAngle (1 samples, 1.02%)</title>
-    <rect
-       x="627.59998"
-       y="117"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6660"
-       style="fill:#edd500" />
-    <text
-       text-anchor=""
-       x="630.54999"
-       y="127.5"
-       font-size="12"
-       id="text6662"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6672"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6666">R_RenderSegLoop (3 samples, 3.06%)</title>
-    <rect
-       x="655.29999"
-       y="133"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6668"
-       style="fill:#d6d100" />
-    <text
-       text-anchor=""
-       x="658.31"
-       y="143.5"
-       font-size="12"
-       id="text6670"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6680"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6674">FixedMul (1 samples, 1.02%)</title>
-    <rect
-       x="169.60001"
-       y="293"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6676"
-       style="fill:#e23631" />
-    <text
-       text-anchor=""
-       x="172.59"
-       y="303.5"
-       font-size="12"
-       id="text6678"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6688"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6682">R_AddLine (12 samples, 12.24%)</title>
-    <rect
-       x="495.70001"
-       y="133"
-       width="83.300003"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6684"
-       style="fill:#f43b03" />
-    <text
-       text-anchor=""
-       x="498.70999"
-       y="143.5"
-       font-size="12"
-       id="text6686"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_AddLine</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6696"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6690">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="197"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6692"
-       style="fill:#e48a35" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="207.5"
-       font-size="12"
-       id="text6694"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6704"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6698">NetUpdate (1 samples, 1.02%)</title>
-    <rect
-       x="155.7"
-       y="341"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6700"
-       style="fill:#f44816" />
-    <text
-       text-anchor=""
-       x="158.71001"
-       y="351.5"
-       font-size="12"
-       id="text6702"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6712"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6706">Update16_2FAB (21 samples, 21.43%)</title>
-    <rect
-       x="10"
+       x="650.90002"
        y="245"
-       width="145.7"
+       width="4.5999999"
        height="15"
        rx="2"
        ry="2"
-       id="rect6708"
-       style="fill:#cfd52f" />
+       id="rect6016"
+       style="fill:#d78b2e" />
     <text
        text-anchor=""
-       x="13"
+       x="653.95001"
        y="255.5"
        font-size="12"
-       id="text6710"
-       style="font-size:12px;font-family:Verdana;fill:#000000">Update16_2FAB</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6720"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6714">FixedDiv (1 samples, 1.02%)</title>
-    <rect
-       x="634.5"
-       y="101"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6716"
-       style="fill:#e99f32" />
-    <text
-       text-anchor=""
-       x="637.48999"
-       y="111.5"
-       font-size="12"
-       id="text6718"
+       id="text6018"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -1730,1273 +1330,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6728"
-     transform="translate(-10,-14.882813)">
+     id="g6020"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title6722">R_ClipPassWallSegment (7 samples, 7.14%)</title>
+       id="title6022">R_MapPlane (33 samples, 11.15%)</title>
     <rect
-       x="495.70001"
-       y="117"
-       width="48.599998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6724"
-       style="fill:#d9e014" />
-    <text
-       text-anchor=""
-       x="498.70999"
-       y="127.5"
-       font-size="12"
-       id="text6726"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_Cl..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6736"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6730">R_StoreWallRange (4 samples, 4.08%)</title>
-    <rect
-       x="585.90002"
-       y="117"
-       width="27.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6732"
-       style="fill:#fa0c1f" />
-    <text
-       text-anchor=""
-       x="588.91998"
-       y="127.5"
-       font-size="12"
-       id="text6734"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6744"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6738">R_StoreWallRange (7 samples, 7.14%)</title>
-    <rect
-       x="495.70001"
-       y="101"
-       width="48.599998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6740"
-       style="fill:#f9b625" />
-    <text
-       text-anchor=""
-       x="498.70999"
-       y="111.5"
-       font-size="12"
-       id="text6742"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_St..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6752"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6746">R_CheckPlane (1 samples, 1.02%)</title>
-    <rect
-       x="585.90002"
-       y="101"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6748"
-       style="fill:#de4205" />
-    <text
-       text-anchor=""
-       x="588.91998"
-       y="111.5"
-       font-size="12"
-       id="text6750"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6760"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6754">R_ProjectSprite (1 samples, 1.02%)</title>
-    <rect
-       x="676.09998"
-       y="165"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6756"
-       style="fill:#e25a0b" />
-    <text
-       text-anchor=""
-       x="679.12"
-       y="175.5"
-       font-size="12"
-       id="text6758"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6768"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6762">FixedMul (2 samples, 2.04%)</title>
-    <rect
-       x="509.60001"
-       y="69"
-       width="13.9"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6764"
-       style="fill:#edca26" />
-    <text
-       text-anchor=""
-       x="512.59003"
-       y="79.5"
-       font-size="12"
-       id="text6766"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6776"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6770">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="261"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6772"
-       style="fill:#f34e0d" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="271.5"
-       font-size="12"
-       id="text6774"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6784"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6778">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="101"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6780"
-       style="fill:#f41c04" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="111.5"
-       font-size="12"
-       id="text6782"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6792"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6786">R_AddLine (6 samples, 6.12%)</title>
-    <rect
-       x="613.70001"
-       y="165"
-       width="41.599998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6788"
-       style="fill:#e98422" />
-    <text
-       text-anchor=""
-       x="616.66998"
-       y="175.5"
-       font-size="12"
-       id="text6790"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_A..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6800"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6794">FixedDiv2 (1 samples, 1.02%)</title>
-    <rect
-       x="634.5"
-       y="85"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6796"
-       style="fill:#cd3f32" />
-    <text
-       text-anchor=""
-       x="637.48999"
-       y="95.5"
-       font-size="12"
-       id="text6798"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6808"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6802">R_DrawColumn (2 samples, 2.04%)</title>
-    <rect
-       x="592.90002"
-       y="85"
-       width="13.8"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6804"
-       style="fill:#ec5d1a" />
-    <text
-       text-anchor=""
-       x="595.85999"
-       y="95.5"
-       font-size="12"
-       id="text6806"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6816"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6810">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="117"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6812"
-       style="fill:#d1c218" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="127.5"
-       font-size="12"
-       id="text6814"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6824"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6818">-[VGAView drawSelf::] (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="261"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6820"
-       style="fill:#f1ac31" />
-    <text
-       text-anchor=""
-       x="13"
-       y="271.5"
-       font-size="12"
-       id="text6822"
-       style="font-size:12px;font-family:Verdana;fill:#000000">-[VGAView drawSelf..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6832"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6826">I_FinishUpdate (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="341"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6828"
-       style="fill:#d1d82a" />
-    <text
-       text-anchor=""
-       x="13"
-       y="351.5"
-       font-size="12"
-       id="text6830"
-       style="font-size:12px;font-family:Verdana;fill:#000000">I_FinishUpdate</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6840"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6834">R_DrawColumn (3 samples, 3.06%)</title>
-    <rect
-       x="551.20001"
-       y="69"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6836"
-       style="fill:#e2e328" />
-    <text
-       text-anchor=""
-       x="554.21997"
-       y="79.5"
-       font-size="12"
-       id="text6838"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6848"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6842">D_Display (97 samples, 98.98%)</title>
-    <rect
-       x="10"
-       y="357"
-       width="673.09998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6844"
-       style="fill:#deb62e" />
-    <text
-       text-anchor=""
-       x="13"
-       y="367.5"
-       font-size="12"
-       id="text6846"
-       style="font-size:12px;font-family:Verdana;fill:#000000">D_Display</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6856"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6850">G_Ticker (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="341"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6852"
-       style="fill:#eb2011" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="351.5"
-       font-size="12"
-       id="text6854"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6864"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6858">R_RenderSegLoop (4 samples, 4.08%)</title>
-    <rect
-       x="544.29999"
-       y="85"
-       width="27.700001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6860"
-       style="fill:#dc7d01" />
-    <text
-       text-anchor=""
-       x="547.28998"
-       y="95.5"
-       font-size="12"
-       id="text6862"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6872"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6866">R_StoreWallRange (3 samples, 3.06%)</title>
-    <rect
-       x="613.70001"
-       y="133"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6868"
-       style="fill:#d62d24" />
-    <text
-       text-anchor=""
-       x="616.66998"
-       y="143.5"
-       font-size="12"
-       id="text6870"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6880"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6874">R_DrawColumn (2 samples, 2.04%)</title>
-    <rect
-       x="641.40002"
-       y="101"
-       width="13.9"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6876"
-       style="fill:#e22620" />
-    <text
-       text-anchor=""
-       x="644.42999"
-       y="111.5"
-       font-size="12"
-       id="text6878"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6888"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6882">R_Subsector (4 samples, 4.08%)</title>
-    <rect
-       x="585.90002"
-       y="165"
-       width="27.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6884"
-       style="fill:#e83b32" />
-    <text
-       text-anchor=""
-       x="588.91998"
-       y="175.5"
-       font-size="12"
-       id="text6886"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6896"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6890">R_StoreWallRange (4 samples, 4.08%)</title>
-    <rect
-       x="544.29999"
-       y="101"
-       width="27.700001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6892"
-       style="fill:#e00320" />
-    <text
-       text-anchor=""
-       x="547.28998"
-       y="111.5"
-       font-size="12"
-       id="text6894"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6904"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6898">TryRunTics (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="357"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6900"
-       style="fill:#da0b34" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="367.5"
-       font-size="12"
-       id="text6902"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6912"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6906">P_CrossSubsector (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="37"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6908"
-       style="fill:#ec2416" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="47.5"
-       font-size="12"
-       id="text6910"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6920"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6914">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="245"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6916"
-       style="fill:#f35a14" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="255.5"
-       font-size="12"
-       id="text6918"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6928"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6922">R_CheckBBox (1 samples, 1.02%)</title>
-    <rect
-       x="481.79999"
-       y="229"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6924"
-       style="fill:#cd4c17" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="239.5"
-       font-size="12"
-       id="text6926"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6936"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6930">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="213"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6932"
-       style="fill:#f0e32b" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="223.5"
-       font-size="12"
-       id="text6934"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6944"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6938">R_AddLine (3 samples, 3.06%)</title>
-    <rect
-       x="655.29999"
-       y="181"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6940"
-       style="fill:#fa3827" />
-    <text
-       text-anchor=""
-       x="658.31"
-       y="191.5"
-       font-size="12"
-       id="text6942"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6952"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6946">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="277"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6948"
-       style="fill:#d70a2f" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="287.5"
-       font-size="12"
-       id="text6950"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6960"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6954">NXFindPboardType (21 samples, 21.43%)</title>
-    <rect
-       x="10"
-       y="309"
-       width="145.7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6956"
-       style="fill:#e83d0c" />
-    <text
-       text-anchor=""
-       x="13"
-       y="319.5"
-       font-size="12"
-       id="text6958"
-       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6968"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6962">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="69"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6964"
-       style="fill:#f93322" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="79.5"
-       font-size="12"
-       id="text6966"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6976"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6970">all (98 samples, 100%)</title>
-    <rect
-       x="10"
-       y="453"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6972"
-       style="fill:#e8cc2d" />
-    <text
-       text-anchor=""
-       x="13"
-       y="463.5"
-       font-size="12"
-       id="text6974"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6984"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6978">R_FindPlane (1 samples, 1.02%)</title>
-    <rect
-       x="579"
-       y="133"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6980"
-       style="fill:#f74203" />
-    <text
-       text-anchor=""
-       x="581.97998"
-       y="143.5"
-       font-size="12"
-       id="text6982"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6992"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6986">A_Look (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="261"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6988"
-       style="fill:#dc3132" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="271.5"
-       font-size="12"
-       id="text6990"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7000"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title6994">R_ClipPassWallSegment (3 samples, 3.06%)</title>
-    <rect
-       x="613.70001"
-       y="149"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6996"
-       style="fill:#f31d06" />
-    <text
-       text-anchor=""
-       x="616.66998"
-       y="159.5"
-       font-size="12"
-       id="text6998"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7008"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7002">R_RenderBSPNode (29 samples, 29.59%)</title>
-    <rect
-       x="481.79999"
-       y="325"
-       width="201.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7004"
-       style="fill:#e4ce04" />
-    <text
-       text-anchor=""
-       x="484.84"
-       y="335.5"
-       font-size="12"
-       id="text7006"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7016"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7010">FixedMul (1 samples, 1.02%)</title>
-    <rect
-       x="676.09998"
-       y="149"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7012"
-       style="fill:#ce5c2a" />
-    <text
-       text-anchor=""
-       x="679.12"
-       y="159.5"
-       font-size="12"
-       id="text7014"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7024"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7018">R_GetColumn (1 samples, 1.02%)</title>
-    <rect
-       x="537.29999"
-       y="69"
-       width="7"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7020"
-       style="fill:#ea420d" />
-    <text
-       text-anchor=""
-       x="540.34998"
-       y="79.5"
-       font-size="12"
-       id="text7022"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7032"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7026">R_ClipPassWallSegment (3 samples, 3.06%)</title>
-    <rect
-       x="655.29999"
-       y="165"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7028"
-       style="fill:#dfba11" />
-    <text
-       text-anchor=""
-       x="658.31"
-       y="175.5"
-       font-size="12"
-       id="text7030"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7040"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7034">main (98 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="437"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7036"
-       style="fill:#f2db23" />
-    <text
-       text-anchor=""
-       x="13"
-       y="447.5"
-       font-size="12"
-       id="text7038"
-       style="font-size:12px;font-family:Verdana;fill:#000000">main</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7048"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7042">NXObjectMapPrototype (1 samples, 1.02%)</title>
-    <rect
-       x="155.7"
+       x="336.20001"
        y="293"
-       width="7"
+       width="75.800003"
        height="15"
        rx="2"
        ry="2"
-       id="rect7044"
-       style="fill:#ec5723" />
+       id="rect6024"
+       style="fill:#d2082d" />
     <text
        text-anchor=""
-       x="158.71001"
+       x="339.22"
        y="303.5"
        font-size="12"
-       id="text7046"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7056"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7050">R_RenderSegLoop (7 samples, 7.14%)</title>
-    <rect
-       x="495.70001"
-       y="85"
-       width="48.599998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7052"
-       style="fill:#cd1605" />
-    <text
-       text-anchor=""
-       x="498.70999"
-       y="95.5"
-       font-size="12"
-       id="text7054"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_Re..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7064"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7058">R_Subsector (14 samples, 14.29%)</title>
-    <rect
-       x="488.79999"
-       y="149"
-       width="97.099998"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7060"
-       style="fill:#e26918" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="159.5"
-       font-size="12"
-       id="text7062"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_Subsector</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7072"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7066">P_CrossBSPNode (1 samples, 1.02%)</title>
-    <rect
-       x="683.09998"
-       y="133"
-       width="6.9000001"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7068"
-       style="fill:#cf610f" />
-    <text
-       text-anchor=""
-       x="686.06"
-       y="143.5"
-       font-size="12"
-       id="text7070"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7080"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7074">D_DoomLoop (98 samples, 100.00%)</title>
-    <rect
-       x="10"
-       y="373"
-       width="680"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7076"
-       style="fill:#f40d1a" />
-    <text
-       text-anchor=""
-       x="13"
-       y="383.5"
-       font-size="12"
-       id="text7078"
-       style="font-size:12px;font-family:Verdana;fill:#000000">D_DoomLoop</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7088"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7082">R_RenderSegLoop (3 samples, 3.06%)</title>
-    <rect
-       x="592.90002"
-       y="101"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7084"
-       style="fill:#d7dc2e" />
-    <text
-       text-anchor=""
-       x="595.85999"
-       y="111.5"
-       font-size="12"
-       id="text7086"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7096"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7090">R_StoreWallRange (3 samples, 3.06%)</title>
-    <rect
-       x="634.5"
-       y="133"
-       width="20.799999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7092"
-       style="fill:#fda10e" />
-    <text
-       text-anchor=""
-       x="637.48999"
-       y="143.5"
-       font-size="12"
-       id="text7094"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7104"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7098">R_RenderBSPNode (24 samples, 24.49%)</title>
-    <rect
-       x="488.79999"
-       y="197"
-       width="166.5"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7100"
-       style="fill:#eb180b" />
-    <text
-       text-anchor=""
-       x="491.78"
-       y="207.5"
-       font-size="12"
-       id="text7102"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7112"
-     transform="translate(-10,-14.882813)">
-    <title
-       id="title7106">R_MapPlane (44 samples, 44.90%)</title>
-    <rect
-       x="176.5"
-       y="293"
-       width="305.29999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7108"
-       style="fill:#e26d2f" />
-    <text
-       text-anchor=""
-       x="179.53"
-       y="303.5"
-       font-size="12"
-       id="text7110"
+       id="text6026"
        style="font-size:12px;font-family:Verdana;fill:#000000">R_MapPlane</text>
   </g>
   <g
@@ -3004,25 +1356,25 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7120"
-     transform="translate(-10,-14.882813)">
+     id="g6028"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title7114">W_CacheLumpNum (1 samples, 1.02%)</title>
+       id="title6030">I_GetTime (1 samples, 0.34%)</title>
     <rect
-       x="606.70001"
-       y="69"
-       width="7"
+       x="269.60001"
+       y="309"
+       width="2.3"
        height="15"
        rx="2"
        ry="2"
-       id="rect7116"
-       style="fill:#f3b814" />
+       id="rect6032"
+       style="fill:#ec340f" />
     <text
        text-anchor=""
-       x="609.72998"
-       y="79.5"
+       x="272.59"
+       y="319.5"
        font-size="12"
-       id="text7118"
+       id="text6034"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -3030,25 +1382,181 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7128"
-     transform="translate(-10,-14.882813)">
+     id="g6036"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title7122">R_DrawColumn (1 samples, 1.02%)</title>
+       id="title6038">NXFindPboardType (1 samples, 0.34%)</title>
     <rect
-       x="620.59998"
-       y="101"
-       width="7"
+       x="265"
+       y="245"
+       width="2.3"
        height="15"
        rx="2"
        ry="2"
-       id="rect7124"
-       style="fill:#e6a511" />
+       id="rect6040"
+       style="fill:#fe6e0a" />
     <text
        text-anchor=""
-       x="623.60999"
+       x="268"
+       y="255.5"
+       font-size="12"
+       id="text6042"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6044"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6046">D_DoomMain (296 samples, 100.00%)</title>
+    <rect
+       x="10"
+       y="389"
+       width="680"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6048"
+       style="fill:#cfcc0c" />
+    <text
+       text-anchor=""
+       x="13"
+       y="399.5"
+       font-size="12"
+       id="text6050"
+       style="font-size:12px;font-family:Verdana;fill:#000000">D_DoomMain</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6052"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6054">HUlib_drawTextLine (1 samples, 0.34%)</title>
+    <rect
+       x="10"
+       y="309"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6056"
+       style="fill:#f4ab2f" />
+    <text
+       text-anchor=""
+       x="13"
+       y="319.5"
+       font-size="12"
+       id="text6058"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6060"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6062">R_ClipPassWallSegment (9 samples, 3.04%)</title>
+    <rect
+       x="513.09998"
+       y="133"
+       width="20.700001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6064"
+       style="fill:#d2120e" />
+    <text
+       text-anchor=""
+       x="516.10999"
+       y="143.5"
+       font-size="12"
+       id="text6066"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6068"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6070">NXFindPboardType (1 samples, 0.34%)</title>
+    <rect
+       x="267.29999"
+       y="229"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6072"
+       style="fill:#dbcd1a" />
+    <text
+       text-anchor=""
+       x="270.29999"
+       y="239.5"
+       font-size="12"
+       id="text6074"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6076"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6078">M_AddToBox (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="213"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6080"
+       style="fill:#d73b1a" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="223.5"
+       font-size="12"
+       id="text6082"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6084"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6086">R_RenderSegLoop (9 samples, 3.04%)</title>
+    <rect
+       x="513.09998"
+       y="101"
+       width="20.700001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6088"
+       style="fill:#f3be10" />
+    <text
+       text-anchor=""
+       x="516.10999"
        y="111.5"
        font-size="12"
-       id="text7126"
+       id="text6090"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -3056,25 +1564,77 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7136"
-     transform="translate(-10,-14.882813)">
+     id="g6092"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title7130">P_MobjThinker (1 samples, 1.02%)</title>
+       id="title6094">R_RenderSegLoop (13 samples, 4.39%)</title>
     <rect
-       x="683.09998"
-       y="293"
+       x="600.40002"
+       y="117"
+       width="29.9"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6096"
+       style="fill:#ea0033" />
+    <text
+       text-anchor=""
+       x="603.40997"
+       y="127.5"
+       font-size="12"
+       id="text6098"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6100"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6102">FixedMul (2 samples, 0.68%)</title>
+    <rect
+       x="664.70001"
+       y="181"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6104"
+       style="fill:#d0a622" />
+    <text
+       text-anchor=""
+       x="667.72998"
+       y="191.5"
+       font-size="12"
+       id="text6106"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6108"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6110">R_StoreWallRange (3 samples, 1.01%)</title>
+    <rect
+       x="593.5"
+       y="133"
        width="6.9000001"
        height="15"
        rx="2"
        ry="2"
-       id="rect7132"
-       style="fill:#d44c20" />
+       id="rect6112"
+       style="fill:#e3191e" />
     <text
        text-anchor=""
-       x="686.06"
-       y="303.5"
+       x="596.51001"
+       y="143.5"
        font-size="12"
-       id="text7134"
+       id="text6114"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -3082,51 +1642,3639 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7144"
-     transform="translate(-10,-14.882813)">
+     id="g6116"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title7138">R_DrawSpan (43 samples, 43.88%)</title>
+       id="title6118">R_StoreWallRange (9 samples, 3.04%)</title>
     <rect
-       x="183.5"
-       y="277"
-       width="298.29999"
+       x="490.10001"
+       y="101"
+       width="20.700001"
        height="15"
        rx="2"
        ry="2"
-       id="rect7140"
-       style="fill:#d27b26" />
+       id="rect6120"
+       style="fill:#eb4e26" />
     <text
        text-anchor=""
-       x="186.47"
-       y="287.5"
+       x="493.14001"
+       y="111.5"
        font-size="12"
-       id="text7142"
-       style="font-size:12px;font-family:Verdana;fill:#000000">R_DrawSpan</text>
+       id="text6122"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
      class="func_g"
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7152"
-     transform="translate(-10,-14.882813)">
+     id="g6124"
+     transform="translate(-10,-15.275391)">
     <title
-       id="title7146">P_CrossBSPNode (1 samples, 1.02%)</title>
+       id="title6126">R_StoreWallRange (14 samples, 4.73%)</title>
     <rect
-       x="683.09998"
+       x="458"
+       y="101"
+       width="32.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6128"
+       style="fill:#ee861e" />
+    <text
+       text-anchor=""
+       x="460.97"
+       y="111.5"
+       font-size="12"
+       id="text6130"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6132"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6134">R_RenderSegLoop (22 samples, 7.43%)</title>
+    <rect
+       x="538.40002"
+       y="101"
+       width="50.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6136"
+       style="fill:#f40e36" />
+    <text
+       text-anchor=""
+       x="541.38"
+       y="111.5"
+       font-size="12"
+       id="text6138"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Ren..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6140"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6142">R_GetColumn (2 samples, 0.68%)</title>
+    <rect
+       x="529.20001"
+       y="85"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6144"
+       style="fill:#e3ab0f" />
+    <text
+       text-anchor=""
+       x="532.19"
+       y="95.5"
+       font-size="12"
+       id="text6146"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6148"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6150">R_AddLine (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
+       y="101"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6152"
+       style="fill:#e18e32" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="111.5"
+       font-size="12"
+       id="text6154"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6156"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6158">FixedMul (2 samples, 0.68%)</title>
+    <rect
+       x="331.60001"
+       y="293"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6160"
+       style="fill:#d25c34" />
+    <text
+       text-anchor=""
+       x="334.62"
+       y="303.5"
+       font-size="12"
+       id="text6162"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6164"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6166">R_RenderSegLoop (3 samples, 1.01%)</title>
+    <rect
+       x="593.5"
+       y="117"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6168"
+       style="fill:#cf2926" />
+    <text
+       text-anchor=""
+       x="596.51001"
+       y="127.5"
+       font-size="12"
+       id="text6170"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6172"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6174">R_RenderBSPNode (100 samples, 33.78%)</title>
+    <rect
+       x="416.60001"
+       y="309"
+       width="229.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6176"
+       style="fill:#f62e05" />
+    <text
+       text-anchor=""
+       x="419.62"
+       y="319.5"
+       font-size="12"
+       id="text6178"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6180"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6182">NXFindPboardType (7 samples, 2.36%)</title>
+    <rect
+       x="673.90002"
+       y="325"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6184"
+       style="fill:#f60f08" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="335.5"
+       font-size="12"
+       id="text6186"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6188"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6190">R_RenderBSPNode (38 samples, 12.84%)</title>
+    <rect
+       x="423.5"
+       y="165"
+       width="87.300003"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6192"
+       style="fill:#f2ac2c" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="175.5"
+       font-size="12"
+       id="text6194"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBS..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6196"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6198">R_RenderSegLoop (7 samples, 2.36%)</title>
+    <rect
+       x="494.70001"
+       y="85"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6200"
+       style="fill:#d5080a" />
+    <text
+       text-anchor=""
+       x="497.73001"
+       y="95.5"
+       font-size="12"
+       id="text6202"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6204"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6206">R_RenderSegLoop (5 samples, 1.69%)</title>
+    <rect
+       x="634.90002"
+       y="149"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6208"
+       style="fill:#dd0734" />
+    <text
+       text-anchor=""
+       x="637.85999"
+       y="159.5"
+       font-size="12"
+       id="text6210"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6212"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6214">NXFindPboardType (6 samples, 2.03%)</title>
+    <rect
+       x="673.90002"
+       y="293"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6216"
+       style="fill:#d36511" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="303.5"
+       font-size="12"
+       id="text6218"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6220"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6222">R_RenderSegLoop (5 samples, 1.69%)</title>
+    <rect
+       x="430.39999"
+       y="69"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6224"
+       style="fill:#f4e426" />
+    <text
+       text-anchor=""
+       x="433.41"
+       y="79.5"
+       font-size="12"
+       id="text6226"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6228"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6230">R_Subsector (23 samples, 7.77%)</title>
+    <rect
+       x="458"
+       y="149"
+       width="52.799999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6232"
+       style="fill:#dd422d" />
+    <text
+       text-anchor=""
+       x="460.97"
+       y="159.5"
+       font-size="12"
+       id="text6234"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Sub..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6236"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6238">NXFindPboardType (296 samples, 100.00%)</title>
+    <rect
+       x="10"
+       y="421"
+       width="680"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6240"
+       style="fill:#d94d12" />
+    <text
+       text-anchor=""
+       x="13"
+       y="431.5"
+       font-size="12"
+       id="text6242"
+       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6244"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6246">R_DrawColumn (3 samples, 1.01%)</title>
+    <rect
+       x="639.5"
+       y="133"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6248"
+       style="fill:#d8040c" />
+    <text
+       text-anchor=""
+       x="642.46002"
+       y="143.5"
+       font-size="12"
+       id="text6250"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6252"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6254">R_Subsector (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
+       y="117"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6256"
+       style="fill:#e10031" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="127.5"
+       font-size="12"
+       id="text6258"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6260"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6262">R_Subsector (36 samples, 12.16%)</title>
+    <rect
+       x="510.79999"
+       y="165"
+       width="82.699997"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6264"
+       style="fill:#d6871f" />
+    <text
+       text-anchor=""
+       x="513.81"
+       y="175.5"
+       font-size="12"
+       id="text6266"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Subsector</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6268"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6270">D_Display (282 samples, 95.27%)</title>
+    <rect
+       x="10"
+       y="357"
+       width="647.79999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6272"
+       style="fill:#d0e310" />
+    <text
+       text-anchor=""
+       x="13"
+       y="367.5"
+       font-size="12"
+       id="text6274"
+       style="font-size:12px;font-family:Verdana;fill:#000000">D_Display</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6276"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6278">R_AddLine (5 samples, 1.69%)</title>
+    <rect
+       x="634.90002"
+       y="197"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6280"
+       style="fill:#ea9d09" />
+    <text
+       text-anchor=""
+       x="637.85999"
+       y="207.5"
+       font-size="12"
+       id="text6282"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6284"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6286">R_DrawVisSprite (9 samples, 3.04%)</title>
+    <rect
+       x="294.89999"
+       y="293"
+       width="20.6"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6288"
+       style="fill:#f01126" />
+    <text
+       text-anchor=""
+       x="297.85999"
+       y="303.5"
+       font-size="12"
+       id="text6290"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6292"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6294">-[DRCoord appDidInit:] (296 samples, 100.00%)</title>
+    <rect
+       x="10"
+       y="405"
+       width="680"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6296"
+       style="fill:#e76f24" />
+    <text
+       text-anchor=""
+       x="13"
+       y="415.5"
+       font-size="12"
+       id="text6298"
+       style="font-size:12px;font-family:Verdana;fill:#000000">-[DRCoord appDidInit:]</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6300"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6302">R_MakeSpans (2 samples, 0.68%)</title>
+    <rect
+       x="412"
+       y="325"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6304"
+       style="fill:#da0f2e" />
+    <text
+       text-anchor=""
+       x="415.03"
+       y="335.5"
+       font-size="12"
+       id="text6306"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6308"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6310">R_ClearPlanes (2 samples, 0.68%)</title>
+    <rect
+       x="271.89999"
+       y="325"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6312"
+       style="fill:#d4431e" />
+    <text
+       text-anchor=""
+       x="274.89001"
+       y="335.5"
+       font-size="12"
+       id="text6314"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6316"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6318">R_ClipPassWallSegment (14 samples, 4.73%)</title>
+    <rect
+       x="458"
+       y="117"
+       width="32.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6320"
+       style="fill:#dcaa2d" />
+    <text
+       text-anchor=""
+       x="460.97"
+       y="127.5"
+       font-size="12"
+       id="text6322"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6324"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6326">NXObjectMapPrototype (2 samples, 0.68%)</title>
+    <rect
+       x="122.6"
+       y="213"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6328"
+       style="fill:#cdc10d" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="223.5"
+       font-size="12"
+       id="text6330"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6332"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6334">R_RenderBSPNode (99 samples, 33.45%)</title>
+    <rect
+       x="418.89999"
+       y="261"
+       width="227.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6336"
+       style="fill:#fb791c" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="271.5"
+       font-size="12"
+       id="text6338"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6340"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6342">P_CrossBSPNode (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="229"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6344"
+       style="fill:#dc7325" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="239.5"
+       font-size="12"
+       id="text6346"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6348"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6350">R_DrawColumn (6 samples, 2.03%)</title>
+    <rect
+       x="276.5"
+       y="245"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6352"
+       style="fill:#eeba27" />
+    <text
+       text-anchor=""
+       x="279.48999"
+       y="255.5"
+       font-size="12"
+       id="text6354"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6356"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6358">R_ClipSolidWallSegment (5 samples, 1.69%)</title>
+    <rect
+       x="634.90002"
+       y="181"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6360"
+       style="fill:#ea1936" />
+    <text
+       text-anchor=""
+       x="637.85999"
+       y="191.5"
+       font-size="12"
+       id="text6362"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6364"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6366">rlsDefaultParameterVector (62 samples, 20.95%)</title>
+    <rect
+       x="122.6"
+       y="229"
+       width="142.39999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6368"
+       style="fill:#db7d0b" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="239.5"
+       font-size="12"
+       id="text6370"
+       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamete..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6372"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6374">R_DrawMaskedColumn (6 samples, 2.03%)</title>
+    <rect
+       x="276.5"
+       y="261"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6376"
+       style="fill:#e2742a" />
+    <text
+       text-anchor=""
+       x="279.48999"
+       y="271.5"
+       font-size="12"
+       id="text6378"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6380"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6382">R_ClipPassWallSegment (5 samples, 1.69%)</title>
+    <rect
+       x="430.39999"
+       y="101"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6384"
+       style="fill:#d68521" />
+    <text
+       text-anchor=""
+       x="433.41"
+       y="111.5"
+       font-size="12"
+       id="text6386"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6388"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6390">rlsDefaultParameterVector (1 samples, 0.34%)</title>
+    <rect
+       x="687.70001"
+       y="309"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6392"
+       style="fill:#e6c92d" />
+    <text
+       text-anchor=""
+       x="690.70001"
+       y="319.5"
+       font-size="12"
+       id="text6394"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6396"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6398">R_ClipSolidWallSegment (24 samples, 8.11%)</title>
+    <rect
+       x="533.79999"
+       y="133"
+       width="55.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6400"
+       style="fill:#fd0a05" />
+    <text
+       text-anchor=""
+       x="536.78003"
+       y="143.5"
+       font-size="12"
+       id="text6402"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Cli..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6404"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6406">P_CrossBSPNode (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="213"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6408"
+       style="fill:#df0d01" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="223.5"
+       font-size="12"
+       id="text6410"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6412"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6414">NetUpdate (1 samples, 0.34%)</title>
+    <rect
+       x="269.60001"
+       y="325"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6416"
+       style="fill:#ced80d" />
+    <text
+       text-anchor=""
+       x="272.59"
+       y="335.5"
+       font-size="12"
+       id="text6418"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6420"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6422">A_Chase (2 samples, 0.68%)</title>
+    <rect
+       x="664.70001"
+       y="277"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6424"
+       style="fill:#e20011" />
+    <text
+       text-anchor=""
+       x="667.72998"
+       y="287.5"
+       font-size="12"
+       id="text6426"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6428"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6430">P_LookForPlayers (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="261"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6432"
+       style="fill:#ee6820" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="271.5"
+       font-size="12"
+       id="text6434"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6436"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6438">R_RenderBSPNode (15 samples, 5.07%)</title>
+    <rect
+       x="423.5"
+       y="149"
+       width="34.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6440"
+       style="fill:#f1011c" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="159.5"
+       font-size="12"
+       id="text6442"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6444"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6446">R_RenderBSPNode (90 samples, 30.41%)</title>
+    <rect
+       x="423.5"
+       y="197"
+       width="206.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6448"
+       style="fill:#f01720" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="207.5"
+       font-size="12"
+       id="text6450"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6452"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6454">R_StoreWallRange (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
+       y="69"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6456"
+       style="fill:#df0c36" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="79.5"
+       font-size="12"
+       id="text6458"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6468"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6470">R_RenderBSPNode (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
+       y="133"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6472"
+       style="fill:#fbd010" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="143.5"
+       font-size="12"
+       id="text6474"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6476"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6478">FixedMul (2 samples, 0.68%)</title>
+    <rect
+       x="441.89999"
+       y="53"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6480"
+       style="fill:#dd3f27" />
+    <text
+       text-anchor=""
+       x="444.89001"
+       y="63.5"
+       font-size="12"
+       id="text6482"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6484"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6486">R_PointOnSide (2 samples, 0.68%)</title>
+    <rect
+       x="418.89999"
+       y="197"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6488"
+       style="fill:#fd272d" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="207.5"
+       font-size="12"
+       id="text6490"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6492"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6494">NXObjectMapPrototype (1 samples, 0.34%)</title>
+    <rect
+       x="685.40002"
+       y="277"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6496"
+       style="fill:#dd1a0d" />
+    <text
+       text-anchor=""
+       x="688.40997"
+       y="287.5"
+       font-size="12"
+       id="text6498"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6500"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6502">R_RenderBSPNode (99 samples, 33.45%)</title>
+    <rect
+       x="418.89999"
+       y="277"
+       width="227.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6504"
+       style="fill:#f78b1f" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="287.5"
+       font-size="12"
+       id="text6506"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6508"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6510">R_DrawColumn (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
+       y="37"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6512"
+       style="fill:#e80e15" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="47.5"
+       font-size="12"
+       id="text6514"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6516"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6518">P_MobjThinker (5 samples, 1.69%)</title>
+    <rect
+       x="662.40002"
+       y="309"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6520"
+       style="fill:#e4400b" />
+    <text
+       text-anchor=""
+       x="665.42999"
+       y="319.5"
+       font-size="12"
+       id="text6522"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6524"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6526">NXFindPboardType (112 samples, 37.84%)</title>
+    <rect
+       x="12.3"
+       y="309"
+       width="257.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6528"
+       style="fill:#d98615" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="319.5"
+       font-size="12"
+       id="text6530"
+       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6532"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6534">R_StoreWallRange (6 samples, 2.03%)</title>
+    <rect
+       x="441.89999"
+       y="85"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6536"
+       style="fill:#ef280f" />
+    <text
+       text-anchor=""
+       x="444.89001"
+       y="95.5"
+       font-size="12"
+       id="text6538"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6540"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6542">STlib_drawNum (1 samples, 0.34%)</title>
+    <rect
+       x="655.5"
+       y="261"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6544"
+       style="fill:#f0e51b" />
+    <text
+       text-anchor=""
+       x="658.53998"
+       y="271.5"
+       font-size="12"
+       id="text6546"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6548"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6550">LongSwap (1 samples, 0.34%)</title>
+    <rect
+       x="299.5"
+       y="277"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6552"
+       style="fill:#fe0933" />
+    <text
+       text-anchor=""
+       x="302.45999"
+       y="287.5"
+       font-size="12"
+       id="text6554"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6556"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6558">ST_diffDraw (3 samples, 1.01%)</title>
+    <rect
+       x="650.90002"
+       y="325"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6560"
+       style="fill:#e72916" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="335.5"
+       font-size="12"
+       id="text6562"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6564"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6566">-[VGAView drawSelf::] (110 samples, 37.16%)</title>
+    <rect
+       x="12.3"
+       y="261"
+       width="252.7"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6568"
+       style="fill:#f39b20" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="271.5"
+       font-size="12"
+       id="text6570"
+       style="font-size:12px;font-family:Verdana;fill:#000000">-[VGAView drawSelf::]</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6572"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6574">V_DrawPatchDirect (1 samples, 0.34%)</title>
+    <rect
+       x="10"
+       y="293"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6576"
+       style="fill:#d09c20" />
+    <text
+       text-anchor=""
+       x="13"
+       y="303.5"
+       font-size="12"
+       id="text6578"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6580"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6582">P_DivlineSide (1 samples, 0.34%)</title>
+    <rect
+       x="669.29999"
+       y="117"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6584"
+       style="fill:#d57e1f" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="127.5"
+       font-size="12"
+       id="text6586"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6588"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6590">NXObjectMapPrototype (2 samples, 0.68%)</title>
+    <rect
+       x="122.6"
+       y="165"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6592"
+       style="fill:#f87c08" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="175.5"
+       font-size="12"
+       id="text6594"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6596"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6598">R_DrawPlayerSprites (6 samples, 2.03%)</title>
+    <rect
+       x="276.5"
+       y="309"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6600"
+       style="fill:#cfc42a" />
+    <text
+       text-anchor=""
+       x="279.48999"
+       y="319.5"
+       font-size="12"
+       id="text6602"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6604"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6606">R_FindPlane (1 samples, 0.34%)</title>
+    <rect
+       x="455.70001"
+       y="117"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6608"
+       style="fill:#dbdb1f" />
+    <text
+       text-anchor=""
+       x="458.67999"
+       y="127.5"
+       font-size="12"
+       id="text6610"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6612"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6614">NXFindPboardType (1 samples, 0.34%)</title>
+    <rect
+       x="687.70001"
+       y="293"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6616"
+       style="fill:#e41236" />
+    <text
+       text-anchor=""
+       x="690.70001"
+       y="303.5"
+       font-size="12"
+       id="text6618"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6620"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6622">R_DrawMaskedColumn (6 samples, 2.03%)</title>
+    <rect
+       x="301.79999"
+       y="277"
+       width="13.7"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6624"
+       style="fill:#fe0324" />
+    <text
+       text-anchor=""
+       x="304.76001"
+       y="287.5"
+       font-size="12"
+       id="text6626"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6628"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6630">R_ClipSolidWallSegment (13 samples, 4.39%)</title>
+    <rect
+       x="600.40002"
+       y="149"
+       width="29.9"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6632"
+       style="fill:#f8951f" />
+    <text
+       text-anchor=""
+       x="603.40997"
+       y="159.5"
+       font-size="12"
+       id="text6634"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6636"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6638">P_CrossBSPNode (1 samples, 0.34%)</title>
+    <rect
+       x="669.29999"
+       y="133"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6640"
+       style="fill:#f2da02" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="143.5"
+       font-size="12"
+       id="text6642"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6644"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6646">R_AddLine (34 samples, 11.49%)</title>
+    <rect
+       x="510.79999"
+       y="149"
+       width="78.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6648"
+       style="fill:#f2a929" />
+    <text
+       text-anchor=""
+       x="513.81"
+       y="159.5"
+       font-size="12"
+       id="text6650"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_AddLine</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6652"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6654">ST_Drawer (3 samples, 1.01%)</title>
+    <rect
+       x="650.90002"
+       y="341"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6656"
+       style="fill:#d0c610" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="351.5"
+       font-size="12"
+       id="text6658"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6660"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6662">R_PointInSubsector (2 samples, 0.68%)</title>
+    <rect
+       x="664.70001"
+       y="213"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6664"
+       style="fill:#e76513" />
+    <text
+       text-anchor=""
+       x="667.72998"
+       y="223.5"
+       font-size="12"
+       id="text6666"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6668"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6670">R_DrawColumn (4 samples, 1.35%)</title>
+    <rect
+       x="446.5"
+       y="53"
+       width="9.1999998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6672"
+       style="fill:#cf7f09" />
+    <text
+       text-anchor=""
+       x="449.48999"
+       y="63.5"
+       font-size="12"
+       id="text6674"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6676"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6678">R_DrawPSprite (6 samples, 2.03%)</title>
+    <rect
+       x="276.5"
+       y="293"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6680"
+       style="fill:#f6c711" />
+    <text
+       text-anchor=""
+       x="279.48999"
+       y="303.5"
+       font-size="12"
+       id="text6682"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6684"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6686">P_CrossBSPNode (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="197"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6688"
+       style="fill:#fec827" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="207.5"
+       font-size="12"
+       id="text6690"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6692"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6694">R_ClipPassWallSegment (3 samples, 1.01%)</title>
+    <rect
+       x="593.5"
+       y="149"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6696"
+       style="fill:#f85406" />
+    <text
+       text-anchor=""
+       x="596.51001"
+       y="159.5"
+       font-size="12"
+       id="text6698"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6700"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6702">R_DrawColumn (3 samples, 1.01%)</title>
+    <rect
+       x="593.5"
+       y="101"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6704"
+       style="fill:#d50a31" />
+    <text
+       text-anchor=""
+       x="596.51001"
+       y="111.5"
+       font-size="12"
+       id="text6706"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6708"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6710">P_Move (2 samples, 0.68%)</title>
+    <rect
+       x="664.70001"
+       y="261"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6712"
+       style="fill:#cde202" />
+    <text
+       text-anchor=""
+       x="667.72998"
+       y="271.5"
+       font-size="12"
+       id="text6714"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6716"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6718">NXObjectMapPrototype (5 samples, 1.69%)</title>
+    <rect
+       x="673.90002"
+       y="213"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6720"
+       style="fill:#e1cc18" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="223.5"
+       font-size="12"
+       id="text6722"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6724"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6726">P_DivlineSide (1 samples, 0.34%)</title>
+    <rect
+       x="671.59998"
+       y="165"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6728"
+       style="fill:#eb871b" />
+    <text
+       text-anchor=""
+       x="674.62"
+       y="175.5"
+       font-size="12"
+       id="text6730"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6732"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6734">R_RenderBSPNode (99 samples, 33.45%)</title>
+    <rect
+       x="418.89999"
+       y="293"
+       width="227.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6736"
+       style="fill:#de432c" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="303.5"
+       font-size="12"
+       id="text6738"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6740"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6742">R_DrawSprite (11 samples, 3.72%)</title>
+    <rect
+       x="290.29999"
+       y="309"
+       width="25.200001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6744"
+       style="fill:#f24534" />
+    <text
+       text-anchor=""
+       x="293.26999"
+       y="319.5"
+       font-size="12"
+       id="text6746"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6748"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6750">I_FinishUpdate (112 samples, 37.84%)</title>
+    <rect
+       x="12.3"
+       y="341"
+       width="257.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6752"
+       style="fill:#fa7e11" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="351.5"
+       font-size="12"
+       id="text6754"
+       style="font-size:12px;font-family:Verdana;fill:#000000">I_FinishUpdate</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6756"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6758">NXFindPboardType (5 samples, 1.69%)</title>
+    <rect
+       x="673.90002"
+       y="277"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6760"
+       style="fill:#e8a908" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="287.5"
+       font-size="12"
+       id="text6762"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6764"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6766">main (296 samples, 100.00%)</title>
+    <rect
+       x="10"
+       y="437"
+       width="680"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6768"
+       style="fill:#d2942a" />
+    <text
+       text-anchor=""
+       x="13"
+       y="447.5"
+       font-size="12"
+       id="text6770"
+       style="font-size:12px;font-family:Verdana;fill:#000000">main</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6772"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6774">R_RenderBSPNode (92 samples, 31.08%)</title>
+    <rect
+       x="418.89999"
+       y="213"
+       width="211.39999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6776"
+       style="fill:#f6ac0a" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="223.5"
+       font-size="12"
+       id="text6778"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6780"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6782">R_AddSprites (2 samples, 0.68%)</title>
+    <rect
+       x="588.90002"
+       y="149"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6784"
+       style="fill:#fed908" />
+    <text
+       text-anchor=""
+       x="591.91998"
+       y="159.5"
+       font-size="12"
+       id="text6786"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6788"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6790">R_ClipSolidWallSegment (9 samples, 3.04%)</title>
+    <rect
+       x="490.10001"
+       y="117"
+       width="20.700001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6792"
+       style="fill:#d1df0e" />
+    <text
+       text-anchor=""
+       x="493.14001"
+       y="127.5"
+       font-size="12"
+       id="text6794"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6796"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6798">NXFindPboardType (5 samples, 1.69%)</title>
+    <rect
+       x="673.90002"
+       y="245"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6800"
+       style="fill:#f3cf35" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="255.5"
+       font-size="12"
+       id="text6802"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6804"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6806">R_ClipPassWallSegment (3 samples, 1.01%)</title>
+    <rect
+       x="423.5"
        y="85"
        width="6.9000001"
        height="15"
        rx="2"
        ry="2"
-       id="rect7148"
-       style="fill:#fc242e" />
+       id="rect6808"
+       style="fill:#e4d402" />
     <text
        text-anchor=""
-       x="686.06"
+       x="426.51001"
        y="95.5"
        font-size="12"
-       id="text7150"
+       id="text6810"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6812"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6814">R_RenderSegLoop (6 samples, 2.03%)</title>
+    <rect
+       x="441.89999"
+       y="69"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6816"
+       style="fill:#f11731" />
+    <text
+       text-anchor=""
+       x="444.89001"
+       y="79.5"
+       font-size="12"
+       id="text6818"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6820"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6822">P_CheckSight (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="245"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6824"
+       style="fill:#fa391b" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="255.5"
+       font-size="12"
+       id="text6826"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6828"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6830">NXFindPboardType (112 samples, 37.84%)</title>
+    <rect
+       x="12.3"
+       y="293"
+       width="257.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6832"
+       style="fill:#e18f2b" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="303.5"
+       font-size="12"
+       id="text6834"
+       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6836"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6838">R_AddLine (11 samples, 3.72%)</title>
+    <rect
+       x="430.39999"
+       y="117"
+       width="25.299999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6840"
+       style="fill:#fd2a03" />
+    <text
+       text-anchor=""
+       x="433.41"
+       y="127.5"
+       font-size="12"
+       id="text6842"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6844"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6846">R_RenderSegLoop (14 samples, 4.73%)</title>
+    <rect
+       x="458"
+       y="85"
+       width="32.099998"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6848"
+       style="fill:#fa7e10" />
+    <text
+       text-anchor=""
+       x="460.97"
+       y="95.5"
+       font-size="12"
+       id="text6850"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6852"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6854">R_ClipSolidWallSegment (6 samples, 2.03%)</title>
+    <rect
+       x="441.89999"
+       y="101"
+       width="13.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6856"
+       style="fill:#e5a811" />
+    <text
+       text-anchor=""
+       x="444.89001"
+       y="111.5"
+       font-size="12"
+       id="text6858"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6860"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6862">rlsDefaultParameterVector (60 samples, 20.27%)</title>
+    <rect
+       x="127.2"
+       y="181"
+       width="137.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6864"
+       style="fill:#e8cb2b" />
+    <text
+       text-anchor=""
+       x="130.16"
+       y="191.5"
+       font-size="12"
+       id="text6866"
+       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamet..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6868"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6870">ST_drawWidgets (3 samples, 1.01%)</title>
+    <rect
+       x="650.90002"
+       y="309"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6872"
+       style="fill:#e53301" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="319.5"
+       font-size="12"
+       id="text6874"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6876"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6878">R_DrawMasked (18 samples, 6.08%)</title>
+    <rect
+       x="276.5"
+       y="325"
+       width="41.299999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6880"
+       style="fill:#dfc620" />
+    <text
+       text-anchor=""
+       x="279.48999"
+       y="335.5"
+       font-size="12"
+       id="text6882"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_D..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6884"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6886">R_AddLine (16 samples, 5.41%)</title>
+    <rect
+       x="593.5"
+       y="165"
+       width="36.799999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6888"
+       style="fill:#fd9314" />
+    <text
+       text-anchor=""
+       x="596.51001"
+       y="175.5"
+       font-size="12"
+       id="text6890"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_A..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6892"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6894">R_Subsector (7 samples, 2.36%)</title>
+    <rect
+       x="630.29999"
+       y="213"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6896"
+       style="fill:#dd8316" />
+    <text
+       text-anchor=""
+       x="633.27002"
+       y="223.5"
+       font-size="12"
+       id="text6898"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6900"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6902">P_CrossBSPNode (1 samples, 0.34%)</title>
+    <rect
+       x="669.29999"
+       y="165"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6904"
+       style="fill:#f47332" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="175.5"
+       font-size="12"
+       id="text6906"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6908"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6910">R_AddLine (23 samples, 7.77%)</title>
+    <rect
+       x="458"
+       y="133"
+       width="52.799999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6912"
+       style="fill:#f44c22" />
+    <text
+       text-anchor=""
+       x="460.97"
+       y="143.5"
+       font-size="12"
+       id="text6914"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Add..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6916"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6918">R_StoreWallRange (5 samples, 1.69%)</title>
+    <rect
+       x="634.90002"
+       y="165"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6920"
+       style="fill:#cf182e" />
+    <text
+       text-anchor=""
+       x="637.85999"
+       y="175.5"
+       font-size="12"
+       id="text6922"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6924"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6926">A_Look (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="277"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6928"
+       style="fill:#d8ac2f" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="287.5"
+       font-size="12"
+       id="text6930"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6932"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6934">P_Ticker (7 samples, 2.36%)</title>
+    <rect
+       x="657.79999"
+       y="341"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6936"
+       style="fill:#e14d2a" />
+    <text
+       text-anchor=""
+       x="660.84003"
+       y="351.5"
+       font-size="12"
+       id="text6938"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6940"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6942">R_RenderBSPNode (99 samples, 33.45%)</title>
+    <rect
+       x="418.89999"
+       y="245"
+       width="227.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6944"
+       style="fill:#f5952e" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="255.5"
+       font-size="12"
+       id="text6946"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6948"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6950">STlib_updateNum (2 samples, 0.68%)</title>
+    <rect
+       x="650.90002"
+       y="293"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6952"
+       style="fill:#eb9920" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="303.5"
+       font-size="12"
+       id="text6954"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6956"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6958">STlib_drawNum (2 samples, 0.68%)</title>
+    <rect
+       x="650.90002"
+       y="277"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6960"
+       style="fill:#e9d128" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="287.5"
+       font-size="12"
+       id="text6962"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6964"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6966">R_PointOnSide (1 samples, 0.34%)</title>
+    <rect
+       x="416.60001"
+       y="293"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6968"
+       style="fill:#d78916" />
+    <text
+       text-anchor=""
+       x="419.62"
+       y="303.5"
+       font-size="12"
+       id="text6970"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6972"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6974">FixedDiv (2 samples, 0.68%)</title>
+    <rect
+       x="588.90002"
+       y="117"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6976"
+       style="fill:#db7a30" />
+    <text
+       text-anchor=""
+       x="591.91998"
+       y="127.5"
+       font-size="12"
+       id="text6978"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6980"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6982">R_RenderBSPNode (74 samples, 25.00%)</title>
+    <rect
+       x="423.5"
+       y="181"
+       width="170"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6984"
+       style="fill:#f29012" />
+    <text
+       text-anchor=""
+       x="426.51001"
+       y="191.5"
+       font-size="12"
+       id="text6986"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6988"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6990">-[VGAView updateView] (112 samples, 37.84%)</title>
+    <rect
+       x="12.3"
+       y="325"
+       width="257.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect6992"
+       style="fill:#f94c17" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="335.5"
+       font-size="12"
+       id="text6994"
+       style="font-size:12px;font-family:Verdana;fill:#000000">-[VGAView updateView]</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g6996"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title6998">V_CopyRect (2 samples, 0.68%)</title>
+    <rect
+       x="650.90002"
+       y="261"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7000"
+       style="fill:#f96e0c" />
+    <text
+       text-anchor=""
+       x="653.95001"
+       y="271.5"
+       font-size="12"
+       id="text7002"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7004"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7006">D_DoomLoop (296 samples, 100.00%)</title>
+    <rect
+       x="10"
+       y="373"
+       width="680"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7008"
+       style="fill:#ddb81f" />
+    <text
+       text-anchor=""
+       x="13"
+       y="383.5"
+       font-size="12"
+       id="text7010"
+       style="font-size:12px;font-family:Verdana;fill:#000000">D_DoomLoop</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7012"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7014">NXObjectMapPrototype (2 samples, 0.68%)</title>
+    <rect
+       x="122.6"
+       y="197"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7016"
+       style="fill:#fc6024" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="207.5"
+       font-size="12"
+       id="text7018"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7020"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7022">P_CheckPosition (2 samples, 0.68%)</title>
+    <rect
+       x="664.70001"
+       y="229"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7024"
+       style="fill:#f09921" />
+    <text
+       text-anchor=""
+       x="667.72998"
+       y="239.5"
+       font-size="12"
+       id="text7026"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7028"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7030">?? (1 samples, 0.34%)</title>
+    <rect
+       x="269.60001"
+       y="293"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7032"
+       style="fill:#f2831a" />
+    <text
+       text-anchor=""
+       x="272.59"
+       y="303.5"
+       font-size="12"
+       id="text7034"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7036"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7038">R_RenderBSPNode (100 samples, 33.78%)</title>
+    <rect
+       x="416.60001"
+       y="325"
+       width="229.8"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7040"
+       style="fill:#d0be30" />
+    <text
+       text-anchor=""
+       x="419.62"
+       y="335.5"
+       font-size="12"
+       id="text7042"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7044"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7046">R_DrawColumn (7 samples, 2.36%)</title>
+    <rect
+       x="471.79999"
+       y="69"
+       width="16"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7048"
+       style="fill:#f24609" />
+    <text
+       text-anchor=""
+       x="474.76001"
+       y="79.5"
+       font-size="12"
+       id="text7050"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7052"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7054">R_DrawColumn (7 samples, 2.36%)</title>
+    <rect
+       x="494.70001"
+       y="69"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7056"
+       style="fill:#d08306" />
+    <text
+       text-anchor=""
+       x="497.73001"
+       y="79.5"
+       font-size="12"
+       id="text7058"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7060"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7062">rlsDefaultParameterVector (62 samples, 20.95%)</title>
+    <rect
+       x="122.6"
+       y="245"
+       width="142.39999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7064"
+       style="fill:#d83f13" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="255.5"
+       font-size="12"
+       id="text7066"
+       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamete..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7068"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7070">R_DrawColumn (21 samples, 7.09%)</title>
+    <rect
+       x="540.70001"
+       y="85"
+       width="48.200001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7072"
+       style="fill:#d72f30" />
+    <text
+       text-anchor=""
+       x="543.67999"
+       y="95.5"
+       font-size="12"
+       id="text7074"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_Dr..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7076"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7078">P_SetMobjState (5 samples, 1.69%)</title>
+    <rect
+       x="662.40002"
+       y="293"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7080"
+       style="fill:#e5162e" />
+    <text
+       text-anchor=""
+       x="665.42999"
+       y="303.5"
+       font-size="12"
+       id="text7082"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7084"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7086">P_RunThinkers (7 samples, 2.36%)</title>
+    <rect
+       x="657.79999"
+       y="325"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7088"
+       style="fill:#d39f0b" />
+    <text
+       text-anchor=""
+       x="660.84003"
+       y="335.5"
+       font-size="12"
+       id="text7090"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7092"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7094">V_DrawPatch (1 samples, 0.34%)</title>
+    <rect
+       x="10"
+       y="277"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7096"
+       style="fill:#f4662a" />
+    <text
+       text-anchor=""
+       x="13"
+       y="287.5"
+       font-size="12"
+       id="text7098"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7100"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7102">HU_Drawer (1 samples, 0.34%)</title>
+    <rect
+       x="10"
+       y="341"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7104"
+       style="fill:#edd301" />
+    <text
+       text-anchor=""
+       x="13"
+       y="351.5"
+       font-size="12"
+       id="text7106"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7108"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7110">G_Ticker (7 samples, 2.36%)</title>
+    <rect
+       x="657.79999"
+       y="357"
+       width="16.1"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7112"
+       style="fill:#fd7a14" />
+    <text
+       text-anchor=""
+       x="660.84003"
+       y="367.5"
+       font-size="12"
+       id="text7114"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7116"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7118">R_Subsector (12 samples, 4.05%)</title>
+    <rect
+       x="430.39999"
+       y="133"
+       width="27.6"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7120"
+       style="fill:#faa812" />
+    <text
+       text-anchor=""
+       x="433.41"
+       y="143.5"
+       font-size="12"
+       id="text7122"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7124"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7126">NXObjectMapPrototype (2 samples, 0.68%)</title>
+    <rect
+       x="122.6"
+       y="149"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7128"
+       style="fill:#f23c2d" />
+    <text
+       text-anchor=""
+       x="125.57"
+       y="159.5"
+       font-size="12"
+       id="text7130"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7132"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7134">R_DrawColumn (3 samples, 1.01%)</title>
+    <rect
+       x="435"
+       y="53"
+       width="6.9000001"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7136"
+       style="fill:#fc1630" />
+    <text
+       text-anchor=""
+       x="438"
+       y="63.5"
+       font-size="12"
+       id="text7138"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7140"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7142">R_GetColumn (1 samples, 0.34%)</title>
+    <rect
+       x="487.79999"
+       y="69"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7144"
+       style="fill:#f30f16" />
+    <text
+       text-anchor=""
+       x="490.84"
+       y="79.5"
+       font-size="12"
+       id="text7146"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7148"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7150">P_CrossBSPNode (2 samples, 0.68%)</title>
+    <rect
+       x="669.29999"
+       y="181"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7152"
+       style="fill:#f3e222" />
+    <text
+       text-anchor=""
+       x="672.32001"
+       y="191.5"
+       font-size="12"
+       id="text7154"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7156"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7158">R_StoreWallRange (5 samples, 1.69%)</title>
+    <rect
+       x="430.39999"
+       y="85"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7160"
+       style="fill:#e4e236" />
+    <text
+       text-anchor=""
+       x="433.41"
+       y="95.5"
+       font-size="12"
+       id="text7162"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7164"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7166">R_RenderPlayerView (166 samples, 56.08%)</title>
+    <rect
+       x="269.60001"
+       y="341"
+       width="381.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7168"
+       style="fill:#dde51b" />
+    <text
+       text-anchor=""
+       x="272.59"
+       y="351.5"
+       font-size="12"
+       id="text7170"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderPlayerView</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7172"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7174">R_RenderBSPNode (99 samples, 33.45%)</title>
+    <rect
+       x="418.89999"
+       y="229"
+       width="227.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7176"
+       style="fill:#dd4f0d" />
+    <text
+       text-anchor=""
+       x="421.92001"
+       y="239.5"
+       font-size="12"
+       id="text7178"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_RenderBSPNode</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7180"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7182">NXFindPboardType (112 samples, 37.84%)</title>
+    <rect
+       x="12.3"
+       y="277"
+       width="257.29999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7184"
+       style="fill:#dc601d" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="287.5"
+       font-size="12"
+       id="text7186"
+       style="font-size:12px;font-family:Verdana;fill:#000000">NXFindPboardType</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7188"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7190">FixedDiv (2 samples, 0.68%)</title>
+    <rect
+       x="490.10001"
+       y="69"
+       width="4.5999999"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7192"
+       style="fill:#e3c924" />
+    <text
+       text-anchor=""
+       x="493.14001"
+       y="79.5"
+       font-size="12"
+       id="text7194"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7196"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7198">FixedMul (1 samples, 0.34%)</title>
+    <rect
+       x="517.70001"
+       y="85"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7200"
+       style="fill:#f40c11" />
+    <text
+       text-anchor=""
+       x="520.70001"
+       y="95.5"
+       font-size="12"
+       id="text7202"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7204"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7206">R_MakeSpans (37 samples, 12.50%)</title>
+    <rect
+       x="327"
+       y="309"
+       width="85"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7208"
+       style="fill:#e6610d" />
+    <text
+       text-anchor=""
+       x="330.03"
+       y="319.5"
+       font-size="12"
+       id="text7210"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_MakeSpans</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7212"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7214">Update16_2 (48 samples, 16.22%)</title>
+    <rect
+       x="12.3"
+       y="245"
+       width="110.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7216"
+       style="fill:#f5ab2f" />
+    <text
+       text-anchor=""
+       x="15.3"
+       y="255.5"
+       font-size="12"
+       id="text7218"
+       style="font-size:12px;font-family:Verdana;fill:#000000">Update16_2</text>
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7220"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7222">?? (5 samples, 1.69%)</title>
+    <rect
+       x="673.90002"
+       y="229"
+       width="11.5"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7224"
+       style="fill:#f55f1b" />
+    <text
+       text-anchor=""
+       x="676.91998"
+       y="239.5"
+       font-size="12"
+       id="text7226"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7228"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7230">NXObjectMapPrototype (1 samples, 0.34%)</title>
+    <rect
+       x="269.60001"
+       y="277"
+       width="2.3"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7232"
+       style="fill:#d4d201" />
+    <text
+       text-anchor=""
+       x="272.59"
+       y="287.5"
+       font-size="12"
+       id="text7234"
+       style="font-size:12px;font-family:Verdana;fill:#000000" />
+  </g>
+  <g
+     class="func_g"
+     onmouseover="s(this)"
+     onmouseout="c()"
+     onclick="zoom(this)"
+     id="g7236"
+     transform="translate(-10,-15.275391)">
+    <title
+       id="title7238">R_DrawSpan (33 samples, 11.15%)</title>
+    <rect
+       x="336.20001"
+       y="277"
+       width="75.800003"
+       height="15"
+       rx="2"
+       ry="2"
+       id="rect7240"
+       style="fill:#cf832c" />
+    <text
+       text-anchor=""
+       x="339.22"
+       y="287.5"
+       font-size="12"
+       id="text7242"
+       style="font-size:12px;font-family:Verdana;fill:#000000">R_DrawSpan</text>
   </g>
 </svg>

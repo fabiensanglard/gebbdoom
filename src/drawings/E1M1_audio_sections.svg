@@ -23,6 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,9 +40,9 @@
      inkscape:window-height="810"
      id="namedview2925"
      showgrid="false"
-     inkscape:zoom="1.3066667"
-     inkscape:cx="465.21441"
-     inkscape:cy="217.00855"
+     inkscape:zoom="0.92395288"
+     inkscape:cx="316.10376"
+     inkscape:cy="271.98988"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -10296,4 +10297,17 @@
      r="10"
      id="circle2821"
      style="stroke-width:6.99781498;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:1" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:191.34649658px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="-767.22229"
+     y="4749.4082"
+     id="text5603"
+     sodipodi:linespacing="125%"
+     transform="scale(0.98285914,1.0174398)"><tspan
+       sodipodi:role="line"
+       id="tspan5605"
+       x="-767.22229"
+       y="4749.4082"
+       style="font-size:136.67607117px">E1M1 sound propagation areas (doors closed)</tspan></text>
 </svg>

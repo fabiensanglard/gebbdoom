@@ -11,10 +11,10 @@ The work done by \cw{doombsp} is simple. Divide the map in 128x128 axis aligned 
 
 \drawing{E1M1_blockmap}{E1M1 lines indexed via blockmap. Note that empty blocks are not drawn}
 
-All map traversal are done with an abstract method \cw{P\_PathTraverse} which takes as argument what to check collision with and a function pointer to call upon hit.\\
+All map traversal are done with an abstract method \cw{P\_PathTraverse} which takes as argument what to check collision with and a function pointer to call upon hit (a.k.a How to fake OOP with C).\\
 \par
 \ccode{P_PathTraverse.c}
 \par
-Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS}. The block coordinates of any map coordinate is easy to obtain via modulo 128. Fast 128x128 grid intersections is also fast thanks to DDA algorithm\footnote{DDA Algorithm was detailled in "Game Engine Black Book: Wolfenstein 3D".}.  To detect Things collisions, their positions are tracked in blocks.\\
+Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so only lines and things are considered during traversal. The block coordinates of any map coordinate is easy to obtain via modulo 128. To detect Things collisions, their positions are tracked in blocks.\\
 \par
 \ccode{P_AimLineAttack.c}

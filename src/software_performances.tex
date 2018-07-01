@@ -1,32 +1,32 @@
 \section{Performances} \label{performances}
-There is a convenient and portable way to assess performances. Thanks to the fixed tic duration architecture, a demo can be recorded and replayed with exactitude. With frame skipping disabled, a \cw{timedemo} (as it is called) will produce the exact same sequence of frames to render regardless of the machine architecture and power.\\
+There is a convenient and portable way to assess performances. Thanks to the fixed tic duration architecture, a demo can be recorded and replayed with exactitude. With frame skipping disabled, a \cw{timedemo} will produce the exact same sequence of frames to render regardless of a machine's power. Only wall time will vary.\\
 \par
-The gold standard of \doom benchmarking was created by Anton Ertl around 1994. It simply consist in playing the default timedemo from the free Doom shareware v1.9.\\
+The gold standard of \doom~benchmarking was created by Anton Ertl around 1994. It consist in playing the default timedemo from the unregistered version of \doom~shareware v1.9.\\
 \par
 \fakedosoutput{timedemo.txt}
 \par
-Over the last twenty five years, Anton has gathered metrics for hundreds of configuration\footnote{Source: https://www.complang.tuwien.ac.at/misc/doombench.html} on a game session \#3 recorded by John Romero. Because no frames are skipped, the session takes a variable time to finish. Upon completion two values are displayed.\\
+Over the last twenty five years, Anton has gathered metrics for hundreds of configuration\footnote{Source: https://www.complang.tuwien.ac.at/misc/doombench.html} for the famous game session recorded by John Romero. The machines tested range from Amiga 1200 up to Core i5. Because no frames are skipped, the playback duration varies. Upon completion two values are displayed.\\
 \par
 \fakedosoutput{timedemo_result.txt}
 \par
 
-The first value, \cw{gameticks}, is the number of frames encountered. For \cw{demo3} it is always equal to 2134 since it comes from the record lump. The second value, \cw{realticks}, represents the walltime in ticks. It represent how fast the machine managed to replay the record.\\
+The first value, \cw{gameticks}, is the number of game tic rendered. For \cw{demo3} it is always equal to 2134 since it comes from the record lump. The second value, \cw{realticks}, represents the walltime in ticks it took to render all each frames.\\
 \par
  The average frame per second is obtained with the following formula:\\
  \par 
 \begin{equation*}
 \resizebox{.4 \textwidth}{!} 
 {
- $ fps = \frac{walltime}{realticks} * 35 $ 
+ $ fps = \frac{gameticks}{realticks} * 35 $ 
  }
  \end{equation*}\\
 
  \par
-In the example above\footnote{On a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $\frac{1065}{2134}*35 = 17$ fps. \\
+In the previous example\footnote{Benchmark machine was a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $\frac{2134}{4268}*35 = 17.5$ fps. \\
 \par
 This mechanism allowed to run benchmark across varying configurations. Since machines from 1994 have become difficult to come around these days, a generous collector named Foone Turing kindly volunteered his impressive fleet of machines. The results of the archeolog-benchmarking session are visible in figure \ref{bnechmarsks}.\\
 \par
- As demonstrated, none of the hardware of the time was able to visually max out the game. Beyond 35fps there would have been no visual improvement since the game logic is running at 35fps. A machine able to run at 70fps would simple render the same frame twice since the game logic would only move forware every two frames.\\
+ The result of the benchmarking session demonstrated that none of the hardware of the time was able to max out the game. Remember that beyond 35fps there would be no visual improvement since the game logic is hardcoded at 35Hz. A machine able to render 70fps video/audio would render the same game frame twice.\\
 \par
 \begin{figure}[H]
 \centering  
@@ -51,7 +51,7 @@ This mechanism allowed to run benchmark across varying configurations. Since mac
 \end{figure}
 \footnotetext{For reference, this configuration was able to run Wolfenstein 3D at 20 fps.}
 \par
-Using out of the box settings for the game, a top of the line machine could barely reach 25 fps\footnote{It would not be until Pentium with PCI buses came out that \doom could be maxed out at 35 fps}. Notice the importance of the bus, which yields a 3x performance hit/boost. At equal frequency a 486 provides twice the framerate of a 386.\\
+Using out of the box settings for the game, a top of the line machine could barely reach 25 fps\footnote{It would not be until Pentium with PCI buses came out that \doom~could be maxed out at 35 fps.}. Notice the importance of the bus, which yields a 3x performance hit/boost. At equal frequency a 486 provides twice the framerate of a 386.\\
 \par
 
 
@@ -60,31 +60,32 @@ Using out of the box settings for the game, a top of the line machine could bare
 
 
 \subsection{Profiling}
-Even without any special tools, it is possible to gain insight on which part of the engine are responsible for CPU cycles consumptions thanks to built-in command line parameters.\\
+Even without special tools, it is possible to gain insight on which part of the engine are responsible for CPU cycles consumptions thanks to built-in command line parameters.\\
 \par
 Parameter \cw{-nodraw} skips rendering all together (but does blit).\\
 \par
 \par
 \fakedosoutput{timedemo_result_nodraw.txt}
 \par
-Without drawing, the game framerate improved from 17fps to 202fps.\\
+Without drawing, the game framerate improved from 17fps to 878fps.\\
 \par
-Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM which is a good way to assess the impact of the bus speed. Because of optimization described later this parameter was only available on non-DOS versions.\\
+Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM which is a good way to assess the impact of the bus speed. Because of optimization described later this parameter was only available on non-DOS versions like on a NextStation Turbo.\\
 \par
 \tcode{timedemo_result_noblit.txt}
-\fixme{Analyse above result}
 
 
+\vspace{-10mm}
 \subsection{Profiling With A Profiler}
-An excellent performance visualizer are flamegraphs. They are built by first running a program and repeatedly interrupt it, unwinding the stack starting from the Program Counter to generate a backtrace. This is repeated hundreds of time over the course of the demo. When it finished , all backtraces are merged together.\\
+An excellent class of performance visualizers are flamegraphs. They are built by first running a program and repeatedly interrupt it, unwinding the stack starting from the Program Counter to generate a backtrace. This is repeated hundreds of time over the course of the demo. When it finished , all backtraces are merged together.\\
 \par
- This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a  visual representation of were was the CPU during each part of a frame. On NeXTStep, thank to the multiprocess capability of the OS is easy to use \cw{gdb} from a second terminal and gather backtraces. The result looks as follow.\\
+ This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a  visual breakdown of were the machine spends time during a frame\footnote{This is a walltime-based flamegraph but there are many other kinds, like CPU-cycles based for example.}. On NeXTStep, thank to the multiprocess capability of the OS is easy to use \cw{gdb} from a second terminal and gather backtraces. The result looks as follow.\\
 \par
 
-\drawing{flamegraph}{\doom demo1 on NeXT, flamegraph stats}
+\drawing{flamegraph}{Flamegraph of \cw{./doom -timedemo demo1} on NeXTStation Turbo Color}
 \par
-Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind NeXTStep port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (on the very right) is barely visible. Notice part of the graph with no children with the high cost of bliting from framebuffer \#0 to the screen (\cw{Update16}), the vertical drawing routine (\cw{R\_DrawColumn}) and the horizontal drawing routine (\cw{R\_DrawSpan}).\\
-\par
+Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind NeXTStep port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. Notice part of the graph with no children with the high cost of bliting from framebuffer \#0 to the screen (\cw{Update16}), the vertical drawing routine (\cw{R\_DrawColumn}) and the horizontal drawing routine (\cw{R\_DrawSpan}).
+
+
 On DOS generating a flamegraph is slightly more difficult since it is a mono-threaded operating system. However with a little bit of instrumentation it is possible to get something similar. Instrumenting ten functions, the result is flatter but we can still gather some precious information as seen in the following graph.\\
 \par
 \vspace{4mm}
@@ -106,12 +107,12 @@ Given that it was meant to be the money maker, the DOS version received special 
 
 
 \subsubsection{Math Optimizations}
-Fixed point operations are performed everywhere. Function \cw{FixedMul} is found 124 times in the source code and is called a thousand times per frame. Along with \cw{FixedDiv2}, it was optimized with inline assembly\footnote{There is next to no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are counted". That was without counting on Intel's Pentium which super-scalar architecture would require extra care by Michael Abrash for Quake.}. The C version "\cw{return ((long long) a * (long long) b) >> 16}" took five instructions but the assembly version only uses two.\\
+Fixed point operations are performed everywhere. Function \cw{FixedMul} is found 124 times in the source code and is called a thousand times per frame. Along with \cw{FixedDiv2}, it was optimized with inline assembly\footnote{There is next to no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are counted". That was without counting on Intel's Pentium which super-scalar architecture would require extra care by Michael Abrash for Quake.}. The C version "\cw{return ((long long) a * (long long) b) >> 16}" was a function call on Watcom resulting in close to 30 instructions but the assembly version only uses two.\\
 \par
 \acode{FixedMul.asm}\\
 
 
-
+\vspace{-2mm}
 \subsubsection{Direct Framebuffer Access Optimization}
 A more substantial optimization had to do with the layering. On DOS the rules separating the core and the video system were bent. Renderers like the status bar and the auto-map still function as originally designed but the 3D drawing such as \cw{R\_DrawColumn} and \cw{R\_DrawSpan} are given direct access to the VGA banks. By bypassing framebuffer \#0, one read and one write per pixel (plus bus transfer) are avoided. Since the menu renderer has to be able to draw on top of everything, it is also granted direct VGA VRAM access.\\
 
@@ -165,9 +166,9 @@ The first tuning option was to lower horizontal resolution using column doubling
 \end{tabularx}
 \caption{Platform code specific.\protect\footnotemark}
 \end{figure}
-\footnotetext{Benchmark machine: Unisys CWD 4001 (486DX2-66 Cirrus Logic VLB.}
+\footnotetext{Benchmark machine: Unisys CWD 4001 (486DX2-66 Cirrus Logic VLB).}
 \par
-Notice the linear 2x performance improvement regardless of the resolution used.
+Using low details instead of high details yields a linear 2x performance improvement regardless of the resolution selected.
 
 
 
@@ -185,11 +186,13 @@ With direct access to the VGA banks, low is completely free optimization without
 
 
 \section{3D Canvas size adjustment}
-An other option to improve the framerate was to lower the size of the 3D canvas. The player had access to a sliding bar allowing to select between eight sizes. The slider was a multiplier affecting \cw{numblocks} to produce a value within range [3,11]\footnote{11 was a special value and hardcoded to be recoginzed as "full-screen" 320x200.}.\\
+An other option to improve the framerate was to lower the size of the 3D canvas. The player had access to a sliding bar allowing to select between eight dimensions. The slider was a multiplier affecting variable \cw{numblocks} to produce a value within range [0x3,0xB]. Value 11 was special and hardcoded to be recognized as "full-screen" 320x200.\\
 \par
+\vspace{4mm}
 \ccode{R_ExecuteSetViewSize.c}
 \par
-\vspace{1cm}
+It is unknown if anybody had the misfortune and courage to play the game in mode 3. This would have been an achievement in itself.\\
+\par
 \drawing{lod}{The nine 3D canvas configurations.}
 \par
 
@@ -197,32 +200,26 @@ An other option to improve the framerate was to lower the size of the 3D canvas.
 \centering  
 \begin{tabularx}{\textwidth}{ R{1}  R{1} R{1} R{1}  R{1.4}  R{0.6} }
   \toprule
-  \textbf{numblocks} & \textbf{Width} & \textbf{Height} & \textbf{\# Pixels} & \textbf{Percentage} & \textbf{fps}\\
+  \textbf{numblocks} & \textbf{Width} & \textbf{Height} & \textbf{\# Pixels} & \textbf{\# Pixels \%} & \textbf{fps}\\
   \toprule 
 
- B & 320 & 200 & 64,000 & 100 & 19 \\
- A & 320 & 168 & 53,760 &  84 & 20 \\
- 9 & 288 & 144 & 41,472 &  64 & 23 \\
- 8 & 256 & 128 & 32,768 &  52 & 25 \\
- \protect\footnotemark7 & 224 & 112 & 25,088 &  39 & 28 \\
- 6 & 192 & 96 & 18,432 &  28 & 31  \\
- 5 & 160 & 80 & 12,800 &  20 & 35  \\
- 4 & 128 & 64 &  8,192 &  12 & 40  \\
- 3 &  96 & 48 &  4,608 &   7 & 45  \\
+ 0xB & 320 & 200 & 64,000 & 100 & 19 \\
+ 0xA & 320 & 168 & 53,760 &  84 & 20 \\
+ 0x9 & 288 & 144 & 41,472 &  64 & 23 \\
+ 0x8 & 256 & 128 & 32,768 &  52 & 25 \\
+ \protect\footnotemark0x7 & 224 & 112 & 25,088 &  39 & 28 \\
+ 0x6 & 192 & 96 & 18,432 &  28 & 31  \\
+ 0x5 & 160 & 80 & 12,800 &  20 & 35  \\
+ 0x4 & 128 & 64 &  8,192 &  12 & 40  \\
+ 0x3 &  96 & 48 &  4,608 &   7 & 45  \\
    \toprule
 \end{tabularx}
 \caption{Benchmark of performance gain vs 3D canvas size.}
 \end{figure}
 
 \par
-The trade off gain\footnote{Benchmarked on a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424, 8MiB RAM).} was not as substantial as the high/low resolution. Reducing the 3D canvas size by 50\% from 11 to 8 yields only a 31\% improvement yet the visible area is so small it its almost not worth it.\\
-\footnotetext{limit of playability}
-
-
-
-\par
-\trivia{To play nicely with the i486 cachelines (at least for read operations), texture data are stored as column major (rotated 90 degrees left).}\\
-\fixme{Texture and rotated texture go here.}
+The gain\footnote{Benchmarked on a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424, 8MiB RAM).} was not as substantial as the high/low resolution. Reducing the 3D canvas size by 50\% from 0xB to 0x8 yields only a 31\% improvement yet the visible area is so small it its almost not worth it.\\
+\footnotetext{Limit of visual sanity!}
 
 
 
