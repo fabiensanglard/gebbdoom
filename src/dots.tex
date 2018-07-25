@@ -14,7 +14,7 @@ With access to the source the dots can be "labeled".\\
 \item \cw{F}: \cw{R\_InitFlats}. Calculate \# flats textures by retrieving lumps \cw{F\_START} and \cw{F\_END}
 \item \cw{LLLLLLLLLLLL}: \cw{R\_InitSpriteLumps}. lookup \cw{S\_START} and \cw{S\_END} to find the width and hoffset of all sprites in the wad. Print a dot every 64 sprites. This was the slowed part since it had to do a lot of HDD accesses.
 \item \cw{S}: Marker to show end of \cw{R\_InitSpriteLumps}. 
-\item \cw{D}: Marker to show end of \cw{R\_InitData} which encomparse  \cw{T}, \cw{F}, \cw{L}, and \cw{S}.
+\item \cw{D}: Marker to show end of \cw{R\_InitData} which encompass  \cw{T}, \cw{F}, \cw{L}, and \cw{S}.
 \item \cw{A}: \cw{R\_InitPointToAngle}. Used to build \cw{tantoangle}. Now a noop thanks to \cw{tables.c}
 \item \cw{T}: \cw{R\_InitTables}. Used to build \cw{finetangent} and \cw{finesine}. Now a noop thanks to \cw{tables.c}
 \item \cw{P}: \cw{R\_InitPlanes}. Does nothing. 

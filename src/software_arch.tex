@@ -1,5 +1,5 @@
 \section{Architecture}
-Before diving into the code and its structure, let's take the time to understand how id developers worked. Before \doom, all work was done on a PC. Code was written, compiled and the resulting executable started on the same machine. With the introduction of \NeXT workstations in the toolchain, the process had to be different.\\
+Before diving into the code and its structure, let's take the time to understand how id developers worked. Before \doom, all work was done on a PC. Code was written, compiled, and the resulting executable started on the same machine. With the introduction of \NeXT workstations in the toolchain, the process had to be different.\\
 \par
 A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence.}.\\
 \par
@@ -7,7 +7,7 @@ Once the developer was happy with the result, he switched to his second machine.
 \par
  In this setup the PC was relegated to "only" running the game and assessing performances. The PC hard-drive was actually used only to boot the machine and host \cw{WATCOM} compiler. Everything else including \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
 \par
-There were significant obstacle to this methodology. First of all, DOS programs had direct access to the hardware whereas NeXT process had to use "official" APIs. Second and perhaps most importantly, the two machines had different endianess. PCs ran on Intel CPUs which were little-endian whereas \NeXT were using Motorola 68040 CPU which were big-endian.\\
+There were significant obstacle to this methodology. First of all, DOS programs had direct access to the hardware whereas NeXT process had to use "official" APIs. Second and perhaps most importantly, the two machines had different endianness. PCs ran on Intel CPUs which were little-endian whereas \NeXT were using Motorola 68040 CPU which were big-endian.\\
 \vspace{2mm}
 \par
 \begin{figure}[H]
@@ -25,11 +25,11 @@ In a war where price was paid by programmers, no side had incentives toward peac
 
 
 
-If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big endian machine, it will become \cw{01234567}.\\
+If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{01234567}.\\
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
-At the game engine level, the problem was solved via a layer of indirection with a simple macro\footnote{As of 2018 it seems a side finally put an end to the holy war. The little endian tribe of Intel, AMD, and ARM have won.}. When reading from disk, the engine always uses either \cw{LONG} or \cw{SHORT}.\\
+At the game engine level, the problem was solved via a layer of indirection with a simple macro\footnote{As of 2018 it seems a side finally put an end to the holy war. The little-endian tribe of Intel, AMD, and ARM have won.}. When reading from disk, the engine always uses either \cw{LONG} or \cw{SHORT}.\\
 \par
 \ccode{big_little_endian.c}
 \par
@@ -169,7 +169,7 @@ No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-
 \par
 Because C has no namespace, a code convention is used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependant, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
 \par
-The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scene (Figure \ref{fig:dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
+The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scene (figure \ref{dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
 \par
 \trivia{The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made of dots which required several minutes to complete on the full version depending on the machine's harddrive access time. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
 \par
@@ -177,8 +177,8 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
-\label{fig:dosloading}
-\caption{}
+\label{dosloading}
+\caption{DOS output upong starting \cw{DOOM.EXE}}
 \end{figure}
 
 \par
@@ -229,7 +229,7 @@ Designers at Intel had designed their CPUs to manipulate two types of 32-bit int
  \caption{32-bit unsigned integer bit values} 
 \end{figure}
 \par
-And signed integer, using two complement where all bits represent a positive value except for the last one which is negative value. Signed integers are able to represent values from $-2^{31}$ to $2^{31}-1$ yeilding a decimal range of [-2,147,483,648 to 2,147,483,647].\\
+Signed integer, using two complement where all bits represent a positive value except for the last one which is negative value. Signed integers are able to represent values from $-2^{31}$ to $2^{31}-1$ yeilding a decimal range of [-2,147,483,648 to 2,147,483,647].\\
 \par
 \begin{figure}[H]
  \centering
@@ -257,7 +257,7 @@ The beauty of fixed point system is that it "just works" at the ALU level. The C
 \par
 
 
-As an example, $0.5 + 3 = 3.5$ yields the correct result bitwise.\\
+As an example, $0.5 + 3.75 = 4.25$ yields the correct result bitwise.\\
 \par
 \begin{figure}[H]
   \centering

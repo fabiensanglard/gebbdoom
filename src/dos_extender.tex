@@ -9,9 +9,9 @@ The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM releas
 \par
 Pointer manipulation was error prone since different segment/offset combinations could point to the same RAM location. There were also issues related to pointer arithmetic where once the offset wrapped around, the segment was not automatically updated.\\
 \par
-With the release of the 386 and later 486 things worsened. The bus address width was increased to 32-bit which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were profusely covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which  bank switching created a window into the RAM beyond 1 MiB.\\
+With the release of the 386 and later 486, things worsened. The bus address width was increased to 24-bit which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were profusely covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which  bank switching created a window into the RAM beyond 1 MiB.\\
 
-There would have been a simple solution. Intel allowed its CPUs to function in two modes. The backward compatible Real mode which made the CPU behave like a very fast 8088 and the Protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
+There would have been a simpler solution. Intel allowed its CPUs to function in two modes. The backward compatible Real mode which made the CPU behave like a very fast 8088 and the Protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
 \par
 It would have worked out if the operating system had been able to run in Protected Mode. However Microsoft's DOS could only handle Real Mode and its infamous 16-bit programming.\\ 
 \par
@@ -32,22 +32,22 @@ To allow the app to run in one mode and the OS to run in an other, the two world
 
 \par
 \rawdrawing{realmode_app_limk_extender}
-Upon startup, the DOS Extender would place hooks in the software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, the developer had no code to change. To perform a system calls not hooked by the extender (e.g: \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register request to 16-bit so IVT routines would understand them.\\
+Upon startup, the DOS Extender would place hooks in the OS software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, the developer had no code to change. To perform a system calls not hooked by the extender (e.g: \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register request to 16-bit so IVT routines would understand them.\\
 \par
-\trivia{DMPI (DOS Protected Mode Interface) was orignally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}\\
+\trivia{DMPI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}\\
 \par
 When the extender intercepted an operating system call, it had to do a lot of work:
 \begin{enumerate}
 \item Perform all translation needed (e.g: a 32-bit address had to be expressed as a 16-bit offset with a 16-bit segment).
 \item Switch the CPU to Real Mode.
 \item Forward the call to DOS.
-\item Retrieve the results and convert back from 16-bit to 32-bit.
+\item Retrieve the results and convert back register values 16-bit to 32-bit.
 \item Switch the CPU back to Protected Mode.
 \end{enumerate} 
 
 The performance sensitive operations were of course switching between Real mode and Protected mode. Originally this was a problem on 286 CPUs since Intel never imagined a program may want to switch back to Real Mode from Protected Mode. Various tricks had to be used\footnote{These are detailed in \textit{Game Engine Black Book: Wolfenstein 3D}.} among them faking a keyboard Ctrl-Alt-Del reboot to reset the CPU without actually rebooting.\\
 \par
-\trivia{Switching from Real Mode to Protected Mode is simple. Setting the Control Register from bit 0 to 1 takes six instructions.}\\
+On the other side, switching from Real Mode to Protected Mode is simple. Setting the Control Register from bit 0 to 1 takes six instructions.\\
 \par
 \acode{switch_to_protected_mode.asm}
 \par

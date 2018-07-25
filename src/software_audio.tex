@@ -44,9 +44,9 @@ I\_ShutdownTimer & On DOS remove the hook.  No-op on other platforms.\\
 
 
 
-On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfesnstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, kirks and technologies.\\
+On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfenstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, kirks and technologies.\\
 \par
-To make things worse, the departure of Jason Blochowiak  at left id Software with both a shortage of expertise and enthousiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.
+To make things worse, the departure of Jason Blochowiak had left id Software with both a shortage of expertise and enthusiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.
 
 
 
@@ -84,7 +84,7 @@ Music are stored in \cw{MUS}, a format similar to standard MIDI only slightly mo
 \par
 The instrument bank is stored in the \cw{GENMIDI} lump. It is aimed at SoundBlaster compatible sound cards based on an OPL2 chip synthesizing music with Frequency Modulation. The lump describes how to play the note of each instruments in the MIDI repertoire. There are 175 entries in \cw{GENMIDI}, one for each of the 128 standard General MIDI instruments and 47 percussion effects. Each entries describes how to setup a channel in order to emulate an instrument. A channel is made of two cells, where one cell is used as carrier and the other as modulator. For each cell, attack, decay, sustain, release, harmonic, and waveforms can be selected by the musician\footnote{Source: "The dark and forgotten art of GENMIDI" }. Instrument banks were 90s musician "secret sauce" and \doom's were famous for being excellent.\\
 \par
-The \cw{DMXGUS} lump fulfill the same goal as \cw{GENMIDI} but for the Gravis Ultrasound card. It enable to play MUS music notes, not with an FM synthetizer but with the PCM samples provided with GUS drivers. It is a simple lump mapping MIDI instruments to GUS instruments with special rules for RAM allocation depending on the amount of RAM installed on the board (256KiB, 512KiB, 768KiB, and 1024KiB).\pagebreak
+The \cw{DMXGUS} lump fulfill the same goal as \cw{GENMIDI} but for the Gravis Ultrasound card. It enable to play MUS music notes, not with an FM synthesizer but with the PCM samples provided with GUS drivers. It is a simple lump mapping MIDI instruments to GUS instruments with special rules for RAM allocation depending on the amount of RAM installed on the board (256KiB, 512KiB, 768KiB, and 1024KiB).\pagebreak
 
 
 
@@ -94,7 +94,7 @@ Dealing with so much complexity proved difficult for DMX. Some of the craziness 
 
 
 
-\fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transfering only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benifit of sample smoothing from the GF1.\\
+\fq{All of the sound effects are now mixed in software, rather than on the GUS hardware. Why, you ask? Because of several reasons. First, is that the GF1 chip has a minimal ramp time that is much to long for very sharp effects. Second, because loading of the MUSIC patches uses all of the GUS memory, I had to DMA all eight sound effects to the card when played. This intern exposed a bug in the GF1 chip that Gravis did not find until my code started to beat on it. The bug would cause the bus to freeze and any program with it. The workaround is to keep DMA activities to a minimum by mixing in software and transferring only 1 channel to the GUS. But since the GF1 can't support auto-initialize DMA, and because the only way to play interleaved data on the card is to set two voices pointing into a single patch and setting the frequency so the every other sample is skipped, you don't get the benefit of sample smoothing from the GF1.\\
 \par
 Sorry, but that's the way it has to be :(\\
 }
@@ -115,7 +115,7 @@ It originally worked as intended but then DMX API was modified in an uncanny way
 \par
 \ccode{dmx_after.c}\\
 \par
- Invocation sites wer never adjusted and the game shipped without random pitch feature, instead randomly balancing sound between the left and right channel.\\
+ Invocation sites were never adjusted and the game shipped without random pitch feature, instead randomly balancing sound between the left and right channel.\\
 \par
 \ccode{I_StartSound.c}\\
 \par

@@ -1,7 +1,7 @@
 \begin{wrapfigure}[5]{r}{0.35\textwidth}{
 \centering \scaledimage{0.35}{jaguar_logo.png}}
 \end{wrapfigure}
-Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design not only one but two new game system simulaneously. A fourth generation, 32-bit, system called Panther and an audacious 64-bit system called Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".} were to be developed.\\
+Development of the machine started in 1990 when Atari commissioned Cambridge based Flare Technology to design not only one but two new game system simultaneously. A fourth generation, 32-bit, system called Panther and an audacious 64-bit system called Jaguar\footnote{Atari named all its console after big cats. Besides the Jaguar and Panther, its handheld game system from 1989 was called "Lynx".} were to be developed.\\
 \par Three years later, with the Jaguar project ahead of schedule, Atari decided to abandon the Panther and released the 64-bit Jaguar on November 1993.\\
 \par
 \fullimage{consoles/Jaguar.png}
@@ -92,11 +92,11 @@ It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had di
 \subsection{Doom On Jaguar}
 John Carmack took an early interest in the Jaguar and did the port himself with Dave Taylor taking care of the multi-player code. It was not his first contact with the machine.\\
 \par
-\fq{I converted Wolfesnenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}\\
+\fq{I converted Wolfenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out read quick.}{John Carmack for EDGE Magazine, June 1994}\\
 \par
 For \doom, the duo had something up and running two weeks after they signed on the port even thought it was running at a wretched rate\footnote{Source: EDGE Magazine, June 1994.}.\\
 \par
-\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{lcc} compiler backend. Ouptut were optimized further by hand.\footnote{It was not the last time id Software would use the excellent \cw{lcc}. in 1999, it was used for Quake 3 to generate the VMs bytecode.}}\\
+\trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote its own \cw{lcc} compiler backend. Output were optimized further by hand.\footnote{It was not the last time id Software would use the excellent \cw{lcc}. in 1999, it was used for Quake 3 to generate the VMs bytecode.}}\\
 \par
 To run on a machine with 50\% less RAM was difficult. Cyberdemon and Spiderdemon were cut. Sprites and textures resolution was lowered. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a a look at E1M1 in Figure \ref{doom_jaguar3.png} and compare it with the PC version (on page \pageref{mashed_potatoes1.png}). See how  the floor blue texture is gone and there is only one step instead of two.\\
 \par
@@ -130,13 +130,13 @@ would have easily trippled texture mapping performance. Unfortunate.\\
 It could make better use of the 64 bit bus with Z buffered, shaded triangles,
 but that didn't make for compelling games.\\
 \par
-It offered a usefull color space option that allowed you to do lighting effects
-based on a single channel, isntead of RGB.\\
+It offered a useful color space option that allowed you to do lighting effects
+based on a single channel, instead of RGB.\\
 \par
 The video compositing engine was the most innovative part of the console.
 All of the characters in Wolf3D were done with just the back end
 scalar instead of blitting. Still, the experience with the limitations and
-hard failure cases of that gave me good amunition to rail against microsoft's
+hard failure cases of that gave me good ammunition to rail against Microsoft's
 (thankfully aborted) talisman project.\\
 \par
 The little risc engined were decent processors. I was surprised that they

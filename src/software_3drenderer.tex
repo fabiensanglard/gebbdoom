@@ -70,7 +70,7 @@ Bruce Naylor's May 1993 AT\&T Bell Labs paper was titled "Constructing Good Part
 \fq{I do remember clearly that I first used BSP for the SNES version of Wolfenstein, which was a gentle introduction with everything being axial and easier to visualize, which gave me more confidence I would be able to make it work when I went back to working on Doom}{John Carmack}\\
 % Concave and convex sectors proved to be too much complexity for the engine to deal with and maintain a descent frame rate. This was a huge issue. They did not have much time to work on it thought, since around the same time this issue was discovered, work on \doom had to stop in order to respond to an emergency.\\
 \par
-With a visual surface determination not based on raycasting but rather on BSP, Wolfenstein 3D SNES managed to reach an acceptable framerate\footnote{\fixme{FRAMERATE?}}. Within three weeks the managed to produce "something".\\
+With a visual surface determination not based on raycasting but rather on BSP, and using a low resolution (112x96 doubled horizontally to 112x192), Wolfenstein 3D SNES managed to reach an acceptable framerate\footnote{\fixme{FRAMERATE?}}.\\
 \par
 Due to Nintendo strict non-violence policy the game had to be heavily censored to reach a child-friendly quality. Blood was replaced with sweat. guard dogs are replaced with mutant rats and Hitler was renamed "Staatmeister" (which translates to State Master).\\
 \par
@@ -453,7 +453,7 @@ Without merging (above) the frame required 179 visplanes. With merging (below), 
 
 On the previous page, the modified engine shows how a visplane does not need to be horizontally continuous. The red floor visplane for example is made of three parts yet just use on entry in the visplane array, validating the judicious choice to represent visplanes as array of columns\footnote{It would have been easy to use an array of lines since visplanes are rendered as lines.}.\\
 \par
-There are several conditions required to merge two visplanes. Mergable visplanes must have the same height, light and texture. Even if these conditions are met, the datastructure has to be able to absorb each others. This is only possible if visplanes are side by side. Even one pixel above or below with the same \cw{X} coordinate make two visplanes ineligible for merging. Function \cw{R\_FindPlane} looks for candidate, mergability is tested elsewhere.\\
+There are several conditions required to merge two visplanes. Mergeable visplanes must have the same height, light and texture. Even if these conditions are met, the datastructure has to be able to absorb each others. This is only possible if visplanes are side by side. Even one pixel above or below with the same \cw{X} coordinate make two visplanes ineligible for merging. Function \cw{R\_FindPlane} looks for candidate, mergability is tested elsewhere.\\
 \par
 \ccode{visplane_linear_search.c}
 \par

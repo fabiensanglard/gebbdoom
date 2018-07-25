@@ -5,18 +5,18 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom~recommended CPU.\\
+Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom~recommended CPU.\\
 \par
-The design had changed significantly compared to its predecessor (the Intel 386). The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.0$\mu$ to 1.5$\mu$ allowing five times more transistors on dice.} allowed the 486 to finally have an integrated L1 cache.\\
+The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.0$\mu$ to 1.5$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elborated design to finally feature an integrated L1 cache.\\
 \par
-\fq{The 386 actually had small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip.}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
+\fq{The 386 actually had a small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip.}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
 \par
 
 \drawing{486_arch}{Intel 486 architecture}
 \par
-Like for the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version which was "less powerful". But while it was a deliberate design choice to offer a 386 which was slower but more affordable, the 486 SX was in fact a marketing catchup. Due to manufacturing problems, the first 486 CPU came out of the factories working normally but with faulty FPUs units. Instead of throwing them away, Intel sold them at a discounted (50\%) price and labeled them "SX"\footnote{Later on Intel fixed there production process but they kept offering the SX since most customers preferred getting a discount instead of a FPU they had little to no usage of.}.\\% Customers liked the 486SX so much that Intel kept them on the shelves even after manufacturing issues had been solved.\\
+Like with the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version with an unavailable FPU. A decades diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek ; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full blown 486DX which disabled the 486SX completely!}.\\
 \par
-If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performances and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Like the 386 had to face its brother (the P7), the i486 also had to a competitor from the same company. Its arch-nemesis name was "Intel 860".\\
+If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performances and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Like the 386 had to face its brother (the P7), the i486 also had to a competitor from the same company. The competing brother name was "Intel 860".\\
 \par
 \fq{
 
@@ -26,22 +26,25 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 \end{wrapfigure}
 
 ...We now had two very powerful chips that we were introducing at just about the same time: the 486, largely based on CISC technology and compatible with all the pc software, and the i860, based on RISC technology, which was very fast but compatible with nothing. we didn't know what to do. so we introduced both, figuring we'd let the marketplace decide. however, things were not that simple. supporting a microprocessor architecture with all the necessary computer-related products --- software, sales, and technical support --- takes enormous resources. even a company like Intel had to strain to do an adequate job with just one architecture. and now we had two different and competing efforts, each demanding more and more internal resources. development projects have a tendency to want to grow like the proverbial mustard seed. the fight for resources and for marketing attention (for example, when meeting with the customer, which processor should we highlight) led to internal debates that were fierce enough to tear apart our microprocessor organization. meanwhile, our equivocation caused our customers to wonder what Intel really stood for, the 486 or i860?}{Andy Grove, "Only the paranoid survive".}
-\bigskip
-\par
+
+
+
+
+
 On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which when efficiently used could outperform the Intel 486.\\
 \par
 But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parallel when possible, the i860 architect mandated direct manipulation to its parallel pipelines. The chip did nothing behind the scene and relied on compiler writers to sequence instructions appropriately.\\
 \par
-Unfortunately compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super scalar capability. the i860 was never able to reach its full potential. If only Intel had been willing to build the precious tool it desperately needed the history of the i860 could have been different.\\
+Unfortunately compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super scalar capability. the i860 was never able to reach its full potential. If only Intel had been willing to build the tools it desperately needed the history of the i860 could have been different.\\
 \par
 \par
-\cscaledimage{1}{i486DX.png}{The Intel 486 packing. 1.0$\mu$ processed allowing 1,180,235 transistors.}
+\cscaledimage{1}{i486DX.png}{The Intel 486 packing. Its 1.0$\mu$ process allowing 1,180,235 transistors.}
 \par
-\trivia{Amusingly, the i860 would still play a part in Doom's development since it was used on NextDimension boards.}
+\trivia{The i860 played a part in \doom~anyway since it was used in NextDimensions.}
 
 \par
 \subsection{Pipeline improvements}
-Charting the 486 MIPs performances along with the previous generation make the performance boost appear vividly. If, thanks to yet more improved manufacturing process, top of the line 486 were able to run at 50Mhz\footnote{To reach this freqency, 486 DX 50Mhz were manufactured at 1.0$\mu$.}, the frequency increase was not the main factor of improvement.\\
+Charting the 486 MIPs performances along with the previous generation make the performance boost appear vividly. If, thanks to yet more improved manufacturing process, top of the line 486 were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.}, the frequency increase was not the main factor of improvement.\\
 \par
  Looking closely at the chart, one will notice that even at equal frequency, a 486 offered more than twice the processing power of a 386.\\
 
@@ -85,7 +88,7 @@ The way it achieves higher performances is through a higher average throughput. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{drawings/386_instruction_pipeline.pdf}
-\caption{386 pipeline in Intel documentation.}
+\caption{386 pipeline in theory according to Intel documentation.}
 \label{386_doc_pipeline}
 \end{figure}
 
@@ -119,16 +122,16 @@ To solve this problem, Intel broke down the three stage pipeline into five (Pref
 \subsection{Caching }
 Modifying the pipeline and make each stage run as fast as each others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386 which had only three stages. A frequently stalling 486 would have been slower than a 386. Halting processing due to missing data or instructions was to be avoided at all cost.\\
 \par
-It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performances had been lagging behind CPU performances. Each year, CPU improved by 60\% while DRAM only improved by 7\%, the gap increased by 50\%. By 1989, DRAM access time was 10 times slower than CPU cycles.\\
+It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performances had been lagging behind CPU performances. Each year, CPU improved by 60\% while DRAM only improved by 7\%, the gap increased by 50\%/year. By 1989, DRAM access time was 10 times slower than CPU cycles.\\
 \par
 \vspace{2mm}
 \drawing{ram_vs_cpu}{}
 \par
 Until the 486, a CPU requesting either instructions or datas from the DRAM always had to go stall and go through its Bus Unit to talk to the motherboard memory controller. As optimized as the ISA bus protocol was, it took at the very minimum two cycles.\\
 \par 
-A first cycle to initialize the bus request, place the address on the address line and set the control line (Read/Write). And at an extra wait cycle (which Intel called Wait State since while waiting on the Bus Unit, the CPU did absolutely nothing) while the device on the other side of the bus fulfilled the request.\\
+A first cycle to initialize the bus request, place the address on the address line and set the control line (Read/Write). And a wait cycle (which Intel called Wait State since while waiting on the Bus Unit, the CPU did absolutely nothing) while the device on the other side of the bus fulfilled the request.\\
 \par
-\drawing{cpu_chipset_bus}{}
+\drawing{cpu_chipset_bus}{386 CPU-RAM communication elements}
 \par
 If a device was able to answer the bus request within the first wait state cycle, the CPU was able to resume operations having reached Zero Wait state. Otherwise, additional Wait States were inserted in order to wait for the request to complete. From a performance perspective, these Wait States were a disaster. Not only because it took longer for the instruction to finish but also because it stalled all other instructions in the pipeline.\\
 \par
@@ -137,11 +140,11 @@ If a device was able to answer the bus request within the first wait state cycle
 Two cycles bus request is the fastest a CPU can achieve. In practice, DRAM access requires several Wait State insertions.
 To avoid these stales meant to avoid using the bus completely. To achieve this, Intel inserted a new component between the pipeline and the bus unit and called it a L1 (Level 1) cache. The idea was to exploit the locality and temporality of a program.\\
 \par
-Temporality relies on program iterative nature. Will in a loop an instruction recently accessed is likely to be accessed again on next iteration. Locality has to do with the way program sequentially read or write data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
+Temporality relies on program iterative nature. Will in a loop, an instruction recently accessed is likely to be accessed again on the next iteration. Locality has to do with the way program sequentially read or write arrays containing data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
 \par
-By leveraging these two properties, a well designed cache located between the CPU and the Bus Unit and intersecting requests would often already contains the data or instruction requested, making a bus request useless.\\
+By leveraging these two properties, a well designed cache located between the CPU and the Bus Unit would often already contains the data or instruction requested, making a bus request useless.\\
 \par
-\drawing{cpu_cache}{}
+\drawing{cpu_cache}{486 CPU-RAM communication elements}
 
 
 
@@ -150,14 +153,14 @@ By leveraging these two properties, a well designed cache located between the CP
 Hopefully it is now abundantly clear the cache was the cornerstone of the entire CPU. Without it there was no gain. Designing the cache to yield the highest hit rate possible and make it as fast as possible were paramount. 
 
 \subsubsection{DRAM vs SRAM}
-The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 150ns while SRAM was capable of 10ns, 150\% faster. DRAM was also "slowed" down greatly because it was unavailable part of the time. The design of each cells was simple, based on one transistor and one storage capacitor. Two elements allowed for tight packing and high capacity.\\
+The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 1000\% faster. DRAM was also "slowed" down greatly because it was unavailable part of the time. The design of each cells was simple, based on one transistor and one storage capacitor which allowed tight packing and high capacity.\\
 \par The problem was with the capacitor losing its charge over time. The only way to keep the DRAM integrity was to periodically refresh each of its bit cells, every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
 \par
-\scaleddrawing{0.5}{DRAM}{Dynamic RAM}
+\scaleddrawing{0.5}{DRAM}{Dynamic RAM made of two elements}
 As mentioned earlier, the DRAM had the disadvantage to being far away. Located "somewhere" on the motherboard, to access it meant the CPU had to request it to its Bus Unit. And not only is was slow and far away, the ISA Bus had to be shared with other I/O devices.\\
 \par
 \vspace{2mm}
-\scaleddrawing{0.7}{SRAM}{Static RAM}
+\scaleddrawing{0.7}{SRAM}{Static RAM made of six elements}
 \par
 Located inside the chip, the SRAM had none of these drawbacks. Accessing it did not require an expensive bus request. Its design involving no less than six transistors removed the need periodic refresh. And to top it all, the CPU did not have to share the data path with other devices.
 \par
@@ -203,7 +206,7 @@ If a value was to be written but all cacheline entries in the four ways are vali
 
 
 \subsection{Netburst}
-Any cache miss within the 486 pipeline triggered the eviction of a cacheline and a full 16 bytes had to be transfered from DRAM to SRAM\footnote{The prefetcher also worked with units of 16 bytes. It retrieved and stored cacheline into a prefetch queue of 32 bytes.}. Normally this would have been a very costly operation and a huge issue for the CPU. But Intel added something called NetBurst capability to make it all work together.\\
+Any cache miss within the 486 pipeline triggered the eviction of a cacheline and a full 16 bytes cacheline had to be transfered from DRAM to SRAM\footnote{The prefetcher also worked with units of 16 bytes. It retrieved and stored cacheline into a prefetch queue of 32 bytes.}. Normally this would have been a very costly operation and a huge issue for the CPU. But Intel added something called NetBurst capability to make it all work together.\\
 \par
 The principle was simple: While waiting for data to arrive, latch the next request so the bus controller can use it right away without waiting for the CPU to initialized a bus request.\\
 \par
@@ -216,7 +219,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 \subsection{Overdrive and Writeback}
-As if the huge performance improvement of the 486 were not enough, Intel managed to top it with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and became the instant golden standard until 1995. It was commonly called DX2-66 and was the absolute best to run \doom~at the time.\\
+As if the huge performance improvement of the 486 were not enough, Intel managed to top it with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and had write-back L1 instead of a write-through. Commonly called DX2-66 it was the golden standard until 1995 the absolute best to run \doom~at the time.\\
 \par 
 \rawdrawing{486dx2_notm}%{Best CPU to run \doom at the time.}
 \par
@@ -298,7 +301,7 @@ If you are holding a physical 9.25''x7.5'' copy of this book, the CPU casing sho
 
 
 
-In the previous drawings, notice how the layout differs between the CAD tools used to synthesize the data path and the control path which was still created by hand\footnote{Source: Coping with the Complexity of Microprocessor
+On the previous page, the transistor layout differs between the data path which was hand-crafted and the control path which was created with CAD tools built especially for the 486\footnote{Source: Coping with the Complexity of Microprocessor
 Design at Intel -- A CAD History.}.\\
 \par
 \subsection{Programming the 486}
@@ -337,7 +340,7 @@ But it was still a far cry compared to the performance of the ALU and its barrel
 \caption{Comparaison ALU vs FPU operations.}
 \end{figure}
 \par
-For \doom~, there was not a doubt, it had to be done with integer operations\footnote{The dawn of floating points would start with Intel's Pentium and Quake in 1996.}.\\
+For \doom, there was not the shadow of a doubt, it had to be done with integer operations\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
 % \par
 % \trivia{Re-read Michael Abrash guide on 486. Add more insight on how to pipeline the 486 well\\.}\\x
 % \par

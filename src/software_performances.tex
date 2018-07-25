@@ -83,8 +83,8 @@ An excellent class of performance visualizers are flamegraphs. They are built by
 
 \drawing{flamegraph}{Flamegraph of \cw{./doom -timedemo demo1} on NeXTStation Turbo Color}
 \par
-Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind NeXTStep port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. Notice part of the graph with no children with the high cost of bliting from framebuffer \#0 to the screen (\cw{Update16}), the vertical drawing routine (\cw{R\_DrawColumn}) and the horizontal drawing routine (\cw{R\_DrawSpan}).
-
+Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind NeXTStep port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. Notice part of the graph with no children with the high cost of bliting from framebuffer \#0 to the screen (\cw{Update16}), the vertical drawing routine (\cw{R\_DrawColumn}) and the horizontal drawing routine (\cw{R\_DrawSpan}).\\
+\par
 
 On DOS generating a flamegraph is slightly more difficult since it is a mono-threaded operating system. However with a little bit of instrumentation it is possible to get something similar. Instrumenting ten functions, the result is flatter but we can still gather some precious information as seen in the following graph.\\
 \par
@@ -93,7 +93,7 @@ On DOS generating a flamegraph is slightly more difficult since it is a mono-thr
 \par
 The result is not exactly the same as the NeXT. The sound routine in charge of updating the audio data (\cw{S\_UpdateSounds}) is barely visible in red. It makes sense since the only work to do is to retrieve sfx and music data from the \cw{.wad} and place it in the RAM for the audio card to use.\\
 \par
- Something weirder is to notice that \cw{I\_FinishUpdate} seems instantaneous. How can the DOS version transport a full framebuffer accross the bus? The answer is off course: It doesn't! This is because the DOS version was optimized.\\
+ Something weirder is to notice that \cw{I\_FinishUpdate} seems instantaneous. How can the DOS version transport a full framebuffer across the bus so fast? The answer is off course: It doesn't! This is because the DOS version was optimized.\\
 \par
 
 
@@ -132,7 +132,7 @@ All together these three optimization improved performance by a substantial 15\%
 
 \vspace{-1.25cm}
 \section{Performance tuning}
-Despite all the care and optimizations, most gamers could not get more than 10 fps with the out-of-the-box game. To help reaching a decent framerate, two tuning mechanisms helped to reduce the number of pixels written.
+Despite all the care and optimizations, most gamers could not get more than 10 fps with the game out-of-the-box. To help reaching a decent framerate, two tuning mechanisms helped to reduce the number of pixels written.
 \begin{enumerate}
 \item High detail/Low detail toggle.
 \item Adjust size of 3D canvas.

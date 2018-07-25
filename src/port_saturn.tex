@@ -16,7 +16,7 @@ Sega managed to release its console before the dreaded PSX and sales in Japan we
 \par
 Preceding Sony came at a great price and came across as rushed. During E3 1995 in Los Angeles, Sega CEO Tom Kalinske surprise announced that the Saturn would be available the very same day. Even supplier did not know about it and the console was out of stock rapidly.\\  
 \par
-An other consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}. The way to do 3D was similar to the 3DO were programmers had to deal with quads that they distored in screen space to (poorly) fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
+An other consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}. The way to do 3D was similar to the 3DO were programmers had to deal with quads that they distorted in screen space to (poorly) fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
 \par
 \fq{Currently we only use the Master SH2, the slave SH2 will be used when we get around to figuring out how.}{Mick West 1995 Saturn development journal}\\
 \par
@@ -74,7 +74,7 @@ Main programming was done via the SH-2 processors connected to 1.5MiB of shared 
 \par
 Audio was done via the SMSP (Saturn Custom Sound Processor) which piloted a Sound processor (a Motorola 68000). The SCSP was to be configured to produce sound mixes in the dedicated 512 KiB of RAM where they were picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize, play PCM, and perform 3D effects/distortion. The chip also polled controls inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
 \par
-Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots parts of the active framebuffer on the basis of commmands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background based scroll panes and send it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
+Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots parts of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background based scroll panes and send it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
 \par
 Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffered. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
 \par
@@ -113,7 +113,7 @@ To control all these components and transfer data between system, a seventh chip
 \subsection{Doom on Saturn}
 Port to the Saturn was done by Rage Software on a very short schedule. Like all other ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it came to texture sampling as remembers Jim Bagley\footnote{RetroGamer \#134.}.\\
 \par
-\fq{When I started the project, I had to do a demo for id Software to approve. I started by extrating all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circunstances could I use the 3D harware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
 \par
 However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}\\
 \par
@@ -139,7 +139,7 @@ To take advantage of the VDP parallelism, it it claimed\footnote{Digital Foundry
 \par 
 Translucency was done in a peculiar way. It is unknown if that was a design decision, a hardware limitation or simply a time constraints but translucency is not done via alpha bending like the Playstation did.\\
 \par
- A more software friendly technique known as dithering is used to represent the Spectres and glass surfaces.
+ A more software friendly technique known as dithering is used to represent the Specters and glass surfaces.
 % \fq{The Saturn had to be programmed straight to the metal. It used quads and messy 3D maths.}{David Shea, Alien Trilogy developer}
 
 
@@ -164,6 +164,6 @@ To this day, most of the information about this port was retrieved via reverse e
 \par
 \fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
 \par
-Despite heroic efforts from the team, time constraints crushed the final quality. The game was universally disliked and labelled as the second worse port of doom (right after the 3DO).\\
+Despite heroic efforts from the team, time constraints crushed the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\
 \par
 

@@ -1,18 +1,18 @@
 \section{Video System}
-At first glance the video output system, the VGA (Video Graphic Array), was still the same weird beast Wolfenstein 3D had to deal with. With its infamous 300 registers to configure it, its palette system limiting colors to 256, and the awkward four banks of 64 KiB mandating interleaved framebuffer the VGA was an unappealing programming interface.\\
+At first glance the video output system, the VGA (Video Graphic Array), was still the same weird beast Wolfenstein 3D had to deal with. With its infamous 300 registers to configure it, its palette system limiting colors to 256, and the awkward four banks of 64 KiB mandating interleaved framebuffer, the VGA was an unappealing programming interface.\\
 \par
 A GC (Graphic Controller) and a (SC) Sequence Controller controlled access to 256 KiB of Video RAM. A CRTC (Cathode Ray Tube Controller) controlled how the framebuffer was sampled. And finally a DAC took care of converting Digital data to analogical toward the CRT monitor.\\
 \par 	
 \scaleddrawing{0.6}{vga}{}
 \par
-During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was layed out across banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.
+During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using undocumented tricks, developers used directly the four banks in the video card. How the framebuffer was laid out across banks was far from being trivia. Due to historically slow RAM access time, pixels had to be interleaved four by four.
 
 
 
 
 \cscaledimage{0.9}{vga_ram_screen_layout}{\label{vga_ram_screen_layout}}
 \par
-In figure \ref{vga_ram_screen_layout}, notice how the first pixel \cw{0} is stored in bank 0, pixel \cw{1} is stored in bank 1 and so on. With an horizontal resolution of 320 lines, 80 non horizontally adjacent pixels are stored in each banks.\\
+In figure \ref{vga_ram_screen_layout}, notice how the first pixel \cw{0} is stored in bank 0, pixel \cw{1} is stored in bank 1 and so on. With an horizontal resolution of 320 lines, 80 non horizontally adjacent yet vertically adjacent pixels are stored in each banks.\\
 \par
 To access the 256 KiB of VRAM, IBM had established a hard-coded memory mapping in RAM from \cw{0xA0000} to \cw{0xAFFFF}. An eye accustomed to hexadecimal will have immediately noticed that \cw{0xFFFF} translates to 64KiB addresses, far fewer than the total available VRAM.\\
 \par
@@ -42,11 +42,11 @@ Figure \ref{circle_framebuffer} shows what the same framebuffer looked like when
 \section{Hidden improvements}
 Despite this bleak description, a closer inspection of the world of graphic cards unveiled two tremendous changes which ended up deeply impacting \doom. \\
 \par
-Since 1992 with the released of Microsoft and IBM new operating systems (respectively OS/2 2.0 and Microsoft Windows 3.1), demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 147,200 bytes\footnote{16 colors at 640x480}.
+Since 1992 with the released of Microsoft and IBM new operating systems (respectively Microsoft Windows 3.1 and OS/2 2.0), demand for fast graphic card had been growing strong. It was a huge technological leap to request devices pushing 4,000 bytes of information\footnote{2,000 bytes for the characters, and 2,000 bytes for screen attributes} in text mode to instead move 147,200 bytes\footnote{16 colors at 640x480} for GUIs.
 
 \fullimage{Windows311workspace.png}\\
 \par 
-Despite its simple interface, Windows 3.11 640x480, 16 colors was able to put PCs on their knees. Moving a window was done via its outlines since no hardware was capable of refreshing the screen fast enough in order to also show the window content.
+Despite its simple interface, Windows 3.11 640x480, 16 colors was able to put PCs on their knees. Moving a window was done via its outlines since no hardware was capable of refreshing the screen fast enough in order to also show the content\footnote{\NeXT workstations could do it and Steve Jobs mentioned it often during demos :)!}.
 
 
 
@@ -77,7 +77,7 @@ As much as the video card manufacturer could optimize their product, there was s
 \par
 Fed up with the state of things, hardware manufacturer teamed together to form the VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated, the protocol was exactly the Intel 486 Bus Unit protocol which made it a friction less medium.\\
 \par 
-The VLB doubled the bus data line of the ISA to reach 32-bit and increased its frequency to 33 Mhz, making the VL-Bus 40 to 100 faster than an ISA.\\
+The VLB doubled the bus data line of the ISA to reach 32-bit and increased its frequency to 33 Mhz, making the VL-Bus 40x to 100x faster than an ISA.\\
 \par
 The chip design for the VLB controller was relativity simple because many of the core instructions (Interrupts and port-mapped I/O) were still hosted by the ISA circuits already on the motherboard while memory-mapped I/O and DMA data path were on the same local bus as the one used by the CPU (see figure \ref{bus_vlb}). The speed of the system data bus was based on the clock rate of the motherboard's crystal which meant the bus ran at the same speed as the CPU.\\
 \par
@@ -89,11 +89,11 @@ The close tie of the VL-Bus architecture to the 486 Bus Unit brought unmatched p
 \par
 Forced to run at the same speed as the CPU, the VL-Bus suffered instability as frequencies reached 40 Mhz, resulting in crashes. Past this speed, the system became increasingly intolerant to timing variations\footnote{The issue did not affect 486 DX-66Mhz which bus ran at only 33Mhz.}. The root problem is that a local bus is by definition synchronous. Expansion card vendors had the difficult task of ensuring their products could run at a range of speeds. The upper limit of the range being undefined as new processors were introduced. This was a recipe for compatibility problems\footnote{Such problems have been experienced by users of VL-Bus systems using the AMD 80MHz processors, which have a 40MHz bus clock.}.\\
 \par
-The second problem was that the electrical load driven by the cpu on the bus decreased as the clock speed increases. Three slots could be provided at 33MHz, but only two at 40MHz and just one at 50MHz. This resulted in configuration hell since motherboards speed was configurable and came with three slots. Users would find out some VLB slots "did not work" or "stopped working" as they tuned their motherboard.\\
+The second problem was that the electrical load driven by the CPU on the bus decreased as the clock speed increases. Three slots could be provided at 33MHz, but only two at 40MHz and just one at 50MHz. This resulted in configuration hell since motherboards speed was configurable and came with three slots. Users would find out some VLB slots "did not work" or "stopped working" as they tuned the frequency.\\
 \par
 Cards were also hard to install due to their length and required pressure to force them into the VLB slot resulting in physical breakages\footnote{Friends jokingly renamed VLB to "Very Long Bus".}.\\
 \par
-  Worse than everything, Intel's 1993 Pentium Bus Unit protocol had changed to use the PCI which was entirely incompatible. Unable to adapt, the VL-Bus found itself obsolete and the standard died shortly after.\\
+  Worse than everything, Intel's 1993 Pentium Bus Unit protocol changed to use the PCI which was entirely incompatible. Unable to adapt, the VL-Bus found itself obsolete and the standard died shortly after.\\
 \par
 
 \begin{figure}[H]

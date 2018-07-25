@@ -18,7 +18,7 @@ Each block is marked with a purge hint so the allocator can know whether i can f
 \par
 \ccode{memory_zone.c}\\
 \par
-In its initial start, all RAm is in a free block. To make the drawing simpler, let's assume the entire ram is 8000 bytes. The block has been marked \cw{STATIC}. It has a \cw{NULL} \cw{user}. Its size is 8000. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
+In its initial state (assuming the entire RAM is 8000 bytes) all RAM is in a single block which is marked \cw{STATIC}. It has a \cw{NULL} \cw{user} which means this is a free block. It's \cw{size} is 8000 bytes. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
 \par
 \rawdrawing{zalloc_start}
 \par

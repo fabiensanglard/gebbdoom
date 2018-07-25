@@ -43,7 +43,7 @@ hardware, ensuring backwards compatibility. }{RetroGamer \#122}\\
 \par
 But things would take end up taking an ugly turn. In February 1993, \cw{wired.com} ran a full article "3DO: Hip or Hype?" which raised many concerns about the viability of the adventure.\\
 \par
-One of the problem was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a lose and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far) the most expensive console on the market. For comparaison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a (mostly undeserved) "rich kid" reputation.\\
+One of the problem was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a lose and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far) the most expensive console on the market. For comparison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a (mostly undeserved) "rich kid" reputation.\\
 \par
 The other aspect which poisoned the 3DO was its game library. At launch it was rather small with only six games of low quality besides "Crash 'N Burn". Firmware changes and devkit modification until the last minute had hampered game studios in their efforts to have something ready for launch day.\\
 \par
@@ -85,7 +85,7 @@ Panasonic, Goldstar, and Sanyo all designed their own motherboards but all 3DOs 
 
 \rawdrawing{3do_motherboard}
 \par
-Developer for the 3DO were forbidden direct access to the hardware (except for hand-crafted assembly for the ARM processor). This was done to ensure forware compatibilty with the next generation of 3DO hardware.\\
+Developer for the 3DO were forbidden direct access to the hardware (except for hand-crafted assembly for the ARM processor). This was done to ensure forward compatibility with the next generation of 3DO hardware.\\
 \par
  The M2 project which began as an accelerator add-on for the 3DO\footnote{"3DO Press Release" August 1994.} morphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. Due to financial and technological difficulties, the M2 project was never completed.\\
 \par
@@ -96,7 +96,7 @@ Developer for the 3DO were forbidden direct access to the hardware (except for h
 \subsection{3DO Programming}
 Graphic programing was done via the 3DO "CEL engine", powered by chips Clio and Madam. A CEL is a just a fancy name for a sprite. Each CEL can be drawn in screenspace with three associated vectors HD, VD, and HDD. Together they allow operations such as scaling, rotation, skewing, and even something labeled "perspective" in the 3DO programmer manual. The CEL engine was able to process several CELs simultaneously.\\
 \par
-If HD and VD are self explanatory, the differencial vector HDD deserve more explanation. Here is how it is described in the manual.\\
+If HD and VD are self explanatory, the differential vector HDD deserve more explanation. Here is how it is described in the manual.\\
 
 \fq{
 When fixed HDX and HDY values set the horizontal offset of a cel and VDX and VDY values set the vertical offset of a cel, the result is always a strict parallelogram-all the row edges are parallel as are all the column edges. Although you change the size and angles of the parallelogram, you cannot get any perspective effects with row edges converging or diverging. To add perspective, the projector uses the HDDX and HDDY offset pair.
@@ -123,7 +123,7 @@ In January 1995, for \$250,000 (some sources mention \$500,000) and an obligatio
 
 The project was promptly subcontracted to a gaming company with actual experience in game development. Art Data Interactive quickly learned that port was much more expensive than what they thought. It would cost a million dollar and a year of development to which they agreed to.\\
 \par
-By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of Octobre 1995 looming over their head, Art Data Interactive reached to a contractor which had previously done an amazing work on porting Wolfesntein 3D to the 3DO. The name of the poor soul who accepted the project was Rebecca Ann Heineman from Logicware.\\
+By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of Octobre 1995 looming over their head, Art Data Interactive reached to a contractor which had previously done an amazing work on porting Wolfenstein 3D to the 3DO. The name of the poor soul who accepted the project was Rebecca Ann Heineman from Logicware.\\
 \par
 Having committed to the project, Rebecca asked ADI for the source code she assumed they had received upon signing the contract with id Software. Nothing came. Eventually, she received a floppy disk. It turned out it was in fact the commercial copy of \doom with the compiled binary \cw{DOOM.EXE} and \cw{DOOM.WAD}! Rebecca had to explain ADI what source code was and how she could not start working from the binary. After a few weeks of struggle, she finally emailed John Carmack whom sent her the source code for the Jaguar version.\\
 \par
@@ -150,17 +150,17 @@ ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manu
 
 
 
-\fq{I was misled about the state of the port when I was offered the project. I was told that there was a version in existance with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
+\fq{I was misled about the state of the port when I was offered the project. I was told that there was a version in existence with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
 % \par
 % Uh... No...\\
 \par
-My friends at 3DO were begging for DOOM to be on their platform and with christmas 1995 coming soon (I took this job in August of 1995, with a mid October golden master date), I literally lived in my office, only taking breaks to take a nap and got this port completed.\\
+My friends at 3DO were begging for DOOM to be on their platform and with Christmas 1995 coming soon (I took this job in August of 1995, with a mid October golden master date), I literally lived in my office, only taking breaks to take a nap and got this port completed.\\
 % \par
 % Shortcuts made...\\
 \par
 I had no time to port the music driver, so I had a band that Art Data hired to redo the music so all I needed to do is call a streaming audio function to play the music. This turned out to be an excellent call because while the graphics were lackluster, the music got rave reviews.\\
 \par
-3DO's operating system was designed around running an app and purging, there was numerous bugs caused by memory leaks. So when I wanted to load the Logicware and id software logos on startup, the 3DO leaked the memory so to solve that, I created two apps, one to draw the 3do logo and the other to show the logicware logo. After they executed, they were purged from memory and the main game could run without loss of memory.\\
+3DO's operating system was designed around running an app and purging, there was numerous bugs caused by memory leaks. So when I wanted to load the Logicware and id software logos on startup, the 3DO leaked the memory so to solve that, I created two apps, one to draw the 3do logo and the other to show the Logicware logo. After they executed, they were purged from memory and the main game could run without loss of memory.\\
 \par
 There was a Electronic Arts logo movie in the data, because there was a time that EA was going to be distributing the game, however the deal fell through.\\
 \par

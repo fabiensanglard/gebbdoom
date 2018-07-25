@@ -26,7 +26,7 @@ I had more Unix and network code experience than the rest of the id team, but I 
 \qaa{The core 3D gameplay window was there, most of the art was in, the single-player gameplay was almost all there.  I integrated the sound code/effects, the automap, status bar, screen wipes, level transitions, and cheat codes.}
 
 \qaq{Who did you report to, how did you know what to work on ?}
-\qaa{I reported to John Carmack, but I wasnt easy to manage and would often do my own thing.}
+\qaa{I reported to John Carmack, but I wasn't easy to manage and would often do my own thing.}
 
 
 \qaq{I can see you have a NeXT workstation on your desk. What did you use it for?}
@@ -43,7 +43,7 @@ I had more Unix and network code experience than the rest of the id team, but I 
 
 
 \qaq{Could you details as much as possible how it was to work with IRIX, AIX and Solaris ? What editor you used, how did you compile, how much error due to compilers did you bubble up to the codebase (I assume this improved portability of the code tremendously which explains why doom is the most ported game of all time).  Did you get the sound to work on all of them? I did not even know they had sound drivers for AIX. What was your favorite development environment while you worked for id ?}
-\qaa{I used vi for editing code.  I made a Makefile and just typed make, as you'd think.  We didn't have source code then.  Ya, once I got the basic code down for Linux (I had a system at home), it was pretty similar for the other Unix platforms.  I seperated the sound code into its own server.  It would load the files itself, and then the game would just tell it over a socket to fire off sounds and update volume/pitch/etc.  The Linux code would eventually get really optimized, as Linus hooked me up with the XFree86 guys, who added an extension to give me direct access to the framebuffer, and then on Quake, Linus gave me a much faster way to get directly to the sound card DMA buffer and to get the current DMA transfer location down to a somewhat chunky granularity.\\
+\qaa{I used vi for editing code.  I made a Makefile and just typed make, as you'd think.  We didn't have source code then.  Ya, once I got the basic code down for Linux (I had a system at home), it was pretty similar for the other Unix platforms.  I separated the sound code into its own server.  It would load the files itself, and then the game would just tell it over a socket to fire off sounds and update volume/pitch/etc.  The Linux code would eventually get really optimized, as Linus hooked me up with the XFree86 guys, who added an extension to give me direct access to the framebuffer, and then on Quake, Linus gave me a much faster way to get directly to the sound card DMA buffer and to get the current DMA transfer location down to a somewhat chunky granularity.\\
 \par
 AIX, Irix, and Solaris were all kinda foreign to me but of course all still Unix variants, and I realized that by offering ports to Doom, I could get free workstations, so... :)\\
 \par

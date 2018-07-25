@@ -8,15 +8,15 @@ tools which had taken years to develop were no match for the competition. They h
 \par
 
 
-Competitors were coming with their own games. Notwithstanding others, ever since it inception around the technological breakthrough named "Adaptive tile refresh", id Software's core value had been innovation. They had already released a sequel to Wolfenstein 3D and it was time to move on. The Right Thing to do (and the most risky\footnote{Things You Should Never Do (Netscape 6 development), by Joel Spolsky.}) was to throw away everything they had worked so hard to build and start their next game from a blank sheet. Assets, levels, tools, and game engine, everything would be new and innovative.\\
+Competitors were coming with their own games. Notwithstanding others, ever since it inception around the technological breakthrough named "Adaptive Tile Refresh", id Software's core value had been innovation. They had already released a sequel to Wolfenstein 3D and it was time to move on. The Right Thing to Do (and the most risky\footnote{Things You Should Never Do (Netscape 6 development), by Joel Spolsky.}) was to throw away everything they had worked so hard to build and start their next game from a blank sheet. Assets, levels, tools, and game engine, everything would be new and innovative.\\
 \par
-But what hardware should they target? Using what tools? Even a summary assessment of the consumer landscape showed that PCs had significantly evolved since their last hit.
+Before getting started, id Software had to decide what hardware they would target. And then what tools to use. A summary assessment of the consumer landscape showed that PCs had significantly evolved since their last hit.
 \begin{itemize}
 \item Intel's latest CPU, the 486 announced in 1989, was finally becoming affordable. Providing twice the processing power of the previous generation, more and more customers now declined to go for an "old", twice as slow, Intel 386. 
 \item The advent of Microsoft Windows 3.1 and its hungry GUI had triggered hardware manufacturers to offer more powerful graphic adapters. Rendition still had to be done in software but chipsets were faster and had more capacity.
 \item Frustrated with the bus bottleneck, vendors had teamed together to come up with a new standard. PCs often came equipped with a bus four times faster than the old legacy ISA called VESA Local Bus (VLB/VL-Bus). 
 \item Price of RAM was dropping significantly. The once standard 2 MiB of RAM was now forecasted to be 4 MiB. 
-\item The audio ecosystem had become even more fragmented with many SoundBlaster "compatible" audio cards clone on the market and also new innovative technology such as Gravis Ultrasound.\\
+\item The audio ecosystem had become even more fragmented with many SoundBlaster "compatible" audio cards clone on the market and also new innovative technology such as Gravis Ultrasound wavetable synthesis.\\
 \end{itemize}
  \par 
  Not only the hardware had evolved, the software was also different. Better compilers such as Watcom, allowed faster code to be generated. There was less need for time-consuming hand-crafted assembly which was slowly becoming a thing of the past\footnote{Intel would bring that trend back with its super-scalar processor, the Pentium and make Quake development ASM intensive but this is an other story altogether.}. DOS Extenders allowed to break the machine free from 16 bit programming and its infamous limited 1 MiB address space.\\
@@ -27,11 +27,11 @@ But what hardware should they target? Using what tools? Even a summary assessmen
  \par
  To do so, the two first chapters take a close look at the hardware of the time. Not only the IBM PC on which \doom~ran but also the \NeXT machines which id Software elected as the foundation of its production pipeline. The third chapter focuses on the team and the tools they wrote to bridge the hardware and the software. With all these capabilities and restrictions in mind the last chapters are a deep dive in the game engine which hopefully will help to appreciate why things are designed the way they are.\\
 \par
-So load your shotgun, pack a few extra medkits and let's dive!\\
+Now load your shotgun, pack a few extra medkits and let's dive!\\
 \par
 % \vspace{2cm}
 \fullimage{demonandshotguns2.png}
-\centering "Doom means two things: demons and shotguns!" -- John Carmack
+\centering "\doom~means two things: demons and shotguns!" -- John Carmack
 
 % \fullimage{actionpacked.png}
 %\caption{Fast, Immersive, Dark and Violent.}

@@ -254,6 +254,7 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 
 %make footnote stick to the bottom of the page
 \usepackage[bottom]{footmisc}
+%\usepackage[hang,flushmargin]{footmisc}
 
 % To make floating images
 \usepackage{wrapfig}
@@ -408,3 +409,6 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \newcommand{\qaq}[1]{\textbf{Q: #1}\\ \par}
 \newcommand{\qaa}[1]{A: #1\\ \par}
 \newcommand{\qaanor}[1]{A: #1 \par}
+
+\interfootnotelinepenalty=10000
+

@@ -1,7 +1,7 @@
 
 
 \section{Maps}
-Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designed worked with just five types of elements: \cw{VERTEX}\footnote{Vertices corrdinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
+Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designed worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
 \drawing{doom_map_basics}{}
 
@@ -12,23 +12,23 @@ A \cw{LINE} can either be a solid wall or a portal between two \cw{SECTOR}s. The
 \par
 A \cw{SIDEDEF} describes one side of a line. To accommodate walls and portals texturing it can have up to three textures. The middle texture is used by wall for the full area they cover. There can also have lower texture and an upper texture for portal connecting \cw{SECTOR}s with different ceiling/floor height. If the portal leads to a sector with higher floor, the lower texture is used to render the "step". If the \cw{SECTOR} connects to a \cw{SECTOR} with lower ceiling, the upper texture is used to render the "down step". To help alignment with door and buttons, \cw{SIDEDEF} textures can have a vertically/horizontally offset. \\
 \par
-A \cw{THING}s is must simpler in comparison. It only has one \cw{VERTEX} coordinate, an angle and an identifier telling its type. As the minimum a map must have one player spawning location \cw{THING}.\\
+A \cw{THING} is must simpler in comparison. It only has one \cw{VERTEX} coordinate, an angle and an identifier telling its type. As the minimum a map must have one player spawning location \cw{THING}.\\
 
 \cfullimage{doom_map.png}{Rendition of map shown in figure \ref{doom_map_basics}.}
 \par
-The resulting scene is ugly but the mismatched colors hopefully help to dissociate each elements. All \cw{LINE}s are walls except for \cw{E-B} which has two \cw{SIDEDEF}s and is therefore a portal. All walls use the \cw{BRIK} middle texture except for the portal which uses \cw{GRAY} for both top and bottom.\\
+The resulting scene in figure \ref{doom_map.png} is ugly but the mismatched colors hopefully help to dissociate each elements. All \cw{LINE}s are walls except for \cw{E-B} which has two \cw{SIDEDEF}s and is therefore a portal. All walls use the \cw{BRIK} middle texture except for the portal which uses \cw{GRAY} for both top and bottom.\\
 \par
 \cw{SECTOR} \#0 uses a \cw{RED} floor texture and a \cw{WOOD} ceiling texture. The height of the floor is 20 and its ceiling is at 40. \cw{SECTOR} \#1 uses a \cw{BLUE} floor texture and a \cw{GREN} ceiling texture. Its floor is at 60 and ceiling at 60. Both sectors have the same light level (10).\\
 \par
    Notice the portal \cw{E-B} which does not have a mid-texture but an upper and lower texture. These were used to draw the up-step and down-step towards sector \#0.\\
 \par
-Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctely set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C} vertical offset was properly set and result in no visual artifact. None of the wall use an horizontal offset, however field is marked \cw{XOFF} on figure \ref{doom_map_basics} to show its location.\\ 
+Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctly set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C} vertical offset was properly set and result in no visual artifact. None of the wall use an horizontal offset, however field is marked \cw{XOFF} on figure \ref{doom_map_basics} to show its location.\\ 
 \pagebreak
 
 
 
 \subsection{Map Editor (DoomED)}
-To harness the complexity of the map format, a new tool was created. The Doom map EDitor would be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed to never lose work while writing DoomED or creating a map.
+To harness the complexity of the map format, a new tool was created. The Doom map EDitor was to be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed to never lose work while writing DoomED or creating a map.
 The very design of Objective-C also had a tremendous influence. The language's message dispatching system no-op behavior when dereferencing a \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} created a fault forgiving environment where a faulty feature would not work but did not crash either.\\
 \par   
 The killing feature was Application Builder which not only came with a full library of widgets but also allowed to create new one and connect them to the business logic instantly.\\
@@ -51,7 +51,7 @@ DoomED was designed to be the "Adobe Illustrator for World Maps" where the desig
 
 
 \vspace{-4mm}
-DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as magic number which was followed by a list of lines listing sidedefs and a list of things. Sectors were inferred from line's ceiling/floor textures valus.\\
+DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as magic number which was followed by a list of lines listing sidedefs and a list of things. Sectors were inferred from line's ceiling/floor textures values.\\
 \par
 \tcode{map.txt}
 \par
@@ -118,7 +118,7 @@ The source code of the node builder was released shortly after the game in May 1
 \par
 \cfullimage{doombsp_compiling.png}{Building doombsp on NeXTSTEP.}
 \par
-For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{.wad} file (explained on page \pageref{wad_explained}).\\
+For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{.wad} file (see p\pageref{wad_explained}).\\
 
 \par
  \begin{figure}[H]
@@ -137,7 +137,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{
    \cw{THINGS} & Position and angle for a each monsters, powerup and spawn locations.\\
    \toprule
    \cw{NODES} & BSP with segs nodes and sub-sector leaves.\\
-   \cw{SEGS} & Portion of lines cut due to Binary Space Partioning (see page \pageref{Binary Space Partitioning: Theory}).\\
+   \cw{SEGS} & Portion of lines cut due to Binary Space Partitioning (see page \pageref{Binary Space Partitioning: Theory}).\\
    \cw{SSECTORS} & Set of \cw{SEGS} representing a convex subspace.\\
    \toprule
    \cw{REJECT} & Sector to sector matrix of what monsters can potentially see in their spawing positon.\\
@@ -150,7 +150,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{
 \par
 \footnotetext{Source:The Unofficial Doom Specs v1.666.}
 
-Slicing the map via binary partitioning is non-trivial. \cw{doombsp} heuristic attemps to minimize the number of segments generated while generating a balanced tree and picking axis aligned splitting lines. BSP trees and Binary partitioning are explained in details on page \pageref{Binary Space Partitioning: Theory}. A debug flag \cw{-draw} allowed to monitor what was happening.\\
+Slicing the map via binary partitioning is non-trivial. \cw{doombsp} heuristic attempts to minimize the number of segments generated while generating a balanced tree and picking axis aligned splitting lines. A debug flag \cw{-draw} allowed to monitor what was happening. BSP trees and Binary partitioning are explained in details on page \pageref{Binary Space Partitioning: Theory}. \\
 \par
 \cfullimage{doombsp_run.png}{Running doombsp in debug mode show splitter selection.}
 \par

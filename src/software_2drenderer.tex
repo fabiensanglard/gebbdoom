@@ -41,7 +41,7 @@ The design of the status bar is similar to the intermission Drawer. Contained in
 \par
 \fullimage{faces.png}\\
 \par
-Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. Perhaps because of the stress incured, many players never knew this widget showed the origin (left/right) of damage incured. "Evil" is showed when picking up a weapon. I have no idea when "Kill" is displayed.\\
+Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. Perhaps because of the stress incurred, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is showed when picking up a weapon. I have no idea when "Kill" is displayed.\\
 \par
 Even to player who spent a lot of time on \doom, the "Ouch" face is likely to be something they have never seen. It was intended to show up when the player suffers an enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
 \par
@@ -51,7 +51,7 @@ The test is the opposite of what it should have been. The ST module shows the ou
 \par
 \ccode{ouch_face_fixed.c}\\
 \par
-With regards to interation with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar in FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
+With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar in FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
 \par
 \fullimage{stbar_virgin.png}
 
@@ -93,11 +93,11 @@ In the previous code sample describing the main menu, notice how the strings \cw
 
 
 \subsection{HUD (Head Up Display)}
-In its early instances, \doom~featured a HeadUp Display minicking doomguy helmet.\\
+In its early instances, \doom~featured a HeadUp Display mimicking doomguy helmet.\\
 \par
 \fullimage{alpha_hud.png}
 \par
-Over time the design changed and the HUD shrinked to be reduced to lines of text. The small code is contained in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.\\
+Over time the design changed and the HUD shrank to be reduced to lines of text. The small code is contained in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.\\
 \par
 \fullimage{new_hud.png}\\
 \par
@@ -112,7 +112,7 @@ It is not possible to play the game in this mode since visited lines marking is 
 \par
 \fullimage{automap.png}
 \par
-\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids. Unfortunatly the easter egg was left unfinished.}\\
+\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids. Unfortunately the easter egg was left unfinished.}\\
 \par
 \fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
 \par

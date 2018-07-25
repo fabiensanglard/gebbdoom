@@ -4,7 +4,7 @@ As mentioned earlier, there is no scripting language in \doom. The A.I is based 
 \rawdrawing{multigen}
 \par
 % The script has two sections per entity. First the general info and then a serie of state machines. To illustrate here if the imp script.\\
-Let's dive into the step machine descriptor text file right away and take a look at the section of \cw{multigen.txt}  which describe the Imp (known as \cw{TROOP} internaly).\\
+Let's dive into the step machine descriptor text file right away and take a look at the section of \cw{multigen.txt}  which describe the Imp (known as \cw{TROOP} internally).\\
 \par
 \tcode{enemy_info.txt}
 
@@ -19,7 +19,7 @@ There are four sections. Properties such as DoomED \cw{id}, \cw{speed}, \cw{heig
 
 Properties list and sound names are self-explanatory, no need to spend too much time on it. What is more difficult to understand is how the state machine is defined.\\
 \par
-A thing state machine is partly statically defined inside the engine (when a monster is attacked it goes directly to \cw{seestate}, when it receive lethal damage, it does direcly to \cw{diestate}) and partly defined in \cw{multigen.txt}. Each line is the state defintion follows a syntax.
+A thing state machine is partly statically defined inside the engine (when a monster is attacked it goes directly to \cw{seestate}, when it receive lethal damage, it does direcly to \cw{diestate}) and partly defined in \cw{multigen.txt}. Each line is the state definition follows a syntax.
 \begin{enumerate}
 \item State name.
 \item Frame family.
@@ -80,9 +80,9 @@ When in \cw{S\_TROO\_XDIE1} state, according to \cw{multigen.txt}, the engine mu
 
 \cfullimage{cyber_sprite}{CyberDemon poses in one of its two "walk" position}
 \par
-Taking a look at one of the frame for the Cyberdemon in figure \ref{cyber_sprite} give a good idea of the collosal work requiered from artists. Twelve monsters times eight states times average of five frames per animation would have required close to 480 drawings (for the monsters only). The power of the NextDimension made a tremendous different in this department.\\
+Taking a look at one of the frame for the Cyberdemon in figure \ref{cyber_sprite} give a good idea of the colossal work required from artists. Twelve monsters times eight states times average of five frames per animation would have required close to 480 drawings (for the monsters only). The power of the NextDimension made a tremendous different in this department.\\
 \par
-The cyberdemon however is an extreme case since it is not symetric. Imps sprite storage is optimized to take advantage of its symetry. If the engine needs \cw{TROOA6} but doesn't find it in the \cw{WAD}, it uses its opposite (\cw{TROOA4}) and draws it horizontally inverted.\\ 
+The cyberdemon however is an extreme case since it is not symmetric. Imps sprite storage is optimized to take advantage of its symmetry. If the engine needs \cw{TROOA6} but doesn't find it in the \cw{WAD}, it uses its opposite (\cw{TROOA4}) and draws it horizontally inverted.\\ 
 \par
 \trivia{You may have noticed in the list of state, a non obvious one named \cw{RAISE}. It is used when the Arch-vile enemy resurrects a dead monsters. The animation plays the dying frame in reverse. Not that there are no reverse gibing so Arch-vile doesn't revive gibbed monsters.}
 
@@ -101,7 +101,7 @@ The cyberdemon however is an extreme case since it is not symetric. Imps sprite 
 
 
 
-\cw{multigen.txt} is compiled to an humongus 5000 lines \cw{info.c} made of an array of \cw{state\_t} holding the state machine and an array of \cw{mobjinfo\_t} holding the things properties.\\
+\cw{multigen.txt} is compiled to an humongous 5000 lines \cw{info.c} made of an array of \cw{state\_t} holding the state machine and an array of \cw{mobjinfo\_t} holding the things properties.\\
 \par
 \ccode{enemy_state_compiled.c}\\
 \par
@@ -111,7 +111,7 @@ The cyberdemon however is an extreme case since it is not symetric. Imps sprite 
 \end{wrapfigure}
 Not all automaton state changes can be inferred from the transition array. In the case of the Imp, transitions are partly dictated by the logic in \cw{info.txt} (black arrows) and partly dictated by the game engine.\\
 \par
- In the adjacent diagram, transitions done by the engine such as toward \cw{pain}, \cw{die}, and \cw{xdie} are not represented since these states can be reached directivity from any other state.
+ In the state diagram, engine triggered transitions to \cw{pain}, \cw{die}, and \cw{xdie} are not represented since these states can be reached directivity from any other state.
 \par
 %In the diagram, note the starting state (\cw{SPAWN}) and the only final state \cw{XDIE}. \cw{DIE} can transition to \cw{RAISE} thanks to the Archville heal power which makes the dead rise. The only way to make sure a monster will never come back is to gib it.
 
@@ -145,7 +145,7 @@ All interactions are achieved via a simple association between a line's \cw{spec
 \par
 The list of types of actions is impressive, there are more than 130 of them. Open/Close door at normal/turbo/blazing speeds. Raise/Lower floor and ceilings, Fast Ceiling Crush \& Raise, Build Stairs, Lock door so you are trapped with monsters, Change light levels, Raise floor to nearest height, change texture, teleport, Exit level, Secret exit, and many others.\\
 \par
-The tag designiating the target is any number picked by the designed. Any lines the designer wants to be targetd by this action is tagged with the same number. With this system, a line can trigger only one action but target several sectors.\\
+The tag designating the target is any number picked by the designed. Any lines the designer wants to be targeted by this action is tagged with the same number. With this system, a line can trigger only one action but target several sectors.\\
 \par
 \trivia{No doubt the countless hours the team spent playing Dongons \& Dragons came handy when it came to design \doom's mazes.}
 \pagebreak
@@ -173,8 +173,8 @@ To implement this effects, two set of lines were used. The first lines (in blue)
 \centering
 \includegraphics[width=.5\textwidth]{drawings/E1M3_sides2.pdf}
 \end{wrapfigure}
-An other intersting effect in E1M3 is the rising stair which leads to the small room containing the exit to level 4. It is implemented by having a line with special code "BuildStairs" (\#8) targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} which looks up the target sector via the tag then uses a flood fill algorithm.\\
-\par Adjacent sectors are repeatidly looked up and a little bit of height is added each iteration. To avoid raising the whole level, the algorithm stops flowing when the next sector texture is different from the last elevated sector which explains why the stairs are grey while bottom and top are blue and brown.\\
+An other interesting effect in E1M3 is the rising stair which leads to the small room containing the exit to level 4. It is implemented by having a line with special code "BuildStairs" (\#8) targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} which looks up the target sector via the tag then uses a flood fill algorithm.\\
+\par Adjacent sectors are repeatedly looked up and a little bit of height is added each iteration. To avoid raising the whole level, the algorithm stops flowing when the next sector texture is different from the last elevated sector which explains why the stairs are grey while bottom and top are blue and brown.\\
 \par
 Before and after screenshots can be seen on page \pageref{stairs}.
 

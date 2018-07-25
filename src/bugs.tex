@@ -1,5 +1,5 @@
 \section{Bugs}
-\doom is known for its stability thanks to a development process using seven compilers and systems. Nonethelss it shipped with a few bugs.
+\doom is known for its stability thanks to a development process using seven compilers and systems. Nonetheless it shipped with a few bugs.
 
 
 
@@ -11,7 +11,7 @@
 \subsection{Flawed collision detection}
 There is rare collision detection bug which an obvious (lack of) impact. It was explained in depth by Colin "cph" Phipps in his article ""Shooting Through Things".\\
 \par
-\fq{A monster is getting too close for confort. You shoot at it, and miss. If you are unlucky, the monster kills you. But you were so sure that you were pointing right into the monster, that so close as you were you couldn't have missed. Perhaps it was the chaingun playing up, shooting all the bullets off to one side. Perhaps the game was written by a bunch of losers who failed their high-school geometry. Or perhaps, in the heat of the moment, you really did miss; nobody's perfect.\\
+\fq{A monster is getting too close for comfort. You shoot at it, and miss. If you are unlucky, the monster kills you. But you were so sure that you were pointing right into the monster, that so close as you were you couldn't have missed. Perhaps it was the chaingun playing up, shooting all the bullets off to one side. Perhaps the game was written by a bunch of losers who failed their high-school geometry. Or perhaps, in the heat of the moment, you really did miss; nobody's perfect.\\
 \par
 Well I have good news. You can blame your tools.}{Colin Phipps}\\
 \par
@@ -54,7 +54,7 @@ This particular instance of slime trail has to do with the way maps were preproc
 \par
  Once again, let's take an example. The two previous screenshot where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first sight, there is nothing unusual here but when taking a look at how it was sliced during binary partition, an interesting special case appears.\\
 \par
-Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C, D, E and F however. It is not really clear whar happened. \\
+Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C, D, E and F however. It is not really clear what happened. \\
 \par
 If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between integer coordinates. Since map vertices coordinates are stored as integers, a split is impossible. The error is small so \cw{doombsp} treats the vertex like if it was exactly on the splitting line.
 
