@@ -1,9 +1,9 @@
 \section{Filesystem}
-\doom~barely interacts with the OS file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
+\doom{}barely interacts with the OS file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
  \par
 \trivia{There was no need for an \cw{I\_*} abstraction layer to access the OS filesystem. Luckily, all offered now standard functions such as \cw{open}, \cw{open}, \cw{lseek}, \cw{read}, and \cw{close}.}\\
 \par
-Among all versions of \doom~distributed, the engine executable was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
+Among all versions of \doom{}distributed, the engine executable was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -97,7 +97,7 @@ The lump system is the less glamorous part of the engine but one of the coolest 
 Upon starting up, it looks at every wad archive provided and indexes every lumps found into a gigantic array of \cw{lumpinfo\_t} cunningly named \cw{lumpinfo}. 
 If additional archives are provided via \cw{-file} command-line parameter, lumps belonging to official id Software (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to \cw{lump info} array first.\\
 \par
-In the next example, shareware \doom~was started with the command-line:\\
+In the next example, shareware \doom{}was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par

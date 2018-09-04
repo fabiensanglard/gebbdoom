@@ -35,7 +35,7 @@ At the game engine level, the problem was solved via a layer of indirection with
 \par
 \ccode{LongSwap.c}
 \par
-Even though \doom~was written first on a \NeXT, the platform intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer Intel based hardware.\\
+Even though \doom{}was written first on a \NeXT, the platform intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer Intel based hardware.\\
 
 \par
 
@@ -87,7 +87,7 @@ In white, the core components. In grey the I/O system which require platform spe
 
 The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the core and the platform specific code needs not to be touched anymore.\\
 \par
-\trivia{Because portability was not an afterthought but an integral part of the development process, \doom~code layering is never violated. This rigorous design explains partly why \doom~has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.}\\
+\trivia{Because portability was not an afterthought but an integral part of the development process, \doom{}code layering is never violated. This rigorous design explains partly why \doom{}has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.}\\
 
 \section{Diving In!}
 Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
@@ -131,7 +131,7 @@ Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just t
 \par
 
 \subsection{Where Is My Main?}
-Exploring a source code repository always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{Of course, on Microsoft Windows it is different and you have to search for \cw{WinMain().}}. In the case of \doom~there is one entry point per OS and they are all in implementation specific (\cw{I\_*}) files. For DOS it is in \cw{i\_main.c}\footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
+Exploring a source code repository always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{Of course, on Microsoft Windows it is different and you have to search for \cw{WinMain().}}. In the case of \doom{}there is one entry point per OS and they are all in implementation specific (\cw{I\_*}) files. For DOS it is in \cw{i\_main.c}\footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
 \par
 Regardless of the platform, all entry points converge to the core main, function \cw{D\_DoomMain} located in \cw{d\_main.c}.\\ 
 \par
@@ -246,7 +246,7 @@ Lower value is ($-2^{15}$) = -32768. Upper value is
 \begin{figure}[H]
  \centering
   \input{drawings/fp.tex}
-  \caption{32-bit \doom~fixed point bit values}
+  \caption{32-bit \doom{}fixed point bit values}
 \end{figure}
 \par 
 To help differenciat "regular" variables to "fixed point variable, a simple typedef \cw{fixed\_t} is used.\\

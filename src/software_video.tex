@@ -25,7 +25,7 @@ The video system implementation must provide four functions to the core. \cw{I\_
 To host the framebuffer in the core and not in the video system itself was an audacious trade-off. It was a performance hit since data had to be copied twice before reaching the screen. But it tremendously improved portability since the framebuffer had been abstracted. It also opened the door to reading back from the core framebuffer. This capability allowed new effects such as "predator" transparency seen with the "specter" demon.\\
 \par
  % The performance hit was not too back on VLB systems. If you refer back to the architecture on page \pageref{vlbarchitecture}, you will see that it allowed transfer of one framebuffer to the video system while the next frame was being generated in the cachelines. This parallel pipeline allowed the framerate to be 90\% of what it would have been with direct access to the VGA.\\
- \trivia{Because \doom~ renders a fullscreen on every frames, there is no need to "clear" the framebuffer like Wolfenstein 3D did. If we were to interrupt the engine during the rendition of a frame to peek inside framebuffer \#0, it would look like a composition of the previous frame and the unfinished new one (a.k.a mashed potatoes).}\\
+ \trivia{Because \doom{} renders a fullscreen on every frames, there is no need to "clear" the framebuffer like Wolfenstein 3D did. If we were to interrupt the engine during the rendition of a frame to peek inside framebuffer \#0, it would look like a composition of the previous frame and the unfinished new one (a.k.a mashed potatoes).}\\
 \par
 
 \drawing{renderer_full_pipeline}{}

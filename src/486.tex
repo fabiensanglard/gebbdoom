@@ -5,7 +5,7 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom~recommended CPU.\\
+Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom{}recommended CPU.\\
 \par
 The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.0$\mu$ to 1.5$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elborated design to finally feature an integrated L1 cache.\\
 \par
@@ -42,7 +42,7 @@ Unfortunately compiler technology was not there yet. Without Intel's full backin
 \par
 In figure \ref{i486DX.png}, the Intel 486 die is wrapped in its packaging. The 1.0$\mu$ process allowed to fit 1,180,235 transistors.\\
 \par
-\trivia{The i860 played a part in \doom~anyway since it was used in NextDimensions video processing boards.}
+\trivia{The i860 played a part in \doom{}anyway since it was used in NextDimensions video processing boards.}
 
 \par
 \subsection{Pipeline improvements}
@@ -221,7 +221,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 \subsection{Overdrive and Writeback}
-As if the huge performance improvement of the 486 were not enough, Intel managed to top it with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and had write-back L1 instead of a write-through. Commonly called DX2-66 it was the golden standard until 1995 the absolute best to run \doom~at the time.\\
+As if the huge performance improvement of the 486 were not enough, Intel managed to top it with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and had write-back L1 instead of a write-through. Commonly called DX2-66 it was the golden standard until 1995 the absolute best to run \doom{}at the time.\\
 \par 
 \rawdrawing{486dx2_notm}%{Best CPU to run \doom at the time.}
 \par
@@ -324,7 +324,7 @@ Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
 \end{figure}
 
 \par
-But it was still a far cry compared to the performance of the ALU and its barrel shifter.\\
+But it was still a far cry compared to the performance of the ALU and its barrel shifter which mandated \doom{} to use integer operations exclusively\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
 
 \par
  \begin{figure}[H]
@@ -341,11 +341,6 @@ But it was still a far cry compared to the performance of the ALU and its barrel
 \end{tabularx}
 \caption{Comparaison ALU vs FPU operations.}
 \end{figure}
-\par
-For \doom, there was not the shadow of a doubt, it had to be done with integer operations\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
-% \par
-% \trivia{Re-read Michael Abrash guide on 486. Add more insight on how to pipeline the 486 well\\.}\\x
-% \par
 \par
 \trivia{Difficulty to access information birthed myths about \doom{} and floating point units. One endless thread which occurred on \cw{alt.games.doom} in 1994 helps to appreciate the state of things. The topic "Does a 486DX run Doom faster than an SX?" from July 1994 and its (filtered) five answers shows how difficult it was to reach the truth.}
 
