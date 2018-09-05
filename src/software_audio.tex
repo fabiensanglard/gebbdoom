@@ -69,7 +69,7 @@ Upon initialization, DMX installs itself as a TSR via the PIC and the TIC in ord
 
 
 \scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
-With such an architecture there are two systems executing pseudo-concurrently but the audio has more constraints than video. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card buffers and go back to sleep. If DMX is too slow, it can delay video rendition or mask other interrupts.\\
+With such an architecture there are two systems executing pseudo-concurrently but the audio has more constraints than video. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card buffers and go back to sleep. If DMX is too slow, it can delay video rendering or mask other interrupts.\\
 \par
  This explains why audio assets allocation get a special treatment in the zone allocator. The audio system has no time to recover from a memory miss (nor could it since it has no access to the wad or memory allocator). Audio data must be ready at all time it is needed.
 

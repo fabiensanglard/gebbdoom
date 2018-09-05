@@ -1,11 +1,80 @@
+Reviewers:
+==========
 Christopher Van Der Westhuizen <cvanderw@google.com>
 Olivier Cahagne <ocahagne@fastmail.com>
 Philip Hoefer <philscomputerlab@gmail.com>
 Eluan Costa Miranda <eluancm@gmail.com>
 
-Change DooM to DOOM
-CHECK: Bit when used as a unit of measurement is singular.
+
+TODO:
+=====
+CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.).
 486 layout
 Doom awards page from romero
 Elaborate on RAM and SRAM for leaks, read-write and dual bit for sdram. Recommend book for fast page explanation (which book is it the system or the pyramid book?).
-Take about gamma (Apple, NeXT and SGI had linear color space while PC did not).
+Take about gamma (Apple, NeXT and SGI had linear color space while PC did not). 4444 linear space of next
+Learn about perspective correct, subpixel accurate texture mapping.
+
+
+JOHN CARMACK FEEDBACK:
+======================
+
+“audio cards clone on the market” ­> “audio card clones on the market”
+P24: “A CPU unable to perform floating­point” The 486 DC did have floating point, but we still considered the 386 our min spec.
+P34: I don’t think DRAM access used the “ISA bus protocol” on 386, but I may be fuzzy on that.
+P36: “Will in a loop” ­> “While in a loop”
+P39: “If a value was to be written…” The discussion of LRU eviction might best done with a read, because writes are more complicated.
+I had to check whether the 486 was write­allocate or not ­­ The initial 486 caches were write­through, although some later ones added write­back, but they were all write­allocate.
+http://datasheets.chipdb.org/IBM/x86/486/40010.PDF
+P40: “Netburst” was the Pentium­4 microarchitecture, are you sure this was also a memory timing name?
+You mention “overdrive and writeback”, but don’t say that writeback was a cache improvement versus the older writethroguh.
+P46: I don’t think “a vast majority” of PC games used Mode­Y.  Even among the Doom licensees, most preferred the
+simplicity of straight 13h.
+P47: footnote 31 “Every VGA mask tricks” ­> “VGA mask tricks”, it certainly wasn’t all of them!
+P50: “designed and sold semiconductor chips” ­> “sold semiconductor designs” maybe? Or did they make chips to sell to
+board vendors, which wouldn’t be “fabless” in the modern sense?
+P51: “tibpal” ? Is this a typo, or some special kind of PAL (Programmable Array Logic)?
+P52: 40x to 100x faster is wrong, shouldn’t it be 2x for width and 4x for clock?
+You might want to mention the high end Roland sound cards in passing; not many gamers had them, but the Doom music
+sounded awesome on them!
+P59: “On the lambda customer side” ?
+P60” “dommed all night” ­> “doomed all night”
+You might want to mention the tradeoffs in latency that modems made to get the higher bit rates.  A 9600 baud modem
+played DOOM better than the default configurations of 56kbit modems.  Quake needed more bandwidth than Doom’s
+controller replication, so it became a different tradeoff.
+P65: “where registers where 16­bit” ­> “where registers were 16­bit”
+P67: “join operating system” ­> “joint operating system”
+P68: “Not only they were” ­> “Not only were they”
+P73: Macintosh mediocre ­> Macintosh’s mediocre
+P74: featuring “surface mount” ­> possibly remove, or change to “supporting surface mount technology”?
+P82: Designer picked elements ­> Designers picked elements
+P82: The 16­bit color was only 4444, 1555 was not supported, which was unfortunate for us.  It was also in a linear color space, as opposed to the non­linear PC standard that became sRGB.  I didn’t understand how to properly convert back then, so our graphics always looked washed out on the NeXT systems.
+P93: and also test the game ­> and to test the game
+P96: NeXT has hardware manufacturer ­> NeXT as hardware manufacturer
+P96: Intel, SPARC, and MIPS ­> Intel, SPARC, and PA­RISC
+P98: which when from behind four weeks ­> which went from four weeks
+P98: “Even if nor for the kernel” ­> I bet there *ARE* parts of the kernel still compiled into OS­X!
+P99: an other faction ­> another faction
+P99: thirteen person ­> thirteen people
+P99: Romero should be credited with Programming / Design
+P100: Tom was actually fired, but I’m fine with it being characterized as “Tom leaves”
+P101: Romero’s doom jammed ­> Romero’s door jammed.
+P104: Maybe the place to explain “gibs” as “giblets’ and mention the often argued about pronunciation.
+P110: Tom Halls’s ­> Tom Hall’s
+P118: A designed worked ­> A designer worked
+P118: Mention the masked middle textures for bars and so on?
+P120: The killing feature ­> The killer feature
+P121: A designer could make something playable in under 20 minutes, but all the real maps had days of work in them,
+unlike Wolfenstein, where a couple of the later maps really were made in an hour or so.
+P125: The rject visualization isn’t very informative.  Including sector numbers and a big grid truth table would be better, but a good chunk of work to produce.  Maybe print the grid and just manually label three sectors to illustrate a pass and fail in the table?
+P126:  I wouldn’t call BLOCKMAP an AABB, but rather a “grid”.  AABB is usually Axis Aligned Bounding Box, which is a
+different thing in collision detection.
+P127: magazines relied information ­> magazines relayed information?
+P128: The oldest plan how to have been preserved ­> The oldest plan known to have been preserved
+P130: Tom Halls ­> Tom Hall
+P131: To be fair to DOS, we did usually use the extended 80 column mode to get 50 lines.
+P135: Many years later, while evangelizing static code analysis, I would rant a bit about how the sloppy programming
+permitted by dynamic languages like ObjC was Not A Good Thing.
+P135: AB ­> IB for Interface Builder?
+P135: While NeXT didn’t tout it, the basic reliable Unix core was a good chunk of the value prop for us, in addition to IB and ObjC.
+P14); There were a couple limitations on what could be overridden from the wad files; I don’t remember clearly, but I think there were problems with some sprites?
