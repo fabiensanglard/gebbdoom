@@ -1,11 +1,11 @@
-The PC environment had morphed significantly between the development of Wolfenstein 3D in 1991 and the development of \doom{}in 1993. The previous "recommend configuration" based on an Intel 386 CPU with 2~MiB of RAM and a VGA graphic card was no more.\\
+The PC environment had morphed significantly between the development of Wolfenstein 3D in 1991 and the development of \doom{} in 1993. The previous "recommend configuration" based on an Intel 386 CPU with 2~MiB of RAM and a VGA graphic card was no more.\\
 \par
 The "new" typical PC still had six subsystems \circled{1}~Inputs, \circled{2}~Bus, \circled{3}~CPU, \circled{4}~RAM, \circled{5}~Video~output, and \circled{6}~Audio~output together forming a pipeline. Only each of them had become faster or increased its capacity.\\
 \par
 \vspace{2mm}
 \drawing{pc_components}{The six components of an IBM PC.}
 \par
- Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom{}to what was available for Wolfenstein 3D, it carries a feeling of abounding power which is deceiving. \\
+ Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom{} to what was available for Wolfenstein 3D, it carries a feeling of abounding power which is deceiving. \\
  \par
  Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing, crunch spreadsheets, and enable accounting. Maybe occasionally display a static graph but the intent was never to build something allowing real time, 70Hz\footnote{The VGA refresh rate was 70Hz contrary to today ubiquitous 60Hz.} animations.\\ 
 \par 
@@ -24,7 +24,7 @@ Looking back it is hard to believe that studios focused solely on producing titl
 
 Figure ~\ref{ibm_ps1_top} on the opposite page reproduces the kind of advertisement one could be find in abundance in the many computer magazines of the 90s. Notice how the featured IBM PS1 with an Intel 486 CPU emphasis on office work and static screen office apps capability. Productivity and profit were the only way to justify the high price of a machine which represented 20\% of the US median yearly income in 1994\footnote{Source: "statista.com".}.\\
 \par
-Notice the ridiculously small 14" CRT standard monitor allowing "up to" 800x600 resolution.
+Notice the ridiculously small 14" CRT standard monitor allowing a resolution up to 800x600.
  % (\$2,000\footnote{\$13,000 in 2017.}). Also worth mentioning, the "huge" standard 14" CRT which must have weighted close to 20 pounds!\\
 \par
 \begin{figure}[H] \centering
@@ -62,7 +62,7 @@ The black connectors show the traditional ISA bus extension ports. One 8-bit \ci
 
 \drawing{px486p3}{Components diagram of the PX486P3.}
 \par
-In the upper left \circled{6}, the main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM\footnote{Dynamic RAM.} installed would be 4 MiB\footnote{\doom{}would not run on PC equipped with only 2 MiB.}.\\
+In the upper left \circled{6}, the main memory system had grown in capacity, speed and complexity. Thanks to a sharp decline in manufacturing price, the standard DRAM\footnote{Dynamic RAM.} installed would be 4 MiB\footnote{\doom{} would not run on PC equipped with only 2 MiB.}.\\
 \par
  Finally, in the upper right \circled{5}, a new type of RAM had found its way into these new PCs. Eight black chips of SRAM\footnote{Static RAM.} offered a total of 256 KiB acting as L2 "cache". Used in a new system designed to prevent CPU data and instructions starvation, the SRAM was much faster (access time of 20ns, which was 10x faster than DRAM) but had the double drawbacks of being far more expensive to produce and being less dense than DRAM which limited its usability.
 

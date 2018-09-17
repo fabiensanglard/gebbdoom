@@ -23,7 +23,7 @@ The life of a 3D frame can be summarized as follow:
 \item Render player sprite (the weapon the doomguy is holding).
 \end{itemize}
 \par
-The most important part (and what \doom{}engine is most famous for) is the ability to sort walls and things extremely efficiently thanks to its Binary Space Partition tree. Interestingly, there is a bit of a back story about how the BSP came to be a central part of the game engine.\\
+The most important part (and what \doom{} engine is most famous for) is the ability to sort walls and things extremely efficiently thanks to its Binary Space Partition tree. Interestingly, there is a bit of a back story about how the BSP came to be a central part of the game engine.\\
 \par
 \pagebreak
 
@@ -54,7 +54,7 @@ As the news that their 3D technology was not good enough to ship was already a c
 \par
 Back in August 1992, id Software had landed a contract with Nintendo to port Wolfenstein 3D to SNES. With a release scheduled for May 1st, 1994, they subcontracted the project and forgot about it to focus on \doom. In April 1994, the contractor was nowhere in sight. They had nothing to deliver to Nintendo. It was a big deal involving a huge penalty.\\
 \par
- Development for \doom{}stopped immediately as the team desperately banged they old game together into a machine not remotely built to do what they wanted. While Tom Halls dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
+ Development for \doom{} stopped immediately as the team desperately banged they old game together into a machine not remotely built to do what they wanted. While Tom Hall dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
 \par
 
 
@@ -70,14 +70,14 @@ With a visual surface determination not based on raycasting but rather on BSP, a
 \par
 Due to Nintendo strict non-violence policy the game had to be heavily censored to reach a child-friendly quality. Blood was replaced with sweat. guard dogs are replaced with mutant rats and Hitler was renamed "Staatmeister" (which translates to State Master).\\
 \par
-With that problem solved, Wolfenstein 3D for Super Nintendo was released on schedule. The whole team resumed cramming for \doom{}and the renderer was changed to also use the power of BSPs.
+With that problem solved, Wolfenstein 3D for Super Nintendo was released on schedule. The whole team resumed cramming for \doom{} and the renderer was changed to also use the power of BSPs.
 \pagebreak
 
 \cfullimage{thesis.png}{Bruce Naylor's paper: "Constructing Good Partitioning Trees"}
 \pagebreak
 
 \subsection{Binary Space Partitioning: Theory} \label{Binary Space Partitioning: Theory}
-Binary Space Partitioning trees have many applications. The one we are interested in is how \doom{}uses them to sort walls rapidly and consistently. Bruce Naylor's thesis paper "On visible surface generation by a priority tree structures" features a pretty good summary.\\
+Binary Space Partitioning trees have many applications. The one we are interested in is how \doom{} uses them to sort walls rapidly and consistently. Bruce Naylor's thesis paper "On visible surface generation by a priority tree structures" features a pretty good summary.\\
 
  \begin{verbatim}
 In order to determine the visible surface at each pixel, traditionally
@@ -92,7 +92,7 @@ for each polygon.
 
 \par
 \fq{When I did the early work on BSPs\footnotemark{}, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}\\
-\footnotetext{This was during development of Quake, John and Bruce met only after \doom{}had shipped.}
+\footnotetext{This was during development of Quake, John and Bruce met only after \doom{} had shipped.}
 \par
 To understand how BSPs work, let's take the example of a map which could easily have been created with DoomED.\\
 \par
@@ -363,7 +363,7 @@ To render the flats, the engine uses a database generated while walls and portal
 \par
 \ccode{visplanes.c}\\
 \par
-The concept of visplane is the most difficult aspect of \doom{}to understand. The comments in the source code manifest of their esoteric nature and also attests that even people closely related to id Software did not fully grasp what they were.\\
+The concept of visplane is the most difficult aspect of \doom{} to understand. The comments in the source code manifest of their esoteric nature and also attests that even people closely related to id Software did not fully grasp what they were.\\
 \par
 A visplan describes a screen space area representing either a ceiling or a floor. It has a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.
 \par
@@ -403,7 +403,7 @@ Portal \cw{F} is yet an other special case. Since from this point of view it is 
 \par
 Fron this point on, this is the same process over and over again. Wall \cw{G} rendering generates visplanes \cw{11} and  \cw{12} and Wall \cw{H} rendering generates visplanes \cw{13} and  \cw{14}.\\
 \par
-The visplane generation algorithm is quite simple. However it generates many visplanes and therefore consumes a lot of RAM. To address this issue, \doom{}merges visplanes.
+The visplane generation algorithm is quite simple. However it generates many visplanes and therefore consumes a lot of RAM. To address this issue, \doom{} merges visplanes.
 
 
 
@@ -532,7 +532,7 @@ Above, normal engine (without sprites). Below same scene with lightmaps disabled
 \fullimage{diminishedlight1.png}
 
 
-\cfullimage{diminishedlight3.png}{\doom{}engine with texture disabled and no sprites}
+\cfullimage{diminishedlight3.png}{\doom{} engine with texture disabled and no sprites}
 \par
 The visual effect of lightmaps can sometimes be subtle. On the opposite page, a normal scene (above) shows no banding. Disabling lightmap altogether (opposite page, below) makes the colors appear washeout. Disabling texturing by rendering walls in white (\cw{0x04}) and flats in brown (\cw{0x80}) (as in figure \ref{diminishedlight3.png}) makes lightmaps vividly apparent.\\
 \par
@@ -621,7 +621,7 @@ Before diving into the code of \cw{R\_DrawMasked}, let's take the example of a s
 \par
  On the drawing, a room with four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}), a pillar also made of four walls (\cw{E}, \cw{F}, \cw{G}, and \cw{H}), a transparent wall \cw{I}, a barrel (in grey), a player spawning point (in green) and three enemies (in red: a Baron of Hell, a Cacodemon, and a Demon).\\
 \par
-The result as rendered by \doom{}engine is visible in figure \ref{masked.png} Notice how the Baron is drawn on top of wall \cw{I}. How the Cacodemon is partially occluded by wall \cw{I}. How parts of the demon are completely clipped behind the pillar. Also notice how the barrel must be drawn in front of the Baron for correctness. Notice how wall \cw{I} needs to be clipped againt the pillar.\\
+The result as rendered by \doom{} engine is visible in figure \ref{masked.png} Notice how the Baron is drawn on top of wall \cw{I}. How the Cacodemon is partially occluded by wall \cw{I}. How parts of the demon are completely clipped behind the pillar. Also notice how the barrel must be drawn in front of the Baron for correctness. Notice how wall \cw{I} needs to be clipped againt the pillar.\\
 \par
 \cfullimage{masked.png}{}
 \par
@@ -687,7 +687,7 @@ The last step is to render the masked segments which were skipped during BSP tra
 \subsection{Drawing Masked Player}
 The last piece to render is the easiest of all. The sprite representing the doomguy, a.k.a "the player sprite" (\cw{psprite}), is drawn on top of everything. These is no clipping in effect here, only the need to account for the lightmap induced by the sector the player is currenyly standing in and making the hand wave left and right when moving/running. Like all other masked this sprite is rendered vertically as columns of pixels.\\
 \par
-You may have notice in \cw{R\_DrawMasked} that the player hand is drawn only if the viewing angle offset is equal to zero (\cw{viewangleoffset}). This is an artifact from a feature which was disabled before shipping. Until v1.2, \doom{}supported a "three screens mode" where three computers with three monitors could be running in network in order to render a wide field of view.\\
+You may have notice in \cw{R\_DrawMasked} that the player hand is drawn only if the viewing angle offset is equal to zero (\cw{viewangleoffset}). This is an artifact from a feature which was disabled before shipping. Until v1.2, \doom{} supported a "three screens mode" where three computers with three monitors could be running in network in order to render a wide field of view.\\
 \par
 \fullimage{three_screens_mode.png}
 \par

@@ -5,7 +5,7 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom{}recommended CPU.\\
+Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom{} recommended CPU.\\
 \par
 The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elborated design to finally feature an integrated L1 cache.\\
 \par
@@ -42,7 +42,7 @@ Unfortunately compiler technology was not there yet. Without Intel's full backin
 \par
 In figure \ref{i486DX.png}, the Intel 486 die is wrapped in its packaging. The 1.0$\mu$ process allowed to fit 1,180,235 transistors.\\
 \par
-\trivia{The i860 played a part in \doom{}anyway since it was used in NextDimensions video processing boards.}
+\trivia{The i860 played a part in \doom{} anyway since it was used in NextDimensions video processing boards.}
 
 \par
 \subsection{Pipeline improvements}
@@ -140,9 +140,9 @@ If a device was able to answer the bus request within the first wait state cycle
 \rawdrawing{cpu_wait_states}
 \par
 Two cycles bus request is the fastest a CPU can achieve. In practice, DRAM access requires several Wait State insertions.
-To avoid these stales meant to avoid using the bus completely. To achieve this, Intel inserted a new component between the pipeline and the bus unit and called it a L1 (Level 1) cache. The idea was to exploit the locality and temporality of a program.\\
+To avoid these stales meant to avoid using the bus completely. To achieve this, Intel inserted a new component between the pipeline and the bus unit and called it a L1 (Level 1) cache. The idea was to exploit both spacial and temporal locality of a program.\\
 \par
-Temporality relies on program iterative nature. Will in a loop, an instruction recently accessed is likely to be accessed again on the next iteration. Locality has to do with the way program sequentially read or write arrays containing data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
+Temporal locality relies on program iterative nature. While in a loop, an instruction recently accessed is likely to be accessed again on the next iteration. Spacial locality has to do with the way program sequentially read or write arrays containing data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
 \par
 By leveraging these two properties, a well designed cache located between the CPU and the Bus Unit would often already contains the data or instruction requested, making a bus request useless.\\
 \par
@@ -188,31 +188,31 @@ The cache system is made of one directory and four banks (also called ways). Eac
 \par
 Upong receiving a 32-bit address access request, the cache controller splits it in three fields.
 \begin{enumerate}
-\item Use the LINE field [4-11] to look up one of the 128 dictionary entries.
-\item Look at the four tags in the entry, if one matches the TAG [12-31] then it means the cacheline is present in one of the four ways.
+\item Use the LINE field [4-10] to look up one of the 128 dictionary entries.
+\item Look at the four tags in the entry, if one matches the TAG [11-31] then it means the cacheline is present in one of the four ways.
 \item Check the flag F in the directory entry to make sure the cacheline is valid.
-\item With the way ID known, use the OFFSET [0-3] field to access the value in the cacheline.
+\item Use the OFFSET [0-3] field to access one of the 16 values in the cacheline.
 \item Update the flag F in the directory entry to update the LRU value.
 \end{enumerate}
 \par
-If a value was to be written but all cacheline entries in the four ways are valid, the cache controller uses a LRU\footnote{Least Recently Used} to evict and overwrite one of the cachelines.\\
+A memory address content can be in either of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via a LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate which all Intel 486s were (Source: "Internal Cache Architecture ofX86 Processors").}.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
 \par
-\trivia{What about increasing the number of ways? What about the cache size? An 8 KiB four ways grant the best trade-off\footnote{Computer Architecture: A Quantitative Approach}. A two ways cache yields a 14\% miss rate, a four-ways 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment appears vividly once charted on a graph.}\\
+\trivia{What about increasing the number of ways? What about the cache size? An 8 KiB four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two ways cache yields a 14\% miss rate, a four-ways 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment appears vividly once charted on a graph.}\\
 \par
 
-\scaleddrawing{0.9}{set_state_caches}{}
+\rawscaleddrawing{0.9}{set_state_caches}
 
 
 
-\subsection{Netburst}
-Any cache miss within the 486 pipeline triggered the eviction of a cacheline and a full 16 bytes cacheline had to be transfered from DRAM to SRAM\footnote{The prefetcher also worked with units of 16 bytes. It retrieved and stored cacheline into a prefetch queue of 32 bytes.}. Normally this would have been a very costly operation and a huge issue for the CPU. But Intel added something called NetBurst capability to make it all work together.\\
+\subsection{Bus Burst Transfer}
+Any cache miss within the 486 pipeline triggered the eviction of a cacheline and a full 16 bytes had to be transfered from DRAM to SRAM\footnote{The prefetcher also worked with units of 16 bytes. It retrieved and stored cacheline into a prefetch queue of 32 bytes.}. Normally this would have been a very costly operation and a huge issue for the CPU. But Intel added something called "Burst Transfer" capability to make it all work together.\\
 \par
 The principle was simple: While waiting for data to arrive, latch the next request so the bus controller can use it right away without waiting for the CPU to initialized a bus request.\\
 \par
-\drawing{netburst}{NetBurst allows for 65\% faster cacheline filling.}
+\drawing{netburst}{"Burst Transfer" allows for 65\% faster cacheline filling.}
 
 
 
@@ -220,10 +220,10 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 
-\subsection{Overdrive and Writeback}
-As if the huge performance improvement of the 486 were not enough, Intel managed to top it with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}. The 33Mhz model CPU ran at 66Mmhz and had write-back L1 instead of a write-through. Commonly called DX2-66 it was the golden standard until 1995 the absolute best to run \doom{}at the time.\\
+\subsection{Overdrive and L1 Writeback}
+Intel managed to improve performances by 33\% with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mmhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  The write-back L1 (instead of a write-through) reduced bus traffic.\\
 \par 
-\rawdrawing{486dx2_notm}%{Best CPU to run \doom at the time.}
+\scaleddrawing{0.9}{486dx2_notm}{The "DX2-66" was the golden standard and absolute best to run \doom{}}%{Best CPU to run \doom at the time.}
 \par
 %\trivia{Want even more performance? Not only a DX2-66 ran faster, they also came with an enhanced writeback L1 cache\footnote{The standard 486 L1 cache was writethrough with post-writes.}}
 

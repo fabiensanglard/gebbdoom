@@ -44,7 +44,7 @@ OOP's encapsulation, inheritance and polymorphism allowed to push back the limit
 Objective-C was developed around the same time as C++. However as the co-creator Brad Cox recalls, his creation and Bjarne Stroustrup's creation had opposed philosophy. Where C++ placed performance first, Objective-C valued programmer's productivity first.\\
 \par
 \fq{
-	FAB TO ADJUST. Back in 1980 when both our language were under construction, I came down and met with Bjarne Stroustrup. We had radically different view on what our languages would be designed. The key concept was the relative importance of machine efficiency vs programmer efficiency. Eventually, we agreed to disagree.
+	Back in 1980 when both our language were under construction, I came down and met with Bjarne Stroustrup. We had radically different view on what our languages would be designed. The key concept was the relative importance of machine efficiency vs programmer efficiency. Eventually, we agreed to disagree.
 } {Brad Cox}\\
 \par
 
@@ -62,5 +62,5 @@ What really happened behind the scene was a call to the dispatch.\\
 The highly optimized, hand written assembly was called millions of time by the time a NeXT had booted. The list of capabilities was impressive\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mikea Ash.}. Despite the complex mutable nature of ObjC objects (a method can be added at runtime, changing its duck type\footnote{Duck typing uses the principle "If it walks like a duck and it quacks like a duck, then it must be a duck.".}) \cw{objc\_msgSend} was able to march an inheritance chain at runtime to find the proper target. More importantly, it was also able to detect a \cw{nullptr} and simply returning the value \cw{0} instead of bringing the entire process down.\\
 \par
 
-All together, the three pillar of NeXT development (AB, OOP, and Obj-C) sped up development of DoomED, doombsp, wadlink and all \NeXT based tools by a factor of two to three.
+The four pillar of NeXT development (Unix, IB, OOP, and Obj-C) sped up development of DoomED, doombsp, and wadlink in a way DOS based tools could not even compare\footnote{Many years later, while evangelizing static code analysis, John Carmack would rant a bit about how the sloppy programming permitted by dynamic languages like ObjC was Not A Good Thing.}.
 

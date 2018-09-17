@@ -1,7 +1,7 @@
 
 
 \section{Maps}
-Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designed worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
+Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designer worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
 \drawing{doom_map_basics}{}
 
@@ -31,7 +31,7 @@ Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctl
 To harness the complexity of the map format, a new tool was created. The Doom map EDitor was to be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed to never lose work while writing DoomED or creating a map.
 The very design of Objective-C also had a tremendous influence. The language's message dispatching system no-op behavior when dereferencing a \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} created a fault forgiving environment where a faulty feature would not work but did not crash either.\\
 \par   
-The killing feature was Application Builder which not only came with a full library of widgets but also allowed to create new one and connect them to the business logic instantly.\\
+The killer feature was Interface Builder which not only came with a full library of widgets but also allowed to create new one and connect them to the business logic instantly.\\
 \par
 \fullimage{doomed/DoomEd.png}
 \par
@@ -57,7 +57,7 @@ DoomED did not output data usable by the game engine directly. Instead it genera
 \par
 DWD was not designed with space efficiency in mind but rather to be easy to parse since it was processed by a Node Builder tool \cw{doombsp}.\\
 \par
-\cfullimage{props/tom.png}{Tom Halls, delighted next to his NeXTCube running DoomED. The sticker on the monitor spells "quality".}
+\cfullimage{props/tom.png}{Tom Hall, delighted next to his NeXTCube running DoomED. The sticker on the monitor spells "quality".}
 \par
 
 \pagebreak

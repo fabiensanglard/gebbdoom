@@ -1,7 +1,7 @@
 \section{RAM}
 With the price of RAM dropping, game developers now could count on 4 MiB. This increase should have been a good news, resulting in video games with richer worlds shipping with better assets, more characters and bigger maps. Due to the infamous way memory had to be managed that meant more complexity to handle and more headache.\\
 \par
-The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM released its first PC, the 5150,  which was built around an Intel 8088. The CPU had been gifted with an uncanny design where registers where 16-bit but the bus address was 20-bit. To reconcile both elements Intel designers came up with an abomination called segmented addressing where two 16-bit registers were combined to form a 20-bit address.\\
+The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM released its first PC, the 5150,  which was built around an Intel 8088. The CPU had been gifted with an uncanny design where registers were 16-bit but the bus address was 20-bit. To reconcile both elements Intel designers came up with an abomination called segmented addressing where two 16-bit registers were combined to form a 20-bit address.\\
 \par
 
 \drawing{register_combination_20_bits_address}{}
@@ -34,7 +34,7 @@ To allow the app to run in one mode and the OS to run in an other, the two world
 \rawdrawing{realmode_app_limk_extender}
 Upon startup, the DOS Extender would place hooks in the OS software Interrupt Vector Table and place its own routines there. From the application standing point everything was transparent, the developer had no code to change. To perform a system calls not hooked by the extender (e.g: \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register request to 16-bit so IVT routines would understand them.\\
 \par
-\trivia{DMPI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit application and be compatible with a join operating system project with IBM called OS/2.}\\
+\trivia{DMPI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit application and be compatible with a joint operating system project with IBM called OS/2.}\\
 \par
 When the extender intercepted an operating system call, it had to do a lot of work:
 \begin{enumerate}
