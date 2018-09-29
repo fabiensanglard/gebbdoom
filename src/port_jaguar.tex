@@ -22,7 +22,7 @@ The low volume of games available at launch prevented a critical mass of custome
 \par
 Inside the machine: \circled{1} TOM, \circled{2} 2MiB RAM, \circled{3} JERRY, \circled{4} Motorola 68000, \circled{5} Operating System ROM, \circled{6} Cartridge slot, \circled{7} Joystick ports, \circled{8} AC Adapter Jack, \circled{9} DSP Port, \circled{A} Monitor (composite, component, and S-Video) Port, and \circled{B} Channel switch, TV port.\\
 \par
-\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64 bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64 bit processors for this.}{John Mathieson}
+\fq{Jaguar has a 64-bit memory interface to get a high bandwidth out of cheap DRAM. ... Where the system needs to be 64 bit then it is 64 bit, so the Object Processor, which takes data from DRAM and builds the display is 64 bit; and the blitter, which does all the 3D rendering, screen clearing, and pixel shuffling, is 64 bit. Where the system does not need to be 64 bit, it isn't. There is no point in a 64-bit address space in a games console! 3D calculations and audio processing do not generally use 64-bit numbers, so there would be no advantage to 64-bit processors for this.}{John Mathieson}
 
 
 
@@ -124,10 +124,10 @@ processors (68k and two custom risc processors) were 32 bit.\\
 \par
 The blitter could do basic texture mapping of horizontal and vertical spans,
 but because there wasn't any caching involved, every pixel caused two
-ram page misses and only used 1/4 of the 64 bit bus. Two 64 bit buffers
+ram page misses and only used 1/4 of the 64-bit bus. Two 64-bit buffers
 would have easily trippled texture mapping performance. Unfortunate.\\
 \par
-It could make better use of the 64 bit bus with Z buffered, shaded triangles,
+It could make better use of the 64-bit bus with Z buffered, shaded triangles,
 but that didn't make for compelling games.\\
 \par
 It offered a useful color space option that allowed you to do lighting effects
