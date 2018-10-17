@@ -1,7 +1,7 @@
 
 
 \section{Maps}
-Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designer worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
+Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designer worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]. 32 units translate to roughly one meter (or 3.28 feet for poor soul who must use the imperial system.)}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
 \drawing{doom_map_basics}{}
 
@@ -107,7 +107,7 @@ Blockmap slicing where each block is 128x128 to accelerate collision detections.
 \par
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{drawings/E1M1_sides.pdf}
+\includegraphics[width=\textwidth]{drawings/E1M1_sides_with_player.pdf}
 \end{figure}
 \par
 The Reject datastructure based on enemies and monsters line of sight.

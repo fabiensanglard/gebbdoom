@@ -1,7 +1,7 @@
 \begin{wrapfigure}[14]{r}{0.25\textwidth}{
 \centering \scaledimage{0.25}{3do_logo.png}}
 \end{wrapfigure}
-The 3DO Company was founded in 1991 by ex-Electronic Arts and ex-Apple employee Trip Hawkins. Without the means to actually produce the hardware the goal was to develop not a machine but a standard. 3DO offered to license the specification of its machine. In exchange of fees a potential manufacturer received the blueprints which considerably cut the R\&D cost. The company's business model was to collect a royalty on each consoles and each games sold.\\
+The 3DO Company was founded in 1991 by ex-Electronic Arts and ex-Apple employee Trip Hawkins. Without the means to actually produce the hardware the goal was to develop not a machine but a standard. 3DO offered to license the specification of its machine. In exchange of fees a potential manufacturer received the blueprints which considerably cut the R\&D cost. The company's business model was to collect a royalty on each consoles and each games sold\footnote{They attempted to replicate the VHS Video Cassette system which was greatly successful.}.\\
 
  Sony briefly considered it for its PSX project. The Japanese company even visited the San Mateo office to see the prototype but they eventually declined. Several other companies did acquire the rights to build a 3DO (Samsung, Toshiba, and AT\&T) but never built anything.\\
  \par
@@ -9,6 +9,7 @@ Finally in October 1993, Panasonic, Goldstar, and Sanyo each released their own 
 \par
 \cfullimage{consoles/3DO.png}{Panasonic FZ-1 implementation of 3DO specs}
 \par
+\vspace{-5pt}
 \trivia{The specs of the machine were originally written on the napkin of a restaurant in 1989 by Dave Needle and RJ Mical\footnote{Source: RetroGamer \#122 "Ahead of its time".}.}
 
 
@@ -59,28 +60,31 @@ By 1995, with less than 700,000 consoles sold\footnote{Source Next Generation ma
 
 \cfullimage{3D0_motherboard.png}{3DO Panasonic model "FZ-10 R.E.A.L" System Board}
 \par
-Panasonic, Goldstar, and Sanyo all designed their own motherboards but all 3DOs had the same functionalities. Opening the most popular model, the "FZ-10", reveals  seventeen chips!\\
+Panasonic, Goldstar, and Sanyo all designed their own motherboards but all 3DOs had the same functionalities. Opening the most popular model, the "FZ-10", reveals seventeen chips!\\
 \par
-\subsubsection{Chips}
-\circled{1} 25 MHz CEL Engine CLIO, 
-\circled{2} 25 MHz CEL Engine  Madam, 
+\bu{Chips}\\
+\par
+\circled{1} 50 MHz CEL Engine CLIO, 
+\circled{2} 50 MHz CEL Engine  Madam, 
 \circled{3} 2 MiB RAM, 
 \circled{4} 1 MiB VRAM (framebuffer), 
 \circled{5} 12.5 MHz ARM60 main CPU, 
-\circled{6} Digital Video Encoder, 
+\circled{6} Corner engine (50Mhz Math co-pro), 
 \circled{7} 1 MiB OS ROM, 
-\circled{8} Digital Video Encoder, 
+\circled{8} Digital Video Encoder (25Mhz VDLP), 
 \circled{9} 32 KiB Battery backed SRAM,  
 \circled{A} ARM CPU 32 KiB SRAM, 
-\circled{B} DSP, 
+\circled{B} DSP (16-bit, 25Mhz), 
 \circled{C} CD signal processing LSI, 
 \circled{D} CD-ROM Controller MN1882410, 
-\circled{E} CD-ROM Firmware, All connected via 50 MiB/s and 36 DMA channels.
-\subsubsection{Connections}
-\circled{F} Gamepad connector,
+\circled{E} CD-ROM Firmware, All connected via 50 MiB/s and 36 DMA channels.\\
+\par
+\bu{Connections}\\
+\par
+\circled{F} Gamepads,
 \circled{G} Expansion port,
-\circled{H} Composite and S-Video ports, 
-\circled{I} RF Output jack. 
+\circled{H} Composite/S-Video ports, 
+\circled{I} RF Out jack. 
 
 
 \rawdrawing{3do_motherboard}
@@ -90,7 +94,7 @@ Developer for the 3DO were forbidden direct access to the hardware (except for h
  The M2 project which began as an accelerator add-on for the 3DO\footnote{"3DO Press Release" August 1994.} morphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. Due to financial and technological difficulties, the M2 project was never completed.\\
 \par
 \trivia{Several game developers, aware of the upcoming M2 machines, had hidden cheat codes in their games in order to improve graphics for the new speculated hardware.\\
-\par The sequence "Up, Right, L, Up, Right, Right, R, A, Left" on \doom allowed to increase the active window size all the way to full screen.}\\
+\par The sequence "Up, Right, L, Up, Right, Right, R, A, Left" on \doom~allowed to increase the active window size all the way to full screen.}\\
 \pagebreak
 
 \subsection{3DO Programming}
@@ -115,9 +119,9 @@ Given the specs of the machine, the 3DO had the potential to be the best console
 \par
 % How could they screw this up? Easily in fact, just give a lone developer ten weeks to do it and ship it.\\
 % \par
-In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequence with real actor to build up the story.\\
+In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom~on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequence with real actor to build up the story.\\
 \par
-\cfullimage{doom_3do_fmv.png}{The FMV shooting set.}
+\cfullimage{doom_3do_fmv.png}{The FMV shooting set (photo released by Rebecca Heineman)}
 \par
 
 
@@ -125,7 +129,7 @@ The project was promptly subcontracted to a gaming company with actual experienc
 \par
 By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of Octobre 1995 looming over their head, Art Data Interactive reached to a contractor which had previously done an amazing work on porting Wolfenstein 3D to the 3DO. The name of the poor soul who accepted the project was Rebecca Ann Heineman from Logicware.\\
 \par
-Having committed to the project, Rebecca asked ADI for the source code she assumed they had received upon signing the contract with id Software. Nothing came. Eventually, she received a floppy disk. It turned out it was in fact the commercial copy of \doom with the compiled binary \cw{DOOM.EXE} and \cw{DOOM.WAD}! Rebecca had to explain ADI what source code was and how she could not start working from the binary. After a few weeks of struggle, she finally emailed John Carmack whom sent her the source code for the Jaguar version.\\
+Having committed to the project, Rebecca asked ADI for the source code she assumed they had received upon signing the contract with id Software. Nothing came. Eventually, she received a floppy disk. It turned out it was in fact the commercial copy of \doom~with the compiled binary \cw{DOOM.EXE} and \cw{DOOM.WAD}! Rebecca had to explain ADI what source code was and how she could not start working from the binary. After a few weeks of struggle, she finally emailed John Carmack whom sent her the source code for the Jaguar version.\\
 \par
  With ten weeks before going gold, Rebecca worked heroically and managed to reach the deadline. The final product however had sustained extensive damage\footnote{Burgertime 7/12/2015: DOOM 3DO.}.\\
 \par
@@ -141,7 +145,8 @@ ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manu
 \par
 % BELOW IS A PLACEHOLDER, MAKE A DRWAWING OF ARCH INSTEAD.\\
 % \fullimage{doom_3do.png}
-\rawpngdrawing{3do_arch}
+\vspace{20pt}
+\rawdrawing{3do}
 
 % \par
 % Lots of good stuff here: https://github.com/Olde-Skuul/doom3do

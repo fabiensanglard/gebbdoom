@@ -1,23 +1,26 @@
 Reviewers:
 ==========
-Christopher Van Der Westhuizen <cvanderw@google.com>
+Christopher Van Der Westhuizen <cvanderw@google.com>x
 Olivier Cahagne <ocahagne@fastmail.com>
 Philip Hoefer <philscomputerlab@gmail.com>
 Eluan Costa Miranda <eluancm@gmail.com>
 Mikhail Naganov <mnaganov@google.com>
 Black Hardware
-People from doomworld.com
+People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
 Randy Linden
 Aurelien Sanglard
+3DO experts Optimus6128 and Rebecca Ann Heineman <Becky@burgerbecky.com>
+Chocolate doom guy (Simon "Fraggle" Howard)
+Jonathan Dowland
+Rob Blessin
 
 TODO:
 =====
+\doom should be \doom{}. There are many DOOMxxxx typos :(!
 is it ticks or tics?
-check michael abrash is thqnked in credits.
+check michael abrash is thanked in doom credits
 In teams chapter, Add a "on XXX they tried to upload the game on the ftp but they could not connect"
-Mention the Right Thing to Do.
-Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.).
-Make sure the 386 competed againt Intel i960 and not P7.
+Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.
 Doom awards page from romero
 Elaborate on RAM and SRAM for leaks, read-write and dual bit for sdram. Recommend book for fast page explanation (which book is it the system or the pyramid book?).
 Take about gamma (Apple, NeXT and SGI had linear color space while PC did not). 4444 linear space of next
@@ -26,7 +29,9 @@ Get the license to use Sandy Patersen interview at the end of the book.
 You might want to mention the high end Roland sound cards in passing; not many gamers had them, but the Doom music sounded awesome on them!
 To double check with book but i am pretty sure it does: P34: I don’t think DRAM access used the “ISA bus protocol” on 386, but I may be fuzzy on that.
 Fixed point -> fixed-point
-Ask romero for high resolution photos of 
+Ask romero for high resolution photos of Tom Hall
+mention sc-55 used by billy bob.
+
 
 JOHN CARMACK FEEDBACK:
 ======================
@@ -35,10 +40,8 @@ P46: I don’t think “a vast majority” of PC games used Mode­ Y.  Even amon
 P51: “tibpal” ? Is this a typo, or some special kind of PAL (Programmable Array Logic)?
 P59: “On the lambda customer side” ?
 P82: The 16­bit color was only 4444, 1555 was not supported, which was unfortunate for us.  It was also in a linear color space, as opposed to the non­linear PC standard that became sRGB.  I didn’t understand how to properly convert back then, so our graphics always looked washed out on the NeXT systems.
-P118: Mention the masked middle textures for bars and so on?
 P121: A designer could make something playable in under 20 minutes, but all the real maps had days of work in them,
 unlike Wolfenstein, where a couple of the later maps really were made in an hour or so.
-P125: The reject visualization isn’t very informative.  Including sector numbers and a big grid truth table would be better, but a good chunk of work to produce.  Maybe print the grid and just manually label three sectors to illustrate a pass and fail in the table?
 P126:  I wouldn’t call BLOCKMAP an AABB, but rather a “grid”.  AABB is usually Axis Aligned Bounding Box, which is a
 different thing in collision detection.
 P131: To be fair to DOS, we did usually use the extended 80 column mode to get 50 lines.

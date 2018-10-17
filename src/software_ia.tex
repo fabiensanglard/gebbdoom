@@ -120,16 +120,15 @@ Not all automaton state changes can be inferred from the transition array. In th
 \subsection{Optimization}
 All monsters in a level are initialized in the \cw{spawnstate} which usually involves cycling a two frames animation (monsters do no have stand script, they "walk still") and calling \cw{A\_Look} method to attempt to see the player. Looking for the player constantly proved to be an unacceptable level of load on the CPU. Even using the blockmap structure to speed up collision detection it still meant hundreds of rays to cast, twenty five times per second which resulted in thousand and thousand of instructions.\\
 \par
-To solve this problem, an other datastructre was introduced with \cw{doombsp}. For each sectors, a potentially visible sector bit array is calculated\footnote{This approach later morphed into the Potentially Visible Set which as instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass collision detections for this monster entirely.\\
+To solve this problem, an other datastructre was introduced with \cw{doombsp}. For each sectors, a potentially visible sector bit array is calculated\footnote{This approach later morphed into the Potentially Visible Set which was instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass collision detections for this monster entirely.\\
 \par
-\drawing{E1M1_sides_with_player}{A simple example with E1M1 (skill level 3) allows to drop four monsters from the collision detection set when the player is in its spawning location.}
+\drawing{reject_explained}{}
 % Regardless of the monsters, the base state machine looks like this but it tuned based on custom functions called in some states (e.g: \cw{A\_SpidRefire}, \cw{A\_CyberAttack}, and \cw{A\_BrainExplode}).\\
 % \par
 % \pngdrawing{automate}{}
-\trivia{With the increase of CPU power available, later Node Builder tools often omitted to build the \cw{REJECT} lump.}\\
+Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster I.A seeking for the player since the later is in sector one. All four others monsters are "rejected" until the player most inside sector three. The table is only used for sight. Monsters will still hear the player (sound is cheaper to propagate).\\
 \par
-\trivia{This applies to sight only, monsters will still hear the player or sense its proximity!}
-\pagebreak
+\trivia{With "unlimited" CPU power, modern Node Builder don't build \cw{REJECT} anymore.}
 
 
 
@@ -159,9 +158,9 @@ The tag designating the target is any number picked by the designed. Any lines t
 \centering
 \includegraphics[width=.5\textwidth]{drawings/E1M3_trap.pdf}
 \end{wrapfigure}
-Who doesn't recognize E1M3 hunt for the blue key (figure \ref{Doom-E1M3-Ingame2.png}). After traversing the whole map, it is finally there enlighted on a pedestral. Guarded by only two low levels opponents which are easily dispatched.\\
+Who doesn't recognize E1M3 hunt for the blue key on page \pageref{e1m3_trap}. After traversing the whole map, it is finally there enlighted on a pedestral. Guarded by only two low levels opponents which are easily dispatched.\\
 \par
-But as soon as the player picks it up, all lights go off and the combined sound of a door opening and growling Imps leaves no doubt: It was trap doomguy just walked in and Imps are just behind him (figure \ref{Doom-E1M3-Ingame3.png})!\\
+But as soon as the player picks it up, all lights go off and the combined sound of a door opening and growling Imps leaves no doubt: It was trap doomguy just walked in and Imps are just behind him (page \pageref{e1m3_trap})!\\
 \par
 To implement this effects, two set of lines were used. The first lines (in blue) targets the door sector via tag YY where the monsters were hiding and opens it. The second lines (in red) targets the current sector via tag XX and set its light level to "very dark".\\
 \par
@@ -179,9 +178,12 @@ An other interesting effect in E1M3 is the rising stair which leads to the small
 Before and after screenshots can be seen on page \pageref{stairs}.
 
 
-\cfullimage{Doom-E1M3-Ingame2.png}{Finally, the blue key!}
-\par
-\cfullimage{Doom-E1M3-Ingame3.png}{It's a TRAP!}
+\fullimage{Doom-E1M3-Ingame2.png}\\
+
+Finally, the blue key (above)! Nooo, it's a TRAP (below)!\label{e1m3_trap}
+
+\vspace{2mm}
+\fullimage{Doom-E1M3-Ingame3.png}
 
 
 \fullimage{e1m3_after_stairs.png}\\
