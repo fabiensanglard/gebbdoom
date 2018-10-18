@@ -42,10 +42,10 @@ The release of the source code in April 2015 allowed to pick inside. There is al
 
 \tcode{cloc_doomed.txt}
 \par
-DoomED was designed to be the "Adobe Illustrator for World Maps" where the designer simply drew line, selected sectors , and picked textures. A skilled map maker could complete a map in 20 minutes \fixme{citation needed JOHN?}.\\
+DoomED was designed to be the "Adobe Illustrator for World Maps" where the designer simply drew line, selected sectors , and picked textures.\\
 \par
-
-\trivia{DoomED icon is an Imp. Upon startup a growling sound is played.}\\
+\vspace{10pt}
+\trivia{DoomED icon is an Imp. Upon starting up an Imp growling sound is played.}\\
 \par
 \fullimage{doomed/all_widgets.png}
 
@@ -142,7 +142,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{
    \toprule
    \cw{REJECT} & Sector to sector matrix of what monsters can potentially see in their spawing positon.\\
    \toprule
-   \cw{BLOCKMAP} & 128x128 AABB partition of the map \cw{LINEDEFS} to accelerate collision detections.\\
+   \cw{BLOCKMAP} & 128x128 grid partition of the map \cw{LINEDEFS} to accelerate collision detections.\\
    \toprule
 \end{tabularx}
 %\caption{Map Data lumps]\protect\footnotemark.}
