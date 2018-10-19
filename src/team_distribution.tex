@@ -26,7 +26,7 @@ the money. We don't want any of it just put it in a box and sell it".\\
 Nutty, except that worked. It was everywhere. If you went into a CompUSA back then in 1994 you would see ten different boxes of doom and think they're all different games but they're all the same shareware game. Distributors ended up trying to make the best looking boxes to outperform their competitors because all they were allowed to sell was the shareware.}{John Romero}\\
 \par
 
-The success of the formula exceeded their wildest expectation. The shareware would find its way everywhere, even in the most suprising packages.\\
+The success of the formula exceeded their wildest expectation. The shareware would find its way everywhere, even in the most surprising packages.\\
 \par Despite manufacturing difficulties, the famous "DooM Strategy guides" had the two floppies tapped on the back cover of books. Magazines also jumped on the opportunity even if they had to be wrapped in plastic bag to hold the floppies.
 
 
@@ -35,27 +35,21 @@ The success of the formula exceeded their wildest expectation. The shareware wou
 %Ideally, to make distribution as easy as possible, the game would have fitted on one 3\nicefrac{1}{2}-inch floppy disk. Even though 650 KiB floppy reader were fading out in favor of 1,440 KiB floppies, because of the volume of assets, DooM shareware still used two disks.\\
 \cfullimage{floppies.png}{}
 \par
-Figure \ref{floppies.png} shows two 3$\nicefrac{1}{2}$ floppy disks containing Doom shareware which were bundled with the book "Survivor's Strategies and Secrets". The publisher paid no royalties for that.\\
+Figure \ref{floppies.png} shows two 3$\nicefrac{1}{2}$ floppy disks containing \doom{} shareware which were bundled with the book "Survivor's Strategies and Secrets". The publisher paid no royalties for that.\\
 \par
-The binary packaging was a departure from the previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine an a multitude of \cw{.WL6} files, \doom{}had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was summarized in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\ 
-\par
+The binary packaging was a departure from the previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine an a multitude of \cw{.WL6} files, \doom{} had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was summarized in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\
+\vspace{3mm}
 
-
-% \def\angle{0}
-% \def\radius{3}
-% \def\cyclelist{{"orange","blue","red","green"}}
-% \newcount\cyclecount \cyclecount=-1
-% \newcount\ind \ind=-1
-%  \subfile{graph_wad} 
+\rawscaleddrawing{0.9}{graph_wad2}
 \vspace{2mm}
-\rawdrawing{graph_wad2}
+The registered version asset archive (\cw{DOOM.WAD}) was 11,869,745 bytes, with 709,905 bytes dedicated to \cw{DOOM.EXE} and 11,159,840 bytes for \cw{DOOM.WAD}.
 \pagebreak
-The registered version total size was 11,869,745 bytes, with 709,905 bytes dedicated to \cw{DOOM.EXE} and 11,159,840 bytes for \cw{DOOM.WAD}. Most of the volume was due to the rich graphical environment made of hundreds of sprites and textures.\\
-\par
 
-
+\trivia{The game was also released on the Internet. On December 10th, 1993 they tried to seed it on \cw{ftp://ftp.wisc.edu/} but they could not connect since gamers were permanently connected to the server in order to be the first to get it.}\\
 \par
-\rawdrawing{graph_wad}
+There was no difference between the two \cw{DOOM.EXE} from the registered (paying) and the unregistered (free) version of the game. The engine scanned the directory, recognized the filename of the \cw{WAD} archive, and branched accordingly.\\
+\par
+\rawscaleddrawing{0.9}{graph_wad}
 % \subfile{graph_wad2} 
 
 
@@ -63,7 +57,7 @@ The registered version total size was 11,869,745 bytes, with 709,905 bytes dedic
 
 \subsection{WAD archive: Where Are the Data}
 \label{wad_explained}
-The goal of the \cw{WAD} format was partly to replace the OS filesystem but mostly to embrace the modding community. Each asset is stored in a structure called "lump" and packaged inside a file called a "wad". The file is made of three parts with a header, all the lumps, and a directory at the end.\\
+The goal of the \cw{WAD} format was partly to replace the OS filesystem but mostly to embrace the modding community. In a \cw{WAD}, each asset is stored in a "lump". The \cw{WAD} is made of three parts with a header, all the lumps, and a directory at the end.\\
 
 \par
 \ccode{wad_structure.c}
@@ -74,7 +68,7 @@ The goal of the \cw{WAD} format was partly to replace the OS filesystem but most
 \par
 The archive format was manipulated via two tools. \cw{lumpy} took a blob and packed it inside a lump, inside a \cw{WAD}. \cw{wadlink} took several \cw{WAD} and created/appended them into a single \cw{WAD}. The structure allows to easily add or remove lumps since adding a lump only needs to move the small directory at the end and update the header offset.\\
 \par
-\doom{}had a command-line parameter allowing modders to load their own \cw{WAD} in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed to customize everything (short for I.A which was baked in \cw{DOOM.EXE}). A custom \cw{WAD} containing a \cw{E1M1} lump could be used via as simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
+\doom{} had a command-line parameter allowing modders to load their own \cw{WAD} in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed to customize everything (short for I.A which was baked in \cw{DOOM.EXE}). A custom \cw{WAD} containing a \cw{E1M1} lump could be used via as simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
 
 
 

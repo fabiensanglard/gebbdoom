@@ -17,7 +17,7 @@ The core system notify the input system when a new frame start or when a game ti
   D\_PostEvent & Called by the input system to send an event to the core.\\
    \toprule
 \end{tabularx}
-\caption{\doom input system interface}
+\caption{\doom{} input system interface}
 \end{figure}
 \par
 Events are stored in the core via a circular buffer audaciously name \cw{events}.\\
@@ -47,7 +47,7 @@ The "commands" design pattern unlocks many features. \\
 \par
 Commands are obviously consumed by the 3D engine but they can also be stored to disk when recording a demo. Later they can be re-injected in the engine to replay the exact same session. The beauty of this system is that player were able to exchange replays even if they had computer capable of different framerate.\\
 \par
-This feature allowed \doom{}to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t} meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
+This feature allowed \doom{} to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t} meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
 % \par
 % Structure \cw{ticcmd\_t} is transmitted as-is on the network when running in multiplayer mode.
 % \par

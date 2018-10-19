@@ -1,32 +1,39 @@
 Reviewers:
 ==========
-Christopher Van Der Westhuizen <cvanderw@google.com>x
+Christopher Van Der Westhuizen <cvanderw@google.com>
 Olivier Cahagne <ocahagne@fastmail.com>
 Philip Hoefer <philscomputerlab@gmail.com>
 Eluan Costa Miranda <eluancm@gmail.com>
 Mikhail Naganov <mnaganov@google.com>
-Black Hardware
+Black Hardware <bhi1@ix.netcom.com>
 People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
-Randy Linden
+Randy Linden Rob Blessin 
 Aurelien Sanglard
-3DO experts Optimus6128 and Rebecca Ann Heineman <Becky@burgerbecky.com>
+3DO experts Optimus6128
 Chocolate doom guy (Simon "Fraggle" Howard)
 Jonathan Dowland
-Rob Blessin
+
+BACKBURNER:
+===========
+Aknowledge the Doom Jaguar guy who released the source code and helped me with X32 stuff (Carl Forhan owner and founder of Songbird Productions).
+
 
 TODO:
 =====
-\doom should be \doom{}. There are many DOOMxxxx typos :(!
-is it ticks or tics?
-check michael abrash is thanked in doom credits
-In teams chapter, Add a "on XXX they tried to upload the game on the ftp but they could not connect"
-Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.
-Doom awards page from romero
-Elaborate on RAM and SRAM for leaks, read-write and dual bit for sdram. Recommend book for fast page explanation (which book is it the system or the pyramid book?).
-Take about gamma (Apple, NeXT and SGI had linear color space while PC did not). 4444 linear space of next
-Learn about perspective correct, subpixel accurate texture mapping.
+
+
 Get the license to use Sandy Patersen interview at the end of the book.
-To double check with book but i am pretty sure it does: P34: I don’t think DRAM access used the “ISA bus protocol” on 386, but I may be fuzzy on that.
-Fixed point -> fixed-point
+Fixed point -> fixed-point, Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.
 Ask romero for high resolution photos of Tom Hall
+
 mention sc-55 used by billy bob.
+is it ticks or tics?
+
+To double check with book but i am pretty sure it does: P34: I don’t think DRAM access used the “ISA bus protocol” on 386, but I may be fuzzy on that.
+
+Elaborate on RAM and SRAM for leaks, read-write and dual bit for sdram. Recommend book for fast page explanation (which book is it the system or the pyramid book?).
+
+Learn about perspective correct, subpixel accurate texture mapping.
+
+
+

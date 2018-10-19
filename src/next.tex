@@ -184,18 +184,21 @@ Chipsets and components of the NextCube motherboard:\\
 
 
 \section{NeXTStation}
-Since cost was the main issue with their product line, NeXT attempted to introduce a new product that would drive down prices significantly. They designed something close to the NeXTCube but with a trade off, removing non essential elements in order to produce a three times cheaper, all-in-one machine.\\
+
+Since cost was the main issue with their product line, NeXT attempted to introduce less expensive product. They designed something close to the NeXTCube but removed non essential elements in order to produce a three times cheaper, all-in-one machine.\\
 \par
 The NeXTStation pricing and appearance make it a direct competitor of SPARCstation. No longer a perfect cube, the case nicknamed "The slab" (and also, banned by Steve Jobs, the "pizza box") was well received by customers and became NeXT most successful computer.\\
 \par 
 \cfullimage{cube_vs_slab.png}{A NextStation ad from NeXTWorld 1991 magazine.}
 \par
+\vspace{-10pt}
 Designers picked elements from the NextCube and the NeXTDimension in order to produce an all-in-on, non extensible machine. The three NeXTBUS extension slots were removed and so was the CD-ROM. A 2.88MiB floppy disk was added on the right side. The most notable difference came from the Color version which had 2 MiB of VRAM, making the machine capable of 16-bit RGB colors. To accommodate for the increased bandwidth requirements, the motherboard was redesigned to include a Bt463 Ramdac.\\
 \par
 % The system also introduced usage of the Apple Desktop Bus created by Steve Wozniak which bear many similarities with the USB released in 1996. With ADB, input devices such as mouse and keyboard are connected as a daisy chain\footnote{ADB - The Untold Story: Space Aliens Ate My Mouse.} and can be plugged/unplugged safely while the machine was powered on without fearing to fry something.\\
-\fq{The 16-bit color was only 4444, 1555 was not supported, which was unfortunate for us.  It was also in a linear color space, as opposed to the non-linear PC standard that became sRGB.  I didn't understand how to properly convert back then, so our graphics always looked washed out on the NeXT systems.}{John Carmack}
+\fq{The 16-bit color was only 4444, 1555 was not supported, which was unfortunate for us.  It was also in a linear color space\footnotemark, as opposed to the non-linear PC standard that became sRGB.  I didn't understand how to properly convert back then, so our graphics always looked washed out on the NeXT systems.}{John Carmack}
+\footnotetext{NeXT, SGI, and Apple had linear color space. PC of course did not.}
 
-\par
+
 \cfullimage{next/nextstation.png}{A NeXTStation Turbo Color (non-ADB)}
 \par
 \vspace{-5pt}
@@ -424,7 +427,7 @@ Even in its darkest hours, NeXT curiously never capitalized on id Software's lov
 
 \fq{We loved our NeXTs, and we wanted to launch Doom with an explicit "Developed on NeXT computers" logo during the startup process, but when we asked, the request was denied.}{John Carmack}\\
 \par
-\cscaledimage{1}{credits/DoomCREDIT10.png}{Doom alpha version credit screen featuring "NeXT Computers"}
+\cscaledimage{1}{credits/DoomCREDIT10.png}{\doom{} alpha version credit screen featuring "NeXT Computers"}
 \par
  id Software also wanted to mention the machines in the credit screen. "DEVELOPED ON NeXT COMPUTERS" proudly stood there until NeXT refusal to be associated with \doom. After release, NeXT reverted its decision but by then "that ship had sailed".
 
