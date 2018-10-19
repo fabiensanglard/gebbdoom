@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="90.515282mm"
-   height="80.162476mm"
-   viewBox="0 0 320.72343 284.04026"
+   width="236.98753mm"
+   height="90.252083mm"
+   viewBox="0 0 839.71958 319.79084"
    id="svg11774"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="148.38098"
-     inkscape:cy="100.1018"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="584.22335"
+     inkscape:cy="32.070281"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,7 +39,8 @@
      inkscape:window-height="1005"
      inkscape:window-x="0"
      inkscape:window-y="1"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="false" />
   <metadata
      id="metadata11779">
     <rdf:RDF>
@@ -48,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,7 +57,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-191.42391,-4.3078032)">
+     transform="translate(66.306404,18.662083)">
     <rect
        style="opacity:0.53699999;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect12443"
@@ -66,21 +67,22 @@
        y="-18.662083" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 191.42391,31.097982 320.72343,0"
+       d="m -65.154835,31.097982 835.901225,0"
        id="path12445"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="299.51022"
-       y="15.440616"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="-60.10408"
+       y="10.389853"
        id="text12447"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan12449"
-         x="299.51022"
-         y="15.440616"
-         style="font-weight:bold;font-size:15px">ADDRESS LINE</tspan></text>
+         x="-60.10408"
+         y="10.389853"
+         style="font-weight:bold;font-size:17.5px;">ADDRESS LINE</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 350.52294,31.097981 0,18.687822"
@@ -99,21 +101,22 @@
        r="5.0507627" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 230.81986,57.867023 0,196.474677"
+       d="m 230.81986,57.867023 0,235.870627"
        id="path12457"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="199.89059"
-       y="280.00494"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="122.10885"
+       y="277.98465"
        id="text12447-9"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan12449-8"
-         x="199.89059"
-         y="280.00494"
-         style="font-weight:bold;font-size:15px">BIT LINE</tspan></text>
+         x="122.10885"
+         y="277.98465"
+         style="font-weight:bold;font-size:17.5px">BIT LINE</tspan></text>
     <circle
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path12455-4"
@@ -137,36 +140,37 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 459.61941,212.42036 0,40.91118"
+       d="m 459.61941,212.42036 0,81.31728"
        id="path12515"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="428.33896"
-       y="275.46658"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="476.82629"
+       y="282.53766"
        id="text12447-9-2"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan12449-8-3"
-         x="428.33896"
-         y="275.46658"
-         style="font-weight:bold;font-size:15px">GROUND</tspan></text>
+         x="476.82629"
+         y="282.53766"
+         style="font-weight:bold;font-size:17.5px">GROUND</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="315.17166"
-       y="206.43008"
+       x="534.37476"
+       y="209.46054"
        id="text12447-9-2-1"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan12449-8-3-5"
-         x="315.17166"
-         y="206.43008"
+         x="534.37476"
+         y="209.46054"
          style="font-weight:bold;font-size:15px">CAPACITOR</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        x="401.33948"
        y="66.523956"
        id="text12447-9-2-1-6"
@@ -175,6 +179,6 @@
          id="tspan12449-8-3-5-7"
          x="401.33948"
          y="66.523956"
-         style="font-weight:bold;font-size:15px">TRANSISTOR</tspan></text>
+         style="font-weight:bold;font-size:17.5px;">TRANSISTOR</tspan></text>
   </g>
 </svg>

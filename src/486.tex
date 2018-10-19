@@ -150,21 +150,29 @@ By leveraging these two properties, a well designed cache located between the CP
 
 
 
-
+\vspace{-20pt}
 \subsection{L1 Cache}
-Hopefully it is now abundantly clear the cache was the cornerstone of the entire CPU. Without it there was no gain. Designing the cache to yield the highest hit rate possible and make it as fast as possible were paramount. 
+Hopefully it is now abundantly clear the cache was the cornerstone of the entire CPU. Designing the cache to yield the highest hit rate possible and make it as fast as possible were paramount. 
 
 \subsubsection{DRAM vs SRAM}
-The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 1000\% faster. DRAM was also "slowed" down greatly because it was unavailable part of the time. The design of each cells was simple, based on one transistor and one storage capacitor which allowed tight packing and high capacity.\\
-\par The problem was with the capacitor losing its charge over time. The only way to keep the DRAM integrity was to periodically refresh each of its bit cells, every 15$\mu s$, by sending current into the capacitor. While the refresh happened, the bit cell was unavailable.\\
+The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 1000\% faster. \\
 \par
-\scaleddrawing{0.5}{DRAM}{Dynamic RAM made of two elements}
-As mentioned earlier, the DRAM had the disadvantage to being far away. Located "somewhere" on the motherboard, to access it meant the CPU had to request it to its Bus Unit. And not only is was slow and far away, the ISA Bus had to be shared with other I/O devices.\\
+The difference of speed comes from the design of their elementary cells.\\
 \par
+ A DRAM cell hold a bit. It's simple design features one transistor and one storage capacitor which allow tight packing and high capacity. However the capacitor loses its charge over time and each time it is accessed. Everytime the cell is read, it needs to be written back with its value. Even if it is not accessed, it must be refreshed every 15$\mu s$.\\
+\par
+\scaleddrawing{1}{DRAM}{Dynamic RAM and its two elements holding one bit of data}
+\vspace{-5pt}
+The slowness comes from the high maintenance cost of each cell. The DRAM also has the disadvantage to being far away. Located somewhere on the motherboard, it requires using the ISA bus which is shared with other devices.\\
+\par
+
 \vspace{2mm}
-\scaleddrawing{0.7}{SRAM}{Static RAM made of six elements}
+Thanks to a more elaborated design (which made it less dense and more expensive to manufacture), a SRAM cell has none of these disavantages.\\
 \par
-Located inside the chip, the SRAM had none of these drawbacks. Accessing it did not require an expensive bus request. Its design involving no less than six transistors removed the need periodic refresh. And to top it all, the CPU did not have to share the data path with other devices.
+\scaleddrawing{1}{SRAM}{Static RAM made of six transitors}
+\par
+Without a capacitor, a SRAM cell doesn't leak. It does not need a periodic refresh and it does not need to be written back each time it is accessed. It's two bit lines allow twice as fast voltage variation detection and faster timings.
+Since it is located inside the chip, accessing it doesn't require an expensive bus request and there is no contention with other devices\footnote{DRAM speed improved over the years. Fast Page Mode "cached" rows of DRAM cells with a SDRAM row buffer. udacity.com's UPCF course are excellent if you want to learn more about this topic.}
 \par
 
 

@@ -102,14 +102,13 @@ On PC, in the case of a multi-player session, the network initialization simply 
 \par
 \ccode{I_InitNetwork.c}\\
 \par
-With access to the \cw{doomcom} variable, come access to the field \cw{intnum} which is the software interrupt the network TSR registered itself with. Raising this interrupt will halt \doom{} to let the network driver copy network data in or out of \cw{doomcom}.
+With access to the \cw{doomcom} variable, come access to the field \cw{intnum} which is the software interrupt the network TSR registered itself with. Raising this interrupt will halt \doom{} to let the network driver copy network data in or out of \cw{doomcom}.\\
 
 
 
 \ccode{doomcom_t.c} \label{doomcom_t.c} \\
 \par
-The fields are self explanatory but notice \cw{command} which indicate the driver if data should be read or sent. Notice field \cw{id} which allows \doom{} to verify the address alleged to be a TSR was correct. Notice the \cw{ticcmd\_t} payload which was already studied in the input system on page \pageref{cmd_t_type}.\\
-\pagebreak
+The fields are self explanatory but notice \cw{command} which indicate the driver if data should be read or sent. Notice field \cw{id} which allows \doom{} to verify the address alleged to be a TSR was correct. Notice the \cw{ticcmd\_t} payload which was already studied in the input system on page \pageref{cmd_t_type}.
 
 
 

@@ -171,7 +171,7 @@ Because C has no namespace, a code convention is used to to tag functions. A pre
 \par
 The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scene (figure \ref{dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
 \par
-\trivia{The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made of dots which required several minutes to complete on the full version depending on the machine's harddrive access time. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.}\\
+The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made of dots which required several minutes to complete on the full version depending on the machine's harddrive access time. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.\\
 \par
 \trivia{Starting with a \cw{-devparam} command line parameter show more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old loud speaker emitted when they were turned on. In an era before Plug\&Play and Internet, it was an achievement itself to configure the sound cards mysterious IRQs and DMAs values.}\\
 \par
@@ -182,9 +182,9 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \end{figure}
 
 \par
-\trivia{The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).}\\
+The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).\\
 \par
-\trivia{\doom{} \& \doomii{} were released in English...and French?! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translation.}
+\trivia{\doomii{} was officialy translated to an other languge! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translation.}
 
 
 

@@ -12,28 +12,30 @@ Aurelien Sanglard
 3DO experts Optimus6128
 Chocolate doom guy (Simon "Fraggle" Howard)
 Jonathan Dowland
+Jim Leonard <mobygamer@gmail.com>
 
 BACKBURNER:
 ===========
-Aknowledge the Doom Jaguar guy who released the source code and helped me with X32 stuff (Carl Forhan owner and founder of Songbird Productions).
-
+Ask romero for high resolution photos of Tom Hall
+Lean about subpixel accurate texture mapping.
+Elaborated about perspective correct.
 
 TODO:
 =====
 
+Apply all of Jim Leonard feedback
 
-Get the license to use Sandy Patersen interview at the end of the book.
-Fixed point -> fixed-point, Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.
-Ask romero for high resolution photos of Tom Hall
+Fixed point -> fixed-point.
+Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau.
 
-mention sc-55 used by billy bob.
-is it ticks or tics?
+What is an Old Deathmatch?
 
-To double check with book but i am pretty sure it does: P34: I don’t think DRAM access used the “ISA bus protocol” on 386, but I may be fuzzy on that.
+Redo perspective incorrect drawing (redo drawings).
 
-Elaborate on RAM and SRAM for leaks, read-write and dual bit for sdram. Recommend book for fast page explanation (which book is it the system or the pyramid book?).
+Clean up 3DO motherboard (still have pixels)
 
-Learn about perspective correct, subpixel accurate texture mapping.
+Do drawing for psyQ devkit.
 
+Run NextStation number for benchmark page.
 
 
