@@ -54,7 +54,7 @@ As the news that their 3D technology was not good enough to ship was already a c
 \par
 Back in August 1992, id Software had landed a contract with Nintendo to port Wolfenstein 3D to SNES. With a release scheduled for May 1st, 1994, they subcontracted the project and forgot about it to focus on \doom. In April 1994, the contractor was nowhere in sight. They had nothing to deliver to Nintendo. It was a big deal involving a huge penalty.\\
 \par
- Development for \doom{} stopped immediately as the team desperately banged they old game together into a machine not remotely built to do what they wanted. While Tom Hall dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6503 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
+ Development for \doom{} stopped immediately as the team desperately banged their old game together into a machine not remotely built to do what they wanted. While Tom Hall dusted of his 6502 assembly skills, John Carmack had a different kind of problem at hand, the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6502 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
 \par
 
 
@@ -68,7 +68,7 @@ Bruce Naylor's May 1993 AT\&T Bell Labs paper was titled "Constructing Good Part
 \par
 With a visual surface determination not based on raycasting but rather on BSP, and using a low resolution (112x96 doubled horizontally to 112x192), Wolfenstein 3D SNES managed to reach an acceptable framerate\footnote{\fixme{FRAMERATE?}}.\\
 \par
-Due to Nintendo strict non-violence policy the game had to be heavily censored to reach a child-friendly quality. Blood was replaced with sweat. guard dogs are replaced with mutant rats and Hitler was renamed "Staatmeister" (which translates to State Master).\\
+Due to Nintendo's strict non-violence policy the game had to be heavily censored to reach a child-friendly quality. Blood was replaced with sweat. guard dogs are replaced with mutant rats and Hitler was renamed "Staatmeister" (which translates to State Master).\\
 \par
 With that problem solved, Wolfenstein 3D for Super Nintendo was released on schedule. The whole team resumed cramming for \doom{} and the renderer was changed to also use the power of BSPs.
 \pagebreak
@@ -96,7 +96,7 @@ for each polygon.
 \par
 To understand how BSPs work, let's take the example of a map which could easily have been created with DoomED.\\
 \par
- For simplicity the map we will be working with is made of eight vertices linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{G}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite is simplicity it is obvious how it is a difficult problem to solve to a renderer since depending on the point of view the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\\
+ For simplicity the map we will be working with is made of eight vertices linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{G}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite its simplicity it is obvious how it is a difficult problem to solve for a renderer since, depending on the point of view, the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\\
 
 \par
 \rawdrawing{doom_map}
@@ -117,7 +117,7 @@ At this point in the splitting we are still not done. The area between \cw{B2}, 
 \par
 \drawing{doom_map_split3}{}
 \par
-With all sub-sectors in the leave convex, the BSP construction ends. The number of vertices and segments to deal has increased by 50\% but we now have a data structure capable of sorting all segments, from any point of view, at the cost of only three comparison.\\
+With all sub-sectors in the leaf convex, the BSP construction ends. The number of vertices and segments to deal with has increased by 50\% but we now have a data structure capable of sorting all segments, from any point of view, at the cost of only three comparison.\\
 \rawdrawing{doom_map_split4}
 \par
 This is only one of the many possible trees which could have been generated with the map. Choosing splitters in an alphabetical order would have produced an inefficient BSP.\\
@@ -134,9 +134,9 @@ This is only one of the many possible trees which could have been generated with
 \centering
 \includegraphics[width=.5\textwidth]{drawings/doom_map_walk.pdf}
 \end{wrapfigure}
-To use the BSP, we only need to traverse it depth first and choose a branch based on a position on the map. Let's take two example using the BSP in figure \ref{doom_map_split3}. For convenience of notation, sub-sectors have been labeled \cw{1} to \cw{4} and only the splitting lines are marked.\\
+To use the BSP, we only need to traverse it depth first and choose a branch based on a position on the map. Let's take two example using the BSP in figure \ref{doom_map_split3} on page \pageref{doom_map_split3}. For convenience of notation, sub-sectors have been labeled \cw{1} to \cw{4} and only the splitting lines are marked.\\
 \par
-From point of view \circled{\cw{P1}}, traversing the BSP takes three tests. \cw{P1} is on the right of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. Which give the front to back order: \cw{1,2,3,4}. Notice that it doesn't matter what order segments within a subsector are drawn since all subsectors are convex.\\
+From point of view \circled{\cw{P1}}, traversing the BSP takes three tests. \cw{P1} is on the right\footnote{On the drawing it is on the left but remember that spliting plans have direction (shown via an arrow head). If your turns the page upside down, sub-sector \cw{1} indeed is on the right of \cw{H}} of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. Which give the front to back order: \cw{1,2,3,4}. Notice that it doesn't matter what order segments within a subsector are drawn since all subsectors are convex.\\
 \par
 From point of view \circled{\cw{P2}}, traversing the BSP also takes three tests. \cw{P2} is on the left of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. Which give the order near to far: \cw{3,2,4,1}.\\
 \par
@@ -172,8 +172,8 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 \par
 
 
-To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plan with a parametric equation $$ P = P0 + t * (P1 - P0) $$
-and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point on a line perpendicular to the plan. The sign of the result tell if the point is in front or in the back of the plan.\\
+To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane with a parametric equation $$ P = P0 + t * (P1 - P0) $$
+and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point on a line perpendicular to the plane. The sign of the result tell if the point is in front or in the back of the plane.\\
 \par
 This technique is far from optimal since it requires either floating point or fixed point arithmetic. There is a better way which involves not the magic of the dot product but the awesomeness of the cross product.\\
 \par
@@ -213,7 +213,7 @@ At this point the engine has calculated the screen space \cw{X} coordinates of b
 
 
 \subsubsection{Wall Clipping}
-Here the code branch depending on two types of segments which can be encountered in a subsector. There are segments with only one side (connected with only one sector) which are opaque and have only a "middle texture". I call these "walls". There are segments with two sides (connecting two sectors) which are often transparent with no middle texture but with an "upper texture" and a "lower texture". I call these "portals".\\
+Here the code branchs depending on the two types of segments that can be encountered in a subsector. There are segments with only one side (connected with only one sector) which are opaque and have only a "middle texture". I call these "walls". There are segments with two sides (connecting two sectors) which are often transparent with no middle texture but with an "upper texture" and a "lower texture". I call these "portals".\\
 \par
 Clipping is a two steps process happening in screen space. The first, crude, step is horizontally based. Only walls affects the horizontal occlusion array but all segments are clipped against it.\\
 \par
@@ -297,7 +297,7 @@ The third wall (\cw{C}) is rendered. It happens to lie just next to the second w
 \par
 
 
-Finally the last wall (\cw{D}) is rendered. While occluded against the array, it is slipt into two fragments. The occlusion array is updated. All segment ended up touching each others. 
+Finally the last wall (\cw{D}) is rendered. While occluded against the array, it is split into two fragments. The occlusion array is updated. All segment ended up touching each others. 
 \begin{minipage}{0.54\textwidth}
 \vspace*{2.5mm}
 \ccode{clip4.c}
@@ -363,9 +363,9 @@ To render the flats, the engine uses a database generated while walls and portal
 \par
 \ccode{visplanes.c}\\
 \par
-The concept of visplane is the most difficult aspect of \doom{} to understand. The comments in the source code manifest of their esoteric nature and also attests that even people closely related to id Software did not fully grasp what they were.\\
+The concept of visplane is the most difficult aspect of \doom{} to understand. The comments in the source code manifest their esoteric nature and also attest that even people closely related to id Software did not fully grasp what they were.\\
 \par
-A visplan describes a screen space area representing either a ceiling or a floor. It has a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.
+A visplane describes a screen space area representing either a ceiling or a floor. It has a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two array as wide as the screen. Areas are represented as a set of column with one column possible per \cw{X} coordinate.
 \par
 
 
@@ -401,7 +401,7 @@ Wall \cw{E} is an other new case. The gap above and below are not between a wall
 \par
 Portal \cw{F} is yet an other special case. Since from this point of view it is connecting to a sector with higher ceiling, connecting to a sector with lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{9} and  \cw{10}.\\
 \par
-Fron this point on, this is the same process over and over again. Wall \cw{G} rendering generates visplanes \cw{11} and  \cw{12} and Wall \cw{H} rendering generates visplanes \cw{13} and  \cw{14}.\\
+From this point on, this is the same process over and over again. Wall \cw{G} rendering generates visplanes \cw{11} and  \cw{12} and Wall \cw{H} rendering generates visplanes \cw{13} and  \cw{14}.\\
 \par
 The visplane generation algorithm is quite simple. However it generates many visplanes and therefore consumes a lot of RAM. To address this issue, \doom{} merges visplanes.
 
@@ -542,7 +542,7 @@ $$   color = lightmapId[textureTexel] $$
 \par
  To reduce lightmap arithmetics, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flat are drawn as lines. Lightmap calculation are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
  \par
- Walls lightmap selection is twicked a little bit based on their world space orientation. Vertical walls ligthmap selection is lowered by one unit, making them brighter. Horizontal wall lightmaps selection is increased by one unit, making them darker. Diagonal walls lightmap selection remains unaffected.\\
+ Walls lightmap selection is tweaked a little bit based on their world space orientation. Vertical walls ligthmap selection is lowered by one unit, making them brighter. Horizontal wall lightmaps selection is increased by one unit, making them darker. Diagonal walls lightmap selection remains unaffected.\\
 \pagebreak
 
 
@@ -696,7 +696,7 @@ It is likely this feature was inspired to John Carmack when he visited Alaska Ai
 % \trivia{Player has gloves when handling most weapons but he takes them off when using the point american.}\\
 
 \subsection{Picture format}
-Sprites are written one vertical column at a time but they are stored in a way to cuddle the i486 cachelines during read operations. Each sprite is stored in its own lump and consist in a collection of line describing the vertical column in the sprite (in essence, sprites a stored rotated 90 degrees counterclockwise).\\
+Sprites are written one vertical column at a time but they are stored in a way to cuddle the i486 cachelines during read operations. Each sprite is stored in its own lump and consist of a collection of lines describing the vertical column in the sprite (in essence, sprites a stored rotated 90 degrees counterclockwise).\\
 \par
 Each column (also called "post" in the code) is a set of "spans" with one byte giving the vertical offset where the span starts, then one byte giving the size of the payload and finally the texel payload.
 \pagebreak

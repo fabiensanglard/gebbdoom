@@ -1,10 +1,10 @@
 \section{Audio System}
 \label{dmx_section}
-Like every other I/O systems in the engine, the audio is abstracted behind an interface. To fulfill \doom's core expectations such a system has to implement not less than twenty functions covering SFX, Music, and also Timer. Here are a few.\\
+Like every other I/O system in the engine, the audio is abstracted behind an interface. To fulfill \doom's core expectations such a system has to implement at least than twenty functions covering SFX, Music, and also the Timer. Here are a few.\\
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.6}  L{1.4}}
+\begin{tabularx}{\textwidth}{ L{0.57}  L{1.43}}
   \toprule
   \textbf{Method} &  \textbf{Usage}\\
 
@@ -15,9 +15,9 @@ Like every other I/O systems in the engine, the audio is abstracted behind an in
    
 I\_RegisterSong & Upload a music lump and get back an ID.\\
 I\_SetMusicVolume & Self explanatory.\\
-I\_PlaySong & Hm.\\
-I\_PauseSong & Yea.\\
-I\_ResumeSong & Maybe...\\
+I\_PlaySong & Play Song\\
+I\_PauseSong & ...hm, Pause Song\\
+I\_ResumeSong & Mysterious function with unknown effects.\\
 I\_StopSong & Maybe this array was not a good idea after all.\\
 I\_UnRegisterSong & Free music using ID obtained in \cw{I\_RegisterSong}.\\
 
@@ -26,7 +26,7 @@ I\_UnRegisterSong & Free music using ID obtained in \cw{I\_RegisterSong}.\\
 
   \toprule 
 I\_GetSfxLumpNum & Upload audio sample from WAD and return an ID.\\
-I\_SetSfxVolume & Self explanatory.\\
+I\_SetSfxVolume & If you read this, you are a real human being and a real hero.\\
 I\_StartSound & Start playing SFX sample.\\
 I\_StopSound & Stop playing SFX sample and free it.\\
 I\_SoundIsPlaying & Test if SFX is playing.\\
@@ -35,7 +35,7 @@ I\_UpdateSoundParams & Set pitch, left/right position and volume.\\
   \toprule 
   
 I\_StartupTimer & On DOS triggers audio system to hook into the Intel 8259 PIC. No-op on other platforms.\\
-I\_ShutdownTimer & On DOS remove the hook.  No-op on other platforms.\\
+I\_ShutdownTimer & On DOS remove the hook.  No effect on other platforms.\\
 
    \toprule
 \end{tabularx}
@@ -44,9 +44,9 @@ I\_ShutdownTimer & On DOS remove the hook.  No-op on other platforms.\\
 
 
 
-On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and musics. The difficulty of the task was the fragmentation of the sound card market which had increased exponentially since Wolfenstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, kirks and technologies.\\
+On NextStep this system was never a problem since only the timer function had to be implemented. On the PC side however the game engine had to have sound effects and music. One difficulty was the fragmentation of the sound card market which had increased exponentially since Wolfenstein 3D. The previous title required tremendous effort to support four sound sources. Two years later there were more than fifteen chips available, all with different types of bugs, quirks and technologies.\\
 \par
-To make things worse, the departure of Jason Blochowiak had left id Software with both a shortage of expertise and enthusiasm toward audio. They solved the problem by throwing money at it and licensed DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.
+To make things worse, the departure of Jason Blochowiak had left id Software with both a shortage of expertise and enthusiasm toward audio. They solved the problem by throwing money at it and licensed the DMX library. For the price of its license, the library authored by Paul J. Radek offered an all-in-one audio solution. With support for all major sound cards, convenient means to detect them, support of many sound and music formats, and an easy way to integrate with any game engine, DMX was a perfect fit which undoubtedly saved id several months of development.
 
 
 
@@ -60,11 +60,11 @@ With DMX backing the sound system, ten audio chipsets were supported.\\
 \par
 \ccode{cardenum_t.c}\\
 \par
-Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simultaneously. An attentive reader will have noticed the hardware section mentioning two chipsets i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: TIC). Together they can be setup to interrupt the engine execution and call into DMX routine\footnote{The way PIC and TIC interact is extensively detailed in "Game Engine Black Book: Wolfesntein 3D".}.\\
+Running on an operating system supporting neither threads nor processes, there was seemingly not way to generate both the video and the audio output simultaneously. An attentive reader will have noticed the hardware section mentioning two chipsets i8259 (Programmable Interrupt Controller: PIC) and i8254 a (Programmable Interval Timers: PIT). Together they can be set up to interrupt the engine execution and call into DMX routine\footnote{The way PIC and PIT interact is extensively detailed in "Game Engine Black Book: Wolfesntein 3D".}.\\
 \par
-Upon initialization, DMX installs itself as a TSR via the PIC and the TIC in order to be called at 140Hz. Upon awakening the TSR takes care of feeding the audio device with music and sound effect data which had been provided by the engine.\\
+Upon initialization, DMX installs itself as an interrupt handler via the PIC and the PIT in order to be called at 140Hz. Upon awakening DMX interrupt handler takes care of feeding the audio device with music and sound effect data provided by the engine.\\
 \par
- Since the were no other accurate source of time on the machine, DMX was also in charge of generating the heartbeat via a variable counter called \cw{ticcount}.
+ Since the was no other "high precision" timer on the machine, DMX was also in charge of generating the game's heartbeat via a variable counter called \cw{ticcount}.
 \par
 
 
@@ -74,17 +74,17 @@ With such an architecture there are two systems executing pseudo-concurrently bu
  This explains why audio assets allocation get a special treatment in the zone allocator. The audio system has no time to recover from a memory miss (nor could it since it has no access to the wad or memory allocator). Audio data must be ready at all time it is needed.
 
 \subsubsection{Audio Data: Formats and Lumps}
-The wad archive contains hundreds of lumps of five type to feed to DMX. \cw{DP*} lumps are for PC Speaker Sound Effects, \cw{DS*} lumps are for PCM Sound Effects, \cw{D\_*} lumps are for musics. There is also on \cw{GENMIDI} lump, and one \cw{DMXGUS} lump detailed later.\\
+The wad archive contains hundreds of lumps of five types to feed to DMX. \cw{DP*} lumps are for PC Speaker Sound Effects, \cw{DS*} lumps are for PCM Sound Effects, \cw{D\_*} lumps are for musics. There is also a \cw{GENMIDI} lump, and one \cw{DMXGUS} lump detailed later.\\
 \par
-PC Speaker audio was meant for PC equipped with no sound card. The PC Speaker was a beeper capable of square waves and meant to emit boot up diagnostic noises. There were ways to make it generate something less irritating by changing the square frequency every 1/140th of a second\footnote{PC Speaker are detailed in "Game Engine Black Book: Wolfenstein 3D".}. The data rate is one byte per 1/140th of a second, describing what square frequency to hold.\\
+PC Speaker audio was meant for PCs without a sound card. The PC Speaker was capable of square waves and meant to emit boot-up diagnostic noises. \doom{} found ways to make it generate something less irritating by changing the square frequency every 1/140th of a second\footnote{PC Speaker are detailed in "Game Engine Black Book: Wolfenstein 3D".}. The data rate is one byte per 1/140th of a second, describing what square-wave frequency to set.\\
 \par
- Digitized audio sample are 8-bit, 11025 Hz, mono PCM stream. PCM is a simple audio format which requires little explanation. Each byte entry describes where the speaker cone should be in the speaker, the sound card simply translate the byte into a voltage to the magnet driving the cone position 11025 times per second.\\
+ Digitized audio samples used in \doom{} are 8-bit, 11025 Hz, mono PCM streams. PCM is a simple audio format which requires little explanation. Each byte in the stream is a moment in time that describes the amplitude of a waveform and indicates where the speaker cone should be positioned. The sound card simply translates the byte into a voltage to the magnet driving the cone position, which happens at a rate of 11025 times per second.\\
 \par
-Music are stored in \cw{MUS}, a format similar to standard MIDI only slightly more compact. The format allows eight channels for instruments and a ninth one for the drums. The MUS format describes for each channel, a series of precisely timed events at which an instrument should play a note and what pitch to use. Note that MUS only describe what to do and when, not how to do it. Each channels refers to the note of an instrument which is described elsewhere in something known as "instrument bank".\\
+Music data was stored in \cw{MUS}, a format similar to standard MIDI only slightly more compact. The format allows eight channels for instruments and a ninth one for the drums. The MUS format describes, for each channel, a series of precisely timed events that specify which instrument should play a note and at what pitch. Note that MUS only describes what to do and when, not how to do it. Each channel refers to the note of an instrument , the latter of is described elsewhere in a data structure known as the "instrument bank".\\
 \par
-The instrument bank is stored in the \cw{GENMIDI} lump. It is aimed at SoundBlaster compatible sound cards based on an OPL2 chip synthesizing music with Frequency Modulation. The lump describes how to play the note of each instruments in the MIDI repertoire. There are 175 entries in \cw{GENMIDI}, one for each of the 128 standard General MIDI instruments and 47 percussion effects. Each entries describes how to setup a channel in order to emulate an instrument. A channel is made of two cells, where one cell is used as carrier and the other as modulator. For each cell, attack, decay, sustain, release, harmonic, and waveforms can be selected by the musician\footnote{Source: "The dark and forgotten art of GENMIDI" }. Instrument banks were 90s musician "secret sauce" and \doom's were famous for being excellent.\\
+The instrument bank is stored in the \cw{GENMIDI} lump. It is aimed at SoundBlaster compatible sound cards based on an OPL2 chip synthesizing music with Frequency Modulation. The lump describes how to play the note of each instruments in the MIDI repertoire. There are 175 entries in \cw{GENMIDI}, one for each of the 128 standard General MIDI instruments and 47 percussion effects. Each entries describes how to setup a channel in order to emulate an instrument. A channel is made of two cells, where one cell is used as carrier and the other as modulator. For each cell, attack, decay, sustain, release, harmonic, and waveforms can be selected by the musician\footnote{Source: "The dark and forgotten art of GENMIDI" }. Instrument banks were 90s musician's "secret sauce" and \doom's were famous for being excellent.\\
 \par
-The \cw{DMXGUS} lump fulfill the same goal as \cw{GENMIDI} but for the Gravis Ultrasound card. It enable to play MUS music notes, not with an FM synthesizer but with the PCM samples provided with GUS drivers. It is a simple lump mapping MIDI instruments to GUS instruments with special rules for RAM allocation depending on the amount of RAM installed on the board (256KiB, 512KiB, 768KiB, and 1024KiB).\pagebreak
+The \cw{DMXGUS} lump fulfilled the same goal as \cw{GENMIDI} but for the Gravis Ultrasound card. It enabled the GUS to play MUS music notes, not with an FM synthesizer but with the PCM samples provided with GUS drivers. It is a simple lump mapping MIDI instruments to GUS instruments with special rules for RAM allocation depending on the amount of RAM installed on the board (256KiB, 512KiB, 768KiB, and 1024KiB).\pagebreak
 
 
 
@@ -146,7 +146,7 @@ Additionally, one can still find archived usenet posts from \cw{alt.games.doom} 
 
 
 \section{Sound Propagation}
-How well enemies react to sounds makes a tremendous on how smart the A.I is perceived. id Software made sure sound propagation was realistic. When a shot is fired in a sector, a flood fill algorithm propagates the noise.\\
+How well enemies react to sounds makes a tremendous impact on how smart the A.I is perceived. id Software made sure sound propagation was realistic. When a shot is fired in a sector, a flood fill algorithm propagates the noise.\\
 \par
 \ccode{P_RecursiveSound.c}\\
 
@@ -167,7 +167,7 @@ Map designers wanted to have sneaky monsters whom could hide and wait to jump on
 \subsubsection{Super Ambushing}
 Sound propagation was used in a inventive way for map E1M9 super ambush.  The designers wanted the player to be swarmed with monsters teleporting, seemingly from an hellish dimension, as soon as doomguy walked through the center of a pentagram.\\
 \par
- But without a scripting language available that was next to impossible to do since, as we will see in the A.I section, monsters are state machine able to only three things: Stay dormant, pursue a target, and when they bump into walls and things, change direction.\\
+ But without a scripting language available that was next to impossible to do since, as we will see in the A.I section, monsters are state machines able to do only three things: Stay dormant, pursue a target, and when they bump into walls and things, change direction.\\
 \par
 \begin{wrapfigure}[24]{r}{0.52\textwidth}
 \centering
@@ -193,7 +193,7 @@ As soon as the player walked on the trigger in the "star" room, the walls around
 
 
 
-John Romero himself described how they called these sound conduit, "pipes".\\
+John Romero himself described how they called these sound conduits, "pipes".\\
 \par
 \fq{We used sound zones in Wolfenstein 3D as another way to alert enemies to your presence. In DOOM, we did the same thing but used sectors as the conduits of audio travel. This was a really important part of making the game scary, as sound could leak all over the place and alert demons. You might see lots of little sector pipes that connect sectors together just to alert monsters-sectors that you'd never see because we put them way up high in the corner of a room. So, we paid a lot of attention to the sound flooding.}{John Romero, p29 in Scarydarkfast}\\
 \par

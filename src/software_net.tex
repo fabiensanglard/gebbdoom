@@ -2,7 +2,7 @@
 
 
 
-If the 3D renderer was breathtaking, it was the networking capability and its famous deathmatchs which really took \doom{} to a new level. The ability to connect two PCs and interact with human players was something completely new back then. Early one during development it was apparent this aspect of the game was going to be amazing.\\
+While the 3D renderer was breathtaking, it was the networking capability and its famous deathmatchs which really took \doom{} to a new level. The ability to connect two PCs and interact with human players was something completely new back then. Early one during development it was apparent this aspect of the game was going to be amazing.\\
 \par
 \fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
 \par
@@ -58,9 +58,9 @@ With the proliferation of networking medium, the embedded IPX support started to
 
 
 \subsection{PC Network drivers}
-In this model, the game engine deals with a datastructure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared memory. Receiving or emitting packet is done via interrupts. How this all worked together is a magnificent hack like only an unprotected OS allowed.\\
+In this model, the game engine deals with a datastructure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared\footnote{Everything is shared on DOS. "shared" means it is accessed by two running programs.} memory. Receiving or emitting packet is done via interrupts. How this all worked together is a magnificent hack like only an unprotected OS allowed.\\
 \par
-The driver must start first and install itself as a tiny TSR interrupt handler in RAM. The driver then start \cw{DOOM.EXE} with a special parameter \cw{-net X} where X is the address of the TSR \cw{doomcom\_t} variable. The engine literaly did a \cw{(doomcom\_t*)(atoi(param))} to access the structure fields.\\
+A "loader" start first and install itself as an interrupt handler. It then starts \cw{DOOM.EXE} with a special parameter \cw{-net X} where X is the RAM address of the loader's \cw{doomcom\_t} variable. The engine literally cast the parameter to an address \cw{(doomcom\_t*)(atoi(param))} to access the structure fields. From there the interrupt handler acts as a network driver.\\
 \par
 
 \fakedosoutput{doomnet.c}
@@ -69,15 +69,19 @@ The driver must start first and install itself as a tiny TSR interrupt handler i
 \par
 \drawing{net_drivers}{}
 \par
-\circled{1} \cw{IPXSERVER.EXE} starts, becomes a TSR and register itself in the software Interrupt Vector Table, \circled{2} \cw{IPXSERVER.EXE} start \cw{DOOM.EXE} and pass the address of its \cw{doomcom\_t} variable, \circled{3} \cw{DOOM.EXE} write/read in the \cw{doomcom\_t} \cw{payload} field and trigger transfer via interrupt number found in \cw{intnum} field, \circled{4} the \doom{} network driver communicate with the network card driver, \circled{5} the network card driver communicate with the actual network card.\\
-\par
-Two drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem.
+\vspace{-10pt}
+ Figure \ref{net_drivers} summarize all steps. \cw{IPXSERVER.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSERVER.EXE} starts \cw{DOOM.EXE} and pass the address of its \cw{doomcom\_t} variable as an integer (\circled{2}). Later, during gameplay (\circled{3}), \cw{DOOM.EXE} writes/reads the \cw{doomcom\_t} \cw{payload} field and triggers transfer via interrupt found in \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicates with the network card driver. The actual hardware interaction between the network card driver communicate and the actual network card happens in step \circled{5}.
+
+
+
+
+Two network drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem. A company called DWANGO provided their own driver (\cw{DWANGO.EXE}) to enable 2+ nodes over modem.
 
 
 
 
 
-
+\vspace{-5pt}
 \subsection{Implementation}
 To perform network I/O, the core only deals with three elements provided by the Network system.\\
 \par
@@ -93,22 +97,33 @@ To perform network I/O, the core only deals with three elements provided by the 
    I\_NetCmd & Signal network to send/receive data based on doomcom.\\
    \toprule
 \end{tabularx}
-\caption{\doom network system interface}
+\caption{\doom{} network system interface}
 \end{figure}
 
 
+\vspace{-10pt}
+On PC, in the case of a multi-player session, the network initialization simply retrieve the address of the interrupt handler. Notice the, nowadays "cavalier", \cw{atoi} casted to pointer in the last line.\\
+\par
 
-On PC, in the case of a multi-player session, the network initialization simply retrieve the address of the TSR.\\
-\par
-\ccode{I_InitNetwork.c}\\
-\par
-With access to the \cw{doomcom} variable, come access to the field \cw{intnum} which is the software interrupt the network TSR registered itself with. Raising this interrupt will halt \doom{} to let the network driver copy network data in or out of \cw{doomcom}.\\
+\ccode{I_InitNetwork.c}
+
+
+
+
+
+
+
+
+
+
+With access to the \cw{doomcom} variable, come access to the field \cw{intnum} which is the software interrupt the \doom{} network driver registered itself with. When called (via \cw{int} instruction), it interrupts \doom{} to let the card network driver copy network data in or out of \cw{doomcom}.\\
 
 
 
 \ccode{doomcom_t.c} \label{doomcom_t.c} \\
 \par
-The fields are self explanatory but notice \cw{command} which indicate the driver if data should be read or sent. Notice field \cw{id} which allows \doom{} to verify the address alleged to be a TSR was correct. Notice the \cw{ticcmd\_t} payload which was already studied in the input system on page \pageref{cmd_t_type}.
+\vspace{-10pt}
+The fields are self explanatory but notice \cw{command} which tells the driver if data should be read or sent. The \cw{id} field allows \doom{} to verify the address alleged to be a valid network driver. The \cw{ticcmd\_t} payload was described on page \pageref{cmd_t_type}.
 
 
 
@@ -122,7 +137,7 @@ The impossibility for the engine to extrapolate and carry on with gameplay was a
 
 
 
-There is not expectation the medium will guarantee packet delivery so the engine features a negative acknowledgment where packet sequential number is tracked on a per peer (a.k.a node) basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node cannot discard commands once they were sent on the wire.\\
+There is no expectation the medium will guarantee packet delivery so the engine features a negative acknowledgment where packet sequential number is tracked on a per peer (a.k.a node) basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node cannot discard commands once they were sent on the wire.\\
 \par
 This resent mechanism was a last resort to be avoided at all cost. To this effect, packets feature not only the current command but also the last command (field \cw{extratics} is marked as true).\\
 

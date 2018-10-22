@@ -25,7 +25,7 @@ The first value, \cw{gameticks}, is the number of game tic rendered. For \cw{dem
  \par
 In the previous example\footnote{Benchmark machine was a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424).}, the game ran at an average of $\frac{2134}{4268}*35 = 17.5$ fps. \\
 \par
-This mechanism allowed to run benchmark across varying configurations. Since machines from 1994 have become difficult to come around these days, a generous collector named Foone Turing kindly volunteered his impressive fleet of machines. The results of the archeolog-benchmarking session are visible in figure \ref{bnechmarsks}.\\
+This mechanism allowed to run benchmark across varying configurations. Since machines from 1994 have become difficult to come by these days, a generous collector named Foone Turing kindly volunteered his impressive fleet of machines. The results of the archeolog-benchmarking session are visible in figure \ref{bnechmarsks}.\\
 \par
  The result of the benchmarking session demonstrated that none of the hardware of the time was able to max out the game. Remember that beyond 35fps there would be no visual improvement since the game logic is hardcoded at 35Hz. A machine able to render 70fps video/audio would render the same game frame twice.\\
 \par
@@ -94,7 +94,7 @@ On DOS generating a flamegraph is slightly more difficult since it is a mono-thr
 \par
 The result is not exactly the same as the NeXT. The sound routine in charge of updating the audio data (\cw{S\_UpdateSounds}) is barely visible in red. It makes sense since the only work to do is to retrieve sfx and music data from the \cw{.wad} and place it in the RAM for the audio card to use.\\
 \par
- Something weirder is to notice that \cw{I\_FinishUpdate} seems instantaneous. How can the DOS version transport a full framebuffer across the bus so fast? The answer is off course: It doesn't! This is because the DOS version was optimized.\\
+ Something weirder is to notice that \cw{I\_FinishUpdate} (the microscopic red column next to \cw{G\_Ticker}) seems instantaneous. How can the DOS version transport a full framebuffer across the bus so fast? The answer is off course: It doesn't! This is because the DOS version was optimized.\\
 \par
 
 
@@ -120,7 +120,7 @@ A more substantial optimization had to do with the layering. On DOS the rules se
 
 
 \subsubsection{Assembly Renderer Optimization}
-Not only \cw{R\_DrawColumn} and \cw{R\_DrawSpan} were given direct access to the VGA bank, they were hand optimized with gorgeous assembly using all the tricks in the book. Taking a look at \cw{R\_DrawColumn} from \cw{planar.asm} is eloquant. The function uses self-modifying code (see reserved \cw{12345678h} meant to contain scaling factor which is patched). We can also see the loop was unrolled to process two pixels at at time (and therefore avoid emptying the i486 prefetch queue because of the \cw{jnz} instruction). Notice the cool trick where register \cw{eax} is reused three times, once as a pointer to the texture source, then as a \cw{al} texel storage, then as \cw{al} translated texel (lightmapped) storage again. Overall this method yields an amortized 7 instructions per pixel for drawing column which is remarkable.\\
+Not only were \cw{R\_DrawColumn} and \cw{R\_DrawSpan} given direct access to the VGA bank, they were hand optimized with gorgeous assembly using all the tricks in the book. Taking a look at \cw{R\_DrawColumn} from \cw{planar.asm} is eloquant. The function uses self-modifying code (see reserved \cw{12345678h} meant to contain scaling factor which is patched). We can also see the loop was unrolled to process two pixels at at time (and therefore avoid emptying the i486 prefetch queue because of the \cw{jnz} instruction). Notice the cool trick where register \cw{eax} is reused three times, once as a pointer to the texture source, then as a \cw{al} texel storage, then as \cw{al} translated texel (lightmapped) storage again. Overall this method yields an amortized 7 instructions per pixel for drawing column which is remarkable.\\
 \par
 All together these three optimization improved performance by a substantial 15\%.
 
@@ -177,7 +177,7 @@ Using low details instead of high details yields a linear 2x performance improve
 \par
 Above the high resolution is 320x168. Below, in low resolution, it is dropped to 160x168 with uneven columns duplicated. The resolution drop is particularly noticeable on the non-magnified sergeant and the door but only because diminished lightning and CRT scaling had been disabled for demonstration purposes. In practice the difference was subtle.\\
 \par
-With direct access to the VGA banks, low is completely free optimization without need to write twice the same pixel since the vga mask is setup to write the same pixel in two banks.\\
+With direct access to the VGA banks, low is a completely free optimization without the need to write the same pixel column twice, since the vga mask is set up to write the same pixel in two banks.\\
 \par
 \fullimage{low_res.png}\\
 

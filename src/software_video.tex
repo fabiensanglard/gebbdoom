@@ -1,5 +1,5 @@
 \section{Video Manager}
-Before continuing our trip down the code and look at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphic stack where each frame are stored and manipulated. The video system is located in the core. It maintains and expose two data structures. A set of five framebuffers, and one dirtybox. All write operations update the framebuffers and the box.\\
+Before continuing our trip down the code and look at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphic stack where each frame are stored and manipulated. The video system is located in the core. It maintains and expose two data structures. A set of five framebuffers, and one dirtybox (most commonly known as the "dirty rectanges" technique). All write operations update the framebuffers and the box.\\
 \par
 \cccode{kernel_renderer.c}{Five framebuffers.}
 \par
@@ -27,7 +27,7 @@ To host the framebuffer in the core and not in the video system itself was an au
  % The performance hit was not too back on VLB systems. If you refer back to the architecture on page \pageref{vlbarchitecture}, you will see that it allowed transfer of one framebuffer to the video system while the next frame was being generated in the cachelines. This parallel pipeline allowed the framerate to be 90\% of what it would have been with direct access to the VGA.\\
  \trivia{Because \doom{} renders a fullscreen on every frames, there is no need to "clear" the framebuffer like Wolfenstein 3D did. If we were to interrupt the engine during the rendition of a frame to peek inside framebuffer \#0, it would look like a composition of the previous frame and the unfinished new one.}\\
 \par
-
+\vspace{5pt}
 \drawing{renderer_full_pipeline}{}
 \pagebreak
 %\par

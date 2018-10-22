@@ -10,7 +10,7 @@ Let's dive into the step machine descriptor text file right away and take a look
 
 \tcode{imp_state.txt}
 
-There are four sections. Properties such as DoomED \cw{id}, \cw{speed}, \cw{heigh}, \cw{radius}. State names for state machine targets. Sound strings. And finally the huge Action definition.
+There are four sections. Properties such as DoomED \cw{id}, \cw{speed}, \cw{height}, \cw{radius}. State names for state machine targets. Sound strings. And finally the huge Action definition.
 
 
 
@@ -126,7 +126,7 @@ To solve this problem, an other datastructre was introduced with \cw{doombsp}. F
 % Regardless of the monsters, the base state machine looks like this but it tuned based on custom functions called in some states (e.g: \cw{A\_SpidRefire}, \cw{A\_CyberAttack}, and \cw{A\_BrainExplode}).\\
 % \par
 % \pngdrawing{automate}{}
-Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster I.A seeking for the player since the later is in sector one. All four others monsters are "rejected" until the player most inside sector three. The table is only used for sight. Monsters will still hear the player (sound is cheaper to propagate).\\
+Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster I.A seeking for the player since the later is in sector \circled{1}. All four others monsters are "rejected" until the player most inside sector \circled{3}. The table is only used for sight. Monsters will still hear the player since sound is cheaper to propagate.\\
 \par
 \trivia{With "unlimited" CPU power, modern Node Builder don't build \cw{REJECT} anymore.}
 
@@ -136,7 +136,7 @@ Figure \ref{reject_explained} features three sectors with five monsters and one 
 
 
 \section{Map Intelligence}
-Despite lacking a scripting system, maps still managed to offer a rich experience. They were full of surprises with numerous elements interacting with the player. Switches and trip wire enabled door, secret passages, elevators, crushing walls, traps and many others.\\
+Despite lacking a scripting system, maps still managed to offer a rich experience. They were full of surprises with numerous elements interacting with the player. Switches and tripwire-enabled doors, secret passages, elevators, crushing walls, traps and many others.\\
 \par
 \pngdrawing{tripwire}{E1M1 features no less than XX special lines}
 \par
@@ -146,7 +146,7 @@ The list of types of actions is impressive, there are more than 130 of them. Ope
 \par
 The tag designating the target is any number picked by the designed. Any lines the designer wants to be targeted by this action is tagged with the same number. With this system, a line can trigger only one action but target several sectors.\\
 \par
-\trivia{No doubt the countless hours the team spent playing Dongons \& Dragons came handy when it came to design \doom's mazes.}
+\trivia{No doubt the countless hours the team spent playing Dungeons \& Dragons came handy when it came to design \doom's mazes.}
 \pagebreak
 
 
@@ -158,7 +158,7 @@ The tag designating the target is any number picked by the designed. Any lines t
 \centering
 \includegraphics[width=.5\textwidth]{drawings/E1M3_trap.pdf}
 \end{wrapfigure}
-Who doesn't recognize E1M3 hunt for the blue key on page \pageref{e1m3_trap}. After traversing the whole map, it is finally there enlighted on a pedestral. Guarded by only two low levels opponents which are easily dispatched.\\
+Who doesn't recognize E1M3 hunt for the blue key on page \pageref{e1m3_trap}. After traversing the whole map, it is finally there shining on a pedestral. Guarded by only two low levels opponents which are easily dispatched.\\
 \par
 But as soon as the player picks it up, all lights go off and the combined sound of a door opening and growling Imps leaves no doubt: It was trap doomguy just walked in and Imps are just behind him (page \pageref{e1m3_trap})!\\
 \par
@@ -172,15 +172,15 @@ To implement this effects, two set of lines were used. The first lines (in blue)
 \centering
 \includegraphics[width=.5\textwidth]{drawings/E1M3_sides2.pdf}
 \end{wrapfigure}
-An other interesting effect in E1M3 is the rising stair which leads to the small room containing the exit to level 4. It is implemented by having a line with special code "BuildStairs" (\#8) targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} which looks up the target sector via the tag then uses a flood fill algorithm.\\
+An other interesting effect in E1M3 is the rising stair which leads to the small room containing the exit to level 4. It is implemented by having a line with special code "BuildStairs" (\#8) targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} which looks up the target sector via the tag then uses a flood-fill algorithm.\\
 \par Adjacent sectors are repeatedly looked up and a little bit of height is added each iteration. To avoid raising the whole level, the algorithm stops flowing when the next sector texture is different from the last elevated sector which explains why the stairs are grey while bottom and top are blue and brown.\\
 \par
 Before and after screenshots can be seen on page \pageref{stairs}.
 
-
+\label{e1m3_trap}
 \fullimage{Doom-E1M3-Ingame2.png}\\
 
-Finally, the blue key (above)! Nooo, it's a TRAP (below)!\label{e1m3_trap}
+Finally, the blue key (above)! Nooo, it's a TRAP (below)!
 
 \vspace{2mm}
 \fullimage{Doom-E1M3-Ingame3.png}
@@ -229,7 +229,7 @@ Most of the meat is in the 3D gameplay (\cw{P\_Ticker}) function.\\
 
 \ccode{thinker_t.c}\\
 \par
-C has no OPP capabilities yet the engine managed to implement a polymorphism system. Semantically, \cw{think\_t} are stored in the linked list element (\cw{thinker\_t}) with no space for the payload. \\%But since all thinkers start with a function pointer, the engine stores the function pointer and the data parameter payload with a single pointer. \\
+C has no OOP capabilities yet the engine managed to implement a polymorphism system. Semantically, \cw{think\_t} are stored in the linked list element (\cw{thinker\_t}) with no space for the payload. \\%But since all thinkers start with a function pointer, the engine stores the function pointer and the data parameter payload with a single pointer. \\
 \par
 \ccode{floormove_t.c}\\
 \par

@@ -1,11 +1,11 @@
 \section{Architecture}
 Before diving into the code and its structure, let's take the time to understand how id developers worked. Before \doom, all work was done on a PC. Code was written, compiled, and the resulting executable started on the same machine. With the introduction of \NeXT workstations in the toolchain, the process had to be different.\\
 \par
-A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence.}.\\
+A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developer never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence (source: correspondance with John Carmack).}.\\
 \par
 Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair to the PC where the \NeXT workstation hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time, using \cw{WATCOM.EXE}, and \cw{WLINK.EXE} linker which generated \cw{DOOM.EXE}. \\
 \par
- In this setup the PC was relegated to "only" running the game and assessing performances. The PC hard-drive was actually used only to boot the machine and host \cw{WATCOM} compiler. Everything else including \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
+ In this setup the PC was relegated to "only" running the game and assessing performance. The PC hard-drive was actually used only to boot the machine and host \cw{WATCOM} compiler. Everything else including \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
 \par
 There were significant obstacle to this methodology. First of all, DOS programs had direct access to the hardware whereas NeXT process had to use "official" APIs. Second and perhaps most importantly, the two machines had different endianness. PCs ran on Intel CPUs which were little-endian whereas \NeXT were using Motorola 68040 CPU which were big-endian.\\
 \vspace{2mm}
@@ -35,22 +35,21 @@ At the game engine level, the problem was solved via a layer of indirection with
 \par
 \ccode{LongSwap.c}
 \par
-Even though \doom{} was written first on a \NeXT, the platform intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros were no-op operations on consumer Intel based hardware.\\
+Even though \doom{} was written first on a \NeXT, the platform intentionally placed itself at a disadvantage. Because players would use MS-DOS, data was stored in little-endian so \cw{LONG} and \cw{SHORT} macros translated in zero instructions on consumer Intel based hardware.
 
-\par
 
 \subsection{Solving APIs}
 Accommodating the needs of running on different architecture was more challenging. The solution was to have a common "core" which was platform agnostic. To perform I/O, the core would tap into sub-systems specific to the platform they targeted.\\
 \par
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{drawings/doom_arch.pdf}
+\includegraphics[width=.6\textwidth]{drawings/doom_arch.pdf}
 \caption{\doom Core and its I/O platform-dependent systems.}
 \end{figure}
 \par
 In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSWindow} API on \NeXT. A naive implementation would have required a function pointer acting as a layer of indirection to dispatch each I/O call. A better solution leveraged C's linking step.\\
 \par
- While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} have been transformed into object (\cw{.o}) files. Object files may be calling each others but because they were created independently, they have "holes" called "Unresolved Symbols".\\
+ While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} have been transformed into object (\cw{.o}) files. Object files may call each others but because they were created independently, they have "holes" called "Unresolved Symbols".\\
 \par
  To generate an executable, all objects are given to a linker which will recognize Unresolved Symbols from all objects and patches all holes.\\
  \par
@@ -83,11 +82,11 @@ In white, the core components. In grey the I/O system which require platform spe
 \vspace{-4mm}
 \trivia{A full DOS build took an average of 3m19s. Linking alone took 19 seconds. Even incremental build were time consuming (e.g: change \cw{r\_sky.c} = 27s).}\\
 \par
-\trivia{Notice the prefixed file name. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.}\\
+Notice the prefixed file name in figure \ref{doom_code_arch}. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.\\
 
 The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the core and the platform specific code needs not to be touched anymore.\\
 \par
-\trivia{Because portability was not an afterthought but an integral part of the development process, \doom{} code layering is never violated. This rigorous design explains partly why \doom{} has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.}\\
+Because portability was not an afterthought but an integral part of the development process, \doom{} code layering is never violated. This rigorous design explains partly why \doom{} has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.\\
 
 \section{Diving In!}
 Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
@@ -198,17 +197,17 @@ The game simulation happens in \cw{TryRunTics} and uses fixed time steps. The bo
 \ccode{TryRunTics.c}\label{TryRunTics.c}\\
 \par
 \doom's unit of time is the \cw{tic}. There are 35 tics in a second (which means a tic is 28ms) and 
-\cw{Get\_Time} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculate how many tics have elapsed and advance the simulation by that amount. Only fully elapsed tics are simulated. The value of 35 was not random, it is half the frequency of the VGA adapter. Once the game state has been updated, video and audio are generated.\\
+\cw{Get\_Time} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculate how many tics have elapsed and advance the simulation by that amount. Only fully elapsed tics are simulated. The value of 35 was not random, it is half the frequency of the VGA mode-Y. Once the game state has been updated, video and audio are generated.\\
 \par
 \drawing{fixed}{}
 \par
-This design choice would end up being controversial. One one side it solved the issue of recording a game session and being able to playback on any machine without desync. It also enabled network play and multiscreen play. On the other side, it meant that no matter how fast the renderer could run, the game would only update at 35Hz which would cap the next generation of PCs based on Pentium CPUs.\\
+This design choice would end up being controversial. One one side it solved the issue of recording a game session and being able to playback on any machine without desync. It also enabled network play and multiscreen play. On the other side, it meant that no matter how fast the renderer could run, the game would only update at 35Hz which would cap the visible framerate on the next generation of PCs based on Pentium CPUs.\\
 \par
 
 
 
 \section{Game Thread/Sound Thread}
-MS-DOS did not support process or thread yet video and audio had to happen in parallel. To make this happen, the audio system is based on interrupts generated at a regular interval. This is explained in detail in the audio section on page \pageref{dmx_section}.\\
+MS-DOS did not support processes or threads yet video and audio had to happen in parallel. To make this happen, the audio system is based on interrupts generated at a regular interval. This is explained in detail in the audio section on page \pageref{dmx_section}.\\
 \scaleddrawing{0.9}{three_systems}{}
 \trivia{To disable compiler optimizations, the variable written by the interrupt based sound system and read by \doom{} engine is declared \cw{volatile int ticcount}.}
 
@@ -229,12 +228,12 @@ Designers at Intel had designed their CPUs to manipulate two types of 32-bit int
  \caption{32-bit unsigned integer bit values} 
 \end{figure}
 \par
-Signed integer, using two complement where all bits represent a positive value except for the last one which is negative value. Signed integers are able to represent values from $-2^{31}$ to $2^{31}-1$ yeilding a decimal range of [-2,147,483,648 to 2,147,483,647].\\
+Signed integer, using two's complement where all bits represent a positive value except for the last one which is negative value. Signed integers are able to represent values from $-2^{31}$ to $2^{31}-1$ yeilding a decimal range of [-2,147,483,648 to 2,147,483,647].\\
 \par
 \begin{figure}[H]
  \centering
   \input{drawings/int.tex}
- \caption{32-bit signed two complement bit values} 
+ \caption{32-bit signed two's complement bit values} 
 \end{figure}
 \par
 
@@ -275,7 +274,7 @@ As an example, $0.5 + 3.75 = 4.25$ yields the correct result bitwise.\\
   \caption{Fixed Point representation of \cw{4.25}}
 \end{figure}
 \par
-Even trick bitwise operations such as fast divide/multiply with left shift ("\verb!<<!") and right shift ("\verb|>>|") work.\\
+Even bitwise operations such as fast divide/multiply with left shift ("\verb!<<!") and right shift ("\verb|>>|") work.\\
 \par
 \begin{figure}[H]
   \centering

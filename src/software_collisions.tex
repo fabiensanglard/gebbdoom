@@ -1,11 +1,11 @@
 \section{Collision Detection} \label{blockmapdetails}
 Collision is a significant part of the engine activity. Each moving object (player, monster, projectile) must check collision before it moves. Line of sight also depends on an efficient collision system. Enemies with direct hit damage also need to check if they have a clean line to attempt to inflict damage.\\
 \par
-Detecting collision could have been done via the BSP. However it is only after Bruce Naylor visited id Software that John Carmack became aware it was possible. In \doom, the collision detection data structure is called blockmap.\\
+Detecting collision could have been done via the BSP. However it is only after Bruce Naylor visited id Software that John Carmack became aware it was possible. By then, \doom{} had already shipped with a collision detection data structure is called blockmap.\\
 \par
 \drawing{E1M1_lines}{E1M1 sectors and lines}
 \par
-There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NextStations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used a runtime to lower the number of lines to test intersections with.\\
+There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NextStations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used at runtime to lower the number of lines to test intersections with.\\
 \par
 The work done by \cw{doombsp} is simple. Divide the map in 128x128 axis aligned blocks. Each line in the level crossing a block is listed in that block. At the end of the process, create an index which based on blockmap coordinate (in 128 units) give a list of lines. Notice that with this method, a line can be present in multiple blocks. In the case of map E1M1, the result is visible in figure \ref{E1M1_blockmap}.
 
