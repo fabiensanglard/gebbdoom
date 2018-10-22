@@ -14,15 +14,15 @@ During its development, Sega worked in partnership with Hitachi to develop a new
 \par
 Sega managed to release its console before the dreaded PSX and sales in Japan were initially promising with games such as Daytona USA and especially Virtua Fighter being well received. The success had a lot to do with Virtua Fighter which was more popular than Sonic, Mario, and Tetris\footnote{Source: 2006 poll for Top 100 games.}.\\
 \par
-Preceding Sony came at a great price and came across as rushed. During E3 1995 in Los Angeles, Sega CEO Tom Kalinske surprise announced that the Saturn would be available the very same day. Even supplier did not know about it and the console was out of stock rapidly.\\  
+Preceding Sony came at a great price and came across as rushed. During E3 1995 in Los Angeles, Sega CEO Tom Kalinske surprise announced that the Saturn would be available the very same day. Even their supplier did not know about it and the console was out of stock rapidly.\\  
 \par
-An other consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}. The way to do 3D was similar to the 3DO were programmers had to deal with quads that they distorted in screen space to (poorly) fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
+Another consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}. The way to do 3D was similar to the 3DO in that programmers had to deal with quads that they distorted in screen space to (poorly) fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
 \par
 \fq{Currently we only use the Master SH2, the slave SH2 will be used when we get around to figuring out how.}{Mick West 1995 Saturn development journal}\\
 \par
 Worldwide, the the platform was mildly received. And then the beast was unleashed.\\
 \par
- Two weeks after release, the PSX came out with Ridge Racer and took the world by storm\footnote{The PlayStation outsold the Saturn by a factor of three.}. Not only the Saturn was more expensive (\$399) than the PSX (\$299), games such as Daytona USA which used to look good now had blatant issues when put side by side with Ridge Racer. The lower framerate, polygon pop-up and letter-boxed presentation begged for mercy. To add more pressure, in June 1996 the market welcomed an other competitor with the Nintendo 64.\\
+ Two weeks after release, the PSX came out with Ridge Racer and took the world by storm\footnote{The PlayStation outsold the Saturn by a factor of three.}. Not only the Saturn was more expensive (\$399) than the PSX (\$299), games such as Daytona USA which used to look good now had blatant issues when put side by side with Ridge Racer. The lower framerate, polygon pop-up and letter-boxed presentation begged for mercy. To add more pressure, in June 1996 the market welcomed another competitor with the Nintendo 64.\\
 \par
 Ironically Sega's next console, the DreamCast addressed all issues. It was easy to program, ran on Windows and was very well liked by developers. Many good games were released but unfortunately damage had been done. With the 32X and then with the Saturn, Sega had been bleeding money for years. The copy protection was hacked early on. Electronic Arts refused to release its popular E.A sports game on the platform. With the release of the XBox and the PS2, Sega found itself technically outgunned. In late 2001, on the verge of bankruptcy, Sega decided to withdrew from the hardware business and focus on producing games on its successful "Virtua" line of products.
 
@@ -35,7 +35,7 @@ Ironically Sega's next console, the DreamCast addressed all issues. It was easy 
 
 \cfullimage{Sega-Saturn-Motherboard.png}{Sega Saturn motherboard}
 \par
-Opening a Sega Saturn and taking a look at the motherboard reveals no less than twenty chips.\\
+Opening a Sega Saturn and taking a look at the motherboard reveals close to twenty chips.\\
 \par
 \circled{1} 32-bit 28.6 MHz SH-2, 
 \circled{2} 32-bit 28.6 MHz SH-2, 
@@ -62,13 +62,13 @@ Opening a Sega Saturn and taking a look at the motherboard reveals no less than 
 
 
 \rawdrawing{saturn_motherboard}
-Despite its issues and ill timed release, it is a bitter feeling to see what happened to the Saturn and seeing it considered a failure. Over its four years of live, the platform managed to host amazing technical and entertaining games such as Radiant Silvergun, Grandia, Sega Rally Championship, Virtua Fighter 2, Panzer Dragoon Saga, Guardian Heroes, NiGHTS into Dreams, Panzer Dragoon II Zwei and Virtua Cop. \doom{} would not part of the previous list.\\
+Despite its issues and ill timed release, it is a bitter feeling to see what happened to the Saturn and seeing it considered a failure. Over its four years of life, the platform managed to host amazing technical and entertaining games such as Radiant Silvergun, Grandia, Sega Rally Championship, Virtua Fighter 2, Panzer Dragoon Saga, Guardian Heroes, NiGHTS into Dreams, Panzer Dragoon II Zwei and Virtua Cop. \doom{} would not part of the previous list.\\
 \par
 \fq{After years of waiting, doom finally arrives on Saturn. Unfortunately it is a breath-takingly bad conversion of a classic game.}{Sega Saturn Magazine \#16, February 1997}
 
 
 \subsection{Programming the Saturn}
-Programming the Saturn was a difficult task. The programmer's manual is broken down in no less than eight voluminous booklet that took several reads before building a mental image of the flow of data. The diagram in figure \ref{arch_saturn} is represents well the daunting effort.\\
+Programming the Saturn was a difficult task. The programmer's manual is broken down in eight voluminous manuals requiering several reading sessions before building a mental image of the flow of data. The diagram in figure \ref{arch_saturn} fairly represents the daunting effort.\\
 \par
 Main programming was done via the SH-2 processors connected to 1.5MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chip (to indicate what to execute) had to be done via a tedious interrupts system. To deal with static and global variables the programmer had to deal with mutex and semaphores which were uncommon concept at that time. Because they were on the same bus, one had to wait for the other if both system needed to access either RAM of something on the system. Attempt to minimize the issue were made via a shared unified 4KiB cache which had little impact on the bottleneck.\\
 \par

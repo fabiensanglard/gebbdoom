@@ -44,7 +44,7 @@ hardware, ensuring backwards compatibility. }{RetroGamer \#122}\\
 \par
 But things would take end up taking an ugly turn. In February 1993, WIRED magazine ran a full article "3DO: Hip or Hype?" which raised many concerns about the viability of the adventure.\\
 \par
-One of the problem was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a lose and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far) the most expensive console on the market. For comparison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a (mostly undeserved) "rich kid" reputation.\\
+One of the problems was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a loss and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far\footnote{Except for the Neo-Geo which was the same price and always remained a dream for most gamers.}) the most expensive console on the market. For comparison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a (mostly undeserved) "rich kid" reputation.\\
 \par
 The other aspect which poisoned the 3DO was its game library. At launch it was rather small with only six games of low quality besides "Crash 'N Burn". Firmware changes and devkit modification until the last minute had hampered game studios in their efforts to have something ready for launch day.\\
 \par
@@ -89,7 +89,7 @@ Panasonic, Goldstar, and Sanyo all designed their own motherboards but all 3DOs 
 
 \rawdrawing{3do_motherboard}
 \par
-Developer for the 3DO were forbidden direct access to the hardware (except for hand-crafted assembly for the ARM processor). This was done to ensure forward compatibility with the next generation of 3DO hardware.\\
+Developers for the 3DO were forbidden direct access to the hardware except for hand-crafted assembly for the ARM processor. This was done to ensure forward compatibility with the next generation of 3DO hardware.\\
 \par
  The M2 project which began as an accelerator add-on for the 3DO\footnote{"3DO Press Release" August 1994.} morphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. Due to financial and technological difficulties, the M2 project was never completed.\\
 \par
@@ -98,18 +98,21 @@ Developer for the 3DO were forbidden direct access to the hardware (except for h
 \pagebreak
 
 \subsection{3DO Programming}
-Graphic programing was done via the 3DO "CEL engine", powered by chips Clio and Madam. A CEL is a just a fancy name for a sprite. Each CEL can be drawn in screenspace with three associated vectors HD, VD, and HDD. Together they allow operations such as scaling, rotation, skewing, and even something labeled "perspective" in the 3DO programmer manual. The CEL engine was able to process several CELs simultaneously.\\
+Graphics programing was done via the 3DO "CEL engine", powered by chips Clio and Madam. A CEL is a just a fancy name for a sprite. Each CEL can be drawn in screenspace with three associated vectors HD, VD, and HDD. Together they allow operations such as scaling, rotation, skewing, and even something labeled "perspective" in the 3DO programmer manual. The CEL engine was able to process several CELs simultaneously.\\
 \par
-If HD and VD are self explanatory, the differential vector HDD deserve more explanation. Here is how it is described in the manual.\\
+If HD and VD obviously set the horizontal/vertical vectors, the differential vector HDD deserve more explanation. Here is how it is described in the manual.\\
 
 \fq{
 When fixed HDX and HDY values set the horizontal offset of a cel and VDX and VDY values set the vertical offset of a cel, the result is always a strict parallelogram-all the row edges are parallel as are all the column edges. Although you change the size and angles of the parallelogram, you cannot get any perspective effects with row edges converging or diverging. To add perspective, the projector uses the HDDX and HDDY offset pair.
-HDDX and HDDY change HDX and HDY values by a set amount at the beginning of each row edge. When one row edge is calculated, the projector adds HDDX to HDX and adds HDDY to HDY. It then uses the new HDX and HDY values to calculate the next row edge. Because HDDX and HDDY can change the row slope and pixel spacing from row edge to row edge, they can create converging or diverging row edges.}{3DO Programmer Guide}\\
+HDDX and HDDY change HDX and HDY values by a set amount at the beginning of each row edge. When one row edge is calculated, the projector adds HDDX to HDX and adds HDDY to HDY. It then uses the new HDX and HDY values to calculate the next row edge. Because HDDX and HDDY can change the row slope and pixel spacing from row edge to row edge, they can create converging or diverging row edges\footnotemark.}{3DO Programmer Guide}\\
 \par
 \circled{1} normal, \circled{2} rotation, \circled{3} perspective (incorrect), \circled{4} skewing with upscaling. \\
 \par
+\footnotetext{This is the same mechanism used for sprite distortion used in the Atari Lynx -- and it should be, since RJ Mical and Dave Needle designed the Lynx too.}
 % \trivia{Despite its name, the "perspective" is not correct.}
-\fullimage{3do_vectors.png}
+\begin{figure}[H] \centering
+\scaledimage{0.8}{3do_vectors.png}
+\end{figure}
 
 \scaledimage{0.90}{CEL_examples.png}
 
@@ -119,15 +122,15 @@ Given the specs of the machine, the 3DO had the potential to be the best console
 \par
 % How could they screw this up? Easily in fact, just give a lone developer ten weeks to do it and ship it.\\
 % \par
-In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom~on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequence with real actor to build up the story.\\
+In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom~on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequences with real actors to build up the story.\\
 \par
 \cfullimage{doom_3do_fmv.png}{The FMV shooting set (photo released by Rebecca Heineman)}
 \par
 
 
-The project was promptly subcontracted to a gaming company with actual experience in game development. Art Data Interactive quickly learned that port was much more expensive than what they thought. It would cost a million dollar and a year of development to which they agreed to.\\
+The project was promptly subcontracted to a gaming company with actual experience in game development. Art Data Interactive quickly learned that port was much more expensive than what they thought. It would cost a million dollars and a year of development to which they agreed to.\\
 \par
-By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of Octobre 1995 looming over their head, Art Data Interactive reached to a contractor which had previously done an amazing work on porting Wolfenstein 3D to the 3DO. The name of the poor soul who accepted the project was Rebecca Ann Heineman from Logicware.\\
+By July 1995, relations with the subcontractor had deteriorated beyond repair\footnote{Source: "The unfortunate tale of 3DO DOOM" by Matt Gander.}. With a long promised release date of October 1995 looming over their heads, Art Data Interactive reached to a contractor which had previously done  amazing work on porting Wolfenstein 3D to the 3DO. The name of the poor soul who accepted the project was Rebecca Ann Heineman from Logicware.\\
 \par
 Having committed to the project, Rebecca asked ADI for the source code she assumed they had received upon signing the contract with id Software. Nothing came. Eventually, she received a floppy disk. It turned out it was in fact the commercial copy of \doom~with the compiled binary \cw{DOOM.EXE} and \cw{DOOM.WAD}! Rebecca had to explain ADI what source code was and how she could not start working from the binary. After a few weeks of struggle, she finally emailed John Carmack whom sent her the source code for the Jaguar version.\\
 \par

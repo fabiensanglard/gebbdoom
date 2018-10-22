@@ -15,14 +15,15 @@ There was originally some uncertainty about the architecture which could focus e
 \par
 The project would culminate two years later with the creation of Sony Computer Entertainment and a Japanese release on December 3, 1994. It was an instant success selling 100,000 units on day one, 2 million after six months, and  102 millions units over its lifetime.\\
 \par
+
 \cfullimage{consoles/PSX.png}{Sony PlayStation}
 
 
 \subsubsection{Keys to success}
 \par
- Among the numerous good choices, Sony listened developers feedback and bumped the machine RAM from 1MiB to 2MiB.  They adopted a developer centric attitude where the development cycle was easy, tools updated frequency and downloadable online, with third party technical support. The CD format allowed games to be priced lower and developers did not have to buy cartridge from Sony. More importantly Sony did not censure developer the way Nintendo and Sega did. On top of all, royalties were lower which improved profitability\footnote{Nintendo could sometimes take up to 20\%.}. "The PlayStastion set us free" would later testify Kalisto Gaming CEO.\\
+ Among the numerous good choices, Sony listened to developers feedback and bumped the RAM from 1MiB to 2MiB.  They adopted a developer centric attitude where the development cycle was easy, tools updated frequently and were downloadable online, with third party technical support. The CD format allowed games to be priced lower and developers did not have to buy cartridge from Sony. More importantly Sony did not censor developers the way Nintendo and Sega did. On top of it all, royalties were lower which improved profitability\footnote{Nintendo could sometimes take up to 20\%.}. "The PlayStation set us free" Kalisto Gaming's CEO would later testify.\\
 \par
-The stroke of luck was to land Psy-Q which made the SDK a programmer's nirvana. Psygnosis was an UK game developer company working for Atari ST, Amiga and SNES. Sony purchased them in early 1993 and tasked them with the then-still-secret PlayStation games \textit{Wipeout} and \textit{Destruction Derby} to showcase the PlayStation upon launch.\\
+Sony's stroke of luck was to land Psy-Q which made the SDK a programmer's nirvana. Psygnosis was an UK game developer company working for Atari ST, Amiga and SNES. Sony purchased them in early 1993 and tasked them with the then-still-secret PlayStation games \textit{Wipeout} and \textit{Destruction Derby} to showcase the PlayStation upon launch.\\
 \par
 Until them, Sony had envisioned development for the PlayStation to be based on dedicated Sony NEWS MW.2 workstations\footnote{"The development system", Next Generation June 1995.}. These were colossal and expensive machines based on MIPS R4000 and manufactured by Sony. Psygnosis disliked that solution, especially when they compared the development experience to using their regular tool (Psy-Q) which was produced by a company called SN Systems.\\
 \par
@@ -39,18 +40,13 @@ Around Christmas '93, SN Systems co-owner Andy Beveridge and Martin Day were giv
 \par
 \circled{1} ISA card containing the PlayStation CPU, GPU, VRAM, and DRAM, RGB, with Composite video out and a nine-pin comms link socket, \circled{2} ISA card with the CD I/O, PC interface, kernel boot ROM, and joypad sockets, \circled{3} CD emulator card by SN Systems, \circled{4} PC motherboard, \circled{5} HDD, \circled{6} PlayStation-spec CD-ROM drive. \\
 \par
-To leverage PC had a double effect. Not only it significantly reduced the financial cost to become a developer, it also lowered the intellectual barrier since most developers were already familiar with DOS/Windows operating system.\\
-\par Between September 1993 and June 1995, 500 licensees worldwide jumped on the opportunity to publish on Sony's dream machine\footnote{"Sony's PlayStation game plan", Next Generation June 1995.}. Devs loved the SDK and it showed.
-
-
-
-
-
-
-
-Programming the PlayStation was an unbelievably pleasant experience. Most programming was intended be done in C while allowing handcrafted assembly if necessary. Psy-Q provided a compiler driver able to take a list of \cw{.c}/\cw{.obj} file and output a PlayStation executable in one keystroke.\\
+To leverage PC had a double effect. Not only did it significantly reduce the financial cost to become a developer, it also lowered the intellectual barrier since most developers were already familiar with DOS/Windows operating system.\\
 \par
-The PSX programming philosophy was to not make developer jungle with multiple systems. The 1MiB Video framebuffer for example could not be accessed by the programmer directly, delegation to the GPU was mandatory. This sample from the PSX Developer Tools summarizes well how much care was taken to lift burden of programmers.\\
+Between September 1993 and June 1995, 500 licensees worldwide jumped on the opportunity to publish on Sony's dream machine\footnote{"Sony's PlayStation game plan", Next Generation June 1995.}. Devs loved the SDK and it showed.
+
+Programming the PlayStation was an unbelievably pleasant experience. Most programming was done in C while allowing handcrafted assembly if necessary. Psy-Q provided a compiler driver able to take a list of \cw{.c}/\cw{.obj} file and output a PlayStation executable in one keystroke.\\
+\par
+The PSX programming philosophy was to not make developer juggle with multiple systems. The 1MiB Video framebuffer for example could not be accessed by the programmer directly, delegation to the GPU was mandatory. This sample from the PSX Developer Tools summarizes well how much care was taken to lift burden of programmers.\\
 \par
 \fq{
 The CPU is only involved in giving the dedicated hardware very small amounts of data such as the
@@ -89,7 +85,7 @@ Opening a PlayStation and taking a look at the motherboard revealed no less than
 \begin{wrapfigure}[10]{r}{0.4\textwidth}{
 \centering \scaledimage{0.4}{trex.png}}
 \end{wrapfigure}
-To convince developer to get on board and work with the PlayStation was originally difficult. On October 27, 1997 Sony gathered 300 developers representing 60 games publisher for a tour de force. They were shown the "dino demo"\footnote{Source: "PlayStation: Anthology"} which features a real-time controllable T-rex dinausor.\\
+To convince developers to get on board and work with the PlayStation was originally difficult. On October 27, 1997 Sony gathered 300 developers representing 60 games publishers for a tour de force. They were shown the "dino demo"\footnote{Source: "PlayStation: Anthology"} which features a real-time controllable T-rex dinausor.\\
 \par The demo ran at 50 frames per second at a resolution of 512x256. It processed about 1800 polygons per frame, and drew up to 1300 polygons per frame. Jurrasic Park, released in 1993, was still fresh in memory as a monumental engineering achievement. The breathtaking sight spread rapidly among the gaming community. After that, orders for SDK skyrocketed.
  
  
@@ -100,7 +96,7 @@ To convince developer to get on board and work with the PlayStation was original
 
 
 \subsection{Doom on PlayStation}
-\doom{} was ported to the PSX by Williams Entertainment. It took a little bit less than a year to a team of five\footnote{Three designers/artists and two programmers.} to recast the engine, change the assets, and make everything work with "only" 3 MiB of RAM. The final result is universally considered the best console port with some aspects even outmatching the PC version.\\
+\doom{} was ported to the PSX by Williams Entertainment. It took a little bit less than a year for a team of five\footnote{Three designers/artists and two programmers.} to recast the engine, change the assets, and make everything work with "only" 3 MiB of RAM. The final result is universally considered the best console port with some aspects even outmatching the PC version.\\
 \par
 Work did not start from scratch. In fact the team leveraged all the work done from the Jaguar version and in particular the simplified maps using less textures and less walls.\\
 \par
@@ -190,7 +186,7 @@ The PlayStation did not have enough power to perform z interpolation and as a re
 \par
 \fullimage{affine_texture_mapping/subdivision_sample.png}
 \par
-Williams Entertainment, John, and Harry had a big problem at hands and some were really nervous about it.\\
+Williams Entertainment, John, and Harry had a big problem and some were really nervous about it.\\
 \par
 \fq{Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said "back everything up (no source control back then!), we're going to do something completely different".\\
 \par
@@ -204,13 +200,13 @@ Switching from world-space triangle to screen-space one pixel wide triangles did
 \par
 \doom{} on PSX received both critical and commercial success.\\
 \par 
-\fq{PlayStation version succeeded in "putting previous efforts for 32X, Jaguar, and especially Super NES, to shame}{Next Generation, 1995}\\ 
+\fq{PlayStation version succeeded in "putting previous efforts for 32X, Jaguar, and especially Super NES, to shame.}{Next Generation, 1995}\\ 
 \par
 Even members of id Software stepped forward to assert the quality of the port.\\
 \par
 \fq{This is the best DOOM yet!}{John Romero}\\
 \par
-\trivia{If the player was to receive enough damage to become gibbed, the status bar head reflected the circumstances in gory details. Not something that would have flown with Nintendo!}
+\trivia{If the player was to receive enough damage to become gibbed, the status bar head reflected the circumstances in gory detail. Not something that would have flown with Nintendo!}
 % Harry Teasley: http://5years.doomworld.com/interviews/harryteasley/\\
 
 \pagebreak
