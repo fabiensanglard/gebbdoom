@@ -1,7 +1,7 @@
 typedef struct {
     char magicNumber[4];      // "IWAD" or "PWAD"
     int32_t numDirectories;   // Num directories 
-    int32_t directoryOffset;  // Offset to directies
+    int32_t directoryOffset;  // Offset to directories
 } header;
 
 typedef struct { 

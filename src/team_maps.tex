@@ -28,7 +28,7 @@ Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctl
 
 
 \subsection{Map Editor (DoomED)}
-To harness the complexity of the map format, a new tool was created. The Doom map EDitor was to be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed to never lose work while writing DoomED or creating a map.
+To harness the complexity of the map format, a new tool was created. The Doom map EDitor was to be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed one to never lose work while writing DoomED or creating a map.
 The very design of Objective-C also had a tremendous influence. The language's message dispatching system no-op behavior when dereferencing a \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} created a fault forgiving environment where a faulty feature would not work but did not crash either.\\
 \par   
 The killer feature was Interface Builder which not only came with a full library of widgets but also allowed to create new one and connect them to the business logic instantly.\\
@@ -36,7 +36,7 @@ The killer feature was Interface Builder which not only came with a full library
 \fullimage{doomed/DoomEd.png}
 \par
 
-The release of the source code in April 2015 allowed to pick inside. There is almost as much code as in the game engine (doom:32kloc, DoomED:20kcloc). Without the power of \NeXT the editor would have taken at least twice the same amount of time to make.
+The release of the source code in April 2015 allowed to peek inside. There is almost as much code as in the game engine (doom:32kloc, DoomED:20kcloc). Without the power of \NeXT the editor would have taken at least twice the same amount of time to make.
 
 
 
@@ -71,9 +71,9 @@ Map preprocessing was not something new at id. In 1991 with Wolfenstein 3D maps 
 \par
 The main issue at hand was to maintain the same rendering speed despite relaxing the orthogonal grid constraint of Wolfenstein and losing usage of the DDA algorithm \footnote{Digital Differential Analyzer was used extensively for VSD (Visual Surface Determination), collision detection and light of sight calculation. This was all gone with \doom.}. The solution chosen was to create for each map a multitude of accelerating data structures, each dedicated to solving a particular problem.\\
 \par
- The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputted a \cw{.WAD}. Not only the map was expressed in a space efficient manner (e.g: Expressing vertices only once and referencing them via index), three sections were generated alongside. A Binary Space Partitioned version of the map expressed a node tree to speed up rendering. A blockmap meant to accelerate collision detection. And finally a reject table to accelerate A.I processing.\\
+ The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputted a \cw{.WAD}. Not only was the map expressed in a space efficient manner (e.g: Expressing vertices only once and referencing them via index), but three sections were generated alongside. A Binary Space Partitioned version of the map expressed a node tree to speed up rendering. A blockmap meant to accelerate collision detection. And finally a reject table to accelerate A.I processing.\\
  \par
-\trivia{Map preprocessing took a significant amount of time. With a NextStation Turbo Color, running \cw{doombsp} on \cw{E1M1} took 10s. On E1M2, it took 30s. On E2M7, it took a full minute. The first nine maps of the shareware took 3mn26s. The full twenty seven maps of the registered version took 11mn.}\\% This was a problem for designers...yet it was little compared to what Quake's \cw{qbsp} would be three years later.}\\
+\trivia{Map preprocessing took a significant amount of time. With a NextStation Turbo Color, running \cw{doombsp} on \cw{E1M1} took 10s. On E1M2, it took 30s. On E2M7, it took a full minute. The first nine maps of the shareware took 3m26s. The full twenty seven maps of the registered version took 11 minutes.}\\% This was a problem for designers...yet it was little compared to what Quake's \cw{qbsp} would be three years later.}\\
 \par
 \tcode{cloc_doombsp.txt}
 \par
@@ -150,7 +150,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and store them in a \cw{
 \par
 \footnotetext{Source:The Unofficial Doom Specs v1.666.}
 
-Slicing the map via binary partitioning is non-trivial. \cw{doombsp} heuristic attempts to minimize the number of segments generated while generating a balanced tree and picking axis aligned splitting lines. A debug flag \cw{-draw} allowed to monitor what was happening. BSP trees and Binary partitioning are explained in details on page \pageref{Binary Space Partitioning: Theory}. \\
+Slicing the map via binary partitioning is non-trivial. \cw{doombsp} heuristic attempts to minimize the number of segments generated while creating a balanced tree and picking axis aligned splitting lines. A debug flag \cw{-draw} allowed to monitor what was happening. BSP trees and Binary partitioning are explained in detail on page \pageref{Binary Space Partitioning: Theory}. \\
 \par
 \cfullimage{doombsp_run.png}{Running doombsp in debug mode show splitter selection.}
 \par

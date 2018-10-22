@@ -52,9 +52,9 @@ Programming the PlayStation was an unbelievably pleasant experience. Most progra
 \par
 The PSX programming philosophy was to not make developer jungle with multiple systems. The 1MiB Video framebuffer for example could not be accessed by the programmer directly, delegation to the GPU was mandatory. This sample from the PSX Developer Tools summarizes well how much care was taken to lift burden of programmers.\\
 \par
-\rawfq{
+\fq{
 The CPU is only involved in giving the dedicated hardware very small amounts of data such as the
-display location and the start address for data transmission. Data is transfered via the DMA Controller and consumed by the GPU. The result of this parallel processing is that the CPU can devote almost all of its time to creating drawing command lists}\\
+display location and the start address for data transmission. Data is transfered via the DMA Controller and consumed by the GPU. The result of this parallel processing is that the CPU can devote almost all of its time to creating drawing command lists.}{PlayStation, Net Yaroze Manual}\\
 \par
 \rawdrawing{psx_arch}
 \par
@@ -89,9 +89,8 @@ Opening a PlayStation and taking a look at the motherboard revealed no less than
 \begin{wrapfigure}[10]{r}{0.4\textwidth}{
 \centering \scaledimage{0.4}{trex.png}}
 \end{wrapfigure}
-To convince developer to get on board and work with the PlayStation was originally difficult. On October 27, 1997 Sony gathered 300 developers representing 60 games publisher for a tour de force. They were shown the dino demo\footnote{Source: "PlayStation: Anthology"}. The demo ran at 50 frames per second at a resolution of 512x256. It processed about 1800 polygons per frame, and drew up to 1300 polygons per frame. Jurrasic Park, released in 1993, was still fresh in memory as a monumental engineering achievement. The breathtaking sight spread rapidly among the gaming community.\\
-\par
- After that orders for SDK skyrocketed.
+To convince developer to get on board and work with the PlayStation was originally difficult. On October 27, 1997 Sony gathered 300 developers representing 60 games publisher for a tour de force. They were shown the "dino demo"\footnote{Source: "PlayStation: Anthology"} which features a real-time controllable T-rex dinausor.\\
+\par The demo ran at 50 frames per second at a resolution of 512x256. It processed about 1800 polygons per frame, and drew up to 1300 polygons per frame. Jurrasic Park, released in 1993, was still fresh in memory as a monumental engineering achievement. The breathtaking sight spread rapidly among the gaming community. After that, orders for SDK skyrocketed.
  
  
 

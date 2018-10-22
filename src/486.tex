@@ -5,9 +5,9 @@
 \includegraphics[width=.25\textwidth]{drawings/intel_logo.pdf}
 \end{wrapfigure}
 
-Announced in 1989, the Intel 80486 was a performance evolution which addressed all bottlenecks of the 80386. However it's price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993, the chip price had lowered to the point it was finally becoming affordable. It would become \doom{} recommended CPU.\\
+Announced in 1989, the 80486 was a performance evolution which addressed all bottlenecks of the 80386. However its price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993 it was finally becoming affordable (\$500) and would become \doom{}'s recommended CPU.\\
 \par
-The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on the dice making it de-facto. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elborated design to finally feature an integrated L1 cache.\\
+The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on-die. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elaborate design to finally feature an integrated L1 cache.\\
 \par
 \fq{The 386 actually had a small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip.}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
 \par
@@ -31,22 +31,22 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 
 
 
-On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very long instruction word.}. It three units, X, Y ,and Z allowed parallel processing which when efficiently used could outperform the Intel 486.\\
+On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very long instruction word.}. It had three units, X, Y, and Z allowing parallel processing which when efficiently used could outperform the Intel 486.\\
 \par
-But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parallel when possible, the i860 architect mandated direct manipulation to its parallel pipelines. The chip did nothing behind the scene and relied on compiler writers to sequence instructions appropriately.\\
+But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parallel when possible, the i860 architecture mandated direct manipulation to its parallel pipelines. The chip did nothing behind the scenes and relied on compiler writers to sequence instructions appropriately.\\
 \par
-Unfortunately compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super scalar capability. the i860 was never able to reach its full potential. If only Intel had been willing to build the tools it desperately needed the history of the i860 could have been different.\\
+Unfortunately, compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super-scalar capability. The i860 was never able to reach its full potential. If only Intel had been willing to build the tools it desperately needed, the history of the i860 could have been different.\\
 \par
 \par
 \cscaledimage{0.85}{i486DX.png}{}
 \par
-In figure \ref{i486DX.png}, the Intel 486 die is wrapped in its packaging. The 1.0$\mu$ process allowed to fit 1,180,235 transistors.\\
+In figure \ref{i486DX.png}, the Intel 486 die and its 1,180,235 transistors inside a package. Around this time period, Intel's started to stamp its CPU with trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
 \par
 \trivia{The i860 played a part in \doom{} anyway since it was used in NextDimensions video processing boards.}
 
 \par
 \subsection{Pipeline improvements}
-Charting the 486 MIPS performances along with the previous generation make the performance boost appear vividly. Thanks to yet more improved manufacturing process, top of the line 486 were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.} but frequency increase was not the main factor of improvement.\\
+Charting the 486 MIPS performance along with the previous generation make the performance boost appear vividly. Thanks to an improved manufacturing process, top of the line 486 were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.} but frequency increase was not the main factor of improvement.\\
 \par
  Looking closely at the chart, one will notice that even at equal frequency, a 486 offered more than twice the processing power of a 386.\\
 
@@ -97,7 +97,7 @@ The way it achieves higher performances is through a higher average throughput. 
 
 
 \par
-Even if the Prefetch Unit and the Execution Unit were properly fed, the Decode unit always took a minimum of two cycles to decode an instruction\footnote{The author speculates this high decode cost was the result of Intel's choice to use CISC instead of RISC.}. Since the maximum throughput of a pipeline cannot exceed the speed of its slowest stage, the Intel 386 could process at its most one instructions every two cycles.\\
+Even if the Prefetch Unit and the Execution Unit were properly fed, the Decode unit always took a minimum of two cycles to decode an instruction\footnote{The author speculates this high decode cost was the result of Intel's choice to use CISC instead of RISC.}. Since the maximum throughput of a pipeline cannot exceed the speed of its slowest stage, the Intel 386 could process at most one instructions every two cycles.\\
 \par
 
 \begin{figure}[H]
@@ -129,7 +129,7 @@ It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM p
 \vspace{2mm}
 \drawing{ram_vs_cpu}{}
 \par
-Until the 486, a CPU requesting either instructions or datas from the DRAM always had to go stall and go through its Bus Unit to talk to the motherboard memory controller. As optimized as the ISA bus protocol was, it took at the very minimum two cycles.\\
+Until the 486, a CPU requesting either instructions or datas from the DRAM always had to stall and go through its Bus Unit to talk to the motherboard memory controller. As optimized as the ISA bus protocol was, it took at the very minimum two cycles.\\
 \par 
 A first cycle to initialize the bus request, place the address on the address line and set the control line (Read/Write). And a wait cycle (which Intel called Wait State since while waiting on the Bus Unit, the CPU did absolutely nothing) while the device on the other side of the bus fulfilled the request.\\
 \par
