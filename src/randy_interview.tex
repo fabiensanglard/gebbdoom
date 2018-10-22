@@ -4,10 +4,10 @@
       \item Bubbles A Centipede-style game for the Commodore 64.
       \item The 64 Emulator An Amiga program that emulated the Commodore 64.
       \item Dragon's Lair Another Amiga program that was the first full-screen full-colour animated game on any home computer -- Dragon's Lair was also the first game which streamed data in real-time from six floppy discs during gameplay!
-      \item DOOM A version of the popular "2 1/2 D" FPS for Super Nintendo running on an original game engine designed for the SuperFX RISC processor (aka "GSU2A") designed by Argonaut Software in the UK. DOOM for SNES was one of the very few titles which worked with most of the SNES hardware accessories including the mouse and light gun. It also supported the XBAND hardware modem and two players could complete head-to-head in one of the truly rare online games for SNES. I built a custom development system (Assembler, Linker, Debugger, etc.) which used a modified (ie. hacked apart) StarFox game cartridge to provide the CPU and communication to the Amiga-based toolchain used a serial-based interface which plugged into both joystick ports on the SNES. Support for Nintendo's official hardware development system for the GSU2A was added later in the development because no games had been released at that point which could be "modified" for use (StarFox used the original GSU which ran at half the clock rate of the GSU2A and had less memory among other hardware changes and enhancements.)
+      \item DOOM A version of the popular "2-$1/2$D" FPS for Super Nintendo running on an original game engine designed for the SuperFX RISC processor (aka "GSU2A") designed by Argonaut Software in the UK. DOOM for SNES was one of the very few titles which worked with most of the SNES hardware accessories including the mouse and light gun. It also supported the XBAND hardware modem and two players could complete head-to-head in one of the truly rare online games for SNES. I built a custom development system (Assembler, Linker, Debugger, etc.) which used a modified (ie. hacked apart) StarFox game cartridge to provide the CPU and communication to the Amiga-based toolchain used a serial-based interface which plugged into both joystick ports on the SNES. Support for Nintendo's official hardware development system for the GSU2A was added later in the development because no games had been released at that point which could be "modified" for use (StarFox used the original GSU which ran at half the clock rate of the GSU2A and had less memory among other hardware changes and enhancements.)
       \item "Bleem!" was a PC-based emulator for Playstation games -- the program was entirely in x86. I reverse-engineered Playstation software and hardware, wrote a run-time optimizing recompiler for the game logic and added PC enhancements like higher resolution and 3D graphics card support.
       \item "bleem!" for Dreamcast was a Playstation emulator written entirely in SH4 for the Sega Dreamcast. I was awarded four patents as a sole inventor for the technologies and techniques I developed for bleem! and bleem! for Dreamcast.
-      \item Cyboid is a high-speed 3D FPS (first-person shooter) which features single- and two-player split-screen gaming and eight-player online multiplayer across a variety of play modes -- think "Quake" and that's pretty much it. The game features VR support, In-App purchasing, Achievements and Leaderboards, Advertising for multiple mediators and Multiplayer Internet gaming for up to eight players online -- all of which runs on multiple platforms from Google and Amazon. The game is written in ARM assembly, native C/C++ and Java and the entire package (code, data, graphics, sound and music) is eight megabytes (… smaller than a single graphics texture in games/apps these days!) The custom engines have all been highly optimized to support the widest range of devices possible, including lower-powered hardware (such as the Amazon Fire TV Stick) or older devices running Android API 17 "Jellybean"
+      \item Cyboid is a high-speed 3D FPS (first-person shooter) which features single- and two-player split-screen gaming and eight-player online multiplayer across a variety of play modes -- think "Quake" and that's pretty much it. The game features VR support, In-App purchasing, Achievements and Leaderboards, Advertising for multiple mediators and Multiplayer Internet gaming for up to eight players online -- all of which runs on multiple platforms from Google and Amazon. The game is written in ARM assembly, native C/C++ and Java and the entire package (code, data, graphics, sound and music) is eight megabytes (... smaller than a single graphics texture in games/apps these days!) The custom engines have all been highly optimized to support the widest range of devices possible, including lower-powered hardware (such as the Amazon Fire TV Stick) or older devices running Android API 17 "Jellybean"
      \end{itemize}
      }
  
@@ -47,7 +47,7 @@ The GSU had four different rendering heights (128, 160 and 192 pixels) plus an "
 \par
  DOOM/FX used the 192 pixel / 256 colour mode.\\
 \par
- Here's something most people don't know: DOOM/FX was the second-most expensive cartridge to manufacture because it included the GSU/2A, had the largest ROM (2 Megabytes) and RAM configuration available and a custom red plastic cartridge … the only option missing was the battery backup!}
+ Here's something most people don't know: DOOM/FX was the second-most expensive cartridge to manufacture because it included the GSU/2A, had the largest ROM (2 Megabytes) and RAM configuration available and a custom red plastic cartridge ... the only option missing was the battery backup!}
 
 
 
@@ -67,14 +67,14 @@ The GSU had four different rendering heights (128, 160 and 192 pixels) plus an "
 \qaa{I used a variety of online resources to reverse-engineer the DOOM data formats -- without the tremendous amount of work from all those other people, DOOM/FX wouldn't have been possible in the amount of time!}
 
 \qaq{Can you describe the Reality engine in its big lines. I assume you used the BSP but did you also create the equivalent of visplanes ?}
-\qaa{The Reality Engine is basically a highly-custom 2 ½ D game engine that's almost all written in GSU code. All the code is designed to run in small blocks so they fit into the GSU's internal cache which runs at high-speed. The architecture is similar to DOOM in that it uses a 2D BSP, sectors, segments, etc. -- there are a number of optimizations that minimize the processing required to figure out what to draw, etc.}
+\qaa{The Reality Engine is basically a highly-custom 2-$1/2$ D game engine that's almost all written in GSU code. All the code is designed to run in small blocks so they fit into the GSU's internal cache which runs at high-speed. The architecture is similar to DOOM in that it uses a 2D BSP, sectors, segments, etc. -- there are a number of optimizations that minimize the processing required to figure out what to draw, etc.}
 
 \qaq{Did you get any help from id Software at all?}
 \qaa{I demo'd the game to Sculptured Software when I had a fully operational prototype running -- graphics, texturing, movement, enemies, etc. -- it was obviously "DOOM" to anyone looking at what I had running on the hardware.\\
 \par
 Id software was shown the game a few weeks later and even though it was an early version, there wasn't much left for them to help with since it was much further along than a typical prototype or "proof of concept."\\
 \par
-Of course, there was still a lot of work to do before the game could be published … for example: sound, music, the rest of the levels, testing, etc. -- and it was with the help of multiple people at Sculptured Software that the game was finally done.}
+Of course, there was still a lot of work to do before the game could be published ... for example: sound, music, the rest of the levels, testing, etc. -- and it was with the help of multiple people at Sculptured Software that the game was finally done.}
 
 \qaq{How long did it take you to build the toolchain, then how long to code the game ? }
 \qaa{IIRC, the game was developed in roughly eight months, give or take. There were multiple toolchains used to create the game, graphics, sound and data...\\
@@ -92,14 +92,14 @@ The code was developed using a custom development system I wrote that included a
 \par
  It was so much easier to write something for a single piece of hardware like the SNES -- you could spend time focusing on the game and improving performance, etc.\\
 \par
-The same was true of the Commodore 64, Amiga and Sega Dreamcast -- each of which had unique technical aspects and advances which provided opportunities to make something stand out in ways that is much harder to do these days…\\
+The same was true of the Commodore 64, Amiga and Sega Dreamcast -- each of which had unique technical aspects and advances which provided opportunities to make something stand out in ways that is much harder to do these days...\\
 \par
 In comparison, writing an Android app is a huge amount of work for many reasons, many of which are out of the developers' control...\\
 \par
  There's a lot of hardware out there (with many differences in what is/isn't supported as far as graphics, sound, input, etc.), there are multiple versions of the OS (each of which have their own "quirks", limitations, differences and changes) and although it's truly wonderful that Google provides comprehensive components like Firebase and Google Play, the frequent updates, changes and differences require a huge amount of time and overhead just to keep your app "current"\\
-These days it's fairly painless and even easy to create a simple "app" that works on a bunch of Android devices … but writing something which takes advantage of the unique aspects of as many different devices as possible takes a lot of time, resources and effort -- and I think that's why there are so many similar games, apps and titles out there -- sure, there's uniqueness in many of them, but far less than there used to be -- we don't see things like "Lode Runner", "Archon" or "Sword of Sodan" anymore.\\
+These days it's fairly painless and even easy to create a simple "app" that works on a bunch of Android devices ... but writing something which takes advantage of the unique aspects of as many different devices as possible takes a lot of time, resources and effort -- and I think that's why there are so many similar games, apps and titles out there -- sure, there's uniqueness in many of them, but far less than there used to be -- we don't see things like "Lode Runner", "Archon" or "Sword of Sodan" anymore.\\
 \par
-A friend recently recommended a FPS that was over 1Gig to download! … and then the game required a constant internet connection for updates, resources and even to play the game… we've sure come a long way from Dragon's Lair on the Amiga which was an 8K program and 5 Megs of data.}
+A friend recently recommended a FPS that was over 1Gig to download! ... and then the game required a constant internet connection for updates, resources and even to play the game... we've sure come a long way from Dragon's Lair on the Amiga which was an 8K program and 5 Megs of data.}
 
 
 

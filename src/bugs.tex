@@ -9,13 +9,13 @@
 
 
 \subsection{Flawed collision detection}
-There is rare collision detection bug which an obvious (lack of) impact. It was explained in depth by Colin "cph" Phipps in his article ""Shooting Through Things".\\
+There is rare collision detection bug which was first brought to light (and subsequently explained in depth) by Colin "cph" Phipps in his article "Shooting Through Things".\\
 \par
 \fq{A monster is getting too close for comfort. You shoot at it, and miss. If you are unlucky, the monster kills you. But you were so sure that you were pointing right into the monster, that so close as you were you couldn't have missed. Perhaps it was the chaingun playing up, shooting all the bullets off to one side. Perhaps the game was written by a bunch of losers who failed their high-school geometry. Or perhaps, in the heat of the moment, you really did miss; nobody's perfect.\\
 \par
 Well I have good news. You can blame your tools.}{Colin Phipps}\\
 \par
-Some enemies can be really big, almost ten times bigger than the player (16) in the case of the Spider Mastermind (128). As we saw on page XXX, \doom{} uses blockmaps to speed up intersection with walls and things. If a think is on the edge of block and the player is a bit unlucky a miss can be calculated when it should have been a hit.
+Some enemies can be really big, almost ten times bigger than the player (16) in the case of the Spider Mastermind (128). As we saw on page \pageref{E1M1_blockmap}, \doom{} uses blockmaps to speed up intersection with walls and things. If a Thing is on the edge of block and the player is a bit unlucky a miss can be calculated when it should have been a hit.
 
 \fullimage{beasts_sizes.png}
 \vspace{-1cm}
@@ -24,7 +24,7 @@ Some enemies can be really big, almost ten times bigger than the player (16) in 
 
 \rawdrawing{collision_miss}
 \par
-It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon). The blue grid shows the blockmap alignment.\\
+It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon). The blue grid shows the blockmap's alignment.\\
 \par
  The line of the bullet and the radius of the monster clearly overlap. This should be a hit. But only blockmaps \cw{0}, \cw{1}, and \cw{2} will be checked resulting in test with walls \cw{D}, \cw{A}, and \cw{B}. The enemy is in block \cw{5} and since the bullet doesn't cross it, it will be ignored.\\
  \par
@@ -52,7 +52,7 @@ The issue can actually be far wider than four pixels if one knows where to look.
 \par
 This particular instance of slime trail has to do with the way maps were preprocessed via \cw{doombsp}. As it was explained on page \pageref{Binary Space Partitioning: Theory}, the technique looked like "sunshine and rainbows" but when applied to a system with finite precision, subtle issues arose.\\
 \par
- Once again, let's take an example. The two previous screenshot where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first sight, there is nothing unusual here but when taking a look at how it was sliced during binary partition, an interesting special case appears.\\
+ Once again, let's take an example. The two previous screenshots where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first glance, there is nothing unusual here but when taking a look at how it was sliced during binary partitioning, an interesting special case appears.\\
 \par
 Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C, D, E and F however. It is not really clear what happened. \\
 \par

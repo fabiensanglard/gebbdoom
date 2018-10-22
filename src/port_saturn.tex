@@ -70,19 +70,19 @@ Despite its issues and ill timed release, it is a bitter feeling to see what hap
 \subsection{Programming the Saturn}
 Programming the Saturn was a difficult task. The programmer's manual is broken down in eight voluminous manuals requiering several reading sessions before building a mental image of the flow of data. The diagram in figure \ref{arch_saturn} fairly represents the daunting effort.\\
 \par
-Main programming was done via the SH-2 processors connected to 1.5MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chip (to indicate what to execute) had to be done via a tedious interrupts system. To deal with static and global variables the programmer had to deal with mutex and semaphores which were uncommon concept at that time. Because they were on the same bus, one had to wait for the other if both system needed to access either RAM of something on the system. Attempt to minimize the issue were made via a shared unified 4KiB cache which had little impact on the bottleneck.\\
+Main programming was done via the SH-2 processors connected to 1.5MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chip (to indicate what to execute) had to be done via a tedious interrupts system. To deal with static and global variables the programmer had to deal with mutex and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache which had little impact on the bottleneck.\\
 \par
-Audio was done via the SMSP (Saturn Custom Sound Processor) which piloted a Sound processor (a Motorola 68000). The SCSP was to be configured to produce sound mixes in the dedicated 512 KiB of RAM where they were picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize, play PCM, and perform 3D effects/distortion. The chip also polled controls inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
+Audio was done via the SMSP (Saturn Custom Sound Processor) which piloted a Sound processor (a Motorola 68000). The SCSP was to be configured to produce sound mixes in the dedicated 512 KiB of RAM where they were picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize instruments, play PCM, and perform 3D effects/distortion. The chip also polled control inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
 \par
-Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots parts of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background based scroll panes and send it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
+Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
 \par
-Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffered. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
+Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
 \par
 To control all these components and transfer data between system, a seventh chip called the SCU (System Control Unit) acted as DMA controller, DSP and bus controller. The DSP was able to perform matrix transformations and writhe the result directly in the VDP RAM.\\
 \par
 
 
-\trivia{Reading the programmer manual in details reveals that each components can somehow interact with each others RAM. This created a spaghetti hardware machine which made debugging very difficult.}
+\trivia{Reading the programmer manual in detail reveals that each component can somehow interact with each others' RAM. This made debugging very difficult.}
 \pagebreak
 
 
@@ -111,9 +111,9 @@ To control all these components and transfer data between system, a seventh chip
 
 
 \subsection{Doom on Saturn}
-Port to the Saturn was done by Rage Software on a very short schedule. Like all other ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it came to texture sampling as remembers Jim Bagley\footnote{RetroGamer \#134.}.\\
+The port to the Saturn was done by Rage Software on a very short schedule. Like all other ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it came to texture sampling as Jim Bagley remembers\footnote{RetroGamer \#134.}.\\
 \par
-\fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I for a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I got a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
 \par
 However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}\\
 \par
@@ -121,9 +121,9 @@ Years later, in 2014, Carmack had reconsidered.\\
 \par
 \fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}\\
 \par
-The hardware accelerated 60 fps capable engine was tossed. Due to time constraints, Jim did not have the time to change the renderer to work with one pixel wide triangles like the PlayStation. Upon shipping, the game managed a framerate which could go up to 20 but most of the time dropped in the single digit at a full screen resolution of 281x235. To compensate for the low framerate, designers of the game slowed down all movements which enraged the playing community.\\
+The hardware accelerated 60 fps capable engine was tossed. Due to time constraints, Jim did not have the time to change the renderer to work with one pixel wide triangles like the PlayStation. Upon shipping, the game managed a framerate which could go up to 20 but most of the time dropped in the single digit at a full screen resolution of 281x235. To compensate for the low framerate, Jim Bagle made the decision to slow down all movements which enraged the playing community.\\
 \par
-\trivia{An other effect of the rushed schedule was a pretty big bug with the audio system which made all sound effects to be panned left. Players were forced to play in mono to hear from both speakers.\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}}
+\trivia{Another effect of the rushed schedule was a pretty big bug with the audio system which made all sound effects panned left. Players were forced to play in mono to hear from both speakers.\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}}
 
 
 
@@ -135,11 +135,9 @@ The hardware accelerated 60 fps capable engine was tossed. Due to time constrain
 \par
 In the screenshot above, notice how E1M1 is the same at the other version (all based on the initial work for the Jaguar) . The status bar also welcomed a makeover.\\
 \par
-To take advantage of the VDP parallelism, it it claimed\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".} the VDP1 is used to render sprites and walls while the VDP2 is used for the status bar and also renders visplanes which are treated as background.\\
+To take advantage of the VDP parallelism, it is claimed\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".} the VDP1 is used to render sprites and walls while the VDP2 is used for the status bar and also renders visplanes which are treated as background.\\
 \par 
-Translucency was done in a peculiar way. It is unknown if that was a design decision, a hardware limitation or simply a time constraints but translucency is not done via alpha bending like the Playstation did.\\
-\par
- A more software friendly technique known as dithering is used to represent the Specters and glass surfaces.
+Translucency was done in a peculiar way. It is unknown if that was a design decision, a hardware limitation or simply due to a time constraints but translucency is not done via alpha bending like the Playstation did. A more software friendly technique known as dithering is used to represent the Specters and glass surfaces.
 % \fq{The Saturn had to be programmed straight to the metal. It used quads and messy 3D maths.}{David Shea, Alien Trilogy developer}
 
 
@@ -166,6 +164,6 @@ To this day, most of the information about this port was retrieved via reverse e
 \par
 \fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
 \par
-Despite heroic efforts from the team, time constraints crushed the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\
+Despite heroic efforts from the team, time constraints hurt the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\
 \par
 
