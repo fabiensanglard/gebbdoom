@@ -51,7 +51,7 @@ The registered version asset archive (\cw{DOOM.WAD}) was 11,869,745 bytes, with 
 
 \trivia{The game was also released on the Internet. On December 10th, 1993 they tried to seed it on \cw{ftp://ftp.wisc.edu/} but they could not connect since gamers were permanently connected to the server in order to be the first to get it.}\\
 \par
-There was no difference between the two \cw{DOOM.EXE} from the registered (paying) and the unregistered (free) version of the game. The engine scanned the directory, recognized the filename of the \cw{WAD} archive, and branched accordingly.\\
+There was no difference between the two \cw{DOOM.EXE} from the registered (paying) and the unregistered (free) version of the game. The engine scanned the current directory, recognized the filename of the \cw{WAD} archive, and branched accordingly.\\
 \par
 \rawscaleddrawing{0.9}{graph_wad}
 % \subfile{graph_wad2} 
@@ -66,13 +66,13 @@ The goal of the \cw{WAD} format was partly to replace the OS filesystem but most
 \par
 \ccode{wad_structure.c}
 \par
-\trivia{The extension \cw{WAD} was coined by Tom Hall during an uncanny dialog. John Carmack was looking for a name for its archive format. Upong asking "How do you call a file Where's All the Data?", Tom responded immediately: "A WAD!" }\\
+\trivia{The extension \cw{WAD} was coined by Tom Hall during an uncanny dialog. John Carmack was looking for a name for its archive format. Upon asking "How do you call a file Where's All the Data?", Tom responded immediately: "A WAD!" }\\
 \par
 \drawing{wad_arch}{A wad file containing two lumps.}
 \par
-The archive format was manipulated via two tools. \cw{lumpy} took a blob and packed it inside a lump, inside a \cw{WAD}. \cw{wadlink} took several \cw{WAD} and created/appended them into a single \cw{WAD}. The structure allows to easily add or remove lumps since adding a lump only needs to move the small directory at the end and update the header offset.\\
+The archive format was manipulated via two tools. \cw{lumpy} took a blob and packed it inside a lump, inside a \cw{WAD}. \cw{wadlink} took several \cw{WAD} and created/appended them into a single \cw{WAD}. The structure allows to easily add or remove lumps since adding a lump only requires to move the small directory at the end and update the header offset.\\
 \par
-\doom{} had a command-line parameter allowing modders to load their own \cw{WAD} in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed to customize everything (short for I.A which was baked in \cw{DOOM.EXE}). A custom \cw{WAD} containing a \cw{E1M1} lump could be used via as simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
+\cw{DOOM.EXE} had a command-line parameter allowing modders to load their own \cw{WAD} in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed to customize everything (short for I.A which was baked in the engine). A custom \cw{WAD} containing a \cw{E1M1} lump could be used via as simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
 
 
 

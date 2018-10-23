@@ -94,7 +94,7 @@ On DOS generating a flamegraph is slightly more difficult since it is a mono-thr
 \par
 The result is not exactly the same as the NeXT. The sound routine in charge of updating the audio data (\cw{S\_UpdateSounds}) is barely visible in red. It makes sense since the only work to do is to retrieve sfx and music data from the \cw{.wad} and place it in the RAM for the audio card to use.\\
 \par
- Something weirder is to notice that \cw{I\_FinishUpdate} (the microscopic red column next to \cw{G\_Ticker}) seems instantaneous. How can the DOS version transport a full framebuffer across the bus so fast? The answer is off course: It doesn't! This is because the DOS version was optimized.\\
+ Something weirder is to notice that \cw{I\_FinishUpdate} is not visible from the flamegraph, which means it is almost instantaneous. How can the DOS version transport a full framebuffer across the bus so fast? Because it doesn't! The DOS version benefited from heavily optimization.\\
 \par
 
 
@@ -172,20 +172,17 @@ The first tuning option was to lower horizontal resolution using column doubling
 Using low details instead of high details yields a linear 2x performance improvement regardless of the resolution selected.
 
 
-
+\vspace{-6pt}
 \fullimage{high_res.png}\\
 \par
 Above the high resolution is 320x168. Below, in low resolution, it is dropped to 160x168 with uneven columns duplicated. The resolution drop is particularly noticeable on the non-magnified sergeant and the door but only because diminished lightning and CRT scaling had been disabled for demonstration purposes. In practice the difference was subtle.\\
 \par
 With direct access to the VGA banks, low is a completely free optimization without the need to write the same pixel column twice, since the vga mask is set up to write the same pixel in two banks.\\
 \par
-\fullimage{low_res.png}\\
+\vspace{-3pt}
+\fullimage{low_res.png} 
 
-
-
-
-
-
+\vspace{-30pt}
 \section{3D Canvas size adjustment}
 An other option to improve the framerate was to lower the size of the 3D canvas. The player had access to a sliding bar allowing to select between eight dimensions. The slider was a multiplier affecting variable \cw{numblocks} to produce a value within range [0x3,0xB]. Value 11 was special and hardcoded to be recognized as "full-screen" 320x200.\\
 \par
@@ -196,7 +193,7 @@ It is unknown if anybody had the misfortune and courage to play the game in mode
 \par
 \drawing{lod}{The nine 3D canvas configurations.}
 \par
-\trivia{id shipped \doom{} in High details with a canvas size \cw{0x9} default configuration.}
+\trivia{id shipped \doom{} with by default "High Detail" on with a canvas size \cw{0x9}.}
 
 \begin{figure}[H]
 \centering  
@@ -216,12 +213,12 @@ It is unknown if anybody had the misfortune and courage to play the game in mode
  0x3 &  96 & 48 &  4,608 &   7 & 45  \\
    \toprule
 \end{tabularx}
-\caption{Benchmark of performance gain vs 3D canvas size.}
+\caption{Benchmark of performance gain vs 3D canvas size.\protect\footnotemark}
 \end{figure}
 
-
+\footnotetext{Benchmarked on a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424, 8MiB RAM).}
 \par
-Gains\footnote{Benchmarked on a miniPC Unisys CWD 4001 (486DX2-66/CirrusLogic-GD5424, 8MiB RAM).} are not as substantial as the details level. Reducing the 3D canvas size by 50\% yields only a 31\% improvement yet the visible area is so small it its almost not worth it.\\
+Gains are not as substantial as the details level. Reducing the 3D canvas size by 50\% yields only a 31\% improvement yet the visible area is so small it its almost not worth it.\\
 
 \par
 \fullimage{shipped_config}

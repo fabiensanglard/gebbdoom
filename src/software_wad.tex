@@ -1,10 +1,8 @@
 \section{Filesystem}
 \doom{} barely interacts with the OS file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
  \par
-\trivia{There was no need for an \cw{I\_*} abstraction layer to access the OS filesystem. Luckily, all offered now standard functions such as \cw{open}, \cw{open}, \cw{lseek}, \cw{read}, and \cw{close}.}\\
-\par
-Among all versions of \doom{} distributed, the engine executable was always the same\footnote{Apart for a few bug fixes.}. Only the asset file name and content changed.\\
-\par
+ If \cw{DOOM.EXE} remained relatively stable, the asset archive kept on growing with each new game being more elaborated than the previous one as attest the following list of \cw{.WAD}s.\\
+ \par
  \begin{figure}[H]
 \centering  
 \begin{tabularx}{\textwidth}{ L{1.3} L{0.7} R{1} R{1}}
@@ -32,11 +30,15 @@ Among all versions of \doom{} distributed, the engine executable was always the 
 \end{figure}
 \par
 \footnotetext{Source: doomgod.com "Internal War Allocation Daemons"}
+\par
+\trivia{There was no need for an \cw{I\_*} abstraction layer to access the OS filesystem. Luckily, all offered now standard functions such as \cw{open}, \cw{open}, \cw{lseek}, \cw{read}, and \cw{close}.}\\
+\par
 
-
-Lumps are identified by an unique name off up to eight characters (which conveniently matches DOS filename max length limitation).\\
+Lumps are identified by an unique name made off up to eight characters (which conveniently matches DOS filename max length limitation).\\
 \par
 \ccode{lumpinfo_t.c}{}
+\par
+The were more than thirty types of lumps. Those associated with maps and music followed a naming convention so they could be grouped together. Not all lumps had content, some where only used to mark beginning and end of lumps groups.
 \pagebreak
 
 \begin{figure}[H]
@@ -101,7 +103,7 @@ In the next example, shareware \doom{} was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par
-For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archives have only one lump each. In the following lump index, see how lump name can appear several times (there are two lumps with name \cw{MUSIC1}.\\
+For simplicity of drawing, \cw{DOOM1.WAD} is represented with only three lumps and the two additional WAD archives have only one lump each. In the following lump index, see how lump name can appear several times (there are two lumps with name \cw{MUSIC1}) in the index.\\
 \par
 \drawing{lumpsMaster}{Lump system index}
 \par

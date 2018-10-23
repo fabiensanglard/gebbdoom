@@ -1,7 +1,7 @@
 
 
 \section{Maps}
-Maps were designed in a top-down view. The only limitation was that walls were perpendicular to floors. Everything was done in 2D. A designer worked with just five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]. 32 units translate to roughly one meter (or 3.28 feet for poor soul who must use the imperial system.)}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
+Maps were designed in a top-down view. The only limitations were that walls were perpendicular to floors and both floors and walls were horizontal so everything was done in 2D. A designer worked with five types of elements: \cw{VERTEX}\footnote{Vertices coordinates were expressed with signed short integer [-32768, 32767]. 32 units translate to roughly one meter (or 3.28 feet for poor soul who must use the imperial system.)}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
 \drawing{doom_map_basics}{}
 
@@ -22,14 +22,14 @@ The resulting scene in figure \ref{doom_map.png} is ugly but the mismatched colo
 \par
    Notice the portal \cw{E-B} which does not have a mid-texture but an upper and lower texture. These were used to draw the up-step and down-step towards sector \#0.\\
 \par
-Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctly set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C} vertical offset was properly set and result in no visual artifact. None of the wall use an horizontal offset, however field is marked \cw{XOFF} on figure \ref{doom_map_basics} to show its location.\\ 
+Also notice the wall \cw{D-E} which mid-texture vertical offset was not correctly set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C} vertical offset was properly set and result in no visual artifact. None of the wall use an horizontal offset, however the correspnoding field is labelled \cw{XOFF} on figure \ref{doom_map_basics} to show where its location.\\ 
 \pagebreak
 
 
 
 \subsection{Map Editor (DoomED)}
 To harness the complexity of the map format, a new tool was created. The Doom map EDitor was to be called \textbf{DoomED}. This is were \NeXT solution asserted the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed one to never lose work while writing DoomED or creating a map.
-The very design of Objective-C also had a tremendous influence. The language's message dispatching system no-op behavior when dereferencing a \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} created a fault forgiving environment where a faulty feature would not work but did not crash either.\\
+The very design of Objective-C also had a tremendous influence. The language's message dispatching system no-op behavior when dereferencing a \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} resulting in a fault forgiving environment where a faulty feature would not work but did not crash either.\\
 \par   
 The killer feature was Interface Builder which not only came with a full library of widgets but also allowed to create new one and connect them to the business logic instantly.\\
 \par

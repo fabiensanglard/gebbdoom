@@ -355,7 +355,17 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
 \vspace{-4mm}
 After all this clipping, walls and portal screenspace coordinates are finally render. For each fragment ends, an \cw{Y} offset is calculated based on sector floor and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a set of full columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture while walls are only middle texture). Rendering is done vertically via \cw{colfunc} function pointer (detailed in the "performance" page \pageref{performances}).\\
 
+\subsection{Perspective Correct Texture Mapping}
+Here will be a beautiful explanation.
+\pagebreak
+
+\subsection{Sub-pixel Accurate Texture Mapping}
+Here will be an other beautiful explanation.
+\newpage
 \par
+Space intentionally left blank.
+\vspace{2.5cm}
+
 \subsection{Drawing Flats}
  If we were to take a look at the framebuffer at this point in the rendering of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization. Doom never clears the framebuffer so instead of white there would be whatever was there last frame.).\\
 \par

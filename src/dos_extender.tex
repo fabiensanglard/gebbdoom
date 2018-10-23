@@ -9,18 +9,18 @@ The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM releas
 \par
 Pointer manipulation was error prone since different segment/offset combinations could point to the same RAM location. There were also issues related to pointer arithmetic where once the offset wrapped around, the segment was not automatically updated.\\
 \par
-With the release of the 386 and later 486, things worsened. The bus address width was increased to 24-bit which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which both provided means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
+With the release of the 386 and later 486, things worsened. The bus address width was increased to 24 bits which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which both provided means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
 
-There would have been a simpler solution. Intel allowed its CPUs to function in two modes. The backward compatible Real mode which made the CPU behave like a very fast 8088 and the Protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
+There would have been a simpler solution. Intel allowed its CPUs to function in two modes. The backward compatible real mode which made the CPU behave like a very fast 8088 and the protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
 \par
-It would have worked out if the operating system had been able to run in Protected Mode. However Microsoft's DOS could only handle Real Mode and its infamous 16-bit programming.\\ 
+It would have worked out if the operating system had been able to run in protected mode. However, in the name of backward compatibility, Microsoft's DOS could only handle real mode which effectively locked developers to 16-bit programming.\\ 
 \par
 
 
 
 
 \par
-Within the growing frustration of 16-bit programming, people saw an opportunity.\newpage 
+Among the growing growing pain and frustration of DOS, some people saw an opportunity.\newpage 
 
 While there were many products that could address this, two companies in particular stood out with a winning combination: Watcom International Corporation would produce a C compiler, and Rational Systems would produce a "DOS extender", that together allowed programs to run in protected mode while still having access to 16-bit DOS functions.\\
 \par
@@ -30,7 +30,7 @@ While there were many products that could address this, two companies in particu
 Under DOS the normal way to perform a "system call" is to use a software interrupt instruction with parameter \cw{21h}. In C programming, this was abstracted away by header \cw{DOS.H} which performed all the lower level work behind the scenes.\\
 \par
 \drawing{realmode_app_limk}{}
-To allow the app to run in one mode and the OS to run in an other, the two worlds had to be bridged. A middle layer called "DOS Extender" able to run in any mode inserted itself between the program and the operating system.\\
+To allow the app to run in one mode and the OS to run in an other, the two worlds had to be bridged. A middle layer called "DOS Extender" able to run in both mode inserted itself between the program and the operating system.\\
 
 \par
 \rawdrawing{realmode_app_limk_extender}
@@ -41,15 +41,15 @@ Upon startup, the DOS Extender would place hooks in the OS software Interrupt Ve
 When the extender intercepted an operating system call, it had to do a lot of work:
 \begin{enumerate}
 \item Perform all translation needed (e.g: a 32-bit address had to be expressed as a 16-bit offset with a 16-bit segment).
-\item Switch the CPU to Real Mode.
+\item Switch the CPU to real mode.
 \item Forward the call to DOS.
 \item Retrieve the results and convert 16-bit register values back to 32-bit.
-\item Switch the CPU back to Protected Mode.
+\item Switch the CPU back to protected mode.
 \end{enumerate} 
 
-The performance sensitive operations were switching between Real mode and Protected mode. Originally this was a problem on 286 CPUs since Intel never imagined a program may want to switch back to Real Mode from Protected Mode. Various tricks had to be used\footnote{These are detailed in \textit{Game Engine Black Book: Wolfenstein 3D}.} among them faking a keyboard Ctrl-Alt-Del reboot to reset the CPU without actually rebooting.\\
+The performance sensitive operations were switching between real mode and protected mode. Originally this was a problem on 286 CPUs since Intel never imagined a program may want to switch back to real Mode from protected Mode. Various tricks had to be used\footnote{These are detailed in \textit{Game Engine Black Book: Wolfenstein 3D}.} among them faking a keyboard Ctrl-Alt-Del reboot to reset the CPU without actually rebooting.\\
 \par
-On the other side, switching from Real Mode to Protected Mode is simple. Setting the Control Register from bit 0 to 1 takes six instructions.\\
+On the other side, switching from real Mode to protected Mode is simple. Setting the Control Register from bit 0 to 1 takes six instructions.\\
 \par
 \acode{switch_to_protected_mode.asm}
 \par

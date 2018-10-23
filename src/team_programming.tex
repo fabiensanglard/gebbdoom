@@ -24,7 +24,7 @@ The NeXTSTEP version he managed to produce would reduce construction cost of GUI
 
 
 \vspace{-4mm}
- With IB, all the drudge part GUI authoring work was done with a mouse within the blink of an eye. The "tedious" part involving writing code was only mandatory for the actual meat of the application in the business logic layer. Creating the GUI was a two steps process. First draw all elements, then connect the UI elements to the Object models.\\
+ With IB, all the drudge part involved in GUI authoring was done with a mouse within the blink of an eye. The "tedious" part involving writing code was only mandatory for the actual meat of the application in the business logic layer. Creating the GUI was a two steps process. First draw all elements, then connect the UI elements to the Object models.\\
 \par
 The first part was, as Steve Jobs qualified it, "insanely easy" since building an interface was done with a series of drag and drop from a palette of GUI elements to a canvas. An inspector allowed to see the properties of an element. Everything from min/max of a slider to the default value of a textfield could be adjusted easily.\\
 \par
@@ -41,7 +41,7 @@ OOP's encapsulation, inheritance and polymorphism allowed to push back the limit
 
 \par
 \subsubsection{Objective-C}
-Objective-C was developed around the same time as C++. However as the co-creator Brad Cox recalls, his creation and Bjarne Stroustrup's creation had opposed philosophy. Where C++ placed performance first, Objective-C valued programmer's productivity first.\\
+Objective-C was developed around the same time as C++. However as the co-creator Brad Cox recalls, his creation and Bjarne Stroustrup's brainchild had opposed philosophy. Where C++ placed performance first, Objective-C valued programmer's productivity first.\\
 \par
 \fq{
 	Back in 1980 when both our languages were under construction, I came down and met with Bjarne Stroustrup. We had radically different views on how our languages would be designed. The key concept was the relative importance of machine efficiency vs programmer efficiency. Eventually, we agreed to disagree.
@@ -52,9 +52,9 @@ Objective-C was developed around the same time as C++. However as the co-creator
 \par
 The version shipping with NeXT computer featured an important library called Foundation Kit. One of its component, \cw{NSObject}, freed developer from the error prone memory management burden by offering reference counting via its \cw{retain} and \cw{release} method. A collection of swiss army knife containers \cw{NSArray}, \cw{NSDictionary}, \cw{NSSet}, \cw{NSData} once again allowed to focus on the core functionality instead of losing time on infrastructure.\\
 \par
-\trivia{Initially using the prefix NX, all objects in Foundation were rename with a leading NS for OpenSTEP where "NS" stands for the alliance NeXT/Sun\_Microsystems. All these objects are still the core of MacOSX and iOS today, the prefix NS was never removed.}\\
+\trivia{Initially using the prefix NX, all objects in Foundation were rename with a leading NS for OpenSTEP where "NS" stands for the alliance NeXT/Sun\_Microsystems. All these objects are still at the core of MacOSX and iOS today, the prefix NS was never removed.}\\
 \par
-The very core of Obj-C arcbitecture, based on messages routed via a dispatching method \cw{objc\_msgSend} allowed program to be more resilient to errors. By far the most amazing was the ability to send message to null. When a developer sent a message to an object via the following syntax.\\ \par
+The very core of Obj-C arcbitecture, based on messages routed via a dispatching method \cw{objc\_msgSend} allowed program to be more resilient to errors. By far the most amazing feat (at least to a C++ developer) was the ability to send message to null. When a developer sent a message to an object via the following syntax.\\ \par
 \objccode{obj.message}
 What really happened behind the scene was a call to the dispatch.\\
 \par

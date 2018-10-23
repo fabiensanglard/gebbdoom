@@ -63,7 +63,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -323,7 +323,7 @@
            y="-51.941914"
            x="232.35242"
            id="tspan4183-5-5"
-           sodipodi:role="line">8</tspan></text>
+           sodipodi:role="line">8c</tspan></text>
     </g>
     <g
        id="g4247-0-9"

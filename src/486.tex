@@ -31,7 +31,7 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 
 
 
-On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very long instruction word.}. It had three units, X, Y, and Z allowing parallel processing which when efficiently used could outperform the Intel 486.\\
+On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very Long Instruction Word.}. It had three units, X, Y, and Z allowing parallel processing which when efficiently used could outperform the Intel 486.\\
 \par
 But where later CPUs such as the Pentium chose to hide the chip complexity by automatically executing instruction in parallel when possible, the i860 architecture mandated direct manipulation to its parallel pipelines. The chip did nothing behind the scenes and relied on compiler writers to sequence instructions appropriately.\\
 \par
@@ -159,7 +159,7 @@ The first thing the cache had going on for itself is the lower latency of its RA
 \par
 The difference of speed comes from the design of their elementary cells.\\
 \par
- A DRAM cell hold a bit. It's simple design features one transistor and one storage capacitor which allow tight packing and high capacity. However the capacitor loses its charge over time and each time it is accessed. Everytime the cell is read, it needs to be written back with its value. Even if it is not accessed, it must be refreshed every 15$\mu s$.\\
+ A DRAM cell hold a bit. It's simple design features one transistor and one storage capacitor which allow tight packing and high capacity. However the capacitor loses its charge over time and each time it is accessed. Everytime the cell is read, it must be written back with its value. Even if it is not accessed, it must be refreshed every 15$\mu s$.\\
 \par
 \scaleddrawing{1}{DRAM}{Dynamic RAM and its two elements holding one bit of data}
 \vspace{-5pt}
@@ -185,16 +185,16 @@ Since it is located inside the chip, accessing it doesn't require an expensive b
 
 
 \subsubsection{Cachelines}
-Not only the L1 cache had better hardware, it was also cleverly designed. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on its yet it managed an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
+Not only the L1 cache had better hardware, it was also cleverly designed. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on its yet it managed an impressive 8\% miss rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
 \par
-To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided in 1,953,125 pages of 2 KiB. Within each page, 128 lines of 16 bytes (called cacheline).\\
+To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided in 2,097,152 pages of 2 KiB. Within each page, 128 lines of 16 bytes (called cacheline).\\
 \par
 \drawing{cacheline}{The 16 bytes in a cacheline.}
 \par
 The cache system is made of one directory and four banks (also called ways). Each way can store 128 cachelines of 16 bytes and therefore has a capacity of 2 KiB. These lines of 16 bytes are the elementary unit of the cache.\\
 \drawing{mem_to_way}{How a memory address is interpreted by the cache controller}
 \par
-Upong receiving a 32-bit address access request, the cache controller splits it in three fields.
+Upong receiving a 32-bit address access request, the cache controller splits it in three fields.\\
 \begin{enumerate}
 \item Use the LINE field [4-10] to look up one of the 128 dictionary entries.
 \item Look at the four tags in the entry, if one matches the TAG [11-31] then it means the cacheline is present in one of the four ways.
@@ -231,6 +231,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 \subsection{Overdrive and L1 Writeback}
 Intel managed to improve performances by 33\% with its line of 80486 OverDrive. These CPU featured a frequency multiplied which made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mmhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  The write-back L1 cache policy (instead of write-through) reduced bus traffic significantly.\\
 \par 
+\vspace{10pt}
 \scaleddrawing{0.9}{486dx2_notm}{The "DX2-66" was the golden standard and absolute best to run \doom{}}%{Best CPU to run \doom at the time.}
 \par
 %\trivia{Want even more performance? Not only a DX2-66 ran faster, they also came with an enhanced writeback L1 cache\footnote{The standard 486 L1 cache was writethrough with post-writes.}}
@@ -317,7 +318,7 @@ Design at Intel -- A CAD History.}.\\
 \subsection{Programming the 486}
 With the architecture in mind we can now understand how a programmer could take best advantage of the 486. The good news was that most of the performance improvement was the characterized free-lunch of the 90s. The exact same binary would run twice as fast on the new CPU.\\
 \par
-Albeit a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cacheline and maximized time and space locality\footnote{And avoid branching. Without a branch predictor, \cw{jmp} are ignored and usually incur a two cycles stale.}, the CPU would fly to process integers. Floating point operations had improved a lot (the i487 FPU can \cw{FMUL} faster than the i386 can \cw{IMUL}) and floating point operations performances had improved by a factor 2 compared to the i386's FPU (i387).\\
+Albeit a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cacheline and maximized time and space locality\footnote{And avoid branching. Without a branch predictor, \cw{jmp} are ignored and usually incur a two cycles stale.}, the CPU would fly to process integers. Floating point operations had improved by a factor 2 compared to the i386's FPU (i387). In fact, floating point operations had improved so much that the i487 FPU could \cw{FMUL} faster than the i386 could \cw{IMUL}.\\
 \par
 \begin{figure}[H]
 \centering
@@ -332,7 +333,7 @@ Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
 \end{figure}
 
 \par
-But it was still a far cry compared to the performance of the ALU and its barrel shifter which mandated \doom{} to use integer operations exclusively\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
+But the FPU performance was still a far cry compared to the the ALU and its barrel shifter. This mandated \doom{} to use integer operations exclusively\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
 
 \par
  \begin{figure}[H]

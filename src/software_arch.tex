@@ -25,7 +25,7 @@ In a war where price was paid by programmers, no side had incentives toward peac
 
 
 
-If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16-bit) or int (32-bit) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{01234567}.\\
+If the order of bits in a byte was an universal agreement, the order of bytes in larger structure such as short (16 bits) or int (32 bits) was differently interpreted based on the vendors internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{01234567}.\\
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
@@ -39,12 +39,12 @@ Even though \doom{} was written first on a \NeXT, the platform intentionally pla
 
 
 \subsection{Solving APIs}
-Accommodating the needs of running on different architecture was more challenging. The solution was to have a common "core" which was platform agnostic. To perform I/O, the core would tap into sub-systems specific to the platform they targeted.\\
+Accommodating the needs of running on different operating systems was more challenging. The solution was to have a common "core" which was platform agnostic. To perform I/O, the core would tap into sub-systems specific to the platform they targeted.\\
 \par
 \begin{figure}[H]
 \centering
 \includegraphics[width=.6\textwidth]{drawings/doom_arch.pdf}
-\caption{\doom Core and its I/O platform-dependent systems.}
+\caption{\doom{} Core and its I/O platform-dependent systems.}
 \end{figure}
 \par
 In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSWindow} API on \NeXT. A naive implementation would have required a function pointer acting as a layer of indirection to dispatch each I/O call. A better solution leveraged C's linking step.\\
@@ -53,8 +53,15 @@ In the case of the video system, it would be using the VGA on MS-DOS but \cw{NSW
 \par
  To generate an executable, all objects are given to a linker which will recognize Unresolved Symbols from all objects and patches all holes.\\
  \par
- Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o}, we can see this translation unit uses functions such as \cw{I\_PlaySong} and \cw{I\_StartSound} which are defined in the platform specific sound system. \\
-\par
+ Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o}, we can see this translation unit uses functions such as \cw{I\_PlaySong} and \cw{I\_StartSound} which are defined in the platform specific sound system. 
+
+
+
+
+
+
+ Asking \cw{clang} for undefined symbols shows an object file's "holes".\\
+ \par
 \tcode{s_sound_linker.txt}
 \par
 After the linker is done, there are no more unresolved symbols. The final executable is ready to run.\\
@@ -84,10 +91,12 @@ In white, the core components. In grey the I/O system which require platform spe
 \par
 Notice the prefixed file name in figure \ref{doom_code_arch}. Since C language has no namespace these prefix are also applied to functions names. \cw{I\_} stands for "Implementation specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.\\
 
-The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platform. Most of the code goes into the core and the platform specific code needs not to be touched anymore.\\
+The beauty of this architecture is that once the platform specific systems are written, there is zero overheard to writing code running on multiple platforms. Most of the code goes into the core and the platform specific code needs not to be touched anymore.\\
 \par
-Because portability was not an afterthought but an integral part of the development process, \doom{} code layering is never violated. This rigorous design explains partly why \doom{} has been ported on so many systems. Additionally, to have to work with several different compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.\\
-
+Because portability was not an afterthought but an integral part of the development process, \doom{} code layering is never violated. This rigorous design explains partly why \doom{} has been ported on so many systems: there is little code to write.\\
+\par 
+Additionally, working with several compilers such gcc or watcom not only permitted to surface many bugs, it also ensured the code would be ANSI standard compliant.\\
+\vspace{-10pt}
 \section{Diving In!}
 Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
 \par
@@ -130,9 +139,9 @@ Just before finally jumping in, a few stats gathered with \cw{cloc} tool, just t
 \par
 
 \subsection{Where Is My Main?}
-Exploring a source code repository always starts with finding out what the OS will select as entry point . 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{Of course, on Microsoft Windows it is different and you have to search for \cw{WinMain().}}. In the case of \doom{} there is one entry point per OS and they are all in implementation specific (\cw{I\_*}) files. For DOS it is in \cw{i\_main.c}\footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
+Exploring a source code repository always starts with finding out what the OS will select as entry point. 99\% of the time it means finding the \cw{int main(int,char**)} function\footnote{Of course, it is different on Microsoft Windows and you have to search for \cw{WinMain().}}. In the case of \doom{} there is one entry point per OS and they are all in implementation specific (\cw{I\_*}) files. For DOS it is in \cw{i\_main.c}\footnote{On \NeXT the \cw{main} function is located in \cw{Doom\_main.m} and all it does is loading "DoomRef.nib" into the window system.}.\\
 \par
-Regardless of the platform, all entry points converge to the core main, function \cw{D\_DoomMain} located in \cw{d\_main.c}.\\ 
+Regardless of the platform, all entry points converge to the core main named \cw{D\_DoomMain} and located in \cw{d\_main.c}.\\ 
 \par
 
  \begin{figure}[H]
@@ -154,7 +163,7 @@ Regardless of the platform, all entry points converge to the core main, function
 
 \par
 
-\trivia{\NeXT platform specific were all written in Objective-C: \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, \cw{r\_debug.m},  }\\
+\trivia{\NeXT platform specific were all written in Objective-C. All codes was in five files named \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, and \cw{r\_debug.m}.}\\
 
 
 \par
@@ -168,7 +177,7 @@ No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-
 \par
 Because C has no namespace, a code convention is used to to tag functions. A prefix helps identifying which system they belongs to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependant, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
 \par
-The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scene (figure \ref{dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
+The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text-mode shows to the player what is going on behind the scenes (figure \ref{dosloading}). For each initializer a line is outputted to the point that DOS screen on the right matches well the source code in \cw{D\_DoomMain}.\\
 \par
 The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made of dots which required several minutes to complete on the full version depending on the machine's harddrive access time. The details and meaning of each dot is explained in the Annex on page \pageref{dots_explained}.\\
 \par
@@ -181,9 +190,9 @@ The startup step was fairly fast except for the excruciating renderer initializa
 \end{figure}
 
 \par
-The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what wad had bee found (\cw{doom1.wad} or \cw{doom.wad}).\\
+The game engine executable which shipped with the registered version of the game was the same which shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what wad had been found (\cw{doom1.wad} or \cw{doom.wad}).\\
 \par
-\trivia{\doomii{} was officialy translated to an other languge! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translation.}
+\trivia{\doomii{} was officialy translated to an other languge! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went through the efforts of translating.}
 
 
 

@@ -6,7 +6,7 @@
 \end{wrapfigure}
 
 
-The DOS extender was magical but it was hard to setup in a standalone product. A bootstrap which would locate \cw{DOS4GW.EXE}, the program to run and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. The ramp up time was significant and raised the entry barrier. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable. The solution would once again come from the North.\\ 
+The DOS extender was magical but it was hard to setup in a standalone product. A bootstrap which would locate \cw{DOS4GW.EXE}, the program to run and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. The ramp up time was significant and raised the entry barrier. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable. The solution would once again come from the Great White North.\\ 
 \par
 
 Watcom compiler project was started in 1979 at the University of Waterloo in Ontario, Canada. Initially only supporting BASIC, it was improved over the years by students with support for new OS and languages. In 1988, three PHDs, Fred Crigger, Ian McPhee, and Jack Schueler made it the first C compiler running on IBM-PC.\\
@@ -61,7 +61,7 @@ id Software were not the only team to value Watcom's solution. Many other studio
 \subsection{ANSI C}
 Not only did the watcom/extender combo made programming simpler, it also made programs run faster. There was another aspect of protected-mode programming -- less obvious but very important -- that had a significant impact on \doom.\\
 \par
-To bring C to DOS Real Mode and accommodate for segments manipulation, the language had been "augmented". A example from Wolfenstein 3D Memory Manager summarize well what "C for DOS" looked liked.\\
+To bring C to the world of PC/DOS's real mode and accommodate for segments manipulation, the language had been "augmented". A example from Wolfenstein 3D Memory Manager summarize well what "C for DOS" looked liked.\\
 \par
 \ccode{real_mode_c.c}
 \par
