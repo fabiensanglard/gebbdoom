@@ -45,8 +45,8 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="0.85557769"
-     inkscape:cx="410.12806"
-     inkscape:cy="271.12806"
+     inkscape:cx="276.9024"
+     inkscape:cy="206.68645"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -576,32 +576,6 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g5788"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title5790">?? (60 samples, 20.27%)</title>
-    <rect
-       x="127.2"
-       y="197"
-       width="137.8"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect5792"
-       style="fill:#d32b24" />
-    <text
-       text-anchor=""
-       x="130.16"
-       y="207.5"
-       font-size="12"
-       id="text5794"
-       style="font-size:12px;font-family:Verdana;fill:#000000">??</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
      id="g5796"
      transform="translate(-10,-15.275391)">
     <title
@@ -907,32 +881,6 @@
        y="367.5"
        font-size="12"
        id="text5890"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g5892"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title5894">NXObjectMapPrototype (2 samples, 0.68%)</title>
-    <rect
-       x="122.6"
-       y="181"
-       width="4.5999999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect5896"
-       style="fill:#e98826" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="191.5"
-       font-size="12"
-       id="text5898"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -1246,32 +1194,6 @@
        font-size="12"
        id="text5994"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g5996"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title5998">rlsDefaultParameterVector (60 samples, 20.27%)</title>
-    <rect
-       x="127.2"
-       y="213"
-       width="137.8"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6000"
-       style="fill:#cf0113" />
-    <text
-       text-anchor=""
-       x="130.16"
-       y="223.5"
-       font-size="12"
-       id="text6002"
-       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamet..</text>
   </g>
   <g
      class="func_g"
@@ -2318,32 +2240,6 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6324"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title6326">NXObjectMapPrototype (2 samples, 0.68%)</title>
-    <rect
-       x="122.6"
-       y="213"
-       width="4.5999999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6328"
-       style="fill:#cdc10d" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="223.5"
-       font-size="12"
-       id="text6330"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
      id="g6332"
      transform="translate(-10,-15.275391)">
     <title
@@ -2442,32 +2338,6 @@
        font-size="12"
        id="text6362"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6364"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title6366">rlsDefaultParameterVector (62 samples, 20.95%)</title>
-    <rect
-       x="122.6"
-       y="229"
-       width="142.39999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6368"
-       style="fill:#db7d0b" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="239.5"
-       font-size="12"
-       id="text6370"
-       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamete..</text>
   </g>
   <g
      class="func_g"
@@ -3143,32 +3013,6 @@
        y="127.5"
        font-size="12"
        id="text6586"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g6588"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title6590">NXObjectMapPrototype (2 samples, 0.68%)</title>
-    <rect
-       x="122.6"
-       y="165"
-       width="4.5999999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6592"
-       style="fill:#f87c08" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="175.5"
-       font-size="12"
-       id="text6594"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
@@ -4034,32 +3878,6 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g6860"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title6862">rlsDefaultParameterVector (60 samples, 20.27%)</title>
-    <rect
-       x="127.2"
-       y="181"
-       width="137.8"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect6864"
-       style="fill:#e8cb2b" />
-    <text
-       text-anchor=""
-       x="130.16"
-       y="191.5"
-       font-size="12"
-       id="text6866"
-       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamet..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
      id="g6868"
      transform="translate(-10,-15.275391)">
     <title
@@ -4528,32 +4346,6 @@
      onmouseover="s(this)"
      onmouseout="c()"
      onclick="zoom(this)"
-     id="g7012"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title7014">NXObjectMapPrototype (2 samples, 0.68%)</title>
-    <rect
-       x="122.6"
-       y="197"
-       width="4.5999999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7016"
-       style="fill:#fc6024" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="207.5"
-       font-size="12"
-       id="text7018"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
      id="g7020"
      transform="translate(-10,-15.275391)">
     <title
@@ -4678,32 +4470,6 @@
        font-size="12"
        id="text7058"
        style="font-size:12px;font-family:Verdana;fill:#000000" />
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7060"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title7062">rlsDefaultParameterVector (62 samples, 20.95%)</title>
-    <rect
-       x="122.6"
-       y="245"
-       width="142.39999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7064"
-       style="fill:#d83f13" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="255.5"
-       font-size="12"
-       id="text7066"
-       style="font-size:12px;font-family:Verdana;fill:#000000">rlsDefaultParamete..</text>
   </g>
   <g
      class="func_g"
@@ -4886,32 +4652,6 @@
        font-size="12"
        id="text7122"
        style="font-size:12px;font-family:Verdana;fill:#000000">R..</text>
-  </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7124"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title7126">NXObjectMapPrototype (2 samples, 0.68%)</title>
-    <rect
-       x="122.6"
-       y="149"
-       width="4.5999999"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7128"
-       style="fill:#f23c2d" />
-    <text
-       text-anchor=""
-       x="125.57"
-       y="159.5"
-       font-size="12"
-       id="text7130"
-       style="font-size:12px;font-family:Verdana;fill:#000000" />
   </g>
   <g
      class="func_g"
@@ -5173,32 +4913,22 @@
        id="text7210"
        style="font-size:12px;font-family:Verdana;fill:#000000">R_MakeSpans</text>
   </g>
-  <g
-     class="func_g"
-     onmouseover="s(this)"
-     onmouseout="c()"
-     onclick="zoom(this)"
-     id="g7212"
-     transform="translate(-10,-15.275391)">
-    <title
-       id="title7214">Update16_2 (48 samples, 16.22%)</title>
-    <rect
-       x="12.3"
-       y="245"
-       width="110.3"
-       height="15"
-       rx="2"
-       ry="2"
-       id="rect7216"
-       style="fill:#f5ab2f" />
-    <text
-       text-anchor=""
-       x="15.3"
-       y="255.5"
-       font-size="12"
-       id="text7218"
-       style="font-size:12px;font-family:Verdana;fill:#000000">Update16_2</text>
-  </g>
+  <rect
+     style="fill:#f5ab2f"
+     id="rect7216"
+     ry="2"
+     rx="4.574965"
+     height="15"
+     width="252.30931"
+     y="229.72461"
+     x="2.3000002" />
+  <text
+     style="font-size:12px;font-family:Verdana;fill:#000000"
+     id="text7218"
+     font-size="12"
+     y="240.22461"
+     x="5.3000002"
+     text-anchor="">Update16</text>
   <g
      class="func_g"
      onmouseover="s(this)"

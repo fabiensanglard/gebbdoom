@@ -1,5 +1,5 @@
 \section{Bugs}
-\doom{} is known for its stability thanks to a development process using seven compilers and systems. Nonetheless it shipped with a few bugs.
+\doom{} is known for its stability partly thanks to a development process using seven compilers and systems. Nonetheless it shipped with a few bugs.
 
 
 
@@ -15,7 +15,7 @@ There is rare collision detection bug which was first brought to light (and subs
 \par
 Well I have good news. You can blame your tools.}{Colin Phipps}\\
 \par
-Some enemies can be really big, almost ten times bigger than the player (16) in the case of the Spider Mastermind (128). As we saw on page \pageref{E1M1_blockmap}, \doom{} uses blockmaps to speed up intersection with walls and things. If a Thing is on the edge of block and the player is a bit unlucky a miss can be calculated when it should have been a hit.
+Some enemies can be really big, almost ten times bigger than the player (16 units) like in the case of the Spider Mastermind (128 units). As we saw on page \pageref{E1M1_blockmap}, \doom{} uses blockmaps to speed up intersection with walls and things. If a Thing is on the edge of block and the player is a bit unlucky a miss can be calculated when it should have been a hit.
 
 \fullimage{beasts_sizes.png}
 \vspace{-1cm}
@@ -26,7 +26,7 @@ Some enemies can be really big, almost ten times bigger than the player (16) in 
 \par
 It is possible to miss a SpiderDemon in a hallway. In the single room map above, the green player on the left is firing at a red enemy 128 units wide on the right (probably a SpiderDemon). The blue grid shows the blockmap's alignment.\\
 \par
- The line of the bullet and the radius of the monster clearly overlap. This should be a hit. But only blockmaps \cw{0}, \cw{1}, and \cw{2} will be checked resulting in test with walls \cw{D}, \cw{A}, and \cw{B}. The enemy is in block \cw{5} and since the bullet doesn't cross it, it will be ignored.\\
+ The line of the bullet and the radius of the monster clearly overlap. This should be a hit. But only content of blockmaps \cw{0}, \cw{1}, and \cw{2} will be checked resulting in test with walls \cw{D}, \cw{A}, and \cw{B}. Since the enemy is in block \cw{5} and the bullet doesn't cross it, the hit is not registered.\\
  \par
  This issue is not reserved to very large monsters. It can happen with any enemies depending on how close they are to the player and the blockmaps alignment.
 
@@ -54,9 +54,9 @@ This particular instance of slime trail has to do with the way maps were preproc
 \par
  Once again, let's take an example. The two previous screenshots where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first glance, there is nothing unusual here but when taking a look at how it was sliced during binary partitioning, an interesting special case appears.\\
 \par
-Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C, D, E and F however. It is not really clear what happened. \\
+Line \cw{A} was selected as a splitter. As it crosses lines \cw{B} and \cw{G}, two segments are created as \cw{B1}, \cw{B2}, \cw{G1}, and \cw{G2}. The new vertices created are in red. Things are less clear for lines C and E (or is it F ?). We need to look closer. \\
 \par
-If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between integer coordinates. Since map vertices coordinates are stored as integers, a split is impossible. The error is small so \cw{doombsp} treats the vertex like if it was exactly on the splitting line.
+If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between integer coordinates. Since map vertices coordinates are stored as integers, a split is impossible. The error is small so \cw{doombsp} treats the vertex like as if it was exactly on the splitting line.
 
 \begin{minipage}{0.47\textwidth}
 \rawscaleddrawing{1}{E1M1_slimetrail}
@@ -78,9 +78,9 @@ If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between inte
 \centering
 \includegraphics[width=.45\textwidth]{drawings/E1M1_slimetrail_split2.pdf}
 \end{wrapfigure}
-Let's position the player along the same split line we just studied but facing the opposite direction (the scene is simpler with less walls. The player still had segment \cw{E} and \cw{F} (which was not splited even though mathematically it should have).\\
+Let's position the player along the same split line we just studied but facing the opposite direction (the scene is simpler with less walls). The player still very close to segments \cw{E} and \cw{F} (which is were the rendering error is).\\
 \par
-The frame starts with a blank canvas. Segment \cw{E} is rendered first into the green section \circled{2}. Since it is a lower texture, the screen space below is inferred to be a flooring pink visplane \circled{2}. Now what should have been rendered is \cw{F1}, the left part of \cw{F} which was on the left of the split. Since the split never happened, the renderer carries on (front to back) and renders \cw{G1}, the left part of \cw{G}.\\
+The frame starts with a blank canvas. Segment \cw{E} is rendered first into the green section (labeled \circled{1} on the opposite page). Since it is a lower texture, the screen space below is inferred to be a floor and a pink visplane \circled{2} is created. Now what should have been rendered is \cw{F1}, the left part of \cw{F} which was on the left of the split. Since the split never happened, the renderer carries on (front to back) and renders \cw{G1}, the left part of \cw{G}.\\
 \par
 At this point in the life of this frame, things start to get weird and the bug happens.
  
@@ -91,4 +91,5 @@ Segment \cw{G1} is renderer. Its boundaries are mathematically accurate since it
  \par
  After that, line \cw{F} is rendered but since the visplane already squeezed itself next to \cw{E}, it is clipped.\\
  \par
+ \fixme{The description on this double page sucks. REDO IT!}
  

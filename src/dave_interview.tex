@@ -10,7 +10,7 @@ Dave Taylor was kind enough to allow an interview in June of 2017.\\
 
 
 
-\qaq{How did you get a job at id Software? It wasn't yet the powerhouse it became but there were already successful with Dave and Wolf3D games so I assume there must have been competition\&interviews ?}
+\qaq{How did you get a job at id Software? It wasn't yet the powerhouse it became but there were already successful with Dave and Wolf3D games so I assume there must have been competition for the position?}
 \qaa{I was studying electrical engineering at UT Austin and working as a journalist for an early electronic game magazine that came on floppies called Game Bytes.  Wolf3D had come out, and I had interviewed the whole id team on a speakerphone call.  There was a really friendly voice who would turn out to be Jay and a really knowledgeable voice with all the answers to my technical questions, who would turn out to be John Carmack.  The summer before I took my senior lab, I emailed John to see if I could come up and interview.\\
 \par
 I had been organizing very ambitious programming contests for the IEEE called the IEEE CS National Programming Contest, where we would develop a 3-on-3 multiplayer game in secret for Unix workstations, and then teams of 3 programmers would show up from 16 fancy schools (Stanford, MIT, Berkeley, Caltech, etc), we would reveal the game, and they'd have about 16 hours to write AI to play the game on their behalf.\\
@@ -29,44 +29,45 @@ I had more Unix and network code experience than the rest of the id team, but I 
 \qaa{I reported to John Carmack, but I wasn't easy to manage and would often do my own thing.}
 
 
-\qaq{I can see you have a NeXT workstation on your desk. What did you use it for?}
+\qaq{I can see\footnote{in "A Visit to id Software" 1994 video released by John Romero} you have a NeXT workstation on your desk. What did you use it for?}
 \qaa{We used them to make the whole game, and that's what the level editor ran on.  DOS 3.3 was our target OS, and DOS wasn't really a complete operating system (no sound or video drivers, for example, and no debugger to speak of), so it was pretty painful to debug on.  NeXTStep was much faster and easier to iterate on.}
 
 
-\qaq{I read on your wikipedia page that you took care of the VESA 2.0 code for quake. I am very interested in this topic. My book describes first the hardware and I am going to details 486 DX-2, Gravis UltraSound, NeXT workstation. VESA documentation is hard to come around but I would still want to describe it since there were 486 VBL at the time. Can you elaborate on what you did for Quake to run well with VESA 2.0 ?}
-\qaa{Man, it's been a while.  I think I just took care of the page-swapping for memory access and the page-flipping on update.  It wasn't much code.}
+% \qaq{I read on your wikipedia page that you took care of the VESA 2.0 code for quake. I am very interested in this topic. My book describes first the hardware and I am going to details 486 DX-2, Gravis UltraSound, NeXT workstation. VESA documentation is hard to come around but I would still want to describe it since there were 486 VBL at the time. Can you elaborate on what you did for Quake to run well with VESA 2.0 ?}
+% \qaa{Man, it's been a while.  I think I just took care of the page-swapping for memory access and the page-flipping on update.  It wasn't much code.}
 
 
 \qaq{You wrote ports for IRIX, AIX, Solaris and Linux. What is for both Doom and Quake ?}
 \qaa{For Doom, ya.  For Quake, Linux for sure, but the others, I can't remember.}
 
+\qaq{What editor did you use, how did you compile?}
+\qaa{I used vi for editing code.  I made a Makefile and just typed make, as you'd think.}
 
 
-\qaq{Could you details as much as possible how it was to work with IRIX, AIX and Solaris ? What editor you used, how did you compile, how much error due to compilers did you bubble up to the codebase (I assume this improved portability of the code tremendously which explains why doom is the most ported game of all time).  Did you get the sound to work on all of them? I did not even know they had sound drivers for AIX. What was your favorite development environment while you worked for id ?}
-\qaa{I used vi for editing code.  I made a Makefile and just typed make, as you'd think.  We didn't have source code then.  Ya, once I got the basic code down for Linux (I had a system at home), it was pretty similar for the other Unix platforms.  I separated the sound code into its own server.  It would load the files itself, and then the game would just tell it over a socket to fire off sounds and update volume/pitch/etc.  The Linux code would eventually get really optimized, as Linus hooked me up with the XFree86 guys, who added an extension to give me direct access to the framebuffer, and then on Quake, Linus gave me a much faster way to get directly to the sound card DMA buffer and to get the current DMA transfer location down to a somewhat chunky granularity.\\
-\par
-AIX, Irix, and Solaris were all kinda foreign to me but of course all still Unix variants, and I realized that by offering ports to Doom, I could get free workstations, so... :)\\
+\qaq{Could you details how it was to work with IRIX, AIX and Solaris ?}
+\qaa{Once I got the basic code down for Linux (I had a system at home), it was pretty similar for the other Unix platforms.
+AIX, Irix, and Solaris were all kinda foreign to me but of course all still Unix variants, and I realized that by offering ports to Doom, I could get free workstations, so... :)\\}
+
+\qaq{Did you get the sound to work on all of them?}
+
+\qaa{I separated the sound code into its own server.  It would load the files itself, and then the game would just tell it over a socket to fire off sounds and update volume/pitch/etc.  The Linux code would eventually get really optimized, as Linus hooked me up with the XFree86 guys, who added an extension to give me direct access to the framebuffer, and then on Quake, Linus gave me a much faster way to get directly to the sound card DMA buffer and to get the current DMA transfer location down to a somewhat chunky granularity.\\
+
 \par
 I know I got sound working on Irix and that Irix support was why Doom made the rounds with so many CG/VFX type people in the film industry.  I can't remember whether I got it working on AIX and Solaris.  Sound wasn't a priority for Sun/IBM at the time.}
 
 
 
-\qaq{What is the most memorable outline of you unconscious marked with masking tape in the office (I would like to include it in the layout for fun) |  Or the one that stayed on place the longest before the cleaning crew removed it.}
+\qaq{You reportedly fell asleep on the floor and your coworkers tapped the outline of your body on the ground. Did that happen a lot?}
 \qaa{	 I fell asleep on the floors a lot, which is why they got the sofa and had me test-drive it for comfort, but I only remember them taping my outline once.  I believe it stuck around for a while though.}
 
 \qaq{When did you leave id software ?}
 \qaa{I believe I left in early 1996, just after qtest1 shipped.}
 
 
-\qaq{Leaving was a courageous decision, you could have made more money for example. I assume you dreamed of making your own game. Do you regret leaving so "early" ?}
+\qaq{Leaving was a courageous decision. Among many things you could have made more money. I assume you dreamed of making your own game. Do you regret leaving so "early" ?}
 \qaa{Actually, not brave.  I asked when I hired on to get some ownership in id, and after the 6mo trial period, they decided against giving out more ownership, they said because it hadn't worked out with a couple of previous folks, and they had an expensive buy/sell agreement for anyone who left.  When they said ownership wasn't going to happen, I asked if I could invest in my own game company on the side, and they said yes, as long as it wasn't 3D and I wasn't coding on it.  So I invested in Crack dot Com, and produced Abuse.  After it shipped, I was starting to get royalty checks that were bigger than what I got from id in bonus checks (and they were very generous).  I was becoming more interested in producing for Crack and less interested in coding on Quake, which was starting to feel like a brown Doom with fewer monsters and a less relatable theme, so I was really slowing down.  Carmack noticed and said we should prolly part ways after Quake shipped, and I countered that I'd prefer to leave after qtest1 shipped.\\
 \par
 I don't know if I could have made more money.  I wasn't very fulfilled when I left, and it was affecting my work.  I've also never been much of a fan of money.  It tends not to correlate all that well to what I value.}
-
-\b{Dave also answered this question in an interview with "blankmaninc.com".}\\
-\par
-\rawfq{It wasn't common knowledge that John Carmack was one of the best coders in the game industry.  I just thought I had a very, very small XXXXX.  I had an electrical engineering degree, and I was one of the more capable coders in my class.  So it was really demoralizing that no matter how hard I worked, I could never pull off anything a fraction as impressive as John, and of course he only seemed to be accelerating from his already stunning clip.  This led to a pattern of me pushing really hard, burning out, and then limping along for a while until I made my next futile attempt to approach a fraction of his awesomeness.  There was this pattern of him saying, "Hey, check this out," and I'd follow him to his office, and he'd be levitating in his chair while demonstrating his elegant solution to an intractable problem of computer science, and my version of "Hey, check this out" was usually motivated by needing his help to track down an issue.}
-
 
 \qaq{How do you feel looking back on this period of your life?}
 \qaa{ I don't look back much.  My mind is usually dwelling on the far-enough future that I'm regarded as weird in the present.  Back then was no different.  I was trying to turn them onto networked games like netrek, which had persistent accounts, and I remember that being met with indifference.  I started using the .plan files, sort of a blogging precursor, and would spend a lot more time on irc than the others.  My fascination with the Unix ports was considered largely to be a waste of time, but they were very tolerant of me.}
@@ -76,4 +77,7 @@ I don't know if I could have made more money.  I wasn't very fulfilled when I le
 \qaq{Are you still in touch with anybody from the team of 93 ?}
 \qaa{Not much.  I exchange emails with John Carmack every once in a while.}
 
+\b{Dave gave an interciew to "blankmaninc.com" in 2013. His answer to "Why did you end up leaving id Software?" was so funny that I had to include it here.}\\
+\par
+\rawfq{Cocktail of reasons. It wasn't common knowledge that John Carmack was one of the best coders in the game industry.  I just thought I had a very, very small XXXXX.  I had an electrical engineering degree, and I was one of the more capable coders in my class.  So it was really demoralizing that no matter how hard I worked, I could never pull off anything a fraction as impressive as John, and of course he only seemed to be accelerating from his already stunning clip.  This led to a pattern of me pushing really hard, burning out, and then limping along for a while until I made my next futile attempt to approach a fraction of his awesomeness.  There was this pattern of him saying, "Hey, check this out," and I'd follow him to his office, and he'd be levitating in his chair while demonstrating his elegant solution to an intractable problem of computer science, and my version of "Hey, check this out" was usually motivated by needing his help to track down an issue.}
 

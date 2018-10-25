@@ -1,8 +1,9 @@
 \section{Collision Detection} \label{blockmapdetails}
-Collision is a significant part of the engine activity. Each moving object (player, monster, projectile) must check collision before it moves. Line of sight also depends on an efficient collision system. Enemies with direct hit damage also need to check if they have a clean line to attempt to inflict damage.\\
+Collision detection is a significant part of the engine activity. Each moving object (player, monster, projectile) must check for collisions before it moves. Line of sight also depends on an efficient collision system. Enemies with direct hit damage also need to check if they have a clean line to attempt to inflict damage.\\
 \par
 Detecting collision could have been done via the BSP. However it is only after Bruce Naylor visited id Software that John Carmack became aware it was possible. By then, \doom{} had already shipped with a collision detection data structure is called blockmap.\\
 \par
+\vspace{10pt}
 \drawing{E1M1_lines}{E1M1 sectors and lines}
 \par
 There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NextStations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used at runtime to lower the number of lines to test intersections with.\\
@@ -15,6 +16,6 @@ All map traversal are done with an abstract method \cw{P\_PathTraverse} which ta
 \par
 \ccode{P_PathTraverse.c}
 \par
-Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so only lines and things are considered during traversal. The block coordinates of any map coordinate is easy to obtain via modulo 128. To detect Things collisions, their positions are tracked in blocks.\\
+Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so only lines and things are considered during traversal. The block coordinates of any map coordinate is easy to obtain via modulo 128. To detect Things collisions, their block coordinate are updated each time they change position.\\
 \par
 \ccode{P_AimLineAttack.c}

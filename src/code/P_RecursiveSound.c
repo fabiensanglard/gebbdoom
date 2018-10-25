@@ -15,8 +15,8 @@ void P_RecursiveSound (sector_t *sec, int soundblocks)
   
   for (i=0 ;i<sec->linecount ; i++) {
     check = sec->lines[i];
-    if (! (check->flags & ML_TWOSIDED) )
-      continue;
+    if (! (check->flags & ML_TWOSIDED) )  // Portal?
+      continue;  // No, this is a wall, skipping.
     P_LineOpening (check); // fixed_t openrange = 0 if door closed.
     if (openrange <= 0)
       continue;    // closed door
@@ -26,10 +26,10 @@ void P_RecursiveSound (sector_t *sec, int soundblocks)
       other = sides[ check->sidenum[0] ].sector;
     if (check->flags & ML_SOUNDBLOCK)
     {
-      if (!soundblocks)
-        P_RecursiveSound (other, 1);
+      if (!soundblocks) // Blocking noise?
+        P_RecursiveSound (other, 1); 
     }
-    else
+    else // Flooding to next sector !
       P_RecursiveSound (other, soundblocks);
   }
 }

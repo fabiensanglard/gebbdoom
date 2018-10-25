@@ -60,12 +60,12 @@ The Object Processor is connected to the TV and is in charge of generating displ
 
 \fullimage{CRY_persp.png}
 \par
-The Graphic Processor is the powerhouse with a fast instruction throughput, a powerful ALU with a
+The Graphic Processor is the powerhouse with a high instruction throughput, a powerful ALU with a
 parallel multiplier, a barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also its local program instructions.\\
 \par
 The Blitter performs fast RAM block move and fill operations. It can generate strips of pixels for Gouraud shaded Z-buffered polygons and is also capable of skipping pixels (based on Z-testing). It is capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It is in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
 \par
-Jerry the DSP is the twin brother of the Graphic Processor. Its bigger local SRAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However if the programmer decided so it could perform any other task, even graphic ones. The versatility is such that the Jad-Link to connect two Jaguar together is plugged in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
+Jerry the DSP is the twin brother of the Graphic Processor. Its bigger local SRAM (8 KiB) and its smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However it was at the programmer's discretion to make it perform other tasks, even graphic ones. The versatility is such that the Jad-Link connecting two Jaguar together is plugged directly in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
 \par
 All RAM (even SRAM in the RISC CPUs) is addressable by any components thanks to a flexible memory controller. At any point during execution of their program, any processor could become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request was to conflict with an other processor) while the DSP is king in order to avoid extremely unpleasant audio glitches.
 \par
@@ -81,7 +81,7 @@ The hardware had several bugs, especially at the Memory Controller level, making
 
 
 
-It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instruction sets. The intended workflow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then writing assembly code, use the provided assembler to generate machine code and finally write a full pipeline to store and later deliver the machine code to Tom \& Jerry local program SRAM.\\
+It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instruction sets. The intended workflow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then write assembly code, use the provided assembler to generate machine code and finally write a full pipeline to store and later deliver the machine code to Tom \& Jerry local program-dedicated SRAM.\\
 \par
 
 

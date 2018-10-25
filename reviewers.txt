@@ -1,61 +1,50 @@
-TODO:
-=====
-Proofread.
-Send to all reviewers
-
-Reviewers:
-==========
-Christopher Van Der Westhuizen <cvanderw@google.com>
-Olivier Cahagne <ocahagne@fastmail.com>
-Philip Hoefer <philscomputerlab@gmail.com>
-Eluan Costa Miranda <eluancm@gmail.com>
-Mikhail Naganov <mnaganov@google.com>
-Black Hardware <bhi1@ix.netcom.com>
-People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
-Randy Linden 
-Rob Blessin 
-Luciano Ddd <nextbible2018@gmail.com>
-Aurelien Sanglard
-3DO experts Optimus6128
-Chocolate doom guy (Simon "Fraggle" Howard)
-Jonathan Dowland
-Jim Leonard <mobygamer@gmail.com> for Roland section.
-John Corrado <jdcorrado@gmail.com> for visplanes.
-Leon Sodhi <leonsodhi@gmail.com> who once shares his pdf about rendition.
-John McMaster for CPU hit rate and hardware section.
-James Miller <Slik_Power@hotmail.com> (background guy and doom toys guy)
+Reviewers first pass:
+=====================
+[X] Christopher Van Der Westhuizen <cvanderw@google.com>
+[X] Olivier Cahagne <ocahagne@fastmail.com>
+[X] Philip Hoefer <philscomputerlab@gmail.com>
+[X] Eluan Costa Miranda <eluancm@gmail.com>
+[X] Mikhail Naganov <mnaganov@google.com>
+[X] Randy Linden <rand@randrdigital.com> (SNES DOOM author)
+[X] Simon Howard <fraggle@soulsphere.org> <fraggle@gmail.com> (Chocolate doom guy)
+[X] Jonathan Dowland <jon@dow.land> (Chocolate doom guy)
+[X] Jim Leonard <mobygamer@gmail.com> for Roland section.
+[X] John Corrado <jdcorrado@gmail.com> for visplanes.
+[X] Leon Sodhi <leonsodhi@gmail.com> who once shares his pdf about rendition.
+[ ] John McMaster for CPU hit rate and hardware section.
+[X] Rob Blessin <bhi1@ix.netcom.com>
+[X] James Miller <Slik_Power@hotmail.com> (background guy and doom toys guy)
+[X] People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
+[X] Dave Taylor
+[ ] John Carmack for 3D part and BSP (does splitter node goes into node of leaves?)
+[ ] 3DO experts Optimus6128
+[X] Luciano Ddd <nextbible2018@gmail.com>
+[X] John Romero
+[X] Aurelien Sanglard <aurelien.sanglard@gmail.com>
 
 
 TODO:
 =====
-Clay around doomguy arm is detached. Fix it with photoshop.
-Find book name i took Brad Cox quote about Objective-C 
-Redo tripwire drawing.
-Redo network N to N drawing.)
+Do drawing for psyQ devkit.
+Redo psx arch drawing.
+Clarify dot explanation.
+Clafiry bug explanation.
 Lean about subpixel accurate texture mapping.
 Elaborated about perspective correct.
 Redo perspective incorrect drawing (redo drawings).
 finishg to apply all of Jim Leonard feedback.
-Ask john carmack to proofread the 3d section and two's complement section
+Ask john carmack to proofread the 3d section and two's complement section.
 Ask romero about foreword.
 Fixed point -> fixed-point.
-Review all 32-bit XXX 32 bits. CHECK: Bit when used in a prenominal phrase is singular (This is a 3-meter-long bureau).
 What is an Old Deathmatch?
-Clean up 3DO motherboard (still have pixels)
-Do drawing for psyQ devkit.
 Run NextStation number for benchmark page.
-
-
-BACKBURNER:
-===========
+double check next chapter with next book
 
 DEADLINES :
 ===========
-
-Oct 21th: Finished. Send to reviewers.
+Oct 23th: Finished. Send to reviewers.
 Nov  7th: Apply feedback from reviewers.
 Nov 11th: Finished. Order proof copies. Upload it to Google books
 Nov 16th: Approve on createspace.
-
-Then write articles. Publish Wolfenstein 3d 2nd edition.
+Then write articles about Pentium, Doom fire skies and maybe Texutre Mapping. Publish Wolfenstein 3d 2nd edition.
 

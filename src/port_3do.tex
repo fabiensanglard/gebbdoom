@@ -1,11 +1,11 @@
 \begin{wrapfigure}[14]{r}{0.25\textwidth}{
 \centering \scaledimage{0.25}{3do_logo.png}}
 \end{wrapfigure}
-The 3DO Company was founded in 1991 by ex-Electronic Arts and ex-Apple employee Trip Hawkins. Without the means to actually produce the hardware the goal was to develop not a machine but a standard. 3DO offered to license the specification of its machine. In exchange of fees a potential manufacturer received the blueprints which considerably cut the R\&D cost. The company's business model was to collect a royalty on each consoles and each games sold\footnote{They attempted to replicate the VHS Video Cassette system which was greatly successful.}.\\
+The 3DO Company was founded in 1991 by ex-Electronic Arts and ex-Apple employee Trip Hawkins. Without the means to actually produce the hardware the goal was to develop not a machine but a standard. 3DO offered to license the specification of its machine. In exchange of fees a potential manufacturer received the blueprints which considerably cut the R\&D cost. The company's business model was to collect a royalty on each consoles and each games sold. That was far from being a crazy idea since JVC had pulled it off with its greatly successful VHS Video Cassette system.\\
 
  Sony briefly considered it for its PSX project. The Japanese company even visited the San Mateo office to see the prototype but they eventually declined. Several other companies did acquire the rights to build a 3DO (Samsung, Toshiba, and AT\&T) but never built anything.\\
  \par
-Finally in October 1993, Panasonic, Goldstar, and Sanyo each released their own machine as the Panasonic 3DO FZ-1, Sanyo TRY 3DO, and Goldstar 3DO. Later on, Creative released an ISA card you could plug into a PC.\\
+Finally in October 1993, Panasonic, Goldstar, and Sanyo each released their own machines, respectively the Panasonic 3DO FZ-1, Sanyo TRY 3DO, and Goldstar 3DO. Later on, Creative released an ISA card you could plug into a PC.\\
 \par
 \cfullimage{consoles/3DO.png}{Panasonic FZ-1 implementation of 3DO specs}
 \par
@@ -44,14 +44,14 @@ hardware, ensuring backwards compatibility. }{RetroGamer \#122}\\
 \par
 But things would take end up taking an ugly turn. In February 1993, WIRED magazine ran a full article "3DO: Hip or Hype?" which raised many concerns about the viability of the adventure.\\
 \par
-One of the problems was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a loss and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it (and by far\footnote{Except for the Neo-Geo which was the same price and always remained a dream for most gamers.}) the most expensive console on the market. For comparison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a (mostly undeserved) "rich kid" reputation.\\
+One of the problems was the business model. To be profitable, 3DO had to make money on each console and each game sold. That was the opposite of Sega and Nintendo who would sell their machine at a loss and made it up with games. This pushed the MSRP of the 3DO up to \$699 which made it, by far\footnote{Except for the Neo-Geo which was the same price and always remained a dream for most gamers.}, the most expensive console on the market. For comparison, the PlayStation launch price was less than half the price at only \$299. Right of the bat, the machine gained itself a "rich kid"\footnote{The price was lowered shortly after release but by then its reputation had been set.} reputation.\\
 \par
 The other aspect which poisoned the 3DO was its game library. At launch it was rather small with only six games of low quality besides "Crash 'N Burn". Firmware changes and devkit modification until the last minute had hampered game studios in their efforts to have something ready for launch day.\\
 \par
 Ironically, 3DO also suffered from its media support, the CD-ROM. With a capacity more than 15 times superior to what they were used (650 MiB vs 4MiB) game studio experimented with lengthy pixelated cut-scenes and borderline interactive movies which turned out not fun at all.\\
 \par
 More rushed games offering poor quality and the release of the PSX in late 1994 annihilated any hopes of recovery
-By 1995, with less than 700,000 consoles sold\footnote{Source Next Generation magazine, Feb 1995.} the machine had lost momentum. It died soon after along with its creator, the 3DO Company.
+By 1995, with less than 700,000 consoles sold\footnote{Source Next Generation magazine, Feb 1995.} the standard had lost momentum. It died soon after along with its creator, the 3DO Company.
 
 
 
@@ -87,15 +87,18 @@ Panasonic, Goldstar, and Sanyo all designed their own motherboards but all 3DOs 
 \circled{I} RF Out jack. 
 
 
-\rawdrawing{3do_motherboard}
+\fullimage{3do_motherboard}
 \par
-Developers for the 3DO were forbidden direct access to the hardware except for hand-crafted assembly for the ARM processor. This was done to ensure forward compatibility with the next generation of 3DO hardware.\\
+Developers for the 3DO were forbidden direct access to the hardware except for hand-crafted assembly for the ARM processor.\\
 \par
- The M2 project which began as an accelerator add-on for the 3DO\footnote{"3DO Press Release" August 1994.} morphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. Due to financial and technological difficulties, the M2 project was never completed.\\
+\fq{We were never given docs on the register set for the 3DO hardware. Using reverse engineering, we were able to get the I/O ports, but we were told by the 3DO Company our games would be rejected if they found we bypassed the OS.}{
+Rebecca Heineman}\\
 \par
-\trivia{Several game developers, aware of the upcoming M2 machines, had hidden cheat codes in their games in order to improve graphics for the new speculated hardware.\\
-\par The sequence "Up, Right, L, Up, Right, Right, R, A, Left" on \doom~allowed to increase the active window size all the way to full screen.}\\
-\pagebreak
+ The M2 project which began as an accelerator add-on for the 3DOmorphed into what could have been the 3DO2. It was to feature a dual PowerPC 602 processors in addition to newer 3D and video rendering technologies. It was never completed.\\
+ %\footnote{"3DO Press Release" August 1994.} 
+\par
+\trivia{Speculating on M2 machines, developers hid cheat codes in their games in order to improve graphics for the 3DO2. In \doom{}, the sequence "Up, Right, L, Up, Right, Right, R, A, Left" allowed to increase the active window size all the way to full screen.}
+
 
 \subsection{3DO Programming}
 Graphics programing was done via the 3DO "CEL engine", powered by chips Clio and Madam. A CEL is a just a fancy name for a sprite. Each CEL can be drawn in screenspace with three associated vectors HD, VD, and HDD. Together they allow operations such as scaling, rotation, skewing, and even something labeled "perspective" in the 3DO programmer manual. The CEL engine was able to process several CELs simultaneously.\\
@@ -118,11 +121,11 @@ HDDX and HDDY change HDX and HDY values by a set amount at the beginning of each
 
 
 \subsection{Doom on 3DO}
-Given the specs of the machine, the 3DO had the potential to be the best console host for \doom. The jaguar version had been received positively, it would have been logical that with more RAM and a superior graphic hardware, the result would make both gamers and publishers happy. Alas, in a crazy turn of events, what was released was a massacre of the original which was universally accepted as the worse console version.\\  
+Given the specs of the machine, the 3DO had the potential to be the best console host for \doom. The jaguar version had been received positively, it would have been logical that with more RAM and a superior graphic hardware, the result would make both gamers and publishers happy. Alas, in a crazy turn of events, what was released was a massacre of the original, universally accepted as the worse console version.\\  
 \par
 % How could they screw this up? Easily in fact, just give a lone developer ten weeks to do it and ship it.\\
 % \par
-In January 1995, for \$250,000 (some sources mention \$500,000) and an obligation to release before Christmas 1995 Art Data Interactive had landed the right for \doom~on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequences with real actors to build up the story.\\
+In January 1995, for \$250,000 (some articles even mentioned \$500,000) and an obligation to release before Christmas 1995, Art Data Interactive had landed the right for \doom~on 3DO. To the people at the company it felt like "a license to print money". Many features were promised to the press among them, new weapons, new monsters, new maps, and Full Motion Video (FMV) sequences with real actors to build up the story.\\
 \par
 \cfullimage{doom_3do_fmv.png}{The FMV shooting set (photo released by Rebecca Heineman)}
 \par
@@ -156,7 +159,8 @@ ADI ordered 50,000 copies from 3DO at a price of \$150,000 in licensing and manu
 % \par
 %  CornerEngine - RISC processor, capable of vertex calculation and transformation, and 4*4 matrix math : multiplication by another 4*4 matrix, multiplication by vector, dot product, rotation.
 
-
+Examinating the 3DO hardware diagram on the oppposite page only make us regret more that Rebecca didn't have had more time on her hands to complete the project.\\
+\par
 
 \fq{I was misled about the state of the port when I was offered the project. I was told that there was a version in existence with new levels, weapons and features and it only needed "polishing" and optimization to hit the market. After numerous requests for this version, I found out that there was no such thing and that Art Data Interactive was under the false impression that all anyone needed to do to port a game from one platform to another was just to compile the code and adding weapons was as simple as dropping in the art.\\
 % \par

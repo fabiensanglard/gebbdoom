@@ -1,6 +1,6 @@
 \section{Audio System}
 \label{dmx_section}
-Like every other I/O system in the engine, the audio is abstracted behind an interface. To fulfill \doom's core expectations such a system has to implement at least than twenty functions covering SFX, Music, and also the Timer. Here are a few.\\
+Like every other I/O system in the engine, the audio is abstracted behind an interface. To fulfill \doom's core expectations such a system has to implement at least twenty functions covering SFX, Music, and also the Timer. Here are a few.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -154,7 +154,7 @@ How well enemies react to sounds makes a tremendous impact on how smart the A.I 
 \centering
 \includegraphics[width=.48\textwidth]{drawings/sound_blockers.pdf}
 \end{wrapfigure}
-  The sectors/portals format is leveraged, starting in the current player sector and flood-filling into adjacent sectors via portals (two-sided lines). Sound is stopped when either a door is encountered or when two "sound blockers" lines have been crossed. In map E3M9 featuring a section with 38 monsters the A.I cost is lowered with three (red) line blockers which keeps some monsters dormant.\\
+  The sectors/portals format is leveraged. Starting in the current player sector and flood-filling into adjacent sectors via portals (two-sided lines). Sound is stopped when either a door is encountered or when two "sound blockers" lines have been crossed. In map E3M9 featuring a section with 38 monsters the A.I cost is lowered with three (red) line blockers which keeps some monsters dormant.\\
 \par
 Notice how function \cw{P\_RecursiveSound} mentions "waking up all monsters" but never iterates over the list of things in the level. This is a speed-up trick aimed at avoiding an expensive search to find all monsters to be awakened in each sector. Monsters always look up for the current sector's \cw{soundtarget} to pick a target. By simply assigning a value to \cw{sec->soundtarget}, all monsters in \cw{sec} automatically acquire the same target.\\
 \par
@@ -167,7 +167,7 @@ Map designers wanted to have sneaky monsters whom could hide and wait to jump on
 \subsubsection{Super Ambushing}
 Sound propagation was used in a inventive way for map E1M9 super ambush.  The designers wanted the player to be swarmed with monsters teleporting, seemingly from an hellish dimension, as soon as doomguy walked through the center of a pentagram.\\
 \par
- But without a scripting language available that was next to impossible to do since, as we will see in the A.I section, monsters are state machines able to do only three things: Stay dormant, pursue a target, and when they bump into walls and things, change direction.\\
+ But without a scripting language available that was next to impossible to implement. As we'll see in the A.I section, monsters are state machines able to do only three things: Stay dormant, pursue a target, and when they bump into walls and things, change direction.\\
 \par
 \begin{wrapfigure}[24]{r}{0.52\textwidth}
 \centering
@@ -180,7 +180,7 @@ To achieve the effect anyway, they created an unaccessible "monster pool" room n
 \par
 Then they created a very tiny pipe to allow sound to flow between rooms so when the player was fighting in his room, all monsters in the "pool" room would be awakened and try to reach the player. Without a way to get there (the monsters at too big to go through the pipe and also the pipe is at ceiling level) monsters started to run in circle with a tendency to go toward the player location (south-east).\\
 \par
-The last piece of the super ambush trap was to have four lines around the center of the "star" which lowered the walls around the teleporter and place a bait on it (such a lots of health and ammunitions) to make sure the player would go there.\\
+The last piece of the super ambush trap was to have four tripwires around the center of the "pentagram which lowered the walls around the teleporter. A bait was placed on it (such a lots of health and ammunitions) to make sure the player would go there.\\
 \par
 
 As soon as the player walked on the trigger in the "star" room, the walls around the teleporter lowered, monsters moved toward it and swarmed the player's room. \\
@@ -197,7 +197,7 @@ John Romero himself described how they called these sound conduits, "pipes".\\
 \par
 \fq{We used sound zones in Wolfenstein 3D as another way to alert enemies to your presence. In DOOM, we did the same thing but used sectors as the conduits of audio travel. This was a really important part of making the game scary, as sound could leak all over the place and alert demons. You might see lots of little sector pipes that connect sectors together just to alert monsters-sectors that you'd never see because we put them way up high in the corner of a room. So, we paid a lot of attention to the sound flooding.}{John Romero, p29 in Scarydarkfast}\\
 \par
-The audio pipe in E1M9 super ambush is so well hidden in the ceiling that it is very hard to notice it with the vanilla engine. The room is dark and in the distance, the tiny dark rectangle disappears. Opening the map with an editor such as Slade which allows to look up and down reveals the stratagem.\\
+The audio pipe in E1M9 super ambush is so well hidden in the ceiling that it is very hard to notice it with the vanilla engine. The room is dark and in the distance, the tiny black rectangle blends in the obscurity. Opening the map with an editor such as Slade which allows to look up and down reveals the stratagem.\\
 \par
 \cfullimage{sound_conduit.png}{}
 \par

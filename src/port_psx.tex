@@ -3,11 +3,11 @@
 \end{wrapfigure}
 The history of the PlayStation started in 1988 when Nintendo collaborated with Sony to produce a CD-ROM reader add-on for the SNES. Under the terms of the contract, Sony could develop independently for the platform and retained control over the "Super Disc" format. Two unusual concessions on Nintendo's part.\\
 \par
- The project moved forward until CES '91 where Sony announced the joined venture called "Play Station". The next day, during the same event, Nintendo announced it had instead partnered with Philips (with much advantageous terms) much to Sony's surprise. Betrayed and publicly humiliated, Sony attempted to turn to Sega's Board of Directors who promptly vetoed the idea. In a 2013 interview then CEO Tom Kalinske remembered the board's conclusion.\\
+ The project moved forward until CES '91 where Sony announced the joined venture called "Play Station". The next day, during the same event, Nintendo announced it had instead partnered with Philips (with much advantageous terms) much to Sony's surprise. Betrayed and publicly humiliated, Sony attempted to turn to Sega's Board of Directors who promptly vetoed the idea. In a 2013 interview then Sega CEO Tom Kalinske remembered the board's conclusion.\\
 \par
 \rawfq{That's a stupid idea, Sony doesn't know how to make hardware. They don't know how to make software either. Why would we want to do this?}\\
 \par
-They were not wrong. Sony had little experience with gaming. It also had almost not interest in trying either since most of its involvement so far had relieved on one man, Ken Kutaragi. Even since he had witnessed his daughter play on a Nintendo Famicom, Ken had been advocating for Sony to enter the market. He even had designed Nintendo's audio chip (the SPC700) for their SNES against Sony VPs advices.\\
+They were not wrong. Sony had little experience with gaming. It also had almost not interest in trying either since most of its involvement so far had relied on one man, Ken Kutaragi. Even since he had witnessed his daughter play on a Nintendo Famicom, Ken had been advocating for Sony to enter the market. He even had designed Nintendo's audio chip (the SPC700) for their SNES against Sony VPs advices.\\
 \par
  Despite being considered a risky gamble by other Sony executives, Kutaragi managed the support of Sony CEO Norio Ohga. In June 1992 Ken got the green light to build a gaming system from scratch\footnote{Playstation: Anthology by GREEKS-LINE.}. The "Father of the PlayStation" as he would later be called had to be transfered to a financially separate Sony Music to appease the board but he could set himself to work on what would become the "PlayStation" (without space).\\
 \par
@@ -18,12 +18,12 @@ The project would culminate two years later with the creation of Sony Computer E
 
 \cfullimage{consoles/PSX.png}{Sony PlayStation}
 
-
+\vspace{-10pt}
 \subsubsection{Keys to success}
 \par
- Among the numerous good choices, Sony listened to developers feedback and bumped the RAM from 1MiB to 2MiB.  They adopted a developer centric attitude where the development cycle was easy, tools updated frequently and were downloadable online, with third party technical support. The CD format allowed games to be priced lower and developers did not have to buy cartridge from Sony. More importantly Sony did not censor developers the way Nintendo and Sega did. On top of it all, royalties were lower which improved profitability\footnote{Nintendo could sometimes take up to 20\%.}. "The PlayStation set us free" Kalisto Gaming's CEO would later testify.\\
+ Among the numerous good choices, Sony listened to developers feedback and bumped the RAM from 1MiB to 2MiB.  They adopted a developer centric attitude where the development cycle was easy, tools updated frequently and downloadable online, with third party technical support. The CD format allowed games to be priced lower and developers did not have to buy cartridge from Sony. More importantly Sony did not censor developers the way Nintendo and Sega did. On top of it all, royalties were lower which improved profitability\footnote{Nintendo could sometimes take up to 20\%.}. "The PlayStation set us free" Kalisto Gaming's CEO would later testify.\\
 \par
-Sony's stroke of luck was to land Psy-Q which made the SDK a programmer's nirvana. Psygnosis was an UK game developer company working for Atari ST, Amiga and SNES. Sony purchased them in early 1993 and tasked them with the then-still-secret PlayStation games \textit{Wipeout} and \textit{Destruction Derby} to showcase the PlayStation upon launch.\\
+Sony's stroke of luck was to land Psy-Q which made the PSX's SDK a programmer's dream. Psygnosis was an UK game developer company working on Atari ST, Amiga and SNES. Sony purchased them in early 1993 and tasked them with the then-still-secret PlayStation games \textit{Wipeout} and \textit{Destruction Derby} to showcase the PlayStation upon launch.\\
 \par
 Until them, Sony had envisioned development for the PlayStation to be based on dedicated Sony NEWS MW.2 workstations\footnote{"The development system", Next Generation June 1995.}. These were colossal and expensive machines based on MIPS R4000 and manufactured by Sony. Psygnosis disliked that solution, especially when they compared the development experience to using their regular tool (Psy-Q) which was produced by a company called SN Systems.\\
 \par
@@ -34,7 +34,7 @@ Around Christmas '93, SN Systems co-owner Andy Beveridge and Martin Day were giv
 \par
  The pair worked around the clock and managed to port the GNU toolchain (\cw{cc} compiler, \cw{ld} linker, lib builder \cw{ar}, and \cw{gdb} debugger) to PC connected to a Sony's MW.2 box and demoed it at CES Las Vegas in early '94.\\
 \par
- Sony liked what the saw and promptly ordered 700 dev kits. At the end of spring '94, Sony managed to condensate the PlayStation hardware into two ISA cards which could be plugged into a standard PC.\\
+ Sony liked what the saw and promptly ordered 700 dev kits. At the end of spring '94, Sony managed to condensate the PlayStation devkit hardware into two ISA cards which could be plugged into a standard PC.\\
 
 \rawpngdrawing{psx_isa_devkit}
 \par
@@ -120,7 +120,7 @@ Sound was improved by taking advantage of the SPU processor to render reverberat
 \par
 
 
-There were many other subtle additions such as animated skies. In the following screenshot, the mariner is in Hell and the sky is made of flames.\\
+There were many other subtle additions such as animated skies. In the following screenshot, the mariner is in Hell and the sky is made of gorgeous flame effects.\\
 \par
 \fullimage{psx_screen_sky.png}\\
 \par
@@ -144,7 +144,7 @@ Affine Texture Mapping is the process of performing texture mapping in screen sp
 The issue is particularly visible on the left wall where the black strip is not parallel to the ground anymore but seems to zig-zag up and down.
 
 
-Let's take an example to understand the issue better. In the case of a wall, it is first cut in two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain, For each lines of pixels (called scanlines), interpolate linearly between two (start and end) textured fragment with screenspace coordinate \cw{(X,Y)} and texture coordinate \cw{(u,v)}\footnote{ Even drawing a quad would still be correct. The heights of the texture squares would not get smaller as they get further away, even though the widths would.}.\\
+To understand the issue better, let's take the example of the projection and rasterization of a quad. It is first cut in two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain, For each lines of pixels (called scanlines), texture coordinates are interpolated linearly between line start and line end.\\
 \par
 This algorithm gives the weird looking result featured in figure \ref{affine_texture_mapping/affine2.png}. Notice how all lines are parallel and there is no perspective (which is the main issue).\\
 \par
@@ -182,11 +182,11 @@ In Figure \ref{texture_anmgle}, the perspective artifact become exacerbated as t
 
 The PlayStation did not have enough power to perform z interpolation and as a result texturing was incorrect with regard to projection.\\
 \par
- There would have been a way to fix this by subdividing each triangle in smaller units but in order to get a satisfactory visual result, the number of triangle was too high.\\
+ There would have been a way to fix this by subdividing each triangle in smaller units but in order to get a satisfactory visual result, the number of triangle had to be impossibly high.\\
 \par
 \fullimage{affine_texture_mapping/subdivision_sample.png}
 \par
-Williams Entertainment, John, and Harry had a big problem and some were really nervous about it.\\
+With this perspective issue, Williams Entertainment, John, and Harry had a big problem and some were really nervous about it.\\
 \par
 \fq{Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said "back everything up (no source control back then!), we're going to do something completely different".\\
 \par

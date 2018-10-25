@@ -9,7 +9,7 @@ During its nine-year lifespan\footnote{The Super Nintendo was discontinued in 19
 \par
 \cfullimage{consoles/SNES.png}{The Super Famicom (a.k.a SNES, Super Nintendo) by Nintendo.}
 \par
-From a technical standpoint, the SNES excelled at 2D. Its 16-bit 65C816 3.58 MHz CPU had 128 KiB RAM available. It piloted a PPU Picture Processing Unit with 64 KiB of RAM to manipulate large sprites using up to 256 colors at a resolution of 256x240. On the audio side a powerful combo made of an 8-bit Sony SPC700, and a 16-bit DSP with 64 KiB of dedicated SRAM.\\
+From a technical standpoint, the SNES excelled at 2D. Its 16-bit 65C816 3.58 MHz CPU had 128 KiB RAM available. It piloted a PPU Picture Processing Unit with 64 KiB of RAM to manipulate large sprites using up to 256 colors at a resolution of 256x240. On the audio side, the machine had a powerful combo made of an 8-bit Sony SPC700 and a 16-bit DSP with 64 KiB of dedicated SRAM.\\
 \par
 
 Despite its impressive 2D sprite engine and especially its "Mode 7" capability, the machine struggled with computationally-intensive operations such as 3D calculations. Nintendo was vividly award that 3D would be the next big thing in gaming but was struggling to make it happen. As fate would have it, a small UK firm would hold the solution to the problem.\\
@@ -38,7 +38,7 @@ At CES '90, his demo of the engine on a hacked cartridge to Nintendo booth was r
 \end{wrapfigure}
 The SNES PPU's Mode 7 capable of rotating and projecting huge sprites was cleverly used to simulate Pilot Wings terrain. The planes however were still 2D flat hand drawn sprites. That bugged producer Shigeru Miyamoto immensely since it prevented the camera from rotating around the planes.\\
 \par
-At the time, it was not in Nintendo's habit to deal with outsides or even foreigners. However this time they made an exception and flew Jez and Dylan Cuthbert who did the 3D work to their headquarters in Kyoto.\\
+At the time, it was not in Nintendo's habit to deal with outsiders or even foreigners. This time they made an exception and flew Jez and Dylan Cuthbert who had done the 3D work to their headquarters in Kyoto.\\
 \par
  The young pair\footnote{Jez was 23 and Dylan 18.} of two met with all Nintendo VPs: Miyamoto, Gunpei Yokoi, Takehiro Izushi, Yasuhiro Minagawa, Genyo Takeda. They were shown everything, from the secret SNES to the secret Mario/Pilot Wings. And then they were asked if there was a way to draw the planes as full faced polygon objects.\\
 \par
@@ -142,11 +142,12 @@ I wish there could have been more levels but unfortunately the game used the lar
 % \centering
 % \scaledimage{0.25}{superfx.png}
 % \end{wrapfigure}
-What is remarkable with this version is how Randy decided to cut different corners than the other console ports for his engine.\\
+What is remarkable with this version is how Randy, with his engine capabilities and restrictions, had to cut different corners than the other console ports.\\
 \par
-\cfullimage{consoles/snes/snes_e1m1.png}{}
+\cfullimage{consoles/snes/snes_e1m1.png}{SNES starting screen on map E1M1}
 \par
-The starting screen of E1M1 (figure \ref{consoles/snes/snes_e1m1.png}) is a good summary. Despite having only 600 KiB RAM, see how the blue flooring was not removed (althought this is a plain color and not a texture now). Likewise regarding the geometry where all steps are visible (compare with the PC version page \pageref{mashed_potatoes1.png} and Jaguar version page \pageref{doom_jaguar3.png}).\\
+\vspace{-10pt}
+In figure \ref{consoles/snes/snes_e1m1.png}, despite having only 600 KiB RAM, see how the blue flooring remained (althought this is a plain color). Notice how the geometry was not altered\footnote{It would have been extremely difficult to alter the geometry since Randy had no access to DoomED or doombsp.}, E1M1 starting room has all its original steps (compare with the PC page \pageref{mashed_potatoes1.png} and the Jaguar page \pageref{doom_jaguar3.png}).\\
 \par The Reality engine as Randy name it, was able to deal with PC map geometry but must have had issues with fillrate or texture sampling because ceiling and floor textures were removed altogether.
 
 
@@ -166,7 +167,7 @@ The starting screen of E1M1 (figure \ref{consoles/snes/snes_e1m1.png}) is a good
 \vspace{-10pt}
 In the screenshot above we can see the window is actually not fullscreen. This was not an issue exclusive to \doom{} since StarFox, StarFox2 and all games using a SuperFX had to reduce the active area size. It was likely due to the SNES limited bandwidth which did not permit a DMA transfer for a fullscreen\footnote{Although some like \cw{anthrofox.org} theorized that the SuperFX cannot render more than 192 lines.}.\\
 \par
-Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas (32 pixels tall for the status bar). With vertical lines duplicated, Reality Engine was actually rendering at 108x144. Even at this low resolution, the average framerate was around 10fps which was a remarkable achievement. The "low" framerate was not enough to discourage players from enjoying \doom, according to Randy Linden the game sold very well.
+Out of the native 256 x 224 resolution, only 216x176 were actually drawn and only 216x144 for the 3D canvas (32 pixels tall for the status bar). With vertical lines duplicated, Reality Engine was actually rendering at 108x144. Even at this low resolution, the average framerate was around 10fps which was a remarkable achievement. The "low" framerate was not enough to discourage players from enjoying \doom. According to Randy Linden the game sold very well.
 
 
 

@@ -1,4 +1,4 @@
-\qaq{Can you give a little bit of background about yourself, how old you were at the time, what country you are from and what your had programmed to this point?}
+\qaq{Can you give a little bit of background about yourself, how old you were when you from \doom{} for SNES, etc}
 \qaanor{ DOOM/FX was published in 1995 and I was 25 y/o. I wrote it from San Diego, California but I'm Canadian, born and raised in Toronto, Ontario.  My first program was published when I was 13. Here is a list of what I have worked on:
 	\begin{itemize}
       \item Bubbles A Centipede-style game for the Commodore 64.
@@ -103,10 +103,10 @@ A friend recently recommended a FPS that was over 1Gig to download! ... and then
 
 
 
-\qaq{More about how the GSU-2 worked}
+\b{More about how the GSU-2 worked:}\\
 \qaa{Basically the GSU generates a bitmap into it's own RAM that is then transferred to the SNES PPU for display. I think there wasn't sufficient clock cycles and RAM to generate a full screen worth of data and transfer it to the PPU in time to avoid tearing/glitching, etc. The GSU RAM can be accessed by only one device at a time (either the GSU or the SNES), but not both ... so you have to generate data into the GSU RAM, then transfer it to the SNES-side PPU ("Picture  Processing Unit") so it can be displayed on screen. During the transfer, the SNES-side has access to the RAM and the GSU does not, so you have to wait until the transfer is complete before you can use the GSU to generate more data. The GSU can still do many other things without accessing the internal RAM, though -- and DOOM/FX used that feature extensively. BTW, the same is true of the ROM -- only one device can access the ROM at a time -- either the GSU or the SNES.}
 
-\qaq{More thoughts}
+\b{Anecdotes from DOOM SNES development:}
 \qaanor{
 \begin{enumerate}
 \item   At one time a developer at Sculptured had modified a bunch of the basic levels -- added some really nice changes like object placement, etc. -- and after showing the new levels to id Software, they   basically wanted the game to be as true to the original as possible... so we ended up reverting all the changes and keeping the original levels with as few modifications as possible.
@@ -114,10 +114,10 @@ A friend recently recommended a FPS that was over 1Gig to download! ... and then
         One thing that id Software let me keep was the auto-rotating overhead map.
 
 \item     The engine had a number of configurable options -- many of which weren't used in the final game ... some examples:
-
-        a.      The walls could be drawn single-pixel and not doubled, but there weren't enough clock cycles for a reasonable framerate
-        b.      Floors could also be drawn -- as single or double pixels -- but there wasn't enough ROM to store the textures and it was much faster to use colours/dithering instead.
-
+\begin{enumerate}
+        \item      The walls could be drawn single-pixel and not doubled, but there weren't enough clock cycles for a reasonable framerate
+        \item      Floors could also be drawn -- as single or double pixels -- but there wasn't enough ROM to store the textures and it was much faster to use colours/dithering instead.
+\end{enumerate}
 \item    The timing and logic to generate the display was fairly complicated... as you'll see:
 
         I basically generate the display in "thirds" due to the limited amount of RAM available in the GSU and PPU.

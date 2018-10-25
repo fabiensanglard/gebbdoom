@@ -1,9 +1,9 @@
 \begin{wrapfigure}[10]{r}{0.30\textwidth}{
 \centering \scaledimage{0.30}{saturn_logo.png}}
 \end{wrapfigure}
-Development of the Sega Saturn started in June 1992\footnote{Source: "Console Wars: Sega, Nintendo, and the Battle That Defined a Generation".} as a replacement for the insanely popular yet aging Genesis. At this point in time, the Genesis has sold more than 30 millions units and had a "cool" image among the 15-25 range. Am image built with many good games and massive TV advertising campaigns. It was a colossal yet mandatory undertaking to at least match its predecessor.\\
+Development of the Sega Saturn started in June 1992\footnote{Source: "Console Wars: Sega, Nintendo, and the Battle That Defined a Generation".} as a replacement for the insanely popular yet aging Genesis. At this point in time, the Genesis has sold more than 30 millions units and had a "cool" image among the 15-25 range. Am image built with many good games and massive TV advertising campaigns. For Sega, It was a colossal yet mandatory undertaking to at least match its predecessor.\\
 \par
-After two years of hard work, Sega announced the Saturn during Tokyo Toy Show in June 1994. Unknown to them, it would trigger the collapse of Sega International sales and image.\\
+After two years of hard work, Sega demonstrated a prototype Saturn during Tokyo Toy Show in June 1994. Unknown to them, it would damage then even more than the 32X, ruin Sega International image, and sell poorly.\\
 \par
 During its development, Sega worked in partnership with Hitachi to develop a new CPU tailored to its needs. The join venture resulted in the "SuperH RISC Engine" (a.k.a SH-2) at the end of 1993 which Sega used in dual configuration as foundation for the Saturn.\\
 \par
@@ -11,12 +11,11 @@ During its development, Sega worked in partnership with Hitachi to develop a new
 \par
 \fullimage{consoles/Saturn.png}\\
 
-\par
+\vspace{-10pt}
 Sega managed to release its console before the dreaded PSX and sales in Japan were initially promising with games such as Daytona USA and especially Virtua Fighter being well received. The success had a lot to do with Virtua Fighter which was more popular than Sonic, Mario, and Tetris\footnote{Source: 2006 poll for Top 100 games.}.\\
 \par
-Preceding Sony came at a great price and came across as rushed. During E3 1995 in Los Angeles, Sega CEO Tom Kalinske surprise announced that the Saturn would be available the very same day. Even their supplier did not know about it and the console was out of stock rapidly.\\  
-\par
-Another consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}. The way to do 3D was similar to the 3DO in that programmers had to deal with quads that they distorted in screen space to (poorly) fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
+Preceding Sony came at a great price and came across as rushed. During E3 1995 in Los Angeles, Sega CEO Tom Kalinske surprise announced that the Saturn would be available the very same day. Even their supplier did not know about it and the console was out of stock rapidly. Another consequence of the rush was that only six games were available upon launch. Panzer Dragoon which could have made for a perfect tech flagship missed its deadline\footnote{Source: "The Making Of... Panzer Dragoon Saga".}.\\
+\par The machine was also difficult to program. 3D was achieved in a similarly way as the 3DO. Programmers had to deal with 2D quads which could be distorted in screen space to poorly fake perspective. It was not a matter of not trying hard, the hardware was complex.\\
 \par
 \fq{Currently we only use the Master SH2, the slave SH2 will be used when we get around to figuring out how.}{Mick West 1995 Saturn development journal}\\
 \par
@@ -24,11 +23,30 @@ Worldwide, the the platform was mildly received. And then the beast was unleashe
 \par
  Two weeks after release, the PSX came out with Ridge Racer and took the world by storm\footnote{The PlayStation outsold the Saturn by a factor of three.}. Not only the Saturn was more expensive (\$399) than the PSX (\$299), games such as Daytona USA which used to look good now had blatant issues when put side by side with Ridge Racer. The lower framerate, polygon pop-up and letter-boxed presentation begged for mercy. To add more pressure, in June 1996 the market welcomed another competitor with the Nintendo 64.\\
 \par
-Ironically Sega's next console, the DreamCast addressed all issues. It was easy to program, ran on Windows and was very well liked by developers. Many good games were released but unfortunately damage had been done. With the 32X and then with the Saturn, Sega had been bleeding money for years. The copy protection was hacked early on. Electronic Arts refused to release its popular E.A sports game on the platform. With the release of the XBox and the PS2, Sega found itself technically outgunned. In late 2001, on the verge of bankruptcy, Sega decided to withdrew from the hardware business and focus on producing games on its successful "Virtua" line of products.
+% Ironically Sega's next console, the DreamCast addressed all issues.  It was easy to program, ran on Windows and was very well liked by developers.
+Eventually, several good games were released but the damage had been done. More issues kept on adding up. The copy protection was hacked early on. Electronic Arts refused to release its popular E.A sports game on the platform. With the release of the XBox and the PS2, Sega found itself technically outgunned. With the failure of both the 32X and then the Saturn, Sega bled money for years. In late 2001, on the verge of bankruptcy, Sega decided to withdrew from the hardware business and focus on producing games on its successful "Virtua" line of products. Ironically Sega's last console, the DreamCast, was highly regarded by both programmers and players.
 
 
+\subsection{Programming the Saturn}
+Programming the Saturn was a difficult task. The programmer's manual is broken down in eight voluminous manuals requiering several reading sessions before building a mental image of the flow of data. The diagram in figure \ref{arch_saturn} fairly represents the daunting effort.\\
+\par
+Main programming was done via the SH-2 processors connected to 1.5MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chip (to indicate what to execute) had to be done via a tedious interrupts system. To deal with static and global variables the programmer had to deal with mutex and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache which had little impact on the bottleneck.\\
+\par
+Audio was done via the SMSP (Saturn Custom Sound Processor) which piloted a Sound processor (a Motorola 68000). The SCSP was to be configured to produce sound mixes in the dedicated 512 KiB of RAM where they were picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize instruments, play PCM, and perform 3D effects/distortion. The chip also polled control inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
+\par
+Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
+\par
+Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
+\par
+To control all these components and transfer data between system, a seventh chip called the SCU (System Control Unit) acted as DMA controller, DSP and bus controller. The DSP was able to perform matrix transformations and writhe the result directly in the VDP RAM.\\
+\par
 
 
+\trivia{Reading the programmer manual in detail reveals that each component can somehow interact with each others' RAM. This made debugging very difficult.}
+\pagebreak
+
+\drawing{arch_saturn}{Saturn Block Diagram, "Introduction to Saturn Game Development", April 1994 }
+\label{arch_saturn}
 
 
 
@@ -62,28 +80,11 @@ Opening a Sega Saturn and taking a look at the motherboard reveals close to twen
 
 
 \rawdrawing{saturn_motherboard}
-Despite its issues and ill timed release, it is a bitter feeling to see what happened to the Saturn and seeing it considered a failure. Over its four years of life, the platform managed to host amazing technical and entertaining games such as Radiant Silvergun, Grandia, Sega Rally Championship, Virtua Fighter 2, Panzer Dragoon Saga, Guardian Heroes, NiGHTS into Dreams, Panzer Dragoon II Zwei and Virtua Cop. \doom{} would not part of the previous list.\\
+Despite its issues and ill timed release, it is a bitter feeling to see what happened to the Saturn and seeing it considered a failure. Over its four years of life, the platform managed to host amazing technical and entertaining games such as Radiant Silvergun, Grandia, Sega Rally Championship, Virtua Fighter 2, Panzer Dragoon Saga, Guardian Heroes, NiGHTS into Dreams, Panzer Dragoon II Zwei and Virtua Cop. Unfortunately, \doom{} would not part of the previous list.\\
 \par
 \fq{After years of waiting, doom finally arrives on Saturn. Unfortunately it is a breath-takingly bad conversion of a classic game.}{Sega Saturn Magazine \#16, February 1997}
 
 
-\subsection{Programming the Saturn}
-Programming the Saturn was a difficult task. The programmer's manual is broken down in eight voluminous manuals requiering several reading sessions before building a mental image of the flow of data. The diagram in figure \ref{arch_saturn} fairly represents the daunting effort.\\
-\par
-Main programming was done via the SH-2 processors connected to 1.5MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chip (to indicate what to execute) had to be done via a tedious interrupts system. To deal with static and global variables the programmer had to deal with mutex and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache which had little impact on the bottleneck.\\
-\par
-Audio was done via the SMSP (Saturn Custom Sound Processor) which piloted a Sound processor (a Motorola 68000). The SCSP was to be configured to produce sound mixes in the dedicated 512 KiB of RAM where they were picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize instruments, play PCM, and perform 3D effects/distortion. The chip also polled control inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
-\par
-Graphic programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 take the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works in the next frame, the VDP2 finishes it.\\
-\par
-Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
-\par
-To control all these components and transfer data between system, a seventh chip called the SCU (System Control Unit) acted as DMA controller, DSP and bus controller. The DSP was able to perform matrix transformations and writhe the result directly in the VDP RAM.\\
-\par
-
-
-\trivia{Reading the programmer manual in detail reveals that each component can somehow interact with each others' RAM. This made debugging very difficult.}
-\pagebreak
 
 
 
@@ -96,8 +97,8 @@ To control all these components and transfer data between system, a seventh chip
 
 
 
-\drawing{arch_saturn}{Saturn Block Diagram, "Introduction to Saturn Game Development", April 1994 }
-\label{arch_saturn}
+
+
 
 
 
@@ -133,21 +134,21 @@ The hardware accelerated 60 fps capable engine was tossed. Due to time constrain
 
 \fullimage{doom_saturn1.png}\\
 \par
-In the screenshot above, notice how E1M1 is the same at the other version (all based on the initial work for the Jaguar) . The status bar also welcomed a makeover.\\
+In the screenshot above, notice how E1M1 is the same at the other console versions (all based on the initial work for the Jaguar) . The status bar however welcomed a makeover.\\
 \par
 To take advantage of the VDP parallelism, it is claimed\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".} the VDP1 is used to render sprites and walls while the VDP2 is used for the status bar and also renders visplanes which are treated as background.\\
 \par 
-Translucency was done in a peculiar way. It is unknown if that was a design decision, a hardware limitation or simply due to a time constraints but translucency is not done via alpha bending like the Playstation did. A more software friendly technique known as dithering is used to represent the Specters and glass surfaces.
+Translucency was done in a peculiar way. It is unknown if that was a design decision, a hardware limitation or simply due to a time constraints but translucency is not done via alpha bending like the Playstation did. A more software friendly technique known as dithering is used to represent the Specters and glass surfaces (see page \pageref{doomsaturndither}).\\
 % \fq{The Saturn had to be programmed straight to the metal. It used quads and messy 3D maths.}{David Shea, Alien Trilogy developer}
-
-
+\par
+% Despite heroic efforts from the team, time constraints hurt the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\
 
 
 
 
 
 \fullimage{doom_saturn4.png}
-\par
+\par \label{doomsaturndither}
 \fullimage{doom_saturn41.png}
 
 
@@ -160,10 +161,10 @@ Translucency was done in a peculiar way. It is unknown if that was a design deci
 
 
 
-To this day, most of the information about this port was retrieved via reverse engineering.\\
-\par
-\fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
-\par
-Despite heroic efforts from the team, time constraints hurt the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\
+% To this day, most of the information about this port was retrieved via reverse engineering.\\
+% \par
+% \fq{The main resource wad on the Saturn version is called JIMSDOOM.WAD, obviously named after Jim Bagley, one of the lead programmers for this port. The wad is a 1:1 copy of PSXDOOM.WAD , and even includes resources that only pertain to the PSX port}{Mattfrie1 on \cw{doomworld.com} thread "Dissecting Sega Saturn Doom".}\\
+% \par
+
 \par
 

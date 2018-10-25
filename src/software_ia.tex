@@ -109,7 +109,7 @@ The cyberdemon however is an extreme case since it is not symmetric. Imps sprite
 \centering
 \includegraphics[width=.5\textwidth]{drawings/automate.pdf}
 \end{wrapfigure}
-Not all automaton state changes can be inferred from the transition array. In the case of the Imp, transitions are partly dictated by the logic in \cw{info.txt} (black arrows) and partly dictated by the game engine.\\
+Not all automaton state changes can be inferred from the transition array. In the case of the Imp, transitions are partly dictated by the logic in \cw{info.txt} (black arrows) and partly dictated by the game engine (direct to red state).\\
 \par
  In the state diagram, engine triggered transitions to \cw{pain}, \cw{die}, and \cw{xdie} are not represented since these states can be reached directivity from any other state.
 \par
@@ -120,7 +120,7 @@ Not all automaton state changes can be inferred from the transition array. In th
 \subsection{Optimization}
 All monsters in a level are initialized in the \cw{spawnstate} which usually involves cycling a two frames animation (monsters do no have stand script, they "walk still") and calling \cw{A\_Look} method to attempt to see the player. Looking for the player constantly proved to be an unacceptable level of load on the CPU. Even using the blockmap structure to speed up collision detection it still meant hundreds of rays to cast, twenty five times per second which resulted in thousand and thousand of instructions.\\
 \par
-To solve this problem, an other datastructre was introduced with \cw{doombsp}. For each sectors, a potentially visible sector bit array is calculated\footnote{This approach later morphed into the Potentially Visible Set which was instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass collision detections for this monster entirely.\\
+To solve this problem, an other datastructre was introduced with \cw{doombsp}. For each monster, a list of visible sectors from the spawning position is generated and stored in a bit array\footnote{This approach later morphed into the Potentially Visible Set which was instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass sight detections for this monster entirely.\\
 \par
 \drawing{reject_explained}{}
 % Regardless of the monsters, the base state machine looks like this but it tuned based on custom functions called in some states (e.g: \cw{A\_SpidRefire}, \cw{A\_CyberAttack}, and \cw{A\_BrainExplode}).\\
@@ -138,7 +138,7 @@ Figure \ref{reject_explained} features three sectors with five monsters and one 
 \section{Map Intelligence}
 Despite lacking a scripting system, maps still managed to offer a rich experience. They were full of surprises with numerous elements interacting with the player. Switches and tripwire-enabled doors, secret passages, elevators, crushing walls, traps and many others.\\
 \par
-\pngdrawing{tripwire}{E1M1 features \color{red}{XX} special lines + IMAGE ABOVE TODO}
+\drawing{E1M1_tripwire}{E1M1 is a small map yet features five secret areas opening tripwires.}
 \par
 All interactions are achieved via a simple association between a line's \cw{special} attribute which designates one action to perform and one \cw{tag} value which is the target sector to act on.\\
 \par
@@ -158,11 +158,11 @@ The tag designating the target is any number picked by the designed. Any lines t
 \centering
 \includegraphics[width=.5\textwidth]{drawings/E1M3_trap.pdf}
 \end{wrapfigure}
-Who doesn't recognize E1M3 hunt for the blue key on page \pageref{e1m3_trap}. After traversing the whole map, it is finally there shining on a pedestral. Guarded by only two low levels opponents which are easily dispatched.\\
+Who doesn't recognize E1M3 hunt for the blue key on page \pageref{e1m3_trap}. After traversing the whole map, it is finally there shining on a pedestral, guarded by only two low levels opponents which are easily dispatched.\\
 \par
 But as soon as the player picks it up, all lights go off and the combined sound of a door opening and growling Imps leaves no doubt: It was trap doomguy just walked in and Imps are just behind him (page \pageref{e1m3_trap})!\\
 \par
-To implement this effects, two set of lines were used. The first lines (in blue) targets the door sector via tag YY where the monsters were hiding and opens it. The second lines (in red) targets the current sector via tag XX and set its light level to "very dark".\\
+To implement this effects, two set of lines were used. The first lines (in blue) targets the door sector where the monsters were hiding and opens it. The second lines (in red) targets the current sector and set its light level to "very dark".\\
 \par
 
 
@@ -177,35 +177,20 @@ An other interesting effect in E1M3 is the rising stair which leads to the small
 \par
 Before and after screenshots can be seen on page \pageref{stairs}.
 
-\label{e1m3_trap}
-\fullimage{Doom-E1M3-Ingame2.png}\\
 
-Finally, the blue key (above)! Nooo, it's a TRAP (below)!
+\fullimage{Doom-E1M3-Ingame2.png} \label{e1m3_trap} \\
+Finally, the blue key (above)! Nooo, it's a TRAP (below).
 
 \vspace{2mm}
 \fullimage{Doom-E1M3-Ingame3.png}
-
-
-\fullimage{e1m3_after_stairs.png}\\
-
-Above, all steps of the stairs are at the same level. Below, a line triggered "BuildStairs". \label{stairs}
+\fullimage{e1m3_after_stairs.png} \label{stairs} \\
+Above, all steps of the stairs are at the same level. Below, a line triggered "BuildStairs". 
 
 \vspace{2mm}
 \fullimage{e1m3_before_stairs.png}
 
 
 
-
-
-
-
-
-
-
-
-
-
-\pagebreak
 \section{Game tics Architecture}
 With the knowledge of how opponents and map elements work, we can pickup the code where we had left it with regard to game simulation on page \pageref{TryRunTics.c}. \cw{G\_Ticker} is where all thinkers tic.\\
 \par
@@ -215,9 +200,9 @@ Most of the meat is in the 3D gameplay (\cw{P\_Ticker}) function.\\
 \par
 \ccode{P_Ticker.c}
 \par
-\cw{P\_PlayerThink} is where player is allowed to "think". Namely where the \cw{cmd\_t} (which we already studied on page \pageref{cmd_t_type}) are consumed.\\
+\cw{P\_PlayerThink} is where player is allowed to "think". Namely where the \cw{cmd\_t} (which we already studied on page \pageref{cmd_t_type}) are consumed and therefore where the player moves and fires.\\
 \par 
-\cw{P\_RunThinkers} is how the map and monsters "think". Anything that must occur over more than one frame is placed in a thinker object and stored in a double linked list. Thinker are struct with a function pointer and some data for the function pointer parameters. Each gameplay tic, it let's every thinker in the list "think". Thinker which are done thinking set their function pointer to -1 so they are dropped from the list. Note that doors have no feelings but they are nonetheless "thinkers" too.\\
+\cw{P\_RunThinkers} is how the map and monsters "think". Anything that must occur over more than one frame is placed in a thinker object and stored in a double linked list. Thinker are struct with a function pointer and some data for the function pointer parameters. Each gameplay tic, every thinker in the list "think". Thinker which are done thinking set their function pointer to -1 so they are dropped from the list. Note that doors have no feelings but they are nonetheless "thinkers" too.\\
 \par
 \cw{P\_UpdateSpecials} takes care of animating special texture such as water, or living walls. It also takes care of switching the texture when a button is pushed.\\
 \par 

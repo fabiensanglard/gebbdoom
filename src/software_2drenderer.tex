@@ -3,11 +3,11 @@
 All "Drawers" in \doom{} were the work of  Dave Taylor. The self proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. The code style and naming conventions are very different from John Carmack.
 \begin{itemize}
 \item Status Bar (\cw{ST\_Drawer()})
-\item Automap (\cw{AM\_Drawer}])
+\item Automap (\cw{AM\_Drawer})
 \item Intermission (\cw{WI\_Drawer()})
 \item HUD (\cw{HU\_Drawer()})
 \item Menus (\cw{M\_Drawer()})
-\item Transition screens (wipe\_StartScreen())
+\item Transition screens (\cw{wipe\_StartScreen()})
 \end{itemize} 
 \par
 
@@ -32,7 +32,7 @@ Once the intermission is finished, method \cw{WI\_unloadData} does not free the 
 \par
 
 \subsection{Status Bar}
-The design of the status bar is similar to the intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets'. There are seven widgets, from left to right, ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four kind ammo count.\\
+The design of the status bar is similar to the Intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets'. There are seven widgets, from left to right, ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four kind ammo count.\\
 \par
 \fullimage{stbar.png}
 \par
@@ -41,7 +41,7 @@ The design of the status bar is similar to the intermission Drawer. Contained in
 \par
 \fullimage{faces.png}\\
 \par
-Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. Perhaps because of the stress incurred, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is showed when picking up a weapon. "Kill" is obviously displayed when opponents are slayed.\\
+Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. Perhaps because of the stress incurred during combat, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is showed when picking up a weapon. "Kill" is obviously displayed when opponents are slayed.\\
 \par
 Even to player who spent a lot of time on \doom, the "Ouch" face is likely to be something they have never seen. It was intended to show up when the player suffers an enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
 \par
@@ -108,7 +108,7 @@ Over time the design changed and the HUD shrank to be reduced to lines of text. 
 \subsection{Automap}
 The automap is a small and simple component contained in \cw{am\_map.c}. As the players discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
 \par
-It is not possible to play the game in this mode since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
+Sadly, it is not possible to play the game in this mode (we all tried to, let's not kid ourselves) since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
 \par
 \fullimage{automap.png}
 \par
@@ -128,11 +128,15 @@ It is not possible to play the game in this mode since visited lines marking is 
 Also known as the "Screen melt", wipe is used to transition between sections of the game.
 
 \par
-\scaledimage{.9}{melt/melt0.png}\\
+\scaledimage{.9}{melt/melt0.png}
+
+ \vspace{10pt}
 \scaledimage{.9}{melt/melt1.png}
 \pagebreak
 
-\scaledimage{.9}{melt/melt2.png}\\
+\scaledimage{.9}{melt/melt2.png}
+
+ \vspace{10pt}
 \scaledimage{.9}{melt/melt3.png}
 \pagebreak
 
@@ -143,7 +147,7 @@ The first step is to reorganize the two sources of data from row major to column
 \par
 \fullimage{face_rawmajorized.png}
 \par
-After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value are within 16 units of their two neighbors.\\
+After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value are within 16 units of their two neighbors. These are used to form the top "wave".\\
 \par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped of the screen. During the animation, columns two pixels wide and 200 pixels tall are copies repeatedly from src and dest to Framebuffer \#0. All columns falls at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
 %The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as \\
 

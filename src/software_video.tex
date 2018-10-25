@@ -1,5 +1,5 @@
 \section{Video Manager}
-Before continuing our trip down the code and look at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphic stack where each frame are stored and manipulated. The video system is located in the core. It maintains and expose two data structures. A set of five framebuffers, and one dirtybox (most commonly known as the "dirty rectanges" technique). All write operations update the framebuffers and the box.\\
+Before continuing our trip down the code and look at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphic stack where each frame are stored and manipulated. The video system is located in the core. It maintains and expose two data structures. A set of five framebuffers, and one dirtybox (used as a "dirty rectanges"). All write operations update the framebuffers and the box.\\
 \par
 \cccode{kernel_renderer.c}{Five framebuffers.}
 \par
@@ -36,7 +36,7 @@ To host the framebuffer in the core and not in the video system itself was an au
 The life of a frame during 3D phase is as follow:
 \begin{enumerate}
 \item All write operations are done in framebuffer \#0. Every times the engine updates this buffer, it also updates the \cw{dirtybox} to mark which area has been touched.
-\item When it feels necessary, the engine calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer \#0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS the VGA subsystem copies content to the VGA in one of its three framebuffer in VRAM. Each VGA buffer has its own dirtybox \cw{updatebox} to speed up bliting but this remains an expensive operation.
+\item After a major write sequence, the engine calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer \#0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS the VGA subsystem copies content to the VGA in one of its three framebuffer in VRAM. Each VGA buffer has its own dirtybox \cw{updatebox} to speed up bliting but this remains an expensive operation.
 
 \item Once a frame has been completed, the core calls \cw{I\_FinishUpdate}  which signal the video system that framebuffer \#0 will no longer be updated. On DOS, the implementation of \cw{I\_FinishUpdate} simply updates the start address of the CRTC which is a lightweight operation.
 \end{enumerate}

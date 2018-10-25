@@ -1,12 +1,14 @@
 \section{Waiting for the Dots}
 \label{dots_explained}
-For anybody who played \doom{} on a PC in 1994, the most frustrating part was to wait for the game to load. An improvised progress bar made of dots helped the player to be patient. Millions of hours were spent watching these tidy dots progress. And probably a few more trying to guess what \cw{R\_Init} did in the background. It turns out it was all about setting up the graphic renderer.\\
+For anybody who played \doom{} on a PC in 1994, the most frustrating part was to wait for the game to load. An improvised progress bar made of dots helped the player to be patient. Millions of hours were spent watching these tidy dots progress to the right. And probably a few more trying to guess what \cw{R\_Init} actually did in the background.\\
 \par
 \fakedosoutput{dots.txt}\\
 \par
-With access to the source the dots can be "labeled".\\
+With access to the source, it is possible to "label" the dots.\\
 \par
 \fakedosoutput{dots_explained.txt}\\
+\par
+\fixme{This needs to be explained BETTER. Each steps. IN DETAILS. especially: what is PNAMES!}
 \par
 \begin{itemize}
 \item \cw{xxxxx} \cw{R\_InitTextures}. Open \cw{PNAMES} lump. Build a WALL texture dictionary and locate them in \cw{TEXTURE1} and \cw{TEXTURE2} lumps.
