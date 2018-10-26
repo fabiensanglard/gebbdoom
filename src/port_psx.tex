@@ -34,15 +34,14 @@ Around Christmas '93, SN Systems co-owner Andy Beveridge and Martin Day were giv
 \par
  The pair worked around the clock and managed to port the GNU toolchain (\cw{cc} compiler, \cw{ld} linker, lib builder \cw{ar}, and \cw{gdb} debugger) to PC connected to a Sony's MW.2 box and demoed it at CES Las Vegas in early '94.\\
 \par
- Sony liked what the saw and promptly ordered 700 dev kits. At the end of spring '94, Sony managed to condensate the PlayStation devkit hardware into two ISA cards which could be plugged into a standard PC.\\
+ Sony liked what the saw and promptly ordered 700 dev kits. At the end of spring '94, the devkit hardware was shrinked into two ISA cards (called DTL-H2000) combined to an SCSI drive so there was no need to burn a CD for testing.\\
 
-\rawpngdrawing{psx_isa_devkit}
+\fullimage{DTL-H2000-CPU1and2.png}
+\vspace{-10pt}
 \par
-\circled{1} ISA card containing the PlayStation CPU, GPU, VRAM, and DRAM, RGB, with Composite video out and a nine-pin comms link socket, \circled{2} ISA card with the CD I/O, PC interface, kernel boot ROM, and joypad sockets, \circled{3} CD emulator card by SN Systems, \circled{4} PC motherboard, \circled{5} HDD, \circled{6} PlayStation-spec CD-ROM drive. \\
+Not only leveraging PCs significantly reduced the financial cost to become a developer, it also lowered the entry barrier since most developers were already familiar with Windows.\\
 \par
-To leverage PC had a double effect. Not only did it significantly reduce the financial cost to become a developer, it also lowered the intellectual barrier since most developers were already familiar with DOS/Windows operating system.\\
-\par
-Between September 1993 and June 1995, 500 licensees worldwide jumped on the opportunity to publish on Sony's dream machine\footnote{"Sony's PlayStation game plan", Next Generation June 1995.}. Devs loved the SDK and it showed.
+From September 1993 to June 1995, 500 licensees worldwide jumped on the opportunity to publish on Sony's dream machine\footnote{"Sony's PlayStation game plan", Next Generation June 1995.}. Devs both both the PSX and its devkit.
 
 Programming the PlayStation was an unbelievably pleasant experience. Most programming was done in C while allowing handcrafted assembly if necessary. Psy-Q provided a compiler driver able to take a list of \cw{.c}/\cw{.obj} file and output a PlayStation executable in one keystroke.\\
 \par

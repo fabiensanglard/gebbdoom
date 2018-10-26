@@ -1,44 +1,48 @@
 Reviewers first pass:
 =====================
-[X] Christopher Van Der Westhuizen <cvanderw@google.com>
-[X] Olivier Cahagne <ocahagne@fastmail.com>
-[X] Philip Hoefer <philscomputerlab@gmail.com>
-[X] Eluan Costa Miranda <eluancm@gmail.com>
-[X] Mikhail Naganov <mnaganov@google.com>
-[X] Randy Linden <rand@randrdigital.com> (SNES DOOM author)
-[X] Simon Howard <fraggle@soulsphere.org> <fraggle@gmail.com> (Chocolate doom guy)
-[X] Jonathan Dowland <jon@dow.land> (Chocolate doom guy)
-[X] Jim Leonard <mobygamer@gmail.com> for Roland section.
-[X] John Corrado <jdcorrado@gmail.com> for visplanes.
-[X] Leon Sodhi <leonsodhi@gmail.com> who once shares his pdf about rendition.
-[ ] John McMaster for CPU hit rate and hardware section.
-[X] Rob Blessin <bhi1@ix.netcom.com>
-[X] James Miller <Slik_Power@hotmail.com> (background guy and doom toys guy)
-[X] People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
-[X] Dave Taylor
-[ ] John Carmack for 3D part and BSP (does splitter node goes into node of leaves?)
-[ ] 3DO experts Optimus6128
-[X] Luciano Ddd <nextbible2018@gmail.com>
-[X] John Romero
-[X] Aurelien Sanglard <aurelien.sanglard@gmail.com>
+[X][ ] Christopher Van Der Westhuizen <cvanderw@google.com>
+[X][ ] Olivier Cahagne <ocahagne@fastmail.com>
+[X][ ] Philip Hoefer <philscomputerlab@gmail.com>
+[X][ ] Eluan Costa Miranda <eluancm@gmail.com>
+[X][ ] Mikhail Naganov <mnaganov@google.com>
+[X][ ] Randy Linden <rand@randrdigital.com> (SNES DOOM author)
+[X][ ] Simon Howard <fraggle@soulsphere.org> <fraggle@gmail.com> (Chocolate doom guy)
+[X][ ] Jonathan Dowland <jon@dow.land> (Chocolate doom guy)
+[X][ ] Jim Leonard <mobygamer@gmail.com> for Roland section.
+[X][ ] John Corrado <jdcorrado@gmail.com> for visplanes.
+[X][ ] Leon Sodhi <leonsodhi@gmail.com> who once shares his pdf about rendition.
+[ ][ ] John McMaster for CPU hit rate and hardware section.
+[X][ ] Rob Blessin <bhi1@ix.netcom.com>
+[X][ ] James Miller <Slik_Power@hotmail.com> (background guy and doom toys guy)
+[X][ ] People from doomworld.com (Andrew Stine <andrew.r.stine@gmail.com>)
+[X][ ] Dave Taylor
+[ ][ ] John Carmack for 3D part and BSP (does splitter node goes into node of leaves?)
+[ ][ ] 3DO experts Optimus6128
+[X][ ] Luciano Ddd <nextbible2018@gmail.com>
+[X][ ] John Romero
+[X][ ] Aurelien Sanglard <aurelien.sanglard@gmail.com>
 
 
 TODO:
 =====
-Do drawing for psyQ devkit.
-Redo psx arch drawing.
-Clarify dot explanation.
+
 Clafiry bug explanation.
+
 Lean about subpixel accurate texture mapping.
 Elaborated about perspective correct.
 Redo perspective incorrect drawing (redo drawings).
-finishg to apply all of Jim Leonard feedback.
+
 Ask john carmack to proofread the 3d section and two's complement section.
 Ask romero about foreword.
+
 Fixed point -> fixed-point.
 What is an Old Deathmatch?
 Run NextStation number for benchmark page.
 double check next chapter with next book
+
+Make all console drawings consistent with transparent photo?
+Redo psx arch drawing?
+
 
 DEADLINES :
 ===========
