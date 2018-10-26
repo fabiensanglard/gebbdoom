@@ -1,17 +1,17 @@
 \section{Distribution}
-To distribute \doom, id software once again adopted the shareware model where a small part of the game was given away for free. Episode I "Knee-Deep in the Dead " made of nine maps could be downloaded for free and players were encouraged to copy and give it away as much as possible. To this effect, id Software managed to cut and compress the game engine and the first episode on only two 3$\nicefrac{1}{2}$-inch floppy disks.\\
+To distribute \doom, id software once again adopted the shareware model where a small part of the game was given away for free. Episode I "Knee-Deep in the Dead", consisting of nine maps, could be downloaded for free and players were encouraged to copy and give it away as much as possible. To this effect, id Software managed to cut and compress the game engine and the first episode on only two 3$\nicefrac{1}{2}$-inch floppy disks.\\
 \par 
 A player happy with what she saw could send id Software a payment and receive the two remaining episodes, "The Shores of Hell" and its sequel "Inferno", by mail.\\
 \par
-\cfullimage{endoom.png}{"Title Screen" displayed at the end of each gaming session with the shareware version, left the player with instructions to follow in order to get more episodes.}
+\cfullimage{endoom.png}{"Title Screen" displayed at the end of each gaming session with the shareware version, which left the player with instructions to follow in order to get more episodes.}
 \par
-Only this time id wanted to see things in a bigger way. Not only did they want to be distributed via players, they also wanted to be in brick and mortar stores. But they did not want the painful logistics of boxing and inventory management tied to physical distribution.\newpage
+This time though, id wanted to take things to another level. Not only did they want the game to be distributed via players, they also wanted to be in brick-and-mortar stores. But they did not want the painful logistics of boxing and inventory management tied to physical distribution.\newpage
 
 
 
 
 
- As it turned out there was a way to achieve this seemingly impossible task thanks to an idea from Jay Wilbur.\\
+ As it turned out there was a way to achieve this seemingly impossible task, thanks to an idea from Jay Wilbur.\\
 \par
 \fq{We told the retailers "we don't care if you make money off this shareware demo". "Move it. Move it in mass quantities." The retailers couldn't believe their ears, no one had ever told them not to pay royalties.
 But Jay was insistent. "Take DOOM for nothing, keep the profit". My goal is distribution. DOOM is going to
@@ -19,7 +19,7 @@ be Wolfenstein on steroids, and I want it far and wide.
 I want you to stack DOOM high. In fact, I want you to
 do advertising for it, too, because you're going to make money off it. So take this money that you might have given me in royalties and use it to advertise the fact that you're selling DOOM.}{Jay}\\
 \par
-John Romero shares the same memory and even elaborated on the creativity he witnessed.\\
+John Romero shares the same memory and even elaborates on the creativity he witnessed.\\
 \par
 \fq{The challenge was: "How do we get Doom in the store? How do we get something free on shelves?\\
 \par 
@@ -30,8 +30,8 @@ the money. We don't want any of it just put it in a box and sell it".\\
 Nutty, except that worked. It was everywhere. If you went into a CompUSA back then in 1994 you would see ten different boxes of doom and think they're all different games but they're all the same shareware game. Distributors ended up trying to make the best looking boxes to outperform their competitors because all they were allowed to sell was the shareware.}{John Romero}\\
 \par
 
-The success of the formula exceeded their wildest expectation. The shareware would find its way everywhere, even in the most surprising packages.\\
-\par Despite manufacturing difficulties, the famous "DooM Strategy guides" had the two floppies taped on the back cover of books. Magazines also jumped on the opportunity even if they had to be wrapped in plastic to hold the floppies.
+The success of the formula exceeded their wildest expectations. The shareware version would find its way everywhere, even into the most surprising packages.\\
+\par Despite manufacturing difficulties, the famous "\doom{} Strategy guides" had the two floppies taped on the back cover of books. Magazines also jumped on the opportunity even if they had to be wrapped in plastic to hold the floppies.
 
 
 
@@ -41,7 +41,7 @@ The success of the formula exceeded their wildest expectation. The shareware wou
 \par
 Figure \ref{floppies.png} shows two 3$\nicefrac{1}{2}$ floppy disks containing \doom{} shareware which were bundled with the book "Survivor's Strategies and Secrets". The publisher paid no royalties for that.\\
 \par
-The binary packaging was a departure from the previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine an a multitude of \cw{.WL6} files, \doom{} had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was summarized in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\
+The binary packaging was a departure from their previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine an a multitude of \cw{.WL6} files, \doom{} had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was entirely contained in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\
 \vspace{3mm}
 
 \rawscaleddrawing{0.9}{graph_wad2}
@@ -51,7 +51,7 @@ The registered version asset archive (\cw{DOOM.WAD}) was 11,869,745 bytes, with 
 
 \trivia{The game was also released on the Internet. On December 10th, 1993 they tried to seed it on \cw{ftp://ftp.wisc.edu/} but they could not connect since gamers were permanently connected to the server in order to be the first to get it.}\\
 \par
-There was no difference between the two \cw{DOOM.EXE} from the registered (paying) and the unregistered (free) version of the game. The engine scanned the current directory, recognized the filename of the \cw{WAD} archive, and branched accordingly.\\
+There was no difference between the two \cw{DOOM.EXE}s from the registered (paid) and the unregistered (free) versions of the game. The engine scanned the current directory, recognized the filename of the \cw{WAD} archive, and branched accordingly.\\
 \par
 \rawscaleddrawing{0.9}{graph_wad}
 % \subfile{graph_wad2} 
@@ -59,7 +59,7 @@ There was no difference between the two \cw{DOOM.EXE} from the registered (payin
 
 
 
-\subsection{WAD archive: Where Are the Data}
+\subsection{WAD archives: Where's All the Data?}
 \label{wad_explained}
 The goal of the \cw{WAD} format was partly to replace the OS filesystem but mostly to embrace the modding community. In a \cw{WAD}, each asset is stored in a "lump". The \cw{WAD} is made of three parts with a header, all the lumps, and a directory at the end.\\
 
@@ -70,9 +70,9 @@ The goal of the \cw{WAD} format was partly to replace the OS filesystem but most
 \par
 \drawing{wad_arch}{A wad file containing two lumps.}
 \par
-The archive format was manipulated via two tools. \cw{lumpy} took a blob and packed it inside a lump, inside a \cw{WAD}. \cw{wadlink} took several \cw{WAD} and created/appended them into a single \cw{WAD}. The structure allows to easily add or remove lumps since adding a lump only requires to move the small directory at the end and update the header offset.\\
+The archive format was manipulated via two tools. \cw{lumpy} took a blob and packed it inside a lump, inside a \cw{WAD}. \cw{wadlink} took several \cw{WAD}s and created/appended them into a single \cw{WAD}. The structure allows easily adding or removing lumps, since adding a lump only requires moving the small directory at the end and updating the header offset.\\
 \par
-\cw{DOOM.EXE} had a command-line parameter allowing modders to load their own \cw{WAD} in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed to customize everything (short for I.A which was baked in the engine). A custom \cw{WAD} containing a \cw{E1M1} lump could be used via as simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
+\cw{DOOM.EXE} had a command-line parameter allowing modders to load their own \cw{WAD}s in order to overwrite \cw{DOOM.WAD} lump entries. This mechanism allowed customizing everything (apart from A.I. which was baked in the engine). A custom \cw{WAD} containing an \cw{E1M1} lump could be used via a simple \cw{doom -file mylevel.wad} command (detailled on page \pageref{wad_detailled}).
 
 
 
