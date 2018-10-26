@@ -44,4 +44,6 @@ Phase \cw{9} matches function \cw{R\_InitLightTables} and initialize the zlight 
 
 Phase \cw{A} matches function \cw{R\_InitSkyMap} which initialize the static \cw{skyflatnum}.\\
 \par
-As you will have guessed, the "dot thermometer" was not very accurate. It started fast, slowed down for \cw{333333333333} which access a lot of data, and then sped up again to the end while calling mostly empty functions.
+As you will have guessed, the "dot thermometer" was not very accurate. It started fast, slowed down for \cw{333333333333} which access a lot of data, and then sped up again to the end while calling mostly empty functions.\\
+\par
+While developing the game, the startup time was a problem. Even if a designer made no change to the map (and therefore did not need to run \cw{doombsp}) it still took 30 seconds before he could see the result. To avoid breaking the creative flow, the engine was gifted with 

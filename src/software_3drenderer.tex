@@ -365,16 +365,34 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
 \vspace{-4mm}
 After all this clipping, walls and portal screenspace coordinates are finally render. For each fragment ends, an \cw{Y} offset is calculated based on sector floor and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a set of full columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture while walls are only middle texture). Rendering is done vertically via \cw{colfunc} function pointer (detailed in the "performance" page \pageref{performances}).\\
 
-\subsection{Perspective Correct Texture Mapping}
-Here will be a beautiful explanation.
-\pagebreak
+\subsection{Sub-pixel Accuracy}
+It is worth mentioning that the engine is subpixel accurate when calculating the screen coordinates of a wall top and bottom edge. Subpixel accuracy is a subtle concept which advantage is usually best demonstrated with an animated screen. Hopefully a few static drawing will do anyway.\\
+\par
+ Let's take the example of two points, \cw{A = (0.7, 0.7)} and \cw{B = (5.3, 3.6)} which are to appear on the screen.\\
+ \par
+\drawing{subpixel}\\
+\par
+The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}? There are many solutions available here, offering different trade-off. At the time of \doom{} engine, most games discarded the fractional part of a point and then navigated from \cw{A} to \cw{B}. This is called pixel accurate.\\
+\par
+There is a different way to proceed, called subpixel accurate, which is slightly more difficult to perform. Here the fractional part is not discarded but used while navigating from \cw{A} to \cw{B}.\\
+\par
+Figure \ref{subpixel_before} shows the two methods side by side. The difference may look negligible but it is in fact one of the most important feature of the engine which made the world feel "solid".
+\drawing{subpixel_before}\\
+\par
+At first sight it seems the two methods are different yet equivalent but look at what happens when things starts to move like in the case where \cw{A} moves \cw{0.3} units down.\\
+\par
+\drawing{subpixel_after}\\
+\par
+The pixel accurate method results in five pixels selected differently. The subpixel accurate way results in one pixel difference. With subpixel accuracy lines tend to be more stable.\\
+\par 
 
-\subsection{Sub-pixel Accurate Texture Mapping}
+\fq{Almost every other texture mapped game back then snapped triangle vertexes to integral pixel values, which meant that the individual texels in a surface would constantly be jumping around by up to a pixel  from even tiny movements.  Basically everything only feels loosely connected, and wiggles around a bit.  DOOM did not have that problem.}{John Carmack}
+
+\subsection{Perspective Correct Texture Mapping}
 Here will be an other beautiful explanation.
-\newpage
 \par
 Space intentionally left blank.
-\vspace{2.5cm}
+\vspace{1.5cm}
 
 \subsection{Drawing Flats}
  If we were to take a look at the framebuffer at this point in the rendering of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization. Doom never clears the framebuffer so instead of white there would be whatever was there last frame.).\\

@@ -247,8 +247,7 @@ Signed integer, using two's complement where all bits represent a positive value
 \par
 
 
-For certain types of calculation, \doom's resorted to using a different layout. The fixed point format used is \cw{16:16} where bit 31 play the role of two's complement, bits [30-16] are for the integer portion, and bits [15-0] are for the fractional part. The decimal range is [32767.9999847 to -32768.0]\footnote{
-Lower value is ($-2^{15}$) = -32768. Upper value is  
+For certain types of calculation, \doom's resorted to using a different layout. The signed fixed point format used is \cw{16:16} where bit 31 encodes a negative integer ($-2^{15}$), bits [30-16] store a positive integer, and bits [15-0] are used to store the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{All 32 bits set to 1 is the maxium value where negative bit ($-2^{15}$) = -32768 is added to the positive value:  
  ($2^{14} + 2^{13} + 2^{12} + 2^{11} + 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}+ 2^{-3}+ 2^{-4}+ 2^{-5}+ 2^{-6}+ 2^{-7}+ 2^{-8}+ 2^{-9}+ 2^{-10}+ 2^{-11}+ 2^{-12}+ 2^{-13}+ 2^{-14}+ 2^{-15}+ 2^{-16}$) = 32767.9999847.}.\\
 \par
 \begin{figure}[H]
