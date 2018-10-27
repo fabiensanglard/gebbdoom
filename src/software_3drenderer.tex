@@ -365,14 +365,14 @@ Notice how portal \cw{F} which lower and upper texture are not rendered still up
 \vspace{-4mm}
 After all this clipping, walls and portal screenspace coordinates are finally render. For each fragment ends, an \cw{Y} offset is calculated based on sector floor and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a set of full columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and upper texture while walls are only middle texture). Rendering is done vertically via \cw{colfunc} function pointer (detailed in the "performance" page \pageref{performances}).\\
 
-\subsection{Sub-pixel Accuracy}
+\subsection{Subpixel Accuracy}
 It is worth mentioning that the engine is subpixel accurate when calculating the screen coordinates of a wall top and bottom edge. Subpixel accuracy is a subtle concept which advantage is usually best demonstrated with an animated screen. Hopefully a few static drawing will do anyway.\\
 \par
  Let's take the example of two points, \cw{A = (0.7, 0.7)} and \cw{B = (5.3, 3.6)} which are to appear on the screen.\\
  \par
 \drawing{subpixel}\\
 \par
-The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}? There are many solutions available here, offering different trade-off. At the time of \doom{} engine, most games discarded the fractional part of a point and then navigated from \cw{A} to \cw{B}. This is called pixel accurate.\\
+The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}? There are many solutions available here, offering different trade-off. At the time of \doom{} engine, most games discarded the fractional part of a point and then navigated from \cw{floor(A)} to \cw{floor(B)}. This is called pixel accurate.\\
 \par
 There is a different way to proceed, called subpixel accurate, which is slightly more difficult to perform. Here the fractional part is not discarded but used while navigating from \cw{A} to \cw{B}.\\
 \par
@@ -388,10 +388,28 @@ The pixel accurate method results in five pixels selected differently. The subpi
 
 \fq{Almost every other texture mapped game back then snapped triangle vertexes to integral pixel values, which meant that the individual texels in a surface would constantly be jumping around by up to a pixel  from even tiny movements.  Basically everything only feels loosely connected, and wiggles around a bit.  DOOM did not have that problem.}{John Carmack}
 
+
+
+
+
+
+
 \subsection{Perspective Correct Texture Mapping}
-Here will be an other beautiful explanation.
+An other thing noteworthy, before we move on to how \doom{} drew flats, is that despite using affine texturing to draw columns, the visual result is still perspective correct.\\
 \par
-Space intentionally left blank.
+ To illustrate the concept, let's look at what affine texture mapping (incorrect) looks like in a simple scene featuring three walls.\\
+\par
+\fullimage{mashed_potatoes2.png}
+\par
+By projecting the wall in screenspace and interpolating texture coordinate linearly, the result looks strange. There is no perspective. Notice how the squares are the same width in all portion of the red wall. The blue wall which angle is even more acute looks even worse. The green wall, facing the player does not suffer since it is perpendicular and has no perspective.\\
+\pagebreak
+\par
+Space intentionally left blank.\\
+\par
+\fullimage{mashed_potatoes2.png}
+\pagebreak
+\par
+balbaba\\
 \vspace{1.5cm}
 
 \subsection{Drawing Flats}
@@ -491,7 +509,7 @@ There are several conditions required to merge two visplanes. Mergeable visplane
 \par
 \ccode{visplane_linear_search.c}
 \par
-Notice the overflow check which modders feared more than anything since it terminated execution. Notice the error message was not helpful to figure out what was wrong and how to fix the map. Many legends and theories circulated until the source code was released. 
+Notice the overflow check which modders feared more than anything since it terminated execution. The error message was not helpful to figure out what was wrong and how to fix the map. Many legends and theories circulated until the source code was released. 
 
 
 
