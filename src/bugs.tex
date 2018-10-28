@@ -50,7 +50,7 @@ The issue can actually be far wider than four pixels if one knows where to look.
 \par
 \fullimage{big_slime_trail.png}
 \par
-This particular instance of slime trail has to do with the way maps were preprocessed via \cw{doombsp}. As it was explained on page \pageref{Binary Space Partitioning: Theory}, the technique looked like "sunshine and rainbows" but when applied to a system with finite precision, subtle issues arose.\\
+This particular instance of slime trail is the result of the engine visplane inference system combined to the limited precision of integers when a map is sliced by via \cw{doombsp}.\\
 \par
  Once again, let's take an example. The two previous screenshots where taken in the very first map the player encountered, E1M1 in a zigzag section surrounded by toxic green liquid. At first glance, there is nothing unusual here but when taking a look at how it was sliced during binary partitioning, an interesting special case appears.\\
 \par
@@ -74,22 +74,20 @@ If we zoom him on vertex \cw{3}, we see the splitter crossed \cw{F} between inte
 
 \fullimage{leak_opposite.png}
 \par
-\begin{wrapfigure}[23]{r}{0.45\textwidth}
+\begin{wrapfigure}[22]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=.45\textwidth]{drawings/E1M1_slimetrail_split2.pdf}
 \end{wrapfigure}
-Let's position the player along the same split line we just studied but facing the opposite direction (the scene is simpler with less walls). The player still very close to segments \cw{E} and \cw{F} (which is were the rendering error is).\\
+Let's position the player along the same split line we just studied but facing the opposite direction (the scene is simpler with less walls). The player is very close to segments \cw{E} and \cw{F} (which is were the rendering error is). Further in the background are segments \cw{G1} and \cw{G2} where line \cw{G} was split.\\
 \par
-The frame starts with a blank canvas. Segment \cw{E} is rendered first into the green section (labeled \circled{1} on the opposite page). Since it is a lower texture, the screen space below is inferred to be a floor and a pink visplane \circled{2} is created. Now what should have been rendered is \cw{F1}, the left part of \cw{F} which was on the left of the split. Since the split never happened, the renderer carries on (front to back) and renders \cw{G1}, the left part of \cw{G}.\\
+The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no upper or middle texture but it does have a lower texture which is drawn (marked with a green overlay on page \pageref{leak_opposite_explained.png}). As the lower texture is rendered, the screen space below is inferred to be a floor visplane \cw{E-VP} (shown with a pink overlay). The engine then keep on going down the bsp and renders \cw{G1}.\\
 \par
-At this point in the life of this frame, things start to get weird and the bug happens.
+
+ \cw{G1} lower texture is rendered (in red). Everything below that is infered to be a floor and therefore visplane \cw{G1-VP} is created. Notice that the visplane goes all the way to the bottom of the screen which is is a rendering bug. Had the BSP been split properly, \cw{F1} would have been rendered before \cw{G1} and stopped the visplane from flooding in screenspace unproperly.\\
+\par
  
 
 \fullimage{leak_opposite_explained.png}\\
+\label{leak_opposite_explained.png}
 \par
-Segment \cw{G1} is renderer. Its boundaries are mathematically accurate since it was an actual split so it spread juuuuust a little bit more to the right than \cw{E} \circled{3}. Three pixels more to the right to be accurate. Since \cw{G1} had a lower texture, everything in screenspace below \cw{G1} is a yellow visplane \circled{4}.\\
- \par
- After that, line \cw{F} is rendered but since the visplane already squeezed itself next to \cw{E}, it is clipped.\\
- \par
- \fixme{The description on this double page sucks. REDO IT!}
- 
+From there, the damage is done. The engine renders the other side of the BSP and hits \cw{F} which is clipped agains the vertiacal boundary set by \cw{G1} and then drawn (in blue). The space below \cw{F} is inferred to be floor and visplane \cw{F-VP} (turquoise) is generated\footnote{The engine actually merges \cw{E-VP} and \cw{F-VP} but let's discard it for the sake of simplicity.}.

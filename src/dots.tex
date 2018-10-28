@@ -46,4 +46,11 @@ Phase \cw{A} matches function \cw{R\_InitSkyMap} which initialize the static \cw
 \par
 As you will have guessed, the "dot thermometer" was not very accurate. It started fast, slowed down for \cw{333333333333} which access a lot of data, and then sped up again to the end while calling mostly empty functions.\\
 \par
-While developing the game, the startup time was a problem. Even if a designer made no change to the map (and therefore did not need to run \cw{doombsp}) it still took 30 seconds before he could see the result. To avoid breaking the creative flow, the engine was gifted with 
+\section{Reload Hack}
+While developing the game, the long startup time was a problem. Even if a designer made no change to the geometry of the map (and therefore did not need to run \cw{doombsp}) it still took 30 seconds before he could see the result. To avoid breaking the creative flow, the engine was gifted with a "reload hack".\\
+\par
+By starting prefixing the path of a wad with a tilda (\textasciitilde) the engine was setup to reload the wad on level start.\\
+\par
+\fakedosoutput{reload_hack.txt}
+\par
+This allowed artists and designers to see the result of their work almost instantly.
