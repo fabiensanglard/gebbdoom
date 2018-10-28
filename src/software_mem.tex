@@ -1,48 +1,48 @@
 \section{Zone Memory Manager}
-Like all game engine of the era, \doom{} did not trust stock \cw{malloc}, not even the one provided by Watcom with \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. They were also wasteful for small allocation since they were optimized for big chunk allocation which is not what the engine does. They also lacked good debugging tools to track leaks and buffer overflows. Finally none of them were portable. So \doom{} uses its own memory manager.\\
+Like all game engines of the era, \doom{} did not trust stock \cw{malloc}, not even the one provided by Watcom with \cw{libc}. Because it could lead to memory fragmentation, a standard allocator would have jeopardized the stability of the engine. They were also wasteful for small allocations since they were optimized for big chunk allocation which is not what the engine does. They lacked good debugging tools to track leaks and buffer overflows. Finally none of them were portable. So \doom{} uses its own memory manager.\\
 \par
 
-\trivia{The engine runs on a clearly established memory budget. Upon starting up on \NeXT the memory manager allocates 4 MiB of RAM and not a byte more. This is done in order to make sure the advertise minimum 4MiB configuration is sufficient. On DOS the memory manager checks whether the machine has at least 4 MiB but will use up to 8 MiB if available in order to improve its cache retention.}\\
+\trivia{The engine runs on a clearly-established memory budget. Upon starting up on \NeXT the memory manager allocates 4 MiB of RAM and not a byte more. This is done in order to make sure the advertised minimum 4MiB configuration is sufficient. On DOS the memory manager checks that the machine has at least 4 MiB but will use up to 8 MiB if available in order to improve its cache retention.}\\
 \par
-The first incantation of the memory manager was based on zones. Each zone had a memory pool from which RAM could be allocated. The design gave the allocator its name "Zone Allocator", with it prefix \cw{Z\_}, and filename \cw{z\_zone.c}. Later the multi-zone idea was abandoned (maybe thanks to DOS4GW which unified the RAM) in favor of a design featuring one zone made of a chain of blocks. The \cw{Zone} name was still cool so it remained.\\
+The first incarnation of the memory manager was based on zones. Each zone had a memory pool from which RAM could be allocated. This design gave the allocator the name "zone allocator", with the prefix \cw{Z\_}, and filename \cw{z\_zone.c}. Later the multi-zone idea was abandoned (maybe thanks to DOS/4GW which unified the RAM) in favor of a design featuring one zone containing a chain of blocks. The \cw{Zone} name was still cool, so it remained.\\
 \par
-Looking at the code \cw{struct} shreds lights on the memory manager works.\\
+Looking at the code's \cw{struct}s sheds light on how the memory manager works.\\
 \par
 \ccode{memblock_t.c}\\
 \par
-The memory allocator uses only one zone for the entire RAM available. This "main" zone is a double linked circular list made of blocks. A block can represented in-use RAM if it has a \cw{**user} value or it can represent free RAM if \cw{user} is \cw{NULL}. At all time the block chain maps all the RAM on the machine.
+The memory allocator uses only one zone for the entire available RAM. This "main" zone is a doubly-linked circular list made of blocks. A block can represent in-use RAM if it has a \cw{**user} value or it can represent free RAM if \cw{user} is \cw{NULL}. At all times the block chain tracks all RAM on the machine.
 
 
 
-Each block is marked with a purge hint so the allocator can know whether i can free this block while responding to an allocation request.\\
+Each block is marked with a purge hint so the allocator can know whether it can free this block when responding to an allocation request.\\
 \par
 \ccode{memory_zone.c}\\
 \par
-In its initial state (assuming the entire RAM is 8000 bytes) all RAM is in a single block which is marked \cw{STATIC}. It has a \cw{NULL} \cw{user} which means this is a free block. It's \cw{size} is 8000 bytes. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
+In its initial state (assuming the entire RAM is 8000 bytes) all RAM is in a single block which is marked \cw{STATIC}. It has a \cw{NULL} \cw{user} which means this is a free block. Its \cw{size} is 8000 bytes. Both \cw{next} and \cw{prev} point to itself. The rover point to the only block in existence.\\
 \par
 \rawdrawing{zalloc_start}
 \par
-For each calls to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it create a block and shrinks the free block. Two calls sizes 1000 and 3000 result in three blocks in the chain. Notice the default \cw{user} value which is a weird "\cw{2}" (explained later).\\
+For each call to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it creates a block and shrinks the free block. Two calls with sizes of 1000 and 3000 result in three blocks in the chain. Notice the default \cw{user} value which is a weird "\cw{2}" (explained later).\\
 \par
 \rawdrawing{zalloc_allocs}
 
-Eventually the allocator will receive a request for an amount of RAM which the "free" block pointed to by the rover doesn't have. In the following configuration, the free block has only 500 bytes. Any request asking more than that amount would fail.\\
+Eventually the allocator will receive a request for an amount of RAM that the "free" block pointed to by the rover doesn't have. In the following configuration, the free block has only 500 bytes. Any request asking for more than that amount will fail.\\
 \par
 \rawdrawing{zalloc_fail}
 \par
-To answer a memory request, the rover will start by marking its current position and scanning for a free block big enough. If the rover comes back to the same position, there are no free block big enough to satisfy the request. Here the engine will throw an error and terminate.\\
+To answer a memory request, the rover will start by marking its current position and scanning for a free block big enough. If the rover comes back to the same position, there are no free blocks big enough to satisfy the request. Here the engine will throw an error and terminate.\\
 \par
-What is likely to have happened is that some blocks had been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighboring free block are merged. Let's assume, block B and block C have been freed. They would have been both merged into one free (\cw{OWNER=NULL}) 5000 bytes block.\\
+What is likely to have happened is that some blocks will have been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighboring free blocks are merged. Let's assume block B and block C have been freed. They would have been both merged into one free (\cw{owner=NULL}) 5000 bytes block.\\
 \par
 \rawdrawing{zalloc_freed}
 \par
-To allocate 1K bytes, the rover will "roll over", discover the free block and use it for block \cw{E}.\\
+To allocate 1KB, the rover will "roll over", discover the free block and use it for block \cw{E}.\\
 \par
 \rawdrawing{zalloc_saved}
 \par
-There is a third case which is vastly more interesting. So far we have only talked about statically allocated block such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belong to the "purgeable" category.\\
+There is a third case which is vastly more interesting. So far we have only talked about statically-allocated blocks such as \cw{STATIC}, \cw{MUSIC}, or \cw{LEVEL}. But there is a third kind of tag which belongs to the "purgeable" category.\\
 \par
- It is mostly used by the wad/lump manager described in the next section. If a block is marked \cw{PU\_CACHE} is means the engine doesn't need the data now but it may in a the future. However the memory allocator is allowed to free it. In the following configuration there is not enough space in any block to successfully allocated 1000 bytes.\\
+ It is mostly used by the WAD/lump manager described in the next section. If a block is marked \cw{PU\_CACHE} it means the engine doesn't need the data now but it may in the future. However, the memory allocator is allowed to free it. In the following configuration there is not enough space in any block to successfully allocate 1000 bytes.\\
 \par
 \rawdrawing{zalloc_cache_before}
 \par
@@ -50,10 +50,9 @@ The rover will follow the chain and find block \cw{F}, deallocate it (even thoug
 \par
 \rawdrawing{zalloc_cache_after}
 \par
-
-The memory manager has many other features over libc's \cw{malloc}. The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). \cw{Z\_Free} is able to detect mismanagements such as double free. A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection.  There is even an integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others and that there are no two consecutive free blocks.\\
+The memory manager has many other features over libc's \cw{malloc}. The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). \cw{Z\_Free} is able to detect mismanagement such as double free. A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection. There is even an integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others and that there are no two consecutive free blocks.\\
 \par
-\trivia{Blocks can be "retagged" via function \cw{Z\_ChangeTag}. It is frequent for the engine to allocate memory blocks with a \cw{PU\_STATIC} tag while working with assets only to change the tag to \cw{PU\_CACHED} after it is done with it. This allow memory to be freed if needed while potentially avoiding a round trip to the HDD if the block is need again and is still in RAM.}
+\trivia{Blocks can be "retagged" via the function \cw{Z\_ChangeTag}. It is frequent for the engine to allocate memory blocks with a \cw{PU\_STATIC} tag while working with assets only to change the tag to \cw{PU\_CACHE} after it is done with it. This allows memory to be freed if needed while potentially avoiding a round trip to the HDD if the block is needed again and is still in RAM.}
 % \trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\
 % \par \tcode{zone_undefined.txt}}
 % \par
