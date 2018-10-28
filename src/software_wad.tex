@@ -121,7 +121,7 @@ Once a lump location has been found, a memory block is requested from the memory
 \par
 The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot assigned itself as the \cw{user} of the memory block, meaning the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{1} \& \cw{2} are not in the cache and will request WAD access.\\
 \par
-\drawing{lumpcache}{Lump \cw{1} is in the cache. Lumps \cw{0} and \cw{2} are not.}
+\scaleddrawing{0.9}{lumpcache}{Lump \cw{1} is in the cache. Lumps \cw{0} and \cw{2} are not.}
 \par
 \ccode{W_CacheLumpName.c}
 

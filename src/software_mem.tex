@@ -22,7 +22,7 @@ In its initial state (assuming the entire RAM is 8000 bytes) all RAM is in a sin
 \par
 \rawdrawing{zalloc_start}
 \par
-For each call to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it creates a block and shrinks the free block. Two calls with sizes of 1000 and 3000 result in three blocks in the chain. Notice the default \cw{user} value which is a weird "\cw{2}" (explained later).\\
+For each call to \cw{Z\_Malloc}, the rover searches for a free block big enough. Once found, it creates a block and shrinks the free block. Two calls with sizes of 1000 and 3000 result in three blocks in the chain. Notice the default \cw{user} value which is a weird "\cw{2}" \fixme{explain!}.\\
 \par
 \rawdrawing{zalloc_allocs}
 

@@ -12,7 +12,7 @@ There were significant obstacles to this methodology. First of all, DOS programs
 \par
 \begin{figure}[H]
 \centering
-\scaleddrawing{0.8}{dev_setup}{\NeXT HDD user home folder is mounted on DOS machine as Z drive.}
+\scaleddrawing{0.8}{dev_setup}{\protect\NeXT HDD user home folder is mounted on DOS machine as Z drive.}
 \end{figure}
 \par
 
@@ -43,7 +43,7 @@ Accommodating the needs for running on different operating systems was more chal
 \par
 \begin{figure}[H]
 \centering
-\includegraphics[width=.6\textwidth]{drawings/doom_arch.pdf}
+\includegraphics[width=.5\textwidth]{drawings/doom_arch.pdf}
 \caption{\doom{} Core and its I/O platform-dependent systems.}
 \end{figure}
 \par
@@ -181,7 +181,7 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \par
 The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made up of dots which often required several minutes to complete on the full version depending on the machine's hard drive access time. The details and meaning behind each dot is explained in the appendix on page \pageref{dots_explained}.\\
 \par
-\trivia{Starting with the \cw{-devparm} command line parameter shows more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old speakers emitted when they were turned on. In an era before Plug\&Play and the Internet, it was an achievement itself to configure the sound card's mysterious IRQ and DMA parameters.}\\
+\trivia{The \cw{-devparm} command line parameter shows more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old speakers emitted when they were turned on. In an era before Plug\&Play and the Internet, it was an achievement itself to configure the sound card's mysterious IRQ and DMA parameters.}\\
 \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
