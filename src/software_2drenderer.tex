@@ -1,6 +1,6 @@
 
 \section{2D Renderers (Drawers)}
-All "Drawers" in \doom{} were the work of  Dave Taylor. The self proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. The code style and naming conventions are very different from John Carmack.
+All "Drawers" in \doom{} were the work of  Dave Taylor. The self-proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. The code style and naming conventions are very different from John Carmack.
 \begin{itemize}
 \item Status Bar (\cw{ST\_Drawer()})
 \item Automap (\cw{AM\_Drawer})
@@ -15,15 +15,15 @@ All "Drawers" in \doom{} were the work of  Dave Taylor. The self proclaimed "spa
 
 
 \subsection{Intermission}
-The intermission screen is simple and fully contained in \cw{wi\_stuff.c}. It start by loading a virgin background map from the wad archive to RAM and placing it in FrameBuffer \#1.\\
+The intermission screen is simple and fully contained in \cw{wi\_stuff.c}. It starts by loading a virgin background map from the WAD archive into RAM and placing it in FrameBuffer \#1.\\
 \par
 \fullimage{intermissions/WIMAP0.png}\\
 \par
-Every time a screen refresh is needed, the intermission code does a \cw{memcpy} (called "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draw sprites and text on top of it.\\
+Every time a screen refresh is needed, the intermission code does a \cw{memcpy} (called a "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draws sprites and text on top of it.\\
 \par
 \fullimage{intermissions/stats.png}\\
 
-Once the intermission is finished, method \cw{WI\_unloadData} does not free the RAM, it just mark all elements it needs as PU\_CACHE.\\
+Once the intermission is finished, method \cw{WI\_unloadData} does not free the RAM, it just marks all elements it needs as PU\_CACHE.\\
 
 %\fullimage{intermissions/Intermission.png}\\
 
@@ -32,7 +32,7 @@ Once the intermission is finished, method \cw{WI\_unloadData} does not free the 
 \par
 
 \subsection{Status Bar}
-The design of the status bar is similar to the Intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets'. There are seven widgets, from left to right, ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four kind ammo count.\\
+The design of the status bar is similar to the Intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets'. There are seven widgets, from left to right: ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four ammo counts.\\
 \par
 \fullimage{stbar.png}
 \par
@@ -41,9 +41,9 @@ The design of the status bar is similar to the Intermission Drawer. Contained in
 \par
 \fullimage{faces.png}\\
 \par
-Most of the time, the face widget plays the "normal" animation where the marine's eye looks left and right. Notice how there is a set of state for each five bracket of life percentage. Perhaps because of the stress incurred during combat, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is showed when picking up a weapon. "Kill" is obviously displayed when opponents are slayed.\\
+Most of the time, the face widget shows the "normal" animation where the marine's eyes look left and right. Notice how there is a set of states for each of the five health brackets. Perhaps because of the stress incurred during combat, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is shown when picking up a weapon. "Kill" is obviously displayed when opponents are slayed.\\
 \par
-Even to player who spent a lot of time on \doom, the "Ouch" face is likely to be something they have never seen. It was intended to show up when the player suffers an enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
+Even to players who spent a lot of time on \doom, the "ouch" face is likely to be something they have never seen. It was intended to show up when the player suffers an enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
 \par
 \ccode{ouch_face.c}\\
 \par
@@ -51,7 +51,7 @@ The test is the opposite of what it should have been. The ST module shows the ou
 \par
 \ccode{ouch_face_fixed.c}\\
 \par
-With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar in FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
+With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar into FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
 \par
 \fullimage{stbar_virgin.png}
 
@@ -62,7 +62,7 @@ With regards to interaction with the video system, the status bar is similar to 
 \centering
 \scaledimage{0.1}{M_SKULL1.png}
 \end{wrapfigure}
-There are ten menus and they are all hard-coded in \cw{m\_menu.c} and \cw{m\_misc.c}. The design is simple with \cw{menu\_t} containing a list of \cw{menuitem\_t}. A \cw{name} field for each menuitem is used to retrieve the appropriate sprite.\\
+There are ten menus and they are all hard-coded in \cw{m\_menu.c} and \cw{m\_misc.c}. The design is simple with \cw{menu\_t}s containing lists of \cw{menuitem\_t}s. A \cw{name} field for each menuitem is used to retrieve the appropriate sprite.\\
 \par
 
 \ccode{menu_item.c}
@@ -80,7 +80,7 @@ A \cw{menu\_t*} is consumed by the menu drawing routine and a skull is drawn on 
 \par
 \ccode{M_DrawMainMenu.c}
 \par
-In the previous code sample describing the main menu, notice how the strings \cw{M\_NGAME}, \cw{M\_OPTION}, \cw{M\_DOOM} are all names of a lump found in the wad archive.\\
+In the previous code sample describing the main menu, notice how the strings \cw{M\_NGAME}, \cw{M\_OPTION}, \cw{M\_DOOM} are all names of lumps found in the WAD archive.\\
 \par
 %\trivia{The slider to select the screen size, mouse sensitivity, sfx volume, and music volume are called "Thermostats".}\\
 %\par
@@ -92,12 +92,12 @@ In the previous code sample describing the main menu, notice how the strings \cw
 
 
 
-\subsection{HUD (Head Up Display)}
-In its early instances, \doom{} featured a HeadUp Display mimicking doomguy helmet.\\
+\subsection{HUD (Head-Up Display)}
+In its early instances, \doom{} featured a Head-Up Display mimicking Doomguy's helmet.\\
 \par
 \fullimage{alpha_hud.png}
 \par
-Over time the design changed and the HUD shrank to be reduced to lines of text. The small code is contained in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.\\
+Over time the design changed and the HUD shrank to just lines of text. The small code is contained in \cw{hu\_lib.c} and \cw{hu\_stuff.c}.\\
 \par
 \fullimage{new_hud.png}\\
 \par
@@ -106,13 +106,13 @@ Over time the design changed and the HUD shrank to be reduced to lines of text. 
 
 
 \subsection{Automap}
-The automap is a small and simple component contained in \cw{am\_map.c}. As the players discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
+The automap is a small and simple component contained in \cw{am\_map.c}. As the player discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
 \par
-Sadly, it is not possible to play the game in this mode (we all tried to, let's not kid ourselves) since visited lines marking is done by the 3D renderer which is disabled when the automap is active.\\
+Sadly, it is not possible to play the game in this mode (we all tried to, let's not kid ourselves) since marking of visited lines is done by the 3D renderer which is disabled when the automap is active.\\
 \par
 \fullimage{automap.png}
 \par
-\trivia{Automap almost featured an easter egg. Files \cw{am\_oids.h/c} were to allow player to play a remake of Asteroids. Unfortunately the easter egg was left unfinished.}\\
+\trivia{The automap almost featured an easter egg. The files \cw{am\_oids.h/c} were to allow the player to play a remake of Asteroids. Unfortunately the easter egg was left unfinished.}\\
 \par
 \fq{I can't recall whose idea it was, but it was probably mine.  I was taken by the vector art style of the automap, so Asteroids would have been a good fit, but Doom was behind, and the pace of development at id was incredibly fast.}{Dave Taylor}\\
 \par
@@ -141,14 +141,14 @@ Also known as the "Screen melt", wipe is used to transition between sections of 
 \pagebreak
 
 \par
-"Wipe" takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output in FrameBuffer \#0.\\% (FrameBuffer \#1 is left available in case a screenshot request was received in the middle of a wipe.).\\
+"Wipe" takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output into FrameBuffer \#0.\\% (FrameBuffer \#1 is left available in case a screenshot request is received in the middle of a wipe.).\\
 \par
-The first step is to reorganize the two sources of data from row major to column major. This is done so the read operations on vertical strip play nicely with the 486 cachelines.\\
+The first step is to reorganize the two sources of data from row major to column major. This is done so the read operations on vertical strips play nicely with the 486 cachelines.\\
 \par
 \fullimage{face_rawmajorized.png}
 \par
-After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value are within 16 units of their two neighbors. These are used to form the top "wave".\\
-\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped of the screen. During the animation, columns two pixels wide and 200 pixels tall are copies repeatedly from src and dest to Framebuffer \#0. All columns falls at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
+After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value is within 16 units of its two neighbors. These are used to form the top "wave".\\
+\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped off the screen. During the animation, columns two pixels wide and 200 pixels tall are copied repeatedly from src and dest to Framebuffer \#0. All columns fall at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
 %The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as \\
 
 
