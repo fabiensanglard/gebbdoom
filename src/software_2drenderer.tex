@@ -19,7 +19,7 @@ The intermission screen is simple and fully contained in \cw{wi\_stuff.c}. It st
 \par
 \fullimage{intermissions/WIMAP0.png}\\
 \par
-Every time a screen refresh is needed, the intermission code does a \cw{memcpy} (called a "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draws sprites and text on top of it.\\
+When a screen refresh is needed, the intermission code does a \cw{memcpy} (called a "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draws sprites and text on top of it.\\
 \par
 \fullimage{intermissions/stats.png}\\
 

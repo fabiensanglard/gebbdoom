@@ -6,6 +6,7 @@ Before continuing our trip through the code and looking at the rendering in  \cw
 \par
 \cccode{kernel_renderer_dbox.c}{The dirtybox.}
 \par
+\vspace{-10pt}
 The video system implementation must provide four functions to the core. \cw{I\_InitGraphics} is to be told when to initialize itself. \cw{I\_UpdateNoBlit} is to be called when a portion of the framebuffer has been modified. \cw{I\_FinishUpdate} is called when the framebuffer is fully composed and should be presented to the screen. \cw{I\_WaitVBL} blocks and returns on next V-Sync.\\ 
  \begin{figure}[H]
 \centering  

@@ -138,6 +138,7 @@ This is only one of the many possible trees which could have been generated from
 \rawdrawing{doom_map_bad}{}
 \par
 
+\vspace{-10pt}
 \subsubsection{Usage}
 
 \begin{wrapfigure}[10]{r}{0.5\textwidth}
@@ -159,13 +160,13 @@ The beauty of binary trees is that traversing them is a constant cost. No matter
 \subsection{Binary Space Partitioning: Practice}
 Maps were preprocessed on a NeXTStation Turbo via the in-house tool node builder named \cw{doombsp}.\\
 \par
-For the tool to build the best BSP possible a splitter selection heuristic had to be established. A good splitter divides the map as evenly as possible (limiting the depth of the tree), and prefers horizontal or vertical lines (since they are easier to debug and side tests are faster).\\
+For the tool to build the best BSP possible a splitter selection heuristic had to be established. A good splitter divides the map as evenly as possible (limiting the depth of the tree), and prefers axis-aligned lines (since they are easier to debug and side tests are faster).\\
 \par
- \cw{doombsp} recursively inspect all lines in a subspace and gives a splitting score to each of them. At the end of the evaluation, the highest-scoring line is selected. The map is split in two and the process is repeated until only convex subsectors remain. This is a CPU-intensive task which took eight seconds for E1M1 featured in Figure \ref{E1M1_lines}. All thirty maps of \cw{DOOM.WAD} took eleven minutes.\\
+ \cw{doombsp} recursively inspect all lines in a subspace and gives a splitting score to each of them. At the end of the evaluation, the highest-scoring line is selected. The map is split in two and the process is repeated until only convex subsectors remain. This is a CPU-intensive task which took eight seconds for E1M1. All thirty maps of \cw{DOOM.WAD} took eleven minutes.\\
 \par
 \drawing{E1M1_lines}{E1M1, a.k.a Episode 1 Map 1.}
 \par
-Figure \ref{E1M1_segs} shows the seven first splitters selected on E1M1. The first level is in red, second level in blue and the third level in thick black. Notice how axis-aligned splitters are favored.\\
+Figure \ref{E1M1_segs} shows the seven first splitters selected on E1M1. The first level is in red, second level in blue and the third level in thick black. Notice how AA splitters are favored.\\
 \par
 Switching from a sector flooding algorithm to a Binary Space Partitioning algorithm not only added preprocessing time and latency to map designers. There was another side effect which was more of an issue since it affected players. Because the BSP created new vertices, wall positions are set in stone, there is no way to move walls at runtime.
 
@@ -376,7 +377,7 @@ The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}
 \par
 Subpixel accuracy is slightly more difficult to perform. Here the fractional part is not discarded but used while navigating from \cw{A} to \cw{B}.\\
 \par
-Figure \ref{subpixel_before} shows the two methods side by side. The difference may look negligible but it is in fact one of the most important features of the engine which made the world feel "solid".
+Figure \ref{subpixel_before} shows the two methods side by side. The difference may look negligible but it is one of the most important features of the engine which made the world feel "solid".
 \drawing{subpixel_before}\\
 \par
 At first sight it seems the two methods are different yet equivalent, but look at what happens when things start to move, such as in the case where \cw{A} moves \cw{0.3} units down.\\
@@ -501,8 +502,6 @@ Without merging (above) the frame required 179 visplanes. With merging (below), 
 
 \vspace{2mm}
 \fullimage{complex_lowvis.png}
-
-
 On the previous page, the modified engine shows how a visplane does not need to be horizontally continuous. The red floor's visplane for example is made of three parts yet uses only one entry in the visplane array, validating the judicious choice to represent visplanes as array of columns\footnote{It would have been easy to use an array of lines since visplanes are rendered as lines.}.\\
 \par
 There are several conditions required to merge two visplanes. Mergeable visplanes must have the same height, light and texture. Even if these conditions are met, the data structure has to be able to absorb others. This is only possible if visplanes are side-by-side. Even one pixel above or below with the same \cw{X} coordinate makes two visplanes ineligible for merging. Function \cw{R\_FindPlane} looks for candidates; mergability is tested elsewhere.\\
@@ -601,7 +600,7 @@ $$   color = lightmapId[textureTexel] $$
  To reduce lightmap arithmetics, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. Lightmap calculations are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
  \par
  The engine uses a cool trick to embellish orthogonal surface rendering. Lightmap selection is tweaked based on world-space orientation. For north-south walls, the selection is lowered by one unit, making them brighter. For east-west walls the lightmap selection is increased by one unit, making them darker. Lightmap selection on other walls is unaffected.\\
-\pagebreak
+
 
 
 To render the sky in outdoor scenes, a sector has a special ceiling texture number which the engine recognizes as "sky", in which case, its height is 0, lightmap is 0 and perspective is disabled. Each portion of sky is stored as a visplane and drawn as span of pixels.\\
@@ -771,7 +770,7 @@ Each column (also called "post" in the code) is a set of "spans" with one byte g
 \par
 The Lost Soul sprite's row \cw{44} is 4 bytes (one span with: \cw{0x13} vertical offset, \cw{0x02} data length, \cw{0x54}, \cw{0x59}) two brown texels). Row \cw{33} has two spans, accounting for 48 bytes and is a rare case where the encoding scheme is less favorable than "uncompressed" which would have been 47 bytes. Row \cw{10} (also two spans) accounts for 19 bytes which is much less than the uncompressed length of 47 bytes. This entire Lost Soul sprite is 44x47 and fits in 1360 bytes for a surface of 2068 pixels, resulting in a rough 50\% compression ratio.\\
 \par
-
+\vspace{-10pt}
 \subsection{Sprite aspect ratio}
 The framebuffer was distorted when transfered from the VGA hardware to the CRT screen. The different aspect ratios make pixels taller than they are wide, stretching images vertically.\\
 \par
