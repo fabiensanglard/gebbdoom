@@ -5,9 +5,9 @@
 \scaledimage{0.25}{palette.png}
 \end{wrapfigure}
 
-Despite its many weaknesses, the VGA had one really cool feature, its palette. Only 768 bytes were enough to make the entire screen fade toward a color. \doom{} used fading for three effects which were damage, item pickup, and while wearing radiation suit. To implement these effects, palettes were precalculated and stored in the \cw{PLAYPAL} lump. There are fourteen palettes in total. Palette \#0 was the default and was used during most of the game.\\
+Despite its many weaknesses, the VGA hardware had one really cool feature, its palette. Only 768 bytes were enough to make the entire screen fade toward a color. \doom{} used fading for three effects -- damage, item pickup, and the radiation suit. To implement these effects, palettes were precalculated and stored in the \cw{PLAYPAL} lump. There are fourteen palettes in total. Palette \#0 was the default and was used during most of the game.\\
 \par
-Eight palettes (from \#1 to \#8) were used for emphasis damage and let the player know how badly it was being injured. The effect shifts directly to one of the seven palette based on the amount of damage taken (The higher the damage the higher the starting palette). A screen full red was usually very bad news. If no more damage are taken, the palette fades back to normal (Palette \#1) at the rate of one palette unit every 1/2 second.\\
+Eight palettes (from \#1 to \#8) were used to emphasize damage and let the player know how badly they were being injured. The effect switches the display to one of the seven palettes based on the amount of damage taken (The higher the damage the higher the starting palette). A fully red screen was usually very bad news. If no more damage is taken, the palette fades back to normal (Palette \#1) at the rate of one palette unit every 1/2 second.\\
 \par
 \scaledimage{0.25}{palette_damage1.png}
 \scaledimage{0.25}{palette_damage2.png}
@@ -18,7 +18,7 @@ Eight palettes (from \#1 to \#8) were used for emphasis damage and let the playe
 \scaledimage{0.25}{palette_damage7.png}
 \scaledimage{0.25}{palette_damage8.png}\\
 \par
-Due to an off-by-one bug, palette \#1 is never used. Take a good look at the code selecting the damage palette in \cw{ST\_doPaletteStuff}, It can only generate values within range [2,8].\\
+Due to an off-by-one bug, palette \#1 is never used. Take a good look at the code selecting the damage palette in \cw{ST\_doPaletteStuff}; it can only generate values within the range [2,8].\\
 \par
 \ccode{ST_doPaletteStuff0.c}\\
 \par
@@ -35,7 +35,7 @@ Because of the same off-by-one miscalculation, palette \#9 is never used. The pa
 \par
 % \ccode{ST_doPaletteStuff2.c}\\
 \par
-The last palette (\#13) is not used for a fading effects but as a permanent swap when the player is wearing the radiation suit.\\ 
+The last palette (\#13) is not used for fading effects but as a temporary swap when the player is wearing the radiation suit.\\ 
 \par
 
 \scaledimage{0.25}{palette_radiationsuit.png}
