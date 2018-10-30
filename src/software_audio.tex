@@ -68,7 +68,8 @@ Since it was tied to a timer, DMX was also in charge of the game engine's heartb
 \par
 
 
-\scaleddrawing{1}{sound_manager_architecture}{DMX architecture}
+\scaleddrawing{0.95}{sound_manager_architecture}{DMX architecture}
+
 With such an architecture there are two systems executing pseudo-concurrently but the audio has more constraints than the video. When an interrupt is triggered, DMX has only a few milliseconds to refill the sound card's buffers and go back to sleep. If DMX is too slow, it can delay video rendering or mask other interrupts.\\
 \par
  This explains why allocation of audio assets gets special treatment in the zone allocator. The audio system has no time to recover from a memory miss (nor could it, since it has no access to the WAD or memory allocator). Audio data must be ready immediately whenever it is needed.
@@ -103,7 +104,7 @@ Sorry, but that's the way it has to be :(\\
 
 The library evolved during the development of \doom. Sometimes API changes introduced bugs. Gravis UltraSound support was broken with v1.666. Support for the Audio Spectrum was also broken so users of the card had to fall back on (poor) SoundBlaster emulation\footnote{Source: John Romero post on \cw{alt.games.doom}.}.\\
 \par
-The problem was partly due to poor API practices on DMX's side and partly because of hasty adjustments on id Software's part. Most issues were ultimately fixed except for one major bug which made it to customers. The engine was originally supposed to emit sounds at random pitches to avoid monotony. To this effect, DMX function \cw{SFX\_PlayPatch} was used.\\
+The problem was partly due to poor API practices on DMX's side and partly because of hasty adjustments on id Software's part. Most issues were ultimately fixed except for one major bug which made it to gamers. The engine was originally supposed to emit sounds at random pitches to avoid monotony. To this effect, DMX function \cw{SFX\_PlayPatch} was used.\\
 \par
 \ccode{dmx_before.c}
 
