@@ -400,17 +400,34 @@ Another noteworthy thing, before we move on to how \doom{} drew flats, is that d
 \par
  To illustrate the concept, let's look at what affine texture mapping (incorrect) looks like in a simple scene featuring three walls.\\
 \par
-\fullimage{mashed_potatoes2.png}
+\fullimage{affine_texturing.png}
 \par
 By projecting the wall in screen-space and interpolating texture coordinates linearly, the result looks strange -- there is no perspective. Notice how the squares are the same width in all portions of the red wall. The blue wall where the angle is even more acute looks even worse. The green wall facing the player does not suffer since it is perpendicular and has no perspective.\\
 \pagebreak
 \par
 Space intentionally left blank.\\
 \par
-\fullimage{mashed_potatoes2.png}
+\fullimage{perspective_texturing.png}
+\par
+\begin{equation*}
+    \scalebox{1.2}{
+$u_{\alpha} = (1-\alpha)u_{0}\, +\, \alpha u_{1}\quad{where}\quad0\leq \alpha \leq 1$\\
+}
+\end{equation*}
+balbaba\\
+\begin{equation*}
+    \scalebox{1.2}{
+$u_{\alpha} = \dfrac{
+                      (1 - \alpha)\dfrac{u_{0}} {z_{0}} +    \alpha\dfrac{u_{1}} {z_{1}}  
+                    }       
+                    {  
+                      (1 - \alpha)\dfrac{1} {z_{0}} + \alpha\dfrac{1} {z_{1}}    
+                    }   \quad{where}\quad0\leq \alpha \leq 1 $\\
+}
+\end{equation*}
 \pagebreak
 \par
-balbaba\\
+
 \vspace{1.5cm}
 
 \subsection{Drawing Flats}

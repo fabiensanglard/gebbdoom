@@ -104,6 +104,10 @@ void PlotColor(int x, int y , Color color){
   spy = y + H/2;
   spy = (H) - spy;
 
+  int32_t index = spx + spy * W;
+  if (index < 0 || index > (H * W * 4)) {
+    return;
+  }
   framebuffer[spx + spy * W] = color;
 }
 void Plot(Point& point , Texture texture){
@@ -163,9 +167,25 @@ int main() {
     framebuffer[i] = Black;
   }
 
+  /*
+   *      A---\        /-------G
+   *      |    \B----E/        |
+   *      |     C----F         |
+   *      D____/      \________H
+   */
+  Point A = {-80, 50, 0.5, 0, 0};
+  float closeWallZ = 1;
+  float farWallZ = 2;
+  float middleZ =
+  Point B = {25,50, 2, 1, 0};
+  Point C = {25, -50, 2, 1, 1};
+  Point D = {-80, -50, 0.5, 0, 1};
+
+
+
 //  Texture red("../MWALL4_1.tga");
   Texture red("../red.tga");
-  Quad quad({-80, 50, 0.5, 0, 0}, {25,50, 2, 1, 0}, {25, -50, 2, 1, 1}, {-80, -50, 0.5, 0, 1});
+  Quad quad({A.x, A.y, A.z, 0, 0}, {B.x, B.y, B.z, 1, 0}, {C.x, C.y, C.z, 1, 1}, {D.x, D.y, D.z, 0, 1});
   quad.perspectiveDivive();
   drawQuad(quad, red);
 
