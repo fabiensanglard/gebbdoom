@@ -1,21 +1,21 @@
 \section{Collision Detection} \label{blockmapdetails}
-Collision detection is a significant part of the engine activity. Each moving object (player, monster, projectile) must check for collisions before it moves. Line of sight also depends on an efficient collision system. Enemies with direct hit damage also need to check if they have a clean line to attempt to inflict damage.\\
+Collision detection is a significant part of the engine's activity. Each moving object (player, monster or projectile) must check for collisions before it moves. Line of sight also depends on an efficient collision system. Enemies which inflict direct hit damage also need to check if they have a clear line of fire.\\
 \par
-Detecting collision could have been done via the BSP. However it is only after Bruce Naylor visited id Software that John Carmack became aware it was possible. By then, \doom{} had already shipped with a collision detection data structure is called blockmap.\\
+Collisions could have been detected via the BSP. However it was only after Bruce Naylor visited id Software that John Carmack became aware this was possible. By then, \doom{} had already shipped with its collision detection data structure called the blockmap.\\
 \par
 \vspace{10pt}
 \drawing{E1M1_lines}{E1M1 sectors and lines}
 \par
 There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NextStations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used at runtime to lower the number of lines to test intersections with.\\
 \par
-The work done by \cw{doombsp} is simple. Divide the map in 128x128 axis aligned blocks. Each line in the level crossing a block is listed in that block. At the end of the process, create an index which based on blockmap coordinate (in 128 units) give a list of lines. Notice that with this method, a line can be present in multiple blocks. In the case of map E1M1, the result is visible in figure \ref{E1M1_blockmap}.
+The work done by \cw{doombsp} is simple: divide the map into 128x128 axis-aligned blocks. For each block a list is made of every line that passes through it. At the end of the process, an index is constructed based on blockmap coordinates (in 128x128 units) pointing to the list of lines. Notice that a line can be present in multiple blocks. In the case of map E1M1, the result is visible in figure \ref{E1M1_blockmap}.
 
 \drawing{E1M1_blockmap}{E1M1 lines indexed via blockmap. Note that empty blocks are not drawn}
 
-All map traversal are done with an abstract method \cw{P\_PathTraverse} which takes as argument what to check collision with and a function pointer to call upon hit (a.k.a How to fake OOP with C).\\
+All map traversals are done with an abstract method \cw{P\_PathTraverse} which takes as argument two coordinates making up a line to check collisions with and a function pointer to call when a hit is detected (a.k.a How to fake OOP with C).\\
 \par
 \ccode{P_PathTraverse.c}
 \par
-Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so only lines and things are considered during traversal. The block coordinates of any map coordinate is easy to obtain via modulo 128. To detect Things collisions, their block coordinate are updated each time they change position.\\
+Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so that only lines and things are considered during traversal. The block coordinates of any map coordinate are easy to obtain via modulo 128. To detect collisions with things, their block coordinates are updated each time they change position.\\
 \par
 \ccode{P_AimLineAttack.c}
