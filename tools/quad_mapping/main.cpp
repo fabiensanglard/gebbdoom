@@ -74,13 +74,13 @@ struct Quad {
       points[3] = p3;
     }
 
-    void perspectiveDivive() {
-      for (int i =0 ; i < 4 ; i++) {
-        points[i].x /= points[i].z;
-        points[i].y /= points[i].z;
+//    void perspectiveDivive() {
+//      for (int i =0 ; i < 4 ; i++) {
+//        points[i].x /= points[i].z;
+//        points[i].y /= points[i].z;
 //        printf("x=%.2f, y=%.2f\n", points[i].x, points[i].y);
-      }
-    }
+//      }
+//    }
 
     int width() {
       return points[1].x - points[0].x;
@@ -99,10 +99,17 @@ struct Quad {
 
 
 void PlotColor(int x, int y , Color color){
+
+
   int spx, spy;
   spx = x + W/2;
   spy = y + H/2;
   spy = (H) - spy;
+
+  if (spx >= W) return;
+  if (spx <= -W) return;
+//  if (spy < -H/2) return;
+//  if (spy > H/2) return;
 
   int32_t index = spx + spy * W;
   if (index < 0 || index > (H * W * 4)) {
@@ -127,8 +134,8 @@ void DrawColumnAffine(Point& start, Point& end, Texture& texture) {
   int y=start.y;
   for (int i=0 ; i < height +1; i++) {
     cursor.y = y;
-    cursor.v = i / (float)(height);
-    printf("y=%d, v=%.2f\n", y, cursor.v);
+    cursor.v = i / (float)(height-1);
+//    printf("y=%d, v=%.2f\n", y, cursor.v);
     Plot(cursor, texture);
     y--;
   }
@@ -172,32 +179,37 @@ int main() {
    *      |    \B----E/        |
    *      |     C----F         |
    *      D____/      \________H
+   *
+   *      D1    D2   D3       D4
    */
-  Point A = {-80, 50, 0.5, 0, 0};
-  float closeWallZ = 1;
-  float farWallZ = 2;
-  float middleZ =
-  Point B = {25,50, 2, 1, 0};
-  Point C = {25, -50, 2, 1, 1};
-  Point D = {-80, -50, 0.5, 0, 1};
-
-
+  float D1 = 1;
+  float D2 = 2;
+  float D3 = 3;
+  float D4 = 1;
+  Point A = {-159, 125, D1, 0, 0};
+  Point B = {-30,88, D2, 1, 0};
+  Point C = {-30, -46, D2, 1, 1};
+  Point D = {-159, -72, D1, 0, 1};
+  Point E = {55, 63, D3, 1, 0};
+  Point F = {55, -30, D3, 1, 1};
+  Point G = {159, 98, D4, 0 , 0};
+  Point Hp = {159, -46, D4, 0, 0};
 
 //  Texture red("../MWALL4_1.tga");
   Texture red("../red.tga");
   Quad quad({A.x, A.y, A.z, 0, 0}, {B.x, B.y, B.z, 1, 0}, {C.x, C.y, C.z, 1, 1}, {D.x, D.y, D.z, 0, 1});
-  quad.perspectiveDivive();
+//  quad.perspectiveDivive();
   drawQuad(quad, red);
 
   Texture blue("../bluec.tga");
-  Quad quadBlue({25, 50, 2, 0, 0}, {125, 50, 2, 1, 0}, {125, -50, 2, 1, 1}, {25, -50, 2, 0, 1});
-  quadBlue.perspectiveDivive();
+  Quad quadBlue({B.x, B.y, B.z, 0, 0}, {E.x, E.y, E.z, 1, 0}, {F.x, F.y, F.z, 1, 1}, {C.x, C.y, C.z, 0, 1});
+//  quadBlue.perspectiveDivive();
   drawQuad(quadBlue, blue);
 //
   Texture green("../green.tga");
-  Quad quadGreen({125, 50, 2, 0, 0}, {160, 50, 1, 1, 0}, {160, -50, 1, 1, 1}, {125, -50, 2, 0, 1});
-  quadGreen.perspectiveDivive();
-  drawQuad(quadGreen, green);
+  Quad quadGreen({E.x, E.y, E.z, 0, 0}, {G.x, G.y, G.z, 1, 0}, {Hp.x, Hp.y, Hp.z, 1, 1}, {F.x, F.y, F.z, 0, 1});
+//  quadGreen.perspectiveDivive();
+//  drawQuad(quadGreen, green);
 
   tga_write_bgr("test.tga", (uint8_t *) framebuffer, W, H, 32);
   return 0;
