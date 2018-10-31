@@ -344,6 +344,14 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 \par
 }
 
+\newcommand{\samelinerawscaleddrawing}[2]{
+  \begin{figure}[H]
+\centering
+\includegraphics[width=#1\textwidth]{drawings/#2.pdf}
+\label{#2}
+\end{figure}
+}
+
 \newcommand{\rawpngdrawing}[1]{
     \includegraphics[width=\textwidth]{drawings/#1.png}
   \par

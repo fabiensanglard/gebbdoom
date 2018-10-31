@@ -396,25 +396,39 @@ The pixel-accurate method results in five pixels selected differently. The subpi
 
 
 \subsection{Perspective-Correct Texture Mapping}
-Another noteworthy thing, before we move on to how \doom{} drew flats, is that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
+Before we move on to how \doom{} drew flats, is worth noticing that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
 \par
- To illustrate the concept, let's look at what affine texture mapping (incorrect) looks like in a simple scene featuring three walls.\\
+ To illustrate the concept, let's study what affine texture mapping (incorrect) looks like in a simple scene featuring three walls textured with a pattern of white and colored squares.\\
+\par
+
+\begin{minipage}{0.43\textwidth}
+\rawscaleddrawing{1}{mapping}
+\end{minipage}
+\hspace{20mm}
+\begin{minipage}{0.4\textwidth}
+\vspace{-10pt}
+ \scaledimage{1}{square_texture.png}
+ \end{minipage}
+\par
+\vspace{8pt}
+In order to focus on walls, the floor and ceiling are intentionally rendered in light gray.\\
 \par
 \fullimage{affine_texturing.png}
+In this scene, wall vertice are projected in screen space coordinates $(x,y)$. A texture coordinate $u$ is generated for each columns to draw, based on linear interpolation of screenspace wall width and column's $x$ coordinate. Texture coordinate $v$ is interpolated linearly based on column height and $y$ position in the column. As a reminder, linear interpolation formula is as follows:\\
 \par
-By projecting the wall in screen-space and interpolating texture coordinates linearly, the result looks strange -- there is no perspective. Notice how the squares are the same width in all portions of the red wall. The blue wall where the angle is even more acute looks even worse. The green wall facing the player does not suffer since it is perpendicular and has no perspective.\\
-\pagebreak
-\par
-Space intentionally left blank.\\
-\par
-\fullimage{perspective_texturing.png}
-\par
+% \begin{figure}[H]
 \begin{equation*}
     \scalebox{1.2}{
 $u_{\alpha} = (1-\alpha)u_{0}\, +\, \alpha u_{1}\quad{where}\quad0\leq \alpha \leq 1$\\
 }
 \end{equation*}
-balbaba\\
+% \caption{XXXX}
+% \end{figure}
+\vspace{3pt}
+\par
+This texturing technique has the advantage of being fast but the disadvantage of being visually incorrect. Notice in particular how the "width" of each square is constant even as the wall columns gets further away. In order to generate correct texture coordinates, the $u$ coordinate needs to factor in the distance from the player. To this effect, value $\frac{1}{z}$ (which is linear in screen space) is used:\\
+
+% \begin{figure}[H]
 \begin{equation*}
     \scalebox{1.2}{
 $u_{\alpha} = \dfrac{
@@ -425,6 +439,28 @@ $u_{\alpha} = \dfrac{
                     }   \quad{where}\quad0\leq \alpha \leq 1 $\\
 }
 \end{equation*}
+\par
+\vspace{4pt}
+Now the result is perspective correct.\\
+\par
+\fullimage{perspective_texturing.png}
+Had \doom{} allowed sloped wall, texturing would have required six perspective correct computations per pixel (both $u$ and $v$ interpolated twice along vertical and horizontal edges of a quad) which would have been prohibitively CPU intensive.\\
+\par
+ By enforcing walls to be strictly vertical, \doom{} engine was able to perform the expensive perspective correct computation only once per column of pixel, then use linear interpolation to draw each column, and still yield a visual correct result. It works because along a column, the distance from player is a constant value. This trick effectively managed to produce perspective correct texture mapping at the computational cost of affine texturing.\\
+\par
+Given the previous screenshots, it may not be vivid why perspective correctness is so important and why the engine goes to such an extend just to be "correct". Keep in mind these were just examples to demonstrate the problem. As soon as real textures are used, the visual disturbance cannot be ignored.\\
+\par
+In the scene below, notice how the beast head is weirdly distorted. Same comment for the wall on the right. Despite the horizontal line being perspective correct, the texturing does not provide the illusion of perspective. On the opposite page, the scene is correct.\\
+\par
+\fullimage{game_affine_texturing.png}
+\trivia{Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn featured hardware accelerated texture mapping but not implemented perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated via triangle sub-divisions. id Software vetoed all ports attempting to be perspective incorrect which sometimes had pretty serious consequences (see page \pageref{XXX} about Saturn port).}\\
+\par
+Perspective ... \\
+\par
+\fq{The book "Fundamentals of Interactive Computer Graphics" was my bible in the late 80's. I tried to make the cover image\protect\footnotemark on my //GS, but I didn't grok perspective correct texturing.}{John Carmack}\\
+\footnotetext{An exploded texture-map cube for which perspective correctness is paramount.}
+\par
+\fullimage{game_affine_texturing.png}
 \pagebreak
 \par
 
