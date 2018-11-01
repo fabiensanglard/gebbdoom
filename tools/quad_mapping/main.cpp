@@ -32,11 +32,10 @@ struct Texture {
       assert(u <= 1);
       assert(v >= 0);
       assert(v <= 1);
-      int img_u = u * (float)(data.width-1);
-      int img_v = v * (float)(data.height-1);
+      int img_u = u * (float)(data.width);
+      int img_v = v * (float)(data.height);
       int32_t offset = (img_u + data.width * img_v) * 4;
       int* color= (int32_t*)&data.image_data[offset];
-//      printf("Sampled:%.8X", color);
       return *color;
     }
 
@@ -74,13 +73,13 @@ struct Quad {
       points[3] = p3;
     }
 
-//    void perspectiveDivive() {
-//      for (int i =0 ; i < 4 ; i++) {
-//        points[i].x /= points[i].z;
-//        points[i].y /= points[i].z;
+    void perspectiveDivive() {
+      for (int i =0 ; i < 4 ; i++) {
+        points[i].x /= (points[i].z * 1.0);
+        points[i].y /= (points[i].z * 1.0);
 //        printf("x=%.2f, y=%.2f\n", points[i].x, points[i].y);
-//      }
-//    }
+      }
+    }
 
     int width() {
       return points[1].x - points[0].x;
@@ -99,17 +98,15 @@ struct Quad {
 
 
 void PlotColor(int x, int y , Color color){
-
-
   int spx, spy;
   spx = x + W/2;
   spy = y + H/2;
   spy = (H) - spy;
 
-  if (spx >= W) return;
-  if (spx <= -W) return;
-//  if (spy < -H/2) return;
-//  if (spy > H/2) return;
+  if (x >= W/2) return;
+  if (x <= -W/2) return;
+  if (y >= H/2) return;
+  if (y <= -H/2) return;
 
   int32_t index = spx + spy * W;
   if (index < 0 || index > (H * W * 4)) {
@@ -126,16 +123,16 @@ void DrawColumnPerspective(Point& start, Point& end, Texture& texture) {
 }
 
 void DrawColumnAffine(Point& start, Point& end, Texture& texture) {
-  PlotColor(start.x, start.y, Green);
-  PlotColor(end.x, end.y, Green);
+//  PlotColor(start.x, start.y, Green);
+//  PlotColor(end.x, end.y, Green);
   Point cursor = start;
   int height = (int)start.y - (int)end.y ;
   printf("height: %d\n", height);
   int y=start.y;
-  for (int i=0 ; i < height +1; i++) {
+  for (int i=1 ; i < height ; i++) {
     cursor.y = y;
-    cursor.v = i / (float)(height-1);
-//    printf("y=%d, v=%.2f\n", y, cursor.v);
+    cursor.v = i / (float)(height -1);
+    printf("y=%d, v=%.2f\n", y, cursor.v);
     Plot(cursor, texture);
     y--;
   }
@@ -156,7 +153,7 @@ void drawQuad(Quad& quad, Texture texture) {
 
     // Perspective-correct (not working)
 //    float alpha = i / (width-1);
-//    start.u = end.u = (alpha/end.z) / ((1-alpha)/start.z + alpha /end.z);
+//    start.u = end.u = (alpha/quad.points[1].z) / ((1-alpha)/quad.points[0].z + alpha /quad.points[1].z);
 
     printf("u=%.2f\n", end.u);
 
@@ -179,37 +176,38 @@ int main() {
    *      |    \B----E/        |
    *      |     C----F         |
    *      D____/      \________H
-   *
-   *      D1    D2   D3       D4
    */
-  float D1 = 1;
-  float D2 = 2;
-  float D3 = 3;
-  float D4 = 1;
-  Point A = {-159, 125, D1, 0, 0};
-  Point B = {-30,88, D2, 1, 0};
-  Point C = {-30, -46, D2, 1, 1};
-  Point D = {-159, -72, D1, 0, 1};
-  Point E = {55, 63, D3, 1, 0};
-  Point F = {55, -30, D3, 1, 1};
-  Point G = {159, 98, D4, 0 , 0};
-  Point Hp = {159, -46, D4, 0, 0};
 
-//  Texture red("../MWALL4_1.tga");
-  Texture red("../red.tga");
+  float closeWallZ = 0.5;
+  float farWallZ = 1;
+  float superCloseWallZ = 0.2;
+  Point A = {-80,  50, closeWallZ , 0,  0};
+  Point B = {  -25,  50, farWallZ,    1,  0};
+  Point C = {  -25, -50, farWallZ,    1,  1};
+  Point D = {-80, -50, closeWallZ,  0,  1};
+  Point E = {75, 50, farWallZ};
+  Point F = {75, -50, farWallZ,};
+  Point G = {80, 50, closeWallZ};
+  Point Hp = {80, -50, closeWallZ};
+
+
+  Texture red("../MWALL4_1.tga");
+//  Texture red("../red.tga");
   Quad quad({A.x, A.y, A.z, 0, 0}, {B.x, B.y, B.z, 1, 0}, {C.x, C.y, C.z, 1, 1}, {D.x, D.y, D.z, 0, 1});
-//  quad.perspectiveDivive();
+  quad.perspectiveDivive();
   drawQuad(quad, red);
 
-  Texture blue("../bluec.tga");
+//  Texture blue("../bluec.tga");
+  Texture blue("../MWALL4_2.tga");
   Quad quadBlue({B.x, B.y, B.z, 0, 0}, {E.x, E.y, E.z, 1, 0}, {F.x, F.y, F.z, 1, 1}, {C.x, C.y, C.z, 0, 1});
-//  quadBlue.perspectiveDivive();
+  quadBlue.perspectiveDivive();
   drawQuad(quadBlue, blue);
 //
-  Texture green("../green.tga");
+//  Texture green("../green.tga");
+  Texture green("../MWALL5_1.tga");
   Quad quadGreen({E.x, E.y, E.z, 0, 0}, {G.x, G.y, G.z, 1, 0}, {Hp.x, Hp.y, Hp.z, 1, 1}, {F.x, F.y, F.z, 0, 1});
-//  quadGreen.perspectiveDivive();
-//  drawQuad(quadGreen, green);
+  quadGreen.perspectiveDivive();
+  drawQuad(quadGreen, green);
 
   tga_write_bgr("test.tga", (uint8_t *) framebuffer, W, H, 32);
   return 0;

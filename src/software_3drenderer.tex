@@ -256,7 +256,7 @@ Initially the occlusion array has two entries, one representing what is on the l
 \ccode{clip0.c}
 \end{minipage}
 \begin{minipage}{0.46\textwidth}
-\rawscaleddrawing{0.95}{clip0}
+\rawscaleddrawing{0.95}{clip0} 
 \end{minipage}
 \par
 
@@ -398,7 +398,7 @@ The pixel-accurate method results in five pixels selected differently. The subpi
 \subsection{Perspective-Correct Texture Mapping}
 Before we move on to how \doom{} drew flats, is worth noticing that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
 \par
- To illustrate the concept, let's study what affine texture mapping (incorrect) looks like in a simple scene featuring three walls textured with a pattern of white and colored squares.\\
+ To illustrate the concept, let's first study what affine texture mapping (incorrect) looks like. We'll use a three-wall-room, each textured with a pattern of white and colored squares.\\
 \par
 
 \begin{minipage}{0.43\textwidth}
@@ -406,7 +406,7 @@ Before we move on to how \doom{} drew flats, is worth noticing that despite usin
 \end{minipage}
 \hspace{20mm}
 \begin{minipage}{0.4\textwidth}
-\vspace{-10pt}
+
  \scaledimage{1}{square_texture.png}
  \end{minipage}
 \par
@@ -414,7 +414,7 @@ Before we move on to how \doom{} drew flats, is worth noticing that despite usin
 In order to focus on walls, the floor and ceiling are intentionally rendered in light gray.\\
 \par
 \fullimage{affine_texturing.png}
-In this scene, wall vertice are projected in screen space coordinates $(x,y)$. A texture coordinate $u$ is generated for each columns to draw, based on linear interpolation of screenspace wall width and column's $x$ coordinate. Texture coordinate $v$ is interpolated linearly based on column height and $y$ position in the column. As a reminder, linear interpolation formula is as follows:\\
+In this scene, wall vertice are projected in screen space coordinates $(x,y)$. A texture coordinate $u$ is generated for each columns to draw, based on linear interpolation of screenspace wall width and column's $x$ coordinate. Texture coordinate $v$ is interpolated linearly based on column height and $y$ position relative to the column. As a reminder, linear interpolation formula is as follows:\\
 \par
 % \begin{figure}[H]
 \begin{equation*}
@@ -448,24 +448,39 @@ Had \doom{} allowed sloped wall, texturing would have required six perspective c
 \par
  By enforcing walls to be strictly vertical, \doom{} engine was able to perform the expensive perspective correct computation only once per column of pixel, then use linear interpolation to draw each column, and still yield a visual correct result. It works because along a column, the distance from player is a constant value. This trick effectively managed to produce perspective correct texture mapping at the computational cost of affine texturing.\\
 \par
-Given the previous screenshots, it may not be vivid why perspective correctness is so important and why the engine goes to such an extend just to be "correct". Keep in mind these were just examples to demonstrate the problem. As soon as real textures are used, the visual disturbance cannot be ignored.\\
+Given the previous screenshots, it may not be vivid why perspective correctness is so important and why the engine goes to such an extend just to be "correct". Keep in mind these were just examples to demonstrate the problem. As soon as real textures are used (using \doom{} marble textures featured below), the visual disturbance cannot be ignored.\\
 \par
-In the scene below, notice how the beast head is weirdly distorted. Same comment for the wall on the right. Despite the horizontal line being perspective correct, the texturing does not provide the illusion of perspective. On the opposite page, the scene is correct.\\
 \par
-\fullimage{game_affine_texturing.png}
-\trivia{Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn featured hardware accelerated texture mapping but not implemented perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated via triangle sub-divisions. id Software vetoed all ports attempting to be perspective incorrect which sometimes had pretty serious consequences (see page \pageref{XXX} about Saturn port).}\\
-\par
-Perspective ... \\
-\par
-\fq{The book "Fundamentals of Interactive Computer Graphics" was my bible in the late 80's. I tried to make the cover image\protect\footnotemark on my //GS, but I didn't grok perspective correct texturing.}{John Carmack}\\
-\footnotetext{An exploded texture-map cube for which perspective correctness is paramount.}
-\par
-\fullimage{game_affine_texturing.png}
-\pagebreak
+\begin{minipage}{0.32\textwidth}
+\cfullimage{MWALL4_1.png}{\cw{MWALL4\_1}}
+\end{minipage}
+\hspace{1mm}
+\begin{minipage}{0.32\textwidth}
+\cfullimage{MWALL4_2.png}{\cw{MWALL4\_2}}
+\end{minipage}
+\hspace{1mm}
+\begin{minipage}{0.32\textwidth}
+\cfullimage{MWALL5_1.png}{\cw{MWALL5\_1}}
+\end{minipage}
 \par
 
-\vspace{1.5cm}
+On the opposite page, notice in particular how \cw{MWALL4\_1}'s upper right pentagram edge appears arched instead of being straight. The same thing happens with \cw{MWALL5\_1} where the left horn does not look right. \cw{MWALL4\_2} suffers none of these issues since it is parallel to the viewing angle.\\
+\par
+Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but were unable to provide perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated either via triangle sub-divisions or by avoiding texturing altogether. That is why PSX game Crash Bandicoot characters are devoid of texturing in favor of Gouraud sharing.\\
+\par
+John Carmack hated affine texturing so much he vetoed all ports attempting to be perspective incorrect which sometimes resulted in serious consequences (page \pageref{saturn_port}).
 
+
+\par
+\fullimage{game_affine_texturing.png}
+\par
+% \fq{The book "Fundamentals of Interactive Computer Graphics" was my bible in the late 80's. I tried to make the cover image\protect\footnotemark on my //GS, but I didn't grok perspective correct texturing.}{John Carmack}\\
+% \footnotetext{An exploded texture-map cube for which perspective correctness is paramount.}
+Above, distorted walls due to affine texturing. Below, perspective correct texturing.\\
+\par
+\fullimage{game_perspective_texturing.png}
+
+\vspace{-30pt}
 \subsection{Drawing Flats}
  If we were to take a look at the framebuffer at this point in the rendering of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization. \doom{} never clears the framebuffer so instead of white there would be whatever was drawn last frame).\\
 \par
@@ -634,22 +649,30 @@ This would have severely impaired the work of the artists, not to mention it wou
 
 \fullimage{diminishedlight2.png}
 
-Above shows the vanilla engine. Below is the same scene with a modified lightmaps-less engine.
+Above shows the vanilla engine (with things rendition disabled). Below is the same scene with a modified lightmaps-less engine.
 \vspace{2mm}
 
 \fullimage{diminishedlight1.png}
-
-
+\vspace{-10pt}
 \cfullimage{diminishedlight3.png}{Same scene as opposite page, with lightmaps but with texturing disabled.}
 \par
 The visual effect of lightmaps can sometimes be subtle. On the opposite page, a normal scene (above) shows no banding. Disabling lightmaps altogether (opposite page, below) makes the colors appear washed out. Disabling texturing by rendering walls in white (\cw{0x04}) and flats in brown (\cw{0x80}) (as in figure \ref{diminishedlight3.png}) makes lightmaps and banding vividly apparent.\\
 \par
 Because calculating which lightmap to use is based on the distance from the player and also on the sector light level, it is a slightly expensive operation.\\
-\vspace{5pt}
-$$ lightmapId = sectorLightLevel + z * diminishingFactor $$
-$$   color = lightmapId[textureTexel] $$
+\vspace{10pt}
+\begin{equation*}
+    \scalebox{1.2}{
+$lightmapId = sectorLightLevel + z * diminishingFactor$\\
+}
+\end{equation*}
 \par
-\vspace{5pt}
+\begin{equation*}
+    \scalebox{1.2}{
+$   color = lightmapId[textureTexel] $
+}
+\end{equation*}
+\par
+\vspace{10pt}
  To reduce lightmap arithmetics, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. Lightmap calculations are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
  \par
  The engine uses a cool trick to embellish orthogonal surface rendering. Lightmap selection is tweaked based on world-space orientation. For north-south walls, the selection is lowered by one unit, making them brighter. For east-west walls the lightmap selection is increased by one unit, making them darker. Lightmap selection on other walls is unaffected.\\
@@ -667,9 +690,6 @@ The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is use
 \fullimage{invulnerable.png}\\
 \par
 This effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
-
-
-
 \fullimage{idbeholdv.png}\\
 \par
 Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)}.\\
