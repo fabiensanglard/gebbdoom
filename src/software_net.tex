@@ -2,7 +2,7 @@
 
 
 
-While the 3D renderer was breathtaking, it was the networking capability and its famous deathmatchs which really took \doom{} to a new level. The ability to connect two PCs and interact with human players was something most gamers hae never seen before. Early on during development it was apparent this aspect of the game was going to be amazing.\\
+While \doom's 3D rendering was breathtaking, it was the networking capability and its famous deathmatches that really took it to another level. The ability to connect two PCs and interact with human players was something most gamers hae never seen before. Early during development it was apparent this aspect of the game was going to be amazing.\\
 \par
 \fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
 \par
@@ -13,15 +13,15 @@ I was strafing back and forth on one system and looking over my shoulder at the 
 \vspace{-20pt}
 \subsection{Architecture}
 
-Most modern FPS games are designed around a concept of Client/Server where there are several clients and one source of truth, the server. Clients can join a game anytime, they send their commands to the server, receive world updates, and perform prediction to minimize communications latency.\\
+Most modern FPS games are designed around client/server networking where there are several clients and one source of truth, the server. Clients can join a game any time, send their commands to the server, receive world updates, and perform prediction to minimize communications latency.\\
 \par
 \begin{wrapfigure}[12]{r}{0.4\textwidth}
 \centering
 \includegraphics[width=.4\textwidth]{drawings/p2psvg.pdf}
 \end{wrapfigure}
-There are no central server in \doom. All peers runs their own game logic and remain in sync by performing no predictions and only running a game tic when all other peers actions are known.\\
+There is no central server in \doom. All peers run their own copy of the game logic and remain in sync by performing no prediction and only running a game tic when all other peers' actions are known.\\
 \par
- This means all peers must advertise their command to all other peers, resulting in significant communication overhead. 
+ This means every peer must transmit its command to all other peers, resulting in significant communication overhead. 
 All peers must be present when a game starts. A peer cannot leave the game (since all other nodes need to know all inputs before each tic) and new players cannot join.
 \pagebreak
  % Each node must send the command generated locally to all other nodes. This means that a machine can simulate the next tic only when ALL nodes involved in the game have send their commands. As a result, the slowest machine dictates the framerate of every players involved. This also meant that all nodes had to run the exact same state machine and run the same version of \doom.\\
@@ -31,7 +31,7 @@ All peers must be present when a game starts. A peer cannot leave the game (sinc
 
 
 
-On NeXT, the implementation used a simple UDP system with Berkley sockets\footnote{The Internet Assigned Numbers Authority (IANA) publishes a list, The Service Name and Transport Protocol Port Number Registry where UDP port 666 is reserved for \doom!}. On the PC side, things were more complicated. Until v1.1 the game engine shipped with built-in support for LAN over IPX. To minimize communications, Dave Taylor suggested to use ipx packet node number \cw{FF-FF-FF-FF-FF-FF} in order to broadcast updates and reduce the amount of communications. Things did not work exactly as expected.\\
+On \NeXT, the implementation used a simple UDP system with Berkeley sockets\footnote{The Internet Assigned Numbers Authority (IANA) publishes a list, the Service Name and Transport Protocol Port Number Registry where UDP port 666 is reserved for \doom!}. On the PC side, things were more complicated. Until v1.1 the game engine shipped with built-in support for LAN over IPX. To minimize communications, Dave Taylor suggested using IPX packet node number \cw{FF:FF:FF:FF:FF:FF} to broadcast updates and reduce the amount of communications. Things did not work exactly as expected.\\
 \par
 \fq{Doom used IPX broadcast packets to communicate between the players. This seemed like a good efficiency to me a four player game just involved four broadcast packets each frame. My knowledge of networking was limited to the couple of books I had read, and my naive understanding was that big networks were broken up into little segments connected by routers, and broadcast packets were contained to the little segments. I figured I would eventually extend things to allow playing across routers, but I could ignore the issue for the time being.\\
 \par
@@ -39,9 +39,9 @@ What I didn't realize was that there were some entire campuses that were built u
 \par
 The day after release, I was awoken by a phone call. I blearily answered it and got chewed out by a network administrator who had found my phone number just to yell at me for my game breaking his entire network. I quickly changed the network protocol to only use broadcast packets for game discovery, and send all-to-all directed packets for gameplay (resulting in 3x the total number of packets for a four player game), but a lot of admins still had to add Doom-specific rules to their bridges (as well as stern warnings that nobody should play the game) to deal with the problems of the original release.}{John Carmack, kotaku.com "Memories Of Doom"}\\ 
 \par
-With the proliferation of networking medium, the embedded IPX support started to show its limit.\\
+With the proliferation of networking, the embedded IPX support started to show its limit.\\
 \par
- Instead of baking support for more types of network in the engine, the IPX network system was removed and networking was refactored around the notion of network drivers.
+ Instead of baking support more types of network into the engine, the IPX networking code was removed and networking was refactored around the notion of network drivers.
 \pagebreak
 
 
@@ -59,24 +59,24 @@ With the proliferation of networking medium, the embedded IPX support started to
 
 
 \subsection{PC Network drivers}
-In this model, the game engine deals with a datastructure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared\footnote{Everything is shared on DOS. Here it means this area of the RAM is accesed by two running programs.} memory. Receiving or emitting packet is done via interrupts. How this all worked together is a magnificent hack like only unprotected ram allowed.\\
+In this model, the game engine deals with a data structure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared\footnote{Everything is shared on DOS. Here this means an area of RAM is accessed by two running programs.} memory. Receiving or transmitting packets is done via interrupts. How this all worked together is a magnificent hack only possible on a system without proper memory protection.\\
 \par
-A "loader" start first and install itself as an interrupt handler. It then starts \cw{DOOM.EXE} with a special parameter \cw{-net X} where X is the RAM address of the loader's \cw{doomcom\_t} variable. The engine literally cast the parameter to an address \cw{(doomcom\_t*)(atoi(param))} to access the structure fields. From there the interrupt handler acts as a network driver.\\
+A "loader" starts first and installs itself as an interrupt handler. It then starts \cw{DOOM.EXE} with a special parameter \cw{-net X} where X is the RAM address of the loader's \cw{doomcom\_t} variable. The engine literally casts the parameter to an address (\cw{(doomcom\_t*)(atoi(param))}) to access the structure's fields. From then on the interrupt handler acts as a network driver.\\
 \par
 
 \fakedosoutput{doomnet.c}
 \par
- At this point, the engine has everything it needs to communicate in a generic way. It writes or read from \cw{doomcom\_t} and triggers read/write via the interrupt number (also provided in \cw{doomcom\_t}).\\
+ At this point, the engine has everything it needs to communicate in a generic way. It reads or writes to the \cw{doomcom\_t} and invokes the handler via the interrupt number (also provided in \cw{doomcom\_t}).\\
 \par
 \drawing{net_drivers}{}
 \par
 \vspace{-10pt}
- Figure \ref{net_drivers} summarize all steps. \cw{IPXSERVER.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSERVER.EXE} starts \cw{DOOM.EXE} and pass the address of its \cw{doomcom\_t} variable as an integer (\circled{2}). Later, during gameplay (\circled{3}), \cw{DOOM.EXE} writes/reads the \cw{doomcom\_t} \cw{payload} field and triggers transfer via interrupt found in \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicates with the network card driver. The actual hardware interaction between the network card driver communicate and the physical network card happens in step \circled{5}.
+ Figure \ref{net_drivers} summarizes the steps. \cw{IPXSETUP.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSETUP.EXE} starts \cw{DOOM.EXE} and passes the address of its \cw{doomcom\_t} variable as an integer (\circled{2}). Later, during gameplay (\circled{3}), \cw{DOOM.EXE} reads/writes to the \cw{doomcom\_t} \cw{payload} field and triggers transfers via interrupt found in the \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicate with the network card driver. The actual hardware interaction between the network card driver and the physical network card happens in step \circled{5}.
 
 
 
 
-Two network drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} which allowed two players over serial cable or modem. A company called DWANGO provided their own driver (\cw{DWANGO.EXE}) to enable 2+ nodes over modem.
+Two network drivers shipped with the game: \cw{IPXSETUP.EXE} allowed up to four nodes over IPX, and \cw{SERSETUP.EXE} allowed two players over serial cable or modem. A company called DWANGO provided their own driver (\cw{DWANGO.EXE}) to enable 2+ nodes over modem.
 
 
 
@@ -84,7 +84,7 @@ Two network drivers shipped with the game, \cw{IPXSETUP.EXE} which allowed up to
 
 \vspace{-5pt}
 \subsection{Implementation}
-To perform network I/O, the core only deals with three elements provided by the Network system.\\
+To perform network I/O, the core only deals with three elements provided by the network subsystem.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -93,17 +93,17 @@ To perform network I/O, the core only deals with three elements provided by the 
   \textbf{Element} &  \textbf{Usage}\\
 
   \toprule 
-   I\_InitNetwork & Initialize the network system.\\
+   I\_InitNetwork & Initialize the network subsystem.\\
    \cw{doomcom\_t doomcom} & Shared structure containing both in and out data.\\
    I\_NetCmd & Signal network to send/receive data based on doomcom.\\
    \toprule
 \end{tabularx}
-\caption{\doom{} network system interface}
+\caption{\doom{} network subsystem interface}
 \end{figure}
 
 
 \vspace{-10pt}
-On PC, in the case of a multi-player session, the network initialization simply retrieve the address of the interrupt handler. Notice the, nowadays "cavalier", \cw{atoi} casted to pointer in the last line.\\
+On the PC, in the case of a multi-player session, the network initialization simply retrieves the address of the interrupt handler. Notice how the \cw{atoi} return value is cast to pointer in the last line, an oddly cavalier move nowadays.\\
 \par
 
 \ccode{I_InitNetwork.c}
@@ -117,37 +117,37 @@ On PC, in the case of a multi-player session, the network initialization simply 
 
 
 
-With access to the \cw{doomcom} variable, come access to the field \cw{intnum} which is the software interrupt the \doom{} network driver registered itself with. When called (via \cw{int} instruction), it interrupts \doom{} to let the card network driver copy network data in or out of \cw{doomcom}.\\
+With access to the \cw{doomcom} variable comes access to the field \cw{intnum} which contains the software interrupt number the \doom{} network driver registered itself with. When called (via the \cw{int} instruction), it interrupts \doom{} to let the card's network driver copy network data in or out of \cw{doomcom}.\\
 
 
 
 \ccode{doomcom_t.c} \label{doomcom_t.c} \\
 \par
 \vspace{-10pt}
-The fields are self explanatory but notice \cw{command} which tells the driver if data should be read or sent. The \cw{id} field allows \doom{} to verify the address alleged to be a valid network driver. The \cw{ticcmd\_t} payload was described on page \pageref{cmd_t_type}.
+The fields are self-explanatory but notice \cw{command} which tells the driver if data should be sent or received. The \cw{id} field allows \doom{} to verify the address alleged to be a valid network driver. The \cw{ticcmd\_t} payload was described on page \pageref{cmd_t_type}.
 
 
 
-At a high level, \doom{} core uses a central method called \cw{Net\_Update} to do all I/O. Notice how it is called in a loop as long as all the cmd tic for all peers have not been received, allowing only menus to keep on working. Except for running menus, nothing else will run.\\
+At a high level, \doom{}'s core uses a central method called \cw{NetUpdate} to do all I/O. Notice how it is called in a loop as long if ticcmds for all peers have not been received, allowing only menus to keep on working. Except for running menus, nothing else will run.\\
 \par
 \ccode{net_loop_wait.c}\\
 \par
-The impossibility for the engine to extrapolate and carry on with gameplay was an issue since all machines ended up running a the lowest common framerate. To mitigate this issue, the engine perform an exotic "thread multiplexing" where \cw{NetUpdate} is found called several times during a frame. It is typically called no less than eight times.\\
+The impossibility for the engine to extrapolate and carry on with gameplay was an issue since all machines ended up running at the lowest common framerate. To mitigate this issue, the engine performs an exotic form of "thread multiplexing" where \cw{NetUpdate} is found called several times during a frame. It is typically called no less than eight times.\\
 \par
 \ccode{R_RenderPlayerView_withupdates.c}
 
 
 
-There is no expectation the medium will guarantee packet delivery so the engine features a negative acknowledgment where packet sequential number is tracked on a per peer (a.k.a node) basis. If a packet is received but its serial number indicates a previous packet was lost, the node requests the missing commands to be sent again. This meant each node cannot discard commands once they were sent on the wire.\\
+Since there is no expectation the medium will guarantee packet delivery, the engine featuress negative acknowledgements, where packet sequence number is tracked on a per-peer (a.k.a node) basis. If a packet is received but its sequence number indicates a previous packet was lost, the node requests the missing commands be sent again. This means each node cannot discard commands once they are sent on the wire.\\
 \par
-This resent mechanism was a last resort to be avoided at all cost. To this effect, packets feature not only the current command but also the last command (field \cw{extratics} is marked as true).\\
+This resend mechanism was a last resort to be avoided at all costs. To this effect, packets feature not only the current command but also the last command (if field \cw{extratics} is set).\\
 
 
 
 
 
 \subsection{DeathManager}
-Given the complexity of the commandline parameters to setup a network game, several tools were provided. Originally players could use \cw{SETUP.EXE}. Later version showed the introduction of \cw{DM.EXE} (DeathManager) which was easier to use.\\
+Given the complexity of the command-line parameters to setup a network game, several tools were provided. Originally players could use \cw{SETUP.EXE}. Later versions introduced \cw{DM.EXE} (DeathManager) which was easier to use.\\
 \par
 \fullimage{DeathManagerv1-2.png}\\
 \trivia{DeathManager appears to have been written in Turbo C. Unlike the other utilities, the source code has never been released.}\\
@@ -163,7 +163,7 @@ Given the complexity of the commandline parameters to setup a network game, seve
 
 
 
-\trivia{Doom was such a precursor that its UDP number (666) is still reserved on most routers and on Windows (file \cw{C:\textbackslash Windows\textbackslash System32\textbackslash drivers\textbackslash etc}). The "official" IPX socket number (0x869C) is also part of Novell's "well-known static IPX sockets" tables.}
+\trivia{\doom was such a trailblazer that its UDP number (666) is still reserved on most routers and on Windows (file \cw{C:\textbackslash Windows\textbackslash System32\textbackslash drivers\textbackslash etc}). The "official" IPX socket number (0x869C) is also part of Novell's "well-known static IPX sockets" tables.}
 
 \fullimage{coop.png}\\
 \par

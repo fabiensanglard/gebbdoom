@@ -105,9 +105,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="210.33682"
-     inkscape:cy="125.74594"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="182.53224"
+     inkscape:cy="87.790879"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -116,10 +116,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1680"
-     inkscape:window-height="1005"
+     inkscape:window-width="1394"
+     inkscape:window-height="856"
      inkscape:window-x="0"
-     inkscape:window-y="1"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -129,7 +129,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -171,7 +171,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.08511841;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 183.60321,445.55049 0,103.64764"
+       d="M 191.43189,445.38724 191.43189,549.03488"
        id="path4398-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -191,7 +191,7 @@
          x="69.579987"
          y="460.0658"
          style="font-weight:bold;font-size:15px"
-         id="tspan4430">IPXSERV.EXE</tspan></text>
+         id="tspan4430">IPXSETUP.EXE</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="M 182.95019,465.07775 65.343568,464.72061"
@@ -243,24 +243,24 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:monospace;-inkscape-font-specification:monospace">doomcom_t</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.08511841;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 289.87029,444.9437 0,103.64763"
+       d="M 297.72743,445.40545 297.72743,549.05308"
        id="path4398-0-1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:35px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="185.23244"
+       x="194.32381"
        y="441.3158"
        id="text4400-0-7-1"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4402-9-4-7"
-         x="185.23244"
+         x="194.32381"
          y="441.3158"
          style="font-weight:bold;font-size:15px" /><tspan
          sodipodi:role="line"
-         x="185.23244"
+         x="194.32381"
          y="460.0658"
          style="font-weight:bold;font-size:15px"
          id="tspan4430-9-4">NE2000.SYS</tspan></text>
