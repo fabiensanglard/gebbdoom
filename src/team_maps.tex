@@ -3,7 +3,7 @@
 \section{Maps}
 Maps were designed in a top-down view. The one limitation was that walls were perpendicular to floors and both floors and walls were horizontal so everything was drawn in 2D. A designer worked with five types of element: \cw{VERTEX}\footnote{Vertex coordinates were expressed with signed short integers [-32768, 32767]. 32 units translate to roughly one meter (or 3.28 feet for poor souls who must use the imperial system.)}, \cw{LINE}, \cw{SIDEDEF}, \cw{SECTOR}, and \cw{THING}.\\
 \par
-\drawing{doom_map_basics}{}
+\drawing{doom_map_basics}{\doom{} map and the resulting data authored via DoomED}
 
 \par
 A \cw{SECTOR} is a closed area surrounded by \cw{LINE}s with a specified floor height, floor texture, ceiling height, ceiling texture, and light level. A sector can be concave, but lines cannot cross each other.\\
@@ -19,7 +19,7 @@ A \cw{THING} is much simpler in comparison. It only has one pair of \cw{VERTEX} 
 
 The resulting scene in figure \ref{doom_map.png} is ugly but the mismatched colors hopefully help to discern the different elements. All \cw{LINE}s are walls except for \cw{E-B} which has two \cw{SIDEDEF}s and is therefore a portal. All walls use the \cw{BRIK} middle texture except for the portal which uses \cw{GRAY} for both top and bottom.\\
 \par
-\cw{SECTOR} \#0 uses a \cw{RED} floor texture and a \cw{WOOD} ceiling texture. The height of the floor is 20 and its ceiling is at 40. \cw{SECTOR} \#1 uses a \cw{BLUE} floor texture and a \cw{GREEN} ceiling texture. Its floor is at 60 and ceiling at 60. Both sectors have the same light level (10).\\
+\cw{SECTOR} \#0 uses a \cw{RED} floor texture and a \cw{WOOD} ceiling texture. The height of the floor is 20 and its ceiling is at 40. \cw{SECTOR} \#1 uses a \cw{BLUE} floor texture and a \cw{GREEN} ceiling texture. Its floor is at 0 and ceiling at 60. Both sectors have the same light level (10).\\
 \par
    Notice the portal \cw{E-B} which does not have a mid-texture but an upper and lower texture. These were used to draw the up-step and down-step towards sector \#0.\\
 \par
@@ -30,20 +30,20 @@ Also notice wall \cw{D-E} on which mid-texture vertical offset is not correctly 
 
 \subsection{Map Editor (DoomED)}
 To harness the complexity of the map format, a new tool was created. The Doom map editor was to be called \textbf{DoomED}. This is where the \NeXT solution gave the most impact. The high resolution of the display allowed a lot of real-estate showing small details and many widgets. The stability of NeXTSTEP allowed one to never lose work while writing DoomED or creating a map.
-The very design of Objective-C also had a tremendous influence. The language's message-dispatching system gracefully handled \cw{nullptr}\footnote{"Understanding the Objective-C Runtime".} dereferences, resulting in a fault-forgiving environment where a faulty feature would not work but did not crash either.\\
+The very design of Objective-C also had a tremendous influence. The language's message-dispatching system gracefully handled \cw{nullptr}\footnote{"Understanding the Objective-C Runtime" by Colin Wheeler.} dereferences, resulting in a fault-forgiving environment where a faulty feature would not work but did not crash either.\\
 \par   
 The killer feature was Interface Builder which not only came with a full library of widgets but also allowed creating new ones and connecting them to the business logic instantly.\\
 \par
 \fullimage{doomed/DoomEd.png}
 \par
 
-The release of the source code in April 2015 allowed programmers to peek inside. There is almost as much code as in the game engine (doom:32kloc, DoomED:20kcloc). Without the power of \NeXT, the editor would have taken at least twice the same amount of time to make.
+The release of the source code in April 2015 allowed programmers to peek inside. There is half as much code as in the game engine (doom:32kloc, DoomED:20kcloc). Without the power of \NeXTns, the editor would have taken at least twice that amount of time to make.
 
 
 
 \tcode{cloc_doomed.txt}
 \par
-DoomED was designed to be the "Adobe Illustrator for World Maps" where the designer simply drew lines, selected sectors , and picked textures.\\
+DoomED was designed to be the "Adobe Illustrator for World Maps" where the designer simply drew lines, selected sectors, and picked textures.\\
 \par
 \vspace{10pt}
 \trivia{DoomED's icon is an Imp. Upon startup an Imp growling sound is played.}\\
@@ -52,7 +52,7 @@ DoomED was designed to be the "Adobe Illustrator for World Maps" where the desig
 
 
 \vspace{-4mm}
-DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as magic number which was followed by a list of lines (including sidedefs) and a list of things. Sectors were inferred from line's ceiling/floor textures values.\\
+DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as a magic number which was followed by a list of lines (including sidedefs) and a list of things. Sectors were inferred from a line's ceiling/floor textures values.\\
 \par
 \tcode{map.txt}
 \par
@@ -70,7 +70,7 @@ DWD was not designed with space efficiency in mind but rather was designed to be
 \section{Map Preprocessor (Node Builder)}
 Map preprocessing was not something new at id. Since 1991 with Wolfenstein 3D, maps were already pre-processed to allow fast sound propagation. With \doom, it was taken to a whole new level both in terms of complexity and processing time.\\
 \par
-The main issue at hand was to maintain the same rendering speed despite relaxing the orthogonal grid constraints of Wolfenstein and losing the ability to use the DDA algorithm \footnote{Digital Differential Analyzer was used extensively for VSD (Visual Surface Determination), collision detection and line-of-sight calculations. This was all gone with \doom.}. The solution chosen was to generate a multitude of accelerating data structures for each map, each dedicated to solving a particular problem.\\
+The main issue at hand was to maintain the same rendering speed despite relaxing the orthogonal grid constraints of Wolfenstein and losing the ability to use the DDA algorithm \footnote{Digital Differential Analyzer was used extensively for VSD (Visual Surface Determination), collision detection, and line-of-sight calculations. This was all gone with \doom.}. The solution chosen was to generate a multitude of accelerating data structures for each map, each dedicated to solving a particular problem.\\
 \par
  The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputted a \cw{.WAD}. Not only was the map expressed in a space-efficient format (e.g. expressing vertices only once and referencing them via index), but three data structures were generated alongside it. A binary space-partitioned version of the map expressed a node tree to speed up rendering. A blockmap accelerated collision detection. Finally, a reject accelerated A.I. processing.\\
  \par

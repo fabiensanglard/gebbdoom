@@ -1,8 +1,8 @@
 \section{Renderers}
-With the graphic stack in mind, it is now time to dive inside the rendering routine, \cw{D\_Display} which contains every renderers in the game.\\
+With the graphic stack in mind, it is now time to dive inside the rendering routine, \cw{D\_Display} which contains every renderer in the game.\\
 \par
 \ccode{D_Display.c}\\
 \par
- There are several 2D renderers (called "Drawer" in the code) and one 3D renderer. Different portions of \cw{D\_Display} are enable via a switch case depending on \cw{gamestate}.\\
+ There are several 2D renderers (called "Drawer" in the code) and one 3D renderer. Different portions of \cw{D\_Display} are enabled via a switch case depending on \cw{gamestate}.\\
  \par
   Most Drawers are requested to draw before 3D view, then comes the \cw{HUD} (the text indicating what was picked up) and finally the menu on top of everything else if it is visible.

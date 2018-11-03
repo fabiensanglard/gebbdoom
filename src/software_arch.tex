@@ -1,7 +1,7 @@
 \section{Architecture}
 Before diving into the code and its structure, let's take some time to understand how id's developers worked. Before \doom, all work was done on a PC. Code was written and compiled, and the resulting executable started on the same machine. With the introduction of \NeXT workstations into the mix, the process had to be different.\\
 \par
-A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developers never lost their work because the IDE crashed\footnote{With Borland C++, crashes were a daily occurrence (source: correspondence with John Carmack).}.\\
+A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developers never lost their work due to IDE crashes\footnote{With Borland C++, crashes were a daily occurrence (source: correspondence with John Carmack).}.\\
 \par
 Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair over to the PC where the \NeXT workstation's hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time, using \cw{WATCOM.EXE} and the \cw{WLINK.EXE} linker which generated \cw{DOOM.EXE}. \\
 \par
@@ -29,7 +29,7 @@ If the order of bits in a byte was in universal agreement, but the order of byte
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
-At the game engine level, the problem was solved via a layer of indirection with a simple macro\footnote{As of 2018 it seems the holy war is finally over. The little-endian tribe of Intel, AMD, and ARM have won.}. When reading from disk, the engine always uses either the \cw{LONG} or \cw{SHORT} macro to interpret data.\\
+At the game engine level, the problem was solved via a layer of indirection with a simple macro\footnote{As of 2018 it seems the holy war is finally over. The little-endian tribe of Intel, AMD, and ARM has won.}. When reading from disk, the engine always uses either the \cw{LONG} or \cw{SHORT} macro to interpret data.\\
 \par
 \ccode{big_little_endian.c}
 \par
@@ -66,13 +66,13 @@ In the case of the video system, it would be using the VGA hardware on MS-DOS bu
 \par
 After the linker is done, there are no more unresolved symbols. The final executable is ready to run.\\
 \par
-\drawing{linking}{}
+\drawing{linking}{Most of the \doom{} code is shared. Only a few files are platform specific}
 
 
 
 
 \pagebreak
-\drawing{doom_code_arch}{}
+\drawing{doom_code_arch}{\doom{} source code architecture}
 \par
 In white are the core components. In grey are the I/O systems which require platform-specific code. On DOS these are provided by six extra files: \cw{i\_main.c}, \cw{i\_ibm.c}, \cw{planar.asm}, \cw{i\_ibm\_a.asm}, \cw{i\_sound.c} and, \cw{i\_cyber.c}.\\
 
@@ -154,7 +154,7 @@ Regardless of the platform, all entry points converge on the core main function 
     Audio System & DMX & Not Implemented\\
     Control System & DPMI Interrupts & NSWindow/NXEvent \\
     File System & Direct & BigEndian converter\\
-    Network System & Direct interrupt & BSD socket \\
+    Network System & Direct interrupts & BSD socket \\
     RAM System & greedy malloc & tight 4 MiB malloc\\
    \toprule
 \end{tabularx}
@@ -164,41 +164,36 @@ Regardless of the platform, all entry points converge on the core main function 
 \par
 
 \trivia{\NeXT platform-specific code was written in Objective-C. All code was in five files named \cw{DRCoord.m}, \cw{VGAView.m}, \cw{Doom\_main.m}, \cw{i\_next.m}, and \cw{r\_debug.m}.}\\
-
-
-\par
-
-
-
+\ccode{main.c}
 \par
 \ccode{main_loop.c}
 \par
-No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-systems before jumping to a loop which will never return (\cw{D\_DoomLoop}.).\\
+No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-systems before jumping to a loop which will never return (\cw{D\_DoomLoop}).\\
 \par
-Because C has no namespace, a code convention is used to to tag functions. A prefix helps identifying which system they belong to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependent, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
+Because C has no namespaces, a code convention is used to to tag functions. A prefix helps identifying which system they belong to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependent, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
 \par
 The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text mode messages show the player what is going on behind the scenes (figure \ref{dosloading}). For each initializer a line is output to the extent that the DOS screen on the right closely mirrors the source code in \cw{D\_DoomMain}.\\
 \par
 The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made up of dots which often required several minutes to complete on the full version depending on the machine's hard drive access time. The details and meaning behind each dot is explained in the appendix on page \pageref{dots_explained}.\\
 \par
 \trivia{The \cw{-devparm} command line parameter shows more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old speakers emitted when they were turned on. In an era before Plug\&Play and the Internet, it was an achievement itself to configure the sound card's mysterious IRQ and DMA parameters.}\\
-\par
+% \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
-\label{dosloading}
 \caption{DOS output upon starting \cw{DOOM.EXE}}
+\label{dosloading}
 \end{figure}
 
 \par
-The game engine executable which shipped with the registered version of the game was the same that shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what WAD had been found (\cw{doom1.wad} or \cw{doom.wad}).\\
-\par
-\trivia{\doomii{} was officialy translated to another languge! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went to the effort of translating the game.}
+\vspace{-10pt}
+The game engine executable which shipped with the registered version of the game was the same that shipped with the shareware version. Two functions, \texttt{\justify FindResponseFile} and \cw{IdentifyVersion}, simply looked for the asset file and switched a flag depending on what WAD had been found (\cw{doom1.wad} or \cw{doom.wad}).
+% \trivia{\doomii{} was officialy translated to another languge! A hard-coded \cw{doom2f.wad} is listed in the code which mean there a French version released at some point. Given the small market, it is surprising id went to the effort of translating the game.}
 
 
 
 
 \section{Fixed Time Steps}
-Peeking inside \cw{D\_DoomLoop} reveals a standard loop where the machine runs as fast as possible to update the game simulation according to user input and A.I, and then generate visual and audio output.\\
+Peeking inside \cw{D\_DoomLoop} reveals a standard loop where the machine runs as fast as possible to update the game simulation according to user input and A.I., and then generate visual and audio output.\\
 \par
 \ccode{doomloop.c}
 The game simulation happens in \cw{TryRunTics} and uses fixed time steps. The body of the function is summarized as follow:\\

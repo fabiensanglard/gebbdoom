@@ -7,14 +7,14 @@
 
 Announced in 1989, the 80486 was a performance evolution which addressed all bottlenecks of the 80386. However its price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993 it was finally becoming affordable (\$500) and would become \doom{}'s recommended CPU.\\
 \par
-The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on-die. Most importantly manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on dice.} allowed the 486 a more elaborate design to finally feature an integrated L1 cache.\\
+The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.} which used to be optional and somewhere on the motherboard was brought on-die. Most importantly, manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on die.} allowed the 486 a more elaborate design to finally feature an integrated L1 cache.\\
 \par
 \fq{The 386 actually had a small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip, and the problem was if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip.}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
 \par
 
 \drawing{486_arch}{Intel 486 architecture}
 \par
-Like with the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and a SX version with an unavailable FPU. A decades diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek ; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full blown 486DX which disabled the 486SX completely!}.\\
+Like with the 386, Intel marketed its new CPU in two flavors. A DX version which was the pure technology and an SX version with an unavailable FPU. A decades diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek ; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full blown 486DX which disabled the 486SX completely!}.\\
 \par
 If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performances and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Like the 386 had to face its brother (the i960), the i486 also had to a competitor from the same company. The competing brother name was "Intel 860".\\
 \par
@@ -25,7 +25,7 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 \scaledimage{0.55}{i860.png}
 \end{wrapfigure}
 
-...We now had two very powerful chips that we were introducing at just about the same time: the 486, largely based on CISC technology and compatible with all the pc software, and the i860, based on RISC technology, which was very fast but compatible with nothing. we didn't know what to do. so we introduced both, figuring we'd let the marketplace decide. however, things were not that simple. supporting a microprocessor architecture with all the necessary computer-related products --- software, sales, and technical support --- takes enormous resources. even a company like Intel had to strain to do an adequate job with just one architecture. and now we had two different and competing efforts, each demanding more and more internal resources. development projects have a tendency to want to grow like the proverbial mustard seed. the fight for resources and for marketing attention (for example, when meeting with the customer, which processor should we highlight) led to internal debates that were fierce enough to tear apart our microprocessor organization. meanwhile, our equivocation caused our customers to wonder what Intel really stood for, the 486 or i860?}{Andy Grove, "Only the paranoid survive".}
+...We now had two very powerful chips that we were introducing at just about the same time: the 486, largely based on CISC technology and compatible with all the pc software, and the i860, based on RISC technology, which was very fast but compatible with nothing. We didn't know what to do. So we introduced both, figuring we'd let the marketplace decide. However, things were not that simple. Supporting a microprocessor architecture with all the necessary computer-related products --- software, sales, and technical support --- takes enormous resources. Even a company like Intel had to strain to do an adequate job with just one architecture. And now we had two different and competing efforts, each demanding more and more internal resources. Development projects have a tendency to want to grow like the proverbial mustard seed. The fight for resources and for marketing attention (for example, when meeting with the customer, which processor should we highlight) led to internal debates that were fierce enough to tear apart our microprocessor organization. Meanwhile, our equivocation caused our customers to wonder what Intel really stood for, the 486 or i860?}{Andy Grove, "Only the paranoid survive".}
 
 
 
@@ -42,7 +42,7 @@ Unfortunately, compiler technology was not there yet. Without Intel's full backi
 \par
 In figure \ref{i486DX.png}, the Intel 486 die and its 1,180,235 transistors inside a package. Around this time period, Intel's started to stamp its CPU with trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
 \par
-\trivia{The i860 played a part in \doom{} anyway since it was used in NextDimensions video processing boards.}
+\trivia{The i860 played a part in \doom{} anyway since it was used in NextDimension video processing boards.}
 
 \par
 \subsection{Pipeline improvements}
@@ -155,11 +155,11 @@ By leveraging these two properties, a well designed cache located between the CP
 Hopefully it is now abundantly clear the cache was the cornerstone of the entire CPU. Designing the cache to yield the highest hit rate possible and make it as fast as possible were paramount. 
 
 \subsubsection{DRAM vs SRAM}
-The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dymanic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 1000\% faster. \\
+The first thing the cache had going on for itself is the lower latency of its RAM. If the main RAM on the SIMM slots used DRAM (Dynamic RAM) the cache was made of a different type called SRAM, able to much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 1000\% faster. \\
 \par
 The difference of speed comes from the design of their elementary cells.\\
 \par
- A DRAM cell hold a bit. It's simple design features one transistor and one storage capacitor which allow tight packing and high capacity. However the capacitor loses its charge over time and each time it is accessed. Everytime the cell is read, it must be written back with its value. Even if it is not accessed, it must be refreshed every 15$\mu s$.\\
+ A DRAM cell hold a bit. It's simple design features one transistor and one storage capacitor which allow tight packing and high capacity. However the capacitor loses its charge over time and each time it is accessed. Every time the cell is read, it must be written back with its value. Even if it is not accessed, it must be refreshed every 15$\mu s$.\\
 \par
 \scaleddrawing{1}{DRAM}{Dynamic RAM and its two elements holding one bit of data}
 \vspace{-5pt}
@@ -167,9 +167,9 @@ The slowness comes from the high maintenance cost of each cell. The DRAM also ha
 \par
 
 \vspace{2mm}
-Thanks to a more elaborated design (which made it less dense and more expensive to manufacture), a SRAM cell has none of these disavantages.\\
+Thanks to a more elaborated design (which made it less dense and more expensive to manufacture), a SRAM cell has none of these disadvantages.\\
 \par
-\scaleddrawing{1}{SRAM}{Static RAM made of six transitors}
+\scaleddrawing{1}{SRAM}{Static RAM made of six elements}
 \par
 Without a capacitor, a SRAM cell doesn't leak. It does not need a periodic refresh and it does not need to be written back each time it is accessed. It's two bit lines allow twice as fast voltage variation detection and faster timings.
 Since it is located inside the chip, accessing it doesn't require an expensive bus request and there is no contention with other devices\footnote{DRAM speed improved over the years. Fast Page Mode "cached" rows of DRAM cells with a SDRAM row buffer. udacity.com's UPCF course are excellent if you want to learn more about this topic.}
@@ -333,7 +333,7 @@ Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
 \end{figure}
 
 \par
-But the FPU performance was still a far cry compared to the the ALU and its barrel shifter. This mandated \doom{} to use integer operations exclusively\footnote{The dawn of floating points would beging with Intel's Pentium and Quake in 1996.}.\\
+But the FPU performance was still a far cry compared to the the ALU and its barrel shifter. This mandated \doom{} to use integer operations exclusively\footnote{The dawn of floating points would begin with Intel's Pentium and Quake in 1996.}.\\
 
 \par
  \begin{figure}[H]

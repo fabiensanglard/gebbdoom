@@ -13,7 +13,7 @@ Migrating from the Borland C++ editor on DOS to TextEdit on NeXTSTEP was a trade
 In figure \ref{TextEditApp.png}, TextEdit tags and folding show close to 700 lines of \cw{d\_main.c}'s' 1181 lines. This feature allowed developers to think in terms of systems instead of functions.
 
 \subsection{Interface Builder, OOP and Objective-C}
-The list of tools would not be complete without mentioning \NeXT's crown jewel which many considered to be NeXTSTEP's killer app, Application Builder.\\
+The list of tools would not be complete without mentioning \NeXTns{}'s crown jewel which many considered to be NeXTSTEP's killer app, Application Builder.\\
 \par
 "IB" was first written in Lisp by Jean-Marie Hullot in 1984 and commercialized in 1986 under the name "SOS Interface"\footnote{Source: "A Brief History of Human Computer Interaction Technology".}. Hullot was hired by NeXT, Inc. where along with a team he created a similar tool focused around Objective-C.\\
 \par
@@ -24,7 +24,7 @@ The NeXTSTEP version he managed to produce would reduce the construction cost of
 
 
 \vspace{-4mm}
-With IB, all the drudge involved in GUI authoring was done with a mouse in the blink of an eye. The "tedious" part involving writing code was only mandatory for the actual meat of the application in the business logic layer. Creating the GUI was a two-step process. First draw all the elements, then connect the UI elements to the Object models.\\
+With IB, all of the drudge involved in GUI authoring was done with a mouse in the blink of an eye. The "tedious" part involving writing code was only mandatory for the actual meat of the application in the business logic layer. Creating the GUI was a two-step process. First draw all the elements, then connect the UI elements to the Object models.\\
 \par
 The first part was, as Steve Jobs qualified it, "insanely easy" since building an interface was done with a series of drag-and-drop operations from a palette of GUI elements onto a canvas. An inspector allowed seeing the properties of an element. Everything from min/max of a slider to the default value of a text field could be adjusted easily.\\
 \par
@@ -46,7 +46,7 @@ Objective-C was developed around the same time as C++. However, as the co-creato
 \par
 \fq{
 	Back in 1980 when both our languages were under construction, I came down and met with Bjarne Stroustrup. We had radically different views on how our languages would be designed. The key concept was the relative importance of machine efficiency vs programmer efficiency. Eventually, we agreed to disagree.
-} {Brad Cox (Interview for "The NeXT Bible")}\\
+} {Brad Cox (Interview for "The NeXT Bible" book)}\\
 \par
 
 
@@ -54,9 +54,9 @@ Objective-C was developed around the same time as C++. However, as the co-creato
 \vspace{-5pt}
 The version shipping with NeXT computers featured an important library called Foundation Kit. One of its components, \cw{NSObject}, freed developers from the error-prone memory management burden by offering reference counting via its \cw{retain} and \cw{release} methods. A collection of swiss army knife containers -- \cw{NSArray}, \cw{NSDictionary}, \cw{NSSet} and \cw{NSData} -- further permited to focus on the core functionality instead of losing time on infrastructure.\\
 \par
-\trivia{Initially using the prefix NX, all objects in Foundation were renamed with a leading NS for OpenSTEP where "NS" stands for the alliance between NeXT and Sun Microsystems. All these objects are still at the core of Mac OS X and iOS today; the prefix NS was never removed.}\\
+\trivia{Initially using the prefix NX, all objects in Foundation were renamed with a leading NS for OpenSTEP where "NS" stands for the alliance between NeXT and Sun Microsystems. All these objects are still at the core of macOS and iOS today; the prefix NS was never removed.}\\
 \par
-The very core of Objective-C architecture, based on messages routed via a dispatching method \cw{objc\_msgSend}, allowed programs to be more resilient to errors. By far the most amazing feat (at least to a C++ developer) was the ability to send a message to null. When a developer sent a message to an object via the following syntax.\\ \par
+The very core of Objective-C architecture, based on messages routed via a dispatching method \cw{objc\_msgSend}, allowed programs to be more resilient to errors. By far the most amazing feat (at least to a C++ developer) was the ability to send a message to \cw{nullptr}. When a developer sent a message to an object via the following syntax.\\ \par
 \objccode{obj.message}
 What really happened behind the scenes was a call to the dispatcher.\\
 \par
