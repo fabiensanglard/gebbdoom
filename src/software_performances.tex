@@ -118,8 +118,7 @@ Fixed-point operations are performed everywhere. The function \cw{FixedMul} is f
 \subsubsection{Direct Framebuffer Access}
 A more substantial optimization had to do with layering. On DOS the rules separating the core and the video system were bent. Renderers like the status bar and the automap still function as originally designed but 3D drawing functions such as \cw{R\_DrawColumn} and \cw{R\_DrawSpan} are given direct access to the VGA banks. By bypassing framebuffer \#0, one read and one write per pixel (plus bus transfer) are avoided. Since the menu renderer has to be able to draw on top of everything, it was also granted direct VGA VRAM access.\\
 
-
-
+\vspace{-10pt}
 \subsubsection{Assembly Renderer Optimization}
 Not only were \cw{R\_DrawColumn} and \cw{R\_DrawSpan} given direct access to the VGA bank, they were hand-optimized with gorgeous assembly using all the tricks in the book. Taking a look at \cw{R\_DrawColumn} from \cw{planar.asm} is revealing. The function uses self-modifying code (see reserved \cw{12345678h} meant to contain the scaling factor which is patched). We can also see the loop was unrolled to process two pixels at at time (and therefore avoid emptying the i486 prefetch queue because of the \cw{jnz} instruction). Notice the cool trick where register \cw{eax} is reused three times, once as a pointer to the texture source, then as a \cw{al} texel storage, then as \cw{al} translated texel (lightmapped) storage again. Overall this method yields an amortized 7 instructions per pixel for drawing columns which is remarkable.\\
 \par
