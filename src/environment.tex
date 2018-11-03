@@ -7,19 +7,19 @@ The "new" top of the line PC still had six subsystems \circled{1}~Inputs, \circl
 \par
  Before describing each components in details, an important clarification is required. Since this chapter is structured as a delta comparing what was available for \doom{} to what was available for Wolfenstein 3D, it carries a feeling of abounding power which is deceiving. \\
  \par
- Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing and crunch spreadsheets. Maybe occasionally display a static graph but the intent was never to build something allowing real time, 70Hz\footnote{VGA's most common refresh rate used for games (320x200), was 70Hz contrary to today ubiquitous 60Hz.} animations.\\ 
+ Despite the impressive list of improvements listed next, keep in mind that the IBM PCs were still not machines well suited for video games. They were riddled with limitations due to the original target which was office work. The goal was to perform word processing and crunch spreadsheets. Maybe occasionally display a static graph but the intent was never to build something allowing real time, 70Hz\footnote{VGA's most common refresh rate used for games (320x200), was 70Hz contrary to today's ubiquitous 60Hz.} animations.\\ 
 \par 
 Looking back it is hard to believe that studios focused solely on producing titles for a machine "obviously" less capable than consoles. The list of problems was substantial.
 \begin{itemize}
 \item A CPU unable to perform floating-point operations and no co-processors.
-\item An archaic graphic system seemingly unable no double buffer and with an aspect ration different from the monitor, resulting in distorted images.
+\item An archaic graphic system seemingly unable to double buffer and with an aspect ratio different from the monitor, resulting in distorted images.
 \item A de-facto sound system only capable of irritating "beeps" and a fragmented sound card ecosystem when the customer had elected to buy one.
-\item A price tag where a top of line machine fetched close to \$3,000. To compare with the competitions, the SNES and the SEGA Genesis were both priced at US\$199 while the Neo-Geo which provided arcade-like experience was priced at US\$649.99\footnote{Adjusted to inflation the figure would be at of 2018 \$10,476 for a PC, \$377.00 for a SNES/Genesis, and \$1,134 for a Neo-Geo.}.
+\item A price tag where a top of line machine fetched close to \$3,000. To compare with the competitions, the SNES and the SEGA Genesis were both priced at US\$199 while the Neo-Geo which provided arcade-like experience was priced at US\$649.99\footnote{Adjusted for inflation the figure would be at of 2018 \$10,476 for a PC, \$377.00 for a SNES/Genesis, and \$1,134 for a Neo-Geo.}.
 \end{itemize}
 \par
  A PC was unappealing at best and seemingly less likely to generate good games, especially compared to cheaper systems which had been built with 60Hz animation in mind and benefited from a sprite engine.\\
  \par
-  Obviously, given the title of the book in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of game but they could excel at certain types requiring a framebuffer. In a world without Internet and little documentation, it was a challenge far from being trivial.\\
+  Obviously, given the title of the book in your hands, with a few software tricks the hardware of the PC was capable of far more than what it was designed for. PCs were not good at certain types of games but they could excel at certain types requiring a framebuffer. In a world without Internet and little documentation, it was a challenge far from being trivial.\\
 \par
 
 Figure ~\ref{ibm_ps1_top} on the opposite page reproduces the kind of advertisement one could be find in abundance in the many computer magazines of the 90s. Notice how the featured IBM PS1 with an Intel 486 CPU emphasis on office work and static screen office apps capability. Productivity and profit were the only way to justify the high price of a machine which represented 5\% of the US median yearly income in 1993\footnote{ "statista.com" lists 1993 US median income at \$52,335. Byte magazine Spring 1993 ads show 486 DX2-66 VESA PCs at \$2,575.}.\\
@@ -58,7 +58,7 @@ A practical way to get an overview of the hardware available is to open up a PC 
 \par
 The most prominent novelty is of course the heart of the computer, the Intel i486 CPU \circled{1}. A closer looks reveals many more features which would turn out to be of paramount importance for the architecture of \doom.\\
 \par 
-The black connectors show the traditional ISA bus extension ports. One 8-bit \circled{2} and three dual slot 16-bit \circled{3} allow four ISA cards. Also present, three connector of a new kind with an additional brown slot \circled{4}. These are VLB\footnote{a.k.a: VL-Bus, a.k.a: Video Local Bus.}, a new type of bus up to 10x faster than ISA.
+The black connectors show the traditional ISA bus extension ports. One 8-bit \circled{2} and three dual slot 16-bit \circled{3} allow four ISA cards. Also present, three connectors of a new kind with an additional brown slot \circled{4}. These are VLB\footnote{a.k.a: VL-Bus, a.k.a: VESA Local Bus.}, a new type of bus up to 10x faster than ISA.
 
 \drawing{px486p3}{Components diagram of the PX486P3.}
 \par
@@ -77,7 +77,7 @@ In the upper left \circled{6}, the main memory system had grown in capacity, spe
 % \item CACHE
 % \end{enumerate}
 \pagebreak
-\trivia{Several of the most impressive game studio of the era speculated on the projected RAM price drop. Big titles of 1994 (including \doom) required a minimum of 4 MiB installed. Strike Commander, Ultima 8, and Comanche Maximum Overkill are prime examples.
+\trivia{Several of the most impressive game studios of the era speculated on the projected RAM price drop. Big titles of 1994 (including \doom) required a minimum of 4 MiB installed. Strike Commander, Ultima 8, and Comanche Maximum Overkill are prime examples.
 
 \begin{center}
 \scaledimage{0.31}{box_strike_commander.png} \scaledimage{0.31}{box_ultima8.png} \scaledimage{0.31}{box_comanche.png}

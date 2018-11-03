@@ -5,7 +5,7 @@ A GC (Graphic Controller) and a (SC) Sequence Controller controlled access to 25
 \par 	
 \scaleddrawing{0.6}{vga}{}
 \par
-During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using this undocumented mode, developers manipulated the four banks in the video card directly. How the framebuffer was laid out across banks was far from trivia. As figure \ref{vga_ram_screen_layout} shows, due to historically slow RAM access times, pixels were interleaved four by four.
+During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel, 256 colors palette. Using this undocumented mode, developers manipulated the four banks in the video card directly. How the framebuffer was laid out across banks was far from trivial. As figure \ref{vga_ram_screen_layout} shows, due to historically slow RAM access times, pixels were interleaved four by four.
 
 
 
@@ -91,7 +91,7 @@ The close tie of the VL-Bus architecture to the 486 Bus Unit brought unmatched p
 \par
 Forced to run at the same speed as the CPU, the VL-Bus suffered instability as frequencies reached 40 Mhz, resulting in crashes. Past this speed, the system became increasingly intolerant to timing variations\footnote{The issue did not affect 486 DX-66Mhz which bus ran at only 33Mhz.}. The root problem is that a local bus is by definition synchronous. Expansion card vendors had the difficult task of ensuring their products could run at a range of speeds. The upper limit of the range being undefined as new processors were introduced. This was a recipe for compatibility problems\footnote{Such problems have been experienced by users of VL-Bus systems using the AMD 80MHz processors, which had a 40MHz bus clock.}.\\
 \par
-The second problem was that the electrical load driven by the CPU on the bus decreased as the clock speed increases. Three slots could be provided at 33MHz, but only two at 40MHz and just one at 50MHz. This resulted in configuration hell since motherboards speed was configurable and came with three slots. Users would find out some VLB slots "did not work" or "stopped working" as they tuned the frequency.\\
+The second problem was that the electrical load driven by the CPU on the bus decreased as the clock speed increased. Three slots could be provided at 33MHz, but only two at 40MHz and just one at 50MHz. This resulted in configuration hell since motherboards speed was configurable and came with three slots. Users would find out some VLB slots "did not work" or "stopped working" as they tuned the frequency.\\
 \par
 Cards were also hard to install due to their length and required pressure to force them into the VLB slot resulting in physical breakages\footnote{Friends jokingly renamed VLB to "Very Long Bus".}.\\
 \par

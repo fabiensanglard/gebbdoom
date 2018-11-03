@@ -122,7 +122,7 @@ To solve this problem, another data structure was introduced with \cw{doombsp}. 
 % Regardless of the monsters, the base state machine looks like this but it tuned based on custom functions called in some states (e.g: \cw{A\_SpidRefire}, \cw{A\_CyberAttack}, and \cw{A\_BrainExplode}).\\
 % \par
 % \pngdrawing{automate}{}
-Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster I.A seeking for the player since the later is in sector \circled{1}. All four others monsters are "rejected" until the player most inside sector \circled{3}. The table is only used for sight. Monsters will still hear the player since sound is cheaper to propagate.\\
+Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster's I.A. seeking for the player since the later is in sector \circled{1}. All four others monsters are "rejected" until the player most inside sector \circled{3}. The table is only used for sight. Monsters will still hear the player since sound is cheaper to propagate.\\
 \par
 \trivia{With "unlimited" CPU power, modern Node Builder don't build \cw{REJECT} anymore.}
 
@@ -156,7 +156,7 @@ The tag designating the target is any number picked by the designer. Any lines t
 \end{wrapfigure}
 Who doesn't recognize E1M3's hunt for the blue key on page \pageref{e1m3_trap}? After traversing the whole map, it is finally found sitting on a pedestral, guarded by only two low-level opponents which are easily dispatched.\\
 \par
-But as soon as the player picks it up, the lights go out and the sound of a door opening and growling Imps leaves no doubt: it was trap Doomguy just walked into and Imps are just behind him (page \pageref{e1m3_trap})!\\
+But as soon as the player picks it up, the lights go out and the sound of a door opening and growling Imps can be heard. It was a trap the player just walked into and Imps are just behind (page \pageref{e1m3_trap})!\\
 \par
 To implement this effect, two sets of lines were used. The first lines (in blue) target the door sector where the monsters were hiding and opens it. The second lines (in red) target the current sector and set its light level to "very dark".\\
 \par

@@ -22,8 +22,8 @@
     Heretic Registered    & \cw{HERETIC.WAD}  & 2633 &14,189,976\\
    \toprule
   Hexen Shareware         & \cw{HEXENDEMO.WAD}& 2856 &10,644,136\\
-  Hexen Registered.       & \cw{HEXEN.WAD}    & 4270 &20,083,672\\
-  Hexen: Deathkings       & \cw{HEXEDD.WAD}   &  326 & 4,440,584\\
+  Hexen Registered        & \cw{HEXEN.WAD}    & 4270 &20,083,672\\
+  Hexen Deathkings of DC  & \cw{HEXEDD.WAD}   &  326 & 4,440,584\\
    \toprule
 \end{tabularx}
 \caption{WAD files in the many versions of \doom{}\protect\footnotemark}
@@ -55,12 +55,12 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \cw{EXMY} & Zero-sized lump serving as marker for the beginning of a series of map lumps. \cw{X} is the episode number and \cw{Y} is the map id. The \cw{MAPXY} variant was used later for the same purpose.\\
   \cw{THINGS} & All monsters, weapons, ammo and sprites contained in the current map.\\
   \cw{LINEDEFS} & All lines referenced by \cw{SECTORS}.\\
-  \cw{SIDEDEFS} & All sides referenced by \cw{LINEDEFS}. A line can have up to two sides.\\
+  \cw{SIDEDEFS} & All sides referenced by \cw{LINEDEFS}. A line can have one or two sides.\\
   \cw{VERTEXES} & All vertices in the current map.\\
   \cw{NODES} & A binary tree allowing efficient sorting of segments. \\
   \cw{SSECTORS} &  The sub-sectors, leaves of the binary tree in \cw{NODES}.  \\
   \cw{SEGS} &  The segments pointed to by the \cw{SSECTORS} lumps.\\
-  \cw{SECTORS} &  Referenced by \cw{SSECTORS}. Details ceiling/floor height, texture, and lighting properties.\\
+  \cw{SECTORS} &  Referenced by \cw{SSECTORS}. Specifies ceiling/floor height, texture, and lighting properties.\\
   
   \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map into 128x128 blocks. Provides fast access to all \cw{LINEDEFS} neighboring any point on the map. Detailed on page \pageref{blockmapdetails} \\
   \cw{REJECT} &  A.I. acceleration data structure to detect when monsters can see a player.\\
@@ -113,7 +113,7 @@ Requests to the lump system are sent via a \cw{char[8]} name. The first task is 
 \par
 In the code listing above, you will notice that the index is searched starting from the end. This is done intentionally to allow modders to provide their own assets in WAD archives to overwrite id Software's lumps.\\
 \par
-The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. which is stored in the executable} -- with a simple command-line.\\
+The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable} -- with a simple command-line.\\
 \par
 \trivia{To differentiate official WADs from fan-made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan-made WADs were requested to use \cw{PWAD}.}\\
 \par

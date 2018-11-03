@@ -110,7 +110,7 @@ Given the low sales of the NeXT Computer, the original machine was discontinued 
    NeXTStation Color       & 1991 & 68040 25 Mhz & \$7,995 & \$14,656 \\
 \toprule 
    NeXTCube Turbo          & 1992 & 68040 33 Mhz & \$10,000 & \$18,121 \\
-   NextStation Turbo       & 1992 & 68040 33 Mhz & \$5995 & \$11,932 \\
+   NeXTStation Turbo       & 1992 & 68040 33 Mhz & \$5995 & \$11,932 \\
    
    NeXTStation Turbo Color & 1992 & 68040 33 Mhz & \$8995 & \$17,904 \\
    \toprule
@@ -142,7 +142,7 @@ From the outside the NextCube 12" cube central unit looked exactly like it prede
 \par
 The NextCube Turbo released in 1992 was essentially the same machine except the 68040 frequency was bumped to 33 Mhz and the maximum RAM capacity increased to 128 MB.\\
 \par
-The standard and turbo version only weakness remained the display. Shipping with 256 KiB of VRAM the machine could only output four colors (white, black and two shades of gray). To bring color to the NextCube, customers had to invest in a NeXTDimension board.\\
+The standard and turbo version only weakness remained the video. Shipping with 256 KiB of VRAM the machine could only output four colors (white, black and two shades of gray). To bring color to the NextCube, customers had to invest in a NeXTDimension board.\\
 \par
 
 \trivia{The NeXTCube Turbo extension slot could welcome a Nitro board which replaced the 68040 33Mhz with a 68040 40 Mhz. Only 10 Nitro board are known to exist, they are extremely rare and highly sought after by collectors.}
@@ -151,9 +151,9 @@ The standard and turbo version only weakness remained the display. Shipping with
 
 \cfullimage{next/NeXTcube_motherboard.png}{NextCube motherboard}
 \par
-Opening the machine revealed the minutia NeXT had adopted as its standard. The Next Cube motherboard above shows that aesthetics were not sacrificed for performance. Surface Mounting allowed components to be placed much closer from each others than usual.\\
+Opening the machine revealed the minutia NeXT had adopted as its standard. The NeXT Cube motherboard above shows that aesthetics were not sacrificed for performance. Surface Mounting allowed components to be placed much closer from each others than usual.\\
 \par
-Hidden under a heat-sink\footnote{Heat dissipation was always a problem for the 68040 which prevented high frequencies, a handicap against Intel's 486 capable of 66 Mhz.}, packing 1.2 millions transistors, the CPU was a big step up. The Harvard architecture ( separated storage and signal pathways for instructions and data), write-back capability, 8 KiB cache (4 KiB data and 4 KiB instructions), and an integrated FPU tripled throughput compared to the 68030.
+Hidden under a heat-sink\footnote{Heat dissipation was always a problem for the 68040 which prevented high frequencies, a handicap against Intel's 486 capable of 66 Mhz.}, packing 1.2 millions transistors, the CPU was a big step up. The Harvard architecture (separated storage and signal pathways for instructions and data), write-back capability, 8 KiB cache (4 KiB data and 4 KiB instructions), and an integrated FPU tripled throughput compared to the 68030.
 
 
 
@@ -162,7 +162,7 @@ Hidden under a heat-sink\footnote{Heat dissipation was always a problem for the 
 \vspace{50 mm}
 \drawing{NeXTCube_motherboard}{NeXTCube motherboard diagram}
 \par
-Chipsets and components of the NextCube motherboard:\\
+Chipsets and components of the NeXTCube motherboard:\\
 \par 
 \circled{1} NeXTBus connector,
 \circled{2} VLSI NeXTbus Interface Chip,
@@ -171,7 +171,7 @@ Chipsets and components of the NextCube motherboard:\\
 \circled{5} DRAM Controller CS38PG017CG01,
 \circled{6} Integrated Channel Processor (DMA Controller Fujitsu MB610313),
 \circled{7} Optical Storage Processor (Fujitsu MB600310),
-\circled{8} 16 SIMM slot max 4MiB each for total 64 MiB,
+\circled{8} 16 SIMM slots max 4MiB each for total 64 MiB,
 \circled{9} DSP-56001RC20,
 \circled{A} Battery,
 \circled{B} NeXT Prom BIOS,
@@ -207,7 +207,7 @@ Designers picked elements from the NextCube and the NeXTDimension in order to pr
 \cfullimage{next/nextstation.png}{A NeXTStation Turbo Color (non-ADB)}
 \par
 \vspace{-5pt}
-In an unmistakable Steve Jobsian rhetoric, several components were renamed to emphasis subtle differences. The central unit fan was called a "whisper fan"\footnote{Source: "Fast New Systems from NeXT", B.Y.T.E Nov 1990}.  The power supply was a 120-watt unit using a new technology called "parallel resonance switching" which allegedly allowed a much smaller form factor than conventional power supplies.\\
+In an unmistakable Steve Jobsian rhetoric, several components were renamed to emphasis subtle differences. The central unit fan was called a "whisper fan"\footnote{Source: "Fast New Systems from NeXT", B.Y.T.E Nov 1990}.  The power supply was a 120-watt unit using a new technology called "parallel resonant switching" which allegedly allowed a much smaller form factor than conventional power supplies.\\
 \par
 Despite its reduced size, the NeXStation performances did not suffer compared to the more imposing NeXTCube. The three variant, NeXTStation, NeXTStation Color, and NeXTStation Turbo Color all relied on the 68040 and shipped with 12 MiB of RAM.\\
 \par
@@ -223,6 +223,7 @@ Despite its reduced size, the NeXStation performances did not suffer compared to
 
 
 \section{NeXTDimension}
+\vspace{-3pt}
 The 256 KiB of VRAM on the NeXTCube only allowed a mediocre four shades of gray. The NeXTDimension was to take the workstation to a whole new level. Shipping with 4 MiB of RAM (extensible to 32 MiB), it allowed 24-bit color per pixel GUI and realtime recording/playback of video signals. Since the board was connected via a NeXTBus port, up to three NeXTDimensions could be connected, allowing the NeXTCube to drive four extended screens simultaneously.\\
 \par
 On presentation day Steve Jobs managed to demonstrate the groundbreaking capabilities in his signature spectacular fashion. A run from black and white movie Alice in Wonderland movie was played live on a NextCube, already a tour de force at the time. The audience was impressed yet the best was to come. As Alice progressed through Wonderland, frames progressively turned to color. The audience went berserk.\\
@@ -238,6 +239,7 @@ The NeXTDimension was not a mere extension board, it was full featured computer 
 \par
 The card came with \cw{NeXTtv.app} which allowed video editing and frame capture.
 \par
+\vspace{5pt}
 \fullimage{NeXTtv.png}
 \par
 Because of Steve Jobs's "hobby" venture with Pixar, the NeXTDimension had close ties with RenderMan. It had a built-in hardware acceleration module called Quick RenderMan.\\
@@ -283,15 +285,15 @@ Notice the C-Cube Microsystems JPEG chip which had to be cut from the final desi
 \pagebreak
 
 
-To select the i860 as the main chip of a graphic card could have been called overkill but it was a careful and ultimately sound decision. Video processing is so processing intensive and benefits so much from the i860 SIMD pipleline that nothing else but Intel's "Cray on a Chip" could have done the job.\\
+To select the i860 as the main chip of a graphic card could have been called overkill but it was a careful and ultimately sound decision. Video processing is an intensive CPU task. It benefits so much from the i860 SIMD pipeline that nothing else but Intel's "Cray on a Chip" could have done the job.\\
 \par
 \fq{
 The Intel 80860 was an impressive chip, able at top speed to perform close to 66 MFLOPS at 33 MHz in real applications, compared to a more typical 5 or 10 MFLOPS for other CPUs of the time. Much of this was marketing hype, and it never become popular, lagging behind most newer CPUs and Digital Signal Processors in performance.
-The 860 has several modes, from regular scaler mode to a superscalar mode that executes two instructions per cycle and a user visible pipeline mode (instructions using the result register of a multi-cycle op would take the current value instead of stalling and waiting for the result). It can use the 8K data cache in a limited way as a small vector register (like those in supercomputers). The unusual cache uses virtual addresses, instead of physical, so the cache has to be flushed any time the page tables changes, even if the data is unchanged. Instruction and data buses are separate, with 4 G of memory, using segments. It also includes a Memory Management Unit for virtual storage.\\
+The 860 has several modes, from regular scaler mode to a super-scalar mode that executes two instructions per cycle and a user visible pipeline mode (instructions using the result register of a multi-cycle op would take the current value instead of stalling and waiting for the result). It can use the 8K data cache in a limited way as a small vector register (like those in supercomputers). The unusual cache uses virtual addresses, instead of physical, so the cache has to be flushed any time the page tables changes, even if the data is unchanged. Instruction and data buses are separate, with 4G of memory, using segments. It also includes a Memory Management Unit for virtual storage.\\
 \par
-The 860 has thirty two 32 bit registers and thirty two 32 bit (or sixteen 64 bit) floating point registers. It was one of the first microprocessors to contains not only an FPU as well as an integer ALU, and also included a 3-D graphics unit (attached to the FPU) that supports lines drawing, Gouraud shading, Z-buffering for hidden line removal, and operations in conjunction with the FPU. It was also the first able to do an integer operation, and a (unique at the time) multiply and add floating point instruction, for the equivalent of three instructions, at the same time.\\
+The 860 has thirty two 32 bit registers and thirty two 32 bit (or sixteen 64 bit) floating point registers. It was one of the first microprocessors to contain not only an FPU as well as an integer ALU, and also included a 3-D graphics unit (attached to the FPU) that supports lines drawing, Gouraud shading, Z-buffering for hidden line removal, and operations in conjunction with the FPU. It was also the first able to do an integer operation, and a (unique at the time) multiply and add floating point instruction, for the equivalent of three instructions, at the same time.\\
 \par
-However actually getting the chip at top speed usually requires using assembly language - using standard compilers gives it a speed closer to other processors. Because of this, it was used as a coprocessor, either for graphics, or floating point acceleration, like add in parallel units for workstations. Another problem with using the Intel 860 as a general purpose CPU is the difficulty handling interrupts. It is extensively pipelined, having as many as four pipes operating at once, and when an interrupt occurs, the pipes can spill and lose data unless complex code is used to clean up. Delays range from 62 cycles (best case) to 50 microseconds (almost 2000 cycles).}{John Bayko, University of Regina}
+However actually getting the chip at top speed usually requires using assembly language - using standard compilers gives it a speed closer to other processors. Because of this, it was used as a co-processor, either for graphics, or floating point acceleration, like add in parallel units for workstations. Another problem with using the Intel 860 as a general purpose CPU is the difficulty handling interrupts. It is extensively pipelined, having as many as four pipes operating at once, and when an interrupt occurs, the pipes can spill and lose data unless complex code is used to clean up. Delays range from 62 cycles (best case) to 50 microseconds (almost 2000 cycles).}{John Bayko, University of Regina}
 \pagebreak
 
 
@@ -334,7 +336,7 @@ The first three points were the hardware team responsibility. Everything else wa
  To create an OS from scratch would have been an humongous effort. To save time the software team decided to reuse available components. They selected a micro kernel called Mach from Carnegie Mellon University and combined it with BSD (from University of California, Berkeley) elements such a network stack, multi-user, multi-process and file-system. That was enough to bring the machine up to a command prompt.
 \par
 \subsection{GUI}
- To achieve the "unified imaging system", Next engineers started from the language designed by Adobe for high-end printer, PostScript and modified it to meet the need of a GUI in terms of look and feel, and performances. The result was called Display PostScript\footnote{When OpenStep was used to build Rhapsody at Apple, the display system was changed to Portable Document Format (PDF) imaging model.}.\\
+ To achieve the "unified imaging system", \NeXT engineers started from the language designed by Adobe for high-end printers, PostScript and modified it to meet the need of a GUI in terms of look and feel, and performance. The result was called Display PostScript\footnote{When OpenStep was used to build Rhapsody at Apple, the display system was changed to Portable Document Format (PDF) imaging model.}.\\
 \par
 \cfullimage{next/nextstep.png}{NextStep 1.0 running on a NeXTComputer in four color mode.}
 \par
@@ -347,20 +349,20 @@ The resulting graphic system had many impressive features.\\
 
 \fq{The Display PostScript system can be broken into two pieces, the PostScript interpreter and the device. The interpreter processes the language, and passes marking, imaging, and compositing directions to the device layer.\\ 
 \par
-The device layer takes the high level marking, imaging, and compositing operations and (eventually) converts these to bitmap level operations. The Display PostScript system spends the majority of it's time down here. In the case of the NeXTdimension board, the device layer is implemented on the NeXTdimension board. Marking, imaging, and compositing operations are asynchronously transmitted to the NeXTdimension for processing while additional PostScript is interpreted on the 68K processor. A good degree of parallelism is achieved in normal operation. \\}{M Paquette} 
+The device layer takes the high level marking, imaging, and compositing operations and (eventually) converts these to bitmap level operations. The Display PostScript system spends the majority of it's time down here. In the case of the NeXTdimension board, the device layer is implemented on the NeXTdimension board. Marking, imaging, and compositing operations are asynchronously transmitted to the NeXTdimension for processing while additional PostScript is interpreted on the 68K processor. A good degree of parallelism is achieved in normal operation.}{M Paquette} 
 %The NXPing() AppKit call is interpreted by the Display PostScript system as a request to synchronize the NeXTdimension, PostScript interpreter, and app, and will not return until PostScript rendering is complete on the NeXTdimension.
 \par
 %Running on a color capable machine, the GUI was the most beautiful interface of its time.\\ 
-\vspace{6mm} \label{nextstep_color.png}
+\vspace{5mm} \label{nextstep_color.png}
 % \scaledimage{0.95}{nextstep_color.png} 
-\fullimage{nextstep_color.png}
+\cfullimage{nextstep_color.png}{NeXTSTEP running on system with a 24-bit NeXTDimension}
 \par
-On page \pageref{nextstep_color.png}, a screenshot from NeXTSTep running on a 24-bit colors machine was more gorgeous than any of its competitors was capable of. Notice \cw{Mail.app} which shipped with an email from Steve Jobs vaunting the merits of Object Oriented Programming.
+Figure \ref{nextstep_color.png} shows NeXTSTEP running on a 24-bit colors machine. The composition was more gorgeous than any of its competitors was capable of. Notice \cw{Mail.app} which shipped with an email from Steve Jobs vaunting the merits of Object Oriented Programming.
 
 \section{NeXT at id Software}
 To say NeXT computers polarized professionals would be an understatement. It is fair to say that everybody had a strong opinion about them. Some developers hated it.\\
 \par
-\fq{Develop for it? I'll piss on it!}{- Bill Gates\footnotemark.}\\
+\fq{Develop for it? I'll piss on it!}{Bill Gates\footnotemark.}\\
 \par
 Some were interested to have access to a stable Unix system combining a powerful GUI.\\
 \par
@@ -415,19 +417,19 @@ DOOM, DOOM II and Quake weren't the only games developed on NeXTSTEP. When I got
 
 
 
-\section{Rollercoaster}
+\section{Roller coaster}
 During its seven years in activity, NeXT lead a tumultuous life. It was sued by Apple within its first month of existence (the five people Steve Jobs had taken with him were not "minor people" as he had told Apple). Carried on by Steve Jobs' "reality distortion field", the company was praised for several years while it yet had to produce anything. Glorified upon each release, owing a lot to marketing genius, the machines later struggled to find customers. Disappointing sales led to a near death experience before NeXT managed to re-invent itself.\\
 \par
-
+\vspace{-5pt}
 \subsection{Downfall}
 As elegant and powerful as the black hardware was, their high price tag made them a deal breaker. Even the "cheaper" NeXTStations were well beyond most developer's budget.\\
 \par
- In 1988, the factory was building 400 units/month, well below its maximum 10,000/month capacity. Sales worsened over 1989 with only 360 units/month sold over the year. Production had to be slowed down to 100 unit/month to avoid overflowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw yet an other improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what apple sold in a single week. In 1992, sales reached \$140 millions\footnote{Source:The Next Big Thing.} and NeXT claimed its first profitable quarter\footnote{In fact it was \$40 millions from breaking even. Source: "The Next Big Thing"}, seven years after its creation.\\
+ In 1988, the factory was building 400 units/month, well below its maximum 10,000/month capacity. Sales worsened over 1989 with only 360 units/month sold over the year. Production had to be slowed down to 100 unit/month to avoid overflowing storage. In 1990 things improved slightly with 28 million in revenue which were still a far cry of the 2,800 millions SUN generated that same year. 1991 saw yet an other improvement with 20,000 units sold and a revenue of \$127 millions. That figure was still fewer than what Apple sold in a single week. In 1992, sales reached \$140 millions\footnote{Source:The Next Big Thing.} and NeXT claimed its first profitable quarter\footnote{In fact it was \$40 millions from breaking even. Source: "The Next Big Thing"}, seven years after its creation.\\
 \par
 Despite the steady improvements, NeXT still lost \$40 million that year. With only 50,000 NeXT machines sold over the course of its short life\footnote{In 1993 Apple sold 50,000 units every six days.} (including thousands to the then secret National US Reconnaissance Office), Jobs decided that NeXT as a hardware manufacturer could not carry on. Struggling to close deals and hemorrhaging cash, it fired 300 out of its 500 employees workforce on a Black Tuesday of February 1993 to become a software-only company.\\
 \par
- The purpose of NeXTSTEP was changed. From operating system in charge of making the black hardware sing, it was to become a white hardware enabler and the sole money maker. It was re-factored to be portable and capable to run on Intel, SPARC, and PA-RISC CPUs. Sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with SUN on a light version of NeXTStep called OpenSTEP.\\
-\par
+ The purpose of NeXTSTEP was changed. From operating system in charge of making the black hardware sing, it was to become a white hardware enabler and the sole money maker. It was re-factored to be portable and capable to run on Intel, SPARC, and PA-RISC CPUs. Sold as a combination operating system and object-oriented development environment. NeXTstep for Intel became a popular product among large companies and especially financial institutions for rapidly developing and deploying custom software. NeXT also started to collaborate with Sun Microsystems on a light version of NeXTSTEP called OpenSTEP.\\
+
 Even in its darkest hours, NeXT curiously never capitalized on id Software's appreciation for the platform\footnote{comp.sys.next.advocacy: "DOOM: NeXTstep's Most Successful App".}.. Reportedly due to Steve Jobs disdain for video games, they even turned down and opportunity which could have helped them tremendously.\\
 \par
 
@@ -442,9 +444,9 @@ Even in its darkest hours, NeXT curiously never capitalized on id Software's app
 \subsection{Rebirth}
 The rest of \NeXT history has nothing to envy to an Hollywoodian plot-twist. In 1995, Apple Computer's failed attempt at producing its own operating system under project "Copland" had placed the company in a precarious situation with nothing to replace its outdated System 7.\\
 \par
- After briefly considering BeOS, Apple elected to buy NeXT in 1996 for \$429 million in cash. The timing could not have been better for \NeXT which was on the verge of bankruptcy. Steve Jobs returned to the company he had co-founded twenty years earlier. After the sale, he first worked as an advisor but was later appointed acting-CEO, to finally become CEO of the company. This was not only a rebirth for \NeXTns, it was also a rebirth for Apple which went from being ninty days away from insolvency\footnote{Source: "All Things Digital conference, Jun 1, 2010."} in 1996 to most valuable company in the world in December 2017. \\
+ After briefly considering BeOS, Apple elected to buy NeXT in 1996 for \$429 million in cash. The timing could not have been better for \NeXT which was on the verge of bankruptcy. Steve Jobs returned to the company he had co-founded twenty years earlier. After the sale, he first worked as an advisor but was later appointed acting-CEO, to finally become CEO of the company. This was not only a rebirth for \NeXTns, it was also a rebirth for Apple which went from being ninety days away from insolvency\footnote{Source: "All Things Digital conference, Jun 1, 2010."} in 1996 to most valuable company in the world in December 2017. \\
 \par
-NeXTSTEP was used as foundation for Apple's Rhapsody project which became Darwin (a.k.a MacOS X). The new operating system was met with enthousiam by customers and professionals who praised the design, look and feel, and stability. MacOS X was later used as a base for Apple's 2008 iPhone which took over the world by storm. It is extremely likely some of the code that once ran on NeXTSTEP and contributed to \doom{} now runs on the many millions of Apple computer and iOS phones across the world.\\
+NeXTSTEP was used as foundation for Apple's Rhapsody project which became Darwin, the core of Apple's OSes. The new operating system was met with enthusiasm by customers and professionals who praised the design, look and feel, and stability. Darwin was later used as a base for Apple's 2008 iPhone which took over the world by storm. It is extremely likely some of the code that once ran on NeXTSTEP and contributed to \doom{} now runs on the many millions of Apple computers and iOS phones across the world.\\
 
 
 

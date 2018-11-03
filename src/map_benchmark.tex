@@ -1,10 +1,10 @@
- As of 2018, it has been twenty five years since the last machine came out of \NeXT Redwood City factory in 1993. It has become a rare occurrence to find a piece of black hardware in working conditions.\\
+ As of 2018, it has been twenty five years since the last machine came out of \NeXT{} Redwood City factory in 1993. It has become a rare occurrence to find a piece of black hardware in working conditions.\\
  \par
  Since this book strives to be historical accurate, it was paramount to find an actual NeXTStation Turbo. First and foremost to document the development condition of the time but also to witness the full game pipeline in motion. Even though passionate and dedicated programmers have managed to produce a gorgeous emulator called "Previous", the performance numbers would  not have been accurate.\\
  \par
   I lucked out on ebay and found exactly the configuration i needed. The machine was in working condition but the SCSI hard-drive was making clinking noises, a sign that it was about to die. Additionally, the MegaDisplay colors had faded out\footnote{This would have been easily fixable by replacing the capacitors on the monitor control board but it would not have solved the issue of the weight.} and its 50 lbs (23 kg) made it difficult to move.\\
   \par
-  Thanks to Rob Blessin owner and founder of Black Hole, Inc, I was able to replace the HDD with a SD card SCSI2SD providing similar access time. It was difficult to find a screen compatible with \NeXT's exotic "sync on green" but thanks to the wonderful people at \cw{www.nextcomputers.org} I was pointed to a NEC MultiSync 1980SX which worked flawlessly.\\
+  Thanks to Rob Blessin owner and founder of Black Hole, Inc, I was able to replace the HDD with a SD card SCSI2SD providing similar access time. It was difficult to find a screen compatible with \NeXTns{}'s exotic "sync on green" but thanks to the wonderful people at \cw{www.nextcomputers.org} I was pointed to a NEC MultiSync 1980SX which worked flawlessly.\\
   \par
   Words cannot convey how it felt to hear the humming of the machine fan. To witness \cw{Doom.app}, \cw{DoomED} and, \cw{doombsp} compile flawlessly. To witness this NeXTStation Turbo Color serial \cw{\#ABC0053943} come back to life. The machine did not cure cancer as Jobs wished for but it did provide happiness to countless developers.
 
@@ -103,11 +103,11 @@ MAP35 &        0.3 \\
 \end{minipage}
 \pagebreak
 
-\doom{} on a NeXTStation screen. Usually \cw{TextEdit.app} window would be on the right. Notice "Interceptor VGA Console" which comes from \cw{libinterceptor}, a private library provided from \NeXT engineers allowing to punch a hole in Display Postscript and speed up rendering. Resolution was so high that id had to implement a 2x zoom to see the pixels.\\
+\doom{} on a NeXTStation screen. Usually \cw{TextEdit.app} window would be on the right. Notice "Interceptor VGA Console" which comes from \cw{libinterceptor}, a private library provided from \NeXT{} engineers allowing to punch a hole in Display Postscript and speed up rendering. Resolution was so high that id had to implement a 2x zoom to see the pixels.\\
 \par
 \fullimage{doom_on_next.png}
 
 \vspace{-4mm}
-On \NeXT, the video system is very different than DOS. The implementation disregards updates signal from \cw{I\_} and defer all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blited to \cw{NSWindow} so it does not benefit as much as it should from "reduced canvas size".\\
+On \NeXTns{}, the video system is very different than DOS. The implementation disregards updates signal from \cw{I\_} and defer all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blited to \cw{NSWindow} so it does not benefit as much as it should from "reduced canvas size".\\
 \par
 \fixme{TODO TABLE HIGH LOW details framerate here.}

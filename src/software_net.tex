@@ -22,7 +22,7 @@ Most modern FPS games are designed around a concept of Client/Server where there
 There are no central server in \doom. All peers runs their own game logic and remain in sync by performing no predictions and only running a game tic when all other peers actions are known.\\
 \par
  This means all peers must advertise their command to all other peers, resulting in significant communication overhead. 
-All peers must be present when a game starts. A peer cannot leave the game (since all other nodes need to know all inputs before each tic) and new players cannot join.
+All peers must be present when a game starts. A player an leave (and it will just stay still in the game without performing any action) but new players cannot join.
 \pagebreak
  % Each node must send the command generated locally to all other nodes. This means that a machine can simulate the next tic only when ALL nodes involved in the game have send their commands. As a result, the slowest machine dictates the framerate of every players involved. This also meant that all nodes had to run the exact same state machine and run the same version of \doom.\\
 % \par
