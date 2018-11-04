@@ -2,7 +2,7 @@
 
 
 
-While \doom's 3D rendering was breathtaking, it was the networking capability and its famous deathmatches that really took it to another level. The ability to connect two PCs and interact with human players was something most gamers hae never seen before. Early during development it was apparent this aspect of the game was going to be amazing.\\
+While \doom's 3D rendering was breathtaking, it was the networking capability and its famous deathmatches that really took it to another level. The ability to connect two PCs and interact with human players was something most gamers have never seen before. Early during development it was apparent this aspect of the game was going to be amazing.\\
 \par
 \fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
 \par
@@ -39,7 +39,7 @@ What I didn't realize was that there were some entire campuses that were built u
 \par
 The day after release, I was awoken by a phone call. I blearily answered it and got chewed out by a network administrator who had found my phone number just to yell at me for my game breaking his entire network. I quickly changed the network protocol to only use broadcast packets for game discovery, and send all-to-all directed packets for gameplay (resulting in 3x the total number of packets for a four player game), but a lot of admins still had to add Doom-specific rules to their bridges (as well as stern warnings that nobody should play the game) to deal with the problems of the original release.}{John Carmack, kotaku.com "Memories Of Doom"}\\ 
 \par
-With the proliferation of networking, the embedded IPX support started to show its limit.\\
+With the proliferation of networking, the embedded IPX support started to show its limits.\\
 \par
  Instead of baking support more types of network into the engine, the IPX networking code was removed and networking was refactored around the notion of network drivers.
 \pagebreak
@@ -94,7 +94,7 @@ To perform network I/O, the core only deals with three elements provided by the 
 
   \toprule 
    I\_InitNetwork & Initialize the network subsystem.\\
-   \cw{doomcom\_t doomcom} & Shared structure containing both in and out data.\\
+   doomcom\_t doomcom & Shared structure containing both in and out data.\\
    I\_NetCmd & Signal network to send/receive data based on doomcom.\\
    \toprule
 \end{tabularx}
