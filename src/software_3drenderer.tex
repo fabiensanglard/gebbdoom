@@ -753,7 +753,7 @@ The result as rendered by \doom{} is visible in figure \ref{masked.png}. Notice 
 \par
 With the desired result in mind, let's go back to where we were with only walls and flats rendered in the framebuffer. In the case of the same room, it would look like figure \ref{masked_nomasked.png}.\\
 \par
-\cfullimage{masked_nomasked.png}{Same scene as it is currentyly stored in the framebuffer}
+\cfullimage{masked_nomasked.png}{Same scene as it is currently stored in the framebuffer}
 \par
 To get from figure \ref{masked.png} to figure \ref{masked_nomasked.png}, the engine needs to generate a list of maskables (also simply called sprites in the code), to sort then into back-to-front order, iterate over the sorted list, perform clipping on each of them, and finally render them as columns of pixels.\\
 \par
