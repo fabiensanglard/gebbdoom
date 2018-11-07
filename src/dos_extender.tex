@@ -9,7 +9,7 @@ The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM releas
 \par
 Pointer manipulation was error prone since different segment/offset combinations could point to the same RAM location. There were also issues related to pointer arithmetic where once the offset wrapped around, the segment was not automatically updated.\\
 \par
-With the release of the 386 and later the 486, things worsened. The bus address width was increased to 24 bits which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory managers were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.}, which both provided the means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
+With the release of the 386 and later the 486, things worsened. The bus address width was increased to 24 bits which once again was bigger than what the 20-bit segmentation trick was capable of. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory managers were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.}, which both provided the means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
 
 There would have been a simpler solution. Intel allowed its CPUs to function in two modes: the backward-compatible real mode which made the CPU behave like a very fast 8088, and protected mode which unleashed the full power of the CPU. In protected mode, 32-bit registers were large enough to address all RAM on board (this is known as flat addressing).\\
 \par
@@ -47,7 +47,7 @@ When the extender intercepted an operating system call, it had a lot of work to 
 \item Switch the CPU back to protected mode.
 \end{enumerate} 
 
-The performance-sensitive operations were in switching between real mode and protected mode. Originally this was a problem on 286 CPUs since Intel never imagined a program might want to switch back to real mode from protected mode. Various tricks had to be used\footnote{These are detailed in \textit{Game Engine Black Book: Wolfenstein 3D}.}, among them faking a keyboard ctrl-alt-del reboot to reset the CPU without actually rebooting.\\
+The performance-sensitive operations were in switching between real mode and protected mode. Originally this was a problem on 286 CPUs since Intel never imagined a program might want to switch back to real mode from protected mode. Various tricks had to be used\footnote{These are detailed in \textit{Game Engine Black Book: Wolfenstein 3D}.}, among them faking a keyboard Ctrl-Alt-Del reboot to reset the CPU without actually rebooting.\\
 \par
 On the other hand, switching from real mode to protected mode is simple. Setting the Control Register from bit 0 to 1 takes six instructions.\\
 \par

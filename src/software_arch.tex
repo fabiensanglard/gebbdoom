@@ -213,7 +213,7 @@ This design choice would end up being controversial. On the one hand it solved t
 \section{Game Thread/Sound Thread}
 MS-DOS did not support processes or threads, yet video and audio had to happen in parallel. To make this happen, the audio system is based on interrupts generated at a regular interval. This is explained in detail in the audio section on page \pageref{dmx_section}.\\
 \scaleddrawing{0.9}{three_systems}{}
-\trivia{To disable compiler optimizations, the variable written by the interrupt-based sound system and read by \doom{} is declared \cw{volatile int ticcount}.}
+To disable register caching (resulting in infinite loops) the variable written by the sound engine and read by \doom{} engine is declared \cw{volatile int ticcount}.
 
 
 
@@ -242,7 +242,7 @@ Signed integers use two's complement where all bits represent a positive value e
 \par
 
 
-For certain types of calculation, \doom resorts to using a different layout. The signed fixed-point format used is \cw{16:16} where bit 31 encodes a negative integer ($-2^{15}$), bits [30-16] store a positive integer, and bits [15-0] are used to store the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{All 32 bits set to 1 is the maximum value where the negative bit ($-2^{15}$) = -32768 is added to the positive values:  
+For certain types of calculation, \doom{} resorts to using a different layout. The signed fixed-point format used is \cw{16:16} where bit 31 encodes a negative integer ($-2^{15}$), bits [30-16] store a positive integer, and bits [15-0] are used to store the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{All 32 bits set to 1 is the maximum value where the negative bit ($-2^{15}$) = -32768 is added to the positive values:  
  ($2^{14} + 2^{13} + 2^{12} + 2^{11} + 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}+ 2^{-3}+ 2^{-4}+ 2^{-5}+ 2^{-6}+ 2^{-7}+ 2^{-8}+ 2^{-9}+ 2^{-10}+ 2^{-11}+ 2^{-12}+ 2^{-13}+ 2^{-14}+ 2^{-15}+ 2^{-16}$) = 32767.9999847.}.\\
 \par
 \begin{figure}[H]

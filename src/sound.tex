@@ -24,23 +24,23 @@ Above, a Sound Blaster 16 model CT1740 from 1994. \circled{1} Panasonic/Matsushi
 
 
 \subsection{Gravis UltraSound}
-Gravis Computer Technology originally built what was universally accepted as the best PC game controller, the Gravis PC GamePad. With strong cash flow they decided to enter the sound card market with an audacious and innovative card. The Gravis Ultrasound (nicknamed GUS) was released in 1992.\\
+Gravis Computer Technology originally built what was universally accepted as the best PC joypad, the Gravis PC GamePad. With strong cash flow they decided to enter the sound card market with an audacious and innovative card. The Gravis Ultrasound (nicknamed GUS) was released in 1992.\\
 \par
 The GUS offered Sound Blaster 16-compatible music and digitized sound playback. On top of that the card had a capability like no other on the market. It was able to play back music not with FM synthesis but with digitized instrument samples. The technology, named "wavetable synthesis", achieved an audio quality far superior to its competitors.
 
 
 \fullimage{Gravis_UltraSound_PnP_Pro_V1.png}\\
 \par
-The Gravis UltraSound Pro, \circled{1} 2 SIMM slot allowing up to 8 MiB RAM, \circled{2} IDE Connector and \circled{3} ATAPI connector (both for CD-ROM), \circled{4} IW78C21M1 chip (1 MiB Flash ROM), \circled{5} HM514260ALJ7 70ns DRAM, \circled{6} Main CPU InterWave AM78C201KC and \circled{7} from top to bottom: mic-in, line-in, line-out, joystick port.\\
+The Gravis UltraSound Pro, \circled{1} 2 SIMM slots allowing up to 8 MiB RAM, \circled{2} IDE Connector and \circled{3} ATAPI connector (both for CD-ROM), \circled{4} IW78C21M1 chip (1 MiB Flash ROM), \circled{5} HM514260ALJ7 70ns DRAM, \circled{6} Main CPU InterWave AM78C201KC and \circled{7} from top to bottom: mic-in, line-in, line-out, joystick port.\\
 \rawdrawing{gravis}
 
-The concept was aggressive and so was the hardware that came out of the Gravis factories. The red resin used made their card unmistakably recognizable.\\
+The concept was aggressive and so was the hardware that came out of the Gravis factories. The red resin they used made their card unmistakably recognizable.\\
 \par
 The cost of this technology was twofold. First, the card needed audio samples. This problem was "solved" via a Gravis driver that installed more than 12 MiB of sound samples\footnote{That was enormous at the time, when the full version of \doom{} was 12 MiB as a matter of comparison.}. Second, the card had to be able to access the sample at runtime, meaning it had to have its own RAM. Since samples take up more space than sine equations, the original GUS shipped with 256 KiB, upgradeable to 1 MiB.\\
 \par
 It rapidly developed a cult following among demo-makers who loved the high music quality it could achieve. For the gamer market however, things were more complicated. The GUS's GF1 main chip had difficulties emulating the OPL2 and setup was complicated (a mediocre TSR emulator had to be loaded manually by the user). The GUS also suffered from an unfortunate release date concurrent to the RAM shortage of 1993/1994. Players were reluctant to fork the \$169 it cost, being \$40 more than a Sound Blaster 16. Initially selling well, sales slowed around 1995 and it was discontinued in 1996.\\
 \par
- id Software was one of the few companies to support the Gravis UltraSound. \doom{} included a mapping file that translated MIDI instruments IDs to Gravis \cw{.PAT} instrument files. Listening to the electric guitars and drums of "At Doom's Gate" from \doom{}'s OST makes the SoundBlaster version pale in comparison. But all success stories must have the right timing and sadly the GUS was ahead of its time.
+ id Software was one of the few companies to support the Gravis UltraSound. \doom{} included a mapping file that translated MIDI instruments IDs to Gravis \cw{.PAT} instrument files\footnote{It also controls which samples get loaded into RAM at various card configurations.}. Listening to the electric guitars and drums of "At Doom's Gate" from \doom{}'s OST makes the SoundBlaster version pale in comparison. But all success stories must have the right timing and sadly the GUS was ahead of its time.\vspace{-5pt}
 
  \subsection{Roland}
  It is impossible to close the audio section without mentioning Roland's hardware. Established in 1972, Roland Corporation not only manufactured equipment for audio playback, it also provided the best hardware to author and record music. The real breakthrough for DOS gaming was the Roland SC-55 (a.k.a SoundCanvas) released in 1991. Not only was it the very first General MIDI standard device (which defined 128 instruments that every device following the standard could adopt), it synthesized music using Roland's proprietary combination of prerecorded samples and subtractive synthesis which was far superior to Yamaha's OPL.\\
@@ -50,11 +50,11 @@ It rapidly developed a cult following among demo-makers who loved the high music
 
 Roland's equipment was built entirely around the MIDI protocol which was carried via cables employing a special 5-pin circular connector.\\
 \par
- The precursor of the SC-55, the MT-32 synthesizer, could be connected to a PC via an MPU-401 ISA MIDI adapter card. There was also a combo LAPC-I card which combined both the adapter and the synthesizer inside a single ISA card.\\
+ The precursor of the SC-55, the MT-32 synthesizer, could be connected to a PC via an MPU-401 ISA MIDI adapter card. There was also a combo LAPC-I card which combined both the adapter and an MT-32 successor, the CM-32L, inside a single ISA card.\\
 \par 
 \cfullimage{roland_lapc1.png}{Roland LAPC-I}
 \par
-Roland also released the SCC-1 which combined the SC-55 and a MPU-401 onto a single ISA card.\\
+Roland also released the SCC-1 which combined the SC-55 and an MPU-401 onto a single ISA card.\\
 \par 
 \cfullimage{roland_scc1.png}{Roland SCC-1}
 \par

@@ -1,10 +1,10 @@
 \vspace{-15pt}
 \section{Network}
-The early 90s predated the wide adoption of the Internet and Wi-Fi. Connecting computers together was difficult and expensive\footnote{Computer-to-computer games existed since the early 1980s. Some were even cross-platform, such as Battle Chess.}. Even if you had the means, bandwidth and latency were abysmal. Most of the time, playing with friends meant getting all your computers into the same room. Playing from the comfort of your room was extremely uncommon. Amusingly, an unconnected computer is now deemed useless. Communication with other machines is something natural and the bare minimum for a machine to be useful.\\
+The early 90s predated the wide adoption of the Internet and Wi-Fi. Connecting computers together was difficult and expensive\footnote{Computer-to-computer games existed since the early 1980s. Some were even cross-platform, such as Battle Chess.}. Even if you had the means, bandwidth and latency were abysmal. Most of the time, playing with friends meant getting all your computers into the same room (a LAN party). Playing from the comfort of your room was extremely uncommon. Amusingly, an unconnected computer is now deemed useless. Communication with other machines is something natural and the bare minimum for a machine to be useful.\\
 \par
  But back in the early 90s, to pack your 50lb machine (including the CRT) on your bike, make it to a friend's place alive, plug in the cables, start \doom{} and finally see your character move on the other computer's screen was an indescribable feeling. To witness machines actually communicating felt unreal and almost magical.\\
 \par 
-To achieve the impossible, players had three technologies available: null-modem cable, modem, and LAN via network cards.
+To achieve the impossible, players had three technologies available: null-modem cable, modems, and LAN via network cards.
 
 
 
@@ -28,33 +28,33 @@ The cheapest way and what most people used was the \$20 cable known as a "null-m
 
 
 \subsection{BNC 10Base2 LAN (Local Area Network)}
-To play with more than one opponent was substantially more difficult. Besides the relatively easy financial burden of buying the equipment, you had to overcome the much more difficult task of convincing a parent to let four teenagers come to your house where they would scream all night. The famous saying, "fool me once, shame on you; fool me twice, shame on me" is rumored to have originated from betrayed mothers and fathers who had been \textit{doomed} all night.\\
+To play with more than one opponent was substantially more difficult. Besides the relatively easy financial burden of buying the equipment, you had to overcome the much more difficult task of convincing a parent to let four teenagers come to their house where they would scream all night. The famous saying, "fool me once, shame on you; fool me twice, shame on me" is rumored to have originated from betrayed mothers and fathers who had been \textit{doomed} all night.\\
 \par
 
 
 
-\begin{wrapfigure}[7]{r}{0.25\textwidth}
+\begin{wrapfigure}[6]{r}{0.25\textwidth}
 \centering
 \scaledimage{.25}{BNC_T-piece.png}
 \end{wrapfigure}
 
 Leaving creative ways to ask for forgiveness aside, on the technical side a player had to plug in a 10Base2 network card via the ISA bus. \\
-\par The card had a BNC connector upon which was to be plugged a T-shaped connector. Each PC node was connected to up to two other nodes via 10Base2 coaxial cables. There was no central point in this type of networking, all machines involved in the network formed a chain. At both ends the chain had to be plugged a signal terminator in order to prevent an RF signal from being reflected back from each end, causing interference, or power loss.
+\par The card had a BNC connector upon which was to be plugged a T-shaped connector known as a T-piece. Each PC node was connected to up to two other nodes via 10Base2 coaxial cables. There was no central point in this type of networking, all machines involved in the network formed a chain. At both ends the chain had to be plugged a signal terminator in order to prevent an RF signal from being reflected back from each end, causing interference, or power loss.
 
 
 \begin{wrapfigure}[11]{r}{0.5\textwidth}
 \centering
 \scaledimage{.5}{BNC_connector_50_ohm_male}
 \end{wrapfigure}
-The coaxial cables were bulky and so were the connectors. Connecting an end to a T-Shape connector was fully achieved with a cool quarter turn of the coupling nut.\\
+The coaxial cables were bulky and so were the connectors. Connecting an end to a T-piece connector was fully achieved with a cool quarter turn of the coupling nut.\\
 \par
- Once physically connected, there was no configuration required (IPX is a network-level protocol like Ethernet). The Network card MAC addresses were enough to run the IPX protocol that most games used.\\
+ Once physically connected, there was no configuration required (IPX is a network-level protocol like Ethernet). The network card MAC addresses were enough to run the IPX protocol that most games used.\\
  \par
 \drawing{10base5bncConnector}{10-Base-2 BNS based network.}
 \par
-Figure \ref{10base5bncConnector} shows the four elements of a 1994 LAN. \circled{1} the T-shaped connector connecting two \circled{2} coaxial cables, forming a link. Each end of the chain must be closed with two load terminators \circled{3}. The network card connects to both the PC via its ISA bus extension slots (\circled{4}) and the LAN T-base slots.\\
+Figure \ref{10base5bncConnector} shows the four elements of a 1994 LAN. \circled{1} the T-piece connector connecting two \circled{2} coaxial cables, forming a link. Each end of the chain must be closed with two load terminators \circled{3}. The network card connects to both the PC via its ISA bus extension slots (\circled{4}) and the LAN T-base slots.\\
 \par
-\trivia{Adding a new machine on the network meant either unplugging one of the T-shaped connectors or unplugging a chain terminator. In both cases, the central bus was broken and all other machines lost connectivity. Everybody remembers the one friend who was always late to the LAN, forcing everybody to disconnect so he could join. The bandwidth was shared meaning the theoretical 10Mb/s was often closer to 5Mb/s. This does not account for friends who wanted to exchange a 30MiB song in \cw{.wav} format (there was no MP3 at the time).}\\
+\trivia{Adding a new machine on the network meant either unplugging one of the T-piece connectors or unplugging a chain terminator. In both cases, the central bus was broken and all other machines lost connectivity. Everybody remembers the one friend who was always late to the LAN, forcing everybody to disconnect so he could join. The bandwidth was shared meaning the theoretical 10Mb/s was often closer to 5Mb/s. This does not account for friends who wanted to exchange a 30MiB song in \cw{.wav} format (there was no MP3 at the time).}\\
 \par
 \trivia{Really fancy people could use a 10baseT network which required a "hub" central device resulting in a star-shaped network.}
 
@@ -73,7 +73,7 @@ Before broadband, modems used phone landlines to connect to the Internet provide
 \par
 AOL (America OnLine) offered a package of five hours for \$9.95 with each extra hour billed \$3.50 per unit. A player averaging 2h/day could be billed $9.95 + 55 * 3.5 = \$202 $ for a month\footnote{Adjusted to inflation: \$352 in 2018.}. Add the price of a fast 9600 baud model for \$399\footnote{Adjusted to inflation: \$696 in 2018.} and you get a good idea of how much it cost to be able to post text messages on a BBS (Bulletin Board System).\\
 \par
-\cscaledimage{0.9}{robotic28-8.png}{US Robotic 28.8k baud modem. The top of the line in 1994.}
+\cscaledimage{0.9}{robotic28-8.png}{US Robotics 28.8k baud modem. The top of the line in 1994.}
 
  While establishing the initial handshake, the modem speaker was kept open. An attuned ear could easily recognize the different phases of V.X bis transaction, speed negotiation, echo canceller disabling, and modulation mode selection, together making the unforgettable melody of a deathmatch in the making.\\
  \par 
@@ -98,7 +98,7 @@ AOL (America OnLine) offered a package of five hours for \$9.95 with each extra 
    8 & FSK Data @ 300 bps: Why don't we use V8 then.\\
    9 & Ok, mode acknowledged. Terminating V.8 bis transaction.\\
    \toprule 
-   A & Answering modem disable echo suppressors and cancellers in PSTN.\\
+   A & Answering modem disables echo suppressors and cancellers in PSTN.\\
    B & FSK Data @ 300 bps: Repeated 6x Here are my modulation modes: V.34, V.32, v.23 duplex ...\\
    C & FSK Data @ 300 bps: Repeated 3x: I can do any of those. \\
    D & Both modems send a wide-spectrum probing signal in both directions to do measurements on the line.\\
@@ -137,10 +137,13 @@ Throughout the '90s, bandwidth steadily improved. Upon \doom{}'s release most mo
 
 
 \par
-On top of the V.XX hardware communication layer, modems were driven using Hayes commands. Notice how the command \cw{ATDT} was translated to DTMF in the previous spectrogram.\\% in figure \ref{spectrogram2.png} on page \pageref{spectrogram2.png}.\\
+On top of the V.XX hardware communication layer, modems were driven using Hayes commands\footnote{A nice abstraction layer, but not   all modems were the same and \doom{} has a long file with initialization parameters for 49 different modems.}. Notice how the command \cw{ATDT} was translated to DTMF in the previous spectrogram.\\% in figure \ref{spectrogram2.png} on page \pageref{spectrogram2.png}.\\
 
 \par
+{
+\setlength{\belowcaptionskip}{-10pt}
  \begin{figure}[H]
+
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.2} L{0.15} L{0.65}}
   \toprule
@@ -167,5 +170,6 @@ On top of the V.XX hardware communication layer, modems were driven using Hayes 
 \end{tabularx}
 \caption{AT layer dialog between caller and callee.}
 \end{figure}
-\par
+}
+\pagebreak
 \trivia{The fragility of these connections led to humorous ways to end a message. People would finish forum posts with "Hey! Wait! Don't pick up the ph\{\#`\$\{\%\&`+'\%NO CARRIER".}
