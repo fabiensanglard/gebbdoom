@@ -1,5 +1,5 @@
 \section{RAM}
-With the price of RAM dropping, game developers now could count on 4 MiB. This increase should have been a good news, resulting in video games with richer worlds shipping with better assets, more characters and bigger maps. Due to the infamous way memory had to be managed that meant more complexity to handle and more headache.\\
+With the price of RAM dropping, game developers now could count on 4 MiB. This increase should have been good news, resulting in video games with richer worlds shipping with better assets, more characters and bigger maps. Due to the infamous way memory had to be managed it instead meant more complexity to handle and more headache.\\
 \par
 The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM released its first PC, the 5150,  which was built around an Intel 8088. The The CPU was limited to 16-bit registers, but Intel wanted it to be able to access a 20-bit address space. To reconcile both elements Intel designers came up with an abomination called segmented addressing where two 16-bit registers were combined to form a 20-bit address.\\
 \par
@@ -9,9 +9,9 @@ The fault fell a little bit on Intel and a lot on Microsoft. In 1981, IBM releas
 \par
 Pointer manipulation was error prone since different segment/offset combinations could point to the same RAM location. There were also issues related to pointer arithmetic where once the offset wrapped around, the segment was not automatically updated.\\
 \par
-With the release of the 386 and later 486, things worsened. The bus address width was increased to 24 bits which once again was bigger than the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which both provided means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
+With the release of the 386 and later 486, things worsened. The bus address width was increased to 24 bits which once again was bigger than what the 20-bit segmentation trick was capable off. The solution was to resort to memory managers such as \cw{EMM386.EXE} and \cw{HIMEM.SYS}\footnote{16-bit programming and memory manager were covered in \textit{Game Engine Black Book: Wolfenstein 3D}.} which both provided means to work with non-addressable RAM located beyond the 1 MiB barrier.\\
 
-There would have been a simpler solution. Intel allowed its CPUs to function in two modes. The backward compatible real mode which made the CPU behave like a very fast 8088 and the protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were bit enough to address all RAM on board (this is known as flat addressing).\\
+There would have been a simpler solution. Intel allowed its CPUs to function in two modes. The backward compatible real mode which made the CPU behave like a very fast 8088 and the protected mode which unleashed all the power of the CPU. In protected mode, 32-bit registers were big enough to address all RAM on board (this is known as flat addressing).\\
 \par
 It would have worked out if the operating system had been able to run in protected mode. However, in the name of backward compatibility, Microsoft's DOS could only handle real mode which effectively locked developers to 16-bit programming.\\ 
 \par
@@ -20,7 +20,7 @@ It would have worked out if the operating system had been able to run in protect
 
 
 \par
-Among the growing growing pain and frustration of DOS, some people saw an opportunity.\newpage 
+Among the growing pain and frustration of DOS, some people saw an opportunity.\newpage 
 
 While there were many products that could address this, two companies in particular stood out with a winning combination: Watcom International Corporation would produce a C compiler, and Rational Systems would produce a "DOS extender", that together allowed programs to run in protected mode while still having access to 16-bit DOS functions.\\
 \par
@@ -34,9 +34,9 @@ To allow the app to run in one mode and the OS to run in an other, the two world
 
 \par
 \rawdrawing{realmode_app_limk_extender}
-Upon startup, the DOS Extender would place hooks in the OS software Interrupt Vector Table and place its own routines there. From an application standing point everything was transparent, the developer had no code to change. To perform a system calls not hooked by the extender (e.g: \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register request to 16-bit so IVT routines would understand them.\\
+Upon startup, the DOS Extender would place hooks in the OS software Interrupt Vector Table and place its own routines there. From an application standing point everything was transparent, the developer had no code to change. To perform a system call not hooked by the extender (e.g: \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register requests to 16-bit so IVT routines would understand them.\\
 \par
-\trivia{DMPI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit application and be compatible with a joint operating system project with IBM called OS/2.}\\
+\trivia{DPMI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit applications and be compatible with a joint operating system project with IBM called OS/2.}\\
 \par
 When the extender intercepted an operating system call, it had to do a lot of work:
 \begin{enumerate}
@@ -54,7 +54,7 @@ On the other side, switching from real Mode to protected Mode is simple. Setting
 \acode{switch_to_protected_mode.asm}
 \par
 
-\doom{} used DOS/4GW extender by Rational Systems. Its presence could briefly be seen on startup. Executing \cw{DOOM.EXE} triggered DOS to load the tiny extender. Once loaded, DOS/4GW switched the CPU into Protected Mode, loaded \doom's code into memory and branched to the \cw{main} function.\\
+\doom{} used the DOS/4GW extender by Rational Systems. Its presence could briefly be seen on startup. Executing \cw{DOOM.EXE} triggered DOS to load the tiny extender. Once loaded, DOS/4GW switched the CPU into Protected Mode, loaded \doom's code into memory and branched to the \cw{main} function.\\
 \par
 \fakedosoutput{dos4gw.txt}
 

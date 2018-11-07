@@ -8,19 +8,22 @@
   \par
   Words cannot convey how it felt to hear the humming of the machine's fan. To witness \cw{Doom.app}, \cw{DoomED} and, \cw{doombsp} compile flawlessly. To witness this NeXTStation Turbo Color (serial \cw{\#ABC0053943}) come back to life. The machine did not cure cancer as Jobs wished for but it did provide happiness to countless developers.
 
+
+
+
+
+\section{Developing The Game}
+On this double page is recreated the typical developer desktop setup. Notice "Interceptor VGA Console" which gives away \cw{libinterceptor.a}, a private library provided by \NeXTns's engineers to punch a hole in Display Postscript and bypass the "slow" compositor.\\
+\par
+\cscaledimage{0.9}{doom_on_next.png}{NeXTSTEP development setup (left part of the screen)}
+
+The MegaDisplay resolution of 1120x832 was so high that id Software had to implement a 2x software zoom for the game window. Without it, the \doom{} window looked like a tiny stamp with barely any pixels visible.\\
+\par
+\vspace{18.5pt}
+\cscaledimage{0.92}{doom_on_next2.png}{NeXTSTEP development setup (right part of the screen)}
 \pagebreak
 
-
-
-\cfullimage{doom_on_next.png}{NeXTSTEP development setup (left part of the screen)}
-\par
-"Interceptor VGA Console" gives away \cw{libinterceptor}, a private library provided by \NeXTns's engineers allowing to punch a hole in Display Postscript to speed up rendering. 
-\par
-\par
-\cfullimage{doom_on_next2.png}{NeXTSTEP development setup (right part of the screen)}
-\par
-Resolution was so high that id had to implement a 2x software zoom. Without it, the \doom{} window looked as big as a stamp.\pagebreak
-
+\section{Compiling Maps}
 Benchmarks for \cw{doombsp} run time for each level in \doom~and \doomii\footnote{Based on \cw{.map} files released by John Romero on 2015-04-22.}.\\
 \par
  \begin{minipage}[t]{0.45\textwidth}
@@ -113,13 +116,15 @@ MAP35 &        0.3 \\
 \end{minipage}
 \\
 
-\pagebreak
+\section{Running The Game}
 \fixme{TODO TABLE HIGH LOW details framerate here.}\\
 \par
 
 On \NeXTns{}, the video system is very different to DOS. The implementation disregards update signals from \cw{I\_} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. As a result it does not benefit as much as it should from "reduced canvas size".\\
 \par
-Colors as washed out.\\
+
+\section{Framebuffer Non-distortion}
+Contrary to what happens on DOS due to the VGA, there is no distortion when the framebuffer is displayed onto the screen. The 320x200 content is not stretched to 320x240 and therefore appears vertically squashed. It is particularly noticeable when the splash screen is displayed.\\
 \par
-\cfullimage{doom_crushed}{}
+\cfullimage{doom_crushed}{\doom{} on NeXTSTEP. Content appears vertically squashed}
 

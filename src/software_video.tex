@@ -39,7 +39,7 @@ The life of a frame during the 3D phase is as follows:
 \item All write operations are done in framebuffer \#0. Each time the engine updates this buffer, it also updates the \cw{dirtybox} to mark which area has been touched.
 \item After a major write sequence, the engine calls \cw{I\_UpdateNoBlit} which triggers the video system to read framebuffer \#0, optimizing for the smallest data transfer possible via the \cw{dirtybox}. On DOS the VGA subsystem copies content to the VGA hardware in one of its three VRAM framebuffers. Each VGA buffer has its own dirtybox \cw{updatebox} to speed up blitting but this remains an expensive operation.
 
-\item Once a frame has been completed, the core calls \cw{I\_FinishUpdate}  which signals the video system that framebuffer \#0 will no longer be updated. On DOS, the implementation of \cw{I\_FinishUpdate} simply updates the start address of the CRTC which is a lightweight operation.
+\item Once a frame has been completed, the engine calls \cw{I\_FinishUpdate}  which signals the video system that framebuffer \#0 will no longer be updated. On DOS, the implementation of \cw{I\_FinishUpdate} simply updates the start address of the CRTC which is a lightweight operation.
 \end{enumerate}
 \par
 \ccode{I_FinishUpdate.c}\\
