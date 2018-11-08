@@ -12,7 +12,7 @@ A \cw{LINE} can either be a solid wall or a portal between two \cw{SECTOR}s. The
 \par
 A \cw{SIDEDEF} describes one side of a \cw{LINE}. To accommodate texturing of both t walls and portals, it can have up to three textures. The middle texture is used by walls for the full area they cover. A \cw{SIDEDEF} can also have a lower and an upper texture for portals connecting \cw{SECTOR}s with different ceiling/floor heights. If the portal leads to a sector with higher floor, the lower texture is used to render the "step". If the \cw{SECTOR} connects to a \cw{SECTOR} with a lower ceiling, the upper texture is used to render the "down step". To help alignment of doors and buttons, \cw{SIDEDEF} textures can have a vertical/horizontal offset. \\
 \par
-A \cw{THING} is much simpler in comparison. It only has one pair of \cw{VERTEX} coordinates, an angle and an identifier controlling its type. At the bare minimum a map must have one player-spawning location \cw{THING}.\\
+A \cw{THING} is much simpler in comparison. It only features a 2D-coordinate \cw{X,Y}, an angle, and an identifier controlling its type. At the bare minimum a map must have one player-spawning location \cw{THING}.\\
 
 \cfullimage{doom_map.png}{Rendering of map shown in figure \ref{doom_map_basics}.}
 \par
@@ -52,7 +52,7 @@ DoomED was designed to be the "Adobe Illustrator for World Maps" where the desig
 
 
 \vspace{-4mm}
-DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as a magic number which was followed by a list of lines (including sidedefs) and a list of things. Sectors were inferred from a line's ceiling/floor textures values.\\
+DoomED did not output data usable by the game engine directly. Instead it generated a text format output called \cw{DWD}. A header served as a magic number which was followed by a list of lines (including sidedefs) and a list of things. Sectors were inferred from a line's ceiling/floor textures, ceiling/floor height, and light properties.\\
 \par
 \tcode{map.txt}
 \par

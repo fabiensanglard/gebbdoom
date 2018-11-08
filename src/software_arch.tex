@@ -44,23 +44,16 @@ Accommodating the needs for running on different operating systems was more chal
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\textwidth]{drawings/doom_arch.pdf}
-\caption{\doom{} Core and its I/O platform-dependent systems.}
+\caption{\doom{}'s core and its I/O platform-dependent systems. Notice the similarities with the design of an operating system.}
 \end{figure}
 \par
 In the case of the video system, it would be using the VGA hardware on MS-DOS but the \cw{NSWindow} API on \NeXT. A naive implementation would have required a function pointer acting as a layer of indirection to dispatch each I/O call. A better solution leveraged C's linking stage.\\
 \par
- While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} files have been transformed into object (\cw{.o}) files. Object files may reference each other but because they were created independently, they have "holes" called "unresolved symbols".\\
-\par
- To generate an executable, all objects are given to a linker which will recognize unresolved symbols from all objects and patch the holes.\\
+ While building a C program, all compilation units (\cw{.c} files) are compiled independently. At the end of the compilation step, all \cw{.c} files have been transformed into object (\cw{.o}) files. Object files may reference each other but because they were created independently, they have "holes" called "unresolved symbols". To generate an executable, all objects are given to a linker which will recognize unresolved symbols from all objects and patch the holes.\\
  \par
- Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o}, we can see this translation unit uses functions such as \cw{I\_PlaySong} and \cw{I\_StartSound} which are defined in the platform-specific sound system. 
+ Taking the example of \cw{s\_sound.c} which is part of the core and looking at \cw{s\_sound.o}, we can see this translation unit uses functions such as \cw{I\_PlaySong} and \cw{I\_StartSound} which are defined in the platform-specific sound system.\pagebreak
 
-
-
-
-
-
- Asking \cw{clang} for undefined symbols shows an object file's "holes".\\
+Asking \cw{clang} for undefined symbols shows an object file's "holes".\\
  \par
 \tcode{s_sound_linker.txt}
 \par
@@ -93,10 +86,10 @@ Notice the prefixed file name in figure \ref{doom_code_arch}. Since C has no nam
 
 The beauty of this architecture is that once the platform-specific systems are written, there is zero overheard to writing code that runs on multiple platforms. Most of the code goes into the core and the platform-specific code needs not be touched any more.\\
 \par
-Because portability was not an afterthought but an integral part of the development process, \doom{}'s code layering is never violated. This rigorous design explains partly why \doom{} has been ported to so many systems: there is very little code to write.\\
+Because portability was not an afterthought but an integral part of the development process, \doom{}'s code layering is never violated. This rigorous design explains partly why \doom{} has been ported to so many systems: there is very little code to write\footnote{"I ported DOOM to the Nintendo Switch in 45 minutes" by Modern Vintage Gamer on \cw{youtube.com}.}.\\
 \par 
 Additionally, working with multiple compilers such gcc and Watcom not only surfaced many bugs, it also ensured the code would be ANSI standard compliant.\\
-\vspace{-10pt}
+\vspace{-15pt}
 \section{Diving In!}
 Just before finally jumping in, here are a few stats gathered with the \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
 \par
@@ -146,14 +139,14 @@ Regardless of the platform, all entry points converge on the core main function 
 
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.22} | C{0.39} | C{0.39} }
+\begin{tabularx}{\textwidth}{ L{0.22} C{0.39} C{0.39} }
   \toprule
   \textbf{System} & \textbf{DOS Implementation} & \textbf{NeXT Implementation}\\
   \toprule 
     Video System & VGA & NSWindow/libinterceptor\\
     Audio System & DMX & Not Implemented\\
     Control System & DPMI Interrupts & NSWindow/NXEvent \\
-    File System & Direct & BigEndian converter\\
+    File System & WAD/ endian macros & WAD/ endian macros\\
     Network System & Direct interrupts & BSD socket \\
     RAM System & greedy malloc & tight 4 MiB malloc\\
    \toprule
@@ -201,7 +194,7 @@ The game simulation happens in \cw{TryRunTics} and uses fixed time steps. The bo
 \ccode{TryRunTics.c}\label{TryRunTics.c}\\
 \par
 \doom's unit of time is the \cw{tic}. There are 35 tics in a second (which means a tic is 28ms) and 
-\cw{Get\_Time} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculates how many tics have elapsed and advances the simulation by that amount. Only fully-elapsed tics are simulated. The value of 35 was not random; it is half the frequency of the VGA mode-Y. Once the game state has been updated, video and audio are generated.\\
+\cw{I\_GetTime} clock unit is also the tic. On each iteration of \cw{D\_DoomLoop} the engine calculates how many tics have elapsed and advances the simulation by that amount. Only fully-elapsed tics are simulated. The value of 35 was not random; it is half the frequency of the VGA mode-Y. Once the game state has been updated, video and audio are generated.\\
 \par
 \drawing{fixed}{}
 \par

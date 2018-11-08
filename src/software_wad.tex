@@ -53,9 +53,9 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \cw{DEMO?} &  Recordings of game sessions by id Software members. Played on game startup as demo.\\
   \toprule
   \cw{EXMY} & Zero-sized lump serving as marker for the beginning of a series of map lumps. \cw{X} is the episode number and \cw{Y} is the map id. The \cw{MAPXY} variant was used later for the same purpose.\\
-  \cw{THINGS} & All monsters, weapons, ammo and sprites contained in the current map.\\
+  \cw{THINGS} & All monsters, weapons, ammo, and sprites in the current map.\\
   \cw{LINEDEFS} & All lines referenced by \cw{SECTORS}.\\
-  \cw{SIDEDEFS} & All sides referenced by \cw{LINEDEFS}. A line can have one or two sides.\\
+  \cw{SIDEDEFS} & All sides referenced by \cw{LINEDEFS}. A line can have 1 or 2 sides.\\
   \cw{VERTEXES} & All vertices in the current map.\\
   \cw{NODES} & A binary tree allowing efficient sorting of segments. \\
   \cw{SSECTORS} &  The sub-sectors, leaves of the binary tree in \cw{NODES}.  \\
@@ -63,10 +63,10 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \cw{SECTORS} &  Referenced by \cw{SSECTORS}. Specifies ceiling/floor height, texture, and lighting properties.\\
   
   \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map into 128x128 blocks. Provides fast access to all \cw{LINEDEFS} neighboring any point on the map. Detailed on page \pageref{blockmapdetails} \\
-  \cw{REJECT} &  A.I. acceleration data structure to detect when monsters can see a player.\\
+  \cw{REJECT} &  Line of Sight acceleration data structure.\\
   \toprule
   \cw{DP.*} &  Sound effects in PC Speaker format.\\
-  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11,025Hz format.\\
+  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11kHz (22Khz supported but used only for \doomii{}'s Super Shootgun)\\
   \cw{D\_.*} & Music in MUS format (a slightly altered MIDI format).\\
   \toprule
   \cw{ENDOOM} & Text-mode exit screen to entice players to buy the full version. \\

@@ -16,6 +16,6 @@ All map traversals are done with an abstract method \cw{P\_PathTraverse} which t
 \par
 \ccode{P_PathTraverse.c}
 \par
-Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so that only lines and things are considered during traversal. The block coordinates of any map coordinate are easy to obtain via modulo 128. To detect collisions with things, their block coordinates are updated each time they change position.\\
+Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so that only lines and things are considered during traversal. The block coordinates of any map coordinate are easy to obtain via a divide by 128 (optimized as $\gg$ 7). To detect collisions with things, their block coordinates are updated each time they change position.\\
 \par
 \ccode{P_AimLineAttack.c}
