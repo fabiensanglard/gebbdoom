@@ -114,15 +114,16 @@ Not all automaton state changes can be inferred from the transition array. In th
 \pagebreak
 
 \subsection{Optimization}
-All monsters in a level are initialized in the \cw{spawnstate}  -- this is usually a cycling two frame animation (monsters do no have a standing script, they "walk on the spot"), calling the \cw{A\_Look} function to attempt to find the player. Looking for the player constantly proved to be an unacceptable level of load on the CPU. Even using the blockmap structure to speed up collision detection it still meant hundreds of rays to cast, twenty five times per second which resulted in thousands of instructions.\\
+Monsters constantly request collision tests. Even the simple \cw{SPAWN} state, for which a two frame animation is cycling (monsters do no have a standing script, they "walk on the spot") repeatedly calls \cw{A\_Look} function to attempt to located the player. Furthermore, once activated, monsters need path-finding and range attack tests. The calculations proved to be an unacceptable level of load on the CPU. Even using the blockmap structure to speed up collision detection it still meant hundreds of rays to cast, twenty five times per second which resulted in thousands of instructions.\\
 \par
-To solve this problem, another data structure was introduced with \cw{doombsp}. For each monster, a list of visible sectors from the spawning position is generated and stored in a bit array\footnote{This approach later morphed into the Potentially Visible Set which was instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass sight detections for this monster entirely.\\
+To solve this problem, another data structure was introduced with \cw{doombsp}. Each sector visibility is precomputed to allow impossible collision to be rejected early. The visibility data is stored in a bit array\footnote{This approach later morphed into the Potentially Visible Set which was instrumental to Quake engine.}. This dataset is packed into a matrix of size $num\_sectors^2/8$ and stored in a \cw{REJECT} lump. At runtime, the engine just compares the player's current sector with a monster's sector to potentially bypass sight detections for this monster entirely.\\
 \par
 \drawing{reject_explained}{}
 % Regardless of the monsters, the base state machine looks like this but it tuned based on custom functions called in some states (e.g: \cw{A\_SpidRefire}, \cw{A\_CyberAttack}, and \cw{A\_BrainExplode}).\\
 % \par
 % \pngdrawing{automate}{}
-Figure \ref{reject_explained} features three sectors with five monsters and one player. The engine needs only to run one monster's I.A. seeking for the player since the later is in sector \circled{1}. All four others monsters are "rejected" until the player most inside sector \circled{3}. The table is only used for sight. Monsters will still hear the player since sound is cheaper to propagate.\\
+\vspace{-7pt}
+Figure \ref{reject_explained} features four sectors with five monsters and one player in sector \circled{A}. The engine needs only to run expensive line of sight calculations for the monster in sector \circled{B}. All four others monsters are "rejected" via a cheap lookup. The table is only used for sight. Monsters will still hear the player since sound is cheaper to propagate.\\
 \par
 \trivia{With "unlimited" CPU power, modern Node Builder don't build \cw{REJECT} anymore.}
 

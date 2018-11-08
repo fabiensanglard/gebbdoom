@@ -78,7 +78,7 @@ The main issue at hand was to maintain the same rendering speed despite relaxing
 \par
 \tcode{cloc_doombsp.txt}
 \par
- \trivia{\cw{DoomED.app}, \cw{doom} and \cw{doombsp} were tightly integrated. One button in the editor was enough to save the map, invoke the node builder and start the game with the WIP map.}
+ \trivia{\cw{DoomED.app}, \cw{doom} and \cw{doombsp} were tightly coupled. One button in the editor was enough to save the map, invoke the node builder and start the game with the WIP map.}
 
 
 %
@@ -111,7 +111,7 @@ Blockmap slicing where each block is 128x128 to accelerate collision detection.\
 \includegraphics[width=\textwidth]{drawings/E1M1_sides_with_player.pdf}
 \end{figure}
 \par
-The REJECT data structure based on enemies' and monsters' lines of sight.
+The REJECT data structure to speed up enemies' and monsters' lines of sight calculations.
 \pagebreak
 
 
@@ -141,7 +141,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and stores them in a \cw
    \cw{SEGS} & Portion of lines cut due to Binary Space Partitioning (see page \pageref{Binary Space Partitioning: Theory}).\\
    \cw{SSECTORS} & Set of \cw{SEGS} representing a convex subspace.\\
    \toprule
-   \cw{REJECT} & Sector-to-sector matrix of what monsters can potentially see in their spawing position.\\
+   \cw{REJECT} & Sector-to-sector visibility matrix to speed-up line of sight calculations.\\
    \toprule
    \cw{BLOCKMAP} & 128x128 grid partition of the map \cw{LINEDEFS} to accelerate collision detection.\\
    \toprule
