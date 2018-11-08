@@ -30,11 +30,11 @@ While there were many products which could address this, two companies in partic
 Under DOS the normal way to perform a "system call" is to use a software interrupt instruction with parameter \cw{21h}. In C programming, this was abstracted away by the header \cw{DOS.H} which performed all the lower level work behind the scenes.\\
 \par
 \drawing{realmode_app_limk}{}
-To allow the app to run in one mode and the OS to run in another, the two worlds had to be bridged. A middle layer called the "DOS Extender" -- able to run in both modes -- inserted itself between the program and the operating system.\\
+To allow the app to run in one mode and the OS to run in another, the two worlds had to be bridged. A middle layer called the "DOS extender" -- able to run in both modes -- inserted itself between the program and the operating system.\\
 
 \par
 \rawdrawing{realmode_app_limk_extender}
-Upon startup, the DOS Extender would place hooks into the OS's Interrupt Vector Table and place its own routines there. From an application's standing point everything was transparent, the developer had no code to change. To perform a system call not hooked by the extender (e.g. \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register requests to 16-bit so IVT routines would understand them.\\
+Upon startup, the DOS extender would place hooks into the OS's Interrupt Vector Table and place its own routines there. From an application's standing point everything was transparent, the developer had no code to change. To perform a system call not hooked by the extender (e.g. \cw{int 33h} to read mouse inputs), the extender offered a special interface called DPMI on interrupt \cw{31h} which took care of translating 32-bit register requests to 16-bit so IVT routines would understand them.\\
 \par
 \trivia{DPMI (DOS Protected Mode Interface) was originally created to allow Windows 3.0 to run 32-bit applications and to be compatible with a joint operating system project with IBM called OS/2.}\\
 \par

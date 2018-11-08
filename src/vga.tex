@@ -13,7 +13,7 @@ During the early 90s, a vast majority of PC video games used the VGA in tweaked 
 \cscaledimage{0.9}{vga_ram_screen_layout}{\label{vga_ram_screen_layout}}
 \par
 
-Notice how the first pixel \cw{0} is stored in bank 0, pixel \cw{1} is stored in bank 1 and so on. With a horizontal resolution of 320 columns, 80 non-horizontally adjacent yet vertically adjacent pixels are stored in each bank\footnote{The design of the VGA is a huge topic covered extensively in \it{Game Engine Black Book: Wolfenstein 3D}.}.\\
+Notice how the first pixel \cw{0} is stored in bank 0, pixel \cw{1} is stored in bank 1 and so on. With a horizontal resolution of 320 columns, 80 non-horizontally adjacent yet vertically adjacent pixels are stored in each bank\footnote{The design of the VGA are a huge topic covered extensively in \it{Game Engine Black Book: Wolfenstein 3D}.}.\\
 \par
 To access the 256 KiB of VRAM, IBM had established a hard-coded memory mapping in RAM from \cw{0xA0000} to \cw{0xAFFFF}. An eye accustomed to hexadecimal will immediately notice that \cw{0xFFFF} translates to 64KiB addresses, far fewer than the total available VRAM.\\
 \par
@@ -33,7 +33,7 @@ Another difficulty came from the differing aspect ratios of the mode Y framebuff
 % }
 \vspace{-10pt}
 \par
-In figure \ref{circle_framebuffer} a programmer drew a circle into the framebuffer, notice the $ 320/200 = 1.6 $ aspect ratio.\\
+In figure \ref{circle_framebuffer} a programmer drew a circle into the framebuffer; notice the $ 320/200 = 1.6 $ aspect ratio.\\
 \par
 \cfullimage{circlescreen.png}{}
 \par
@@ -62,7 +62,7 @@ The first improvement came from VGA chip manufacturers. Sensing that demand for 
 Some manufacturers such as Cirrus Logic even adopted a fabless business model where they sold semiconductor designs while outsourcing the fabrication.
 
 
-One optimization among many others was to leverage the fact that VGA RAM was more often subject to write operations instead of reads. Using a FIFO SDRAM cache to buffer operations and return right away tremendously improved screen blitting. Peeking at a card from one of the most notorious manufacturers of the era (Tseng Labs's), the ET4000 gives a good overview of what a customer could purchase.\\ 
+One optimization among many others was to leverage the fact that VGA RAM was more subject to write operations than reads. Using a FIFO SDRAM cache to buffer operations and return right away tremendously improved screen blitting. Peeking at a card from one of the most notorious manufacturers of the era (Tseng Labs), the ET4000 gives a good overview of what a customer could purchase.\\ 
 \par
 \cfullimage{vlb_cards/tseng_lans_et4000_w32_vesa_local_illetw32.png}{ILLETW32 Britek Electronics. Photo courtesy \cw{http://www.amoretro.de/}}
 \par
@@ -82,11 +82,11 @@ As much as the video card manufacturer could optimize their product, there was s
 \par
 \drawing{bus_isa}{ISA Bus}
 \par
-Fed up with the state of things, hardware manufacturers teamed up to form VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated -- the protocol was exactly the Intel 486 Bus Unit protocol which made it a frictionless medium.\\
+Fed up with the state of things, hardware manufacturers teamed up to form VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated -- the protocol was exactly the Intel 486 Bus Unit protocol, which made it a frictionless medium.\\
 \par 
 The VLB doubled ISA's bus data lines to 32 bits and increased its frequency to 33 Mhz, making the VL-Bus up to 10x faster when compared to the slowest ISA bus.\\
 \par
-The chip design for the VLB controller was relativity simple because many of the core instructions (Interrupts and port-mapped I/O) were still hosted by the ISA circuits already on the motherboard, while memory-mapped I/O and DMA data paths were on the same local bus as the one used by the CPU (see figure \ref{bus_vlb}). The speed of the system data bus was based on the clock rate of the motherboard's crystal which meant the bus ran at the same speed as the CPU.\\
+The chip design for the VLB controller was relativity simple because many of the core instructions (interrupts and port-mapped I/O) were still hosted by the ISA circuits already on the motherboard, while memory-mapped I/O and DMA data paths were on the same local bus as the one used by the CPU (see figure \ref{bus_vlb}). The speed of the system data bus was based on the clock rate of the motherboard's crystal which meant the bus ran at the same speed as the CPU.\\
 \par
 \drawing{bus_vlb}{VLB Bus}
 \label{vlbarchitecture}

@@ -33,7 +33,7 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 
 
 
-On paper, the i860 was impressive and a serious competitor. Relying on an heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very Long Instruction Word.}. It had three units, X, Y, and Z allowing parallel processing and when used efficiently could outperform the Intel 486.\\
+On paper, the i860 was impressive and a serious competitor. Relying on a heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very Long Instruction Word.}, it had three units (X, Y, and Z) allowing parallel processing and when used efficiently could outperform the Intel 486.\\
 \par
 But whereas later CPUs such as the Pentium chose to hide the chip's complexity by automatically executing instructions in parallel when possible, the i860's architecture mandated direct manipulation of its parallel pipelines. The chip did nothing behind the scenes and relied on compiler writers to sequence instructions appropriately.\\
 \par
@@ -42,7 +42,7 @@ Unfortunately, compiler technology was not there yet. Without Intel's full backi
 \par
 \cscaledimage{0.85}{i486DX.png}{}
 \par
-Figure \ref{i486DX.png} shows the Intel 486 die and the 1,180,235 transistors inside its package. Around this time period, Intel started to stamp its CPU with trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
+Figure \ref{i486DX.png} shows the Intel 486 die and the 1,180,235 transistors inside its package. Around this time period, Intel started to stamp its CPU with a trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
 \par
 \trivia{The i860 played a part in \doom{} anyway since it was used in the NeXTDimension's video processing boards.}
 
@@ -205,7 +205,7 @@ Upon receiving a 32-bit address access request, the cache controller splits it i
 \item Update the flag F in the directory entry to update the LRU value.
 \end{enumerate}
 \par
-A memory address's content can be in either of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
+A memory address's content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
@@ -270,7 +270,7 @@ Intel managed to improve performance by 33\% with its line of 80486 OverDrive ch
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 \par
-On the chart above, notice how a 486DX2-66Mhz is faster than a 485DX-50Mhz but not the full 20\% frequency could have made us expect. This is because the DX2 bus runs at 33Mhz while on the DX, both the CPU and bus run at 50Mhz.
+On the chart above, notice how a 486DX2-66Mhz is faster than a 485DX-50Mhz but not by the full 20\% that frequency would make us expect. This is because the DX2 bus runs at 33Mhz while on the DX, both the CPU and bus run at 50Mhz.
 
 
 
@@ -314,12 +314,12 @@ If you are holding a physical 9.25''x7.5'' copy of this book, the CPU packaging 
 
 
 
-On the previous page, the transistor layout differs between the data path, which was hand-crafted and the control path, which was created with CAD tools built especially for the 486\footnote{Source: Coping with the Complexity of Microprocessor Design at Intel -- A CAD History.}.\\
+On the previous page, the transistor layout differs between the data path, which was hand-crafted, and the control path, which was created with CAD tools built especially for the 486\footnote{Source: Coping with the Complexity of Microprocessor Design at Intel -- A CAD History.}.\\
 \par
 \subsection{Programming the 486}
 With the architecture in mind we can now understand how a programmer could take best advantage of the 486. The good news was that most of the performance improvement was the characterized free-lunch of the 90s. The exact same binary would run twice as fast on the new CPU.\\
 \par
-Apart from a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cacheline and maximized time and space locality\footnote{And avoided branching. Without a branch predictor, \cw{jmp}s are ignored and usually incur a two cycle stall.}, the CPU would fly in processing integers. Floating-point operations had improved by a factor of 2 compared to the i386's FPU (i387). In fact, floating point operations had improved so much that the i487 FPU could \cw{FMUL} faster than the i386 could \cw{IMUL}.\\
+Apart from a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, as long as the programmer was mindful of the cachelines and maximized time and space locality\footnote{And avoided branching. Without a branch predictor, \cw{jmp}s are ignored and usually incur a two cycle stall.}, the CPU would fly in processing integers. Floating-point operations had improved by a factor of 2 compared to the i386's FPU (i387). In fact, floating point operations had improved so much that the i487 FPU could \cw{FMUL} faster than the i386 could \cw{IMUL}.\\
 \par
 \begin{figure}[H]
 \centering
