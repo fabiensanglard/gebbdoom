@@ -6,14 +6,14 @@
 \end{wrapfigure}
 
 
-The DOS extender was magical but it was hard to setup in a standalone product. A bootstrap which would locate \cw{DOS4GW.EXE}, the program to run and setup both required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. The ramp up time was significant and raised the barrier to entry. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable. The solution would once again come from the Great White North.\\ 
+The DOS extender was magical but hard to set up in a standalone product. A bootstrap which would locate \cw{DOS4GW.EXE} and the program to run, and set up both, required multiple steps and close to 100 lines of C code\footnote{Source: Watcom C/C++ Programmer's Guide, "7.1.1 The Stub Program"}. The ramp-up time was significant and raised the barrier to entry. What was really needed was an integrated environment where the compiler and the linker would take care of bundling the extender and the application together into one executable. The solution would once again come from the Great White North.\\ 
 \par
 
-The Watcom compiler project was started in 1979 at the University of Waterloo in Ontario, Canada. Initially only supporting BASIC, it was improved over the years by students with support for new OS and languages. In 1988, three PH.Ds, Fred Crigger, Ian McPhee, and Jack Schueler made it the first C compiler running on IBM-PC.\\
+The Watcom compiler project was started in 1979 at the University of Waterloo in Ontario, Canada. Initially only supporting BASIC, it was improved over the years by students with support for new OSes and languages. In 1988, three Ph.Ds (Fred Crigger, Ian McPhee, and Jack Schueler) made it the first C compiler to run on an IBM PC.\\
 \par
-Sensing commercial potential, they incorporated Watcom International Corporation and picked a lightning for their logo to advertise their focus on performance. Five years later, in 1993, Watcom C had considerably improved. The latest version (9.0), retailing for "only" \$639\footnote{Inflation adjusted, USD\$639 in 2018. Nowadays compiler are "free".},  was deemed the best available on MS-DOS\footnote{Editor's choice -- PC Magazine, April 1995.}. \\
+Sensing commercial potential, they incorporated Watcom International Corporation and picked a lightning bolt for their logo to advertise their focus on performance. Five years later, in 1993, Watcom C had considerably improved. The latest version (9.0), retailing for "only" \$639\footnote{Inflation adjusted, USD\$639 in 2018. Nowadays compilers are "free".}, was deemed the best available on MS-DOS\footnote{Editor's choice -- PC Magazine, April 1995.}. \\
 \par
-Not only were they talented programmers, they also excelled at marketing their products. In the early 90s, a reader could not open a computer magazine without finding a full page advertising Watcom's compiler. All ads ostensibly underlined the presence of a DOS Extender which freed programmer from the hated 16-bit mode and "Unleashed 32-bit power".
+Not only were they talented programmers, they also excelled at marketing their products. In the early 90s, a reader could not open a computer magazine without finding a full page advertising Watcom's compiler. Every ad underlined the presence of a DOS extender that freed programmers from the hated 16-bit mode and "unleashed 32-bit power".
 \par
 \label{watcomad}
 \fullimage{watcom_ad.png}
@@ -21,15 +21,15 @@ Not only were they talented programmers, they also excelled at marketing their p
 
 
 \vspace{-4mm}
-Not only were they in the press, they also advertised online, such as on BBSes and Usenet:.\\
+Not only were they in the press, they also advertised online, such as on BBSes and Usenet:\\
 \par
 \fq{WATCOM C/C++ will produce code which is at *least* twice as fast as your current 16-bit compiler, and more typically around five times as fast.}{rec.games.programmer}\\
 \par
-\trivia{One of the many marketing tricks up Watcom's sleeves was to never have released a Watcom v1.0 or even a Watcom v2.0. They started directly at "version 6". This was at least one version ahead of their competitors (Borland and Microsoft). A higher number unconsciously carried a notion of "more advanced than its competitor". Version one was also likely to feature many bugs whereas the sixth installment was likely to have been battle-hardened.}\\
+\trivia{One of the many marketing tricks up Watcom's sleeves was to never have released a Watcom v1.0 or even a Watcom v2.0. They started directly at "version 6". This was at least one version ahead of their competitors (Borland and Microsoft). A higher number unconsciously carried a notion of "more advanced than its competitors". Version one was also likely to feature many bugs whereas the sixth installment was likely to have been battle-hardened.}\\
 
 
 \subsubsection{Popularity}
-id Software were not the only team to value Watcom's solution. Many other studios entrusted it with their code, and as a result many emblematic software of the 90s was built with Watcom technology:\\
+id Software were not the only team to value Watcom's solution. Many other studios entrusted it with their code, and as a result much well-known software of the 90s was built with Watcom technology:\\
 \begin{enumerate}
 \item id Softare 
        \begin{enumerate}
@@ -59,12 +59,12 @@ id Software were not the only team to value Watcom's solution. Many other studio
 
 
 \subsection{ANSI C}
-Not only did the Watcom/extender combo made programming simpler, it also made programs run faster. There was another aspect of protected-mode programming -- less obvious but very important -- that had a significant impact on \doom.\\
+Not only did the Watcom/extender combo make programming simpler, it also made programs run faster. There was another aspect of protected-mode programming -- less obvious but very important -- that had a significant impact on \doom.\\
 \par
-To bring C to the world of PC/DOS's real mode and accommodate for segments manipulation, the language had been "augmented". A example from Wolfenstein 3D Memory Manager summarize well what "C for DOS" looked like.\\
+To bring C to the world of PC/DOS's real mode and accommodate for segment manipulation, the language had been "augmented". A example from Wolfenstein 3D's memory manager shows what "C for DOS" looked like.\\
 \par
 \ccode{real_mode_c.c}
 \par
-Notice the wart keywords such as \cw{near}, \cw{far}, macros like \cw{FP\_OFF} and \cw{FP\_SEG}, and the \cw{DOS.H} library functions such as \cw{mallocnear}, \cw{coreleft}, and \cw{farcoreleft}. Neither "C for DOS" nor the I/O functions were portable. As a result, It was impossible to take a UNIX program and compile it directly on DOS. Using the Watcom compiler, C could be written following the ANSI standard which opened the door to authoring programs on different machines running a different operating system.\\
+Notice the wart keywords such as \cw{near}, \cw{far}, macros like \cw{FP\_OFF} and \cw{FP\_SEG}, and the \cw{DOS.H} library functions such as \cw{mallocnear}, \cw{coreleft}, and \cw{farcoreleft}. Neither "C for DOS" nor the I/O functions were portable. As a result, It was impossible to take a UNIX program and compile it directly on DOS. Using the Watcom compiler, C could be written using the ANSI standard, which opened the door to authoring programs on different machines running a different operating system.\\
 \par
  One company in particular would end up catching id Software's attention. Its name was \NeXTns.
