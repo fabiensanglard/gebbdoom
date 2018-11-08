@@ -135,13 +135,13 @@ Throughout the '90s, bandwidth steadily improved. Upon \doom{}'s release most mo
 \end{figure}
 \footnotetext{Bit rate increased at the expense of latency. A 9600 baud modem played \doom{} better than the default configurations on 56kbit modems. Quake needed more bandwidth than \doom{}'s controller replication, so it became a different tradeoff.}
 
-
+\vspace{-10pt}
 \par
-On top of the V.XX hardware communication layer, modems were driven using Hayes commands\footnote{A nice abstraction layer, but not   all modems were the same and \doom{} has a long file with initialization parameters for 49 different modems.}. Notice how the command \cw{ATDT} was translated to DTMF in the previous spectrogram.\\% in figure \ref{spectrogram2.png} on page \pageref{spectrogram2.png}.\\
+On top of the V.XX hardware communication layer, modems were driven using Hayes commands\footnote{A nice abstraction layer, but \doom{} still has a long file with initialization parameters for 49 modems.}. Notice how the command \cw{ATDT} translated to DTMF in the previous spectrogram.\\% in figure \ref{spectrogram2.png} on page \pageref{spectrogram2.png}.\\
 
 \par
 {
-\setlength{\belowcaptionskip}{-10pt}
+% \setlength{\belowcaptionskip}{-30pt}
  \begin{figure}[H]
 
 \centering  
@@ -171,5 +171,5 @@ On top of the V.XX hardware communication layer, modems were driven using Hayes 
 \caption{AT layer dialog between caller and callee.}
 \end{figure}
 }
-\pagebreak
+
 \trivia{The fragility of these connections led to humorous ways to end a message. People would finish forum posts with "Hey! Wait! Don't pick up the ph\{\#`\$\{\%\&`+'\%NO CARRIER".}

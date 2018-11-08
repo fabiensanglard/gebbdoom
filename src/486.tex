@@ -210,7 +210,7 @@ A memory address's content can be in any of the four ways but always at the same
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
 \par
-\trivia{What about increasing the number of ways? What about the cache size? With 8 KiB of cache, four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two-ways cache yields a 14\% miss rate, four-ways give a 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment appears vividly once charted on a graph.}\\
+\trivia{What about increasing the number of ways or the cache size? With 8 KiB of cache, four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two-ways cache yields a 14\% miss rate, four-ways give a 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment is vivid once charted on a graph.}\\
 \par
 
 \rawscaleddrawing{0.9}{set_state_caches}
