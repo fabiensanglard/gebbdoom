@@ -2,11 +2,11 @@
 \section{2D Renderers (Drawers)}
 All "Drawers" in \doom{} were the work of  Dave Taylor. The self-proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. The code style and naming conventions are very different from John Carmack.
 \begin{itemize}
-\item Status Bar (\cw{ST\_Drawer()})
-\item Automap (\cw{AM\_Drawer})
 \item Intermission (\cw{WI\_Drawer()})
-\item HUD (\cw{HU\_Drawer()})
+\item Status Bar (\cw{ST\_Drawer()})
 \item Menus (\cw{M\_Drawer()})
+\item HUD (\cw{HU\_Drawer()})
+\item Automap (\cw{AM\_Drawer})
 \item Transition screens (\cw{wipe\_StartScreen()})
 \end{itemize} 
 \par
@@ -32,7 +32,7 @@ Once the intermission is finished, method \cw{WI\_unloadData} does not free the 
 \par
 
 \subsection{Status Bar}
-The design of the status bar is similar to the Intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets'. There are seven widgets, from left to right: ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four ammo counts.\\
+The design of the status bar is similar to the Intermission Drawer. Contained in \cw{st\_lib.c} and \cw{st\_stuff.c}, the code calls its elements "widgets". There are seven widgets, from left to right: ready weapon ammo, health percentage, arms, faces, armor percentage, keyboxes, and all four ammo counts.\\
 \par
 \fullimage{stbar.png}
 \par

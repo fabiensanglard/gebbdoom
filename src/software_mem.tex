@@ -50,7 +50,7 @@ The rover will follow the chain and find block \cw{F}, deallocate it (even thoug
 \par
 \rawdrawing{zalloc_cache_after}
 \par
-The memory manager has many other features over libc's \cw{malloc}. The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). \cw{Z\_Free} is able to detect mismanagement such as double free. A dump system accessed via \cw{Z\_DumpHeap} allow memory inspection. There is even an integrity checker \cw{Z\_CheckHeap} which verify all blocks "touch" each others and that there are no two consecutive free blocks.\\
+The memory manager has many other features over libc's \cw{malloc}. The field \cw{id} is used as a canary marker to detect memory overflow (the value should always be \cw{ZONEID}). \cw{Z\_Free} is able to detect mismanagement such as double free. A dump system accessed via \cw{Z\_DumpHeap} allows memory inspection. There is even an integrity checker \cw{Z\_CheckHeap} which verifies that all blocks "touch" each others and there are no two consecutive free blocks.\\
 \par
 \trivia{Blocks can be "retagged" via the function \cw{Z\_ChangeTag}. It is frequent for the engine to allocate memory blocks with a \cw{PU\_STATIC} tag while working with assets only to change the tag to \cw{PU\_CACHE} after it is done with it. This allows memory to be freed if needed while potentially avoiding a round trip to the HDD if the block is needed again and is still in RAM.}
 % \trivia{The allocator code is not entirely common to both DOS and \NeXT. The RAM system is need to provide \cw{I\_ZoneBase}.\\

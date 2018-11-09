@@ -8,7 +8,7 @@ Doom's 3D renderer is an uncanny combination of proper 3D techniques and screen 
 	\item Flats (ceilings and floors which are always horizontal).
 	\item Things (also called "Masked") which are not only monsters, weapons, ammo, and sprites but also partially-transparent walls.
 \end{itemize}
- Its most breathtaking characteristic is its ability to render walls and flats with zero overdraw. Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.\\
+ Its most breathtaking characteristic is its ability to render walls and flats with zero overdraw (each pixel is written exactly once). Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.\\
 \par
 The life of a 3D frame can be summarized as follows:
 \begin{itemize}

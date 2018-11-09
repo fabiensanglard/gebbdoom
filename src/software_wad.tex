@@ -38,7 +38,7 @@ Lumps are identified by a unique name made of up to eight characters (which conv
 \par
 \ccode{lumpinfo_t.c}{}
 \par
-The were more than thirty types of lump. Those associated with maps and music followed a naming convention so they could be grouped together. Not all lumps had content, some were only used to mark the beginning and end of groups of lumps.
+There were more than thirty types of lump. Those associated with maps and music followed a naming convention so they could be grouped together. Not all lumps had content, some were only used to mark the beginning and end of groups of lumps.
 \pagebreak
 
 \begin{figure}[H]
@@ -48,9 +48,9 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \textbf{Lump Name} &  \textbf{Usage} \\
    
   \toprule 
-  \cw{PLAYPAL} & The fourteen palettes used at runtime. Detailed on page \pageref{label_palettes} \\
+  \cw{PLAYPAL} & The fourteen palettes used at runtime. Detailed on page \pageref{label_palettes}. \\
   \cw{COLORMAP} & Translation tables to simulate 32 shades of each of the 256 colors. Detailed on page \pageref{diminishedlightning}. \\
-  \cw{DEMO?} &  Recordings of game sessions by id Software members. Played on game startup as demo.\\
+  \cw{DEMO?} &  Recordings of game sessions by id Software members. Played on game startup as "arcade style" demo.\\
   \toprule
   \cw{EXMY} & Zero-sized lump serving as marker for the beginning of a series of map lumps. \cw{X} is the episode number and \cw{Y} is the map id. The \cw{MAPXY} variant was used later for the same purpose.\\
   \cw{THINGS} & All monsters, weapons, ammo, and sprites in the current map.\\
@@ -62,11 +62,11 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \cw{SEGS} &  The segments pointed to by the \cw{SSECTORS} lumps.\\
   \cw{SECTORS} &  Referenced by \cw{SSECTORS}. Specifies ceiling/floor height, texture, and lighting properties.\\
   
-  \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map into 128x128 blocks. Provides fast access to all \cw{LINEDEFS} neighboring any point on the map. Detailed on page \pageref{blockmapdetails} \\
+  \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map into 128x128 blocks. Provides fast access to all \cw{LINEDEFS} neighboring any point on the map. Detailed on page \pageref{blockmapdetails}. \\
   \cw{REJECT} &  Line of Sight acceleration data structure.\\
   \toprule
   \cw{DP.*} &  Sound effects in PC Speaker format.\\
-  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11kHz (22Khz supported but used only for \doomii{}'s Super Shootgun)\\
+  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11kHz (22Khz supported but used only for \doomii{}'s Super Shootgun).\\
   \cw{D\_.*} & Music in MUS format (a slightly altered MIDI format).\\
   \toprule
   \cw{ENDOOM} & Text-mode exit screen to entice players to buy the full version. \\
@@ -74,8 +74,8 @@ The were more than thirty types of lump. Those associated with maps and music fo
   \cw{GENMIDI} &  Bank of instrument data to play MIDI music with an OPL audio chip.\\
   \cw{PNAMES} &  Lists all lump names used as wall patches.\\
   \cw{TEXTURE1} &  A dictionary of all wall textures lumps referenced by \cw{SIDEDEFS}. Used to speed up access and allocation at runtime.\\  
-  \cw{F\_START} &  Zero-sized lump marking the beginning of flats textures.\\  
-  \cw{F\_END} &   Zero-sized lump marking the end of flats textures.\\  
+  \cw{F\_START} &  Zero-sized lump marking the beginning of flat textures.\\  
+  \cw{F\_END} &   Zero-sized lump marking the end of flat textures.\\  
   \cw{S\_START} & Zero-sized lump marking start of item/monster "sprites" section. \\  
   \cw{S\_END} & Zero-sized lump marking end of item/monster "sprites" section. \\  
   \cw{P\_START} & Zero-sized lump marking the beginning of wall textures.\\
@@ -94,12 +94,12 @@ The were more than thirty types of lump. Those associated with maps and music fo
 
 
 \subsection{Lumps} \label{wad_detailled}
-The lump system is the less glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
+The lump system is the least glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
 Upon starting up, it looks at every WAD archive provided and indexes every lump found into a gigantic array of \cw{lumpinfo\_t}s cunningly named \cw{lumpinfo}. 
 If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lump info} array first.\\
 \par
-In the next example, shareware \doom{} was started with the command-line:\\
+In the next example, \doom{} was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par
@@ -113,18 +113,18 @@ Requests to the lump system are sent via a \cw{char[8]} name. The first task is 
 \par
 In the code listing above, you will notice that the index is searched starting from the end. This is done intentionally to allow modders to provide their own assets in WAD archives to overwrite id Software's lumps.\\
 \par
-The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable} -- with a simple command-line.\\
+The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable.} -- with a simple command-line.\\
 \par
 \trivia{To differentiate official WADs from fan-made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan-made WADs were requested to use \cw{PWAD}.}\\
 \par
 Once a lump location has been found, a memory block is requested from the memory allocator. The content of the lump is copied to RAM and returned to the caller. \\
 \par
-The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot assigned itself as the \cw{user} of the memory block, meaning the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{1} \& \cw{2} are not in the cache and will request WAD access.\\
+The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot assigned itself as the \cw{user} of the memory block, meaning the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{0} \& \cw{2} are not in the cache and will request WAD access.\\
 \par
 \scaleddrawing{0.9}{lumpcache}{Lump \cw{1} is in the cache. Lumps \cw{0} and \cw{2} are not.}
 \par
 \ccode{W_CacheLumpName.c}
-
+\pagebreak
 
 id Software sent the file format to a few individuals in the community. Within a month, the "Unofficial DOOM specs", describing the WAD format inside out, was online. With the format known and a way to inject new lumps, the modding community flourished.\\
 \par

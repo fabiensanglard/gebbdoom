@@ -1,7 +1,7 @@
 \section{Architecture}
 Before diving into the code and its structure, let's take some time to understand how id's developers worked. Before \doom, all work was done on a PC. Code was written and compiled, and the resulting executable started on the same machine. With the introduction of \NeXT workstations into the mix, the process had to be different.\\
 \par
-A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on an Unix system was stability. Developers never lost their work due to IDE crashes\footnote{With Borland C++, crashes were a daily occurrence (source: correspondence with John Carmack).}.\\
+A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXT. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld} and the executable ran on the NeXTStation. The biggest advantage of working on a Unix system was stability. Developers never lost their work due to IDE crashes\footnote{With Borland C++, crashes were a daily occurrence (source: correspondence with John Carmack).}.\\
 \par
 Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair over to the PC where the \NeXT workstation's hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time, using \cw{WATCOM.EXE} and the \cw{WLINK.EXE} linker which generated \cw{DOOM.EXE}. \\
 \par
@@ -25,7 +25,7 @@ In a war where programmers paid the price, no side had any incentive toward peac
 
 
 
-If the order of bits in a byte was in universal agreement, but the order of bytes in larger structure such as short (16 bits) or int (32 bits) was differently interpreted based on the vendor's internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{01234567}.\\
+If the order of bits in a byte was in universal agreement, but the order of bytes in larger structure such as short (16 bits) or int (32 bits) was differently interpreted based on the vendor's internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{0x01234567}.\\
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
@@ -88,7 +88,7 @@ The beauty of this architecture is that once the platform-specific systems are w
 \par
 Because portability was not an afterthought but an integral part of the development process, \doom{}'s code layering is never violated. This rigorous design explains partly why \doom{} has been ported to so many systems: there is very little code to write\footnote{"I ported DOOM to the Nintendo Switch in 45 minutes" by Modern Vintage Gamer on \cw{youtube.com}.}.\\
 \par 
-Additionally, working with multiple compilers such gcc and Watcom not only surfaced many bugs, it also ensured the code would be ANSI standard compliant.\\
+Additionally, working with multiple compilers such as gcc and Watcom not only surfaced many bugs, it also ensured the code would be ANSI standard compliant.\\
 \vspace{-15pt}
 \section{Diving In!}
 Just before finally jumping in, here are a few stats gathered with the \cw{cloc} tool, just to know what volume of code to expect. There is almost twice as much code as in Wolfenstein 3D.\\
@@ -169,7 +169,7 @@ The developers did not try to hide what was going on during startup. \doom's ope
 \par
 The startup step was fairly fast except for the excruciating renderer initialization in \cw{R\_Init} which took forever to complete. It featured not only a line but also a progress bar made up of dots which often required several minutes to complete on the full version depending on the machine's hard drive access time. The details and meaning behind each dot is explained in the appendix on page \pageref{dots_explained}.\\
 \par
-\trivia{The \cw{-devparm} command line parameter shows more text output. One of the is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old speakers emitted when they were turned on. In an era before Plug\&Play and the Internet, it was an achievement itself to configure the sound card's mysterious IRQ and DMA parameters.}\\
+\trivia{The \cw{-devparm} command line parameter shows more text output. One of these is "\cw{I\_StartupSound: Hope you hear a pop}"~which refers to the sound old speakers emitted when they were turned on. In an era before Plug\&Play and the Internet, it was an achievement itself to configure the sound card's mysterious IRQ and DMA parameters.}\\
 % \par
 \begin{figure}[H]
 \fakedosoutput{doom_dos_start.txt}
@@ -235,7 +235,7 @@ Signed integers use two's complement where all bits represent a positive value e
 \par
 
 
-For certain types of calculation, \doom{} resorts to using a different layout. The signed fixed-point format used is \cw{16:16} where bit 31 encodes a negative integer ($-2^{15}$), bits [30-16] store a positive integer, and bits [15-0] are used to store the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{All 32 bits set to 1 is the maximum value where the negative bit ($-2^{15}$) = -32768 is added to the positive values:  
+For certain types of calculations, \doom{} resorts to using a different layout. The signed fixed-point format used is \cw{16:16} where bit 31 encodes a negative integer ($-2^{15}$), bits [30-16] store a positive integer, and bits [15-0] are used to store the fractional part. The decimal range is [-32768.0 to 32767.9999847]\footnote{All 32 bits set to 1 is the maximum value where the negative bit ($-2^{15}$) = -32768 is added to the positive values:  
  ($2^{14} + 2^{13} + 2^{12} + 2^{11} + 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}+ 2^{-3}+ 2^{-4}+ 2^{-5}+ 2^{-6}+ 2^{-7}+ 2^{-8}+ 2^{-9}+ 2^{-10}+ 2^{-11}+ 2^{-12}+ 2^{-13}+ 2^{-14}+ 2^{-15}+ 2^{-16}$) = 32767.9999847.}.\\
 \par
 \begin{figure}[H]
