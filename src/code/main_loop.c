@@ -1,4 +1,4 @@
-void D_DoomMain (void} {
+void D_DoomMain (void) {
    FindResponseFile (); // Search doom.wad, doom1.wad...
    IdentifyVersion ();  // shareware or registered?
    

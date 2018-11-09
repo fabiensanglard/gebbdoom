@@ -6,7 +6,7 @@ int W_CheckNumForName (char *name) {
   int         v1,v2;
   lumpinfo_t  *lump_p;
 
-  // make the name into two integers for easy compares
+  // make the name into two integers for easy comparison
   strncpy (name8.s,name,8);
   name8.s[8] = 0;    // in case the name was a fill 8 chars
   strupr (name8.s);  // case insensitive
