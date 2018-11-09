@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.977366"
-     inkscape:cx="-80.005285"
+     inkscape:cx="333.35061"
      inkscape:cy="421.46853"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -171,34 +171,30 @@
          id="rect4362-3-8"
          style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     </g>
-    <g
-       transform="translate(7.8571139,524.28567)"
-       id="g4396-2-2">
-      <rect
-         ry="20"
-         y="14.076494"
-         x="40.428574"
-         height="154.28572"
-         width="205.71428"
-         id="rect4362-7-3"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <rect
-         ry="20"
-         y="14.076486"
-         x="270.42859"
-         height="154.28572"
-         width="205.71428"
-         id="rect4362-1-1-4"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <rect
-         ry="20"
-         y="14.076486"
-         x="500.42862"
-         height="154.28572"
-         width="205.71428"
-         id="rect4362-3-4-3"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4362-7-3"
+       width="205.71428"
+       height="154.28572"
+       x="48.285686"
+       y="538.36218"
+       ry="20" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4362-1-1-4"
+       width="205.71428"
+       height="154.28572"
+       x="278.28571"
+       y="538.36218"
+       ry="20" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4362-3-4-3"
+       width="205.71428"
+       height="154.28572"
+       x="508.28574"
+       y="538.36218"
+       ry="20" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
        d="m 37.571431,354.0765 777.142849,0"
@@ -587,13 +583,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="321.19354"
+       x="320.47391"
        y="595.39484"
        id="text4793-2"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4795-44"
-         x="321.19354"
+         x="320.47391"
          y="595.39484">v0.5 RELEASE</tspan></text>
     <text
        xml:space="preserve"
@@ -729,35 +725,35 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="300.81818"
+       x="300.09854"
        y="621.74847"
        id="text4977-8"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4979-8"
-         x="300.81818"
+         x="300.09854"
          y="621.74847">FPS CAPPED AT 35</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="540.47461"
+       x="538.87421"
        y="592.50098"
        id="text4977-5"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4979-86"
-         x="540.47461"
+         x="538.87421"
          y="592.50098">SOUNDS ADDED</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="549.69458"
+       x="548.09418"
        y="619.16144"
        id="text4977-5-3"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4979-86-1"
-         x="549.69458"
+         x="548.09418"
          y="619.16144">MUSIC ADDED</tspan></text>
     <text
        xml:space="preserve"
@@ -773,14 +769,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="281.89545"
-       y="648.10205"
+       x="281.17581"
+       y="646.10205"
        id="text4977-5-3-8-9"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4979-86-1-7-4"
-         x="281.89545"
-         y="648.10205">COLLISION DETECTION</tspan></text>
+         x="281.17581"
+         y="646.10205">COLLISION DETECTION</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -855,24 +851,6 @@
          x="523.04706"
          y="783.62207">DAVE TAYLOR HIRED</tspan></text>
     <rect
-       style="fill:#d3d3d3;fill-opacity:0.66350708;stroke:#000000;stroke-width:1.63132763;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5043-6"
-       width="435.41702"
-       height="25.256042"
-       x="271.05276"
-       y="66.258644" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="508.3074"
-       y="84.50367"
-       id="text4793-2-2-9-7"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4795-44-65-5-6"
-         x="508.3074"
-         y="84.50367">WOLF3D ATARI LYNX</tspan></text>
-    <rect
        style="fill:#d3d3d3;fill-opacity:0.66350708;stroke:#000000;stroke-width:1.82900011;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect5043-6-6"
        width="205.76218"
@@ -896,15 +874,19 @@
          y="624.14905">WOLF3D SNES</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="284.7225"
-       y="58.893555"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;text-anchor:middle;text-align:center;"
+       x="374.00839"
+       y="60.939873"
        id="text4793-2-2-9-7-1"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4795-44-65-5-6-9"
          x="284.7225"
-         y="58.893555">WOLF3D SNES DEAL</tspan></text>
+         y="60.939873">WOLF3D SNES DEAL</tspan><tspan
+         sodipodi:role="line"
+         x="284.7225"
+         y="82.814873"
+         id="tspan4380">SIGNED</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30.00000191px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -930,25 +912,6 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="282.53296"
-       y="235.54919"
-       id="text4793-2-2-5-1"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4795-44-65-0-5"
-         x="282.53296"
-         y="235.54919">MOVE </tspan><tspan
-         sodipodi:role="line"
-         x="282.53296"
-         y="257.42419"
-         id="tspan4316">FROM MADISON, WI</tspan><tspan
-         sodipodi:role="line"
-         x="282.53296"
-         y="279.29919"
-         id="tspan4314">TO     MESQUITE, TX</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="300.33759"
        y="955.22412"
        id="text4977-5-3-1-4"
@@ -960,13 +923,24 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="301.5744"
+       x="300.85477"
        y="674.45569"
        id="text4977-8-8"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4979-8-9"
-         x="301.5744"
+         x="300.85477"
          y="674.45569">BINARY PARTITION</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="514.06055"
+       y="232.45132"
+       id="text4793-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4795-0"
+         x="514.06055"
+         y="232.45132">FIRST NeXT BOUGHT</tspan></text>
   </g>
 </svg>

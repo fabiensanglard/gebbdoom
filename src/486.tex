@@ -18,7 +18,7 @@ The design had changed significantly compared to its predecessor. The pipeline w
 \pagebreak
 Like with the 386, Intel marketed its new CPU in two flavors. The DX version was the pure technology, while the SX version had an unavailable FPU. A decades-old diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full-blown 486DX that disabled the 486SX completely!}.\\
 \par
-If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to a competitor from the same company. The competing brother was named the "Intel 860".\\
+If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to face a competitor from the same company. The competing brother was named the "Intel 860".\\
 \par
 \fq{
 
@@ -126,7 +126,7 @@ To solve this problem, Intel broke down the three stage pipeline into five (Pref
 \subsection{Caching }
 Modifying the pipeline and making each stage run as fast as the others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386 which had only three stages. A frequently stalling 486 would have been slower than a 386. Halting processing due to missing data or instructions was to be avoided at all cost.\\
 \par
-It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPU performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\%/year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
+It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPUs performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\%/year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
 \par
 \vspace{2mm}
 \drawing{ram_vs_cpu}{}
@@ -149,7 +149,7 @@ Temporal locality relies on the iterative nature of programs. While in a loop, a
 By leveraging these two properties, a well-designed cache located between the CPU and the Bus Unit would often already contain the requested data or instruction, making a bus request unnecessary.\\
 \par
 \drawing{cpu_cache}{486 CPU-RAM communication elements}
-
+%  with Data line, Address line, and Control line
 
 
 \vspace{-20pt}
