@@ -149,7 +149,7 @@ Temporal locality relies on the iterative nature of programs. While in a loop, a
 By leveraging these two properties, a well-designed cache located between the CPU and the Bus Unit would often already contain the requested data or instruction, making a bus request unnecessary.\\
 \par
 \drawing{cpu_cache}{486 CPU-RAM communication elements}
-%  with Data line, Address line, and Control line
+
 
 
 \vspace{-20pt}
@@ -210,7 +210,7 @@ A memory address's content can be in any of the four ways but always at the same
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
 \par
-\trivia{What about increasing the number of ways or the cache size? With 8 KiB of cache, four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two-ways cache yields a 14\% miss rate, four-ways give a 10.5\% hit rate but going to eight only improves the percentage to 10\% and fully associative to 9\%. The decreasing return on investment is vivid once charted on a graph.}\\
+\trivia{What about increasing the number of ways or the cache size? With 8 KiB of cache, four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two-ways cache yields a 14\% miss rate and a 4-ways cache yields a 10.5\% miss rate. However, going up to eight only improves the percentage to 10\%, and fully associative to 9\%.}\\
 \par
 
 \rawscaleddrawing{0.9}{set_state_caches}
@@ -231,7 +231,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 \subsection{Overdrive and L1 Writeback}
-Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mmhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  The write-back L1 cache policy (instead of write-through) reduced bus traffic significantly.\\
+Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  The write-back L1 cache policy (instead of write-through) reduced bus traffic significantly.\\
 \par 
 \vspace{10pt}
 \scaleddrawing{0.9}{486dx2_notm}{The "DX2-66" was the golden standard and absolute best to run \doom{}}%{Best CPU to run \doom at the time.}
@@ -253,24 +253,24 @@ Intel managed to improve performance by 33\% with its line of 80486 OverDrive ch
       axis x line=bottom,
       axis y line=left,
       enlarge x limits=0.11,
-      symbolic x coords={486 25Mhz,486 33Mhz,486 50Mhz,486 DX2 66Mhz},
+      symbolic x coords={486 DX 25Mhz,486 DX 33Mhz,486 DX 50Mhz,486 DX2 66Mhz},
       xticklabel style={anchor=base,yshift=-\baselineskip},
       nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
     ]
       \addplot[fill=black!20,draw=black] coordinates {
-        (486 25Mhz,15)
-        (486 33Mhz,20)
-        (486 50Mhz,30)
+        (486 DX 25Mhz,15)
+        (486 DX 33Mhz,20)
+        (486 DX 50Mhz,30)
         (486 DX2 66Mhz,34)
       };
     \end{axis}
    
    \end{tikzpicture}
-   \caption{Comparison\protect\footnotemark of CPUs with MIPS \protect\footnotemark.}
+   \caption{Comparison of CPUs with MIPS \protect\footnotemark.}
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 \par
-On the chart above, notice how a 486DX2-66Mhz is faster than a 485DX-50Mhz but not by the full 20\% that frequency would make us expect. This is because the DX2 bus runs at 33Mhz while on the DX, both the CPU and bus run at 50Mhz.
+On the chart above, notice how a 486DX2-66Mhz is faster than a 486DX-50Mhz but not by the full 20\% that frequency would make us expect. This is because the DX2 bus runs at 33Mhz while on the DX, both the CPU and bus run at 50Mhz.
 
 
 
@@ -325,11 +325,12 @@ Apart from a few peculiarities\footnote{"Pushing the 486" by Michael Abrash.}, a
 \centering
 \begin{tabularx}{\textwidth}{ X  X X  X  X}
   \toprule
-  \textbf{CPU} & \textbf{FADD} & \textbf{FMUL} & \textbf{FDIV} &\textbf{FXCH} \\ \bottomrule
+  \textbf{CPU} & \textbf{FADD} & \textbf{FMUL} & \textbf{FDIV} &\textbf{FXCH} \\
+  \toprule
 Intel 387 & 23-34 & 29-57   & 88-91 & 18 \\
 Intel 487 & 8-20  & 16   & 73 & 4 \\ \bottomrule
 \end{tabularx}
-\caption{FPU performance: 387 vs 487.}
+\caption{FPU cycles per instruction: 387 vs 487.}
 
 \end{figure}
 
@@ -339,18 +340,32 @@ But the FPU performance was still a far cry compared to the the ALU and its barr
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.3} L{0.3} L{0.4}}
+\begin{tabularx}{\textwidth}{ L{0.25} L{0.25} L{0.25} L{0.25} }
   \toprule
-  \textbf{Operation} &  \textbf{i486 (ALU)} & \textbf{i487 (FPU)} \\
+  \textbf{CPU} &  \textbf{ADD}  & \textbf{MUL} & \textbf{DIV}\\
   \toprule 
-   
-   \cw{ADD} & 1 & 8-20\\
-   \cw{DIV} & 43 & 73\\
-   \cw{MUL} & 12-42 & 29-52\\
+   i487 (FPU) & 8-20  & 16 & 73\\
+   i486 (ALU) & 1  & 12-42 & 43\\
    \toprule
 \end{tabularx}
-\caption{Comparison of ALU vs FPU operations.}
+\caption{Cycles per instruction of ALU vs FPU.}
 \end{figure}
+
+%  \begin{figure}[H]
+% \centering  
+% \begin{tabularx}{\textwidth}{ L{0.3} L{0.3} L{0.4}}
+%   \toprule
+%   \textbf{Operation} &  \textbf{i486 (ALU)} & \textbf{i487 (FPU)} \\
+%   \toprule 
+   
+%    \cw{ADD} & 1 & 8-20\\
+%    \cw{DIV} & 43 & 73\\
+%    \cw{MUL} & 12-42 & 29-52\\
+%    \toprule
+% \end{tabularx}
+% \caption{Cycles per instruction of ALU vs FPU.}
+% \end{figure}
+
 \par
 \trivia{Difficulty in accessing information birthed myths about \doom{} and floating point units. One endless thread that occurred on \cw{alt.games.doom} in 1994 helps to appreciate the state of things. The topic, "Does a 486DX run Doom faster than an SX?" from July 1994 and its (filtered) five answers shows how difficult it was to reach the truth.}
 

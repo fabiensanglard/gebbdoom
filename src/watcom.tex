@@ -11,7 +11,7 @@ The DOS extender was magical but hard to set up in a standalone product. A boots
 
 The Watcom compiler project was started in 1979 at the University of Waterloo in Ontario, Canada. Initially only supporting BASIC, it was improved over the years by students with support for new OSes and languages. In 1988, three Ph.Ds (Fred Crigger, Ian McPhee, and Jack Schueler) made it the first C compiler to run on an IBM PC.\\
 \par
-Sensing commercial potential, they incorporated Watcom International Corporation and picked a lightning bolt for their logo to advertise their focus on performance. Five years later, in 1993, Watcom C had considerably improved. The latest version (9.0), retailing for "only" \$639\footnote{Inflation adjusted, USD\$639 in 2018. Nowadays compilers are "free".}, was deemed the best available on MS-DOS\footnote{Editor's choice -- PC Magazine, April 1995.}. \\
+Sensing commercial potential, they incorporated Watcom International Corporation and picked a lightning bolt for their logo to advertise their focus on performance. Five years later, in 1993, Watcom C had considerably improved. The latest version (9.0), retailing for "only" \$639\footnote{Inflation adjusted, USD\$1,116 in 2018. Nowadays compilers are "free".}, was deemed the best available on MS-DOS\footnote{Editor's choice -- PC Magazine, April 1995.}. \\
 \par
 Not only were they talented programmers, they also excelled at marketing their products. In the early 90s, a reader could not open a computer magazine without finding a full page advertising Watcom's compiler. Every ad underlined the presence of a DOS extender that freed programmers from the hated 16-bit mode and "unleashed 32-bit power".
 \par
@@ -21,7 +21,7 @@ Not only were they talented programmers, they also excelled at marketing their p
 
 
 \vspace{-4mm}
-Not only were they in the press, they also advertised online, such as on BBSes and Usenet:\\
+Not only were they in the press, they also advertised online, such as on BBSes and Usenet.\\
 \par
 \fq{WATCOM C/C++ will produce code which is at *least* twice as fast as your current 16-bit compiler, and more typically around five times as fast.}{rec.games.programmer}\\
 \par
@@ -29,9 +29,9 @@ Not only were they in the press, they also advertised online, such as on BBSes a
 
 
 \subsubsection{Popularity}
-id Software were not the only team to value Watcom's solution. Many other studios entrusted it with their code, and as a result much well-known software of the 90s was built with Watcom technology:\\
+id Software was not the only team to value Watcom's solution. Many other studios entrusted it with their code, and as a result much well-known software of the 90s was built with Watcom technology:\\
 \begin{enumerate}
-\item id Softare 
+\item id Software 
        \begin{enumerate}
        \item \doom{} (1993)
        \item \doomii{} (1994)
@@ -61,10 +61,10 @@ id Software were not the only team to value Watcom's solution. Many other studio
 \subsection{ANSI C}
 Not only did the Watcom/extender combo make programming simpler, it also made programs run faster. There was another aspect of protected-mode programming -- less obvious but very important -- that had a significant impact on \doom.\\
 \par
-To bring C to the world of PC/DOS's real mode and accommodate for segment manipulation, the language had been "augmented". A example from Wolfenstein 3D's memory manager shows what "C for DOS" looked like.\\
+To bring C to the world of PC/DOS's real mode and accommodate for segment manipulation, the language had been "augmented". An example from Wolfenstein 3D's memory manager shows what "C for DOS" looked like.\\
 \par
 \ccode{real_mode_c.c}\\
 \par
-Notice the wart keywords such as \cw{near}, \cw{far}, macros like \cw{FP\_OFF} and \cw{FP\_SEG}, and the \cw{DOS.H} library functions such as \cw{mallocnear}, \cw{coreleft}, and \cw{farcoreleft}. Neither "C for DOS" nor the I/O functions were portable. As a result, It was impossible to take a UNIX program and compile it directly on DOS. Using the Watcom compiler, C could be written using the ANSI standard, which opened the door to authoring programs on different machines running a different operating system.\\
+Notice the wart keywords such as \cw{near}, \cw{far}, macros like \cw{FP\_OFF} and \cw{FP\_SEG}, and the \cw{DOS.H} library functions such as \cw{farmalloc}, \cw{coreleft}, and \cw{farcoreleft}. Neither "C for DOS" nor the I/O functions were portable. As a result, It was impossible to take a UNIX program and compile it directly on DOS. Using the Watcom compiler, C could be written using the ANSI standard, which opened the door to authoring programs on different machines running a different operating system.\\
 \par
  One company in particular would end up catching id Software's attention. Its name was \NeXTns.
