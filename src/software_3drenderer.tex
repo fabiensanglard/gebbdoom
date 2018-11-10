@@ -12,7 +12,7 @@ Doom's 3D renderer is an uncanny combination of proper 3D techniques and screen 
 \par
 The life of a 3D frame can be summarized as follows:
 \begin{itemize}
-\item Render wall segments, sorted front to back from the player's point of view. Both wall ends are projected into screen-space axis X. Based on the distance and floor/ceiling heights of the sectors the wall belongs to, calculate a column Y offset and height. 
+\item Render wall segments, sorted front to back from the player's point of view. Both wall ends are projected into screen-space axis X. Based on the distance and floor/ceiling heights of the sectors the wall belongs to, calculate a column Y offset and a height. 
 \item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
    \begin{itemize}
      \item Record screen-space vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) and floor areas (if below mid-screen) and store the area into an array of structures called "visplanes".
@@ -147,9 +147,9 @@ This is only one of the many possible trees which could have been generated from
 \end{wrapfigure}
 To use the BSP, we only need to traverse it depth first and choose a branch based on our position in the map. Let's take two examples using the BSP in figure \ref{doom_map_split3} on page \pageref{doom_map_split3}. For convenience of notation, sub-sectors have been labeled \cw{1} to \cw{4} and only the splitting lines are marked.\\
 \par
-From point of view \circled{\cw{P1}}, traversing the BSP takes three tests. \cw{P1} is on the right\footnote{On the drawing it is on the left but remember that spliting plans have direction (shown via an arrow head). If your turns the page upside down, sub-sector \cw{1} indeed is on the right of \cw{H}} of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. This gives the front to back order: \cw{1,2,3,4}. Notice that it doesn't matter what order segments within a subsector are drawn since all subsectors are convex.\\
+From point of view \circled{\cw{P1}}, traversing the BSP takes three tests. \cw{P1} is on the right\footnote{On the drawing it is on the left but remember that spliting plans have direction (shown via an arrow head). If your turn the page upside down, sub-sector \cw{1} indeed is on the right of \cw{H}} of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. This gives the front to back order: \cw{1,2,3,4}. Notice that it doesn't matter what order segments within a subsector are drawn since all subsectors are convex.\\
 \par
-From point of view \circled{\cw{P2}}, traversing the BSP also takes three tests. \cw{P2} is on the left of \cw{H}, on the left of \cw{G}, and on the left of \cw{F}. This gives the near to far order: \cw{3,2,4,1}.\\
+From point of view \circled{\cw{P2}}, traversing the BSP also takes three tests. \cw{P2} is on the left of \cw{H}, on the left of \cw{G}, and on the right of \cw{F}. This gives the near to far order: \cw{3,2,4,1}.\\
 \par
 The beauty of binary trees is that traversing them is a constant cost. No matter where we try to place the player on the map, it will always take three tests to sort all subsectors and their segments.
 \pagebreak
@@ -187,10 +187,12 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane with a parametric equation $$ P = P0 + t * (P1 - P0) $$
 and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane.\\
 \par
-This technique is far from optimal since it requires either floating-point or fixed-point arithmetic. There is a better way requiring only integer operations. It involves using not the dot product but the cross product.\\
+This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic. It uses not the dot product but the cross product.\\
+\ccode{node_t.c}\\
 \par
+\vspace{2mm}
 \ccode{R_PointOnSide.c}
-\pagebreak
+
 
 
 \begin{wrapfigure}[8]{r}{0.25\textwidth}
@@ -328,18 +330,16 @@ The second pass is finer and clips vertical segment fragments emanating from the
 \par
 \ccode{vclippers.c}
 \par
-Let's take the example of a simple room made of three sectors (\cw{1},\cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{F}) and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a higher floor and lower ceiling so that it looks like a window.\\
+Let's take the example of a simple room made of three sectors (\cw{1}, \cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{F}) and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a higher floor and lower ceiling so that it looks like a window.\\
 \par
 
-\begin{wrapfigure}[16]{f}{0.45\textwidth}
+\begin{wrapfigure}[15]{f}{0.4\textwidth}
 \centering
-\includegraphics[width=.45\textwidth]{drawings/vcclip_map.pdf}
+\includegraphics[width=.4\textwidth]{drawings/vcclip_map.pdf}
 \end{wrapfigure}
-
-
-Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G},\cw{F}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\\
+Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G}, \cw{F}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\\
 \par
-Walls \cw{A}, \cw{C}, and \cw{D} mark the full opaque height for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2 lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and the occlusion array is adjusted accordingly. Wall \cw{E} marks all columns it covers as fully opaque.\\
+Walls \cw{A}, \cw{C}, and \cw{D} mark the full opaque height for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2's lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and the occlusion array is adjusted accordingly. Wall \cw{E} marks all columns it covers as fully opaque.\\
 \par
 Notice how portal \cw{F}'s lower and upper textures are not rendered but the occlusion array is still updated. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space).
 
@@ -377,13 +377,14 @@ The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}
 \par
 Subpixel accuracy is slightly more difficult to perform. Here the fractional part is not discarded but used while navigating from \cw{A} to \cw{B}.\\
 \par
-Figure \ref{subpixel_before} shows the two methods side by side. The difference may look negligible but it is one of the most important features of the engine which made the world feel "solid".
+Figure \ref{subpixel_before} shows the two methods side by side. The difference looks negligible but it is one of the most important features of the engine which made the world feel "solid".
 \drawing{subpixel_before}\\
 \par
 At first sight it seems the two methods are different yet equivalent, but look at what happens when things start to move, such as in the case where \cw{A} moves \cw{0.3} units down.\\
 \par
 \drawing{subpixel_after}\\
 \par
+\vspace{-10pt}
 The pixel-accurate method results in five pixels selected differently. The subpixel-accurate way results in one pixel difference. With subpixel accuracy lines tend to be more stable.\\
 \par 
 
@@ -398,7 +399,7 @@ The pixel-accurate method results in five pixels selected differently. The subpi
 \subsection{Perspective-Correct Texture Mapping}
 Before we move on to how \doom{} drew flats, is worth noticing that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
 \par
- To illustrate the concept, let's first study what affine texture mapping (incorrect) looks like. We'll use a three-wall-room, each textured with a pattern of white and colored squares.\\
+ To illustrate the concept, let's first study what affine texture mapping looks like. We'll use a three-wall-room, each textured with a pattern of white and colored squares.\\
 \par
 
 \begin{minipage}{0.43\textwidth}
@@ -509,19 +510,19 @@ Visplanes represent the vertical "gaps" in screen-space between fragments and sc
 \centering
 \includegraphics[width=.45\textwidth]{drawings/vcclip_map.pdf}
 \end{wrapfigure}
-As in the previous example, sectors are rendered near to far, resulting in segments in the following order: \cw{A}, \cw{B}, \cw{C}, \cw{D}, \cw{B}, \cw{E}, \cw{F}, \cw{G}, and \cw{H}.\\
+As in the previous example, sectors are rendered near to far, resulting in segments in the following order: \cw{A}, \cw{B}, \cw{C}, \cw{D}, \cw{E}, \cw{F}, \cw{G}, and \cw{H}.\\
 \par
 When wall \cw{A} is rendered, it is clipped horizontally and vertically. Since it uses all the vertical screen space, no visplanes are created.\\
 \par
  Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplanes are created per fragment (\cw{1},\cw{2}) and (\cw{3},\cw{4}) and stored in the visplane array.\\
  \par
-  Likewise when portal \cw{B} is rendered, there are gaps above its upper texture and below its lower texture, so from two visplanes additional visplanes (\cw{5} and \cw{6}) are added.\\
+  Likewise when portal \cw{B} is rendered, there are gaps above its upper texture and below its lower texture, so two additional visplanes (\cw{5} and \cw{6}) are added.\\
 \par
 Wall \cw{E} is another new case. The gaps above and below are not between a wall and the screen but between  \cw{E} and portal \cw{B}'s upper and lower parts. To detect the previous boundaries, the previously-seen vertical occlusion array is used to create \cw{7} and \cw{8}.\\
 \par
 Portal \cw{F} is yet another special case. Since from this point of view it is connecting to a sector with a higher ceiling and a lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{9} and  \cw{10}.\\
 \par
-From this point on, the process is repeated. Wall \cw{G}'s rendering generates visplanes \cw{11} and  \cw{12} and Wall \cw{H}'s rendering generates visplanes \cw{13} and  \cw{14}.\\
+From this point on, the process is repeated. Wall \cw{G}'s rendering generates visplanes \cw{11} and  \cw{12} and wall \cw{H}'s rendering generates visplanes \cw{13} and  \cw{14}.\\
 \par
 The visplane generation algorithm is quite simple. However it generates many visplanes and therefore consumes a lot of RAM. To address this issue, \doom{} merges visplanes.\\
 \par
@@ -551,7 +552,7 @@ Below, the engine was modified to draw walls and flats in plain color to show me
 % \vspace{3mm}
 
 
-E1M1 benefits from merging. Reproduced below without diminished lightning for clarity.
+E1M1 benefits from merging. Reproduced below without diminished lighting for clarity.
 
 \vspace{2mm}
 \fullimage{complex_scene_plain.png}
@@ -627,7 +628,7 @@ Since distance from the player is constant over an horizontal line, visplanes ar
 \centering
 \scaledimage{0.33}{palette.png}
 \end{wrapfigure}
-So far, in order to introduce complexity gradually, our trip down the rendering pipeline has completely ignored diminishing lighting. It was assumed that texel values from texture and sprites were used as-is and written directly to the framebuffer. Now it time to introduce the concept of lightmaps.\\
+So far, in order to introduce complexity gradually, our trip down the rendering pipeline has completely ignored diminishing lighting. It was assumed that texel values from texture and sprite were used as-is and written directly to the framebuffer. Now it is time to introduce the concept of lightmaps.\\
 \par
 In order to convey a scary atmosphere, \`a la Aliens, it was decided from day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off but also to dim it if necessary. In response to this requirement, the engine had to be able to draw shades of color. With the VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artists to use 16 colors and use the 240 other slots to generate 15 shades of each "primary" color.\\
 \par
@@ -685,7 +686,7 @@ The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is use
 % \par
 \fullimage{invulnerable.png}\\
 \par
-This effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
+This effect was diffcult to replicate with a seemingly "more powerful" hardware accelerated systems which uses 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
 \fullimage{idbeholdv.png}\\
 \par
 Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)}.\\
@@ -706,7 +707,7 @@ Above is the invulnerability effect as it appeared on the PC version. Below, how
 
 
 \subsection{Drawing Masked}
-With the environment rendered, what remains are "masked" elements. This category emcompasses not only all sprites but also partially-transparent walls and the player's weapon.\\
+With the environment rendered, what remains are "masked" elements. This category encompasses not only all sprites but also partially-transparent walls and the player's weapon.\\
  \par
 
 
@@ -722,7 +723,7 @@ With the environment rendered, what remains are "masked" elements. This category
 
 The function responsible for this task is called \cw{R\_DrawMasked}. It is the last step in the rendering pipeline. Contrary to the environment which is rendered in front-to-back order, this step proceeds in back-to-front order (which is the only way to get transparency right).\\
 \par
-\vspace{2mm}
+\vspace{2.3mm}
 \scaledimage{0.25}{cacodemon5.png}\scaledimage{0.25}{cacodemon6.png}\scaledimage{0.25}{cacodemon7.png}\scaledimage{0.25}{cacodemon8.png}\\
 
 \scaledimage{0.25}{cacodemon13.png}\scaledimage{0.25}{cacodemon14.png}\scaledimage{0.25}{cacodemon15.png}\scaledimage{0.25}{cacodemon16.png}\\
@@ -755,7 +756,7 @@ With the desired result in mind, let's go back to where we were with only walls 
 \par
 \cfullimage{masked_nomasked.png}{Same scene as it is currently stored in the framebuffer}
 \par
-To get from figure \ref{masked.png} to figure \ref{masked_nomasked.png}, the engine needs to generate a list of maskables (also simply called sprites in the code), to sort then into back-to-front order, iterate over the sorted list, perform clipping on each of them, and finally render them as columns of pixels.\\
+To get from figure \ref{masked_nomasked.png} to figure \ref{masked.png}, the engine needs to generate a list of maskables (also simply called sprites in the code), to sort them into back-to-front order, iterate over the sorted list, perform clipping on each of them, and finally render them as columns of pixels.\\
 \par
 \subsubsection{List Of Things}
  The list of things was built while the BSP was traversed. Each time a subsector was sent to rendering (in \cw{R\_Subsector}) the list of things it contained were added to an array of \cw{vissprite\_t}s. Note that things are only pseudo-ordered and therefore the order is not usable. In our example the barrel and the Baron would be added based on the subsector they were in, but in no precise order (in the subsector's list of things, the baron could be returned before the barrel).\\
@@ -837,7 +838,7 @@ Each column (also called "post" in the code) is a set of "spans" with one byte g
 
 \fullimage{sprite_format.png}\\
 \par
-The Lost Soul sprite's row \cw{44} is 4 bytes (one span with: \cw{0x13} vertical offset, \cw{0x02} data length, \cw{0x54}, \cw{0x59}) two brown texels). Row \cw{33} has two spans, accounting for 48 bytes and is a rare case where the encoding scheme is less favorable than "uncompressed" which would have been 47 bytes. Row \cw{10} (also two spans) accounts for 19 bytes which is much less than the uncompressed length of 47 bytes. This entire Lost Soul sprite is 44x47 and fits in 1360 bytes for a surface of 2068 pixels, resulting in a rough 50\% compression ratio.\\
+The Lost Soul sprite's row \cw{44} is 4 bytes (one span with: \cw{0x13} vertical offset, \cw{0x02} data length, \cw{0x54} and \cw{0x59} two texels). Row \cw{33} has two spans, accounting for 48 bytes and is a rare case where the encoding scheme is less favorable than "uncompressed" which would have been 47 bytes. Row \cw{10} (also two spans) accounts for 19 bytes which is much less than the uncompressed length of 47 bytes. This entire Lost Soul sprite is 44x47 and fits in 1360 bytes for a surface of 2068 pixels, resulting in a rough 50\% compression ratio.\\
 \par
 \vspace{-10pt}
 \subsection{Sprite aspect ratio}

@@ -18,7 +18,7 @@ I\_SetMusicVolume & Self explanatory.\\
 I\_PlaySong & Play Song\\
 I\_PauseSong & ...hm, Pause Song\\
 I\_ResumeSong & Mysterious function with unknown effects.\\
-I\_StopSong & Maybe this column was not a good idea after all.\\
+I\_StopSong & Maybe this table was not a good idea after all.\\
 I\_UnRegisterSong & Free music using ID obtained in \cw{I\_RegisterSong}.\\
 
 
@@ -79,7 +79,7 @@ The WAD archive contains hundreds of lumps of five types to feed to DMX. \cw{DP*
 \par
 PC Speaker audio was meant for PCs without a sound card. The PC Speaker was capable of square waves and meant to emit boot-up diagnostic noises. \doom{} found ways to make it generate something less irritating by changing the square wave frequency every 1/140th of a second\footnote{The PC Speaker is detailed in "Game Engine Black Book: Wolfenstein 3D".}. The data rate is one byte per 1/140th of a second, describing the square-wave frequency to set.\\
 \par
-The digitized audio samples used in \doom{} are 8-bit, 11025 Hz, mono PCM streams. PCM is a simple audio format that requires little explanation. Each byte in the stream is a moment in time that describes the amplitude of a waveform and indicates where the speaker cone should be positioned. The sound card simply translates the byte into a voltage to the magnet driving the cone position, which happens at a rate of 11025 times per second.\\
+The digitized audio samples used in \doom{} are 8-bit, 11,025 Hz, mono PCM streams. PCM is a simple audio format that requires little explanation. Each byte in the stream is a moment in time that describes the amplitude of a waveform and indicates where the speaker cone should be positioned. The sound card simply translates the byte into a voltage to the magnet driving the cone position, which happens at a rate of 11025 times per second.\\
 \par
 Music data is stored in \cw{MUS}, a format similar to standard MIDI but slightly more compact. The format allows eight channels for instruments and a ninth for the drums. The MUS format describes a series of precisely timed events for each channel which specify which instrument should play a note and at what pitch. Note that MUS only describes what to do and when, not how to do it. Each channel refers to the note of an instrument; the instrument itself is described elsewhere in a data structure known as the "instrument bank".\\
 \par
@@ -131,7 +131,7 @@ buffer flipping being the hardware layer.  We will probably also run
 midi under NS for music (which will be dynamically tuned to the game  
 situation in Quake).}{John Carmack}\\
 \par
-One can still find archived Usenet posts from \cw{alt.games.doom} where John Romero comments hints that the relationship between Radek and id Software was suffering as the game neared its release date\footnote{Source: John Romero post on \cw{alt.games.doom}.}. Since the tone was less than cordial, it is left as an exercise to the reader if they want to dig these posts out. I do not recommend it.
+One can still find archived Usenet posts from \cw{alt.games.doom} where John Romero's comments hints that the relationship between Radek and id Software was suffering as the game neared its release date\footnote{Source: John Romero post on \cw{alt.games.doom}.}. Since the tone was less than cordial, it is left as an exercise to the reader if they want to dig these posts out. I do not recommend it.
 % \par
 % \fq{Hey, everybody!  Thanks a lot for downloading DOOM II -- that's really "cool".   
 % We love it when we send evaluation copies to magazine editors and some piece of  

@@ -1,8 +1,5 @@
-int R_PointOnSide(fixed_t x,fixed_t y, node_t* node){
-    fixed_t    dx;
-    fixed_t    dy;
-    fixed_t    left;
-    fixed_t    right;
+int R_PointOnSide(fixed_t x, fixed_t y, node_t* node){
+    fixed_t    dx, dx, left, right;
     
     if (!node->dx) { // Shortcut if node is vertical.
       if (x <= node->x) {
@@ -34,7 +31,6 @@ int R_PointOnSide(fixed_t x,fixed_t y, node_t* node){
     
     if (right < left) { // front side
       return 0;
-    }
-    
+    }    
     return 1; // back side            
 }

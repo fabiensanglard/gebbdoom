@@ -4,7 +4,7 @@ As mentioned earlier, there is no scripting language in \doom. The A.I. is based
 \rawdrawing{multigen}
 \par
 % The script has two sections per entity. First the general info and then a serie of state machines. To illustrate here if the imp script.\\
-Let's dive into the state machine descriptor text file right away and take a look at the section of \cw{multigen.txt} that controls the Imp (known as \cw{TROOP} internally).\\
+Let's dive into the hand-written state machine descriptor text file right away and take a look at the section of \cw{multigen.txt} that controls the Imp (known as \cw{TROOP} internally).\\
 \par
 \tcode{enemy_info.txt}
 
@@ -19,12 +19,12 @@ There are four sections. Properties include the DoomED \cw{id}, \cw{speed}, \cw{
 
 Property lists and sound names are self-explanatory, and there is no need to spend too much time on them. What is more difficult to understand is how the state machine is defined.\\
 \par
-A thing's state machine is partly statically defined inside the engine (when a monster is attacked it goes directly to \cw{seestate}; when it receive lethal damage, it does direcly to \cw{diestate}) and partly defined in \cw{multigen.txt}. Each line in the state definition follows a syntax.
+A thing's state machine is partly statically defined inside the engine (when a monster is attacked it goes directly to \cw{seestate}; when it receives lethal damage, it goes direcly to \cw{diestate}) and partly defined in \cw{multigen.txt}. Each line in the state definition follows a syntax.
 \begin{enumerate}
 \item State name.
 \item Frame family.
 \item Frame ID (sprite to render).
-\item Duration in tics (engine runs 35 tics/seconds).
+\item Duration in tics (engine runs 35 tics/second).
 \item Function to call when in this state.
 \item Next state.
 \end{enumerate}
@@ -49,7 +49,7 @@ Let's follow the chain of state from here, where an imp dies in five steps.
 \item Show fifth death frame (M) forever (\cw{-1}).
 \end{enumerate}
 \par
-The total dying sequence lasts $8+8+6+6=24/35 = 0.68$ second. Note that this Imp could have been even less lucky and been hit by a rocket. Enough damage would have caused it to gib, moved it to the \cw{xdeathstate} (\cw{S\_TROO\_XDIE1}) state and made it die in $1$ second.\\
+The total dying sequence lasts $8+8+6+6=24/35 = 0.68$ seconds. Note that this Imp could have been even less lucky and been hit by a rocket. Enough damage would have caused it to gib, moved it to the \cw{xdeathstate} (\cw{S\_TROO\_XDIE1}) state and made it die in $1$ second.\\
 \par
 \tcode{enemy_state_xdie.txt}\\
 \par

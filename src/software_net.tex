@@ -2,7 +2,7 @@
 
 
 
-While \doom's 3D rendering was breathtaking, it was the networking capability and its famous deathmatches that really took it to another level. The ability to connect two PCs and interact with human players was something most gamers have never seen before. Early during development it was apparent this aspect of the game was going to be amazing.\\
+While \doom's 3D rendering was breathtaking, it was the networking capability and its famous deathmatches that really took it to another level. The ability to connect two PCs and interact with human players was something most gamers had never seen before. Early during development it was apparent this aspect of the game was going to be amazing.\\
 \par
 \fq{I still remember the day that multiplayer started just barely working in Doom. I had two DOS boxes set up in my office in addition to my NeXT workstation to test multiplayer. The IPX networking was forwarding user input between the systems, but there was no error recovery, so it was very fragile. Still, I could spawn two marines in a test level, and they could look at each other.\\
 \par
@@ -13,7 +13,7 @@ I was strafing back and forth on one system and looking over my shoulder at the 
 \vspace{-20pt}
 \subsection{Architecture}
 
-Most modern FPS games are designed around client/server networking where there are several clients and one source of truth, the server. Clients can join a game any time, send their commands to the server, receive world updates, and perform prediction to minimize communications latency.\\
+Most modern FPS games are designed around client/server networking where there are several clients and one source of truth, the server. Clients can join a game any time, send their commands to the server, receive world updates, and perform predictions to minimize communications latency.\\
 \par
 \begin{wrapfigure}[12]{r}{0.4\textwidth}
 \centering
@@ -59,7 +59,7 @@ With the proliferation of networking, the embedded IPX support started to show i
 
 
 \subsection{PC Network drivers}
-In this model, the game engine deals with a data structure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared\footnote{Everything is shared on DOS. Here this means an area of RAM is accessed by two running programs.} memory. Receiving or transmitting packets is done via interrupts. How this all worked together is a magnificent hack only possible on a system without proper memory protection.\\
+In this model, the game engine deals with a data structure named \cw{doomcom\_t} (detailed on page \pageref{doomcom_t.c}) located in shared memory. Receiving or transmitting packets is done via interrupts. How this all worked together is a magnificent hack only possible on a system without proper memory protection.\\
 \par
 A "loader" starts first and installs itself as an interrupt handler. It then starts \cw{DOOM.EXE} with a special parameter \cw{-net X} where X is the RAM address of the loader's \cw{doomcom\_t} variable. The engine literally casts the parameter to an address (\cw{(doomcom\_t*)(atoi(param))}) to access the structure's fields. From then on the interrupt handler acts as a network driver.\\
 \par
@@ -71,7 +71,7 @@ A "loader" starts first and installs itself as an interrupt handler. It then sta
 \drawing{net_drivers}{}
 \par
 \vspace{-10pt}
- Figure \ref{net_drivers} summarizes the steps. \cw{IPXSETUP.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSETUP.EXE} starts \cw{DOOM.EXE} and passes the address of its \cw{doomcom\_t} variable as an integer (\circled{2}). Later, during gameplay (\circled{3}), \cw{DOOM.EXE} reads/writes to the \cw{doomcom\_t} \cw{payload} field and triggers transfers via interrupt found in the \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicate with the network card driver. The actual hardware interaction between the network card driver and the physical network card happens in step \circled{5}.
+ Figure \ref{net_drivers} summarizes the steps. \cw{IPXSETUP.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSETUP.EXE} starts \cw{DOOM.EXE} and passes the address of its \cw{doomcom\_t} variable as an integer \circled{2}. Later, during gameplay \circled{3}, \cw{DOOM.EXE} reads/writes to the \cw{doomcom\_t} \cw{payload} field and triggers transfers via interrupt found in the \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicate with the network card driver. The actual hardware interaction between the network card driver and the physical network card happens in step \circled{5}.
 
 
 
