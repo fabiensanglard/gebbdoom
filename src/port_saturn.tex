@@ -39,15 +39,14 @@ Graphics programming was done via two chips called VDP1 and VDP2. At the beginni
 \par
 Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double-speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
 \par
-To control all these components and transfer data between systems, a seventh chip called the SCU (System Control Unit) acted as DMA controller, DSP and bus controller. The DSP was able to perform matrix transformations and writhe the result directly in the VDP RAM.\\
+To control all these components and transfer data between systems, a seventh chip called the SCU (System Control Unit) acted as DMA controller, DSP and bus controller. The DSP was able to perform matrix transformations and write the result directly in the VDP RAM.\\
 \par
 
 
 \trivia{Reading the programmer manual in detail reveals that each component can somehow interact with each others' RAM. This made debugging very difficult.}
 \pagebreak
 
-\drawing{arch_saturn}{Saturn Block Diagram, "Introduction to Saturn Game Development", April 1994 }
-\label{arch_saturn}
+\scaleddrawing{1}{arch_saturn}{Saturn Block Diagram, "Introduction to Saturn Game Development", April 1994 }
 
 
 
@@ -115,7 +114,7 @@ Despite its issues and ill-timed release, it is a bitter feeling to see what hap
 \subsection{Doom on Saturn}
 The port to the Saturn was done by Rage Software on a very tight schedule. Like most ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it comes to texture sampling, as Jim Bagley remembers\footnote{RetroGamer \#134.}:\\
 \par
-\fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. The got sent off and a couple days later I got a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
+\fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. This got sent off and a couple days later I got a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
 \par
 However, it kneecapped the game and the speed-framerate suffered greatly.}{Jim Bagley for RetroGamer \#134}\\
 \par
@@ -139,7 +138,7 @@ In the screenshot above, notice how E1M1 is the same as other console versions (
 \par
 To take advantage of the VDP's parallelism, it is claimed\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".} the VDP1 is used to render sprites and walls while the VDP2 is used for the status bar and also renders visplanes which are treated as background.\\
 \par 
-Translucency was done in a peculiar way. It is unknown if this was a design decision, a hardware limitation or simply due to time constraints, but translucency is not done via alpha bending like the Playstation did. A more software-friendly technique known as dithering is used to represent the Specters and glass surfaces (see page \pageref{doomsaturndither}).\\
+Translucency was done in a peculiar way. It is unknown if this was a design decision, a hardware limitation or simply due to time constraints, but translucency is not done via alpha blending like the Playstation did. A more software-friendly technique known as dithering is used to represent the Spectres and glass surfaces (see page \pageref{doomsaturndither}).\\
 % \fq{The Saturn had to be programmed straight to the metal. It used quads and messy 3D maths.}{David Shea, Alien Trilogy developer}
 \par
 % Despite heroic efforts from the team, time constraints hurt the final quality. The game was universally disliked and labeled as the second worse port of doom (right after the 3DO).\\

@@ -74,12 +74,12 @@ With such an architecture there are two systems executing pseudo-concurrently bu
 \par
  This explains why allocation of audio assets gets special treatment in the zone allocator. The audio system has no time to recover from a memory miss (nor could it, since it has no access to the WAD or memory allocator). Audio data must be ready immediately whenever it is needed.
 
-\subsubsection{Audio Data: Formats and Lumps}
+\subsection{Audio Data: Formats and Lumps}
 The WAD archive contains hundreds of lumps of five types to feed to DMX. \cw{DP*} lumps are for PC Speaker sound effects, \cw{DS*} lumps are for PCM sound effects, \cw{D\_*} lumps are for music tracks. There is also a \cw{GENMIDI} lump, and one \cw{DMXGUS} lump detailed later.\\
 \par
 PC Speaker audio was meant for PCs without a sound card. The PC Speaker was capable of square waves and meant to emit boot-up diagnostic noises. \doom{} found ways to make it generate something less irritating by changing the square wave frequency every 1/140th of a second\footnote{The PC Speaker is detailed in "Game Engine Black Book: Wolfenstein 3D".}. The data rate is one byte per 1/140th of a second, describing the square-wave frequency to set.\\
 \par
-The digitized audio samples used in \doom{} are 8-bit, 11,025 Hz, mono PCM streams. PCM is a simple audio format that requires little explanation. Each byte in the stream is a moment in time that describes the amplitude of a waveform and indicates where the speaker cone should be positioned. The sound card simply translates the byte into a voltage to the magnet driving the cone position, which happens at a rate of 11025 times per second.\\
+The digitized audio samples used in \doom{} are 8-bit, 11025 Hz, mono PCM streams. PCM is a simple audio format that requires little explanation. Each byte in the stream is a moment in time that describes the amplitude of a waveform and indicates where the speaker cone should be positioned. The sound card simply translates the byte into a voltage to the magnet driving the cone position, which happens at a rate of 11025 times per second.\\
 \par
 Music data is stored in \cw{MUS}, a format similar to standard MIDI but slightly more compact. The format allows eight channels for instruments and a ninth for the drums. The MUS format describes a series of precisely timed events for each channel which specify which instrument should play a note and at what pitch. Note that MUS only describes what to do and when, not how to do it. Each channel refers to the note of an instrument; the instrument itself is described elsewhere in a data structure known as the "instrument bank".\\
 \par

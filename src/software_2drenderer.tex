@@ -15,11 +15,11 @@ All "Drawers" in \doom{} were the work of  Dave Taylor. The self-proclaimed "spa
 
 
 \subsection{Intermission}
-The intermission screen is simple and fully contained in \cw{wi\_stuff.c}. It starts by loading a virgin background map from the WAD archive into RAM and placing it in FrameBuffer \#1.\\
+The intermission screen is simple and fully contained in \cw{wi\_stuff.c}. It starts by loading a virgin background map from the WAD archive into RAM and placing it in framebuffer \#1.\\
 \par
 \fullimage{intermissions/WIMAP0.png}\\
 \par
-When a screen refresh is needed, the intermission code does a \cw{memcpy} (called a "slam" in the code) from FrameBuffer \#1 to Framebuffer \#0, then draws sprites and text on top of it.\\
+When a screen refresh is needed, the intermission code does a \cw{memcpy} (called a "slam" in the code) from framebuffer \#1 to framebuffer \#0, then draws sprites and text on top of it.\\
 \par
 \fullimage{intermissions/stats.png}\\
 
@@ -51,7 +51,7 @@ The test is the opposite of what it should have been. The ST module shows the ou
 \par
 \ccode{ouch_face_fixed.c}\\
 \par
-With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar into FrameBuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from FrameBuffer \#4 to FrameBuffer \#0 and draws all the widgets on top of it.\\
+With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar into framebuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from framebuffer \#4 to framebuffer \#0 and draws all the widgets on top of it.\\
 \par
 \fullimage{stbar_virgin.png}
 
@@ -141,14 +141,14 @@ Also known as the "Screen melt", wipe is used to transition between sections of 
 \pagebreak
 
 \par
-"Wipe" takes whatever is in FrameBuffer \#2 and progressively transforms it into what is stored in FrameBuffer \#3, writing the output into FrameBuffer \#0.\\% (FrameBuffer \#1 is left available in case a screenshot request is received in the middle of a wipe.).\\
+"Wipe" takes whatever is in framebuffer \#2 and progressively transforms it into what is stored in framebuffer \#3, writing the output into framebuffer \#0.\\% (framebuffer \#1 is left available in case a screenshot request is received in the middle of a wipe.).\\
 \par
 The first step is to reorganize the two sources of data from row major to column major. This is done so the read operations on vertical strips play nicely with the 486 cachelines.\\
 \par
 \fullimage{face_rawmajorized.png}
 \par
 After that, a random sequence of 160 numbers is generated in an array \cw{y} where each value is within 16 units of its two neighbors. These are used to form the top "wave".\\
-\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, like if the source image had been wiped off the screen. During the animation, columns two pixels wide and 200 pixels tall are copied repeatedly from src and dest to Framebuffer \#0. All columns fall at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
+\par The animation is made so columns of pixels from the source are falling down, letting the destination show behind, as if the source image had been wiped off the screen. During the animation, columns two pixels wide and 200 pixels tall are copied repeatedly from src and dest to framebuffer \#0. All columns fall at the same speed but they are offset by values in \cw{y}, hence producing the wipe illusion.
 %The code for the wipe animation is in \cw{dutils.c}, all method start with \cw{wipe\_*}. Also known as \\
 
 

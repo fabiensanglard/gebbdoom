@@ -5,7 +5,7 @@ The Super Nintendo Entertainment System was released in 1990 in Japan and the fo
 \par
 Nintendo had established a merciless system to ensure quality of its games. Publishers were only allowed five games per year. To make sure this rule was enforced, only Nintendo was allowed to produce cartridges; publishers had to buy them from Nintendo. To make sure everybody played by the rules (and also to protect games from being copied) the SNES looked for a CIC lockout chip before a game was allowed to start. It was a powerful mechanism only cracked after the SNES reached its end of life.\\
 \par
-During its nine-year lifespan\footnote{The Super Nintendo was discontinued in 1999.}, 721 games were published, among them several critical and commercial success such as Super Mario World, Zelda III, Mario Kart, Z-Zero, Super Metroid, or Donkey Kong Country. Having sold close to 50 million units it is arguably one of the most popular consoles of all time\footnote{Source: "The SNES is the greatest console of all time" by Don Reisinger} both in terms of sales and catalog.\\
+During its nine-year lifespan\footnote{The Super Nintendo was discontinued in 1999.}, 721 games were published, among them several critical and commercial successes such as Super Mario World, Zelda III, Mario Kart, Z-Zero, Super Metroid, and Donkey Kong Country. Having sold close to 50 million units it is arguably one of the most popular consoles of all time\footnote{Source: "The SNES is the greatest console of all time" by Don Reisinger} both in terms of sales and catalog.\\
 \par
 \cfullimage{consoles/SNES.png}{The Super Famicom (a.k.a SNES, Super Nintendo) by Nintendo.}
 \par
@@ -14,7 +14,8 @@ From a technical standpoint, the SNES excelled at 2D. Its 16-bit 65C816 3.58 MHz
 
 Despite its impressive 2D sprite engine and especially its "Mode 7" capability, the machine struggled with computationally-intensive operations such as 3D calculations. Nintendo was vividly aware that 3D would be the next big thing in gaming but was struggling to make it happen. As fate would have it, a small UK firm would hold the solution to the problem.\\
 
-\subsubsection{Argonaut Games}
+\vspace{-10pt}
+\subsection{Argonaut Games}
 Back in 1982, Jez San was a lone game developer working exclusively on the C64, Atari ST, and Amiga computers. To sell his creations he needed a company. Seeing a similarity between his name (J.San) and the mythological story of Jason and the Argonauts, he named it Argonaut Games plc.\\
 \par
 His venture did not remain a single-man project for long. By 1990 he had gathered talent in London offices and developed an interest in Nintendo's 1989 handset, the Game Boy. The team had managed two feats most deemed impossible: they had a 3D wireframe engine and they had cracked the CIC protection to install it on the Game Boy.\\
@@ -45,7 +46,7 @@ At the time, it was not in Nintendo's habit to deal with outsiders or even forei
 \fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
 \par
 
-Boldly promised a "10x" performance increase by Jez, Nintendo embraced the offer to get special hardware designed for their game. "Pilot Wings" would ship with sprite planes so that it could be ready for the Super Famicom release, but the "Super FX" chip as it would be marketed later was to be used for an other projects Nintendo had up its sleeves.\\
+Boldly promised a "10x" performance increase by Jez, Nintendo embraced the offer to get special hardware designed for their game. "Pilot Wings" would ship with sprite planes so that it could be ready for the Super Famicom release, but the "Super FX" chip as it would be marketed later was to be used for another projects Nintendo had up its sleeves.\\
 \par
 The name was "StarFox".
 
@@ -61,7 +62,7 @@ For the engine, Carl Graham and Pete Warnes worked in the London headquarters wh
 The project resulted in a critical, commercial, and engineering success. StarFox shipped on February 21, 1993 and went on to sell four million copies worldwide\\
  \par
 
-The rest of this idyllic story between the two companies is bitter. Star Fox 2, the sequel to their megahit, was completed by Argonauts and set to release in 1996 when Nintendo canceled it abruptly, fearing its impact on the launch of the Nintendo 64. Argonaut was not pleased and the relationship with Nintendo soured. Nintendo subsequently poached Dylan, Giles and Krister. Dylan Cuthbert would have joined too but a non-compete clause in his contract prevented him. He quit his position at Argonaut and joined Sony to work on the Playstation.\\
+The rest of this idyllic story between the two companies is bitter. Star Fox 2, the sequel to their megahit, was completed by Argonauts and set to release in 1996 when Nintendo canceled it abruptly, fearing its impact on the launch of the Nintendo 64. Argonaut was not pleased and the relationship with Nintendo soured. Nintendo subsequently poached, Giles and Krister. Dylan Cuthbert would have joined too but a non-compete clause in his contract prevented him. He quit his position at Argonaut and joined Sony to work on the Playstation.\\
 \par
 The divorce was finalized when Nintendo refused to let Argonaut use Yoshi for a platform game they were planing for the PS1. They ended up replacing Yoshi with a crocodile in "Croc: Legend of the Gobbos". Nintendo later released Mario 64 with mechanism seemingly inspired bt "Croc" ... and even beat it to market by around a year.
 
@@ -74,9 +75,9 @@ The divorce was finalized when Nintendo refused to let Argonaut use Yoshi for a 
 The GSU\footnote{Graphics Support Unit} as its technical name would be\footnote{Yes, that is three denominations for one chip!} had a simple design based on a 16-bit RISC processor running at 10.74 MHz with a 512 byte i-cache. It had its own instruction set to optimized for math and its own framebuffer optimized for pixel plotting. Its mode of operation was to render to the frame buffer where the data would be periodically transfered to the SNES RAM via DMA. It was reportedly capable of rendering 76,458 Polygons/s.\\
 
 \par
-The first generation (GSU-1) powered five games: Dirt Racer, Dirt Trax FX, Star Fox, Stunt Race FX, and Vortex.\\
+The first generation (GSU-1) powered five games: Dirt Racer, Dirt Trax FX, StarFox, Stunt Race FX, and Vortex.\\
 \par
- The second generation (GSU-2) was the same processor running at 21.4 Mhz and extra pins soldered to the bus to increase the size of supported ROM and framebuffer. It was used in three games: Doom, Super Mario World 2: Yoshi's Island, and Winter Gold.\\
+ The second generation (GSU-2) was the same processor running at 21.4 Mhz and extra pins soldered to the bus to increase the size of supported ROM and framebuffer. It was used in three games: \doom{}, Super Mario World 2: Yoshi's Island, and Winter Gold.\\
 \par
 Opening a \doom{} game cartridge reveals all the components previously discussed. \circled{1} The 16-bit GSU-2, \circled{2} 512 KiB framebuffer where the GSU writes, \circled{3} 2MiB ROM where code and assets are stored, \circled{4} Hex inverter, and \circled{5} Copy protection CIC chip.
 

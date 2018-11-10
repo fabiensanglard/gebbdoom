@@ -119,11 +119,12 @@ The source code of the node builder was released shortly after the game in May 1
 \par
 \cfullimage{doombsp_compiling.png}{Building doombsp on NeXTSTEP.}
 \par
-\vspace{-10pt}
+% \vspace{-10pt}
 For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and stores them in a \cw{.wad} file (see p\pageref{wad_explained}).\\
 
 \par
  \begin{figure}[H]
+ \setlength{\belowcaptionskip}{-10pt}
 \centering  
 \begin{tabularx}{\textwidth}{ L{0.15} L{0.75} }
   \toprule
@@ -149,7 +150,7 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and stores them in a \cw
 \end{tabularx}
 \caption{Map Data lumps as documented in "The Unofficial Doom Specs" v1.666.}
 \end{figure}
-\par
+\pagebreak
 
 Slicing the map via binary partitioning is non-trivial. \cw{doombsp}'s heuristic attempts to minimize the number of segments generated while creating a balanced tree and picking axis-aligned splitting lines. A debug flag \cw{-draw} allowed monitoring what was happening. BSP trees and binary partitioning are explained in detail on page \pageref{Binary Space Partitioning: Theory}. \\
 \par

@@ -1,6 +1,6 @@
 \section{Waiting for the Dots}
 \label{dots_explained}
-For anybody who played \doom{} on a PC in 1994, the most frustrating part was waiting for the game to load. One step in particular, the mysterious \cw{R\_Init}, seemed to take forever\footnote{In fact, it took anywhere from 15 to 30 seconds depending on the HDD speed.}. An improvised progress bar made of dots helped the player to be patient. Millions of hours were spent watching these tidy dots progress to the right. Probably a few more were spent trying to guess what \cw{R\_Init} actually did in the background.\\
+For anybody who played \doom{} on a PC in 1994, the most frustrating part was waiting for the game to load. One step in particular, the mysterious \cw{R\_Init}, seemed to take forever\footnote{In fact, it took anywhere from 15 to 30 seconds depending on the HDD speed.}. An improvised progress bar made of dots informed the player that the game was loading and to just wait and be patient. Millions of hours were spent watching these tidy dots progress to the right. Probably a few more were spent trying to guess what \cw{R\_Init} actually did in the background.\\
 \par
 \fakedosoutput{dots.txt}\\
 \par
@@ -44,7 +44,7 @@ Phase \cw{9} matches function \cw{R\_InitLightTables} and initializes the zlight
 
 Phase \cw{A} matches function \cw{R\_InitSkyMap} which initializes the static \cw{skyflatnum}.\\
 \par
-As you will have guessed, the "dot thermometer" was not very accurate. It started fast, slowed down for \cw{333333333333} which accessed a lot of data, and then sped up again at end when calling mostly empty functions.\\
+As you will have guessed, the "dot thermometer" was not very accurate. It started fast with next to instant \cw{OOOOO12}, slowed down to a crawl for \cw{333333333333} which accessed a lot of data, and then sped up again at the end with \cw{456789A} when calling mostly empty functions.\\
 \par
 \section{Reload Hack}
 While developing the game, the long startup time was a problem. Even if a designer made no change to the geometry of the map (and therefore did not need to run \cw{doombsp}) it still took 30 seconds before he could see the result. To avoid breaking the creative flow, the engine was gifted with a "reload hack".\\

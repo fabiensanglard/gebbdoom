@@ -79,7 +79,7 @@ Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM w
 \subsection{Profiling With A Profiler}
 An excellent way of visualizing performance is with a flame graph. These are built by running a program, repeatedly interrupting it, and unwinding the stack starting from the Program Counter to generate a backtrace. This is repeated hundreds of times while playing back a demo. After completion, all backtraces are collected and merged together.\\
 \par
- This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a visual breakdown of where the machine spends time during a frame\footnote{This is a wall time-based flamegraph but there are many other kinds, like CPU-cycles based for example.}. On NeXTStep, thanks to the multiprocessing capability of the OS it is easy to use \cw{gdb} from a second terminal and gather backtraces. The result is as follows.\\
+ This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a visual breakdown of where the machine spends time during a frame\footnote{This is a wall time-based flamegraph but there are many other kinds, like CPU-cycle based for example.}. On NeXTStep, thanks to the multiprocessing capability of the OS it is easy to use \cw{gdb} from a second terminal and gather backtraces. The result is as follows.\\
 \par
 
 \drawing{flamegraph}{Flame graph of \cw{./doom -timedemo demo1} on NeXTStation Turbo Color}
@@ -132,7 +132,7 @@ Altogether these three optimizations improved performance by a substantial 15\%.
 \acode{R_DrawColumn.asm}
 
 \vspace{-1.25cm}
-\section{Performance tuning}
+\section{Performance Tuning}
 Despite all the care and optimization, most gamers could not get more than 10 fps with the game out of the box. To help reach a decent framerate, two tuning mechanisms helped to reduce the number of pixels written.
 \begin{enumerate}
 \item High detail/Low detail toggle.
@@ -145,7 +145,7 @@ Despite all the care and optimization, most gamers could not get more than 10 fp
 
 
 \section{High/Low detail mode}
-The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of very two columns but it writes it to the framebuffer twice. This results in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit over the bus. Given the 3D renderer dominated the frame rate, the performance gain is almost a 2x multiplier as the following benchmark shows.\\
+The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of very two columns but it writes it to the framebuffer twice. This results in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit over the bus. Given the 3D renderer dominated the frame rate, the performance gain is meaningful as the following benchmark shows.\\
 \par
  \vspace{0.5cm}
 \begin{figure}[H]
@@ -165,11 +165,9 @@ The first tuning option was to lower the horizontal resolution using column doub
 096x048  &  45   & 048x048  &       54 \\
   \toprule
 \end{tabularx}
-\caption{Platform code specific.\protect\footnotemark}
+\caption{\doom{} performance in low and high detail mode}
 \end{figure}
-\footnotetext{Benchmark machine: Unisys CWD 4001 (486DX2-66 Cirrus Logic VLB).}
-\par
-Using low detail mode instead of high detail yields a linear 2x performance improvement regardless of the resolution selected.
+The benchmark above was conducted on a machine which would have been deemed "top of the line" in 1994, a Unisys CWD 4001 featuring a 486DX2-66 CPU with a Cirrus Logic VLB graphics card. Using low detail mode instead of high detail yields a variable 20\%-50\% performance improvement which brought up \doom{} to a playable framerate on "weaker" PCs running on Intel 386 CPUs.
 
 
 \vspace{-6pt}

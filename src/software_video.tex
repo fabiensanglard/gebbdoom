@@ -50,8 +50,8 @@ The four other framebuffers in the core are used intermittently for temporary st
 \begin{itemize} 
 \item Framebuffer \#1 is used when taking a screenshot but also to store the background when the 3D view is not full screen (\cw{r\_FillBackScreen}).
 
-\item FrameBuffers \#2 and \#3 are used during the wipe animation to store the start and end screens while compositing into framebuffer \#1 (see detailed wipe system in the appendix on page \pageref{label_melt}). 
-\item FrameBuffer \#4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. 
+\item Framebuffers \#2 and \#3 are used during the wipe animation to store the start and end screens while compositing into framebuffer \#1 (see detailed wipe system in the appendix on page \pageref{label_melt}). 
+\item Framebuffer \#4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. 
 \end{itemize}
 \par
 
