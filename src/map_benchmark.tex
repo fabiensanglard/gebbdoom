@@ -1,6 +1,6 @@
  As of 2018, it has been twenty five years since the last machine came out of \NeXT{}'s Redwood City factory in 1993. It has become a rare occurrence to find one of these pieces of black hardware in working condition.\\
  \par
- Since this book strives to be historically accurate, it was paramount to find an actual NeXTStation Turbo -- first and foremost to document the development condition of the time, but also to witness the full game pipeline in motion. Even though passionate and dedicated programmers have produced a gorgeous emulator called "Previous", the performance numbers would not have been accurate.\\
+ Since this book strives to be historically accurate, it was paramount to find an actual NeXTstation Turbo -- first and foremost to document the development condition of the time, but also to witness the full game pipeline in motion. Even though passionate and dedicated programmers have produced a gorgeous emulator called "Previous", the performance numbers would not have been accurate.\\
  \par
   I lucked out on eBay and found exactly the configuration I needed. The machine was in working condition but the SCSI hard-drive was making clinking noises, a sign that it was about to die. Additionally, the MegaDisplay colors had faded out\footnote{This would have been easily fixable by replacing the capacitors on the monitor control board, but it would not have solved the issue of the weight.} and its 50 lbs (23 kg) made it difficult to move.\\
   \par
@@ -117,14 +117,64 @@ MAP35 &        0.3 \\
 \\
 
 \section{Running The Game}
-\fixme{TODO TABLE HIGH LOW details framerate here.}\\
+Running \doom{} on a NeXTstation Turbo produced a surprisingly poor framerate.\\
 \par
+ \begin{figure}[H]
 
-On \NeXTns{}, the video system is very different to DOS. The implementation disregards update signals from \cw{I\_} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. As a result it does not benefit as much as it should from "reduced canvas size".\\
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.25} | R{0.25} | R{0.25} | R{0.25} }
+  \specialrule{1pt}{0pt}{0pt}
+  \textbf{Mode} & \textbf{\# Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \specialrule{1pt}{0pt}{0pt}
+B & 64,000 & 9 & 13 \\  
+A & 53,760&  9 & 14 \\
+9 & 41,472& 11 & 15 \\
+8 & 32,768& 12 & 16 \\
+7 & 25,088& 13 & 17\\
+6 & 18,432& 15 & 19 \\
+5 & 12,800& 17 & 20 \\
+4 &  8,192& 19 & 22 \\
+3 &  4,608& 21 & 23 \\
+   \specialrule{1pt}{0pt}{0pt}
+\end{tabularx}
+\caption{\protect\doom{} framerate on a NeXTstation turbo color}
+\end{figure}
 \par
+It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but 4x times more data has to transit on the bus.\\
+\par
+ \begin{figure}[H]
+\centering  
+\begin{tabularx}{\textwidth}{ L{0.25} | R{0.25} | R{0.25} | R{0.25} }
+  \specialrule{1pt}{0pt}{0pt}
+  \textbf{Mode} & \textbf{\# Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \specialrule{1pt}{0pt}{0pt}
+B & 64,000 & 6 & 8 \\  
+A & 53,760&  6 & 8 \\
+9 & 41,472&  7 & 9 \\
+8 & 32,768&  8 & 9 \\
+7 & 25,088&  8& 10\\
+6 & 18,432&  9 & 10 \\
+5 & 12,800&  9 & 10 \\
+4 &  8,192& 10 & 11 \\
+3 &  4,608& 11  & 11 \\
+   \specialrule{1pt}{0pt}{0pt}
+\end{tabularx}
+\caption{\protect\doom{} 2x zoom framerate on a NeXTstation turbo color}
+\end{figure}
+\par
+Lowering the resolution or the detail level helped a little bit but not as much as the DOS version. That's because on \NeXTns{}, the video system is implemented differently.\\
+\par
+ The implementation disregard   s update signals from \cw{I\_UpdateNoBlit} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. There is no dirty box optimization and no direct access to the hardware like on DOS.\\
+\par
+\trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate the columns like the VGA mask does. As a result, only the left portion of the screen is updated.}
 
 \section{Framebuffer Non-distortion}
-Contrary to what happens on DOS due to the VGA, there is no distortion when the framebuffer is displayed onto the screen. The 320x200 content is not stretched to 320x240 and therefore appears vertically squashed. It is particularly noticeable when the splash screen is displayed.\\
+The NeXTstation had a "clean" video system where the color space was linear and the pixels were "square" when transfered to the MegaDisplay monitor. As a result \doom{}'s' framebuffer \#q suffers no distortion when presented by the window system.\\
+\par
+The 320x200 Interceptor VGA Console \cw{NSWindow} is not stretched to 320x240 and therefore appears vertically squashed. It is particularly noticeable when the splash screen is displayed.\\
 \par
 \cfullimage{doom_crushed}{\doom{} on NeXTSTEP. Content appears vertically squashed}
-
+\par
+\trivia{The aspect ratio is something a lot of port got wrong. \doom{}95, dedicated to showcasing Microsoft's Windows 95 graphics driver low overheard was among the guilty. In its default setting, the hosting window is set to 320x200 and directly maps the \doom{}'s core framebuffer. As a result, enemies look shorter, rocket explosions are oval, and everything else is distorted.}
+\par
+\cfullimage{doom_title_4_3}{\doom{} in 4:3 aspect ratio as presented on a 1993 monitor}

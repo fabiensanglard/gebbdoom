@@ -1,0 +1,36 @@
+./Doom -file doom.wad -timedemo demo1 
+1710 tics
+
+Benchmarks normal size:
+
+Mode         High Resolution    Low Resolution
+
+  B              6648               4511
+  A              6174               4300
+  9              5426               3909
+  8              4877               3614
+  7              4370               3346
+  6              3909               3106
+  5              3494               2881
+  4              3128               2682
+  3              2812               2494
+
+
+
+  Benchmarks 2x software zoom:
+
+Mode         High Resolution    Low Resolution
+
+  B              9217                7077
+  A              8737                6867
+  9              7992                6475
+  8              7445                6181	
+  7              6936                5909
+  6              6473                5668
+  5              6057                5442
+  4              5688                5242
+  3              5370                5053
+
+
+
+  ==============================================

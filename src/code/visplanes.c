@@ -5,7 +5,7 @@ typedef struct {
   int        lightlevel;
   int        minx;
   int        maxx;
-
+  // 4 padding bytes
   byte       top[SCREENWIDTH];
   byte       bottom[SCREENWIDTH];
 } visplane_t;
