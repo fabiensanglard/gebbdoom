@@ -122,9 +122,9 @@ Running \doom{} on a NeXTstation Turbo produced a surprisingly poor framerate.\\
  \begin{figure}[H]
 
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.25} | R{0.25} | R{0.25} | R{0.25} }
+\begin{tabularx}{\textwidth}{ L{0.08} | R{0.42} | R{0.25} | R{0.25} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Mode} & \textbf{\# Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \textbf{Mode} & \textbf{Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
   \specialrule{1pt}{0pt}{0pt}
 B & 64,000 & 9 & 13 \\  
 A & 53,760&  9 & 14 \\
@@ -140,41 +140,41 @@ A & 53,760&  9 & 14 \\
 \caption{\protect\doom{} framerate on a NeXTstation turbo color}
 \end{figure}
 \par
-It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but 4x times more data has to transit on the bus.\\
+It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but 4x times more data has to transit over the bus.\\
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.25} | R{0.25} | R{0.25} | R{0.25} }
+\begin{tabularx}{\textwidth}{ L{0.08} | R{0.21} | R{0.21} | R{0.25} | R{0.25} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Mode} & \textbf{\# Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \textbf{Mode} & \textbf{Pixels written} & \textbf{Pixels moved} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
   \specialrule{1pt}{0pt}{0pt}
-B & 64,000 & 6 & 8 \\  
-A & 53,760&  6 & 8 \\
-9 & 41,472&  7 & 9 \\
-8 & 32,768&  8 & 9 \\
-7 & 25,088&  8& 10\\
-6 & 18,432&  9 & 10 \\
-5 & 12,800&  9 & 10 \\
-4 &  8,192& 10 & 11 \\
-3 &  4,608& 11  & 11 \\
+B & 64,000 & 256,000& 6 & 8 \\  
+A & 53,760& 215,040 & 6 & 8 \\
+9 & 41,472& 165,888 & 7 & 9 \\
+8 & 32,768& 131,072 & 8 & 9 \\
+7 & 25,088& 100,352 & 8& 10\\
+6 & 18,432&  73,728& 9 & 10 \\
+5 & 12,800&  51,200& 9 & 10 \\
+4 &  8,192& 32,768& 10 & 11 \\
+3 &  4,608& 18,432& 11  & 11 \\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
-\caption{\protect\doom{} 2x zoom framerate on a NeXTstation turbo color}
+\caption{\protect\doom{} 2x zoom framerate on a NeXTstation turbo}
 \end{figure}
 \par
-Lowering the resolution or the detail level helped a little bit but not as much as the DOS version. That's because on \NeXTns{}, the video system is implemented differently.\\
+Lowering the resolution or the detail level helped a little bit but not as much as with the DOS version. That's because on \NeXTns{}, the video system is implemented differently.\\
 \par
  The implementation disregard   s update signals from \cw{I\_UpdateNoBlit} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. There is no dirty box optimization and no direct access to the hardware like on DOS.\\
 \par
 \trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate the columns like the VGA mask does. As a result, only the left portion of the screen is updated.}
 
 \section{Framebuffer Non-distortion}
-The NeXTstation had a "clean" video system where the color space was linear and the pixels were "square" when transfered to the MegaDisplay monitor. As a result \doom{}'s' framebuffer \#q suffers no distortion when presented by the window system.\\
+The NeXTstation had a "clean" video system where the color space was linear and the pixels were "square" (the framebuffer had the same aspect ratio as the MegaDisplay monitor). As a result \doom{}'s' framebuffer \#0 suffers no distortion when presented by the window system.\\
 \par
-The 320x200 Interceptor VGA Console \cw{NSWindow} is not stretched to 320x240 and therefore appears vertically squashed. It is particularly noticeable when the splash screen is displayed.\\
+The 320x200\footnote{320x200 is the dimension of the active area, not including the title bar.} "Interceptor VGA Console" \cw{NSWindow} is not stretched to 320x240 and therefore appears vertically squashed. It is particularly noticeable when the splash screen on NeXTSTEP (Figure \ref{doom_crushed}) is displayed next to the DOS version (Figure \ref{doom_title_4_3}).\\
 \par
-\cfullimage{doom_crushed}{\doom{} on NeXTSTEP. Content appears vertically squashed}
+\cscaledimage{1}{doom_crushed}{\doom{} on NeXTSTEP. Content appears vertically squashed}
 \par
-\trivia{The aspect ratio is something a lot of port got wrong. \doom{}95, dedicated to showcasing Microsoft's Windows 95 graphics driver low overheard was among the guilty. In its default setting, the hosting window is set to 320x200 and directly maps the \doom{}'s core framebuffer. As a result, enemies look shorter, rocket explosions are oval, and everything else is distorted.}
+\trivia{Many ports got the aspect ratio wrong. \doom{} 95 which was to showcase Microsoft's Windows 95 graphics drivers low overheard was among the guilty. In its default setting, the 320x200 hosting window directly maps the \doom{}'s core framebuffer. As a result, enemies look shorter, rocket explosions are oval, and everything else is distorted.}
 \par
-\cfullimage{doom_title_4_3}{\doom{} in 4:3 aspect ratio as presented on a 1993 monitor}
+\cscaledimage{1}{doom_title_4_3}{\doom{} in 4:3 aspect ratio as presented on a 1993 PC monitor}
