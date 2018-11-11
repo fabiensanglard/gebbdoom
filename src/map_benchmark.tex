@@ -1,12 +1,12 @@
  As of 2018, it has been twenty five years since the last machine came out of \NeXT{}'s Redwood City factory in 1993. It has become a rare occurrence to find one of these pieces of black hardware in working condition.\\
  \par
- Since this book strives to be historically accurate, it was paramount to find an actual NeXTstation Turbo -- first and foremost to document the development condition of the time, but also to witness the full game pipeline in motion. Even though passionate and dedicated programmers have produced a gorgeous emulator called "Previous", the performance numbers would not have been accurate.\\
+ Since this book strives to be historically accurate, it was paramount to find an actual NeXTstation TurboColor -- first and foremost to document the development condition of the time, but also to witness the full game pipeline in motion. Even though passionate and dedicated programmers have produced a gorgeous emulator called "Previous", the performance numbers would not have been accurate.\\
  \par
   I lucked out on eBay and found exactly the configuration I needed. The machine was in working condition but the SCSI hard-drive was making clinking noises, a sign that it was about to die. Additionally, the MegaDisplay colors had faded out\footnote{This would have been easily fixable by replacing the capacitors on the monitor control board, but it would not have solved the issue of the weight.} and its 50 lbs (23 kg) made it difficult to move.\\
   \par
   Thanks to Rob Blessin, owner and founder of Black Hole Inc., I was able to replace the HDD with a SD card SCSI2SD providing similar access time. It was difficult to find a screen compatible with \NeXTns{}'s exotic "sync on green" but thanks to the wonderful people at \cw{www.nextcomputers.org} I was pointed to a NEC MultiSync 1980SX which worked flawlessly.\\
   \par
-  Words cannot convey how it felt to hear the humming of the machine's fan. To witness \cw{Doom.app}, \cw{DoomED} and, \cw{doombsp} compile flawlessly. To witness this NeXTStation Turbo Color (serial \cw{\#ABC0053943}) come back to life. The machine did not cure cancer as Jobs wished for but it did provide happiness to countless developers.
+  Words cannot convey how it felt to hear the humming of the machine's fan. To witness \cw{Doom.app}, \cw{DoomED} and, \cw{doombsp} compile flawlessly. To witness this NeXTStation TurboColor (serial \cw{\#ABC0053943}) come back to life. The machine did not cure cancer as Jobs wished for but it did provide happiness to countless developers.
 
 
 
@@ -117,7 +117,7 @@ MAP35 &        0.3 \\
 \\
 
 \section{Running The Game}
-Running \doom{} on a NeXTstation Turbo produced a surprisingly poor framerate.\\
+Running \doom{} on a NeXTstation TurboColor produced a surprisingly poor framerate.\\
 \par
  \begin{figure}[H]
 
@@ -137,10 +137,10 @@ A & 320x168&  9 & 14 \\
 3 & 096x048& 21 & 23 \\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
-\caption{\protect\doom{} framerate on a NeXTstation turbo color}
+\caption{\protect\doom{} framerate on a NeXTstation TurboColor}
 \end{figure}
 \par
-It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but four times more data has to transit over the bus.\\
+It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but four times more data must transit over the bus.\\
 \par
  \begin{figure}[H]
 \centering  
@@ -159,14 +159,14 @@ A & 640x336 & 6 & 8 \\
 3 & 192x096 & 11  & 11 \\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
-\caption{\protect\doom{} 2x zoom framerate on a NeXTstation turbo}
+\caption{\protect\doom{} 2x zoom framerate on a NeXTstation TurboColor}
 \end{figure}
 \par
 Lowering the resolution or the detail level helped a little bit but not as much as with the DOS version. That's because on \NeXTns{}, the video system is implemented differently.\\
 \par
- The implementation disregard   s update signals from \cw{I\_UpdateNoBlit} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. There is no dirty box optimization and no direct access to the hardware like on DOS.\\
+ The implementation disregards update signals from \cw{I\_UpdateNoBlit} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to the \cw{NSWindow}. There is no dirty box optimization and no direct access to the hardware like on DOS.\\
 \par
-\trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate them like the VGA bank mask did. As a result, only the left portion of the window is updated.}
+\trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate them like the VGA bank mask did. As a result, only the left portion of the \cw{NSWindow} is updated.}
 
 \section{Framebuffer Non-distortion}
 The NeXTstation had a "clean" video system where the color space was linear and the pixels were "square" (the framebuffer had the same aspect ratio as the MegaDisplay monitor). As a result \doom{}'s' framebuffer \#0 suffers no distortion when presented by the window system.\\
