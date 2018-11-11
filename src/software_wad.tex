@@ -1,5 +1,5 @@
 \section{Filesystem}
-\doom{} barely interacts with the OS's file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called \cw{lump}s which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
+\doom{} barely interacts with the OS's file system. During a typical gaming session, the engine \cw{DOOM.EXE} only needs to open \cw{DOOM.WAD} in order to access its assets. Therefore, the engine does not deal with files but rather with something called lumps which are the atomic unit of a \cw{.wad} archive and its associated caching system.\\ 
  \par
  While \cw{DOOM.EXE} remained relatively stable, the asset archive kept on growing, with each new game being more elaborate than the last, as seen in the following list of \cw{.wad}s.\\
  \par
@@ -34,7 +34,7 @@
 \trivia{There was no need for an \cw{I\_*} abstraction layer to access the OS filesystem. Luckily, all systems now offered standard functions such as \cw{open}, \cw{lseek}, \cw{read}, and \cw{close}.}\\
 \par
 
-Lumps are identified by a unique name made of up to eight characters (which conveniently match DOS's filename length limitation).\\
+Lumps are identified by a unique name made of up to eight characters (which conveniently matches DOS's filename length limitation).\\
 \par
 \ccode{lumpinfo_t.c}{}
 \par
@@ -63,17 +63,17 @@ There were more than thirty types of lump. Those associated with maps and music 
   \cw{SECTORS} &  Referenced by \cw{SSECTORS}. Specifies ceiling/floor height, texture, and lighting properties.\\
   
   \cw{BLOCKMAP} & A collision detection acceleration structure slicing the map into 128x128 blocks. Provides fast access to all \cw{LINEDEFS} neighboring any point on the map. Detailed on page \pageref{blockmapdetails}. \\
-  \cw{REJECT} &  Line of Sight acceleration data structure.\\
+  \cw{REJECT} &  Line of sight acceleration data structure.\\
   \toprule
   \cw{DP.*} &  Sound effects in PC Speaker format.\\
-  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11kHz (22Khz supported but used only for \doomii{}'s Super Shootgun).\\
+  \cw{DS.*} &  Sound effects in PCM Mono, 8-bit 11kHz (22kHz supported but used only for \doomii{}'s Super Shootgun).\\
   \cw{D\_.*} & Music in MUS format (a slightly altered MIDI format).\\
   \toprule
   \cw{ENDOOM} & Text-mode exit screen to entice players to buy the full version. \\
   \cw{DMXGUS} & Translation table to match a MIDI instrument with a Gravis Ultra Sound sample file.\\
   \cw{GENMIDI} &  Bank of instrument data to play MIDI music with an OPL audio chip.\\
   \cw{PNAMES} &  Lists all lump names used as wall patches.\\
-  \cw{TEXTURE1} &  A dictionary of all wall textures lumps referenced by \cw{SIDEDEFS}. Used to speed up access and allocation at runtime.\\  
+  \cw{TEXTURE1} &  A dictionary of all wall texture lumps referenced by \cw{SIDEDEFS}. Used to speed up access and allocation at runtime.\\  
   \cw{F\_START} &  Zero-sized lump marking the beginning of flat textures.\\  
   \cw{F\_END} &   Zero-sized lump marking the end of flat textures.\\  
   \cw{S\_START} & Zero-sized lump marking start of item/monster "sprites" section. \\  
@@ -97,7 +97,7 @@ There were more than thirty types of lump. Those associated with maps and music 
 The lump system is the least glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
 Upon starting up, it looks at every WAD archive provided and indexes every lump found into a gigantic array of \cw{lumpinfo\_t}s cunningly named \cw{lumpinfo}. 
-If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lump info} array first.\\
+If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lumpinfo} array first.\\
 \par
 In the next example, \doom{} was started with the command-line:\\
 \par
@@ -131,8 +131,8 @@ id Software sent the file format to a few individuals in the community. Within a
 
 Some fans used the system to replace almost every aspect of the original game. These mods were known as "Total Conversions". The most notorious of them all was named Aliens Total Conversion.\\
 \par
-Released in December 1994, it took Justin Fisher one year of hard work to complete it. Amusingly the result revisited the Aliens motion picture theme id Software briefly considered before going for demons.\\
+Released in December 1994, it took Justin Fisher one year of hard work to complete. Amusingly the result revisited the Aliens motion picture theme id Software briefly considered before going for demons.\\
 \par
  \fullimage{alientc.png}{}
  \par
- Many sound effects such as doors, weaponry, and explosions were straight from the movie. Actors' lines ("let's rock!") and screams had been digitized. All demons were replaced with aliens, eggs, facehuggers and even the alien queen. The Pulse Rifle, the Grenade Launcher, the Smart-Gun are there and even the chainsaw was replaced with the "Caterpillar P-5000 Work Loader". Map design wasn't neglected either. Aliens TC replicated the paranoid and scary atmosphere of the movie with the first level entirely devoid of enemies!
+ Many sound effects such as doors, weaponry, and explosions were straight from the movie. Actors' lines ("let's rock!") and screams had been digitized. All demons were replaced with aliens, eggs, facehuggers and even the alien queen. The Pulse Rifle, Grenade Launcher and Smart-Gun are there and even the chainsaw was replaced with the "Caterpillar P-5000 Work Loader". Map design wasn't neglected either. Aliens TC replicated the paranoid and scary atmosphere of the movie with the first level entirely devoid of enemies!

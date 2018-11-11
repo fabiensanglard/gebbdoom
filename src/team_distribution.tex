@@ -1,5 +1,5 @@
 \section{Distribution}
-To distribute \doom, id software once again adopted the shareware model where a small part of the game was given away for free. Episode I "Knee-Deep in the Dead", consisting of nine maps, could be downloaded for free and players were encouraged to copy and give it away as much as possible. To this effect, id Software managed to cut and compress the game engine and the first episode on only two 3$\nicefrac{1}{2}$-inch floppy disks.\\
+To distribute \doom, id software once again adopted the shareware model where a small part of the game was given away for free. Episode I "Knee-Deep in the Dead", consisting of nine maps, could be downloaded for free and players were encouraged to copy and give it away as much as possible. To this effect, id Software managed to cut and compress the game engine and the first episode down to only two 3$\nicefrac{1}{2}$-inch floppy disks.\\
 \par 
 A player happy with what she saw could send id Software a payment and receive the two remaining episodes, "The Shores of Hell" and its sequel "Inferno", by mail.\\
 \par
@@ -40,9 +40,9 @@ The success of the formula exceeded their wildest expectations. The shareware ve
 \cfullimage{floppies.png}{}
 \par
 \vspace{-10pt}
-Figure \ref{floppies.png} shows two 3$\nicefrac{1}{2}$ floppy disks containing \doom{} shareware which were bundled with the book "Survivor's Strategies and Secrets". The publisher paid no royalties for that.\\
+Figure \ref{floppies.png} shows two 3$\nicefrac{1}{2}$" floppy disks containing \doom{} shareware, bundled with the book "Survivor's Strategies and Secrets". The publisher paid no royalties for that.\\
 \par
-The binary packaging was a departure from their previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine an a multitude of \cw{.WL6} files, \doom{} had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was entirely contained in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\
+The binary packaging was a departure from their previous title. While Wolfenstein 3D shipped with a \cw{WOLF3D.EXE} engine and a multitude of \cw{.WL6} files, \doom{} had only two relevant files. After installation, besides a few \cw{TXT} files and network drivers, the gaming experience was entirely contained in the engine \cw{DOOM.EXE} and all assets contained in \cw{DOOM.WAD}.\\
 \vspace{3mm}
 
 \rawscaleddrawing{0.9}{graph_wad2}
@@ -62,12 +62,12 @@ There was no difference between the two \cw{DOOM.EXE}s from the registered (paid
 
 \subsection{WAD archives: Where's All the Data?}
 \label{wad_explained}
-The goal of the \cw{WAD} format was partly to replace the OS filesystem but mostly to embrace the modding community. In a \cw{WAD}, each asset is stored in a "lump". The \cw{WAD} is made of three parts with a header, all the lumps, and a directory at the end.\\
+The goal of the \cw{WAD} format was partly to replace the OS filesystem but mostly to embrace the modding community. In a \cw{WAD}, each asset is stored in a "lump". The \cw{WAD} is made of three parts with a header, the lump content, and a directory at the end.\\
 
 \par
 \ccode{wad_structure.c}
 \par
-\trivia{The extension \cw{WAD} was coined by Tom Hall during an uncanny dialog. John Carmack was looking for a name for its archive format. Upon asking "How do you call a file Where's All the Data?", Tom responded immediately: "A WAD!" }\\
+\trivia{The extension \cw{WAD} was coined by Tom Hall during an uncanny dialog. John Carmack was looking for a name for the archive format. Upon asking "How do you call a file Where's All the Data?", Tom responded immediately: "A WAD!" }\\
 \par
 \drawing{wad_arch}{A wad file containing two lumps.}
 \par
