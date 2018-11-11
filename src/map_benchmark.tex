@@ -122,41 +122,41 @@ Running \doom{} on a NeXTstation Turbo produced a surprisingly poor framerate.\\
  \begin{figure}[H]
 
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.08} | R{0.42} | R{0.25} | R{0.25} }
+\begin{tabularx}{\textwidth}{ L{0.08} | C{0.42} | R{0.25} | R{0.25} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Mode} & \textbf{Pixels} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \textbf{Mode} & \textbf{Resolution} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
   \specialrule{1pt}{0pt}{0pt}
-B & 64,000 & 9 & 13 \\  
-A & 53,760&  9 & 14 \\
-9 & 41,472& 11 & 15 \\
-8 & 32,768& 12 & 16 \\
-7 & 25,088& 13 & 17\\
-6 & 18,432& 15 & 19 \\
-5 & 12,800& 17 & 20 \\
-4 &  8,192& 19 & 22 \\
-3 &  4,608& 21 & 23 \\
+B & 320x200 & 9 & 13 \\  
+A & 320x168&  9 & 14 \\
+9 & 288x144& 11 & 15 \\
+8 & 256x128& 12 & 16 \\
+7 & 224x112& 13 & 17\\
+6 & 192x096& 15 & 19 \\
+5 & 160x080& 17 & 20 \\
+4 & 128x064& 19 & 22 \\
+3 & 096x048& 21 & 23 \\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
 \caption{\protect\doom{} framerate on a NeXTstation turbo color}
 \end{figure}
 \par
-It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but 4x times more data has to transit over the bus.\\
+It gets even worse when running the game with the 2x zoom used during development. In this mode, the same number of pixels are written to the core's framebuffer but four times more data has to transit over the bus.\\
 \par
  \begin{figure}[H]
 \centering  
-\begin{tabularx}{\textwidth}{ L{0.08} | R{0.21} | R{0.21} | R{0.25} | R{0.25} }
+\begin{tabularx}{\textwidth}{ L{0.08} | C{0.42} | R{0.25} | R{0.25} }
   \specialrule{1pt}{0pt}{0pt}
-  \textbf{Mode} & \textbf{Pixels written} & \textbf{Pixels moved} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
+  \textbf{Mode} & \textbf{Resolution} & \textbf{High Details FPS} & \textbf{Low Details FPS} \\
   \specialrule{1pt}{0pt}{0pt}
-B & 64,000 & 256,000& 6 & 8 \\  
-A & 53,760& 215,040 & 6 & 8 \\
-9 & 41,472& 165,888 & 7 & 9 \\
-8 & 32,768& 131,072 & 8 & 9 \\
-7 & 25,088& 100,352 & 8& 10\\
-6 & 18,432&  73,728& 9 & 10 \\
-5 & 12,800&  51,200& 9 & 10 \\
-4 &  8,192& 32,768& 10 & 11 \\
-3 &  4,608& 18,432& 11  & 11 \\
+B & 640x400 & 6 & 8 \\  
+A & 640x336 & 6 & 8 \\
+9 & 576x288 & 7 & 9 \\
+8 & 512x256 & 8 & 9 \\
+7 & 448x224 & 8& 10\\
+6 & 384x192 & 9 & 10 \\
+5 & 320x160& 9 & 10 \\
+4 & 256x128& 10 & 11 \\
+3 & 192x096 & 11  & 11 \\
    \specialrule{1pt}{0pt}{0pt}
 \end{tabularx}
 \caption{\protect\doom{} 2x zoom framerate on a NeXTstation turbo}
@@ -166,7 +166,7 @@ Lowering the resolution or the detail level helped a little bit but not as much 
 \par
  The implementation disregard   s update signals from \cw{I\_UpdateNoBlit} and defers all work to \cw{I\_FinishUpdate} where the full content of framebuffer \#0 is blitted to \cw{NSWindow}. There is no dirty box optimization and no direct access to the hardware like on DOS.\\
 \par
-\trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate the columns like the VGA mask does. As a result, only the left portion of the screen is updated.}
+\trivia{The "low detail" mode was never properly implemented on NeXTSTEP. The engine writes only half the columns but there is no system to duplicate them like the VGA bank mask did. As a result, only the left portion of the window is updated.}
 
 \section{Framebuffer Non-distortion}
 The NeXTstation had a "clean" video system where the color space was linear and the pixels were "square" (the framebuffer had the same aspect ratio as the MegaDisplay monitor). As a result \doom{}'s' framebuffer \#0 suffers no distortion when presented by the window system.\\
