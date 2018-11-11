@@ -184,10 +184,10 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 \par
 
 
-To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane with a parametric equation $$ P = P0 + t * (P1 - P0) $$
-and use the power of the dot product to inject the coordinate of the test point, essentially projecting the point onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane.\\
+To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane in general form with a vector $(a, b, c)$ combined to a distance $d$: $$ ax + by + cz + d = 0 $$
+and use the power of the dot product to inject the coordinate of the test point $P = (x, y, z)$, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero=onplan).\\
 \par
-This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic. It uses not the dot product but the cross product.\\
+This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic, which uses the awesome power of the cross product.\\
 \ccode{node_t.c}\\
 \par
 \vspace{2mm}
@@ -208,7 +208,7 @@ We have now reached the \cw{R\_Subsector} function where all segments in a subse
 \par
 \ccode{bam.c}
 \par
-First, both ends of the segment are converted to an angle with respect to the player's position. Segments with a negative angle (\cw{angle1} - \cw{angle2} < 0) are culled since they are not facing the camera. Segments passing the angle test are then reduced from 32 bits to 13 bits with a simple right-shift. Next, the angle is injected into a lookup table \cw{viewangletox[4096]} to give a screen-space \cw{X} coordinate.\\
+First, both ends of the segment are converted to an angle with respect to the player's position (via highschool level $angle = arctan(\frac{O}{A})$). Segments with a negative angle (\cw{angle1} - \cw{angle2} < 0) are culled since they are not facing the camera. Segments passing the angle test are then reduced from 32 bits to 13 bits with a simple right-shift. Next, the angle is injected into a lookup table \cw{viewangletox[4096]} to give a screen-space \cw{X} coordinate.\\
  \par
 \vspace{2mm}
 \drawing{segtobam}{}
