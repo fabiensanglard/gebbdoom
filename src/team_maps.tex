@@ -21,9 +21,9 @@ The resulting scene in figure \ref{doom_map.png} is ugly but the mismatched colo
 \par
 \cw{SECTOR} \#0 uses a \cw{RED} floor texture and a \cw{WOOD} ceiling texture. The height of the floor is 20 and its ceiling is at 40. \cw{SECTOR} \#1 uses a \cw{BLUE} floor texture and a \cw{GREEN} ceiling texture. Its floor is at 0 and ceiling at 60. Both sectors have the same light level (10).\\
 \par
-   Notice the portal \cw{E-B} which does not have a mid-texture but an upper and lower texture. These were used to draw the up-step and down-step towards sector \#0.\\
+   Notice the portal \cw{E-B} which does not have a mid-texture but an upper and a lower texture. These were used to draw the up-step and down-step towards sector \#0.\\
 \par
-Also notice wall \cw{D-E} on which mid-texture vertical offset is not correctly set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C}'s vertical offset is properly set and has no visual artifact. None of the walls use a horizontal offset, but the corresponding field is labelled \cw{XOFF} on figure \ref{doom_map_basics} to show its location.\\ 
+Also notice wall \cw{D-E} on which the mid-texture vertical offset is not correctly set, resulting in a vertical tear when connecting with wall \cw{E-F}. Wall \cw{B-C}'s vertical offset is properly set and has no visual artifact. None of the walls use a horizontal offset, but the corresponding field is labeled \cw{XOFF} on figure \ref{doom_map_basics} to show its location.\\ 
 \pagebreak
 
 
@@ -56,7 +56,7 @@ DoomED did not output data usable by the game engine directly. Instead it genera
 \par
 \tcode{map.txt}
 \par
-DWD was not designed with space efficiency in mind but rather was designed to be easy to parse since it was processed by the Node Builder tool, \cw{doombsp}.\\
+DWD was not designed with space efficiency in mind but rather was designed to be easy to parse since it was processed by the node builder tool, \cw{doombsp}.\\
 \par
 \cfullimage{props/tom.png}{Tom Hall, delighted next to his NeXTCube running DoomED. The sticker on his monitor reads, "quality".}
 \par
@@ -72,7 +72,7 @@ Map prep-rocessing was not something new at id. Since 1991 with Wolfenstein 3D, 
 \par
 The main issue at hand was to maintain the same rendering speed despite relaxing the orthogonal grid constraints of Wolfenstein and losing the ability to use the DDA algorithm \footnote{Digital Differential Analyzer was used extensively for VSD (Visual Surface Determination), collision detection, and line-of-sight calculations. This was all gone with \doom.}. The solution chosen was to generate a multitude of accelerating data structures for each map, each dedicated to solving a particular problem.\\
 \par
- The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputted a \cw{.WAD}. Not only was the map expressed in a space-efficient format (e.g. expressing vertices only once and referencing them via index), but three data structures were generated alongside it. A binary space-partitioned version of the map expressed a node tree to speed up rendering. A blockmap accelerated collision detection. Finally, a reject accelerated A.I. processing.\\
+ The tool to do that was called \cw{doombsp}. It took as input a \cw{.DWD} map and outputted a \cw{.WAD}. Not only was the map expressed in a space-efficient format (e.g. expressing vertices only once and referencing them via index), but three data structures were generated alongside it. A binary space-partitioned version of the map expressed a node tree to speed up rendering. A blockmap accelerated collision detection. Finally, a reject table accelerated A.I. processing.\\
  \par
 \trivia{Map preprocessing took a significant amount of time. With a NextStation Turbo Color, running \cw{doombsp} on \cw{E1M1} took 10s. On E1M2, it took 30s. On E2M7, it took a full minute. The first nine maps of the shareware took 3m26s. The full twenty seven maps of the registered version took 11 minutes.}\\% This was a problem for designers...yet it was little compared to what Quake's \cw{qbsp} would be three years later.}\\
 \par
@@ -139,8 +139,8 @@ For each \cw{.dwd}, \cw{doombsp} outputs a set of lumps and stores them in a \cw
    \cw{SECTORS} & Area surrounded by lines, with set ceiling and floor textures/heights with light level.\\
    \cw{THINGS} & Position and angle for all monster, powerup and spawn location.\\
    \toprule
-   \cw{NODES} & BSP with segs nodes and sub-sector leaves.\\
-   \cw{SEGS} & Portion of lines cut due to Binary Space Partitioning (see page \pageref{Binary Space Partitioning: Theory}).\\
+   \cw{NODES} & BSP with segs, nodes and sub-sector leaves.\\
+   \cw{SEGS} & Portions of lines cut due to Binary Space Partitioning (see page \pageref{Binary Space Partitioning: Theory}).\\
    \cw{SSECTORS} & Set of \cw{SEGS} representing a convex subspace.\\
    \toprule
    \cw{REJECT} & Sector-to-sector visibility matrix to speed-up line of sight calculations.\\
