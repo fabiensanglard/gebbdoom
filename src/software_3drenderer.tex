@@ -6,9 +6,9 @@ Doom's 3D renderer is an uncanny combination of proper 3D techniques and screen 
 \begin{itemize}
 	\item Segments (walls and portals which are always vertical).
 	\item Flats (ceilings and floors which are always horizontal).
-	\item Things (also called "Masked") which are not only monsters, weapons, ammo, and sprites but also partially-transparent walls.
+	\item Things (also called "masked") which are not only monsters, weapons, ammo, and sprites but also partially-transparent walls.
 \end{itemize}
- Its most breathtaking characteristic is its ability to render walls and flats with zero overdraw (each pixel is written exactly once). Sprites and Transparent walls do introduce a little bit of overdraw but it is minimal.\\
+ Its most breathtaking characteristic is its ability to render walls and flats with zero overdraw (each pixel is written exactly once). Sprites and transparent walls do introduce a little bit of overdraw but it is minimal.\\
 \par
 The life of a 3D frame can be summarized as follows:
 \begin{itemize}
@@ -18,7 +18,7 @@ The life of a 3D frame can be summarized as follows:
      \item Record screen-space vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) and floor areas (if below mid-screen) and store the area into an array of structures called "visplanes".
      \item Store sprites to be drawn into an array of structures called "vissprites".
    \end{itemize}
-\item Render all ceiling and floors from the visplanes.
+\item Render all ceilings and floors from the visplanes.
 \item Render transparent elements and sprites in back-to-front order.
 \item Render player sprite (the weapon the Doomguy is holding).
 \end{itemize}
@@ -36,7 +36,7 @@ In its earlier versions the engine operated on exactly what the designer produce
 \vspace{4mm}
 In the map above, with the player located in sector \cw{0}, the renderer will flood into other sectors using the red portals. A convex sector \cw{1} is relatively easy to deal with. Things get considerably more complicated when encountering a concave sector like \cw{4}. An even worse case is when nesting occurs like where sector \cw{2} contains another sector \cw{3}.\\
 \par
-\trivia{The design described is exactly what Ken Silverman's build engine would settle on to power Duke Nukem 3D in 1996. By then Pentium had taken over the world and was more than able to deal with complex polygons.}\\
+\trivia{The design described is exactly what Ken Silverman's build engine would settle on to power Duke Nukem 3D in 1996. By then the Pentium had taken over the world and was more than able to deal with complex polygons.}\\
 \par
 \fq{Doom engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}\\
 \par
@@ -50,11 +50,11 @@ Things indeed slowed down significantly with a particular map of John Romero's c
 \fullimage{SCREEN01.png}%{Notice the HUD using a huge portion of the 3D canvas.} 
 \label{HUD_screenshot}
 \par
-As the news that their 3D technology was not good enough to ship was already a concern, another serious issue arose.\\
+With the news that their 3D technology was not good enough to ship already a concern, another serious issue arose.\\
 \par
 Back in August 1992, id Software had landed a contract with Nintendo to port Wolfenstein 3D to SNES. With a release scheduled for May 1st, 1994, they had subcontracted the project and forgotten about it to focus on \doom. In April 1994, the contractor was nowhere to be seen. They had nothing to deliver to Nintendo. It was a big deal involving a huge penalty.\\
 \par
- Development for \doom{} stopped immediately as the team desperately banged their old game together into a machine not remotely built to do what they wanted. While Tom Hall dusted off his 6502 assembly skills, John Carmack had a different kind of problem at hand: the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6502 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
+ Development for \doom{} stopped immediately as the team desperately banged their old game together into a machine not remotely built to do what they wanted. While Tom Hall dusted off his 6502 assembly skills, John Carmack had a different kind of problem at hand: the raycasting technology which Wolfenstein relied on was too much for the Nintendo console. The SNES and its 6502 on steroids simply did not have enough juice for the DDA algorithm\footnote{You can read everything about DDA in Game Engine Black Book: Wolfenstein 3D.}.\\% It turned out a white paper co-authored by Bruce Naylor would end up making a huge difference.\\
 \par
 
 
@@ -64,7 +64,7 @@ Back in August 1992, id Software had landed a contract with Nintendo to port Wol
 Bruce Naylor's May 1993 AT\&T Bell Labs paper was titled "Constructing Good Partitioning Trees" and was published in the proceedings of Graphics Interface '93. John had this book in his collection. Bruce's explanation of BSPs was mostly to cull backfaces from 3D models, but the algorithm seemed like the right direction, so John adapted it for Wolfenstein 3D.}{John Romero}\\
 \par
 \vspace{10pt}
-\fq{I do remember clearly that I first used BSP for the SNES version of Wolfenstein, which was a gentle introduction with everything being axial and easier to visualize, which gave me more confidence I would be able to make it work when I went back to working on Doom}{John Carmack}\\
+\fq{I do remember clearly that I first used BSP for the SNES version of Wolfenstein, which was a gentle introduction with everything being axial and easier to visualize, which gave me more confidence I would be able to make it work when I went back to working on Doom.}{John Carmack}\\
 % Concave and convex sectors proved to be too much complexity for the engine to deal with and maintain a descent frame rate. This was a huge issue. They did not have much time to work on it thought, since around the same time this issue was discovered, work on \doom had to stop in order to respond to an emergency.\\
 \par
 With a visual surface determination not based on raycasting but rather on BSP, and using a low resolution (112x96 scaled up to 224x192 with Mode 7), Wolfenstein 3D SNES managed to reach an acceptable framerate.\\
@@ -78,7 +78,7 @@ With that problem solved, Wolfenstein 3D for Super Nintendo was released on sche
 \pagebreak
 
 \subsection{Binary Space Partitioning: Theory} \label{Binary Space Partitioning: Theory}
-Binary Space Partitioning trees have many applications. The one we are interested in is how \doom{} uses them to sort walls rapidly and consistently. Bruce Naylor's thesis paper "On visible surface generation by a priori tree structures" features a pretty good summary.\\
+Binary Space Partitioning trees have many applications. The one we are interested in is how \doom{} uses them to sort walls rapidly and consistently. Bruce Naylor's thesis paper, "On visible surface generation by a priori tree structures" features a pretty good summary.\\
 \par
 %  \begin{verbatim}
 % In order to determine the visible surface at each pixel,  traditionally
@@ -127,7 +127,7 @@ At this point in the splitting we are still not done. The area between \cw{B2}, 
 \par
 \drawing{doom_map_split3}{}
 \par
-With all sub-sectors in the leaf now convex, the BSP construction ends. The number of vertices and segments to deal with has increased by 50\% but we now have a data structure capable of sorting all segments, from any point of view, at the cost of only three comparisons.\\
+With all sub-sectors in the leaves now convex, the BSP construction ends. The number of vertices and segments to deal with has increased by 50\% but we now have a data structure capable of sorting all segments, from any point of view, at the cost of only three comparisons.\\
 \rawdrawing{doom_map_split4}
 \par
 This is only one of the many possible trees which could have been generated from the map. Choosing splitters in an alphabetical order would have produced an inefficient BSP.\\
@@ -158,7 +158,7 @@ The beauty of binary trees is that traversing them is $O(log\ n)$. No matter whe
 
 
 \subsection{Binary Space Partitioning: Practice}
-Maps were preprocessed on a NeXTStation Turbo via the in-house tool node builder named \cw{doombsp}.\\
+Maps were preprocessed on a NeXTstation Turbo via the in-house tool node builder named \cw{doombsp}.\\
 \par
 For the tool to build the best BSP possible a splitter selection heuristic had to be established. A good splitter divides the map as evenly as possible (limiting the depth of the tree), and prefers axis-aligned lines (since they are easier to debug and side tests are faster).\\
 \par
@@ -168,7 +168,7 @@ For the tool to build the best BSP possible a splitter selection heuristic had t
 \par
 Figure \ref{E1M1_segs} shows the seven first splitters selected on E1M1. The first level is in red, second level in blue and the third level in thick black. Notice how AA splitters are favored.\\
 \par
-Switching from a sector flooding algorithm to a Binary Space Partitioning algorithm not only added preprocessing time and latency to map designers. There was another side effect which was more of an issue since it affected players. Because the BSP created new vertices, wall positions are set in stone, there is no way to move walls at runtime.
+Switching from a sector flooding algorithm to a Binary Space Partitioning algorithm not only added preprocessing time and latency to map designers -- there was another side effect that was more of an issue since it affected players. Because the BSP created new vertices, wall positions are set in stone, there is no way to move walls at runtime.
 
 \drawing{E1M1_segs}{Seven first splitters (three BSP branches) in the E1M1 BSP}
 \vspace{5pt}
@@ -185,7 +185,7 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 
 
 To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane in general form with a vector $(a, b, c)$ combined to a distance $d$: $$ ax + by + cz + d = 0 $$
-and use the power of the dot product to inject the coordinate of the test point $P = (x, y, z)$, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero=onplan).\\
+and use the power of the dot product to inject the coordinate of the test point $P = (x, y, z)$, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero = on the plane).\\
 \par
 This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic, which uses the awesome power of the cross product.\\
 \ccode{node_t.c}\\
@@ -204,7 +204,7 @@ Notice in the previous code listing how nodes are not stored as coordinates of t
 
 
 \subsubsection{Wall Projection}
-We have now reached the \cw{R\_Subsector} function where all segments in a subsector are rendered in order. This part of the pipeline relies heavily on BAM (Binary Angular Measurement) where degrees in the interval \cw{[0, 360]} are mapped to the full range of a 32-bit integer.\\
+We have now reached the \cw{R\_Subsector} function where all segments in a subsector are rendered in order. This part of the pipeline relies heavily on BAM (Binary Angular Measurement) where degrees in the interval \cw{[0, 360]} are mapped to the full range of a 32-bit integers.\\
 \par
 \ccode{bam.c}
 \par
@@ -242,7 +242,7 @@ The second, finer, step is vertically-based. Both walls and portals affect the v
 
 
 \subsubsection{Horizontal Crude Wall Clipping}
-The first clipping pass is crude and only cares about horizontal occlusion. It maintains a \cw{solidseg} array which keeps track of the screen-space horizontal occlusion. Since portals can be partially seen through, they have no impact on \cw{solidseg}s. Segments entering this step come out as "fragments" since they may be split due to occlusion.\\
+The first clipping pass is crude and only cares about horizontal occlusion. It maintains a \cw{solidsegs} array which keeps track of the screen-space horizontal occlusion. Since portals can be partially seen through, they have no impact on \cw{solidsegs}. Segments entering this step come out as "fragments" since they may be split due to occlusion.\\
 \par
 \ccode{hclipper.c}
 \par
@@ -326,7 +326,7 @@ Notice how little RAM was used to maintain the occlusion state and how fast it i
 \subsubsection{Vertical Fine Wall Clipping}
 The second pass is finer and clips vertical segment fragments emanating from the first pass. A data structure based on two arrays as wide as the 3D canvas is maintained. It tracks how much vertical screen-space remains available for each column.\\
 \par
- Each rendered segment updates the structure by making inceases to \cw{ceilingclip} increase and decreases to \cw{floorclip}. A column is considered fully opaque when \cw{ceilingclip}'s height and \cw{floorclip}'s height are equal to each other. Wall fragments will mark a column as completely occluded while portal fragments will only update the occlusion columns with what they actually cover in screen-space.\\
+ Each rendered segment updates the structure by making increases to \cw{ceilingclip} and decreases to \cw{floorclip}. A column is considered fully opaque when \cw{ceilingclip}'s height and \cw{floorclip}'s height are equal to each other. Wall fragments will mark a column as completely occluded while portal fragments will only update the occlusion columns with what they actually cover in screen-space.\\
 \par
 \ccode{vclippers.c}
 \par
@@ -337,7 +337,7 @@ Let's take the example of a simple room made of three sectors (\cw{1}, \cw{2}, a
 \centering
 \includegraphics[width=.4\textwidth]{drawings/vcclip_map.pdf}
 \end{wrapfigure}
-Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G}, \cw{F}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\\
+Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G}, \cw{H}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\\
 \par
 Walls \cw{A}, \cw{C}, and \cw{D} mark the full opaque height for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2's lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and the occlusion array is adjusted accordingly. Wall \cw{E} marks all columns it covers as fully opaque.\\
 \par
@@ -364,7 +364,7 @@ Notice how portal \cw{F}'s lower and upper textures are not rendered but the occ
 
 
 \vspace{-4mm}
-After all this clipping, walls and portal screen-space coordinates are finally rendered. At the ends of each fragment, an \cw{Y} offset is calculated based on sector floor, and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a full set of columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and lower texture while walls only have a middle texture). Rendering is done vertically via the \cw{colfunc} function pointer (detailed in "performance" on page \pageref{performances}).\\
+After all this clipping, walls and portal screen-space coordinates are finally rendered. At the ends of each fragment, a \cw{Y} offset is calculated based on sector floor, and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a full set of columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and lower texture while walls only have a middle texture). Rendering is done vertically via the \cw{colfunc} function pointer (detailed in "performance" on page \pageref{performances}).\\
 
 \subsection{Subpixel Accuracy}
 It is worth mentioning that the engine is subpixel-accurate when calculating the screen coordinates of a wall's top and bottom edges. Subpixel accuracy is a subtle concept, the advantages of which are best demonstrated with an animated screen. Hopefully a few static drawings will do anyway.\\
@@ -397,7 +397,7 @@ The pixel-accurate method results in five pixels selected differently. The subpi
 
 
 \subsection{Perspective-Correct Texture Mapping}
-Before we move on to how \doom{} drew flats, is worth noticing that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
+Before we move on to how \doom{} drew flats, it is worth noticing that despite using affine texturing to draw columns, the visual result is still perspective-correct.\\
 \par
  To illustrate the concept, let's first study what affine texture mapping looks like. We'll use a three-wall-room, each textured with a pattern of white and colored squares.\\
 \par
@@ -415,7 +415,7 @@ Before we move on to how \doom{} drew flats, is worth noticing that despite usin
 In order to focus on walls, the floor and ceiling are intentionally rendered in light gray.\\
 \par
 \fullimage{affine_texturing.png}
-In this scene, wall vertice are projected in screen space coordinates $(x,y)$. A texture coordinate $u$ is generated for each columns to draw, based on linear interpolation of screenspace wall width and column's $x$ coordinate. Texture coordinate $v$ is interpolated linearly based on column height and $y$ position relative to the column. As a reminder, linear interpolation formula is as follows:\\
+In this scene, wall vertices are projected into screen space coordinates $(x,y)$. A texture coordinate $u$ is generated for each column to draw, based on linear interpolation of screenspace wall width and the column's $x$ coordinate. The texture coordinate $v$ is interpolated linearly based on column height and $y$ position relative to the column. As a reminder, the formula for linear interpolation is as follows:\\
 \par
 % \begin{figure}[H]
 \begin{equation*}
@@ -427,7 +427,7 @@ $u_{\alpha} = (1-\alpha)u_{0}\, +\, \alpha u_{1}\quad{where}\quad0\leq \alpha \l
 % \end{figure}
 \vspace{3pt}
 \par
-This texturing technique has the advantage of being fast but the disadvantage of being visually incorrect. Notice in particular how the "width" of each square is constant even as the wall columns gets further away. In order to generate correct texture coordinates, the $u$ coordinate needs to factor in the distance from the player. To this effect, value $\frac{1}{z}$ (which is linear in screen space) is used:\\
+This texturing technique has the advantage of being fast but has the disadvantage of being visually incorrect. Notice in particular how the "width" of each square is constant even as the wall columns get further away. In order to generate correct texture coordinates, the $u$ coordinate needs to factor in the distance from the player. To this effect, value $\frac{1}{z}$ (which is linear in screen space) is used:\\
 
 % \begin{figure}[H]
 \begin{equation*}
@@ -445,11 +445,11 @@ $u_{\alpha} = \dfrac{
 Now the result is perspective correct.\\
 \par
 \fullimage{perspective_texturing.png}
-Had \doom{} allowed sloped wall, texturing would have required six perspective correct computations per pixel (both $u$ and $v$ interpolated twice along vertical and horizontal edges of a quad) which would have been prohibitively CPU intensive.\\
+Had \doom{} allowed sloped walls, texturing would have required six perspective correct computations per pixel (both $u$ and $v$ interpolated twice along vertical and horizontal edges of a quad) which would have been prohibitively CPU intensive.\\
 \par
- By enforcing walls to be strictly vertical, \doom{} engine was able to perform the expensive perspective correct computation only once per column of pixel, then use linear interpolation to draw each column, and still yield a visual correct result. It works because along a column, the distance from player is a constant value. This trick effectively managed to produce perspective correct texture mapping at the computational cost of affine texturing.\\
+ By enforcing walls to be strictly vertical, \doom{} was able to perform the expensive perspective correct computation only once per pixel column, use linear interpolation to draw each column, and still yield a visually correct result. It works because along a column, the distance from the player is constant. This trick effectively managed to produce perspective correct texture mapping at the computational cost of affine texturing.\\
 \par
-Given the previous screenshots, it may not be vivid why perspective correctness is so important and why the engine goes to such an extend just to be "correct". Keep in mind these were just examples to demonstrate the problem. As soon as real textures are used (using \doom{} marble textures featured below), the visual disturbance cannot be ignored.\\
+Given the previous screenshots, it may not be clear why perspective correctness is so important and why the engine goes to such an extent just to be "correct". Keep in mind these were just examples to demonstrate the problem. As soon as real textures are used (using \doom{}'s marble textures featured below), the visual disturbance cannot be ignored.\\
 \par
 \par
 \begin{minipage}{0.32\textwidth}
@@ -467,7 +467,7 @@ Given the previous screenshots, it may not be vivid why perspective correctness 
 
 On the opposite page, notice in particular how \cw{MWALL4\_1}'s upper right pentagram edge appears arched instead of being straight. The same thing happens with \cw{MWALL5\_1} where the left horn does not look right. \cw{MWALL4\_2} suffers none of these issues since it is parallel to the viewing angle.\\
 \par
-Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but were unable to provide perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated either via triangle sub-divisions or by avoiding texturing altogether. That is why PSX game Crash Bandicoot characters are devoid of texturing in favor of Gouraud sharing.\\
+Several video game consoles of the era such as the PlayStation, 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo 64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but not perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated for either via triangle sub-divisions or by avoiding texturing altogether. This is why PSX game \textit{Crash Bandicoot}'s characters are devoid of texturing in favor of Gouraud shading.\\
 \par
 John Carmack hated affine texturing so much he vetoed all ports attempting to be perspective incorrect which sometimes resulted in serious consequences (page \pageref{saturn_port}).
 
@@ -483,7 +483,7 @@ Above, distorted walls due to affine texturing. Below, perspective correct textu
 
 \vspace{-30pt}
 \subsection{Drawing Flats}
- If we were to take a look at the framebuffer at this point in the rendering of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization. \doom{} never clears the framebuffer so instead of white there would be whatever was drawn last frame).\\
+ If we were to take a look at the framebuffer at this point in the rendering of a frame, it would look like mashed potatoes (see opposite page where flats are in white to ease visualization). \doom{} never clears the framebuffer so instead of white there would be whatever was drawn last frame.\\
 \par
 To render the flats, the engine uses a data structure generated while the walls and portals were being rendered. These are called "visplanes".\\
 \par
@@ -493,7 +493,7 @@ The concept of visplanes is the most difficult aspect of \doom{} to understand. 
 \par
 A visplane describes a screen-space area representing either a ceiling or a floor. It has a height, a texture (\cw{picnum}), and a light level. To describe the limits of its area, it has two arrays as wide as the screen. Areas are represented as a set of columns with one column possible per \cw{X} coordinate.\\
 \par
-\trivia{The engine stores visplanes before drawing them. If storage runs out, the engine terminate execution and returns to DOS with a less than explicit error message.}\\
+\trivia{The engine stores visplanes before drawing them. If storage runs out, the engine terminates execution and returns to DOS with a less than useful error message.}\\
 \par
 \fakedosoutput{no_more_visplanes.txt}
 
@@ -514,9 +514,9 @@ As in the previous example, sectors are rendered near to far, resulting in segme
 \par
 When wall \cw{A} is rendered, it is clipped horizontally and vertically. Since it uses all the vertical screen space, no visplanes are created.\\
 \par
- Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplanes are created per fragment (\cw{1},\cw{2}) and (\cw{3},\cw{4}) and stored in the visplane array.\\
+ Things get slightly more interesting when walls \cw{C} and \cw{D} are rendered. Since they do not occupy the full height (there is a gap between the screen and the top/bottom edge of the walls), two visplanes are created per fragment -- (\cw{1},\cw{2}) and (\cw{3},\cw{4}) -- and stored in the visplane array.\\
  \par
-  Likewise when portal \cw{B} is rendered, there are gaps above its upper texture and below its lower texture, so two additional visplanes (\cw{5} and \cw{6}) are added.\\
+  Likewise, when portal \cw{B} is rendered, there are gaps above its upper texture and below its lower texture, so two additional visplanes (\cw{5} and \cw{6}) are added.\\
 \par
 Wall \cw{E} is another new case. The gaps above and below are not between a wall and the screen but between  \cw{E} and portal \cw{B}'s upper and lower parts. To detect the previous boundaries, the previously-seen vertical occlusion array is used to create \cw{7} and \cw{8}.\\
 \par
@@ -563,7 +563,7 @@ E1M1 benefits from merging. Reproduced below without diminished lighting for cla
 
 % \vspace{3mm}
 
-Without merging (above) the frame required 179 visplanes. With merging (below), only 28 were needed.
+Without merging (above) the frame requires 179 visplanes. With merging (below), only 28 are needed.
 
 \vspace{2mm}
 \fullimage{complex_lowvis.png}
@@ -573,7 +573,7 @@ There are several conditions required to merge two visplanes. Mergeable visplane
 \par
 \ccode{visplane_linear_search.c}
 \par
-Notice the overflow check which was mentioned earlier. This case was a map designer worse nightmare since its meant abrupt termination without much information provided to fix the error. Many legends and theories circulated until the source code was released\footnote{"The Facts about Visplane Overflows" by Lee Killough}.
+Notice the overflow check which was mentioned earlier. This case was a map designer's worst nightmare since its meant abrupt termination without much information provided to fix the error. Many legends and theories circulated until the source code was released\footnote{"The Facts about Visplane Overflows" by Lee Killough}.
 
 
 
@@ -586,14 +586,14 @@ We can finally read the flat drawing routine (\cw{R\_DrawPlanes}) which simply i
 \par
 Notice how the flat texture resource is not freed at the end of each iteration but rather marked as \cw{PU\_CACHE} according to what was described in the memory manager section.\\
 \par
-Since distance from the player is constant over an horizontal line, visplanes are rendered as spans (instead of columns) for perspective correctness. This choice also allowed fast rendering of something we have so far ignored as a matter of simplicity: diminished lighting.
+Since distance from the player is constant over a horizontal line, visplanes are rendered as spans (instead of columns) for perspective correctness. This choice also allowed fast rendering of something we have so far ignored as a matter of simplicity: diminished lighting.
 
 
 
 
 
 
-\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine searches linearly, making it a $O(n})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: "The Truth about Visplane Overflows".}.
+\trivia{The limitation of 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine searches linearly, making it a $O(n})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: "The Truth about Visplane Overflows".}.
 
 
 
@@ -630,7 +630,7 @@ Since distance from the player is constant over an horizontal line, visplanes ar
 \end{wrapfigure}
 So far, in order to introduce complexity gradually, our trip down the rendering pipeline has completely ignored diminishing lighting. It was assumed that texel values from texture and sprite were used as-is and written directly to the framebuffer. Now it is time to introduce the concept of lightmaps.\\
 \par
-In order to convey a scary atmosphere, \`a la Aliens, it was decided from day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off but also to dim it if necessary. In response to this requirement, the engine had to be able to draw shades of color. With the VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artists to use 16 colors and use the 240 other slots to generate 15 shades of each "primary" color.\\
+In order to convey a scary atmosphere, \`a la Aliens, it was decided from day one that with increasing distance, colors would fade to black. Map designers also wanted to be able to switch the light in a room on and off and also to dim it if necessary. In response to this requirement, the engine had to be able to draw shades of color. With the VGA system limited to 256 colors from a palette, a possible implementation would have been to restrict artists to use 16 colors and use the 240 other slots to generate 15 shades of each "primary" color.\\
 \par
 This would have severely impaired the work of the artists, not to mention it would have looked poor during outdoor scenes where light is not diminished with distance. Once again a clever trick allowed artists to use the full 256 colors for their assets and not 16 but 32 shades of the same color. On paper that would have meant $256 * 32 = 8192$ colors which the VGA hardware did not support.\\
 \par
@@ -646,7 +646,7 @@ This would have severely impaired the work of the artists, not to mention it wou
 
 \fullimage{diminishedlight2.png}
 
-Above shows the vanilla engine (with things rendition disabled). Below is the same scene with a modified lightmaps-less engine.
+Above shows the vanilla engine (with thing rendering disabled). Below is the same scene with a modified lightmap-less engine.
 \vspace{2mm}
 
 \fullimage{diminishedlight1.png}
@@ -670,13 +670,13 @@ $   color = lightmapId[textureTexel] $
 \end{equation*}
 \par
 \vspace{10pt}
- To reduce lightmap arithmetics, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. Lightmap calculations are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
+ To reduce lightmap arithmetic, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. Lightmap calculations are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
  \par
  The engine uses a cool trick to embellish orthogonal surface rendering. Lightmap selection is tweaked based on world-space orientation. For north-south walls, the selection is lowered by one unit, making them brighter. For east-west walls the lightmap selection is increased by one unit, making them darker. Lightmap selection on other walls is unaffected.\\
 
 
 
-To render the sky in outdoor scenes, a sector has a special ceiling texture number which the engine recognizes as "sky", in which case, its height is 0, lightmap is 0 and perspective is disabled. Each portion of sky is stored as a visplane and drawn as span of pixels.\\
+To render the sky in outdoor scenes, a sector has a special ceiling texture number which the engine recognizes as "sky", in which case its height is 0, lightmap is 0 and perspective is disabled. Each portion of sky is stored as a visplane and drawn as span of pixels.\\
 \par
 The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus. There is a bug in the visplane rendering routine's special casing that handles skies. Skies are always renderered without diminished lighting and therefore ignore lightmaps.\\
 \par
@@ -686,7 +686,7 @@ The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is use
 % \par
 \fullimage{invulnerable.png}\\
 \par
-This effect was diffcult to replicate with a seemingly "more powerful" hardware accelerated systems which uses 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
+This effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
 \fullimage{idbeholdv.png}\\
 \par
 Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)}.\\
@@ -769,11 +769,11 @@ The "drawn segments" array \cw{drawsegs} is made of the following \cw{drawseg\_t
 \par
 \ccode{drawseg_t.c}\\
 \par
-It is not easy to understand at first but it gets much easier to think of it as a log of what was rendered to the screen.
+It is not easy to understand at first but it is much easier to think of as a log of what was rendered to the screen.
 \begin{itemize} 
 	\item For each wall that generated pixels in the framebuffer, a \cw{drawseg\_t} is added.
 	\item For each portal, up to two \cw{drawseg\_t}s are added (one for the upper part and one for the lower part if the portal had no middle texture).
-	\item For each masked segment (like the grid \cw{I} in our example) which was skipped, one \cw{drawseg\_t} entry is added to record what should have been drawn.
+	\item For each masked segment (like the grid \cw{I} in our example) that was skipped, one \cw{drawseg\_t} entry is added to record what should have been drawn.
 \end{itemize}
 The log entries are ordered by distance from the player (since each entry was added while rendering the walls). The distance is not a \cw{z} value but a \cw{scale} value. The idea is to replay a portion of the log for each thing (everything in front of the thing) in order to build an accurate occlusion rectangle. Once the occlusion rectangle is obtained, the Thing is clipped against it. Each \cw{drawseg\_t} features the screen-space horizontal boundaries (\cw{x1} and \cw{x2}) as well as their respective scales (\cw{scale1} and \cw{scale2}). Since a scale value is generated for each Thing (based on its distance from the player), it is used to know what portion of the \cw{drawsegs} array to replay.\\
 \par
@@ -793,7 +793,7 @@ The visible sprites (\cw{visprites}) storage is easier to understand than the \c
 \par
 A vissprite entry contains eveything needed to render a sprite on screen. It features information similar to the drawn segments such as the screen space horizontal boundaries (\cw{x1} and \cw{x2}), its scale to compare distances with walls, the texture ID (\cw{patch}) and the lightlevel (\cw{colormap}) to be used for shading.\\
 \par
-Notice the \cw{prev} and \cw{next} fields. Even though vissprites are stored in a linear array, they need to be sorted in back-to-front order. Instead of moving around array elements, the sorting method only updates the double linked list. This way, elements remain at the same array position but a sorted list can be obtained by following the \cw{next} pointers.
+Notice the \cw{prev} and \cw{next} fields. Even though vissprites are stored in a linear array, they need to be sorted into back-to-front order. Instead of moving around array elements, the sorting method only updates the doubly-linked list. This way, elements remain at the same array position but a sorted list can be obtained by following the \cw{next} pointers.
 \newpage
 
 
@@ -804,11 +804,11 @@ Let's finally look at how all this data is used to render the sprites and masked
 \par
 \ccode{R_DrawMasked.c}\\
 \par
-As expected, the list of visible sprites is sorted based on their distances to the player (\cw{R\_SortVisSprites}). This process is fast since only \cw{scale} has to be compared and no data is copied into the array, the double linked list is only updated to move an element.\\
+As expected, the list of visible sprites is sorted based on their distances to the player (\cw{R\_SortVisSprites}). This process is fast since only \cw{scale} has to be compared and no data is copied into the array, the doubly-linked list is only updated to move an element.\\
 \par
 Next, all sprites are rendered one-by-one in a back-to-front fashion. The method taking care of this (\cw{R\_DrawSprite}) scans the array of \cw{drawseg}s linearly to find what wall fragments were drawn in front of the sprite and clips it accordingly. Since the search is based on the scale of each \cw{drawseg\_t} and the screen-space \cw{X} boundaries it is a fast operation.\\
 \par
-The last step is to render the masked segments which were skipped during BSP traversal. This is done in method \cw{R\_RenderMaskedSegRange}.\\
+The last step is to render the masked segments which were skipped during BSP traversal. This is done in function \cw{R\_RenderMaskedSegRange}.\\
 \par 
 As explained earlier (render all sprites then render all masked segments), there is no way the grid in figure \ref{masked.png} could be interleaved with the sprites. To address this, there is a little "hack" in \cw{R\_DrawSprite} during the linear scan for occluding \cw{drawseg\_t}s. It detects which segments were "masked" and renders them via \cw{R\_RenderMaskedSegRange}.\\
 \pagebreak
@@ -830,7 +830,7 @@ It is likely John Carmack was inspired to add this feature when he visited Alask
 
 \vspace{-10pt}
 \subsection{Picture format}
-Sprites are written one vertical column at a time but are stored in a way that cuddles the i486 cachelines during read operations. Each sprite is stored in its own lump and consists of a collection of lines describing the vertical column in the sprite (in essence, sprites are stored rotated 90 degrees counterclockwise).\\
+Sprites are written one vertical column at a time but are stored in a way that cuddles the i486 cachelines during read operations. Each sprite is stored in its own lump and consists of a collection of lines describing the vertical columns in the sprite (in essence, sprites are stored rotated 90 degrees counterclockwise).\\
 \par
 Each column (also called "post" in the code) is a set of "spans" with one byte giving the vertical offset where the span starts, then one byte giving the size of the payload and finally the texel payload.
 \pagebreak
@@ -852,7 +852,7 @@ This distortion had not been an issue when working with Deluxe Paint since the t
 \cfullimage{sprites_ratio_demon.png}{Demon storage vs rendered}
 \par
 \vspace{-5pt}
-The Cacodemon was purposely drawn and rendered elliptically but effectively stored as a rounded shape. In the early days of tool authoring, programmers of asset extractors did not account for the CRT distortion, resulting in bulky monster visuals\footnote{Even toy manufacturers made the mistake. Reaper Miniatures Cacodemon figurine is round instead of elliptic.}.\\
+The Cacodemon was purposely drawn and rendered elliptically but effectively stored as a rounded shape. In the early days of tool authoring, programmers of asset extractors did not account for the CRT distortion, resulting in bulky monster visuals\footnote{Even toy manufacturers made the mistake. Reaper Miniatures' Cacodemon figurine is round instead of elliptic.}.\\
 \par
 \vspace{-5pt}
 {
