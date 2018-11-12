@@ -23,7 +23,7 @@
    \toprule
   Hexen Shareware         & \cw{HEXENDEMO.WAD}& 2856 &10,644,136\\
   Hexen Registered        & \cw{HEXEN.WAD}    & 4270 &20,083,672\\
-  Hexen Deathkings of DC  & \cw{HEXEDD.WAD}   &  326 & 4,440,584\\
+  Hexen Deathkings of DC  & \cw{HEXDD.WAD}    &  326 & 4,440,584\\
    \toprule
 \end{tabularx}
 \caption{WAD files in the many versions of \doom{}\protect\footnotemark}
@@ -97,7 +97,7 @@ There were more than thirty types of lump. Those associated with maps and music 
 The lump system is the least glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
 Upon starting up, it looks at every WAD archive provided and indexes every lump found into a gigantic array of \cw{lumpinfo\_t}s cunningly named \cw{lumpinfo}. 
-If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lumpinfo} array first.\\
+If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lumpinfo} array first.\\
 \par
 In the next example, \doom{} was started with the command-line:\\
 \par
@@ -113,7 +113,7 @@ Requests to the lump system are sent via a \cw{char[8]} name. The first task is 
 \par
 In the code listing above, you will notice that the index is searched starting from the end. This is done intentionally to allow modders to provide their own assets in WAD archives to overwrite id Software's lumps.\\
 \par
-The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable.} -- with a simple command-line.\\
+The beauty of this system means that the original \cw{DOOM.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable.} -- with a simple command-line.\\
 \par
 \trivia{To differentiate official WADs from fan-made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan-made WADs were requested to use \cw{PWAD}.}\\
 \par
@@ -129,7 +129,7 @@ The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. Wh
 id Software sent the file format to a few individuals in the community. Within a month, the "Unofficial DOOM specs", describing the WAD format inside out, was online. With the format known and a way to inject new lumps, the modding community flourished.\\
 \par
 
-Some fans used the system to replace almost every aspect of the original game. These mods were known as "Total Conversions". The most notorious of them all was named Aliens Total Conversion.\\
+Some fans used the system to replace almost every aspect of the original game. These mods were known as "Total Conversions" (TCs). The most notorious of them all was named Aliens Total Conversion.\\
 \par
 Released in December 1994, it took Justin Fisher one year of hard work to complete. Amusingly the result revisited the Aliens motion picture theme id Software briefly considered before going for demons.\\
 \par
