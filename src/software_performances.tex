@@ -79,12 +79,12 @@ Parameter \cw{-noblit} renders to RAM but doesn't transfer the content to VRAM w
 \subsection{Profiling With A Profiler}
 An excellent way of visualizing performance is with a flame graph. These are built by running a program, repeatedly interrupting it, and unwinding the stack starting from the Program Counter to generate a backtrace. This is repeated hundreds of times while playing back a demo. After completion, all backtraces are collected and merged together.\\
 \par
- This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a visual breakdown of where the machine spends time during a frame\footnote{This is a wall time-based flamegraph but there are many other kinds, like CPU-cycle based for example.}. On NeXTStep, thanks to the multiprocessing capability of the OS it is easy to use \cw{gdb} from a second terminal and gather backtraces. The result is as follows.\\
+ This produces a tree where the width represents 100\% of the time and each level is a function call. It provides a visual breakdown of where the machine spends time during a frame\footnote{This is a wall time-based flamegraph but there are many other kinds, like CPU-cycle based for example.}. On NeXTSTEP, thanks to the multiprocessing capability of the OS it is easy to use \cw{gdb} from a second terminal and gather backtraces. The result is as follows.\\
 \par
 
 \drawing{flamegraph}{Flame graph of \cw{./doom -timedemo demo1} on NeXTStation Turbo Color}
 \par
-Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind the NeXTStep port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. In a flame graph, bottlnecks are identified by "mesas" whichs are high flat plateaus with no children. With that clue, notice the high cost of blitting from framebuffer \#0 to the screen (\cw{Update16}), the horizontal drawing routine (\cw{R\_DrawSpan}) rendering visplanes and the less obvious BSP traversal resulting in vertical drawing routines (\cw{R\_RenderBSPNode}) to render walls/sprites.
+Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind the NeXTSTEP port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. In a flame graph, bottlnecks are identified by "mesas" whichs are high flat plateaus with no children. With that clue, notice the high cost of blitting from framebuffer \#0 to the screen (\cw{Update16}), the horizontal drawing routine (\cw{R\_DrawSpan}) rendering visplanes and the less obvious BSP traversal resulting in vertical drawing routines (\cw{R\_RenderBSPNode}) to render walls/sprites.
 
 
 
