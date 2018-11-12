@@ -93,3 +93,10 @@ The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no
 \par
 From there, the damage is done. The engine renders the other side of the BSP and hits \cw{F} which is clipped against the vertixacal boundary set by \cw{G1} and then drawn (in blue). The space below \cw{F} is inferred to be floor and visplane \cw{F-VP} (turquoise) is generated\footnote{The engine actually merges \cw{E-VP} and \cw{F-VP} but let's discard it for the sake of simplicity.}.
 
+
+\section{Barrel suicide}
+\doom{} monsters are capable of fighting against each other. If friendly fire was to occur during combat, the damaged monster will automatically attempt to retaliate instead of attacking the player. This is called monster infighting.\\
+\par
+There is an amusing special case of infighting which involves exploding barrels. When a barrel is damaged, the engine "memorizes" which entity was responsible for it. When the barrel actually explodes the source of the damage is passed to all damaged entities so they can retaliate.\\
+\par
+What can happen is that a monster triggers a barrel to explode and gets injured by the blast in the process. In this occurence, monsters with a melee attack (cacodemon, Imp, Hellknight) will "tear themselves apart" while those only capable of range attack (former humans) will go nuts and fire blindly at random, possibly triggering further monster infighting.
