@@ -109,7 +109,7 @@ Given that it was meant to be the money maker, the DOS version received special 
 
 
 \subsubsection{Math Optimizations}
-Fixed-point operations are performed everywhere. The function \cw{FixedMul} is found 124 times in the source code and is called over a thousand times per frame. Along with \cw{FixedDiv2}, it was optimized with inline assembly\footnote{There is next to no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are counted". This was without counting on Intel's Pentium, the super-scalar architecture of which would require extra care by Michael Abrash for Quake.}. The C version "\cw{return ((long long) a * (long long) b) >> 16}" was a function call in Watcom resulting in close to 30 instructions but the assembly version only uses two.\\
+Fixed-point operations are performed everywhere. The function \cw{FixedMul} is found 124 times in the source code and is called over a thousand times per frame. Along with \cw{FixedDiv2}, it was optimized with inline assembly\footnote{There is next to no assembly in \doom. Around 1994, John Carmack even declared that "The days of assembly are numbered". This was without counting on Intel's Pentium, the super-scalar architecture of which would require extra care by Michael Abrash for Quake.}. The C version "\cw{return ((long long) a * (long long) b) >> 16}" was a function call in Watcom resulting in close to 30 instructions but the assembly version only uses two.\\
 \par
 \acode{FixedMul.asm}\\
 

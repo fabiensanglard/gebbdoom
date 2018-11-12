@@ -45,7 +45,7 @@ The "commands" design pattern unlocks many features. \\
 \par
 Commands are obviously consumed by the 3D engine but they can also be stored to disk when recording a demo. Later they can be re-injected in the engine to replay the exact same session. The beauty of this system is that players were able to exchange replays even if they had computers capable of different framerates.\\
 \par
-This feature allowed \doom{} to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t}s meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 128 * 35 = 4480 $ bytes/second.\\
+This feature allowed \doom{} to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t}s meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 8 * 35 = 280 $ bytes/second.\\
 % \par
 % Structure \cw{ticcmd\_t} is transmitted as-is on the network when running in multiplayer mode.
 % \par

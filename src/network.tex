@@ -42,15 +42,17 @@ Leaving creative ways to ask for forgiveness aside, on the technical side a play
 \par The card had a BNC connector upon which was to be plugged a T-shaped connector known as a T-piece. Each PC node was connected to up to two other nodes via 10Base2 coaxial cables. There was no central point in this type of networking; all machines involved in the network formed a chain. At both ends of the chain a signal terminator had to be connected to prevent an RF signal from being reflected back from each end, causing interference, or power loss.
 
 
-\begin{wrapfigure}[11]{r}{0.5\textwidth}
+\begin{wrapfigure}[8]{r}{0.4\textwidth}
 \centering
-\scaledimage{.5}{BNC_connector_50_ohm_male}
+\scaledimage{.4}{BNC_connector_50_ohm_male}
 \end{wrapfigure}
 The coaxial cables were bulky and so were the connectors. Connecting an end to a T-piece connector was fully achieved with a cool quarter turn of the coupling nut.\\
 \par
- Once physically connected, there was no configuration required (IPX is a network-level protocol like Ethernet). The network card MAC addresses were enough to run the IPX protocol that most games used.\\
+ % Once physically connected, there was no configuration required (IPX is a network-level protocol like Ethernet). The network card MAC addresses were enough to run the IPX protocol that most games used.\\
+ 
+Once physically connected, games relied on the Internetwork Packet Exchange (IPX) which is a network level protocol like IP. There was no need to configure the host or the network since, contrary to IP, the IPX protocol was able to use the Ethernet MAC address as the machine's IPX address.\\
  \par
-\drawing{10base5bncConnector}{10Base2 BNS based network.}
+\drawing{10base5bncConnector}{10Base2 BNC based network.}
 \par
 Figure \ref{10base5bncConnector} shows the four elements of a 1994 LAN. \circled{1} the T-piece connector connecting two \circled{2} coaxial cables, forming a link. Each end of the chain must be closed with two load terminators \circled{3}. The network card connects to both the PC via its ISA bus extension slots \circled{4} and the LAN T-base slots.\\
 \par

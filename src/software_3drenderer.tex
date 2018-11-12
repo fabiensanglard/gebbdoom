@@ -593,7 +593,7 @@ Since distance from the player is constant over an horizontal line, visplanes ar
 
 
 
-\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine searches linearly, making it a $O(n^2})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: "The Truth about Visplane Overflows".}.
+\trivia{The limitation on 128 visplanes was not only necessary to fit within the memory budget, it was also a runtime necessity. When attempting to merge visplanes, the engine searches linearly, making it a $O(n})$ operation which would become a bottleneck as the number of visplanes increased. In 1997, Lee Killough lifted this limitation, replacing linear search with a $O(1)$ chained hash table\footnote{Source: "The Truth about Visplane Overflows".}.
 
 
 
