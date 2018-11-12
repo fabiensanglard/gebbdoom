@@ -97,7 +97,7 @@ There were more than thirty types of lump. Those associated with maps and music 
 The lump system is the least glamorous part of the engine but one of the coolest in its implementation and what it had to offer to players.\\
 \par
 Upon starting up, it looks at every WAD archive provided and indexes every lump found into a gigantic array of \cw{lumpinfo\_t}s cunningly named \cw{lumpinfo}. 
-If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM1.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lumpinfo} array first.\\
+If additional archives are provided via the \cw{-file} command-line parameter, lumps belonging to official id Software WADs (\cw{DOOM.WAD}, \cw{DOOM2.WAD},...) are added to the \cw{lumpinfo} array first.\\
 \par
 In the next example, \doom{} was started with the command-line:\\
 \par
@@ -113,7 +113,7 @@ Requests to the lump system are sent via a \cw{char[8]} name. The first task is 
 \par
 In the code listing above, you will notice that the index is searched starting from the end. This is done intentionally to allow modders to provide their own assets in WAD archives to overwrite id Software's lumps.\\
 \par
-The beauty of this system means that the original \cw{DOOM1.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable.} -- with a simple command-line.\\
+The beauty of this system means that the original \cw{DOOM.WAD} never had to be modified or patched. Any of the assets could be overwritten -- from maps, music, sfx, to graphics\footnote{With the exception of A.I. and map names which are hard-coded in the executable.} -- with a simple command-line.\\
 \par
 \trivia{To differentiate official WADs from fan-made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan-made WADs were requested to use \cw{PWAD}.}\\
 \par
