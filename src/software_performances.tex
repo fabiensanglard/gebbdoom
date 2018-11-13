@@ -84,7 +84,7 @@ An excellent way of visualizing performance is with a flame graph. These are bui
 
 \drawing{flamegraph}{Flame graph of \cw{./doom -timedemo demo1} on NeXTStation Turbo Color}
 \par
-Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind the NeXTSTEP port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. In a flame graph, bottlnecks are identified by "mesas" whichs are high flat plateaus with no children. With that clue, notice the high cost of blitting from framebuffer \#0 to the screen (\cw{Update16}), the horizontal drawing routine (\cw{R\_DrawSpan}) rendering visplanes and the less obvious BSP traversal resulting in vertical drawing routines (\cw{R\_RenderBSPNode}) to render walls/sprites.
+Obviously, \cw{D\_DoomLoop} accounts for 100\% of the time, with \cw{D\_Display} overwhelmingly dominating\footnote{But keep in mind the NeXTSTEP port did not implement the audio system.}. Gameplay (\cw{TryRunTics}) (isolated column on the very right) is barely visible. In a flame graph, bottlenecks are identified by "mesas" which are high flat plateaus with no children. With that clue, notice the high cost of blitting from framebuffer \#0 to the screen (\cw{Update16}), the horizontal drawing routine (\cw{R\_DrawSpan}) rendering visplanes and the less obvious BSP traversal resulting in vertical drawing routines (\cw{R\_RenderBSPNode}) to render walls/sprites.
 
 
 
@@ -120,7 +120,7 @@ A more substantial optimization had to do with layering. On DOS the rules separa
 
 \vspace{-10pt}
 \subsubsection{Assembly Renderer Optimization}
-Not only were \cw{R\_DrawColumn} and \cw{R\_DrawSpan} given direct access to the VGA bank, they were hand-optimized with gorgeous assembly using all the tricks in the book. Taking a look at \cw{R\_DrawColumn} from \cw{planar.asm} is revealing. The function uses self-modifying code (see reserved \cw{12345678h} meant to contain the scaling factor which is patched). We can also see the loop was unrolled to process two pixels at at time (and therefore avoid emptying the i486 prefetch queue because of the \cw{jnz} instruction). Notice the cool trick where register \cw{eax} is reused three times, once as a pointer to the texture source, then as a \cw{al} texel storage, then as \cw{al} translated texel (lightmapped) storage again. Overall this method yields an amortized 7 instructions per pixel for drawing columns which is remarkable.\\
+Not only were \cw{R\_DrawColumn} and \cw{R\_DrawSpan} given direct access to the VGA bank, they were hand-optimized with gorgeous assembly using all the tricks in the book. Taking a look at \cw{R\_DrawColumn} from \cw{planar.asm} is revealing. The function uses self-modifying code (see reserved value \cw{12345678h} meant to contain the scaling factor, which is patched). We can also see the loop was unrolled to process two pixels at at time (and therefore avoid emptying the i486 prefetch queue because of the \cw{jnz} instruction). Notice the cool trick where register \cw{eax} is reused three times, once as a pointer to the texture source, then as \cw{al} for texel storage (\cw{al}), then as \cw{al} for translated texel (lightmapped) storage again. Overall this method yields an amortized 7 instructions per pixel for drawing columns which is remarkable.\\
 \par
 Altogether these three optimizations improved performance by a substantial 15\%.
 
@@ -135,17 +135,17 @@ Altogether these three optimizations improved performance by a substantial 15\%.
 \section{Performance Tuning}
 Despite all the care and optimization, most gamers could not get more than 10 fps with the game out of the box. To help reach a decent framerate, two tuning mechanisms helped to reduce the number of pixels written.
 \begin{enumerate}
-\item High detail/Low detail toggle.
+\item High detail/low detail toggle.
 \item Adjust the size of the 3D canvas.
 \end{enumerate}
 \par
-\trivia{These tradeoffs were not specific to the PC. All console ports from the "weak" Super Nintendo to the "strong" PlayStation used a combination of these two settings.}\\
+\trivia{These tradeoffs were not specific to the PC. All console ports -- from the "weak" Super Nintendo to the "strong" PlayStation -- used a combination of these two settings.}\\
 \par
 
 
 
 \section{High/Low detail mode}
-The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of very two columns but it writes it to the framebuffer twice. This results in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit over the bus. Given the 3D renderer dominated the frame rate, the performance gain is meaningful as the following benchmark shows.\\
+The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of very two columns but it writes them to the framebuffer twice. This results in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit the bus. Given the 3D renderer dominated the frame rate, the performance gain is meaningful as the following benchmark shows.\\
 \par
  \vspace{0.5cm}
 \begin{figure}[H]
@@ -165,15 +165,15 @@ The first tuning option was to lower the horizontal resolution using column doub
 096x048  &  45   & 048x048  &       54 \\
   \toprule
 \end{tabularx}
-\caption{\doom{} performance in low and high detail mode}
+\caption{\doom{} performance in low and high detail mode.}
 \end{figure}
-The benchmark above was conducted on a machine which would have been deemed "top of the line" in 1994, a Unisys CWD 4001 featuring a 486DX2-66 CPU with a Cirrus Logic VLB graphics card. Using low detail mode instead of high detail yields a variable 20\%-50\% performance improvement which brought up \doom{} to a playable framerate on "weaker" PCs running on Intel 386 CPUs.
+The benchmark above was conducted on a machine which would have been deemed "top of the line" in 1994, a Unisys CWD 4001 featuring a 486DX2-66 CPU with a Cirrus Logic VLB graphics card. Using low detail mode instead of high detail yields a variable 20\%-50\% performance improvement which brought \doom{} up to a playable framerate on "weaker" PCs running on Intel 386 CPUs.
 
 
 \vspace{-6pt}
 \fullimage{high_res.png}\\
 \par
-Above, the high resolution is 320x168. Below, in low resolution, it is dropped to 160x168 with odd columns duplicated. The resolution drop is particularly noticeable on the non-magnified sergeant and the door but only because diminished lighting and CRT scaling had been disabled for demonstration purposes. In practice the difference was more subtle.\\
+Above, the high resolution is 320x168. Below, in low resolution, it is dropped to 160x168 with odd columns duplicated. The resolution drop is particularly noticeable on the non-magnified sergeant and the door but only because diminished lighting and CRT scaling are disabled for demonstration purposes. In practice the difference was more subtle.\\
 \par
 With direct access to the VGA banks, "low detail mode" is a completely free optimization without the need to write the same pixel column twice, since the VGA mask is set up to write the same pixel to two banks simultaneously.\\
 \par

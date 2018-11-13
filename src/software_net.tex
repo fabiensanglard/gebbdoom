@@ -21,8 +21,8 @@ Most modern FPS games are designed around client/server networking where there a
 \end{wrapfigure}
 There is no central server in \doom. All peers run their own copy of the game logic and remain in sync by performing no prediction and only running a game tic when all other peers' actions are known.\\
 \par
- This means all peers must advertise their command to all other peers, resulting in significant communication overhead. 
-All peers must be present when a game starts. A player can leave (and it will just stay still in the game without performing any action) but new players cannot join.
+ This means all peers must transmit their command to all other peers, resulting in significant communication overhead. 
+All peers must be present when a game starts. A player can leave (and their avatar will remain in the game without performing any action) but new players cannot join.
 \pagebreak
  % Each node must send the command generated locally to all other nodes. This means that a machine can simulate the next tic only when ALL nodes involved in the game have send their commands. As a result, the slowest machine dictates the framerate of every players involved. This also meant that all nodes had to run the exact same state machine and run the same version of \doom.\\
 % \par
@@ -41,7 +41,7 @@ The day after release, I was awoken by a phone call. I blearily answered it and 
 \par
 With the proliferation of networking, the embedded IPX support started to show its limits.\\
 \par
- Instead of baking support more types of network into the engine, the IPX networking code was removed and networking was refactored around the notion of network drivers.
+ Instead of baking support for more types of network into the engine, the IPX code was removed and networking was refactored around the notion of network drivers.
 \pagebreak
 
 
@@ -71,7 +71,7 @@ A "loader" starts first and installs itself as an interrupt handler. It then sta
 \drawing{net_drivers}{}
 \par
 \vspace{-10pt}
- Figure \ref{net_drivers} summarizes the steps. \cw{IPXSETUP.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSETUP.EXE} starts \cw{DOOM.EXE} and passes the address of its \cw{doomcom\_t} variable as an integer \circled{2}. Later, during gameplay \circled{3}, \cw{DOOM.EXE} reads/writes to the \cw{doomcom\_t} \cw{payload} field and triggers transfers via interrupt found in the \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicate with the network card driver. The actual hardware interaction between the network card driver and the physical network card happens in step \circled{5}.
+ Figure \ref{net_drivers} summarizes the steps. \cw{IPXSETUP.EXE} is started up first \circled{1}. The loader registers itself in the software Interrupt Vector Table. Once registered, \cw{IPXSETUP.EXE} starts \cw{DOOM.EXE} and passes the address of its \cw{doomcom\_t} variable as an integer \circled{2}. Later, during gameplay \circled{3}, \cw{DOOM.EXE} reads/writes to the \cw{doomcom\_t} \cw{payload} field and triggers transfers via the interrupt found in the \cw{intnum} field. This triggers \circled{4} the \doom{} network driver to communicate with the network card driver. The actual hardware interaction between the network card driver and the physical network card happens in step \circled{5}.
 
 
 
@@ -103,7 +103,7 @@ To perform network I/O, the core only deals with three elements provided by the 
 
 
 \vspace{-10pt}
-On the PC, in the case of a multi-player session, the network initialization simply retrieves the address of the interrupt handler. Notice how the \cw{atoi} return value is cast to pointer in the last line, an oddly cavalier move nowadays.\\
+On the PC, in the case of a multi-player session, the network initialization simply retrieves the address of the interrupt handler. Notice how the \cw{atoi} return value is cast to a pointer in the last line, an oddly cavalier move nowadays.\\
 \par
 
 \ccode{I_InitNetwork.c}
@@ -117,7 +117,7 @@ On the PC, in the case of a multi-player session, the network initialization sim
 
 
 
-With access to the \cw{doomcom} variable comes access to the field \cw{intnum} which contains the software interrupt number the \doom{} network driver registered itself with. When called (via the \cw{int} instruction), it interrupts \doom{} to let the card's network driver copy network data in or out of \cw{doomcom}.\\
+With access to the \cw{doomcom} variable comes access to the field \cw{intnum} which contains the software interrupt number that the \doom{} network driver registered itself with. When called (via the \cw{int} instruction), it interrupts \doom{} to let the card's network driver copy network data in or out of \cw{doomcom}.\\
 
 
 
@@ -128,17 +128,17 @@ The fields are self-explanatory but notice \cw{command} which tells the driver i
 
 
 
-At a high level, \doom{}'s core uses a central method called \cw{NetUpdate} to do all I/O. Notice how it is called in a loop as long if ticcmds for all peers have not been received, allowing only menus to keep on working. Except for running menus, nothing else will run.\\
+At a high level, \doom{}'s core uses a central function called \cw{NetUpdate} to do all I/O. Notice how it is called in a loop until ticcmds for all peers are received, allowing only menus to keep on working. Except for running menus, nothing else will run.\\
 \par
 \ccode{net_loop_wait.c}\\
 \par
-The impossibility for the engine to extrapolate and carry on with gameplay was an issue since all machines ended up running at the lowest common framerate. To mitigate this issue, the engine performs an exotic form of "thread multiplexing" where \cw{NetUpdate} is found called several times during a frame. It is typically called no less than eight times.\\
+The impossibility for the engine to extrapolate and carry on with gameplay was an issue since all machines ended up running at the lowest common framerate. To mitigate this issue, the engine performs an exotic form of "thread multiplexing" where \cw{NetUpdate} is called several times during a frame. It is typically called no less than eight times.\\
 \par
 \ccode{R_RenderPlayerView_withupdates.c}
 
 
 
-Since there is no expectation the medium will guarantee packet delivery, the engine featuress negative acknowledgements, where packet sequence number is tracked on a per-peer (a.k.a node) basis. If a packet is received but its sequence number indicates a previous packet was lost, the node requests the missing commands be sent again. This means each node cannot discard commands once they are sent on the wire.\\
+Since there is no expectation the medium will guarantee packet delivery, the engine featuress negative acknowledgements, where packet sequence number is tracked on a per-peer (a.k.a. node) basis. If a packet is received but its sequence number indicates a previous packet was lost, the node requests the missing commands be sent again. This means each node cannot discard commands once they are sent on the wire.\\
 \par
 This resend mechanism was a last resort to be avoided at all costs. To this effect, packets feature not only the current command but also the last command (if field \cw{extratics} is set).\\
 
@@ -147,9 +147,9 @@ This resend mechanism was a last resort to be avoided at all costs. To this effe
 
 \vspace{-15pt}
 \subsection{DeathManager}
-Given the complexity of the command-line parameters to setup a network game, several tools were provided. Originally players could use \cw{SETUP.EXE}. In December 1994, id Software introduced \cw{DM.EXE} (DeathManager) which was easier to use.\\
+Given the complexity of the command-line parameters to set up a network game, several tools were provided. Originally players could use \cw{SETUP.EXE}. In December 1994, id Software introduced \cw{DM.EXE} (DeathManager) which was easier to use.\\
 \par
-\cfullimage{DeathManagerv1-2.png}{Death Manager 1.2 interface}
+\cfullimage{DeathManagerv1-2.png}{Death Manager 1.2 interface.}
 \par
 \vspace{-10pt}
 In "Old DeathMatch" mode, weapons did not disappear when picked up and ammunition \& power-ups never respawned. In July '94, "Deathmatch 2.0" introduced rules changes where all items disappears when picked up and respawns after $\overline{50}$ seconds.\\
@@ -169,7 +169,7 @@ In "Old DeathMatch" mode, weapons did not disappear when picked up and ammunitio
 
 \fullimage{coop.png}\\
 \par
-Co-op play was fun (above) but so were incredibly bloody deathmatchs (below).\\
+Co-op play was fun (above) but so were incredibly bloody deathmatches (below).\\
 \par
 \fullimage{deathmatch.png}
 

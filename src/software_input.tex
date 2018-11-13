@@ -3,7 +3,7 @@ The input system is abstracted based on the notion of events -- generated when d
 \par
 \ccode{events.c}
 \par
-The core system notifies the input system when a new frame starts or when a game tic starts which gives it an opportunity to sample devices for inputs, wrap them into an \cw{event\_t} and use a callback function to post it in the core event buffer.\\
+The core system notifies the input system when a new frame starts or when a game tic starts, giving it an opportunity to sample devices for inputs, wrap them into an \cw{event\_t} and use a callback function to post it to the core event buffer.\\
 \par
 \begin{figure}[H]
 \centering  
@@ -43,7 +43,7 @@ Most responders consume events in their raw (\cw{event\_t}) form but the 3D rend
 \par
 The "commands" design pattern unlocks many features. \\
 \par
-Commands are obviously consumed by the 3D engine but they can also be stored to disk when recording a demo. Later they can be re-injected in the engine to replay the exact same session. The beauty of this system is that players were able to exchange replays even if they had computers capable of different framerates.\\
+Commands are obviously consumed by the 3D engine but they can also be stored to disk when recording a demo. Later they can be re-injected into the engine to replay the exact same session. The beauty of this system is that players were able to exchange replays even if they had computers capable of different framerates.\\
 \par
 This feature allowed \doom{} to have demos like you could find in arcades. The \cw{DEMO1}, \cw{DEMO2}, and \cw{DEMO3} lumps are streams of \cw{ticcmd\_t}s meant to be played at 35Hz. Since only commands are stored and the game is deterministic, demo files are very small, consuming only $ 8 * 35 = 280 $ bytes/second.\\
 % \par
