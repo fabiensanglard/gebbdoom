@@ -11,7 +11,7 @@ With access to the source code it is possible to modify the engine to output a "
 
 Phase \cw{OOOOO} corresponds to \cw{R\_InitTextures}. Something that was not mentioned in the 3D renderer section of the book (for the sake of simplicity) is that textures are made of patches. In order to save space, textures reference all patches via an identifier. This is particularly powerful in the case of textures made of a repeating pattern. This phase is where all textures attributes such as dimension and patches definition are loaded to RAM (however the texels remain in the \cw{.WAD}). Because of the volume of data and the amount of \cw{Z\_Malloc} memory allocation, it is the most expensive phase.\\
 \par
-The first step of this phase is to open a lump named \cw{PNAMES} that contains all the patch names. From the order they appear, a mapping patch name to ID is established.\\
+The first step of this phase is to open a lump named \cw{PNAMES} that contains all the patch names. From the order they appear, a mapping of patch name to ID is established.\\
 \par
 The second step (which accounts for the bulk of the processing time) is to open lumps \cw{TEXTURE1} and \cw{TEXTURE2}. These contain all the texture entries. Each entry features a name and list of patch IDs, along with patch coordinate and offsets.\\
 \par

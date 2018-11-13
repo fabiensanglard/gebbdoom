@@ -6,16 +6,16 @@ Collisions could have been detected via the BSP. However it was only after Bruce
 \vspace{10pt}
 \drawing{E1M1_lines}{E1M1 sectors and lines}
 \par
-There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NextStations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used at runtime to lower the number of lines to test intersections with.\\
+There is one blockmap per map which was generated via \cw{doombsp} preprocessing on NeXTstations. Saved in a lump audaciously named \cw{BLOCKMAP}, it is used at runtime to lower the number of lines to test intersections with.\\
 \par
 The work done by \cw{doombsp} is simple: divide the map into 128x128 axis-aligned blocks. For each block a list is made of every line that passes through it. At the end of the process, an index is constructed based on blockmap coordinates (in 128x128 units) pointing to the list of lines. Notice that a line can be present in multiple blocks. In the case of map E1M1, the result is visible in figure \ref{E1M1_blockmap}.
 
 \drawing{E1M1_blockmap}{E1M1 lines indexed via blockmap. Note that empty blocks are not drawn}
 
-All map traversals are done with an abstract method \cw{P\_PathTraverse} which takes as argument two coordinates making up a line to check collisions with and a function pointer to call when a hit is detected (a.k.a How to fake OOP with C).\\
+All map traversals are done with an abstract method \cw{P\_PathTraverse} which takes as arguments two coordinates making up a line to check collisions with and a function pointer to call when a hit is detected (a.k.a how to fake OOP with C).\\
 \par
 \ccode{P_PathTraverse.c}
 \par
-Function \cw{P\_AimLineAttack} which is used for punching and sawing uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so that only lines and things are considered during traversal. The block coordinates of any map coordinate are easy to obtain via a divide by 128 (optimized as $\gg$ 7). To detect collisions with things, their block coordinates are updated each time they change position.\\
+Function \cw{P\_AimLineAttack} (used for punching and sawing) uses \cw{P\_PathTraverse} with flag = \cw{PT\_ADDLINES|PT\_ADDTHINGS} so that only lines and things are considered during traversal. The block coordinates of any map coordinate are easy to obtain via a divide by 128 (optimized as $\gg$ 7). To detect collisions with things, their block coordinates are updated each time they change position.\\
 \par
 \ccode{P_AimLineAttack.c}
