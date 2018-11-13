@@ -146,7 +146,7 @@ To understand the issue better, let's take the example of the projection and ras
 \par
 This algorithm gives the weird-looking result featured in figure \ref{affine_texture_mapping/affine2.png}. Notice how all lines are parallel and there is no perspective (which is the main issue).\\
 \par
-\cfullimage{affine_texture_mapping/affine2.png}{}
+\cfullimage{perspective_psx_explained.png}{}
 \par
 To get texturing right and interpolate a vertex attribute correctly, it first has to be divided by its z-coordinate. Texturing can then happen via linear interpolation. Before sampling the coordinate must be multiplied by Z again. The implementation is expensive since linear interpolation has to be done between \cw{(u/z,v/z)} and the final result has to be multiplied by \cw{z}.\\
 \par
