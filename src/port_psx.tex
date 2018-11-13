@@ -142,15 +142,22 @@ Affine Texture Mapping is the process of performing texture mapping in screen sp
 \par
 The issue is particularly visible on the left wall where the black strip is not parallel to the ground any more but seems to zig-zag up and down.
 
-To understand the issue better, let's take the example of the projection and rasterization of a quad. It is first cut into two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain. For each line of pixels (called scanlines), texture coordinates are interpolated linearly between line start and line end.\\
+% To understand the issue better, let's take the example of the projection and rasterization of a quad. It is first cut into two triangles. For each triangle, all three vertices \cw{(x,y,z)} are projected into screenspace and only \cw{X=x/z,Y=y/z} remain. For each line of pixels (called scanlines), texture coordinates are interpolated linearly between line start and line end.\\
+% \par
+% This algorithm gives the weird-looking result featured in figure \ref{affine_texture_mapping/affine2.png}. Notice how all lines are parallel and there is no perspective (which is the main issue).\\
+From the previous screenshot we can see that something is wrong but it is not clear what. There is obviously a distortion but it is not exactly what we saw on page \pageref{affine_texture_examples}. The difference is that we were able to draw a quad directly whereas the Playstation's GPU is only capable to process triangles.\\
 \par
-This algorithm gives the weird-looking result featured in figure \ref{affine_texture_mapping/affine2.png}. Notice how all lines are parallel and there is no perspective (which is the main issue).\\
+ Without the ability to  draw quads, developers had to express everything as triangles. To draw a wall they had to place two triangles next to each other.\\
 \par
-\cfullimage{perspective_psx_explained.png}{}
+\cfullimage{perspective_psx_explained.png}{Left: Affine texturing. Right: Perspective texturing}
 \par
-To get texturing right and interpolate a vertex attribute correctly, it first has to be divided by its z-coordinate. Texturing can then happen via linear interpolation. Before sampling the coordinate must be multiplied by Z again. The implementation is expensive since linear interpolation has to be done between \cw{(u/z,v/z)} and the final result has to be multiplied by \cw{z}.\\
+In Figure \ref{perspective_psx_explained.png}, the left wall shows how the PSX received two triangles and performed screen space affine texturing without factoring in the distance from the point of view. The result differs significantly from what it should have been as the right wall shows.\\
 \par
-In figure \ref{texture_anmgle}, the perspective artifact becomes exacerbated as the angle of the wall increases. Also notice in the bottom panel how the width of each square is constant in affine texturing while it decreases with distance with perspective-correct texturing.\\ 
+ To rasterize these triangles the GPU has no choice but to use a scanline algorithm. The process preserve line parallelism and moreover there seems to be no "agreement" between the two triangles which result in unpleasant "zigzag".\\
+\par
+% To get texturing right and interpolate a vertex attribute correctly, it first has to be divided by its z-coordinate. Texturing can then happen via linear interpolation. Before sampling the coordinate must be multiplied by Z again. The implementation is expensive since linear interpolation has to be done between \cw{(u/z,v/z)} and the final result has to be multiplied by \cw{z}.\\
+% \par
+In figure \ref{texture_anmgle}, the visual artifacts becomes exacerbated as the angle of the wall increases. Also notice in the left column how the width of each square is always constant, a giveaway of affine texturing which contrast with the perspective correct decreasing width seem on the right column.\\ 
 \pagebreak
 
 
@@ -178,14 +185,15 @@ In figure \ref{texture_anmgle}, the perspective artifact becomes exacerbated as 
 
 \pagebreak
 
-The PlayStation did not have enough power to perform Z interpolation and as a result texturing was incorrect with regard to projection.\\
+
+Sony was well aware of the problem but manufacturing cost prevented gifting the PlayStation with perspective correct hardware (they also lacked a partner with strong computer graphics experience such as SGI which deeply influenced the Nintendo 64). The PSX's developer manual recommended way to mitigate the problem was to subdivide triangles into more triangles.\\
 \par
- There would have been a way to fix this by subdividing each triangle into smaller units but in order to get a satisfactory visual result, the number of triangles had to be impossibly high.\\
+ That may sound like running away from the problem but the PSX was capable to process a rather high number of triangles for its time so it was not a bad suggestion. To get a satisfactory visual result however, the number of triangles had to be high.\\
 \par
-\fullimage{affine_texture_mapping/subdivision_sample.png}
+\scaledimage{0.95}{affine_texture_mapping/subdivision_sample.png}\\
 \par
-With this perspective issue, Williams Entertainment, John, and Harry had a big problem and some were really nervous about it.\\
-\par
+With this perspective issue, Williams Entertainment, John, and Harry had a big problem and some were really nervous about it.
+
 \fq{Aaron was always a big ball of stress on the projects we worked together on, and this abject failure of the plan of record was giving him panicky visions of project failure.  I sort of shrugged and said "back everything up (no source control back then!), we're going to do something completely different".\\
 \par
   We wound up using the hardware to render triangles that were one pixel wide columns or rows, just like the PC asm code, and it worked well.  The more common Playstation approach turned out to be tessellating  geometry in two axis, but I was always pretty happy with how Doom felt less "wiggly" than most other Playstation games of the time.}{John Carmack}\\
