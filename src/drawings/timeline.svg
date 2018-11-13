@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.977366"
-     inkscape:cx="177.83057"
-     inkscape:cy="298.68955"
+     inkscape:cx="181.9232"
+     inkscape:cy="789.80547"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -774,24 +774,28 @@
          x="73.115921"
          y="956.73956"
          id="tspan5105">HICOLOR DAC OUT</tspan></text>
-    <rect
-       style="fill:#d3d3d3;fill-opacity:0.60189574;stroke:#000000;stroke-width:1.63018775;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5043-3-2"
-       width="434.80609"
-       height="25.257145"
-       x="272.06516"
-       y="289.09125" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="588.57068"
-       y="307.74438"
-       id="text4793-2-2-5"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4795-44-65-0"
+    <g
+       id="g4288"
+       transform="translate(-230,0)">
+      <rect
+         y="289.09125"
+         x="272.06516"
+         height="25.257145"
+         width="434.80609"
+         id="rect5043-3-2"
+         style="fill:#d3d3d3;fill-opacity:0.60189574;stroke:#000000;stroke-width:1.63018775;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4793-2-2-5"
+         y="307.74438"
          x="588.57068"
-         y="307.74438">DOOM BIBLE</tspan></text>
+         style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="307.74438"
+           x="588.57068"
+           id="tspan4795-44-65-0"
+           sodipodi:role="line">DOOM BIBLE</tspan></text>
+    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -926,7 +930,7 @@
          y="234.49763">THREE NeXTStations</tspan><tspan
          sodipodi:role="line"
          x="604.36755"
-         y="256.37265"
+         y="256.37262"
          id="tspan4346">PURCHASED</tspan></text>
     <g
        id="g4323"
