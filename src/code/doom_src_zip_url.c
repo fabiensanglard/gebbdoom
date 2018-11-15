@@ -1,1 +1,1 @@
-ftp://ftp.idsoftware.com/idstuff/source/doomsrc.zip
+git clone git@github.com:id-Software/DOOM.git
