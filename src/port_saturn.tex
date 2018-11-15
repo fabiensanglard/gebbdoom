@@ -1,7 +1,7 @@
 \begin{wrapfigure}[10]{r}{0.30\textwidth}{
 \centering \scaledimage{0.30}{saturn_logo.png}}
 \end{wrapfigure}
-Development of the Sega Saturn started in June 1992\footnote{Source: "Console Wars: Sega, Nintendo, and the Battle That Defined a Generation".} as a replacement for the insanely popular yet aging Genesis. At this point in time, the Genesis had sold more than 30 millions units and had a "cool" image among the 15-25 range - an image built with many good games and massive TV advertising campaigns. For Sega, It was a colossal yet mandatory undertaking to at least match its predecessor.\\
+Development of the Sega Saturn started in June 1992\footnote{Source: "Console Wars: Sega, Nintendo, and the Battle That Defined a Generation".} as a replacement for the insanely popular yet aging Genesis. At this point in time, the Genesis had sold more than 30 million units and had a "cool" image among the 15-25 range - an image built with many good games and massive TV advertising campaigns. For Sega, It was a colossal yet mandatory undertaking to at least match its predecessor.\\
 \label{saturn_port}
 \par
 After two years of hard work, Sega demonstrated a prototype Saturn during the Tokyo Toy Show in June 1994. Unknown to them, it would cause even more damage than the 32X, ruin Sega International's image, and sell poorly.\\
@@ -35,7 +35,7 @@ Main programming was done via the SH-2 processors connected to 1.5MiB of shared 
 \par
 Audio was done via the SCSP (Saturn Custom Sound Processor) that piloted a sound processor (a Motorola 68000). The SCSP was to be configured to perform sound mixing in the dedicated 512 KiB of RAM, which was then picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize instruments, play PCM sound and perform 3D effects/distortion. The chip also polled control inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
 \par
-Graphics programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled "passive framebuffer". The VDP2 takes the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works on the next frame, the VDP2 finishes the previous one.\\
+Graphics programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled a "passive framebuffer". The VDP2 takes the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works on the next frame, the VDP2 finishes the previous one.\\
 \par
 Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double-speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
 \par

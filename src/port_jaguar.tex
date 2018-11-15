@@ -53,7 +53,7 @@ To unleash the beast meant having all five processors work in parallel\footnote{
 \par
 The Motorola 68000 is used as a manager. It deals with the outside world and manages resources for the other processors. It is at the highest control level and has complete control over the system.\\
 \par
-The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per-pixel CRY (Cyan-Red-Yellow) color model was unconventional for consoles at that time. One byte is an (\cw{X,Y}) coordinate in a sRGB cube flattened in a square which gives a color. The other byte gives the brightness for a total of 65536 colors.\\
+The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per-pixel CRY (Cyan-Red-Yellow) color model was unconventional for consoles at that time. One byte is an (\cw{X,Y}) coordinate in a sRGB cube flattened into a square which gives a color. The other byte gives the brightness, for a total of 65536 colors.\\
 \par
 \fullimage{CRY.png}\\
 \par
@@ -62,11 +62,11 @@ The Object Processor is connected to the TV and is in charge of generating displ
 \par
 The Graphics Processor is the powerhouse with a high instruction throughput, a powerful ALU with a parallel multiplier, barrel-shifter, and a divide unit, in addition to the normal arithmetic functions. Its internal 4KiB of SRAM is meant to store not only data to operate on but also its local program instructions.\\
 \par
-The Blitter performs fast RAM block move and fill operations. It can generate strips of pixels for Gouraud-shaded Z-buffered polygons and is also capable of skipping pixels (based on Z-testing). It is capable of rotating bit-maps, line-drawing, character-painting, and a range of other effects. It is in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
+The Blitter performs fast RAM block move and fill operations. It can generate strips of pixels for Gouraud-shaded Z-buffered polygons and is also capable of skipping pixels (based on Z-testing). It is capable of rotating bitmaps, line-drawing, character-painting, and a range of other effects. It is in charge of loading the SRAM for Tom \& Jerry with local data and instructions\\
 \par
-Jerry, the DSP, is the twin brother of the Graphic Processor. Its bigger local SRAM (8 KiB) and smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However it was at the programmer's discretion to make it perform other tasks, even graphical ones. The versatility is such that the Jad-Link connecting two Jaguars together is plugged directly in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
+Jerry, the DSP, is the twin brother of the Graphics Processor. Its bigger local SRAM (8 KiB) and smaller 32-bit connection to the 64-bit main bus make it a perfect candidate for generating music and sound effects. However, it was at the programmer's discretion to make it perform other tasks, even graphical ones. The versatility is such that the Jag-Link connecting two Jaguars together is plugged directly in the "DSP port" on the back of the console and Jerry is in charge of networking.\\
 \par
-All RAM (even SRAM in the RISC CPUs) is addressable by any component thanks to a flexible memory controller. At any point during execution of their programs, any processor can become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request to conflict with another processor) while the DSP is king in order to avoid extremely unpleasant audio glitches.
+All RAM (even SRAM in the RISC CPUs) is addressable by any component thanks to a flexible memory controller. At any point during execution of their programs, any processor can become the DMA bus master. Despite its status as governor, the 68000 has the lowest level of priority (were its DMA master request to conflict with another processor) while the DSP is king, in order to avoid extremely unpleasant audio glitches.
 \par
 
 
@@ -80,7 +80,7 @@ The hardware had several bugs, especially at the memory controller level, making
 
 
 
-It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instruction sets. The intended workflow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then write assembly code, use the provided assembler to generate machine code and finally write a full pipeline to store and later deliver the machine code to local program-dedicated SRAM on Tom \& Jerry.\\
+It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instruction sets. The intended workflow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then write assembly code, use the provided assembler to generate machine code, and finally write a full pipeline to store and later deliver the machine code to local program-dedicated SRAM on Tom \& Jerry.\\
 \par
 
 
@@ -98,11 +98,11 @@ John Carmack took an early interest in the Jaguar and did the port himself with 
 \par
 \fq{I converted Wolfenstein 3D on a whim. I was thinking about how the Jag's hardware could be applied to games other than Doom, and Wolfenstein seemed a pretty good utilization. I started programming one afternoon and 15 CDs later, when the other guys were coming in the next morning, I had a functional port of the SNES Wolfenstein code running. We sent it to Atari, and they gave us the go-ahead to stall Doom for a little while and get Wolfenstein out real quick.}{John Carmack for EDGE Magazine, June 1994}\\
 \par
-For \doom, the duo had something up and running two weeks after they signed off on the port, even thought it was running at a wretched rate\footnote{Source: EDGE Magazine, June 1994.}.\\
+For \doom, the duo had something up and running two weeks after they signed off on the port, even though it was running at a wretched rate\footnote{Source: EDGE Magazine, June 1994.}.\\
 \par
 \trivia{To ease the task of generating RISC instructions for Tom \& Jerry, John Carmack wrote his own \cw{lcc} compiler backend. Output was optimized further by hand.\footnote{It was not the last time id Software would use the excellent \cw{lcc}. in 1999, it was used for Quake 3 to generate the VM bytecode.}}\\
 \par
-To run on a machine with 50\% less RAM was difficult. The Cyberdemon and Spiderdemon were cut. Sprite and texture resolution was reduced. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a look at E1M1 in Figure \ref{doom_jaguar3.png} and compare it with the PC version (on page \pageref{mashed_potatoes1.png}). See how the blue floor texture is gone and there is only one step instead of two.\\
+To run on a machine with 50\% less RAM was difficult. The Cyberdemon and Spiderdemon were cut. Sprite and texture resolution were reduced. Maps were heavily modified to use fewer textures, have fewer segments, and create fewer visplanes. Take a look at E1M1 in Figure \ref{doom_jaguar3.png} and compare it with the PC version (on page \pageref{mashed_potatoes1.png}). See how the blue floor texture is gone and there is only one step instead of two.\\
 \par
 The 3D renderer had to be rewritten to fit in a small chunk of ASM that ran on the RISCs. Nine overlays were swapped in and out of the SRAM at runtime based on engine "phases".\\
 \par
@@ -115,7 +115,7 @@ The source code of \doom{} for Jaguar was released in May, 2003 by Carl Forhan o
 \par
 A big decision was to cut music playback during game. This was due to the poor performance of Tom which was not able to handle the game engine on its own. To resolve this problem\footnote{The game ended up managing a solid 20 FPS.}, Jerry (the so-called DSP) was used to run collision detections. Thankfully, there was still enough juice in Jerry to play sound effects and the engine managed a solid 20 FPS.\\
 \par
-The 3D rendering was done at a resolution of 160x180. The vertical lines were doubled to reach 320x180 with 60 pixels at the bottom for the status bar, bringing the overall resolution to 320x240. In many ways the graphical result was better than the PC. With its tailor-made 16-bit CRY mode, the Jaguar really had 65,536 colors with no color banding in sight.
+The 3D rendering was done at a resolution of 160x180. Columns were doubled to reach 320x180 with 60 pixels at the bottom for the status bar, bringing the overall resolution to 320x240. In many ways the graphical result was better than the PC. With its tailor-made 16-bit CRY mode, the Jaguar really had 65,536 colors with no color banding in sight.
 
 
 
