@@ -184,8 +184,8 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 \par
 
 
-To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane in general form with a vector $(a, b, c)$ combined to a distance $d$: $$ ax + by + cz + d = 0 $$
-and use the power of the dot product to inject the coordinate of the test point $P = (x, y, z)$, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero = on the plane).\\
+To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane in general form with a vector $(a, b)$ combined to a distance $d$: $$ ax + by + d = 0 $$
+Using a dot product operation, the coordinate of the test point $P = (x, y)$ is injected into the plan equation, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero = on the plane).\\
 \par
 This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic, which uses the awesome power of the cross product.\\
 \ccode{node_t.c}\\
@@ -373,7 +373,7 @@ It is worth mentioning that the engine is subpixel-accurate when calculating the
  \par
 \drawing{subpixel}\\
 \par
-The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}? There are many solutions available here, offering different trade-offs. At the time of \doom{}'s engine, most games discarded the fractional part of a point and then navigated from \cw{floor(A)} to \cw{floor(B)}. This is called "pixel-accurate".\\
+The problem to solve here is: What pixel do you select between \cw{A} and \cw{B}? There are many solutions available here, offering different trade-offs. At the time of \doom{}'s engine, most games discarded the fractional part of a point and then navigated from \cw{floor(A)=(0,0)} to \cw{floor(B)=(5,3)}. This is called "pixel-accurate".\\
 \par
 Subpixel accuracy is slightly more difficult to perform. Here the fractional part is not discarded but used while navigating from \cw{A} to \cw{B}.\\
 \par
@@ -442,7 +442,7 @@ $u_{\alpha} = \dfrac{
 \end{equation*}
 \par
 \vspace{4pt}
-Now the result is perspective correct.\\
+The calculation is much more expensive but now the result is perspective correct.\\
 \par
 \fullimage{perspective_texturing.png}
 Had \doom{} allowed sloped walls, texturing would have required six perspective correct computations per pixel (both $u$ and $v$ interpolated twice along vertical and horizontal edges of a quad) which would have been prohibitively CPU intensive.\\
@@ -467,7 +467,7 @@ Given the previous screenshots, it may not be clear why perspective correctness 
 
 On the opposite page, notice in particular how \cw{MWALL4\_1}'s upper right pentagram edge appears arched instead of being straight. The same thing happens with \cw{MWALL5\_1} where the left horn does not look right. \cw{MWALL4\_2} suffers none of these issues since it is parallel to the viewing angle.\\
 \par
-Several video game consoles of the era such as the PlayStation, 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo 64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but not perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated for either via triangle sub-divisions or by avoiding texturing altogether. This is why PSX game \textit{Crash Bandicoot}'s characters are devoid of texturing in favor of Gouraud shading.\\
+Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo 64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but not perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated for either via triangle sub-divisions or by avoiding texturing altogether. This is why PSX game \textit{Crash Bandicoot}'s characters are devoid of texturing in favor of Gouraud shading.\\
 \par
 John Carmack hated affine texturing so much he vetoed all ports attempting to be perspective incorrect which sometimes resulted in serious consequences (page \pageref{saturn_port}).
 
