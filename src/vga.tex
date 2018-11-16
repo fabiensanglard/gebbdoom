@@ -5,7 +5,7 @@ A GC (Graphic Controller) and an SC (Sequence Controller) controlled access to 2
 \par 	
 \scaleddrawing{0.6}{vga}{Architecture of the VGA}
 \par
-During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel and a 256 color palette. Using this undocumented mode, developers manipulated the four banks in the video card directly. How the framebuffer was laid out across banks was far from trivial. As figure \ref{vga_ram_screen_layout} shows, due to historically slow RAM access times, pixels were interleaved four by four.
+During the early 90s, a vast majority of PC video games used the VGA in tweaked mode 13h (also called Mode-Y) which offered a resolution of 320x200, 1 byte per pixel and a 256 color palette. Using this undocumented mode, developers manipulated the four banks in the video card directly. How the framebuffer was laid out across banks was far from obvious. As figure \ref{vga_ram_screen_layout} shows, due to historically slow RAM access times, pixels were interleaved four by four.
 
 
 
@@ -37,7 +37,7 @@ In figure \ref{circle_framebuffer} a programmer drew a circle into the framebuff
 \par
 \cfullimage{circlescreen.png}{\label{circlescreen}}
 \par
-Figure \ref{circlescreen} shows how the same framebuffer appears when displayed on the monitor. Notice the $ 320/240 = 1.333 $ aspect ratio.\\
+Figure \ref{circlescreen} shows how the same framebuffer appears when displayed on the monitor. Notice the $ 320/240 = 1.333 $ aspect ratio. The circle appears as an ellipse.\\
 
 
 
@@ -76,7 +76,7 @@ By licensing the ET4000 \circled{1}, Britek Electronics only had to provide RAM 
 
 
 \subsection{VL-Bus}
-As much as the video card manufacturer could optimize their product, there was still a huge bottleneck that was out of their control. Information written by the CPU still had to transit the ISA bus.\\
+As much as the video card manufacturer could optimize their product, there was still a huge bottleneck that was out of their control. Information written by the CPU still had to transit over the ISA bus.\\
 \par
  Introduced in 1981, the first incarnation of the ISA bus had an 8-bit data path running at 4.77 MHz. It was upgraded in 1984, bringing its width to 16 bits and running at 6 MHz. After 10 years of service it was starting to show its age and was considered a performance killer.\\
 \par

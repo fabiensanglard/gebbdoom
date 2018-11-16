@@ -14,7 +14,7 @@ The memory allocator uses only one zone for the entire available RAM. This "main
 
 
 
-Each block is marked with a purge hint so the allocator can know whether it can free this block when responding to an allocation request.\\
+Each block is tagged with a purge hint so the allocator can know whether it can free this block when responding to an allocation request.\\
 \par
 \ccode{memory_zone.c}\\
 \par
@@ -30,7 +30,7 @@ Eventually the allocator will receive a request for an amount of RAM that the "f
 \par
 \rawdrawing{zalloc_fail}
 \par
-To fulfill a memory request, the rover will start by marking its current position and scanning for a free block big enough. If the rover comes back to the same position, there is no free block big enough to satisfy the request. Here the engine will throw an error and terminate.\\
+To fulfill a memory request, the rover will start by marking its current position and scan for a free block big enough. If the rover comes back to the same position, there is no free block big enough to satisfy the request. Here the engine will throw an error and terminate.\\
 \par
 What is likely to have happened is that some blocks will have been freed via \cw{Z\_Free} in the meantime. When a block is freed, its \cw{user} is set back to \cw{NULL} and both neighboring free blocks are merged. Let's assume block B and block C have been freed. They would have been both merged into one free (\cw{owner=NULL}) 5000 bytes block.\\
 \par
