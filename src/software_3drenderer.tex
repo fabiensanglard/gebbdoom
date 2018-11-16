@@ -580,13 +580,15 @@ Notice the overflow check which was mentioned earlier. This case was a map desig
 
 
 \subsection{Drawing Flats (For Real)}
-We can finally read the flat drawing routine (\cw{R\_DrawPlanes}) which simply iterates over the array of visplanes.\\
+We can finally read the flat drawing routine which iterates over the array of visplanes.\\
 \par
 \ccode{R_DrawPlanes.c}
 \par
 Notice how the flat texture resource is not freed at the end of each iteration but rather marked as \cw{PU\_CACHE} according to what was described in the memory manager section.\\
 \par
-Since distance from the player is constant over a horizontal line, visplanes are rendered as spans (instead of columns) for perspective correctness. This choice also allowed fast rendering of something we have so far ignored as a matter of simplicity: diminished lighting.
+Despite being stored as columns, visplanes are converted to horizontal spans and drawn as such. This is done this way because each line is at a constant distance from the player which allows for fast perspective correct texturing 
+% Since distance from the player is constant over a horizontal line, visplanes are rendered as spans (instead of columns) for perspective correctness. 
+This choice also allowed fast rendering of something we have so far ignored as a matter of simplicity: diminished lighting.
 
 
 
