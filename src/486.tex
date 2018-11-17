@@ -18,7 +18,7 @@ The design had changed significantly compared to its predecessor. The pipeline w
 \pagebreak
 Like with the 386, Intel marketed its new CPU in two flavors. The DX version was the pure technology, while the SX version had an unavailable FPU. A decades-old diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full-blown 486DX that disabled the 486SX completely!}.\\
 \par
-If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to face a competitor from the same company. The competing sibling was named the "Intel 860".\\
+If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to face a challenger from the same company. The competing sibling was named the "Intel 860".\\
 \par
 \fq{
 
@@ -40,9 +40,9 @@ But whereas later CPUs such as the Pentium chose to hide the chip's complexity b
 Unfortunately, compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super-scalar capability. The i860 was never able to reach its full potential. If only Intel had been willing to build the tools it desperately needed, the history of the i860 could have been different.\\
 \par
 \par
-\cscaledimage{0.85}{i486DX.png}{}
+\cscaledimage{0.85}{i486DX.png}{The Intel 80486 package}
 \par
-Figure \ref{i486DX.png} shows the Intel 486 die and the 1,180,235 transistors inside its package. Around this time period, Intel started to stamp its CPU with a trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
+Figure \ref{i486DX.png} shows the Intel 486 die featuring 1,180,235 transistors inside its package. Around this time period, Intel started to stamp its CPU with a trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
 \par
 \trivia{The i860 played a part in \doom{} anyway since it was used in the NeXTDimension's video processing boards.}
 
@@ -141,7 +141,7 @@ If a device was able to answer the bus request within the first wait state cycle
 \par
 \rawdrawing{cpu_wait_states}
 \par
-A two cycle bus request is the fastest a CPU can achieve. In practice, DRAM access requires several Wait State insertions.
+A two cycle bus request was the fastest a CPU could achieve. In practice, DRAM access required several Wait State insertions.
 To avoid this meant avoiding using the bus completely. Therefore, Intel inserted a new component between the pipeline and the bus unit called the L1 (Level 1) cache. The idea was to exploit both the spatial and temporal locality of a program.\\
 \par
 Temporal locality relies on the iterative nature of programs. While in a loop, a recently accessed instruction is likely to be accessed again on the next iteration. Spatial locality has to do with the way programs sequentially read or write arrays containing data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
@@ -157,7 +157,7 @@ By leveraging these two properties, a well-designed cache located between the CP
 Hopefully it is now abundantly clear that the cache was the cornerstone of the entire CPU. Designing the cache to yield the highest hit rate possible and making it as fast as possible were paramount. 
 
 \subsubsection{DRAM vs SRAM}
-The first thing the cache had going for itself was the lower latency of its RAM. While the main RAM in the SIMM slots used DRAM (Dynamic RAM), the cache was made of a different type called SRAM, with a much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 10x faster.\\
+The first thing the cache had going for itself was the lower latency of its RAM. While the main RAM in the SIMM slots used DRAM (Dynamic RAM), the cache was made of a different type called SRAM (Static RAM), with a much faster access time. DRAM typically had an access time of 200ns while SRAM was capable of 20ns, 10x faster.\\
 \par
 The difference in speed comes from the design of their elementary cells.\\
 \par
@@ -187,7 +187,7 @@ Since it is located inside the chip, accessing it doesn't require an expensive b
 
 
 \subsubsection{Cachelines}
-Not only did the L1 cache have better hardware, it was also cleverly designed. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on it, yet it managed an impressive 8\% miss rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
+Not only did the L1 cache have better hardware, it was also cleverly designed. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on it, yet it managed an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
 \par
 To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided into 2,097,152 pages of 2 KiB. Within each page there are 128 lines of 16 bytes (called cachelines).\\
 \par
@@ -314,7 +314,7 @@ If you are holding a physical 9.25''x7.5'' copy of this book, the CPU packaging 
 
 
 
-On the previous page, the transistor layout differs between the data path, which was hand-crafted, and the control path, which was created with CAD tools built especially for the 486\footnote{Source: Coping with the Complexity of Microprocessor Design at Intel -- A CAD History.}.\\
+\trivia{On the previous page, the transistor layout differs between the data path, which was hand-crafted, and the control path, which was created with CAD tools built especially for the 486\footnote{Source: Coping with the Complexity of Microprocessor Design at Intel -- A CAD History.}.}\\
 \par
 \subsection{Programming the 486}
 With the architecture in mind we can now understand how a programmer could take best advantage of the 486. The good news was that most of the performance improvement was the characterized free-lunch of the 90s. The exact same binary would run twice as fast on the new CPU.\\
