@@ -18,7 +18,7 @@ The design had changed significantly compared to its predecessor. The pipeline w
 \pagebreak
 Like with the 386, Intel marketed its new CPU in two flavors. The DX version was the pure technology, while the SX version had an unavailable FPU. A decades-old diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full-blown 486DX that disabled the 486SX completely!}.\\
 \par
-If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to face a competitor from the same company. The competing brother was named the "Intel 860".\\
+If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerhouse (both in terms of performance and sales\footnote{As of late 2015, the 486 was still manufactured and used inside network routers.}), it had to sustain a period of uncertainty. Just as the 386 had to face its brother (the i960), the i486 also had to face a competitor from the same company. The competing sibling was named the "Intel 860".\\
 \par
 \fq{
 
@@ -33,7 +33,7 @@ If in retrospect the 486 was Intel's 1994 champion and an unquestionable powerho
 
 
 
-On paper, the i860 was impressive and a serious competitor. Relying on a heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very Long Instruction Word.}, it had three units (X, Y, and Z) allowing parallel processing and when used efficiently could outperform the Intel 486.\\
+On paper, the i860 was impressive and a serious opponent. Relying on a heavily pipelined super-scalar architecture crushing VLIWs\footnote{Very Long Instruction Word.}, it had three units (X, Y, and Z) allowing parallel processing and when used efficiently could outperform the Intel 486.\\
 \par
 But whereas later CPUs such as the Pentium chose to hide the chip's complexity by automatically executing instructions in parallel when possible, the i860's architecture mandated direct manipulation of its parallel pipelines. The chip did nothing behind the scenes and relied on compiler writers to sequence instructions appropriately.\\
 \par
@@ -48,7 +48,7 @@ Figure \ref{i486DX.png} shows the Intel 486 die and the 1,180,235 transistors in
 
 \par
 \subsection{Pipeline improvements}
-Charting the 486's MIPS performance against with the previous generation makes the performance boost appear vividly. Thanks to an improved manufacturing process, top of the line 486s were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.}, but frequency increase was not the main source of the improvement.\\
+Charting the 486's MIPS performance against the previous generation makes the performance boost appear vividly. Thanks to a better manufacturing process, top of the line 486s were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.}, but frequency increase was not the main source of the improvement.\\
 \par
  Looking closely at the chart, one will notice that even at equal frequencies, a 486 offered more than twice the processing power of a 386.\\
 
@@ -205,7 +205,7 @@ Upon receiving a 32-bit address access request, the cache controller splits it i
 \item Update the flag F in the directory entry to update the LRU value.
 \end{enumerate}
 \par
-A memory address's content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
+A memory address' content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
@@ -231,7 +231,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 \subsection{Overdrive and L1 Writeback}
-Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  The write-back L1 cache policy (instead of write-through) reduced bus traffic significantly.\\
+Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  Furthermore, the L1 cache policy became write-back (instead of write-through) which reduced bus traffic significantly.\\
 \par 
 \vspace{10pt}
 \scaleddrawing{0.9}{486dx2_notm}{The "DX2-66" was the golden standard and absolute best to run \doom{}}%{Best CPU to run \doom at the time.}

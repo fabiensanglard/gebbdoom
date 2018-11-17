@@ -103,11 +103,11 @@ In the next example, \doom{} was started with the command-line:\\
 \par
 \fakedosoutput{dos_doom_wad}
 \par
-In this illustration, \cw{DOOM.WAD} is represented with only three lumps and the two additional WAD archives have only one lump each. In the following sequence, see how one lump name can appear several times (there are two lumps named \cw{MUSIC1}) in the index.\\
+In this illustration, \cw{DOOM.WAD} is represented with only three lumps and the two additional WAD archives have only one lump each. Notice how \cw{DOOM.WAD} are listed first and how a lump name can appear several times (there are two lumps named \cw{MUSIC1}) in the index.\\
 \par
 \drawing{lumpsMaster}{Lump system index}
 \par
-Requests to the lump system are sent via a \cw{char[8]} name. The first task is to find which WAD it is in, and at which offset. The index is searched sequentially in the function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight characters each time, it compares two 32-bit integers.\\
+Requests to the lump system are sent via a \cw{char[8]} name. The first task is to associate the lump name with an \cw{int} lump index ID. The lump array is searched sequentially in the function \cw{W\_CheckNumForName} which in order to speed up comparison uses a cool trick. Instead of comparing eight characters each time, it compares two 32-bit integers.\\
 \par
 \ccode{W_CheckNumForName.c}{}\\
 \par
@@ -117,16 +117,16 @@ The beauty of this system means that the original \cw{DOOM.WAD} never had to be 
 \par
 \trivia{To differentiate official WADs from fan-made ones, the magic number at the beginning of a WAD archive was different. \cw{IWAD} was reserved for id Software while fan-made WADs were requested to use \cw{PWAD}.}\\
 \par
-Once a lump location has been found, a memory block is requested from the memory allocator. The content of the lump is copied to RAM and returned to the caller. \\
+Once a lump location has been found, a memory block is requested from the memory allocator. The content of the lump is copied from HDD to RAM and returned to the caller. \\
 \par
-The \cw{lumpinfo} array is mirrored by a \cw{lumpcache} array caching system. When a lump is requested, the cache is looked up first in \cw{W\_CacheLumpNum}. The lump cache slot assigned itself as the \cw{user} of the memory block, meaning the cache is automatically invalidated if the block is freed. In figure \ref{lumpcache}, lumps \cw{0} \& \cw{2} are not in the cache and will request WAD access.\\
+The \cw{lumpinfo} array is mirrored by a \cw{lump} caching system. When a lump is requested, the index ID is used to looked up a \cw{lumpcache} array first (in \cw{W\_CacheLumpNum}). A non-null pointer means the lump is already in a zone block. The lump cache slot assigns itself as the \cw{user} of the memory block, meaning the cache is automatically invalidated if the block is freed. This mechanism explains the default \cw{owner} value set to 2 which means a memory block is owned but not cached (so there is no cache to invalidate upon deallocation). In figure \ref{lumpcache}, lumps \cw{0} \& \cw{2} are not in the cache and will request WAD access.\\
 \par
 \scaleddrawing{0.9}{lumpcache}{Lump \cw{1} is in the cache. Lumps \cw{0} and \cw{2} are not.}
 \par
 \ccode{W_CacheLumpName.c}
-\pagebreak
 
-id Software sent the file format to a few individuals in the community. Within a month, the "Unofficial DOOM specs", describing the WAD format inside out, was online. With the format known and a way to inject new lumps, the modding community flourished.\\
+
+id Software explained the assets file format to a few individuals in the community. Within a month, the "Unofficial DOOM specs", describing the WAD format inside out, was online. With the format known and a way to inject new lumps, the modding community flourished.\\
 \par
 
 Some fans used the system to replace almost every aspect of the original game. These mods were known as "Total Conversions" (TCs). The most notorious of them all was named Aliens Total Conversion.\\

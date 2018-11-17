@@ -25,7 +25,7 @@ Events are stored in the core via a circular buffer audaciously named \cw{events
 \ccode{events_storage.c}
 
 \par
-On each game tic, the event queue is emptied. Events are sent one-by-one down a chain of responders. Each responder has the choice to ignore the event, in which case it is passed further down.\\
+On each game tic, the event queue is emptied. Events are sent one-by-one down a chain of responders\footnote{It is likely the "responder" architecture was influenced by NeXT's \cw{NSResponder} elements found in the \cw{AppKit} framework. It proved to be a robust design since it is still in use to this day.}. Each responder has the choice to ignore the event, in which case it is passed further down.\\
 \par
 \ccode{D_ProcessEvents.c}\\
  \par If the event is consumed ("eaten" in the code) then it is not passed to subsequent responders. Notice that the 3D renderer is the last responder in the chain.\\

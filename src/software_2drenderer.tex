@@ -1,12 +1,12 @@
 
 \section{2D Renderers (Drawers)}
-All "drawers" in \doom{} were the work of Dave Taylor. The self-proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. The code style and naming conventions are very different from John Carmack.
+All "drawers" in \doom{} were the work of Dave Taylor. The self-proclaimed "spackle coder"\footnote{Source: "Dave Taylor Interview" by blankmaninc.com.} was hired three months before the game shipped but he managed to produce many systems. His code style and variable naming conventions differ from John Carmack's and therefore ownership is immediately recognizable.
 \begin{itemize}
 \item Intermission (\cw{WI\_Drawer()})
 \item Status Bar (\cw{ST\_Drawer()})
 \item Menus (\cw{M\_Drawer()})
 \item HUD (\cw{HU\_Drawer()})
-\item Automap (\cw{AM\_Drawer})
+\item Automap (\cw{AM\_Drawer()})
 \item Transition screens (\cw{wipe\_StartScreen()})
 \end{itemize} 
 \par
@@ -108,7 +108,7 @@ Over time the design changed and the HUD shrank to just lines of text. The small
 \subsection{Automap}
 The automap is a small and simple component contained in \cw{am\_map.c}. As the player discovers the level, the map keeps track of lines which have been seen. Red lines indicate solid walls. Yellow lines indicate changes in ceiling height (e.g. doors). Brown lines indicate changes in floor height.\\
 \par
-Sadly, it is not possible to play the game in this mode (we all tried to, let's not kid ourselves) since marking of visited lines is done by the 3D renderer which is disabled when the automap is active.\\
+Sadly, it is not possible to play the game in this mode (we all have tried to, let's not kid ourselves) since marking of visited lines is done by the 3D renderer which is disabled when the automap is active.\\
 \par
 \fullimage{automap.png}
 \par
