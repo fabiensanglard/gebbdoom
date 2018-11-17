@@ -1,5 +1,5 @@
 \section{Video Manager}
-Before continuing our trip through the code and looking at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphics stack where each frame is stored and manipulated. The video system is located in the core. It maintains and exposes two data structures: a set of five framebuffers, and one dirtybox (used as a "dirty rectanges"). All write operations update the framebuffers and the box.\\
+Before continuing our trip through the code and looking at the rendering in  \cw{D\_Display}, let's take a few pages to study the graphics stack where each frame is stored and manipulated. The video system is located in the core. It maintains and exposes two data structures: a set of five framebuffers, and one dirtybox (used as a "dirty rectangles"). All write operations update the framebuffers and the box.\\
 \par
 \cccode{kernel_renderer.c}{Five framebuffers.}
 \par

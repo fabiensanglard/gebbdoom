@@ -208,7 +208,7 @@ We have now reached the \cw{R\_Subsector} function where all segments in a subse
 \par
 \ccode{bam.c}
 \par
-First, both ends of the segment are converted to an angle with respect to the player's position (via highschool level $angle = arctan(\frac{O}{A})$). Segments with a negative angle (\cw{angle1} - \cw{angle2} < 0) are culled since they are not facing the camera. Segments passing the angle test are then reduced from 32 bits to 13 bits with a simple right-shift. Next, the angle is injected into a lookup table \cw{viewangletox[4096]} to give a screen-space \cw{X} coordinate.\\
+First, both ends of the segment are converted to an angle with respect to the player's position (via high-school level $angle = arctan(\frac{O}{A})$). Segments with a negative angle (\cw{angle1} - \cw{angle2} < 0) are culled since they are not facing the camera. Segments passing the angle test are then reduced from 32 bits to 13 bits with a simple right-shift. Next, the angle is injected into a lookup table \cw{viewangletox[4096]} to give a screen-space \cw{X} coordinate.\\
  \par
 \vspace{2mm}
 \drawing{segtobam}{}

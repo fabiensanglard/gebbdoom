@@ -91,7 +91,7 @@ The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no
 \fullimage{leak_opposite_explained.png}\\
 \label{leak_opposite_explained.png}
 \par
-From there, the damage is done. The engine renders the other side of the BSP and hits \cw{F} which is clipped against the vertixacal boundary set by \cw{G1} and then drawn (in blue). The space below \cw{F} is inferred to be floor and visplane \cw{F-VP} (turquoise) is generated\footnote{The engine actually merges \cw{E-VP} and \cw{F-VP} but let's discard it for the sake of simplicity.}.
+From there, the damage is done. The engine renders the other side of the BSP and hits \cw{F} which is clipped against the vertical boundary set by \cw{G1} and then drawn (in blue). The space below \cw{F} is inferred to be floor and visplane \cw{F-VP} (turquoise) is generated\footnote{The engine actually merges \cw{E-VP} and \cw{F-VP} but let's discard it for the sake of simplicity.}.
 
 
 \section{Barrel suicide}
@@ -99,4 +99,4 @@ From there, the damage is done. The engine renders the other side of the BSP and
 \par
 There is an amusing special case of infighting which involves exploding barrels. When a barrel is damaged, the engine "memorizes" which entity was responsible for it. When the barrel actually explodes the source of the damage is passed to all damaged entities so they can retaliate.\\
 \par
-What can happen is that a monster triggers a barrel to explode and gets injured by the blast in the process. In this occurence, monsters with a melee attack (cacodemon, Imp, Hellknight) will "tear themselves apart" while those only capable of range attack (former humans) will go nuts and fire blindly at random, possibly triggering further monster infighting.
+What can happen is that a monster triggers a barrel to explode and gets injured by the blast in the process. In this occurrence, monsters with a melee attack (Cacodemon, Imp, Hellknight) will "tear themselves apart" while those only capable of range attack (former humans) will go nuts and fire blindly at random, possibly triggering further monster infighting.
