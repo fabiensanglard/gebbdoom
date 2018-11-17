@@ -145,7 +145,7 @@ The list of action types is impressive -- there are more than 130 of them: open/
 \par
 The tag designating the target is any number picked by the designer. Any lines the designer wants to be targeted by this action are tagged with the same number. With this system, a line can trigger only one action but target several sectors.\\
 \par
-\trivia{No doubt the countless hours the team spent playing Dungeons \& Dragons came in handy when it came to design \doom's mazes.}
+\trivia{The first maps designed had mostly orthogonal walls and military design. It took the team a few months to realize \doom{} engine was capable of much more.}
 \pagebreak
 
 
@@ -220,4 +220,4 @@ C has no OOP capabilities yet the engine managed to implement a polymorphism sys
 \par
 \ccode{EV_BuildStairs.c}\\
 \par
-For this thinker, what ends up being called during a game tic is \cw{floor->thinker(floor)}.
+This is a pretty cool mechanism. While iterating over the list of \cw{thinker\_t}, the loop simply calls \cw{thinker->function(thinker)} which has no knowledge of either the function called or the payload involved.

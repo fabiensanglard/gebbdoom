@@ -1,5 +1,4 @@
-typedef struct
-{
+typedef struct {
 	thinker_t       thinker;
 	floor_e         type;
 	boolean         crush;
