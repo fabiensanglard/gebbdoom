@@ -40,7 +40,6 @@ The design of the status bar is similar to the Intermission Drawer. Contained in
 
 \par
 \fullimage{faces.png}\\
-\par
 Most of the time, the face widget shows the "normal" animation where the marine's eyes look left and right. Notice how there is a set of states for each of the five health brackets. Perhaps because of the stress incurred during combat, many players never knew this widget showed the origin (left/right) of damage incurred. "Evil" is shown when picking up a weapon. "Kill" is displayed when the player takes head-on damage, while the player holds down the fire button, or upon "getting hurt because of your own damn stupidity" (verbatim code comment found in \cw{st\_stuff.c}).\\
 \par
 Even to players who spent a lot of time on \doom, the "ouch" face is likely to be something they have never seen. It was intended to show up when the player suffers an enormous amount of damage (more than 20 hit points), enough to move two brackets down. A bug in the code prevented this from happening:\\
@@ -54,8 +53,6 @@ The test is the opposite of what it should have been. The ST module shows the ou
 With regards to interaction with the video system, the status bar is similar to the intermission module. Upon startup, it draws a virgin status bar into framebuffer \#4. When the status bar needs a refresh, it does a \cw{memcpy} from framebuffer \#4 to framebuffer \#0 and draws all the widgets on top of it.\\
 \par
 \fullimage{stbar_virgin.png}
-
-
 \subsection{Menus}
 
 \begin{wrapfigure}[5]{r}{0.1\textwidth}

@@ -172,7 +172,7 @@ To implement this effect, two sets of lines were used. The first lines (in blue)
 \includegraphics[width=.5\textwidth]{drawings/E1M3_sides2.pdf}
 \end{wrapfigure}
 Another interesting effect in E1M3 is the rising staircase that leads to a small room containing the exit to level 4. It is implemented by having a line with the "BuildStairs" (\#8) type targeting the first step sector with its tag. The engine has a hardcoded \cw{EV\_BuildStairs} function that looks up the target sector via the tag then uses a flood-fill algorithm.\\
-\par Adjacent sectors are repeatedly looked up and a bit more height is added with each iteration. To avoid raising the whole level, the algorithm stops when the next sector's texture is different from the last elevated sector, which explains why the stairs are grey, while the top and bottom are blue and brown.\\
+\par Adjacent sectors are repeatedly looked up and a bit more height is added with each iteration. To avoid raising the whole level, the algorithm stops when the next sector's texture is different from the last elevated sector, which explains why the stairs are grey, while the top and bottom surrounding them are dark brown.\\
 \par
 Before and after screenshots can be seen on page \pageref{stairs}.
 

@@ -43,8 +43,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="107.5258"
-     inkscape:cy="126.9433"
+     inkscape:cx="111.06133"
+     inkscape:cy="106.74025"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,7 +62,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2167,6 +2167,13 @@
        y2="975.60846"
        id="line5845"
        style="stroke:#9f9f9f;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#a08062;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4505"
+       width="37.123104"
+       height="26.516504"
+       x="104.80333"
+       y="948.06384" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#TriangleOutM);stroke-miterlimit:4;stroke-dasharray:none"
        d="m 122.78342,985.51813 0,-40.35318"
@@ -2268,9 +2275,9 @@
        x1="104.46566"
        y1="860.68713"
        x2="104.46566"
-       y2="851.1084"
+       y2="847.57288"
        id="line3619"
-       style="stroke:#000000;stroke-width:2.00000018;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:2.34017324;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <line
        x1="141.9306"
        y1="937.30133"
@@ -2336,11 +2343,11 @@
        style="stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <line
        x1="141.9306"
-       y1="851.1084"
+       y1="846.56268"
        x2="141.9306"
        y2="860.68713"
        id="line3679"
-       style="stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="stroke:#000000;stroke-width:2.4286294;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <line
        x1="141.9306"
        y1="946.87616"
@@ -2354,6 +2361,20 @@
        x2="104.46566"
        y2="946.87616"
        id="line5545"
+       style="stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="104.29825"
+       y1="976.32855"
+       x2="104.29825"
+       y2="957.17499"
+       id="line5545-0"
+       style="stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+    <line
+       x1="141.6739"
+       y1="976.58105"
+       x2="141.6739"
+       y2="957.42749"
+       id="line5545-1"
        style="stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
   </g>
 </svg>
