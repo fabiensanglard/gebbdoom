@@ -586,9 +586,9 @@ We can finally read the flat drawing routine which iterates over the array of vi
 \par
 Notice how the flat texture resource is not freed at the end of each iteration but rather marked as \cw{PU\_CACHE} according to what was described in the memory manager section.\\
 \par
-Despite being stored as columns, visplanes are converted to horizontal spans and drawn as such. This is done this way because each line is at a constant distance from the player which allows for fast perspective correct texturing 
+Despite being stored as columns, visplanes are converted to horizontal spans. Rendering this way allows for fast perspective correct texturing since each line is at a constant distance from the player.
 % Since distance from the player is constant over a horizontal line, visplanes are rendered as spans (instead of columns) for perspective correctness. 
-This choice also allowed fast rendering of something we have so far ignored as a matter of simplicity: diminished lighting.
+This choice also allowed fast rendering of something we have so far ignored: diminished lighting.
 
 
 
@@ -672,7 +672,8 @@ $   color = lightmapId[textureTexel] $
 \end{equation*}
 \par
 \vspace{10pt}
- To reduce lightmap arithmetic, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. Lightmap calculations are cached for flats.\\% Since a visplane can be horizontally discontinue, \\
+ % To reduce lightmap arithmetic, the scene drawing is dictated by where the lightmap value is constant. Therefore, walls are drawn as columns and flats are drawn as lines. 
+ In scene where a lot of visplanes are on screen, even selecting the proper lightmap ID was a performance hit. Therefore, a cache system keeping track of lightmap ID on a per screenspace line/sector ID mitigate how often the value is calculated.\\% Since a visplane can be horizontally discontinue, \\
  \par
  The engine uses a cool trick to embellish orthogonal surface rendering. Lightmap selection is tweaked based on world-space orientation. For north-south walls, the selection is lowered by one unit, making them brighter. For east-west walls the lightmap selection is increased by one unit, making them darker. Lightmap selection on other walls is unaffected.\\
 
@@ -688,10 +689,10 @@ The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is use
 % \par
 \fullimage{invulnerable.png}\\
 \par
-This effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
+The effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
 \fullimage{idbeholdv.png}\\
 \par
-Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)}.\\
+Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc} function.\\
 \par
 \fullimage{invOpenGL.png} 
 
@@ -746,11 +747,11 @@ The function responsible for this task is called \cw{R\_DrawMasked}. It is the l
 \includegraphics[width=.5\textwidth]{drawings/masked_map.pdf}
 \end{wrapfigure}
 
-Before diving into the code of \cw{R\_DrawMasked}, let's take the example of a simple room containing all types of "masked" elements and reexamine what needs to be done.\\
+Before diving into \cw{R\_DrawMasked} function, let's take the example of a simple room containing all types of "masked" elements and reexamine what needs to be done.\\
 \par
 The diagram shows a room with four walls (\cw{A}, \cw{B}, \cw{C}, and \cw{D}), a pillar also made of four walls (\cw{E}, \cw{F}, \cw{G}, and \cw{H}), a transparent wall \cw{I}, a barrel (in grey), a player spawn point (in green) and three enemies (in red: a Baron of Hell, a Cacodemon, and a Demon).\\
 \par
-The result as rendered by \doom{} is visible in figure \ref{masked.png}. Notice how the Baron is drawn on top of wall \cw{I}, the Cacodemon is partially occluded by wall \cw{I}, and parts of the demon are completely clipped behind the pillar. Also notice how the barrel must be drawn in front of the Baron for correctness. Wall \cw{I} needs to be clipped against the pillar.\\
+The result as rendered by \doom{} is visible in figure \ref{masked.png}. Notice how the Baron is drawn on top of wall \cw{I}, the Cacodemon is partially occluded by wall \cw{I}, and parts of the demon are completely clipped behind the pillar. Also notice how the barrel must be drawn in front of the Baron for correctness. Last, wall \cw{I} needs to be clipped against the pillar.\\
 \par
 \cfullimage{masked.png}{Scene with all Things and the transparent wall rendered}
 \par
@@ -771,7 +772,7 @@ The "drawn segments" array \cw{drawsegs} is made of the following \cw{drawseg\_t
 \par
 \ccode{drawseg_t.c}\\
 \par
-It is not easy to understand at first but it is much easier to think of as a log of what was rendered to the screen.
+It is not easy to understand at first but it is much easier to think of as a log of what occluders were rendered to the screen.
 \begin{itemize} 
 	\item For each wall that generated pixels in the framebuffer, a \cw{drawseg\_t} is added.
 	\item For each portal, up to two \cw{drawseg\_t}s are added (one for the upper part and one for the lower part if the portal had no middle texture).
@@ -783,13 +784,12 @@ The screen-space horizontal top and bottom edge of each wall are obtained from p
 \par
 \ccode{openings.c} 
 \par
-\vspace{-40pt}
 \rawdrawing{openings_db}
 \par
-\vspace{-10pt}
-Clearing the array of openings at the beginning of a frame is ridiculously simple, \cw{lastopening} only needs to be set to \cw{openings}.\\
-\par
-The visible sprites (\cw{visprites}) storage is easier to understand than the \cw{drawseg\_t} array.\\
+%Clearing the array of openings at the beginning of a frame is ridiculously simple, \cw{lastopening} only needs to be set to \cw{openings}.\\
+Now that we know how they are clipped, let's take a look at how sprites are stored.\\
+% \par
+% The visible sprites (\cw{visprites}) storage is easier to understand than the \cw{drawseg\_t} array.\\
 \par
 \ccode{vissprites.c}
 \par

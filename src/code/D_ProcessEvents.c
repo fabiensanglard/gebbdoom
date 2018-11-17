@@ -13,7 +13,6 @@ void D_ProcessEvents (void) {
   eventhead = eventtail;
 }
 
-
 boolean G_Responder (event_t *ev) {
   ...
   
