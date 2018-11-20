@@ -41,16 +41,14 @@ It is possible to miss a SpiderDemon in a hallway. In the single room map above,
 A slime trail happens when there is a horizontal screen space gap between two walls. Visplanes "leak" between the space, resulting in graphical glitches. This was a known issue during development that was never fixed due to deadlines and the fact they only rarely occurred. John Carmack mentioned it when the \cw{doombsp} source code was released.\\
 \par
 \fq{There IS a bug in here that can cause up to a four pixel wide column to be drawn out of order, causing a more distant floor and ceiling plane to stream farther forward than it should.  You can sometimes see this on E1M1 looking towards the imp up on the ledge at the entrance to the zig zag room.  A few pixel wide column of slime streams down to the right of the walkway.  It takes a bit of fidgeting with the mouse to find the spot.  If someone out there tracks it down, let me know...
-}{John Carmack}\\
+}{John Carmack}\\\par
+\fullimage{slime_trail.png}\\
 \par
-
-
-\fullimage{slime_trail.png}
-
 The issue can actually be far wider than four pixels if one knows where to look.\\
 \par
 \fullimage{big_slime_trail.png}
 \par
+\vspace{10pt}
 This particular instance of slime trail is the result of the engine's visplane inference system combined with the limited precision of integers when a map is sliced up by via \cw{doombsp}.\\
 \par
  Once again, let's take an example. The two previous screenshots were taken in the very first map of the game, E1M1, in a zigzag section surrounded by toxic green liquid. At first glance, there is nothing unusual here but when we take a look at how it was sliced during binary partitioning, an interesting special case appears.\\
@@ -75,14 +73,16 @@ If we zoom in on vertex \cw{3}, we see the splitter crossed \cw{F} between integ
 
 \fullimage{leak_opposite.png}
 \par
-\begin{wrapfigure}[22]{r}{0.45\textwidth}
+\begin{wrapfigure}[20]{r}{0.41\textwidth}
 \centering
-\includegraphics[width=.45\textwidth]{drawings/E1M1_slimetrail_split2.pdf}
+\includegraphics[width=.41\textwidth]{drawings/E1M1_slimetrail_split2.pdf}
 \end{wrapfigure}
-Let's position the player along the same split line we just studied, but facing the opposite direction (the scene is simpler with fewer walls). The player is very close to segments \cw{E} and \cw{F} (which is where the rendering error is). Further in the background are segments \cw{G1} and \cw{G2} where line \cw{G} was split.\\
 \par
-The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no upper or middle texture but it does have a lower texture that is drawn (marked with a green overlay on page \pageref{leak_opposite_explained.png}). As the lower texture is rendered, the screen space below is inferred to be a floor visplane \cw{E-VP} (shown with a pink overlay). The engine then continues down the BSP and renders \cw{G1}.\\
-\par
+\vspace{10pt}
+Let's position the player along the same split line we just studied, but facing the opposite direction (the scene is simpler with fewer walls). The player is very close to segments \cw{E} and \cw{F} (which is where the rendering error is). Further in the background are segments \cw{G1} and \cw{G2} where line \cw{G} was split.\par
+\vspace{10pt}
+The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no upper or middle texture but it does have a lower texture that is drawn (marked with a green overlay on page \pageref{leak_opposite_explained.png}). As the lower texture is rendered, the screen space below is inferred to be a floor visplane \cw{E-VP} (shown with a pink overlay). The engine then continues down the BSP and renders \cw{G1}.\par
+\vspace{10pt}
 
  \cw{G1}'s lower texture is rendered (in red). Everything below that is inferred to be a floor and therefore visplane \cw{G1-VP} is created. Notice that the visplane goes all the way to the bottom of the screen which is is a rendering bug. Had the BSP been split properly, \cw{F1} would have been rendered before \cw{G1} and stopped the visplane from flooding in screenspace improperly.\\
 \par

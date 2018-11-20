@@ -94,7 +94,7 @@ On DOS, generating a flame graph is more difficult since it is a single-threaded
 \vspace{4mm}
 \drawing{dos_flamegraph}{Flame graph of \doom{} running on DOS}
 \par
-The DOS flame graph shows that I.A. ran in \cw{G\_Ticker} consumes little CPU time. The audio routine \cw{S\_UpdateSounds} since even less taxing since it is barely visible in the tiny red span. This makes sense since the only work it does is to retrieve sound effects and music data from the \cw{.wad} and place it into RAM for the audio card to use.\\
+The DOS flame graph shows that I.A. ran in \cw{G\_Ticker} consumes little CPU time. The audio routine \cw{S\_UpdateSounds} is even less taxing since it is barely visible as the tiny red span. This makes sense since the only work it does is to retrieve sound effects and music data from the \cw{.wad} and place it into RAM for the audio card to use.\\
 \par
  Something weirder to notice is that, despite being instrumented, \cw{I\_FinishUpdate} is not visible at all whereas it was a huge part of the loop on \NeXTns{}. How can the DOS version transfer a full framebuffer across the bus so fast? As it turns out, the DOS version benefited from heavy optimization, and as a result, did not have to blit at the end of a frame.\\
 \par
@@ -102,7 +102,9 @@ The DOS flame graph shows that I.A. ran in \cw{G\_Ticker} consumes little CPU ti
 \subsection{DOS Optimizations}
 Given that it was meant to be the money maker, the DOS version received special care. During optimization sessions, John Carmack identified three areas for improvement. One was in the math functions and two had to do with the 3D renderer.\\
  \par
- \fq{An exercise that I try to do every once in a while is to "step a frame" in the game, starting at some major point like common->Frame(), game->Frame(), or renderer->EndFrame(), and step into every function to try and walk the complete code coverage. This usually gets rather depressing long before you get to the end of the frame. Awareness of all the code that is actually executing is important, and it is too easy to have very large blocks of code that you just always skip over while debugging, even though they have performance and stability implications.}{John Carmack}
+ \fq{An exercise that I try to do every once in a while is to "step a frame" in the game, starting at some major point like common->Frame(), game->Frame(), or renderer->EndFrame(), and step into every function to try and walk the complete code coverage.\\
+ \par
+  This usually gets rather depressing long before you get to the end of the frame. Awareness of all the code that is actually executing is important, and it is too easy to have very large blocks of code that you just always skip over while debugging, even though they have performance and stability implications.}{John Carmack}
 \par
 
 

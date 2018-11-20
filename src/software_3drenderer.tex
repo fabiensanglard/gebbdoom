@@ -105,16 +105,16 @@ for each polygon.
 \fq{When I did the early work on BSPs\footnotemark{}, Bruce Naylor came down and visited here and gave me copies of a bunch of his papers. It's interesting to talk to people about the old days. Of course, you've got the Internet now. You can find anything nowadays. But back then, it was really something to get reprints of old academic papers. There were some clearinghouses I used to use: you'd pay twenty-five dollars or whatever, and they'd mail you xeroxes of old research papers. It was just a very, very different world. I learned most of my programming when I had a grand total of like three reference books. You had to figure everything else yourself. So I was finding I was reinventing a lot of classic things, like Huffman encoding or LZW encoding. So I'd be all proud of myself for having figured something out, and then I'd find it was just classic method and they did it better than I did.}{John Carmack, Interview for Scarydarkfast}\\
 \footnotetext{This was during development of Quake; John and Bruce met only after \doom{} had shipped.}
 \par
-To study BSPs, let's take the example of a map created with DoomED. For simplicity the map we will be working with is made of eight vertices, four linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{H}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite its simplicity it is obvious how it is a difficult problem to solve for a renderer since, depending on the point of view, the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\\
-
-\par
-\rawdrawing{doom_map}
+To study BSPs, let's take the example of a map created with DoomED. For simplicity the map we will be working with is made of eight vertices, four linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{H}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite its simplicity it is obvious how it is a difficult problem to solve for a renderer since, depending on the point of view, the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\par
+\drawing{doom_map}{}
 \par
 To build the BSP tree from the map, the core idea is to repeatedly select a line to split the map in two. Split lines become \cw{SEGMENTS} and split sectors become {SUB-SECTORS}.\\ 
 \par
 The choice of the splitter is extremely important. There are good splitters and bad splitters. A list of poor choices for the first splitter would be \cw{A}, then \cw{B}, \cw{C}, and \cw{D} since they would not divide the map evenly.\\ 
 \par
-Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, B2, C, D2\}}) and will need further splitting. The process is repeated until all subsectors are convex.\\
+Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, B2, C, D2\}}) and will need further splitting.\\
+\par
+ The process is repeated until all subsectors are convex.\\
 \par
 \drawing{doom_map_split1}{}
 \par
@@ -199,8 +199,8 @@ This method is far from being optimal. There is a better way, involving neither 
 \centering
 \includegraphics[width=.25\textwidth]{drawings/cross_product.pdf}
 \end{wrapfigure}
-Notice in the previous code listing how nodes are not stored as coordinates of two vertices (\cw{Point 1}, \cw{Point 2}) but rather as (\cw{Point 1}, \cw{Vector to Point 2}). This storage technique made the cross-product faster to generate since one of the vectors (from the node) was already calculated.\\
-\par
+Notice in the previous code listing how nodes are not stored as coordinates of two vertices (\cw{Point 1}, \cw{Point 2}) but rather as (\cw{Point 1}, \cw{Vector to Point 2}). This storage technique made the cross-product faster to generate since one of the vectors (from the node) was already calculated.\par
+\vspace{10pt}
 
 
 \subsubsection{Wall Projection}
@@ -333,13 +333,13 @@ The second pass is finer and clips vertical segment fragments emanating from the
 Let's take the example of a simple room made of three sectors (\cw{1}, \cw{2}, and \cw{3}) connected by two portals (\cw{B} and \cw{F}) and surrounded by walls. Sectors \cw{1} and \cw{3} have the same ceiling and floor height but \cw{2} is set to have a higher floor and lower ceiling so that it looks like a window.\\
 \par
 
-\begin{wrapfigure}[15]{f}{0.4\textwidth}
+\begin{wrapfigure}[14]{f}{0.4\textwidth}
 \centering
 \includegraphics[width=.4\textwidth]{drawings/vcclip_map.pdf}
 \end{wrapfigure}
-Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G}, \cw{H}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\\
-\par
-Walls \cw{A}, \cw{C}, and \cw{D} mark the full opaque height for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2's lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and the occlusion array is adjusted accordingly. Wall \cw{E} marks all columns it covers as fully opaque.\\
+Subsectors are rendered near-to-far in the order \cw{1}, \cw{2}, and \cw{3}. This means segments \{\cw{A}, \cw{B}, \cw{C}, \cw{D}\}, \{\cw{E}, \cw{F}\} and \{\cw{G}, \cw{H}\} (assuming the map was split on lines \cw{B} and \cw{F}). On the opposite page you can see the effect of each wall and portal on the vertical occlusion double array.\par
+\vspace{10pt}
+Walls \cw{A}, \cw{C}, and \cw{D} mark the full height opaque for each of their columns. The first portal \cw{B} has no middle texture. It is therefore rendered with its upper texture (to accommodate for subsector 2's lower ceiling) and its lower texture (to accommodate for subsector 2 higher floor) and the occlusion array is adjusted accordingly. Wall \cw{E} marks all columns it covers as fully opaque.\\
 \par
 Notice how portal \cw{F}'s lower and upper textures are not rendered but the occlusion array is still updated. Walls \cw{G} and \cw{H} finish marking the full screen opaque (but were only clipped during the crude pass since they are smaller than the visible window space).
 
@@ -363,8 +363,8 @@ Notice how portal \cw{F}'s lower and upper textures are not rendered but the occ
 
 
 
-\vspace{-4mm}
-After all this clipping, walls and portal screen-space coordinates are finally rendered. At the ends of each fragment, a \cw{Y} offset is calculated based on sector floor, and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a full set of columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and lower texture while walls only have a middle texture). Rendering is done vertically via the \cw{colfunc} function pointer (detailed in "performance" on page \pageref{performances}).\\
+
+After all this clipping, walls and portal are finally rendered. At the ends of each fragment, a screenspace \cw{Y} offset is calculated based on sector floor, and a column height is generated based on floor/ceiling and distance. These are interpolated to generate a full set of columns of pixels (portals are drawn as a combination of columns according to their upper texture, middle texture, and lower texture while walls only have a middle texture). Rendering is done vertically via the \cw{colfunc} function pointer (detailed in "performance" on page \pageref{performances}).\\
 
 \subsection{Subpixel Accuracy}
 It is worth mentioning that the engine is subpixel-accurate when calculating the screen coordinates of a wall's top and bottom edges. Subpixel accuracy is a subtle concept, the advantages of which are best demonstrated with an animated screen. Hopefully a few static drawings will do anyway.\\
@@ -469,12 +469,13 @@ On the opposite page, notice in particular how \cw{MWALL4\_1}'s upper right pent
 \par
 Several video game consoles of the era such as the PlayStation, the 3DO, and the Saturn\footnote{Thanks to a close collaboration with SGI, Nintendo gifted the Nintendo 64 with perspective correct texturing which made Zelda and Mario look amazing.} featured hardware accelerated graphics but not perspective correctness. On these machines, affine texture mapping artifacts were supposed to be compensated for either via triangle sub-divisions or by avoiding texturing altogether. This is why PSX game \textit{Crash Bandicoot}'s characters are devoid of texturing in favor of Gouraud shading.\\
 \par
-John Carmack hated affine texturing so much he vetoed all ports attempting to be perspective incorrect which sometimes resulted in serious consequences (page \pageref{saturn_port}).
+John Carmack hated affine texturing so much he vetoed all ports attempting to be perspective incorrect which sometimes resulted in serious consequences (page \pageref{saturn_port}).\par
 
 
-\par
+
 \fullimage{game_affine_texturing.png}
 \par
+\vspace{5pt}
 % \fq{The book "Fundamentals of Interactive Computer Graphics" was my bible in the late 80's. I tried to make the cover image\protect\footnotemark on my //GS, but I didn't grok perspective correct texturing.}{John Carmack}\\
 % \footnotetext{An exploded texture-map cube for which perspective correctness is paramount.}
 Above, distorted walls due to affine texturing. Below, perspective correct texturing.\\
@@ -518,7 +519,7 @@ When wall \cw{A} is rendered, it is clipped horizontally and vertically. Since i
  \par
   Likewise, when portal \cw{B} is rendered, there are gaps above its upper texture and below its lower texture, so two additional visplanes (\cw{5} and \cw{6}) are added.\\
 \par
-Wall \cw{E} is another new case. The gaps above and below are not between a wall and the screen but between  \cw{E} and portal \cw{B}'s upper and lower parts. To detect the previous boundaries, the previously-seen vertical occlusion array is used to create \cw{7} and \cw{8}.\\
+Wall \cw{E} is another new case. The gaps above and below are not between a wall and the screen but between  \cw{E} and portal \cw{B}'s upper and lower parts. To detect the previous boundaries, the previously-seen vertical occlusion array is used to create visplanes \cw{7} and \cw{8}.\\
 \par
 Portal \cw{F} is yet another special case. Since from this point of view it is connecting to a sector with a higher ceiling and a lower floor and has no middle texture, nothing is rendered. Yet the coordinates of its middle part are still generated in order to generate visplanes \cw{9} and  \cw{10}.\\
 \par
@@ -537,11 +538,11 @@ The visplane generation algorithm is quite simple. However it generates many vis
 
 \fullimage{simple_room_visplanes}
 
-% \vspace{3mm}
+\vspace{4pt}
 
 Below, the engine was modified to draw walls and flats in plain color to show merging.
 
-\vspace{2mm}
+\vspace{5pt}
 \fullimage{small_room_visplanes.png}
 
 
@@ -566,7 +567,7 @@ E1M1 benefits from merging. Reproduced below without diminished lighting for cla
 Without merging (above) the frame requires 179 visplanes. With merging (below), only 28 are needed.
 
 \vspace{2mm}
-\fullimage{complex_lowvis.png}
+\fullimage{complex_lowvis.png}\par \pagebreak
 On the previous page, the modified engine shows how a visplane does not need to be horizontally continuous. The red floor's visplane for example is made of three parts yet uses only one entry in the visplane array, validating the judicious choice to represent visplanes as an array of columns.\\
 \par
 There are several conditions required to merge two visplanes. Mergeable visplanes must have the same height, light and texture. Even if these conditions are met, the data structure has to be able to absorb others. This is only possible if visplanes are side-by-side. Even one pixel above or below with the same \cw{X} coordinate makes two visplanes ineligible for merging. Function \cw{R\_FindPlane} looks for candidates; mergability is tested elsewhere.\\
