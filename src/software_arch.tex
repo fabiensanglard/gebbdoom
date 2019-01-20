@@ -25,7 +25,7 @@ In a war where programmers paid the price, no side had any incentive toward peac
 
 
 
-The order of bits in a byte was in universal agreement, but the order of bytes in larger structure, such as shorts (16 bits) or ints (32 bits) was differently interpreted based on the vendor's internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x45}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{0x12345678}.\\
+The order of bits in a byte was in universal agreement, but the order of bytes in larger structure, such as shorts (16 bits) or ints (32 bits) was differently interpreted based on the vendor's internal architecture. The stream \cw{0x12}, \cw{0x34}, \cw{0x56}, \cw{0x78} can be interpreted in two ways. On an Intel little-endian machine, it will be become \cw{0x78563412}. On a Motorola big-endian machine, it will become \cw{0x12345678}.\\
 \par
 \drawing{endianness}{A tiny wiring difference results in a hard frontier between CPU words}
 \par
