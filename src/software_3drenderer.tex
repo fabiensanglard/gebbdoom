@@ -794,7 +794,7 @@ Now that we know how they are clipped, let's take a look at how sprites are stor
 \par
 \ccode{vissprites.c}
 \par
-A vissprite entry contains eveything needed to render a sprite on screen. It features information similar to the drawn segments such as the screen space horizontal boundaries (\cw{x1} and \cw{x2}), its scale to compare distances with walls, the texture ID (\cw{patch}) and the lightlevel (\cw{colormap}) to be used for shading.\\
+A vissprite entry contains everything needed to render a sprite on screen. It features information similar to the drawn segments such as the screen space horizontal boundaries (\cw{x1} and \cw{x2}), its scale to compare distances with walls, the texture ID (\cw{patch}) and the lightlevel (\cw{colormap}) to be used for shading.\\
 \par
 Notice the \cw{prev} and \cw{next} fields. Even though vissprites are stored in a linear array, they need to be sorted into back-to-front order. Instead of moving around array elements, the sorting method only updates the doubly-linked list. This way, elements remain at the same array position but a sorted list can be obtained by following the \cw{next} pointers.
 \newpage
