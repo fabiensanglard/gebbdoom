@@ -60,7 +60,7 @@ With DMX backing the sound system, ten audio chipsets were supported.\\
 \par
 \ccode{cardenum_t.c}\\
 \par
-Running on an operating system supporting neither threads nor processes, there was seemingly no way to generate both the video and audio output simultaneously. Attentive readers will have noticed the hardware section mentioned two chipsets: the i8259 (Programmable Interrupt Controller: PIC) and i8254 (Programmable Interval Timer: PIT). Together they can be set up to interrupt the engine's execution and call into DMX's routines\footnote{The way the PIC and PIT interact is extensively detailed in "Game Engine Black Book: Wolfesntein 3D".}.\\
+Running on an operating system supporting neither threads nor processes, there was seemingly no way to generate both the video and audio output simultaneously. Attentive readers will have noticed the hardware section mentioned two chipsets: the i8259 (Programmable Interrupt Controller: PIC) and i8254 (Programmable Interval Timer: PIT). Together they can be set up to interrupt the engine's execution and call into DMX's routines\footnote{The way the PIC and PIT interact is extensively detailed in "Game Engine Black Book: Wolfenstein 3D".}.\\
 \par
 Upon initialization, DMX installs itself as an interrupt handler to be called by the PIC and PIT at 140Hz. Upon awakening, DMX's interrupt handler takes care of feeding the audio device with music and sound effect data provided by the engine.\\
 \par
