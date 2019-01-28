@@ -1,5 +1,5 @@
 int R_PointOnSide(fixed_t x, fixed_t y, node_t* node){
-    fixed_t    dx, dx, left, right;
+    fixed_t    dx, dy, left, right;
     
     if (!node->dx) { // Shortcut if node is vertical.
       if (x <= node->x) {
