@@ -84,7 +84,7 @@ Let's position the player along the same split line we just studied, but facing 
 The frame starts with a blank canvas. Portal \cw{E} is rendered first. It has no upper or middle texture but it does have a lower texture that is drawn (marked with a green overlay on page \pageref{leak_opposite_explained.png}). As the lower texture is rendered, the screen space below is inferred to be a floor visplane \cw{E-VP} (shown with a pink overlay). The engine then continues down the BSP and renders \cw{G1}.\par
 \vspace{10pt}
 
- \cw{G1}'s lower texture is rendered (in red). Everything below that is inferred to be a floor and therefore visplane \cw{G1-VP} is created. Notice that the visplane goes all the way to the bottom of the screen which is is a rendering bug. Had the BSP been split properly, \cw{F1} would have been rendered before \cw{G1} and stopped the visplane from flooding in screenspace improperly.\\
+ \cw{G1}'s lower texture is rendered (in red). Everything below that is inferred to be a floor and therefore visplane \cw{G1-VP} is created. Notice that the visplane goes all the way to the bottom of the screen which is a rendering bug. Had the BSP been split properly, \cw{F1} would have been rendered before \cw{G1} and stopped the visplane from flooding in screenspace improperly.\\
 \par
  
 
