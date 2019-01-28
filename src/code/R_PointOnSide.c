@@ -8,7 +8,7 @@ int R_PointOnSide(fixed_t x, fixed_t y, node_t* node){
       return node->dy < 0;
     }
 
-    if (!node->dy) { // Shortcut if node if horizontal.
+    if (!node->dy) { // Shortcut if node is horizontal.
       if (y <= node->y) {
         return node->dx < 0;
       }
