@@ -1,10 +1,10 @@
 void D_ProcessEvents (void) {
 
   event_t     *ev;  
-  event_t     *head = eventhead;
-  event_t     *tail = eventtail;
+  int         head = eventhead;
+  int         tail = eventtail;
 
-  for (;tail != head ;tail = (++tail)&(MAXEVENTS-1) ) {
+  for ( ; tail != head ; tail = (++tail)&(MAXEVENTS-1) ) {
     ev = &events[tail];
     if (M_Responder (ev))
       continue;     // menu ate the event
