@@ -128,7 +128,7 @@ In many aspects, this port embodied the bittersweet deal of hardware rendering o
 \par
 On the one hand, the hardware acceleration allowed more complex worlds with many polygons and textured-mapped models with less code written. New effects such as the Nightmare Spectre subtractively blended against the background were added.\\
 \par
- On the other hand, the freedom of software rendering allowed innovative tricks which were now impossible to achieve. A prime example is the red palette shift when damage occurs which could not be done and is absent from the PlayStation version. Another example is that sprites and textures had to have power of two dimensions to improve texture sampling (a 64x64 texture lookup at coordinate \cw{(u,v)} can be optimized as \cw{64 $\ll{}$ u + v}).\\
+ On the other hand, the freedom of software rendering allowed innovative tricks which were now impossible to achieve. A prime example is the red palette shift when damage occurs which could not be done and is absent from the PlayStation version. Another example is that sprites and textures had to have power of two dimensions to improve texture sampling (a 64x64 texture lookup at coordinate \cw{(u,v)} can be optimized as \cw{(u $\ll{}$ 6) + v}).\\
 \par
 In this instance the bitterness was taken to an extreme. It seems the technical difficulties were so considerable that some of the developers on the team doubted it could be done.
 
@@ -158,7 +158,7 @@ In Figure \ref{perspective_psx_explained.png}, the left wall shows how the PSX r
 \par
 % To get texturing right and interpolate a vertex attribute correctly, it first has to be divided by its z-coordinate. Texturing can then happen via linear interpolation. Before sampling the coordinate must be multiplied by Z again. The implementation is expensive since linear interpolation has to be done between \cw{(u/z,v/z)} and the final result has to be multiplied by \cw{z}.\\
 % \par
-In figure \ref{texture_anmgle}, the visual artifacts become exacerbated as the angle of the wall increases. Also notice in the left column how the width of each square is always constant, a giveaway of affine texturing that contrasts with the perspective correct decreasing width seen in the right column.\\ 
+In figure \ref{texture_anmgle}, the visual artifacts become exacerbated as the angle of the wall increases. Also notice in the right column how the width of each square is always constant, a giveaway of affine texturing that contrasts with the perspective correct decreasing width seen in the left column.\\ 
 \pagebreak
 
 
