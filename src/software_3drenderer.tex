@@ -185,7 +185,7 @@ With the expert knowledge of BSP in mind, let's take a look at the first step of
 
 
 To perform the side test (\cw{R\_PointOnSide)}, any geometry book will describe how to represent the plane in general form with a vector $(a, b)$ combined to a distance $d$: $$ ax + by + d = 0 $$
-Using a dot product operation, the coordinate of the test point $P = (x, y)$ is injected into the plan equation, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether the point is in front of or behind the plane (zero = on the plane).\\
+Using a dot product operation, the coordinate of the test point $P=(x, y)$ is injected into the plane equation, essentially projecting $P$ onto a line perpendicular to the plane. The sign of the result reveals whether $P$ is in front of or behind the plane (zero = on the plane).\\
 \par
 This method is far from being optimal. There is a better way, involving neither floating-point nor fixed-point arithmetic, which uses the awesome power of the cross product.\\
 \ccode{node_t.c}\\
