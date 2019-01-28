@@ -819,7 +819,7 @@ As explained earlier (render all sprites then render all masked segments), there
 
 
 \subsection{Drawing Masked Player}
-The last piece to render is the easiest of all. The sprite representing the Doomguy, a.k.a "the player sprite" (\cw{psprite}), is drawn on top of everything. These is no clipping in effect here, only the need to account for the lightmap induced by the sector the player is currently standing in and making the hand bob left and right when moving/running. Like other masked elements this sprite is rendered vertically as columns of pixels.\\
+The last piece to render is the easiest of all. The sprite representing the Doomguy, a.k.a "the player sprite" (\cw{psprite}), is drawn on top of everything. There is no clipping in effect here, only the need to account for the lightmap induced by the sector the player is currently standing in and making the hand bob left and right when moving/running. Like other masked elements this sprite is rendered vertically as columns of pixels.\\
 \par
 You may have noticed in \cw{R\_DrawMasked} that the player hand is drawn only if the viewing angle offset is equal to zero (\cw{viewangleoffset}). This is an artifact of a feature that was disabled in later versions. Until v1.2, \doom{} supported a "three screen mode" where three computers with three monitors could be networked to render a wide field of view.\\
 \par
