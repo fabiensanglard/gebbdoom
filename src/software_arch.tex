@@ -84,7 +84,7 @@ In white are the core components. In grey are the I/O systems which require plat
 \par
 Notice the prefixed file name in figure \ref{doom_code_arch}. Since C has no namespaces, these prefixes are also applied to function names. \cw{I\_} stands for "implementation-specific", \cw{P\_} gameplay, \cw{R\_} is for renderer and so on.\\
 
-The beauty of this architecture is that once the platform-specific systems are written, there is zero overheard to writing code that runs on multiple platforms. Most of the code goes into the core and the platform-specific code needs not be touched any more.\\
+The beauty of this architecture is that once the platform-specific systems are written, there is zero overhead to writing code that runs on multiple platforms. Most of the code goes into the core and the platform-specific code needs not be touched any more.\\
 \par
 Because portability was not an afterthought but an integral part of the development process, \doom{}'s code layering is never violated. This rigorous design partly explains why \doom{} has been ported to so many systems: there is very little code to write\footnote{"I ported DOOM to the Nintendo Switch in 45 minutes" by Modern Vintage Gamer on \cw{youtube.com}.}.\\
 \par 
@@ -163,7 +163,7 @@ Regardless of the platform, all entry points converge on the core main function 
 \par
 No surprises in \cw{D\_DoomMain}, the engine begins by initializing all its sub-systems before jumping to a loop which will never return (\cw{D\_DoomLoop}).\\
 \par
-Because C has no namespaces, a code convention is used to to tag functions. A prefix helps identify which system they belong to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependent, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
+Because C has no namespaces, a code convention is used to tag functions. A prefix helps identify which system they belong to. \cw{V\_} for Video, \cw{M\_} is for Menu, \cw{Z\_} is for Zone Memory Allocator, \cw{R\_} is for Renderer, \cw{P\_} is for gamePlay, \cw{I\_} is for Implementation Dependent, \cw{D\_} is for main Doom, \cw{S\_} is for Sound, \cw{HU\_} is for HUD, and \cw{ST\_} is for STatus bar.\\
 \par
 The developers did not try to hide what was going on during startup. \doom's openness needed no splash screen. The text mode messages show the player what is going on behind the scenes (figure \ref{dosloading}). For each initializer a line is output to the extent that the DOS screen on the right closely mirrors the source code in \cw{D\_DoomMain}.\\
 \par
