@@ -32,21 +32,20 @@ The game would only start if the word was correctly in place in the ROM. If anyo
 
 
 
-At CES '90, his demo to the Nintendo booth of the engine on a hacked cartridge was relayed all the way up to the Kyoto headquarters. Unknown to Jez at the time, his timing could not have been better. Back in Japan, Nintendo was working on Super Famicom titles intended to showcase its superior technology upon launch. Super Mario World was in its infancy but the flight simulator "Pilot Wings", was a bit more advanced.\\ 
+At CES '90, his demo to the Nintendo booth of the engine on a hacked cartridge was relayed all the way up to the Kyoto headquarters. Unknown to Jez at the time, his timing could not have been better. Back in Japan, Nintendo was working on Super Famicom titles intended to showcase its superior technology upon launch. Super Mario World was in its infancy but the flight simulator "Pilotwings", was a bit more advanced.\\ 
 \par
 \begin{wrapfigure}[14]{r}{0.5\textwidth}{
 \centering \scaledimage{0.5}{pilotwings.png}}
 \end{wrapfigure}
-The SNES PPU's Mode 7 (capable of rotating and projecting huge sprites) was cleverly used to simulate the terrain in Pilot Wings. The planes however were still 2D flat hand-drawn sprites. That bugged producer Shigeru Miyamoto immensely since it prevented the camera from rotating around the planes.\\
-\par
+The SNES PPU's Mode 7 (capable of affine transformation such as rotation, scaling, and shearing) was used along with the HDMA mode to simulate the terrain in Pilotwings. The planes however were still 2D flat hand-drawn sprites. That bugged producer Shigeru Miyamoto immensely since it prevented the camera from rotating around the planes.\\ \par
 At the time, it was not in Nintendo's habit to deal with outsiders or even foreigners. This time they made an exception and flew Jez to their headquarters in Kyoto, along with Dylan Cuthbert who had done the 3D work.\\
 \par
- The young pair\footnote{Jez was 23 and Dylan 18.} met all of Nintendo's VPs: Miyamoto, Gunpei Yokoi, Takehiro Izushi, Yasuhiro Minagawa and Genyo Takeda. They were shown everything from the secret SNES to the secret Mario/Pilot Wings. Then they were asked if there was a way to draw the planes as full-faced polygon objects.\\
+ The young pair\footnote{Jez was 23 and Dylan 18.} met all of Nintendo's VPs: Miyamoto, Gunpei Yokoi, Takehiro Izushi, Yasuhiro Minagawa and Genyo Takeda. They were shown everything from the secret SNES to the secret Mario/Pilotwings. Then they were asked if there was a way to draw the planes as full-faced polygon objects.\\
 \par
 \fq{I told them that this is as good as it's going to get unless they let us design some hardware to make the SNES better at 3D. Amazingly, even though I had never done any hardware before, they said YES, and gave me a million bucks to make it happen.}{Jez San}.\\
 \par
 
-Boldly promised a "10x" performance increase by Jez, Nintendo embraced the offer to get special hardware designed for their game. "Pilot Wings" would ship with sprite planes so that it could be ready for the Super Famicom release, but the "Super FX" chip as it would be marketed later was to be used for another project Nintendo had up its sleeves.\\
+Boldly promised a "10x" performance increase by Jez, Nintendo embraced the offer to get special hardware designed for their game. "Pilotwings" would ship with sprite planes so that it could be ready for the Super Famicom release, but the "Super FX" chip as it would be marketed later was to be used for another project Nintendo had up its sleeves.\\
 \par
 The name was "Star Fox".
 
@@ -73,10 +72,11 @@ The divorce was finalized when Nintendo refused to let Argonaut use Yoshi for a 
 \fullimage{snes_cartridge.png}
 \par
 \vspace{20pt}
-The GSU\footnote{Graphics Support Unit} as its technical name would be\footnote{Yes, that is three denominations for one chip!} had a simple design based on a 16-bit RISC processor running at 10.74 MHz with a 512 byte i-cache. It had its own instruction set optimized for math and its own framebuffer optimized for pixel plotting. Its mode of operation was to render to the frame buffer where the data would be periodically transfered to the SNES RAM via DMA. It was reportedly capable of rendering 76,458 polygons/s.\\
+The MARIO chip had a simple design based on a 16-bit RISC processor running at 10.74 MHz with a 512 byte i-cache. It had its own instruction set optimized for math and its own framebuffer optimized for pixel plotting. Its mode of operation was to render to the frame buffer where the data would be periodically transfered to the SNES RAM via DMA. It was reportedly capable of rendering 76,458 polygons/s which meant about 15 fps for Starfox.\\
+
 
 \par
-The first generation (GSU-1) powered five games: Dirt Racer, Dirt Trax FX, Star Fox, Stunt Race FX, and Vortex.\\
+Upon witnessing Starfox's phenomenal success, other studios became interested in the technology. The chip was revised to be able to run at 21.4 Mhz and it was renamed "GSU"\footnote{Graphics Support Unit}. The first generation of GSUs powered four games: Dirt Racer, Dirt Trax FX, Stunt Race FX, and Vortex.\\
 \par
  The second generation (GSU-2) was the same processor running at 21.4 Mhz with extra pins soldered to the bus to increase the size of supported ROM and framebuffer. It was used in three games: \doom{}, Super Mario World 2: Yoshi's Island, and Winter Gold.\\
 \par
@@ -99,7 +99,7 @@ But it allowed us to over-promise and yet also over-deliver. Instead of achievin
 \pagebreak
 
 
-\drawing{snes_cartridge}{SNES 721 game library. Zelda stands apart. Because Zelda stands apart.}
+\drawing{snes_cartridge}{SNES 721 game library. Zelda stands apart. Because Zelda rules.}
 \par
 \rawdrawing{snes_cartridge2}
 
@@ -142,7 +142,7 @@ What is remarkable with this version is how Randy, with his engine capabilities 
 \par
 \cfullimage{consoles/snes/snes_e1m1.png}{SNES starting screen on map E1M1}
 \par
-\vspace{-10pt}
+% \vspace{-10pt}
 In figure \ref{consoles/snes/snes_e1m1.png}, despite having only 600 KiB RAM, see how the blue flooring remained (although as a plain color). Notice how the geometry was not altered\footnote{It would have been extremely difficult to alter the geometry since Randy had no access to DoomED or doombsp.}, E1M1's starting room has all its original steps (compare with the PC on page \pageref{mashed_potatoes1.png} and the Jaguar on page \pageref{doom_jaguar3.png}).\\
 \par The Reality engine, as Randy named it, was able to deal with PC map geometry but must have had issues with fill rate or texture sampling because ceiling and floor textures were removed altogether.
 
@@ -160,7 +160,7 @@ In figure \ref{consoles/snes/snes_e1m1.png}, despite having only 600 KiB RAM, se
 
 \cfullimage{consoles/snes/wide.png}{E1M1 exterior toxic pond}
 \par
-\vspace{-10pt}
+% \vspace{-10pt}
 In the screenshot above we can see the window is not actually fullscreen. This was not an issue exclusive to \doom{} since Star Fox, Star Fox 2 and all games using the Super FX had to reduce the size of the active area. It was likely due to the SNES's limited bandwidth which did not permit a DMA transfer for fullscreen rendering\footnote{Although some like \cw{anthrofox.org} theorized that the Super FX cannot render more than 192 lines.}.\\
 \par
 Out of the native 256x224 resolution, only 216x176 was actually drawn and only 216x144 for the 3D canvas (32 rows for the status bar). With vertical lines duplicated, the Reality Engine was actually rendering at 108x144. Even at this low resolution, the average framerate was around 10 FPS which was a remarkable achievement. The "low" framerate was not enough to discourage players from enjoying \doom. According to Randy Linden the game sold very well.
@@ -173,14 +173,13 @@ Out of the native 256x224 resolution, only 216x176 was actually drawn and only 2
 
 \cfullimage{consoles/snes/enemy.png}{E1M2 had all its stairs.}
 \par
-\vspace{-10pt}
-Amazingly, Reality was able to implement diminished lighting for the walls, as seen in figure \ref{consoles/snes/enemy.png} (walls only, flats are always solid colors).\\
+% \vspace{-10pt}
+Amazingly, Reality was able to implement diminished lighting for both walls and floors using a dithering technique as the large floor "shade" in figure \ref{consoles/snes/enemy.png} demonstrates.\\
 \par
  On the list of features sacrificed to the holy RAM, sprite resolution was lowered significantly to the point that they were sometimes hard to recognize (contrasting with the player weapon rendered at a higher resolution). Enemy poses were all removed except for the ones facing the player, monster infighting was also removed, there is no sound propagation (monsters are only awoken by visual contact), most SFX were cut and all monsters sound like imps.
 \\
 \par
-Nintendo forbid blood\footnote{Wolfenstein 3D's enemies had to be replaced with zombies and dogs by rats.} but a lot remained. There are no blood splashes and corpses don't explode but enemies are bloody as they die. Pieces of flesh lie around levels.	
-
+\trivia{Nintendo originally forbid blood in SNES games. By the time DOOM came out, ESRB had come into the picture. Given the amount of blood and the pieces of flesh found behind every corners, Doom SNES understandably received an M rating.}
 
    % Super FX2:
    % Released 1993\\

@@ -38,7 +38,7 @@ In the map above, with the player located in sector \cw{0}, the renderer will fl
 \par
 \trivia{The design described is exactly what Ken Silverman's build engine would settle on to power Duke Nukem 3D in 1996. By then the Pentium had taken over the world and was more than able to deal with complex polygons.}\\
 \par
-\fq{Doom engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjourning sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}\\
+\fq{Doom engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjoining sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}\\
 \par
 Things indeed slowed down significantly with a particular map of John Romero's creation.
 
@@ -123,7 +123,7 @@ Let's follow the process, step by step, until we have a BSP decomposing the spac
 \par
 \rawdrawing{doom_map_split2}
 \par
-At this point in the splitting we are still not done. The area between \cw{B2}, \cw{C2}, \cw{F}, and \cw{F} is concave. We need one last split where \cw{F} is selected as splitter.\\ 
+At this point in the splitting we are still not done. The area between \cw{B2}, \cw{C2}, \cw{E}, and \cw{F} is concave. We need one last split where \cw{F} is selected as splitter.\\ 
 \par
 \drawing{doom_map_split3}{}
 \par
@@ -151,7 +151,7 @@ From point of view \circled{\cw{P1}}, traversing the BSP takes three tests. \cw{
 \par
 From point of view \circled{\cw{P2}}, traversing the BSP also takes three tests. \cw{P2} is on the left of \cw{H}, on the left of \cw{G}, and on the right of \cw{F}. This gives the near to far order: \cw{3,2,4,1}.\\
 \par
-The beauty of binary trees is that traversing them is $O(log\ n)$. No matter where we try to place the player on this map, it will never take more than three tests to sort all subsectors and their segments.
+The beauty of a binary trees is that traversing it always require the same amount of computation. No matter where we try to place the player on this map, it will always take three tests to sort all subsectors and their segments.
 \pagebreak
 
 
@@ -680,7 +680,8 @@ $   color = lightmapId[textureTexel] $
 
 
 
-To render the sky in outdoor scenes, a sector has a special ceiling texture number which the engine recognizes as "sky", in which case its height is 0, lightmap is 0 and perspective is disabled. Each portion of sky is stored as a visplane and drawn as span of pixels.\\
+To render the sky, a sector has a special ceiling texture number which the engine recognizes as "sky", in which case its height is 0, lightmap is 0 and perspective is disabled. Each portion of the sky is stored as a visplane and drawn as a column of pixels (with \cw{colfunc}).\\
+
 \par
 The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is used when the player picks up the invulnerability bonus. There is a bug in the visplane rendering routine's special casing that handles skies. Skies are always renderered without diminished lighting and therefore ignore lightmaps.\\
 \par

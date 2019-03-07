@@ -147,7 +147,7 @@ Despite all the care and optimization, most gamers could not get more than 10 fp
 
 
 \section{High/Low detail mode}
-The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of very two columns but it writes them to the framebuffer twice. Given how the 3D renderer dominates runtime, this resulted in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit the bus.  A performance gain confirmed as the following benchmark shows.\\
+The first tuning option was to lower the horizontal resolution using column doubling. In low resolution mode the engine only renders one out of every two columns but it writes them to the framebuffer twice. Given how the 3D renderer dominates runtime, this resulted in a tremendous performance improvement since fewer pixel values are generated but they also don't have to transit the bus.  A performance gain confirmed as the following benchmark shows.\\
 \par
  \vspace{0.5cm}
 \begin{figure}[H]

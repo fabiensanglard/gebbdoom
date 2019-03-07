@@ -61,7 +61,7 @@ The very core of Objective-C architecture, based on messages routed via a dispat
 What really happened behind the scenes was a call to the dispatcher.\\
 \par
 \objccode{objc_msgSend.m}
-The highly-optimized\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mikea Ash.}, hand written assembly was called millions of times by the time a NeXT had booted. Despite the complex mutable nature of ObjC objects (a method can be added at runtime, changing its duck type) \cw{objc\_msgSend} was able to follow an inheritance chain at runtime to find the proper target. More importantly, it was also able to detect a \cw{nullptr} and simply return the value \cw{0} instead of bringing down the entire process.\\
+The highly-optimized\footnote{Source: "Dissecting objc\_msgSend on ARM64" by Mike Ash.}, hand written assembly was called millions of times by the time a NeXT had booted. Despite the complex mutable nature of ObjC objects (a method can be added at runtime, changing its duck type) \cw{objc\_msgSend} was able to follow an inheritance chain at runtime to find the proper target. More importantly, it was also able to detect a \cw{nullptr} and simply return the value \cw{0} instead of bringing down the entire process.\\
 \par
 
 Altogether, the four pillars of NeXT development (Unix, IB, OOP, and Obj-C) sped up development of DoomED, doombsp, and wadlink to a level that DOS-based tools could not even compare\footnote{Many years later, while evangelizing static code analysis, John Carmack would rant a bit about how the sloppy programming permitted by dynamic languages like ObjC was Not A Good Thing.}.

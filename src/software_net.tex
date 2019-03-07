@@ -138,7 +138,7 @@ The impossibility for the engine to extrapolate and carry on with gameplay was a
 
 
 
-Since there is no expectation the medium will guarantee packet delivery, the engine features negative acknowledgments, where packet sequence number is tracked on a per-peer (a.k.a. node) basis. If a packet is received but its sequence number indicates a previous packet was lost, the node requests the missing commands be sent again. This means each node cannot discard commands once they are sent on the wire.\\
+Since there is no expectation the medium will guarantee packet delivery, the engine features negative acknowledgments, where the packet sequence number is tracked on a per-peer (a.k.a. node) basis. If a packet is received but its sequence number indicates a previous packet was lost, the node requests the missing commands be sent again. This means each node cannot discard commands once they are sent on the wire.\\
 \par
 This resend mechanism was a last resort to be avoided at all costs. To this effect, packets feature not only the current command but also the last command (if field \cw{extratics} is set).\\
 
