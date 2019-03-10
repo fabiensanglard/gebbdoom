@@ -29,13 +29,14 @@ Eventually, several good games were released but the damage had been done. More 
 
 
 \subsection{Programming the Saturn}
-Programming the Saturn was a difficult task. The programmer's manual is broken down into eight voluminous manuals requiring repeat reading sessions to build a mental image of the flow of data. The diagram in figure \ref{arch_saturn} gives some idea of the daunting effort.\\
+Programming the Saturn was a difficult task. The programmer's manual is broken down into eight voluminous manuals requiring repeat reading sessions to build a mental image of the flow of data. The diagram in figure \ref{arch_saturn} gives some idea of the daunting effort required to coordinates eight chips.\\
 \par
-Main programming was done via the SH-2 processors connected to 2.0MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chips (to indicate what to execute) had to be done via a tedious interrupt system. To deal with static and global variables the programmer had to deal with mutexes and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either to RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache that had little impact on the bottleneck.\\
+Main programming was done via the two SH-2 processors connected to 2.0MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chips (to indicate what to execute) had to be done via a tedious interrupt system. To deal with static and global variables the programmer had to deal with mutexes and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either to RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache that had little impact on the bottleneck.\\
 \par
 Audio was done via the SCSP (Saturn Custom Sound Processor) that piloted a sound processor (a Motorola 68000). The SCSP was to be configured to perform sound mixing in the dedicated 512 KiB of RAM, which was then picked up by the Sound Processor. The combination of these made it a powerful system able to synthesize instruments, play PCM sound and perform 3D effects/distortion. The chip also polled control inputs from the player and stored them in internal registers to be polled by the SH-2s.\\
 \par
-Graphics programming was done via two chips called VDP1 and VDP2. At the beginning of a frame, the VDP1 plots part of the active framebuffer on the basis of commands and bitmaps in the VRAM. Once done, the active framebuffer is labeled a "passive framebuffer". The VDP2 takes the passive framebuffer, adds background-based scroll panes and sends it to the TV. Note that the two chips work in parallel. While the VDP1 works on the next frame, the VDP2 finishes the previous one.\\
+Graphics programming was done via two chips called VDP1 and VDP2. The VDP1 was a hardware-accelerated quad renderer. It had the particularity to use forward texture-mapping which is very efficient when rendering sprites (like in 2D games) but not so much when magnifying or minifying textures (like in 3D games). Rendering was done targeting layers which once ready were picked up by the the VDP2, composited according to their priority and transparency settings, and sends to the TV. Note that the two chips work in parallel. While the VDP1 works on the next frame, the VDP2 finishes the previous one.\\
+
 \par
 Access to the CD-ROM was done via a driver piloting the SH-1 processor. The double-speed unit could read at 150 KiB/s but average access time was 300 ms. To compensate, the SH-1 stored data to a 512KiB buffer. Based on the abysmal access time, programmers were instructed to request data well in advance.\\ 
 \par
@@ -112,7 +113,10 @@ Despite its issues and ill-timed release, it is a bitter feeling to see what hap
 
 
 \subsection{Doom on Saturn}
-The port to the Saturn was done by Rage Software on a very tight schedule. Like most ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it comes to texture sampling, as Jim Bagley remembers\footnote{RetroGamer \#134.}:\\
+% The port to the Saturn was done by Rage Software on a very tight schedule. Like most ports, it is based on the Jaguar assets. The console had the same technical shortcomings when it comes to texture sampling, as Jim Bagley remembers\footnote{RetroGamer \#134.}:\\
+
+The port to the Saturn was done by Rage Software on a very tight schedule. The graphic part of the engine was done via the VDP1 writing quads into three separate layers (a floors, ceiling, and walls layer, a things layer, and a status bar layer) which were combined by the VDP2 and sent to the TV. The resulting framerate was outstanding compared to other ports but the lack of perspective correct texturing ended up disturbing Jim Bagley's plans\footnote{RetroGamer \#134.}:\\
+\vspace{10pt}
 \par
 \fq{When I started the project, I had to do a demo for id Software to approve. I started by extracting all the levels and audio and textures from the WAD files and made my own Saturn version of this, then got an early version of the renderer working using the 3D hardware. This got sent off and a couple days later I got a call from John Carmack, who stipulated that under no circumstances could I use the 3D hardware to draw the screen. I had to use the processor like the PC. Thankfully I enjoy challenges, so it turned out to be a really enjoyable project, using both SH2s to render the display like the PC did it, using the 68000 to orchestrate them both.\\
 \par
@@ -122,10 +126,12 @@ Years later, by 2014, Carmack had reconsidered.\\
 \par
 \fq{I hated affine texture swim and integral quad verts, but in hindsight, I probably should have let experiment.}{John Carmack}\\
 \par
-The hardware-accelerated 60 FPS-capable engine was tossed. Due to time constraints, Jim did not have the time to change the renderer to work with pixel-wide triangles like the PlayStation. Upon shipping, the game managed a framerate that could reach 20 FPS but most of the time this dropped to the single digits at a full screen resolution of 281x235. To compensate for the low framerate, Jim Bagley made the decision to slow down all movements, a move that enraged the playing community.\\
+In the end, the VDP1 hardware-accelerated 60 FPS-capable engine was tossed.\\
 \par
-\trivia{Another effect of the rushed schedule was a pretty big bug with the audio system that made all sound effects panned left. Players were forced to play in mono to hear from both speakers.\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}}
-
+ Due to time constraints, Jim did not have the time to change the renderer to work with pixel-wide triangles like the PlayStation. Upon shipping, the game managed a framerate that could reach 20 FPS but most of the time this dropped to the single digits at a full screen resolution of 281x235. To compensate for the low framerate, Jim Bagley made the decision to slow down all movements, a move that enraged the playing community.\\
+\par
+\trivia{Another effect of the rushed schedule was a bug with the audio system that made all sound effects panned left. Players had to play in mono to hear from both speakers.\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}}\\
+\par
 
 
 
@@ -136,25 +142,24 @@ The hardware-accelerated 60 FPS-capable engine was tossed. Due to time constrain
 \par
 In the screenshot above, notice how E1M1 is the same as other console versions (all based on the initial work for the Jaguar). The status bar however welcomed a makeover.\\
 \par
-To take advantage of the VDP's parallelism, it is claimed\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".} the VDP1 is used to render sprites and walls while the VDP2 is used for the status bar and also renders visplanes which are treated as background.\\
+What "knee-capped" the project was the walls, ceilings and floors rendition (accounting for most of the computing cost) which ended up being software-rendered via the SH-2s while the status bar and the things (such as monsters and walls featuring transparent parts) were hardware-accelerated via the VDP1\footnote{Digital Foundry: "Every Console Port Tested and Analysed!".}. When all three layers were ready, the VDP2 composited the three layers toward the TV while the VDP1 started to render the next frame.\\
 \par 
-Translucency was done in a peculiar way. It is unknown if this was a design decision, a hardware limitation or simply due to time constraints, but translucency is not done via alpha blending like the Playstation did. A more software-friendly technique known as dithering is used to represent the spectres and glass surfaces (see page \pageref{doomsaturndither}).\\
+Translucency was done in a peculiar way for which the details constitute a testament to the complexity of the machine. Both the VDP1 and the VDP2 were capable of "half-transparency", a term referring to equally blending source and target. However the VDP1 only supported transparency in 15-bit color while the VDP2 only supported transparency in indexed mode. As a result, you could either have sprites be transparent with regards to each other or transparent with regards to the VDP2 background layers, but not both.\\
 \par
+This limitation was a big problem to render "Spectre" enemies. If the VDP1 marked the Spectre pixels "half-transparent", they would properly render over the background layer. However they would also have "swallowed" any other sprites possibly standing behind, generating incorrect scenes.\\
+\par
+Sega designers were well-aware of the limitation of the VDPs. To palliate the problem they introduced the concept of "mesh" sprites which were rendered opaque by the VDP1 but only every other pixels.\\
+\par
+\cfullimage{doom_saturn4.png}{A Spectre enemy rendered as a "mesh".}
+\par
+The pixel-perfect screenshot, especially the zoomed-in version next page, may look crude at first sight. However, you have to keep in mind the composite interleaved display system which ended up blending everything together. Even though the visual result was remarkably convincing, this magic-trick did not survive the "HD" pixel-perfect era.
+\cfullimage{doom_saturn41.png}{Same scene, zoomed-in to show skipped pixels in the Spetre.}
 
 
-
-
-
-
-\fullimage{doom_saturn4.png}
-\par \label{doomsaturndither} \vspace{13pt}
-\fullimage{doom_saturn41.png}
-
-
-\vspace{-10pt}
-\fullimage{doom_saturn2.png}
-\par \vspace{13pt}
-\fullimage{doom_saturn21.png}
+% \vspace{-10pt}
+% \fullimage{doom_saturn2.png}
+% \par \vspace{13pt}
+% \fullimage{doom_saturn21.png}
 
 
 

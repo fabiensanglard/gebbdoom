@@ -205,7 +205,7 @@ Upon receiving a 32-bit address access request, the cache controller splits it i
 \item Update the flag F in the directory entry to update the LRU value.
 \end{enumerate}
 \par
-A memory address' content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 4 = 1,073,741,824$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
+A memory address' content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 128 = 33,554,432$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
 %This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\

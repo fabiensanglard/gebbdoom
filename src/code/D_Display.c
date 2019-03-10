@@ -12,11 +12,11 @@ void D_Display (void) {
     case GS_DEMOSCREEN: D_PageDrawer (); break; 
   }
 
-  // draw buffered stuff to screen
+  // signal to video that some stuff has been updated.
   I_UpdateNoBlit ();
 
   // draw 3D view
-  if (gamestate != oldgamestate && gamestate != GS_LEVEL)
+  if (gamestate == GS_LEVEL && !automapactive && gametic)
     R_RenderPlayerView (&players[displayplayer]);
 
   HU_Drawer ();
