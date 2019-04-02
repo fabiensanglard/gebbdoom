@@ -146,25 +146,12 @@ What "knee-capped" the project was the walls, ceilings and floors rendition (acc
 \par 
 Translucency was done in a peculiar way for which the details constitute a testament to the complexity of the machine. Both the VDP1 and the VDP2 were capable of "half-transparency", a term referring to equally blending source and target. However the VDP1 only supported transparency in 15-bit color while the VDP2 only supported transparency in indexed mode. As a result, you could either have sprites be transparent with regards to each other or transparent with regards to the VDP2 background layers, but not both.\\
 \par
-This limitation was a big problem to render "Spectre" enemies. If the VDP1 marked the Spectre pixels "half-transparent", they would properly render over the background layer. However they would also have "swallowed" any other sprites possibly standing behind them, generating incorrect scenes.\\
+This limitation was a big problem to render "Spectre" enemies. If the VDP1 marked the Spectre pixels "half-transparent", they would properly render over the background layer. However they would also have "swallowed" any other sprites possibly standing behind them, generating incorrect scenes\footnote{Source: "The Sega Saturn and Transparency" by Matt Greer.}.\\
 \par
 Sega designers were well-aware of the limitation of the VDPs. To palliate the problem they introduced the concept of "mesh" sprites which were rendered opaque by the VDP1 but only every other pixels.\\
 \par
 \cfullimage{doom_saturn4.png}{A Spectre enemy rendered as a "mesh".}
 \par
-The pixel-perfect screenshot, especially the zoomed-in version next page, may look crude at first sight. However, you have to keep in mind the composite interleaved display system which ended up blending everything together. Even though the visual result was remarkably convincing, this magic-trick did not survive the "HD" pixel-perfect era.
-\cfullimage{doom_saturn41.png}{Same scene, zoomed-in to show skipped pixels in the Spetre.}
-
-
-% \vspace{-10pt}
-% \fullimage{doom_saturn2.png}
-% \par \vspace{13pt}
-% \fullimage{doom_saturn21.png}
-
-
-
-
-
-
+The pixel-perfect screenshot, especially the zoomed-in version next page, may look crude at first sight. However, you have to keep in mind the composite interleaved display system which ended up blending everything together. Even though the visual result was remarkably convincing, this magic-trick did not survive the "HD" pixel-perfect era.\\
 \par
-
+\cfullimage{doom_saturn41.png}{Same scene, zoomed-in to show skipped pixels in the Spectre.}
