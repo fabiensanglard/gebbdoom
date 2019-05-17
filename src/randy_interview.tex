@@ -87,7 +87,7 @@ The code was developed using a custom development system I wrote that included a
 \qaq{Was it difficult to comply with Nintendo "no violence, no blood" policy at the time?}
 \qaa{ Nintendo was incredibly easy to work with -- they had very few requirements, minimal changes and it was an easy submission process in general.}
 
-\qaq{Anything you want to mention, looking back at this game/part of your life? (Some people lament that programming is more complex nowadays but i feel it was harder back then, just to even get the programming manuals).}
+\qaq{Anything you want to mention, looking back at this game/part of your life? (Some people lament that programming is more complex nowadays but I feel it was harder back then, just to even get the programming manuals).}
 \qaa{  IMO, programming these days is very different than the "old days...\\
 \par
  It was so much easier to write something for a single piece of hardware like the SNES -- you could spend time focusing on the game and improving performance, etc.\\
@@ -106,7 +106,7 @@ A friend recently recommended a FPS that was over 1Gig to download! ... and then
 \b{More about how the GSU-2 worked:}\\
 \qaa{Basically the GSU generates a bitmap into it's own RAM that is then transferred to the SNES PPU for display. I think there wasn't sufficient clock cycles and RAM to generate a full screen worth of data and transfer it to the PPU in time to avoid tearing/glitching, etc. The GSU RAM can be accessed by only one device at a time (either the GSU or the SNES), but not both ... so you have to generate data into the GSU RAM, then transfer it to the SNES-side PPU ("Picture  Processing Unit") so it can be displayed on screen. During the transfer, the SNES-side has access to the RAM and the GSU does not, so you have to wait until the transfer is complete before you can use the GSU to generate more data. The GSU can still do many other things without accessing the internal RAM, though -- and DOOM/FX used that feature extensively. BTW, the same is true of the ROM -- only one device can access the ROM at a time -- either the GSU or the SNES.}
 
-\b{Anecdotes from DOOM SNES development:}
+\b{Anecdotes from DOOM SNES development:}\\
 \qaanor{
 \begin{enumerate}
 \item   At one time a developer at Sculptured had modified a bunch of the basic levels -- added some really nice changes like object placement, etc. -- and after showing the new levels to id Software, they   basically wanted the game to be as true to the original as possible... so we ended up reverting all the changes and keeping the original levels with as few modifications as possible.

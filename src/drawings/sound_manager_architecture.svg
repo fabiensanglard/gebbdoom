@@ -287,14 +287,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6904762"
-     inkscape:cx="238.13662"
-     inkscape:cy="547.48403"
+     inkscape:cx="522.9676"
+     inkscape:cy="310.86431"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1319"
-     inkscape:window-height="856"
-     inkscape:window-x="77"
+     inkscape:window-width="1509"
+     inkscape:window-height="1001"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -309,7 +309,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -331,75 +331,66 @@
        id="path7975-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
-    <g
-       id="g2015"
-       transform="translate(0,-3.3869512)">
-      <rect
-         ry="18.251154"
-         y="345.42209"
-         x="494.42258"
-         height="55.091522"
-         width="225.4577"
-         id="rect7803-9"
-         style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text7856"
-         y="381.24954"
-         x="550.49469"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
-           y="381.24954"
-           x="550.49469"
-           id="tspan7858"
-           sodipodi:role="line">MPU-401</tspan></text>
-    </g>
-    <g
-       id="g2010"
-       transform="translate(0,-0.61939577)">
-      <rect
-         ry="18.251154"
-         y="410.88684"
-         x="494.42258"
-         height="55.091522"
-         width="225.4577"
-         id="rect7803-9-3"
-         style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text7856-9"
-         y="447.09381"
-         x="550.29633"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
-           y="447.09381"
-           x="550.29633"
-           id="tspan7858-4"
-           sodipodi:role="line">MPU-402</tspan></text>
-    </g>
-    <g
-       id="g2005"
-       transform="translate(0,2.1480376)">
-      <rect
-         ry="18.251154"
-         y="476.35172"
-         x="494.42258"
-         height="55.091522"
-         width="225.4577"
-         id="rect7803-9-9"
-         style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text7856-4"
-         y="512.6554"
-         x="546.61499"
-         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
-           y="512.6554"
-           x="546.61499"
-           id="tspan7858-0"
-           sodipodi:role="line">MPU-403</tspan></text>
-    </g>
+    <rect
+       style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7803-9"
+       width="225.4577"
+       height="55.091522"
+       x="494.42258"
+       y="342.03513"
+       ry="18.251154" />
+    <text
+       sodipodi:linespacing="0%"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="524.36273"
+       y="379.59125"
+       id="text7856"><tspan
+         sodipodi:role="line"
+         id="tspan7858"
+         x="524.36273"
+         y="379.59125"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">MPU-401 v1</tspan></text>
+    <rect
+       style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7803-9-3"
+       width="225.4577"
+       height="55.091522"
+       x="494.42258"
+       y="410.26746"
+       ry="18.251154" />
+    <text
+       sodipodi:linespacing="0%"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="524.47015"
+       y="447.82361"
+       id="text7856-9"><tspan
+         sodipodi:role="line"
+         id="tspan7858-4"
+         x="524.47015"
+         y="447.82361"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">MPU-401 v2</tspan></text>
+    <rect
+       style="fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7803-9-9"
+       width="225.4577"
+       height="55.091522"
+       x="494.42258"
+       y="478.49976"
+       ry="18.251154" />
+    <text
+       sodipodi:linespacing="0%"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="524.19489"
+       y="516.05591"
+       id="text7856-4"><tspan
+         sodipodi:role="line"
+         id="tspan7858-0"
+         x="524.19489"
+         y="516.05591"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.5px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">MPU-401 v3</tspan></text>
     <g
        id="g2000"
        transform="translate(0,4.915654)">

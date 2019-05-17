@@ -204,7 +204,7 @@ Notice in the previous code listing how nodes are not stored as coordinates of t
 
 
 \subsubsection{Wall Projection}
-We have now reached the \cw{R\_Subsector} function where all segments in a subsector are rendered in order. This part of the pipeline relies heavily on BAM (Binary Angular Measurement) where degrees in the interval \cw{[0, 360]} are mapped to the full range of a 32-bit integers.\\
+We have now reached the \cw{R\_Subsector} function where all segments in a subsector are rendered in order. This part of the pipeline relies heavily on BAM (Binary Angular Measurement) where degrees in the interval \cw{[0, 360]} are mapped to the full range of a 32-bit integer.\\
 \par
 \ccode{bam.c}
 \par
@@ -639,7 +639,7 @@ This would have severely impaired the work of the artists, not to mention it wou
 \par
  The trick to fake more colors than available is to use an indirection "light table" where the other 255 colors are used to approximate a gradient for each of the 256 entries. The lightmap is 256 entries tall (one for each index) and 32 wide (one column for each shade). In figure \ref{COLORMAP.png} you can see how the original palette lines are unrolled vertically in the left-most column (notice the isolated white at the top and the pink at the bottom). Each row is a 32 value gradient toward black, using the same 256 colors. The right-most column is all black. The trick has its limits. It works well for red but not too well for crimson and yellow.\\
  \par
- To use the lightmap, take the original texel value \cw{T} which is between [0,255]. This will be the \cw{Y} coordinate. Take a light value \cw{L}, with 0 being the brightness and 31 being the darkest. This will be the \cw{X} coordinate. The value to write in the framebuffer is \cw{lightmap[X][Y]}.\\
+ To use the lightmap, take the original texel value \cw{T} which is between [0,255]. This will be the \cw{Y} coordinate. Take a light value \cw{L}, with 0 being the brightest and 31 being the darkest. This will be the \cw{X} coordinate. The value to write in the framebuffer is \cw{lightmap[X][Y]}.\\
  \par
 \cscaledimage{1}{COLORMAP.png}{The \cw{COLORMAP} contains 32 shades of 256 colors yet still 256 colors total.}
 
@@ -691,7 +691,7 @@ The \cw{COLORMAP} contains a 32nd lightmap made of 256 shades of grey. It is use
 % \par
 \fullimage{invulnerable.png}\\
 \par
-The effect was diffcult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
+The effect was difficult to replicate with seemingly "more powerful" hardware accelerated systems which use 24-bit colors. On iOS, \cw{glBlendFunc(GL\_ONE\_MINUS\_DST\_COLOR, GL\_ZERO)} was used to approximate the same visual with mixed results.\\
 \fullimage{idbeholdv.png}\\
 \par
 Above is the invulnerability effect as it appeared on the PC version. Below, how it was done on iOS via OpenGL ES 1.0 \cw{glBlendFunc} function.\\
@@ -774,7 +774,7 @@ The "drawn segments" array \cw{drawsegs} is made of the following \cw{drawseg\_t
 \par
 \ccode{drawseg_t.c}\\
 \par
-It is not easy to understand at first but it is much easier to think of as a log of what occluders were rendered to the screen.
+It is not easy to understand at first but it is much easier to think of it as a log of what occluders were rendered to the screen.
 \begin{itemize} 
 	\item For each wall that generated pixels in the framebuffer, a \cw{drawseg\_t} is added.
 	\item For each portal, up to two \cw{drawseg\_t}s are added (one for the upper part and one for the lower part if the portal had no middle texture).

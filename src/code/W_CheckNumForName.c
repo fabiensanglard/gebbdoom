@@ -8,7 +8,7 @@ int W_CheckNumForName (char *name) {
 
   // make the name into two integers for easy comparison
   strncpy (name8.s,name,8);
-  name8.s[8] = 0;    // in case the name was a fill 8 chars
+  name8.s[8] = 0;    // in case the name was a full 8 chars
   strupr (name8.s);  // case insensitive
 
   v1 = name8.x[0];
