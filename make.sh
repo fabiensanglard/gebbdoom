@@ -1,5 +1,11 @@
 #!/bin/bash
-export INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+
+if [[ $OSTYPE = "darwin*" ]]; then
+  export INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+else
+  export INKSCAPE=/usr/bin/inkscape
+fi
+
 # set -x
 epsToPDF () {	
     # Build path without extension.
@@ -46,23 +52,18 @@ svgToPNG() {
 
 }
 
-if [ ! -d output ]
-then
-   mkdir output
-fi
-cd src
-
 #Convert complex svg drawings to PNG.
 find screenshots_svg -name "*.svg" | while read file; do svgToPNG "$file"; done
 
 # Convert eps to pdf if necessary
 find . -name "*.eps" | while read file; do epsToPDF "$file"; done
 
-# Compile 
+# Compile
+[ ! -d output ] && mkdir output
+[ ! -d build ] && mkdir build
+
+cd src
 pdflatex -output-directory ../output book.tex
 cd ..
-if [ ! -d build ]
-then
-   mkdir build
-fi
+
 cp output/book.pdf build/book.pdf

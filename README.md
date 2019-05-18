@@ -14,6 +14,9 @@ Note this has only been tested on MacOS X. You will need to adjust the
 build script a little bit and probably fix case-sensitive path on Linux
 but I believe it should work with minimal work.
 
+Debian GNU/Linux dependencies:
+ - `sudo apt install inkscape texlive texlive-font-utils`
+
 To speed up compilation:
  - Use 100 DPI commands in src/mystyle.sty
  - Comment out the part you are not working on in src/book.tex
