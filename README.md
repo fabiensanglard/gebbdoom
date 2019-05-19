@@ -15,7 +15,7 @@ build script a little bit and probably fix case-sensitive path on Linux
 but I believe it should work with minimal work.
 
 Debian GNU/Linux dependencies:
- - `sudo apt install inkscape texlive texlive-font-utils`
+ - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra`
 
 To speed up compilation:
  - Use 100 DPI commands in src/mystyle.sty
