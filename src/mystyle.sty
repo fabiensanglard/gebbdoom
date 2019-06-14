@@ -52,23 +52,6 @@
 
 
 
-% Allow to include urls in pdf
-\usepackage{hyperref}
-\hypersetup{
-    hyperindex=true,
-    bookmarks=true,
-    pdfa,
-    colorlinks=true,
-    breaklinks=true,
-    urlcolor=black,
-    linkcolor=black,
-    citecolor=black,
-    bookmarksopen=true,
-    unicode=true
-}
-\usepackage[hyperpageref]{backref}
-\usepackage{bookmark}
-\usepackage{cmap} % Compatible with pdf-a
 
 
 
@@ -270,6 +253,25 @@ middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,
 %make footnote stick to the bottom of the page
 \usepackage[bottom]{footmisc}
 %\usepackage[hang,flushmargin]{footmisc}
+
+
+% Allow to include urls in pdf
+\usepackage{hyperref}
+\hypersetup{
+    hyperindex=true,
+    bookmarks=true,
+    pdfa,
+    colorlinks=true,
+    breaklinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    bookmarksopen=true,
+    unicode=true
+}
+\usepackage[hyperpageref]{backref}
+\usepackage{bookmark}
+\usepackage{cmap} % Compatible with pdf-a
 
 % To make floating images
 \usepackage{wrapfig}
