@@ -52,6 +52,11 @@ svgToPNG() {
 
 }
 
+[ ! -d output ] && mkdir output
+[ ! -d build ] && mkdir build
+
+cd src
+
 #Convert complex svg drawings to PNG.
 find screenshots_svg -name "*.svg" | while read file; do svgToPNG "$file"; done
 
@@ -59,10 +64,6 @@ find screenshots_svg -name "*.svg" | while read file; do svgToPNG "$file"; done
 find . -name "*.eps" | while read file; do epsToPDF "$file"; done
 
 # Compile
-[ ! -d output ] && mkdir output
-[ ! -d build ] && mkdir build
-
-cd src
 pdflatex -output-directory ../output book.tex
 cd ..
 
