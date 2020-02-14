@@ -163,7 +163,7 @@ GL's interface is procedural: You perform operations by calling gl
 functions to pass vertex data and specify primitives. 
 
 
-glBegin (GL\_TRIANGLES); 
+glBegin (GL_TRIANGLES); 
 glVertex (0,0,0); 
 glVertex (1,1,0); 
 glVertex (2,0,0); 
@@ -177,14 +177,14 @@ because it gets rid of a lot of procedure call overhead. In reality, it
 is a gigantic pain-in-the-ass. 
 
 
-v = \&buffer.vertexes[0]; 
+v = &buffer.vertexes[0]; 
 v->x = 0; v->y = 0; v->z = 0; 
 v++; 
 v->x = 1; v->y = 1; v->z = 0; 
 v++; 
 v->x = 2; v->y = 0; v->z = 0; 
-c = \&buffer.commands; 
-c->operation = DRAW\_TRIANGLE; 
+c = &buffer.commands; 
+c->operation = DRAW_TRIANGLE; 
 c->vertexes[0] = 0; 
 c->vertexes[1] = 1; 
 c->vertexes[2] = 2; 
