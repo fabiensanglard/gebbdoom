@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $OSTYPE = "darwin*" ]]; then
+if [[ $OSTYPE == "darwin"* ]]; then
   export INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 else
   export INKSCAPE=/usr/bin/inkscape
