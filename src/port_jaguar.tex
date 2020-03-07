@@ -56,7 +56,7 @@ The Motorola 68000 is used as a manager. It deals with the outside world and man
 The Object Processor is connected to the TV and is in charge of generating display lines. It reads an object list usually made of pixels (which can overlap). It performs all the functions of a traditional sprite engine. Its 16-bit per-pixel CRY (Cyan-Red-Yellow) color model was unconventional for consoles at that time. One byte is an (\cw{X,Y}) coordinate in a sRGB cube flattened into a square which gives a color. The other byte gives the brightness, for a total of 65,536 colors.\\
 \par
 \fullimage{CRY.png}\\
-\par
+
 
 \fullimage{CRY_persp.png}
 \par
@@ -72,14 +72,8 @@ All RAM (even SRAM in the RISC CPUs) is addressable by any component thanks to a
 
 
 \subsubsection{Practice}
-The hardware had several bugs, especially at the memory controller level, making multitasking hard to rely on and even harder to debug.
-
-
-
-
-
-
-
+The hardware had several bugs, especially at the memory controller level, making multitasking hard to rely on and even harder to debug.\\
+\par 
 It may not be obvious at first sight but the Motorola 68000 and Tom/Jerry had different architectures and different instruction sets. The intended workflow was to program the Motorola in C while the GPU/DSP RISC path was more convoluted. The programmer had to first learn the new instruction set, then write assembly code, use the provided assembler to generate machine code, and finally write a full pipeline to store and later deliver the machine code to local program-dedicated SRAM on Tom \& Jerry.\\
 \par
 
