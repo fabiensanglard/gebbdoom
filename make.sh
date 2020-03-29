@@ -1,81 +1,75 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [[ $OSTYPE == "darwin"* ]]; then
-  export INKSCAPE=/Applications/Inkscape.app/Contents/MacOS/inkscape
-else
-  export INKSCAPE=/usr/bin/inkscape
-fi
+# die - Exit with a (integer) return code and message on stderr
+die() { rc=$1 && shift && for message in "$@"; do cat <<< "ERROR - $message" >&2; done; exit $rc; }
 
-if [ ! -f $INKSCAKE ]; then
-  echo "Inkscape executable is invalid"
-  echo "Was expected at $INKSCAPE"
-  exit 1
-fi
+# Add inkscape to PATH on Mac OS X (located in Contents/Resources/bin up to 0.92.x, Contents/MacOS from 1.x onwards)
+#	adding Contents/Resources/bin before Contents/MacOS, since the FS may not be case-sensitive (default for both HFS+ and APFS)
+#	and Contents/MacOS/Inkscape (GUI) exists up to 0.92.x, therefore conflicting with Contents/Resources/bin/inkscape (CLI)
+[[ $(uname) == "Darwin" ]] && export PATH=$PATH:/Applications/Inkscape.app/Contents/Resources/bin:/Applications/Inkscape.app/Contents/MacOS
 
-if [ ! -x "$(command -v epstopdf)" ]; then
-  echo "epstopdf is not installed"
-  exit 1
-fi
+# Check tool availability
+[[ -x "$(command -v inkscape)" ]] || die 10 "inkscape command is unavailable" # Inkscape
+[[ -x "$(command -v epstopdf)" ]] || die 11 "epstopdf command is unavailable" # MacTeX/TeX Live
+[[ -x "$(command -v pdflatex)" ]] || die 12 "pdflatex command is unavailable" # MacTeX/TeX Live
 
-# set -x
-epsToPDF () {	
-    # Build path without extension.
+# epsToPDF - Convert EPS to PDF
+epsToPDF() {
+	# Build path without extension
 	filename=$(basename "$1")
-    extension="${filename##*.}"
-    filename="${filename%.*}"
-	dir=$(dirname $1)
+	filename=${filename%.*}
+	dir=$(dirname "$1")
 
 	extensionless=$dir/$filename
 
-  # -nt = newer than. -ot = older than.
+	# -nt = newer than, -ot = older than
 	if [ "$extensionless".eps -nt "$extensionless".pdf ]; then
 		echo "Convert $extensionless.eps to PDF."
-    epstopdf "$extensionless".eps
-  fi
-  # epstopdf $filename
+		epstopdf "$extensionless".eps
+	fi
+	# epstopdf $filename
 }
 
+# svgToPNG - Convert SVG to PNG
 svgToPNG() {
-    # Build path without extension.
-  filename=$(basename "$1")
-    extension="${filename##*.}"
-    filename="${filename%.*}"
-  dir=$(dirname $1)
+	# Build path without extension
+	filename=$(basename "$1")
+	filename=${filename%.*}
+	dir=$(dirname "$1")
 
-  extensionless=$dir/$filename
+	extensionless=$dir/$filename
+	src="$PWD/screenshots_svg/$filename".svg
 
-  src="`pwd`/screenshots_svg/$filename".svg
-  dst="`pwd`/screenshots/$filename".png
-  # Low RES assets
-  # -nt = newer than. -ot = older than.
-  if [ ${src} -nt ${dst} ]; then
-    echo "Convert $extensionless.svg to PNG (100dpi)."
-    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=100 ${src} > /dev/null 2>&1
-  fi
+	# Low RES assets
+	dst="$PWD/screenshots/$filename".png
+	# -nt = newer than, -ot = older than
+	if [[ "$src" -nt "$dst" ]]; then
+		echo "Convert $extensionless.svg to PNG (100dpi)."
+		inkscape --export-png="$dst" --without-gui --export-dpi=100 "$src" > /dev/null 2>&1
+	fi
 
-  dst="`pwd`/screenshots_300dpi/$filename".png
-  # High RES assets
-  # -nt = newer than. -ot = older than.
-  if [ ${src} -nt ${dst} ]; then
-    echo "Convert $extensionless.svg to PNG (300dpi)."
-    ${INKSCAPE} --export-png=${dst} --without-gui --export-dpi=300 ${src} > /dev/null 2>&1
-  fi
-
+	# High RES assets
+	dst="$PWD/screenshots_300dpi/$filename".png
+	# -nt = newer than, -ot = older than
+	if [[ "$src" -nt "$dst" ]]; then
+		echo "Convert $extensionless.svg to PNG (300dpi)."
+		inkscape --export-png="$dst" --without-gui --export-dpi=300 "$src" > /dev/null 2>&1
+	fi
 }
 
-[ ! -d output ] && mkdir output
-[ ! -d build ] && mkdir build
+# Prepare
+basedir=$(dirname "$0")
 
-cd src
+cd "$basedir" || die 20 "Project directory is unaccessible"
+mkdir -p build output || die 21 "Project directory is unwritable"
+cd src || die 22 "Project source directory is unaccessible"
 
-#Convert complex svg drawings to PNG.
-find screenshots_svg -name "*.svg" | while read file; do svgToPNG "$file"; done
+# Convert EPS to PDF if necessary
+find . -name "*.eps" | while read -r file; do epsToPDF "$file"; done
 
-# Convert eps to pdf if necessary
-find . -name "*.eps" | while read file; do epsToPDF "$file"; done
+# Convert complex SVG drawings to PNG if necessary
+find screenshots_svg -name "*.svg" | while read -r file; do svgToPNG "$file"; done
 
 # Compile
 pdflatex -output-directory ../output book.tex
-cd ..
-
-cp output/book.pdf build/book.pdf
+cp ../output/book.pdf ../build/book.pdf
