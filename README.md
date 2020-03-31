@@ -5,20 +5,22 @@ I am releasing the source code (.tex) under GPL license. I
 retain ownership of all drawings and only provide them so the
 overall thing is compilable.
 
-To compile:
+To compile on Mac OS X:
+ - Install Inkscape:
+    - via installer: https://inkscape.org/download/
+    - or via Homebrew: `brew cask install xquartz inkscape`
  - Install MacTeX library (for epstopdf and pdflatex):
     - via installer: https://tug.org/mactex/mactex-download.html
     - or via Homebrew, with GUI:    `brew cask install mactex`
     - or via Homebrew, without GUI: `brew cask install mactex-no-gui`
- - Install Inkscape: https://inkscape.org/download/
- - Run: `./make.sh`
+ - Run:
+    - `./make.sh`
 
-__Note:__ this has only been tested on Mac OS X. You will need to adjust the
-build script a little bit and probably fix case-sensitive path on Linux
-but I believe it should work with minimal work.
-
-Debian GNU/Linux dependencies:
- - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra`
+To compile on Debian GNU/Linux and derivatives (Ubuntu):
+ - Install Inkscape and TeX Live library (for epstopdf and pdflatex):
+    - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra`
+ - Run:
+    - `./make.sh`
 
 To speed up compilation:
  - Use 100 DPI commands in src/mystyle.sty
