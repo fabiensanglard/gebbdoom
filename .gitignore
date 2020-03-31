@@ -2,18 +2,19 @@ research
 xcshareddata
 DerivedData
 xcuserdata
-output\*
 .texpadtmp
 .DS_Store
+
+# IDE configuration
+/.idea/
+*.iml
+
+# Compilation product and byproducts
+/build/
+/output/
+*.o
 *.pdf
-*.aux
-*.log
-*.lot
-*.out
-*.toc
-**/*.o
-**/.idea
-**/*.WAD
+*.WAD
 cmake-build-debug
 CMakeFiles
 cmake-fab
