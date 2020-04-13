@@ -13,6 +13,10 @@ die() { rc=$1 && shift && for message in "$@"; do cat <<< "ERROR - $message" >&2
 [[ -x "$(command -v epstopdf)" ]] || die 11 "epstopdf command is unavailable" # MacTeX/TeX Live
 [[ -x "$(command -v pdflatex)" ]] || die 12 "pdflatex command is unavailable" # MacTeX/TeX Live
 
+# Check Inkscape version and choose export option accordingly (--export-png up to 0.92.x, --export-file from 1.x onwards)
+#	falls back on --export-png if unable to read version
+[[ $(inkscape --version | awk -F '[ .]' '{ print $2 }') -gt 0 ]] && exportOption="--export-file" || exportOption="--export-png"
+
 # epsToPDF - Convert EPS to PDF
 epsToPDF() {
 	# Build path without extension
@@ -45,7 +49,7 @@ svgToPNG() {
 	# -nt = newer than, -ot = older than
 	if [[ "$src" -nt "$dst" ]]; then
 		echo "Convert $extensionless.svg to PNG (100dpi)."
-		inkscape --export-png="$dst" --without-gui --export-dpi=100 "$src" > /dev/null 2>&1
+		inkscape $exportOption="$dst" --without-gui --export-dpi=100 "$src" > /dev/null 2>&1
 	fi
 
 	# High RES assets
@@ -53,7 +57,7 @@ svgToPNG() {
 	# -nt = newer than, -ot = older than
 	if [[ "$src" -nt "$dst" ]]; then
 		echo "Convert $extensionless.svg to PNG (300dpi)."
-		inkscape --export-png="$dst" --without-gui --export-dpi=300 "$src" > /dev/null 2>&1
+		inkscape $exportOption="$dst" --without-gui --export-dpi=300 "$src" > /dev/null 2>&1
 	fi
 }
 
