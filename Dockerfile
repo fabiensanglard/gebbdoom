@@ -1,7 +1,7 @@
-# docker build -t gebbdoom .
-# docker run --volume $PWD:/build gebbdoom
+# docker build -t choas/gebb .
+# docker run --volume $PWD:/build choas/gebb
 
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
@@ -12,5 +12,4 @@ RUN mkdir /build
 VOLUME [ "/build" ]
 WORKDIR /build
 
-CMD sed -i -e 's/\\usetkzobj/% \\usetkzobj/g' src/mystyle.sty; \
-    ./make.sh
+CMD ./make.sh
