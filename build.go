@@ -40,7 +40,7 @@ func isOlder(src string, than string) bool {
 
 	statThan, _ := os.Stat(than)
 
-	return stat.ModTime().After(statThan.ModTime())
+	return stat.ModTime().After(statThan.ModTime()) 
 }
 
 func checkExecutable(bin string) {
@@ -95,13 +95,14 @@ func convertSVGtoPNG(folder string) {
 
 			src := folder + item.Name()
 			dirs := []string{cwd() + "src/screenshots/", cwd() + "src/screenshots_300dpi/"}
-			for _, dir := range dirs {
+			dpis := []string{"100", "300"}
+			for i, dir := range dirs {
 				dst := dir + item.Name()
 				dst = strings.ReplaceAll(dst, ".svg", ".png")
 				if isOlder(dst, src) {
 					continue
 				}
-				cmd := inkscapeBin + ` --export-filename="` + dst + `" --export-dpi=100 "` + src + `"`
+				cmd := inkscapeBin + ` --export-filename=` + dst + ` --export-dpi=` + dpis[i] + ` ` + src
 				run(cmd)
 			}
 		}
