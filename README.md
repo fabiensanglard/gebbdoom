@@ -13,6 +13,7 @@ To compile on Mac OS X:
     - via installer: https://tug.org/mactex/mactex-download.html
     - or via Homebrew, with GUI:    `brew cask install mactex`
     - or via Homebrew, without GUI: `brew cask install mactex-no-gui`
+ - Make sure inkscape binary is in your PATH or symlink it where your PATH points to.  
  - Run:
     - `./make.sh`
 
@@ -22,10 +23,12 @@ To compile on Debian GNU/Linux and derivatives (Ubuntu):
  - Run:
     - `./make.sh`
 
+To compile on Windows:
+ - Install WSL1 or WSL2.
+ - Follow Linux instructions. 
+
 To speed up compilation:
- - Use 100 DPI commands in src/mystyle.sty
+ - Build with `./make.sh debug` (uses 100 DPI assets)
  - Comment out the part you are not working on in src/book.tex
-  
-The PDF version looks nicer when cover.tex is included in src/book.tex.
 
 _Fabien Sanglard_
