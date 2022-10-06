@@ -161,11 +161,14 @@ func main() {
 		return
 	}
 
+	
+	os.MkdirAll(outputDirName, os.ModePerm)
+
 	// Convert SVG to PNG
 	convertSVGtoPNG(cwd() + "src/screenshots_svg/")
 	
 	// Convert EPS to PDF
-    convertEPStoPDF(cwd())
+   convertEPStoPDF(cwd())
 
    
 
@@ -178,8 +181,7 @@ func main() {
 
 	compileOptions := `\def\for` + mode + `{}`
 
-	
-	os.MkdirAll(outputDirName, os.ModePerm)
+
 
 	bin := "pdflatex"
 	arg0 := "-output-directory"
