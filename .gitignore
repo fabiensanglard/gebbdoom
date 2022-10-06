@@ -10,8 +10,7 @@ xcuserdata
 *.iml
 
 # Compilation product and byproducts
-/build/
-/output/
+/out/
 *.o
 *.pdf
 *.WAD

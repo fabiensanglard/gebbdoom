@@ -11,7 +11,8 @@ import "os/exec"
 
 var inkscapeBin = "inkscape"
 var epsToPdfBin = "epstopdf"
-var mode = "debug"
+var mode = "release"
+var outputDirName = "out"
 
 func run(c string) {
 	println(c)
@@ -109,6 +110,40 @@ func convertSVGtoPNG(folder string) {
 	}
 }
 
+func toString(fs []string) string {
+	var b bytes.Buffer
+	for _, s := range fs {
+		fmt.Fprintf(&b, "%s ", s)
+	}
+	return b.String()
+}
+
+func makeCover(src string, dst string) {
+	src = cwd() + src
+	dst = cwd() + dst
+
+
+	if isOlder(dst, src) {
+		return
+	}
+
+	bin := inkscapeBin
+	args := make([]string, 0)
+	args = append(args, "--export-filename=" + dst)
+	args = append(args,"--export-dpi=300")
+	args = append(args,"--export-type=pdf")
+	args = append(args,"--export-text-to-path")
+	args = append(args,src)
+
+	fmt.Printf("%s %s\n", inkscapeBin, toString(args))
+
+	output, err := exec.Command(bin, args...).CombinedOutput()
+	if err != nil {
+		fmt.Println("%s %s", string(output), err)
+		return
+	}
+}
+
 func main() {
 	fmt.Println("Building...")
 
@@ -128,13 +163,22 @@ func main() {
 
 	// Convert SVG to PNG
 	convertSVGtoPNG(cwd() + "src/screenshots_svg/")
-	convertEPStoPDF(cwd())
-
+	
 	// Convert EPS to PDF
+    convertEPStoPDF(cwd())
+
+   
+
+    // Make front and back cover (this is only used in the non-print version)
+     os.MkdirAll(outputDirName + "/cover", os.ModePerm)
+    if (mode != "print") {
+       makeCover("cover/master/front.svg", outputDirName + "/cover/front.pdf")
+       makeCover("cover/master/back.svg", outputDirName + "/cover/back.pdf")
+    }
 
 	compileOptions := `\def\for` + mode + `{}`
 
-	outputDirName := "out"
+	
 	os.MkdirAll(outputDirName, os.ModePerm)
 
 	bin := "pdflatex"
