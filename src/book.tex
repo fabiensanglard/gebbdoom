@@ -1,17 +1,450 @@
 \documentclass{book}
 
-% All styles and package and commands are defined here.
-% This allow to have one preambule used in all |/subfile| .
-\usepackage{mystyle}
+  % provides a way to compile sections of a document using the same preamble as the main document.
+  \usepackage{subfiles}
+
+  % Set the dimensions of the pages.
+  \usepackage[margin=1in]{geometry}
+  %\usepackage{calc}
+  \setlength\paperwidth{7.5in}
+  \setlength\paperheight{9.25in}
+ \setlength\textwidth{5.2in}
+ \setlength\textheight{7.2in}
+
+   
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\rmdefault}{cmss}
+
+%\usepackage[sfdefault]{roboto}
+%\usepackage[T1]{fontenc}
+%\renewcommand{\rmdefault}{roboto}
+
+% Remove all indentaion for pargraphs.
+\setlength\parindent{0pt}
+
+
+\newcommand{\codeword}[1]{\texttt{#1}}
+\newcommand{\cw}[1]{\texttt{#1}}
+\newcommand{\quotes}[1]{``#1''}
+\newcommand{\note}[1]{\par\color{red}\#\#\#\#\##1\color{black}\\ \par}
+
+% Create space filters images with bilinear sampling which messes up the small sprites 
+% to compensate I added a path to use 300dpi assets which are nearest upsampled sprites.
+
+\ifx\fordebug\undefined
+% 300 DPI ASSETS
+%===============
+\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots_300dpi/#1}}
+\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots_300dpi/#1} \caption{#2} \label{#1} \end{figure}}
+\newcommand{\scaledrawimage}[2]{\includegraphics[width=#1]{screenshots_300dpi/#2}}
+\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots_300dpi/#2}}
+\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots_300dpi/#2} \caption{#3} \label{#2} \end{figure}}
+\else
+% 100 DPI ASSETS
+%===============
+\newcommand{\fullimage}[1]{\includegraphics[width=\textwidth]{screenshots/#1}}
+\newcommand{\cfullimage}[2]{\begin{figure}[H] \centering \includegraphics[width=\textwidth]{screenshots/#1} \caption{#2} \label{#1} \end{figure}}
+\newcommand{\scaledimage}[2]{\includegraphics[width=#1\textwidth]{screenshots/#2}}
+\newcommand{\scaledrawimage}[2]{\includegraphics[width=#1]{screenshots/#2}}
+\newcommand{\cscaledimage}[3]{\begin{figure}[H] \centering \includegraphics[width=#1\textwidth]{screenshots/#2} \caption{#3} \label{#2} \end{figure}}
+\fi
+
+
+
+
+
+\newcommand{\bu}[1]{\textbf{\underline{#1}}}
+%fancyvrb to make verbatim box with colors
+
+\newcommand{\trivia}[1]{\bu{Trivia} : #1}
+
+%for histograms
+\usepackage{pgfplots}
+\pgfplotsset{
+  compat=newest,
+  xlabel near ticks,
+  ylabel near ticks,
+}
+
+% for appendix
+\usepackage[toc,page]{appendix}
+
+% so figure are really where i want them.
+\usepackage{float}
+
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %allow center column
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}%
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}%
+
+\usepackage{booktabs}
+
+\usepackage{textpos}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usetikzlibrary{calc}
+\usetikzlibrary{shadows} %include images can get a nice drop shadow
+\usepackage{tkz-euclide}
+\usepackage{fancyvrb}
+\usepackage{relsize}
+
+
+
+\usetikzlibrary{backgrounds}
+\makeatletter
+
+\tikzset{%
+  fancy quotes/.style={
+    text width=\fq@width pt,
+    align=justify,
+    inner sep=1em,
+    anchor=north west,
+    minimum width=\textwidth,
+  },
+  fancy quotes width/.initial={.8\textwidth},
+  fancy quotes marks/.style={
+    scale=8,
+    text=white,
+    inner sep=0pt,
+  },
+  fancy quotes opening/.style={
+    fancy quotes marks,
+  },
+  fancy quotes closing/.style={
+    fancy quotes marks,
+  },
+  fancy quotes background/.style={
+    show background rectangle,
+    inner frame xsep=0pt,
+    background rectangle/.style={
+      fill=gray!25,
+      rounded corners,
+    },
+  }
+}
+
+\newenvironment{fancyquotes}[1][]{%
+\noindent
+\tikzpicture[fancy quotes background]
+\node[fancy quotes opening,anchor=north west] (fq@ul) at (0,0) {\tiny ``};
+\tikz@scan@one@point\pgfutil@firstofone(fq@ul.east)
+\pgfmathsetmacro{\fq@width}{\textwidth - 3*\pgf@x}
+\node[fancy quotes,#1] (fq@txt) at (fq@ul.north west) \bgroup}
+{\egroup;
+\node[overlay,fancy quotes closing,anchor=east] at (fq@txt.south east) {\tiny ''};
+\endtikzpicture}
+
+\newcommand{\fq}[2]{\begin{fancyquotes}#1\\\par--- \textbf{#2}\end{fancyquotes}}
+\newcommand{\rawfq}[1]{\begin{fancyquotes}#1\\\end{fancyquotes}}
+
+
+%Nice header with pages numbers
+\usepackage{fancyhdr}
+% Make page number appear on botton right
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[EL]{\thepage}
+\fancyfoot[OR]{\thepage}
+
+%For pretty equations
+\usepackage{amsmath}
+
+
+ 
+
+
+%----------------------------------- LISTINGS  -----------------------------------
+%For pretty source code
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegwhite}{rgb}{1,1,1}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.9,0.9,0.9}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour}, 
+    %basicstyle=\scriptsize,
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    basicstyle=\ttfamily,
+    stringstyle=\color{codepurple},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                                   
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    frame=single,
+    tabsize=2,
+    xleftmargin=0in,
+    %morekeywords={near, far, void, long int, short, unsigned, signed, FP_OFF, FP_SEG, coreleft, farmalloc},
+}
+ 
+\lstset{style=mystyle}
+
+\lstdefinelanguage{OldC}{%
+  language     = C,
+  morekeywords={near, far, void, long int, short, unsigned, signed, FP_OFF, FP_SEG, coreleft, farmalloc},
+  showlines=true,
+}
+
+\newcommand{\objccode}[1]{{\lstset{showlines=true,language=[Objective]C } \begin{minipage}{\textwidth}\lstinputlisting[]{code/#1}\end{minipage}}}
+
+\newcommand{\ccode}[1]{{\lstset{showlines=true } \begin{minipage}{\textwidth}\lstinputlisting[language=OldC]{code/#1}\end{minipage}}}
+\newcommand{\cccode}[2]{{\lstset{showlines=true } \begin{minipage}{\textwidth}\begin{figure}[H]\lstinputlisting[language=OldC]{code/#1}\caption{#2}\end{figure}\end{minipage} }}
+\newcommand{\tcode}[1]{ {\lstset{showlines=true } \begin{minipage}{\textwidth}\lstinputlisting{code/#1}\end{minipage} }}
+\newcommand{\acode}[1]{\begin{minipage}{\textwidth}\lstinputlisting[language={[x86masm]Assembler}]{code/#1}\end{minipage} }
+
+\newcommand{\smallfakedosoutput}[1]{{\lstset{showlines=true, backgroundcolor=\color{Black}, basicstyle=\ttfamily\footnotesize\color{White}} \tcode{#1}}}
+\newcommand{\fakedosoutput}[1]{{\lstset{showlines=true, backgroundcolor=\color{Black}, basicstyle=\ttfamily\color{White}} \tcode{#1}}}
+%----------------------------------- LISTINGS  -----------------------------------
+
+
+
+% To fix table of content spacing 
+\usepackage{tocloft}
+%\usepackage[tocflat]{tocstyle}
+%\usetocstyle{standard}
+
+%\usepackage{framed} %To be able to close listing frame on page breaks.
+
+%For front page.
+\usepackage{pagecolor}
+\usepackage{graphicx} %to resize title
+\usepackage{setspace} %for vertical spacing in title (\setstretch)
+
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[
+ skipabove=10pt,skipbelow=10pt,
+ middlelinewidth=1pt,
+firstextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);},
+secondextra={\draw[dashed,line width=1pt,xshift=-1pt] (O|-P) -- (P);},
+middleextra={\draw[dashed,line width=1pt,xshift=1pt] (O) -- (P|-O);\draw[dashed,line width=1pt,xshift=-1pt] (O|-P) -- (P);}
+]{breakable_box}
+
+% To make last page an even number
+\usepackage{scrextend}
+\newcommand{\OpenNewPageIfNeeded}{%
+  \ifthispageodd{%
+    \newpage
+    \null
+  }{%
+  }%
+}
+\AtEndDocument{\OpenNewPageIfNeeded}
+
+
+%Prevent latex from vertical justifing
+\raggedbottom
+
+%for shadow box
+\usepackage{fancybox, graphicx}
+
+%make footnote stick to the bottom of the page
+\usepackage[bottom]{footmisc}
+%\usepackage[hang,flushmargin]{footmisc}
+
+
+% Allow to include urls in pdf
+\usepackage{hyperref}
+\hypersetup{
+    hyperindex=true,
+    bookmarks=true,
+    pdfa,
+    colorlinks=true,
+    breaklinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    bookmarksopen=true,
+    unicode=true
+}
+\usepackage[hyperpageref]{backref}
+\usepackage{bookmark}
+\usepackage{cmap} % Compatible with pdf-a
+
+% To make floating images
+\usepackage{wrapfig}
+
+% For nice 1/2 signs.
+\usepackage{units}
+
+% Remove figure number in figure captions.
+\usepackage{caption}
+%\captionlabelfalse
+
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
+% adjustbox package which allows you to add alignment keys to \includegraphics
+% \usepackage{adjustbox}
+
+% Make caption text bold and italic:
+%\usepackage[format=plain, labelfont={bf,it}, textfont=it]{caption}
+\usepackage[format=plain, labelfont={bf,it}]{caption}
+
+% Magic trick from https://tex.stackexchange.com/questions/299/how-to-get-long-texttt-sections-to-break
+% LaTEX I hate you so much. I despise you. Die. You POS.
+\newcommand*\justify{%
+  \fontdimen2\font=0.4em% interword space
+  \fontdimen3\font=0.2em% interword stretch
+  \fontdimen4\font=0.1em% interword shrink
+  \fontdimen7\font=0.1em% extra space
+  \hyphenchar\font=`\-% allowing hyphenation
+}
+
+
+% When using wrapfigure, we want zero above and below space.
+\setlength\intextsep{0pt}
+
+\newcommand{\at}{\makeatletter @\makeatother}
+\newcommand{\doom}{DOOM}
+\newcommand{\doomii}{DOOM~II}
+
+\newcommand{\rawdrawing}[1]{
+  \begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{drawings/#1.pdf}
+\label{#1}
+\end{figure}
+\par
+}
+
+\newcommand{\drawing}[2]{
+  \begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{drawings/#1.pdf}
+\caption{#2}
+\label{#1}
+\end{figure}
+\par
+}
+
+\newcommand{\scaleddrawing}[3]{
+  \begin{figure}[H]
+\centering
+\includegraphics[width=#1\textwidth]{drawings/#2.pdf}
+\caption{#3}
+\label{#2}
+\end{figure}
+\par
+}
+
+\newcommand{\rawscaleddrawing}[2]{
+  \begin{figure}[H]
+\centering
+\includegraphics[width=#1\textwidth]{drawings/#2.pdf}
+\label{#2}
+\end{figure}
+\par
+}
+
+\newcommand{\rawpngdrawing}[1]{
+    \includegraphics[width=\textwidth]{drawings/#1.png}
+  \par
+}
+
+\newcommand{\srawpngdrawing}[2]{
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=#1\textwidth]{drawings/#2.png}
+    \label{#2}
+  \end{figure}    
+  
+}
+
+\newcommand{\pngdrawing}[2]{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{drawings/#1.png}
+    \caption{#2}
+    \label{#1}
+  \end{figure}
+  \par
+}
+\newcommand{\spngdrawing}[3]{
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=#1\textwidth]{drawings/#2.png}
+    \caption{#3}
+    \label{#2}
+  \end{figure}
+  \par
+}
+
+
+% \newcommand{\NeXT}  {N\kern -.025em\raisebox{-0.4\depth}{\rotatebox[origin=c]{10}{e}}\kern -.025emXT }
+% \newcommand{\NeXTns}{N\kern -.025em\raisebox{-0.4\depth}{\rotatebox[origin=c]{10}{e}}\kern -.025emXT}
+\newcommand{\NeXT}  {NeXT }
+\newcommand{\NeXTns}{NeXT}
+\newcommand{\fixme}[1]{\color{red}\#\#\#\#\##1\color{black}\ }
+\addtolength{\belowcaptionskip}{10pt}
+
+
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}%
+
+\definecolor{Black}{gray}{0.0}
+\definecolor{White}{gray}{0.9}
+
+
+
+
+\renewcommand{\rmdefault}{cmss} 
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\b}[1]{\textbf{#1}}
+
+% Use to do nd, th and so forth: 
+\newcommand{\ts}{\textsuperscript}
+
+
+% For 3 1/2 inch symbol
+\usepackage{nicefrac}
+
+\newenvironment{allintypewriter}{\ttfamily}{\par}
+
+
+\newcommand{\qaq}[1]{\textbf{Q: #1}\\ \par}
+\newcommand{\qaa}[1]{A: #1\\ \par}
+\newcommand{\qaanor}[1]{A: #1 \par}
+
+\interfootnotelinepenalty=10000
+
+% Right shift \gg symbol
+\usepackage{amssymb}
+
+
+
+
 
 \begin{document}
-   
-    % For pdf publishing
-      \subfile{cover} 
-    % For printing publishing  
-      %\blankpage
-      %\blankpage
-    
+
+\ifx\forprint\undefined   
+% For pdf publishing
+\subfile{src/cover}
+\else 
+% For printing publishing  
+\blankpage
+\blankpage
+\fi    
 
         
     % Table of content space between number and text (had to adjust the last <numwidth> value to make it fit)
@@ -23,27 +456,27 @@
 
 
     \chapter*{Copyright}
-       \subfile{copyright}    
+       \subfile{src/copyright}    
 
     \chapter*{Acknowledgments}
       \addcontentsline{toc}{chapter}{Acknowledgments}
-      \subfile{acknowledgment}
+      \subfile{src/acknowledgment}
 
     \chapter*{How To Send Feedback}
-      \subfile{erratas}
+      \subfile{src/erratas}
   
 
     \chapter*{Foreword by John Carmack}
       \addcontentsline{toc}{chapter}{Foreword by John Carmack}
-      \subfile{foreword}
+      \subfile{src/foreword}
 
     \chapter*{Foreword by Dave Taylor}
       \addcontentsline{toc}{chapter}{Foreword by Dave Taylor}
-      \subfile{foreword_ddt.tex}
+      \subfile{src/foreword_ddt.tex}
 
     \chapter*{Foreword by John Romero}
       \addcontentsline{toc}{chapter}{Foreword by John Romero}
-      \subfile{foreword_romero.tex}
+      \subfile{src/foreword_romero.tex}
 
     \cleardoublepage % Make toc appear on right side.
     
@@ -55,97 +488,97 @@
 
      \chapter*{Preface}
        \addcontentsline{toc}{chapter}{Preface}
-       \subfile{preface}
+       \subfile{src/preface}
     
 
     \chapter{Introduction}
-      \subfile{introduction}
+      \subfile{src/introduction}
 
    
       \chapter{IBM PC}
-        \subfile{environment}
-        \subfile{486}
-        \subfile{vga}
-        \subfile{sound}
-        \subfile{network}
-        \subfile{dos_extender}
-        \subfile{watcom}    
+        \subfile{src/environment}
+        \subfile{src/486}
+        \subfile{src/vga}
+        \subfile{src/sound}
+        \subfile{src/network}
+        \subfile{src/dos_extender}
+        \subfile{src/watcom}    
 
         
 
 
         
      \chapter{NeXT}
-       \subfile{next}   
+       \subfile{src/next}   
 
 
     
 
     \chapter{Team and Tools}
-      \subfile{team} 
-      \subfile{team_sprites} 
-      \subfile{team_maps} 
-      \subfile{team_finger}
-      \subfile{team_audio}
-      \subfile{team_programming}
-      \subfile{team_distribution}
-      \subfile{team_pipeline}
+      \subfile{src/team} 
+      \subfile{src/team_sprites} 
+      \subfile{src/team_maps} 
+      \subfile{src/team_finger}
+      \subfile{src/team_audio}
+      \subfile{src/team_programming}
+      \subfile{src/team_distribution}
+      \subfile{src/team_pipeline}
 
 
 
 
      \chapter{Software: idTech 1}
-      \subfile{software}
-      \subfile{software_arch}
-      \subfile{software_mem}
-      \subfile{software_wad}
-       \subfile{software_video}
-       \subfile{software_renderers}
-       \subfile{software_2drenderer}
-       \subfile{software_3drenderer}
-       \subfile{software_palette_effects}
-       \subfile{software_input}
-       \subfile{software_audio}
-       \subfile{software_collisions}
-       \subfile{software_ia}   
-        \subfile{software_net}
-      \subfile{software_performances}
+      \subfile{src/software}
+      \subfile{src/software_arch}
+      \subfile{src/software_mem}
+      \subfile{src/software_wad}
+       \subfile{src/software_video}
+       \subfile{src/software_renderers}
+       \subfile{src/software_2drenderer}
+       \subfile{src/software_3drenderer}
+       \subfile{src/software_palette_effects}
+       \subfile{src/software_input}
+       \subfile{src/software_audio}
+       \subfile{src/software_collisions}
+       \subfile{src/software_ia}   
+        \subfile{src/software_net}
+      \subfile{src/software_performances}
 
     \chapter{Game Console Ports}        
-      \subfile{ports}    
+      \subfile{src/ports}    
 
     \chapter*{Epilogue}
       \addcontentsline{toc}{chapter}{Epilogue}
-      \subfile{epilogue}
+      \subfile{src/epilogue}
 
     \appendix
     \appendixpage
       \chapter{Bugs}
-      \subfile{bugs}
+      \subfile{src/bugs}
     \chapter{Dots}  
-      \subfile{dots}
+      \subfile{src/dots}
 
 
     \chapter{NeXTstation TurboColor}
-    \subfile{map_benchmark}
+    \subfile{src/map_benchmark}
     
       \chapter{Press Release}
-      \subfile{press_release}
+      \subfile{src/press_release}
       \chapter{Source Code Release Notes}
-      \subfile{release_notes}
+      \subfile{src/release_notes}
       \chapter{doombsp Release Note}
-      \subfile{release_notes_doombsp}
+      \subfile{src/release_notes_doombsp}
       \chapter{Survivor's Strategies \& Secrets}
-      \subfile{essays}
+      \subfile{src/essays}
    
       \chapter{Interview with Dave Taylor}
-      \subfile{dave_interview}
+      \subfile{src/dave_interview}
       \chapter{Interview with Randy Linden}
-      \subfile{randy_interview}      
+      \subfile{src/randy_interview}      
       \chapter{OpenGL vs Direct3D .plan}
-      \subfile{openglvsdirect3d}
+      \subfile{src/openglvsdirect3d}
         \chapter{Black Book Internals}
-    \subfile{internals}
+    \subfile{src/internals}
     \cleartoleftpage % Make sure back cover is on a "back" page
     \blankpage
     \blankpage
