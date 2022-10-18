@@ -41,7 +41,7 @@ func isOlder(src string, than string) bool {
 
 	statThan, _ := os.Stat(than)
 
-	return stat.ModTime().After(statThan.ModTime()) 
+	return stat.ModTime().After(statThan.ModTime())
 }
 
 func checkExecutable(bin string) {
@@ -122,18 +122,17 @@ func makeCover(src string, dst string) {
 	src = cwd() + src
 	dst = cwd() + dst
 
-
 	if isOlder(dst, src) {
 		return
 	}
 
 	bin := inkscapeBin
 	args := make([]string, 0)
-	args = append(args, "--export-filename=" + dst)
-	args = append(args,"--export-dpi=300")
-	args = append(args,"--export-type=pdf")
-	args = append(args,"--export-text-to-path")
-	args = append(args,src)
+	args = append(args, "--export-filename="+dst)
+	args = append(args, "--export-dpi=300")
+	args = append(args, "--export-type=pdf")
+	args = append(args, "--export-text-to-path")
+	args = append(args, src)
 
 	fmt.Printf("%s %s\n", inkscapeBin, toString(args))
 
@@ -161,27 +160,22 @@ func main() {
 		return
 	}
 
-	
 	os.MkdirAll(outputDirName, os.ModePerm)
 
 	// Convert SVG to PNG
 	convertSVGtoPNG(cwd() + "src/screenshots_svg/")
-	
+
 	// Convert EPS to PDF
-   convertEPStoPDF(cwd())
+	convertEPStoPDF(cwd())
 
-   
-
-    // Make front and back cover (this is only used in the non-print version)
-     os.MkdirAll(outputDirName + "/cover", os.ModePerm)
-    if (mode != "print") {
-       makeCover("cover/master/front.svg", outputDirName + "/cover/front.pdf")
-       makeCover("cover/master/back.svg", outputDirName + "/cover/back.pdf")
-    }
+	// Make front and back cover (this is only used in the non-print version)
+	os.MkdirAll(outputDirName+"/cover", os.ModePerm)
+	if mode != "print" {
+		makeCover("cover/master/front.svg", outputDirName+"/cover/front.pdf")
+		makeCover("cover/master/back.svg", outputDirName+"/cover/back.pdf")
+	}
 
 	compileOptions := `\def\for` + mode + `{}`
-
-
 
 	bin := "pdflatex"
 	arg0 := "-output-directory"
