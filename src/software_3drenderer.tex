@@ -36,7 +36,7 @@ In its earlier versions the engine operated on exactly what the designer produce
 \vspace{4mm}
 In the map above, with the player located in sector \cw{0}, the renderer will flood into other sectors using the red portals. A convex sector \cw{1} is relatively easy to deal with. Things get considerably more complicated when encountering a concave sector like \cw{4}. An even worse case is when nesting occurs like where sector \cw{2} contains another sector \cw{3}.\\
 \par
-\trivia{The design described is exactly what Ken Silverman's build engine would settle on to power Duke Nukem 3D in 1996. By then the Pentium had taken over the world and was more than able to deal with complex polygons.}\\
+\trivia{The design described is exactly what Ken Silverman's BUILD engine would settle on to power Duke Nukem 3D in 1996. By then the Pentium had taken over the world and was more than able to deal with complex polygons.}\\
 \par
 \fq{Doom engine was built out of "sectors" -- complex polygonal regions with a common floor / ceiling texture and height, but it didn't have the BSP-chopped "subsectors".  It started in the view sector and recursively flowed into the adjoining sectors, but because they could all be complex polygons it was a lot of record keeping to know what parts you had already visited or were in the stack somewhere.  It worked, and simple areas were fast, but it slowed down precipitously with complexity.}{John Carmack}\\
 \par
