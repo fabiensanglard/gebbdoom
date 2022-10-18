@@ -31,7 +31,7 @@ In 1998 Sega released the Dreamcast. Well-received by developers (except for Ele
 
 
 \subsection{Programming the Saturn}
-Programming the Saturn was a difficult task. The programmer's manual is broken down into eight voluminous manuals requiring repeat reading sessions to build a mental image of the flow of data. The diagram in figure \ref{arch_saturn} gives some idea of the daunting effort required to coordinates eight chips.\\
+Programming the Saturn was a difficult task. The programmer's manual is broken down into eight voluminous manuals requiring repeat reading sessions to build a mental image of the flow of data. The diagram in figure \ref{arch_saturn} gives some idea of the daunting effort required to coordinate eight chips.\\
 \par
 Main programming was done via the two SH-2 processors connected to 2.0MiB of shared RAM. One SH-2 was deemed the master and the other the slave. In the common configuration, the slave was intended to be used as a helper for parallelizable tasks. Communication between chips (to indicate what to execute) had to be done via a tedious interrupt system. To deal with static and global variables the programmer had to deal with mutexes and semaphores which were uncommon concepts for game console programmers. Because they were on the same bus, one had to wait for the other if both needed to access either to RAM or a peripheral on the system. Attempts to minimize the issue were made via a shared unified 4KiB cache that had little impact on the bottleneck.\\
 \par
