@@ -69,8 +69,7 @@ At the heart of the machine, the 32-bit 68030 was the latest in Motorola's 68000
 \vspace{-3mm}
 Above, the 273,000 transistors of the 68030, made up of \circled{1} Memory Management Unit, \circled{2} $\mu$ROM, \circled{3} nROM, \circled{4} Control Section, \circled{5} Instruction Pipe, \circled{6} Program Counter Execution Unit, \circled{7} Address Execution Unit, \circled{8} Data Execution Unit, \circled{9} 256 bytes i-cache, \circled{A} 256 bytes d-cache, and \circled{B} Clock Generator.\\         
 \par
-It is unclear how much of a performance boost the two caches provided. Their small size of 256 bytes each would have meant a significant cache miss rate (Intel had discarded its on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Sixteen general-purpose registers were available which is pretty common for a RISC architecture where load and store have to be done manually\footnote{Intel's CISC-based 486 had eight.}.
-
+It is unclear how much of a performance boost the two caches provided. Their small size of 256 bytes each would have meant a significant cache miss rate (Intel had discarded its on-die cache from their 386 for this very reason). Interestingly, the designer decided to use both micro-code and nano-code. Sixteen general-purpose registers were available which was atypical for a CISC architectures\footnote{Intel's CISC-based 486 CPU had eight.} (that many registers were usually found in RISC).
  
 
 
