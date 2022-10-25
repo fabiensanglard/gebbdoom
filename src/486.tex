@@ -13,7 +13,7 @@ The design had changed significantly compared to its predecessor. The pipeline w
 \par
 {
 \setlength{\belowcaptionskip}{-10pt}
-\drawing{486_arch}{Intel 486 architecture}
+\drawing{486_arch}{Intel 486 architecture.}
 }
 \pagebreak
 Like with the 386, Intel marketed its new CPU in two flavors. The DX version was the pure technology, while the SX version had an unavailable FPU. A decades-old diehard myth is that the DX/SX distinction was a marketing stunt from Intel to sell chips coming out of the factory with malfunctioning parts due to manufacturing problems. It was in fact an intentional commercial operation\footnote{Source: "Lies, Damn Lies, and Wikipedia" by Michal Necasek; The timeline did not make sense since "The 486DX started shipping in volume in late 1989. The 486SX was only introduced in mid-1991. In the first 18 months or so when yield problems would have been the worst, there was no SX.".} to provide a discounted (50\%) price and an opportunity to sell i487 FPU co-processors.\footnote{Amusingly, the i487 FPU upgrade was a full-blown 486DX that disabled the 486SX completely!}.\\
@@ -40,7 +40,7 @@ But whereas later CPUs such as the Pentium chose to hide the chip's complexity b
 Unfortunately, compiler technology was not there yet. Without Intel's full backing to generate the precious tool, none of the compilers available came even remotely close to generating instructions able to exploit its super-scalar capability. The i860 was never able to reach its full potential. If only Intel had been willing to build the tools it desperately needed, the history of the i860 could have been different.\\
 \par
 \par
-\cscaledimage{0.85}{i486DX.png}{The Intel 80486 package}
+\cscaledimage{0.85}{i486DX.png}{The Intel 80486 package.}
 \par
 Figure \ref{i486DX.png} shows the Intel 486 die featuring 1,180,235 transistors inside its package. Around this time period, Intel started to stamp its CPU with a trademarked logo in an attempt to distance itself from increasingly aggressive AMD and Cyrix clones.\\
 \par
@@ -126,7 +126,7 @@ To solve this problem, Intel broke down the three stage pipeline into five (Pref
 \subsection{Caching }
 Modifying the pipeline and making each stage run as fast as the others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386 which had only three stages. A frequently stalling 486 would have been slower than a 386. Halting processing due to missing data or instructions was to be avoided at all cost.\\
 \par
-It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPUs performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\%/year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
+It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPUs performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\% per year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
 \par
 \vspace{2mm}
 \drawing{ram_vs_cpu}{Source: "Computer Organization and Design" by Hennessy and Patterson}
