@@ -3,7 +3,7 @@ Before diving into the code and its structure, let's take some time to understan
 \par
 A developer had two machines, a \NeXT workstation and a PC. All authoring work was done on the \NeXTns{}. Code was written with \cw{TextEdit.app}, compiled with \cw{gcc}, linked with \cw{ld}, and the executable ran on the NeXTstation. The biggest advantage of working on a Unix system was stability. Developers never lost their work due to IDE crashes\footnote{With Borland C++, crashes were a daily occurrence (source: correspondence with John Carmack).}.\\
 \par
-Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair over to the PC where the \NeXT workstation's hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time, using \cw{WATCOM.EXE} and the \cw{WLINK.EXE} linker which generated \cw{DOOM.EXE}. \\
+Once the developer was happy with the result, he switched to his second machine. In order to do so, he literally rolled his chair over to the PC where the \NeXT workstation's hard-drive was mounted over NFS. The PC compiled the same source code\footnote{With some platform specifics.} a second time with Watcom toolchain, \cw{WCC386.EXE} compiler and \cw{WLINK.EXE} linker, to generate \cw{DOOM.EXE}. \\
 \par
  In this setup the PC was relegated to "only" running the game and assessing performance. The PC's hard-drive was actually used only to boot the machine and host the \cw{WATCOM} compiler. Everything else including the \cw{DOOM.EXE} executable was stored on the \NeXT SCSI HDD.\\
 \par
