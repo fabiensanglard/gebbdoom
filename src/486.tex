@@ -141,7 +141,7 @@ If a device was able to answer the bus request within the first wait state cycle
 \par
 \rawdrawing{cpu_wait_states}
 \par
-A two cycle bus request was the fastest a CPU could achieve. In practice, DRAM access required several Wait State insertions.
+A two-cycle bus request was the fastest a CPU could achieve. In practice, DRAM access required several Wait State insertions.
 To avoid this meant avoiding using the bus completely. Therefore, Intel inserted a new component between the pipeline and the bus unit called the L1 (Level 1) cache. The idea was to exploit both the spatial and temporal locality of a program.\\
 \par
 Temporal locality relies on the iterative nature of programs. While in a loop, a recently accessed instruction is likely to be accessed again on the next iteration. Spatial locality has to do with the way programs sequentially read or write arrays containing data. If a memory address is accessed, it is likely a neighboring address will also be accessed shortly after.\\
