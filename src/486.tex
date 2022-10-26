@@ -194,21 +194,20 @@ To achieve this, Intel engineers used a four-way associative design where the $2
 \drawing{cacheline}{The 16 bytes in a cacheline.}
 \par
 The cache system is made of one directory and four banks (also called ways). Each way can store 128 cachelines of 16 bytes and therefore has a capacity of 2 KiB. These lines of 16 bytes are the elementary units of the cache.\\
-\drawing{mem_to_way}{How a memory address is interpreted by the cache controller}
+\drawing{mem_to_way}{How a memory address is interpreted by the cache controller.}
 \par
-Upon receiving a 32-bit address access request, the cache controller splits it into three fields.
+Upon receiving a 32-bit address access request, the cache controller splits it into the three fields shown in Figure \ref{mem_to_way} and performs the following steps.
 \begin{enumerate}
 \item Use the LINE field [4-10] to look up one of the 128 dictionary entries.
 \item Look at the four tags in the entry. If one matches the TAG [11-31] then it means the cacheline is present in one of the four ways.
 \item Check the flag F in the directory entry to make sure the cacheline is valid.
 \item Use the OFFSET [0-3] field to access one of the 16 values in the cacheline.
-\item Update the flag F in the directory entry to update the LRU value.
+\item Update the flag F in the directory entry to update the LRU\footnote{Least Recently Used.}  value.
 \end{enumerate}
 \par
-A memory address' content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 128 = 33,554,432$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU\footnote{Least Recently Used.} policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
+A memory address' content can be in any of the four ways but always at the same LINE offset. With $2^{32} / 128 = 33,554,432$ addresses competing for four slots, the unavoidable cacheline evictions are arbitrated via an LRU policy\footnote{Eviction can happen on read but also on write if the cache is write-allocate, which all Intel 486s were (Source: "Internal Cache Architecture of X86 Processors").}.\\
 \par
 \drawing{cacheways}{The cache controller and its four ways (banks).}
-%This design allowed code and data to node evict each others in loop. The fact that four ways were rotated with LRU made this cache very efficient.\\
 \par
 \trivia{What about increasing the number of ways or the cache size? With 8 KiB of cache, four ways grant the best trade-off\footnote{Source: "Computer Architecture: A Quantitative Approach" by Hennessy/Patterson.}. A two-ways cache yields a 14\% miss rate and a 4-ways cache yields a 10.5\% miss rate. However, going up to eight only improves the percentage to 10\%, and fully associative to 9\%.}\\
 \par
