@@ -7,7 +7,7 @@
 
 Announced in 1989, the 80486 was a performance evolution that addressed all the bottlenecks of the 80386. However, its price tag of \$950 (\$1,920 in 2018) kept it away from most consumers. By 1993 it was finally becoming affordable (\$500) and would become \doom{}'s recommended CPU.\\
 \par
-The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.}, which used to be optional and somewhere on the motherboard was brought on-die. Most importantly, manufacturing improvements\footnote{Manufacturing technology improved from 1.5$\mu$ to 1.0$\mu$ allowing five times more transistors on die.} allowed the 486 a more elaborate design that finally featured an integrated L1 cache -- something Intel had attempted with the 386 without success.\\
+The design had changed significantly compared to its predecessor. The pipeline was gifted with two extra stages, extending its depth to five elements. The FPU\footnote{Floating Point Unit.}, which used to be optional and somewhere on the motherboard was brought on-die. Most importantly, manufacturing improvements\footnote{The 1.0$\mu$ process (vs the i386's 1.5$\mu$) and a die size increase allowed five times more transistors for a total of 1.2 million (the i386 featured 275,000).  It was the first x86 chip to include more than one million transistors.} allowed the 486 a more elaborate design that finally featured an integrated L1 cache -- something Intel had attempted with the 386 without success.\\
 \par
 \fq{The 386 actually had a small cache that eventually got exited because it didn't have enough performance for the size of the cache that we could put on board the chip. The problem was that if you made the chip bigger, it literally wouldn't fit inside the lithography machine's field of view, to flash on the chip.}{Gene Hill - Intel 386 Microprocessor Design and Development}\\
 \par
@@ -83,11 +83,11 @@ Charting the 486's MIPS performance against the previous generation makes the pe
     \end{axis}
    
    \end{tikzpicture}
-   \caption{Comparison of Intel CPUs with MIPS \protect\footnotemark.}
+   \caption{Comparison of Intel CPUs with MIPS\protect\footnotemark.}
  \end{figure}
-\footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
+\footnotetext{"Million of Instructions Per Seconds (MIPS). Source: Roy Longbottom's PC Benchmark: http://www.roylongbottom.org.uk/mips.htm.}
 
-The way it achieves higher performance is through a higher average throughput. According to its documentation, the 386 was a smooth three-stage pipelined processor. Under ideal conditions, figure \ref{386_doc_pipeline} shows how it should have in theory been able to execute one instruction per cycle. In practice the CPU behaved as shown in figure \ref{386_real_pipeline}, twice slower than suggested.
+The way it achieves higher performance is through a higher average throughput. Its documentation describes the 386 as a three-stage pipelined processor. Figure \ref{386_doc_pipeline} shows how, under ideal conditions, it should have been able to execute one instruction per cycle. In practice the CPU behaved as shown in figure \ref{386_real_pipeline}, two times slower than suggested.
 
 \begin{figure}[H]
 \centering
