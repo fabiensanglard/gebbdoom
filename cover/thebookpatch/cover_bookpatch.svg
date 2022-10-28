@@ -7,7 +7,7 @@
    viewBox="0 0 412.41132 241.3"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="cover_bookpatch.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -30,12 +30,12 @@
      fit-margin-bottom="0"
      units="in"
      inkscape:zoom="1.648078"
-     inkscape:cx="809.42771"
-     inkscape:cy="441.72667"
-     inkscape:window-width="3840"
-     inkscape:window-height="2054"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:cx="1370.0808"
+     inkscape:cy="791.52807"
+     inkscape:window-width="1280"
+     inkscape:window-height="736"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2"
      inkscape:snap-global="false" />
@@ -118,27 +118,18 @@
          style="font-weight:bold;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold'"
          id="path229666" />
     </g>
-    <g
-       aria-label="V1.1"
-       id="text96698"
-       style="font-size:10.5833px;line-height:1.25;font-family:Novarese;-inkscape-font-specification:Novarese;stroke-width:0.264583">
-      <path
-         d="m 359.46447,203.09024 h 1.48827 l 1.91202,5.40017 1.93786,-5.40017 h 1.48828 l -2.73884,7.60158 h -1.39526 z"
-         style="font-weight:bold;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff"
-         id="path229631" />
-      <path
-         d="m 368.32695,203.09024 h 2.16523 v 7.60158 h -1.4366 v -6.24249 h -1.56579 z"
-         style="font-weight:bold;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff"
-         id="path229633" />
-      <path
-         d="m 373.99583,209.21904 q 0.3359,0 0.57361,0.23772 0.23771,0.23254 0.23771,0.56843 0,0.3359 -0.23771,0.57361 -0.23771,0.23771 -0.57361,0.23771 -0.33589,0 -0.5736,-0.23771 -0.23771,-0.23771 -0.23771,-0.57361 0,-0.33589 0.23771,-0.56843 0.23771,-0.23772 0.5736,-0.23772 z"
-         style="font-weight:bold;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff"
-         id="path229635" />
-      <path
-         d="m 377.21526,203.09024 h 2.16524 v 7.60158 h -1.4366 v -6.24249 h -1.56579 z"
-         style="font-weight:bold;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff"
-         id="path229637" />
-    </g>
+    <path
+       d="m 359.46447,203.09024 h 1.48827 l 1.91202,5.40017 1.93786,-5.40017 h 1.48828 l -2.73884,7.60158 h -1.39526 z"
+       style="font-weight:bold;font-size:10.5833px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff;stroke-width:0.264583"
+       id="path229631" />
+    <path
+       d="m 368.32695,203.09024 h 2.16523 v 7.60158 h -1.4366 v -6.24249 h -1.56579 z"
+       style="font-weight:bold;font-size:10.5833px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff;stroke-width:0.264583"
+       id="path229633" />
+    <path
+       d="m 373.99583,209.21904 q 0.3359,0 0.57361,0.23772 0.23771,0.23254 0.23771,0.56843 0,0.3359 -0.23771,0.57361 -0.23771,0.23771 -0.57361,0.23771 -0.33589,0 -0.5736,-0.23771 -0.23771,-0.23771 -0.23771,-0.57361 0,-0.33589 0.23771,-0.56843 0.23771,-0.23772 0.5736,-0.23772 z"
+       style="font-weight:bold;font-size:10.5833px;line-height:1.25;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff;stroke-width:0.264583"
+       id="path229635" />
     <g
        aria-label="i486"
        transform="rotate(90)"
@@ -3951,6 +3942,17 @@
            id="text1908">808213</text>
       </g>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       x="376.36005"
+       y="210.68185"
+       id="text4226"><tspan
+         sodipodi:role="line"
+         id="tspan4224"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.5833px;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+         x="376.36005"
+         y="210.68185">2</tspan></text>
   </g>
   <g
      inkscape:label="guide"

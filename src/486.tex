@@ -124,9 +124,9 @@ To solve this problem, Intel broke down the three stage pipeline into five (Pref
 
 
 \subsection{Caching }
-Modifying the pipeline and making each stage run as fast as the others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386 which had only three stages. A frequently stalling 486 would have been slower than a 386. Halting processing due to missing data or instructions was to be avoided at all cost.\\
+Modifying the pipeline and making each stage run as fast as the others was one step in the right direction. But making the pipeline deeper also made it more vulnerable to starvation. Starting from an empty pipeline, the 486 had a latency of 5 cycles compared to the 386, which had a latency of 4 cycles. A frequently stalling 486 would have been slower than a 386. Halting processing due to missing data or instructions was to be avoided at all cost.\\
 \par
-It was a difficult constraint to fulfill for physical reasons. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPUs performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\% per year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
+It was a problem seemingly impossible to solve for a technical standing point. Since 1980, RAM performance had been lagging behind CPU performance. Each year, CPUs performance improved by 60\% while DRAM had only improved by 7\%, the gap increasing by 50\% per year. By 1989, DRAM access time was 10 times slower than CPU cycle time.\\
 \par
 \vspace{2mm}
 \drawing{ram_vs_cpu}{Source: "Computer Organization and Design" by Hennessy and Patterson}
@@ -135,9 +135,9 @@ Until the 486, a CPU requesting either instructions or data from DRAM always had
 \par 
 A first cycle initialized the bus request, placed the address on the address line and set the control line (Read/Write). Then, a wait cycle ran (which Intel called Wait State since while waiting on the Bus Unit, the CPU did absolutely nothing) while the device on the other side of the bus fulfilled the request.\\
 \par
-\drawing{cpu_chipset_bus}{386 CPU-RAM communication elements}
+\drawing{cpu_chipset_bus}{386 CPU-RAM communication elements.}
 \par
-If a device was able to answer the bus request within the first wait state cycle, the CPU was able to resume operations having reached Zero Wait state. Otherwise, additional Wait States were inserted in order to wait for the request to complete. From a performance perspective, these Wait States were a disaster. Not only because it took longer for the instruction to finish but also because it stalled all other instructions in the pipeline.\\
+If a device was able to answer the bus request within the first wait state cycle, the CPU was able to resume operations having reached Zero Wait state. Otherwise, additional Wait States were inserted in order to wait for the request to be completed. From a performance perspective, these Wait States were a disaster. Not only because it took longer for the instruction to finish but also because it stalled all other instructions in the pipeline.\\
 \par
 \rawdrawing{cpu_wait_states}
 \par
@@ -148,7 +148,7 @@ Temporal locality relies on the iterative nature of programs. While in a loop, a
 \par
 By leveraging these two properties, a well-designed cache located between the CPU and the Bus Unit would often already contain the requested data or instruction, making a bus request unnecessary.\\
 \par
-\drawing{cpu_cache}{486 CPU-RAM communication elements}
+\drawing{cpu_cache}{486 CPU-RAM communication elements.}
 
 
 
@@ -174,7 +174,7 @@ Thanks to a more elaborate design (which made it less dense but more expensive t
 \scaleddrawing{1}{SRAM}{Static RAM made of six elements.}
 \par
 Without a capacitor, an SRAM cell doesn't leak. It does not need a periodic refresh and it does not need to be written back each time it is accessed. Its two bit lines allow twice as fast voltage variation detection and faster timing.
-Since it is located inside the chip, accessing it doesn't require an expensive bus request and there is no contention with other devices\footnote{DRAM speed improved over the years. Fast Page Mode "cached" rows of DRAM cells with an SDRAM row buffer. udacity.com's UPCF courses are excellent if you want to learn more about this topic.}.
+Since it is located inside the CPU chip, accessing it doesn't require an expensive bus request and there is no contention with other devices\footnote{DRAM speed improved over the years. Fast Page Mode "cached" rows of DRAM cells with an SDRAM row buffer. udacity.com's UPCF courses are excellent if you want to learn more about this topic.}.
 \par
 
 
@@ -189,7 +189,7 @@ Since it is located inside the chip, accessing it doesn't require an expensive b
 \subsubsection{Cachelines}
 Not only did the L1 cache have better hardware, it was also cleverly designed. Its small size (8 KiB) and heavy duty (unified cache for both code and data) placed a considerable stress on it, yet it managed an impressive 92\% hit rate\footnote{Source: "The i486 CPU: Executing Instructions in One Clock Cycle".} under normal operation.\\
 \par
-To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided into 2,097,152 pages of 2 KiB. Within each page there are 128 lines of 16 bytes (called cachelines).\\
+To achieve this, Intel engineers used a four-way associative design where the $2^{32}$ address space is divided into 2,097,152 pages of 2 KiB. Within each page there are 128 lines of 16 bytes called cachelines.\\
 \par
 \drawing{cacheline}{The 16 bytes in a cacheline.}
 \par
@@ -198,7 +198,7 @@ The cache system is made of one directory and four banks (also called ways). Eac
 \par
 Upon receiving a 32-bit address access request, the cache controller splits it into the three fields shown in Figure \ref{mem_to_way} and performs the following steps.
 \begin{enumerate}
-\item Use the LINE field [4-10] to look up one of the 128 dictionary entries.
+\item Use the LINE field [4-10] to look up one of the 128 directory entries.
 \item Look at the four tags in the entry. If one matches the TAG [11-31] then it means the cacheline is present in one of the four ways.
 \item Check the flag F in the directory entry to make sure the cacheline is valid.
 \item Use the OFFSET [0-3] field to access one of the 16 values in the cacheline.
