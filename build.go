@@ -8,6 +8,7 @@ import (
 )
 import "os"
 import "os/exec"
+import "path"
 
 var inkscapeBin = "inkscape"
 var epsToPdfBin = "epstopdf"
@@ -143,17 +144,29 @@ func makeCover(src string, dst string) {
 	}
 }
 
+func currentDir() string {
+	cwd, err := os.Getwd()
+	if err != nil {
+		panic(err.Error())
+	}
+	return path.Base(cwd)
+}
+
+func getMode() string {
+  var args = os.Args
+  if len(args) > 1 {
+		return args[1]
+  }
+  return ""
+}
+
 func main() {
 	fmt.Println("Building...")
 
 	checkExecutable(inkscapeBin)
 	checkExecutable(epsToPdfBin)
 
-	var args = os.Args
-
-	if len(args) > 1 {
-		mode = args[1]
-	}
+	mode = getMode()
 
 	if mode != "debug" && mode != "release" && mode != "print" {
 		fmt.Println("Mode must be either 'debug' or 'release' or 'print'.")
@@ -187,8 +200,10 @@ func main() {
 
 	if err != nil {
 		fmt.Println("%s %s", string(out), err)
-		return
-	} else {
-		os.Rename(outputDirName + "/book.pdf", outputDirName + "/" + mode + ".pdf")
-	}
+    }
+
+    // Rename
+    var src = outputDirName + "/book.pdf"
+    var dst =  outputDirName + "/" + currentDir() + "_" + getMode() + ".pdf"
+	os.Rename(src, dst)
 }

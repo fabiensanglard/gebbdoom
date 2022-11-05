@@ -145,7 +145,7 @@ The little RISC engines were decent processors. I was surprised that they
 didn't use off the shelf designs, but they basically worked ok. They had
 some design hazards (write after write) that didn't get fixed, but the only
 thing truly wrong with them was that they had scratchpad memory instead
-of caches, and couldn't execute code from main memory. I had
+of caches, and couldn't execute code from main memory\footnote{A \codeword{jmp} could fail when executed from main memory (see Jaguar Tech reference manual p137)!}. I had
 to chunk the DOOM renderer into nine sequentially loaded overlays to
 get it working (with hindsight, I would have done it differently in about
 three...).\\
