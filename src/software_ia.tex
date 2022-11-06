@@ -30,7 +30,7 @@ A thing's state machine is partly statically defined inside the engine (when a m
 \end{enumerate}
 \par
 \vspace{5pt}
-Let's take the example of an imp that has just spawned in a level and therefore is in state \cw{spawnstate}, which is \cw{S\_TROO\_STND}. Upon simulating each game tic, the engine looks at what to do in this state. In this case, the imp will cycle between the states \cw{S\_TROO\_STND} and \cw{S\_TROO\_STND2}. In these sub-states, \cw{A\_Look} is called each tic trying to locate the player. If the player is found, the engine places the imp into the \cw{seestate} (a.k.a S\_TROO\_RUN1)\\
+Let's take the example of an imp that has just spawned in a level and therefore is in state \cw{spawnstate}, which is \cw{S\_TROO\_STND}. Upon entering a state, the engine calls its associated function. In this case, the imp will cycle between the states \cw{S\_TROO\_STND} and \cw{S\_TROO\_STND2}. This means, \cw{A\_Look} is called every 10 tics (roughly 11Hz). If the player is found, \cw{A\_Look} places the imp into the \cw{seestate} (a.k.a S\_TROO\_RUN1).\\
 \par
 
 Suppose this imp was unlucky, the player was fast and managed to hit it with a shotgun at point blank. In this case the engine places the imp into the \cw{deathstate} (\cw{S\_TROO\_DIE1}).\\
