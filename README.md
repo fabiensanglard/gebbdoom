@@ -6,6 +6,7 @@ retain ownership of all drawings and only provide them so the
 overall thing is compilable.
 
 To compile on Mac OS X:
+ - Install golang: https://go.dev/
  - Install Inkscape:
     - via installer: https://inkscape.org/download/
     - or via Homebrew: `brew cask install xquartz inkscape`
@@ -19,7 +20,7 @@ To compile on Mac OS X:
 
 To compile on Debian GNU/Linux and derivatives (Ubuntu):
  - Install Inkscape and TeX Live library (for epstopdf and pdflatex):
-    - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra`
+    - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra golang-go`
  - Run:
     - `./make.sh`
 
