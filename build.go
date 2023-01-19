@@ -153,20 +153,19 @@ func currentDir() string {
 }
 
 func getMode() string {
-  var args = os.Args
-  if len(args) > 1 {
+	var args = os.Args
+	if len(args) > 1 {
 		return args[1]
-  }
-  return ""
+	}
+	return mode
 }
 
 func main() {
-	fmt.Println("Building...")
+	mode = getMode()
+	fmt.Println("Building in", mode, "mode...")
 
 	checkExecutable(inkscapeBin)
 	checkExecutable(epsToPdfBin)
-
-	mode = getMode()
 
 	if mode != "debug" && mode != "release" && mode != "print" {
 		fmt.Println("Mode must be either 'debug' or 'release' or 'print'.")
@@ -194,16 +193,29 @@ func main() {
 	arg0 := "-output-directory"
 	arg1 := outputDirName
 	arg2 := compileOptions + ` \input{src/book.tex}`
-	fmt.Println(bin, arg0, arg1, arg2)
+	draftMode := "-draftmode"
 
-	out, err := exec.Command(bin, arg0, arg1, arg2).CombinedOutput()
+	var err error
+	var out []byte
+
+	// Compile in draft mode to generate only necessary files for Table of Contents
+	if mode != "debug" {
+		fmt.Println(bin, draftMode, arg0, arg1, arg2)
+		_, err = exec.Command(bin, draftMode, arg0, arg1, arg2).CombinedOutput()
+	}
+
+	// Full Compile to generate PDF
+	if err == nil {
+		fmt.Println(bin, arg0, arg1, arg2)
+		out, err = exec.Command(bin, arg0, arg1, arg2).CombinedOutput()
+	}
 
 	if err != nil {
 		fmt.Println("%s %s", string(out), err)
-    }
+	}
 
-    // Rename
-    var src = outputDirName + "/book.pdf"
-    var dst =  outputDirName + "/" + currentDir() + "_" + getMode() + ".pdf"
+	// Rename
+	var src = outputDirName + "/book.pdf"
+	var dst = outputDirName + "/" + currentDir() + "_" + getMode() + ".pdf"
 	os.Rename(src, dst)
 }
