@@ -104,7 +104,7 @@ func convertSVGtoPNG(folder string) {
 				if isOlder(dst, src) {
 					continue
 				}
-				cmd := inkscapeBin + ` --export-filename=` + dst + ` --export-dpi=` + dpis[i] + ` ` + src
+				cmd := inkscapeBin + ` --export-png=` + dst + ` --export-dpi=` + dpis[i] + ` ` + src
 				run(cmd)
 			}
 		}
@@ -129,9 +129,8 @@ func makeCover(src string, dst string) {
 
 	bin := inkscapeBin
 	args := make([]string, 0)
-	args = append(args, "--export-filename="+dst)
+	args = append(args, "--export-pdf="+dst)
 	args = append(args, "--export-dpi=300")
-	args = append(args, "--export-type=pdf")
 	args = append(args, "--export-text-to-path")
 	args = append(args, src)
 
