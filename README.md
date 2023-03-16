@@ -7,7 +7,7 @@ overall thing is compilable.
 
 To compile on Mac OS X:
  - Install golang: https://go.dev/
- - Install Inkscape:
+ - Install Inkscape (min  v1.2.2)
     - via installer: https://inkscape.org/download/
     - or via Homebrew: `brew cask install xquartz inkscape`
  - Install MacTeX library (for epstopdf and pdflatex):
