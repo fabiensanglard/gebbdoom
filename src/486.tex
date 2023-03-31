@@ -48,7 +48,7 @@ Figure \ref{i486DX.png} shows the Intel 486 die featuring 1,180,235 transistors 
 
 \par
 \subsection{Pipeline improvements}
-Charting the 486's MIPS performance against the previous generation makes the performance boost appear vividly. Thanks to a better manufacturing process, top of the line 486s were able to run at 50Mhz\footnote{To reach this frequency, 486 DX 50Mhz were manufactured at 1.0$\mu$.}, but frequency increase was not the main source of the improvement.\\
+Charting the 486's MIPS performance against the previous generation makes the performance boost appear vividly. Thanks to a better manufacturing process, top of the line 486s were able to run at 50MHz\footnote{To reach this frequency, 486 DX 50MHz were manufactured at 1.0$\mu$.}, but frequency increase was not the main source of the improvement.\\
 \par
  Looking closely at the chart, one will notice that even at equal frequencies, a 486 offered more than twice the processing power of a 386.\\
 
@@ -68,17 +68,17 @@ Charting the 486's MIPS performance against the previous generation makes the pe
       axis x line=bottom,
       axis y line=left,
       enlarge x limits=0.11,
-      symbolic x coords={386 16Mhz,386 25Mhz,386 33Mhz,486 25Mhz,486 33Mhz,486 50Mhz},
+      symbolic x coords={386 16MHz,386 25MHz,386 33MHz,486 25MHz,486 33MHz,486 50MHz},
       xticklabel style={anchor=base,yshift=-\baselineskip},
       nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
     ]
       \addplot[fill=black!20,draw=black] coordinates {
-        (386 16Mhz,4)
-        (386 25Mhz,6)
-        (386 33Mhz,8)
-        (486 25Mhz,15)
-        (486 33Mhz,20)
-        (486 50Mhz,30)
+        (386 16MHz,4)
+        (386 25MHz,6)
+        (386 33MHz,8)
+        (486 25MHz,15)
+        (486 33MHz,20)
+        (486 50MHz,30)
       };
     \end{axis}
    
@@ -230,7 +230,7 @@ The principle was simple: While waiting for data to arrive, latch the next reque
 
 
 \subsection{Overdrive and L1 Writeback}
-Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33Mhz model CPU ran at 66Mhz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  Furthermore, the L1 cache policy became write-back (instead of write-through) which reduced bus traffic significantly.\\
+Intel managed to improve performance by 33\% with its line of 80486 OverDrive chips. These CPUs featured a frequency multiplier that made them run two times faster than the bus (the 33MHz model CPU ran at 66MHz)\footnote{To this day, designers still try to solve the problem of having a CPU so much faster than the bus.}.  Furthermore, the L1 cache policy became write-back (instead of write-through) which reduced bus traffic significantly.\\
 \par 
 \vspace{10pt}
 \scaleddrawing{0.9}{486dx2_notm}{The "DX2-66" was the golden standard and absolute best to run \doom{}}%{Best CPU to run \doom at the time.}
@@ -252,15 +252,15 @@ Intel managed to improve performance by 33\% with its line of 80486 OverDrive ch
       axis x line=bottom,
       axis y line=left,
       enlarge x limits=0.11,
-      symbolic x coords={486 DX 25Mhz,486 DX 33Mhz,486 DX 50Mhz,486 DX2 66Mhz},
+      symbolic x coords={486 DX 25MHz,486 DX 33MHz,486 DX 50MHz,486 DX2 66MHz},
       xticklabel style={anchor=base,yshift=-\baselineskip},
       nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
     ]
       \addplot[fill=black!20,draw=black] coordinates {
-        (486 DX 25Mhz,15)
-        (486 DX 33Mhz,20)
-        (486 DX 50Mhz,30)
-        (486 DX2 66Mhz,34)
+        (486 DX 25MHz,15)
+        (486 DX 33MHz,20)
+        (486 DX 50MHz,30)
+        (486 DX2 66MHz,34)
       };
     \end{axis}
    
@@ -269,7 +269,7 @@ Intel managed to improve performance by 33\% with its line of 80486 OverDrive ch
  \end{figure}
 \footnotetext{Source: "Roy Longbottom's PC Benchmark Collection: http://www.roylongbottom.org.uk/mips.htm".}
 \par
-On the chart above, notice how a 486DX2-66Mhz is faster than a 486DX-50Mhz but not by the full 20\% that frequency would make us expect. This is because the DX2 bus runs at 33Mhz while on the DX, both the CPU and bus run at 50Mhz.
+On the chart above, notice how a 486DX2-66MHz is faster than a 486DX-50MHz but not by the full 20\% that frequency would make us expect. This is because the DX2 bus runs at 33MHz while on the DX, both the CPU and bus run at 50MHz.
 
 
 
