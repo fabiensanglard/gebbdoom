@@ -84,7 +84,7 @@ As much as the video card manufacturer could optimize their product, there was s
 \par
 Fed up with the state of things, hardware manufacturers teamed up to form VESA (Video Electronics Standards Association) and created a new Bus standard. They did not go for something complicated -- the protocol was exactly the Intel 486 Bus Unit protocol, which made it a frictionless medium.\\
 \par 
-The VLB (VESA Local Bus) doubled ISA's bus data lines to 32 bits and increased its frequency to 33 Mhz, making it up to 10x faster when compared to the 16-bit ISA bus.\\
+The VLB (VESA Local Bus) doubled ISA's bus data lines to 32 bits and increased its frequency to 33 MHz, making it up to 10x faster when compared to the 16-bit ISA bus.\\
 \par
 The chip design for the VLB controller was relatively simple because many of the core instructions (interrupts and port-mapped I/O) were still hosted by the ISA circuits already on the motherboard, while memory-mapped I/O and DMA data paths were on the same local bus as the one used by the CPU (see figure \ref{bus_vlb}). The speed of the system data bus was based on the clock rate of the motherboard's crystal which meant the bus ran at the same speed as the CPU.\\
 \par
@@ -94,7 +94,7 @@ The chip design for the VLB controller was relatively simple because many of the
 \par
 Closely tying the VL-Bus architecture to the 486 Bus Unit brought unmatched performance and considerably facilitated adoption since there was no need for a chipset. The term 'local bus' meant that the address, data and control signals were directly connected to the processor, so devices on the bus were connected via nothing more than some electrical buffering. This is one of the reasons for its simplicity, but it is also the reason for many of its limitations.\\
 \par
-Forced to run at the same speed as the CPU, the VL-Bus suffered instability as frequencies reached 40 Mhz, resulting in crashes. Past this speed, the system became increasingly intolerant to timing variations\footnote{The issue did not affect 486 DX-66Mhz, where the bus ran at only 33Mhz.}. The root problem is that a local bus is by definition synchronous. Expansion card vendors had the difficult task of ensuring their products could run at a range of speeds, the upper limit of the range being undefined as new processors were introduced. This was a recipe for compatibility problems\footnote{Such problems were experienced by users of VL-Bus systems using the AMD 80MHz processors, which had a 40MHz bus clock.}.\\
+Forced to run at the same speed as the CPU, the VL-Bus suffered instability as frequencies reached 40 MHz, resulting in crashes. Past this speed, the system became increasingly intolerant to timing variations\footnote{The issue did not affect 486 DX-66MHz, where the bus ran at only 33MHz.}. The root problem is that a local bus is by definition synchronous. Expansion card vendors had the difficult task of ensuring their products could run at a range of speeds, the upper limit of the range being undefined as new processors were introduced. This was a recipe for compatibility problems\footnote{Such problems were experienced by users of VL-Bus systems using the AMD 80MHz processors, which had a 40MHz bus clock.}.\\
 \par
 The second problem was that the electrical load driven by the CPU onto the bus decreased as the clock speed increased. Three slots could be provided at 33MHz, but only two at 40MHz and just one at 50MHz. This resulted in configuration hell since motherboard speed was configurable and came with three slots. Users would find some VLB slots "did not work" or "stopped working" as they tuned the frequency.\\
 \par
@@ -118,15 +118,15 @@ Cards were also hard to install due to their length and required pressure to for
       axis x line=bottom,
       axis y line=left,
       enlarge x limits=0.15,
-      symbolic x coords={ISA 8-bit (4.77Mhz), ISA 16-bit (8Mhz),ISA 16-bit (10Mhz), VLB 32-bit (33Mhz)},
+      symbolic x coords={ISA 8-bit (4.77MHz), ISA 16-bit (8MHz),ISA 16-bit (10MHz), VLB 32-bit (33MHz)},
       xticklabel style={anchor=base,yshift=-\baselineskip},
       nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
     ]
       \addplot[fill=black!20,draw=black] coordinates {
-        (ISA 8-bit (4.77Mhz),4.6)
-        (ISA 16-bit (8Mhz),15.6)
-        (ISA 16-bit (10Mhz),19.5)
-        (VLB 32-bit (33Mhz), 128.9)
+        (ISA 8-bit (4.77MHz),4.6)
+        (ISA 16-bit (8MHz),15.6)
+        (ISA 16-bit (10MHz),19.5)
+        (VLB 32-bit (33MHz), 128.9)
       };
     \end{axis}
    
