@@ -13,7 +13,7 @@ Doom's 3D renderer is an uncanny combination of proper 3D techniques and screen 
 The life of a 3D frame can be summarized as follows:
 \begin{itemize}
 \item Render wall segments, sorted front to back from the player's point of view. Both wall ends are projected into screen-space axis X. Based on the distance and floor/ceiling heights of the sectors the wall belongs to, calculate a column Y offset and a height. 
-\item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
+\item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y for such vertical columns. While rendering:
    \begin{itemize}
      \item Record screen-space vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) and floor areas (if below mid-screen) and store the area into an array of structures called "visplanes".
      \item Store sprites to be drawn into an array of structures called "vissprites".
@@ -50,7 +50,7 @@ Things indeed slowed down significantly with a particular map of John Romero's c
 \fullimage{SCREEN01.png}%{Notice the HUD using a huge portion of the 3D canvas.} 
 \label{HUD_screenshot}
 \par
-With the news that their 3D technology was not good enough to ship already a concern, another serious issue arose.\\
+With the news that their 3D technology was not good enough to ship, another serious issue arose.\\
 \par
 Back in August 1992, id Software had landed a contract with Nintendo to port Wolfenstein 3D to SNES. With a release scheduled for Christmas 1993, they had subcontracted the project and forgotten about it to focus on \doom. But in early April 1993, with only three weeks remaining to deliver a gold cartridge, the contractor was nowhere to be seen. They had nothing to deliver to Nintendo. It was a big deal involving a huge penalty.\\
 \par
@@ -108,11 +108,11 @@ for each polygon.
 To study BSPs, let's take the example of a map created with DoomED. For simplicity the map we will be working with is made of eight vertices, four linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{H}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite its simplicity it is obvious how it is a difficult problem to solve for a renderer since, depending on the point of view, the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\par
 \drawing{doom_map}{}
 \par
-To build the BSP tree from the map, the core idea is to repeatedly select a line to split the map in two. Split lines become \cw{SEGMENTS} and split sectors become {SUB-SECTORS}.\\ 
+To build the BSP tree from the map, the core idea is to repeatedly select a line to split the map in two. Split lines become segments (\cw{SEGS}) and split sectors become sub-sectors (\cw{SSECTORS}).\\ 
 \par
 The choice of the splitter is extremely important. There are good splitters and bad splitters. A list of poor choices for the first splitter would be \cw{A}, then \cw{B}, \cw{C}, and \cw{D} since they would not divide the map evenly.\\ 
 \par
-Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, B2, C, D2\}}) and will need further splitting.\\
+Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, D2, C, B2\}}) and will need further splitting.\\
 \par
  The process is repeated until all subsectors are convex.\\
 \par
