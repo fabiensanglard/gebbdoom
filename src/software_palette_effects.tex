@@ -7,7 +7,7 @@
 
 Despite its many weaknesses, the VGA hardware had one really cool feature, its palette. Only 768 bytes were required to make the entire screen fade toward a color. \doom{} used fading for three effects -- damage, item pickup, and the radiation suit. To implement these effects, palettes were precalculated and stored in the \cw{PLAYPAL} lump. There are fourteen palettes in total. Palette \#0 was the default and was used during most of the game.\\
 \par
-Eight palettes (from \#1 to \#8) were used to emphasize damage and to let the player know how badly they were being injured. The effect switches the display to one of the seven palettes based on the amount of damage taken (the higher the damage the higher the starting palette). A fully red screen was usually very bad news. If no more damage is taken, the palette fades back to normal (Palette \#1) at the rate of one palette unit every 1/2 second.\\
+Eight palettes (from \#1 to \#8) were used to emphasize damage and to let the player know how badly they were being injured. The effect switches the display to one of the seven palettes based on the amount of damage taken (the higher the damage the higher the starting palette). A fully red screen was usually very bad news. If no more damage is taken, the palette fades back to normal (Palette \#0) at the rate of one palette unit every 1/2 second.\\
 \par
 \scaledimage{0.25}{palette_damage1.png}
 \scaledimage{0.25}{palette_damage2.png}
