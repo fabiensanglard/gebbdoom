@@ -764,7 +764,7 @@ With the desired result in mind, let's go back to where we were with only walls 
 To get from figure \ref{masked_nomasked.png} to figure \ref{masked.png}, the engine needs to generate a list of maskables (also simply called sprites in the code), to sort them into back-to-front order, iterate over the sorted list, perform clipping on each of them, and finally render them as columns of pixels.\\
 \par
 \subsubsection{List Of Things}
- The list of things was built while the BSP was traversed. Each time a subsector was sent to rendering (in \cw{R\_Subsector}) the list of things it contained were added to an array of \cw{vissprite\_t}s. Note that things are only pseudo-ordered and therefore the order is not usable. In our example the barrel and the Baron would be added based on the subsector they were in, but in no precise order (in the subsector's list of things, the baron could be returned before the barrel).\\
+ The list of things was built while the BSP was traversed. Each time a subsector was sent to rendering (in \cw{R\_Subsector}) the list of things it contained were added to an array of \cw{vissprite\_t}s. Note that things are only pseudo-ordered and therefore the order is not usable. In our example the barrel and the Baron would be added based on the subsector they were in, but in no precise order (in the subsector's list of things, the barrel could be returned before the baron).\\
  \par
  \subsubsection{Clipping Information}
  The clipping information was also built while rendering walls. Ideally it would have been a depth buffer but RAM was expensive and not fast enough. The solution was to record anything that could potentially appear on the screen in an optimized array of \cw{drawseg\_t}s.\\
