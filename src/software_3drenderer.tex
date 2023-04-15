@@ -112,7 +112,7 @@ To build the BSP tree from the map, the core idea is to repeatedly select a line
 \par
 The choice of the splitter is extremely important. There are good splitters and bad splitters. A list of poor choices for the first splitter would be \cw{A}, then \cw{B}, \cw{C}, and \cw{D} since they would not divide the map evenly.\\ 
 \par
-Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, B2, C, D2\}}) and will need further splitting.\\
+Let's say our heuristic selected line \cw{H} which conveniently cuts the room in half. Some lines are entirely to the left of H and some are entirely to its right. Lines on both sides must be split into segments.  After the split, the two leaves in the BSP contain two sub-sectors. One is convex (\cw{\{A, B1, H, D1\}}) and therefore will not be touched anymore. The other one is concave (\cw{\{E, F, G, D2, C, B2\}}) and will need further splitting.\\
 \par
  The process is repeated until all subsectors are convex.\\
 \par
