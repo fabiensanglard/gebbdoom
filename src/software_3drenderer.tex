@@ -108,7 +108,7 @@ for each polygon.
 To study BSPs, let's take the example of a map created with DoomED. For simplicity the map we will be working with is made of eight vertices, four linked together to form a room made of four lines (\cw{A}, \cw{B}, \cw{C}, and \cw{D}). Inside the room is a pillar which is also made of four lines (\cw{E}, \cw{F}, \cw{G}, and \cw{H}). The map is made of only one complex sector (it has a hole in it).  Notice that all lines have a direction and all lines have only one side (on their right side). Despite its simplicity it is obvious how it is a difficult problem to solve for a renderer since, depending on the point of view, the order in which the lines/walls must be drawn will vary. A naive solution would require a complex sorting algorithm.\par
 \drawing{doom_map}{}
 \par
-To build the BSP tree from the map, the core idea is to repeatedly select a line to split the map in two. Split lines become \cw{SEGMENTS} and split sectors become {SUB-SECTORS}.\\ 
+To build the BSP tree, the core idea is to recursively select a line to split the map in two. Split lines become segments (\cw{SEGS}) and split sectors become sub-sectors (\cw{SSECTORS}).\\  
 \par
 The choice of the splitter is extremely important. There are good splitters and bad splitters. A list of poor choices for the first splitter would be \cw{A}, then \cw{B}, \cw{C}, and \cw{D} since they would not divide the map evenly.\\ 
 \par
