@@ -13,7 +13,7 @@ Doom's 3D renderer is an uncanny combination of proper 3D techniques and screen 
 The life of a 3D frame can be summarized as follows:
 \begin{itemize}
 \item Render wall segments, sorted front to back from the player's point of view. Both wall ends are projected into screen-space axis X. Based on the distance and floor/ceiling heights of the sectors the wall belongs to, calculate a column Y offset and a height. 
-\item To render a full wall, generate a set of columns to make ends meet. Interpolate height and Y vertical columns. While rendering:
+\item To connect two ends of a wall, generate a set of columns via interpolation of height and Y offset. While rendering:
    \begin{itemize}
      \item Record screen-space vertical gaps between walls or between wall and screen boundaries. Infer ceiling (if above mid-screen) and floor areas (if below mid-screen) and store the area into an array of structures called "visplanes".
      \item Store sprites to be drawn into an array of structures called "vissprites".
