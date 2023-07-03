@@ -7,9 +7,9 @@ Before continuing our trip through the code and looking at the rendering in  \cw
 \cccode{kernel_renderer_dbox.c}{The dirtybox.}
 \par
 \vspace{-10pt}
-The video system implementation must provide four functions to the core. \cw{I\_InitGraphics} is to be told when to initialize itself. \cw{I\_UpdateNoBlit} is to be called when a portion of the framebuffer has been modified. \cw{I\_FinishUpdate} is called when the framebuffer is fully composed and should be presented to the screen. \cw{I\_WaitVBL} blocks and returns on next V-Sync.\\ 
+The video system implementation must provide four functions to the core. \cw{I\_InitGraphics} is to be told when to initialize itself. \cw{I\_UpdateNoBlit} is to be called when a portion of the framebuffer has been modified. \cw{I\_FinishUpdate} is called when the framebuffer is fully composed and should be presented to the screen. \cw{I\_WaitVBL} blocks and returns on next V-Sync.\\
  \begin{figure}[H]
-\centering  
+\centering
 \begin{tabularx}{\textwidth}{ L{0.27} | L{0.73} }
   \specialrule{1pt}{0pt}{0pt}
   \textbf{Method} & \textbf{DOS Implementation} \\
@@ -47,11 +47,11 @@ The life of a frame is always the same, regardless of what the game is rendering
 %On \NeXT system, the video implementation is very different. Calls to \cw{I\_UpdateNoBlit} are ignored. Only when \cw{I\_FinishUpdate} is called the framebuffer \#0 is copied and sent to Display PostScript subsystem. The \NeXT video system is detailed in the Annex on page \pageref{label_next_video_system}.\\
 \par
 The four other framebuffers in the core are used intermittently for temporary storage.
-\begin{itemize} 
+\begin{itemize}
 \item Framebuffer \#1 is used when taking a screenshot but also to store the background when the 3D view is not full screen (\cw{R\_FillBackScreen}).
 
-\item Framebuffers \#2 and \#3 are used during the wipe animation to store the start and end screens while compositing into framebuffer \#1 (see detailed wipe system in the appendix on page \pageref{label_melt}). 
-\item Framebuffer \#4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed. 
+\item Framebuffers \#2 and \#3 are used during the wipe animation to store the start and end screens while compositing into framebuffer \#0 (see detailed wipe system in the appendix on page \pageref{label_melt}).
+\item Framebuffer \#4 is smaller and only stores a virgin status bar used when content cannot be delta updated and a full redraw is needed.
 \end{itemize}
 \par
 
