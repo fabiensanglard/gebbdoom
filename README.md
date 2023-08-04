@@ -20,7 +20,7 @@ To compile on Mac OS X:
 
 To compile on Debian GNU/Linux and derivatives (Ubuntu):
  - Install Inkscape and TeX Live library (for epstopdf and pdflatex):
-    - `sudo apt install inkscape texlive texlive-font-utils texlive-latex-extra golang-go`
+    - `sudo apt install inkscape texlive texlive-font-utils texlive-fonts-recommended texlive-latex-extra golang-go`
  - Run:
     - `./make.sh`
 
