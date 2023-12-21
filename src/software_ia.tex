@@ -198,7 +198,7 @@ Most of the meat is in the 3D gameplay (\cw{P\_Ticker}) function.\\
 \par
 \ccode{P_Ticker.c}
 \par
-\cw{P\_PlayerThink} is where the player "thinks". This function consumes the \cw{ticccmd\_t} (which we already studied on page \pageref{cmd_t_type}) and controls where the player moves and fires.\\
+\cw{P\_PlayerThink} is where the player "thinks". This function consumes the \cw{ticcmd\_t} (which we already studied on page \pageref{cmd_t_type}) and controls where the player moves and fires.\\
 \par 
 \cw{P\_RunThinkers} is how the map and monsters "think". Anything that must occur over more than one frame is placed in a thinker object and stored in a doubly-linked list. Thinkers are structs with a function pointer and some data for the function pointer parameters. Each gameplay tic, every thinker in the list "thinks". When thinkers are done thinking they set their function pointer to -1 and are dropped from the list. Note that doors have no feelings but they are nonetheless "thinkers" too.\\
 \par
