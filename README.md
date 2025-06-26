@@ -28,6 +28,11 @@ To compile on Windows:
  - Install WSL1 or WSL2.
  - Follow Linux instructions. 
 
+To compile on Docker:
+ - Run:
+    - `docker build -t gebb .`
+    - `docker run --rm -i -v "$PWD":/book gebb bash ./make.sh`
+
 To speed up compilation:
  - Build with `./make.sh debug` (uses 100 DPI assets)
  - Comment out the part you are not working on in src/book.tex
