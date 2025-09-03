@@ -9,11 +9,11 @@ To compile on Mac OS X:
  - Install golang: https://go.dev/
  - Install Inkscape (min  v1.2.2)
     - via installer: https://inkscape.org/download/
-    - or via Homebrew: `brew cask install xquartz inkscape`
+    - or via Homebrew: `brew install --cask xquartz inkscape`
  - Install MacTeX library (for epstopdf and pdflatex):
     - via installer: https://tug.org/mactex/mactex-download.html
-    - or via Homebrew, with GUI:    `brew cask install mactex`
-    - or via Homebrew, without GUI: `brew cask install mactex-no-gui`
+    - or via Homebrew, with GUI:    `brew install --cask mactex`
+    - or via Homebrew, without GUI: `brew install --cask mactex-no-gui`
  - Make sure inkscape binary is in your PATH or symlink it where your PATH points to.  
  - Run:
     - `./make.sh`
