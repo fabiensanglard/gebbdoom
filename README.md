@@ -5,6 +5,16 @@ I am releasing the source code (.tex) under GPL license. I
 retain ownership of all drawings and only provide them so the
 overall thing is compilable.
 
+## Build with Docker / Podman:
+
+- Install [Podman](https://podman.io/)
+- Build Docker / Podman image:
+  - `podman build -t choas/gebbdoom .`
+- Run Podman to create book into the out folder:
+  - `podman run --volume $PWD:/build choas/gebbdoom`
+
+## Other builds
+
 To compile on Mac OS X:
  - Install golang: https://go.dev/
  - Install Inkscape (min  v1.2.2)
@@ -25,11 +35,13 @@ To compile on Debian GNU/Linux and derivatives (Ubuntu):
     - `./make.sh`
 
 To compile on Windows:
- - Install WSL1 or WSL2.
- - Follow Linux instructions. 
+
+- Install WSL1 or WSL2.
+- Follow Linux instructions.
 
 To speed up compilation:
- - Build with `./make.sh debug` (uses 100 DPI assets)
- - Comment out the part you are not working on in src/book.tex
+
+- Build with `./make.sh debug` (uses 100 DPI assets)
+- Comment out the part you are not working on in src/book.tex
 
 _Fabien Sanglard_
