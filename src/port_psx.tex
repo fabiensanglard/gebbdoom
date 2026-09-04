@@ -124,13 +124,13 @@ There were many other subtle additions such as animated skies. In the following 
 \par
 \fullimage{psx_screen_sky.png}\\
 \par
-The PSX's GPU embodies the trade-off coming with a hardware accelerator where generating graphics is more a matter of managing a tool than crafting each pixels by hand.\\
+The PSX's GPU embodies the trade-off coming with a hardware accelerator where generating graphics is more a matter of managing a tool than crafting each pixel by hand.\\
 \par
-On the list of changes, the developer has no direct access to the VRAM. Texture transfers are operated via DMA into a free-form 1024x512 16-bit area also hosting the framebuffers (which are called "Display Area"s). Instead of writing a texture mapper, a game developer would find herself writing a VRAM allocator. An other peculiarity is that sprites and textures must have power of two dimensions to improve texture sampling (a 64x64 texture lookup at coordinate \cw{(u,v)} can be optimized as \cw{(u $\ll{}$ 6) + v}).\\
+On the list of changes, the developer has no direct access to the VRAM. Texture transfers are operated via DMA into a free-form 1024x512 16-bit area also hosting the framebuffers (which are called "Display Area"s). Instead of writing a texture mapper, game developers would find themselves writing a VRAM allocator. Another peculiarity is that sprites and textures must have power of two dimensions to improve texture sampling (a 64x64 texture lookup at coordinate \cw{(u,v)} can be optimized as \cw{(u $\ll{}$ 6) + v}).\\
 \par
 Thanks to 8-bit palette (CLUT) texture support, the GPU is well-suited to replicate the VGA sub-system with a single CLUT used as a global palette. Diminishing light is achieved via per-vertex color blended into a Display Area alike the sector coloring we saw earlier.\\
 \par
-Despite at its advantages, a particular feature of the GPU almost canceled the port.
+Despite all its advantages, a particular feature of the GPU almost canceled the port.
 
 
 \fq{I worked with Aaron Seeler on the Nintendo 64 (which was a fairly different game) and Playstation versions.  Those were the first versions that weren't written "to the metal", since both Sony and Nintendo were forcing (at least third party) developers to write to API instead of just handing them hardware register documentation.  The SGI culture in particular cramped developers at the start, but Nintendo eventually walked it back a bit.\\
