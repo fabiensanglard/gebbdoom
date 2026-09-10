@@ -112,7 +112,7 @@ What can happen is that a monster triggers a barrel to explode and gets injured 
 \section{Always Run overflow}
 Much to the dismay of players, they was not "always run" toggle in \doom{} engine. However players found a trick. By opening \doom{} config file and setting the value of \cw{joyb\_speed} manually to \cw{29}, they could in fact always run.\\
 \par
-If that did not scream "buffer over-read" to you, that fact that \cw{29} worked on DOOM v1.9 only while a value of \cw{31} was required for Final DOOM should achieve to convince you.\\
+If that did not scream "buffer over-read" to you, the fact that \cw{29} worked on DOOM v1.9 only while a value of \cw{31} was required for Final DOOM should achieve to convince you.\\
 \par 
 What happens under the hood is that there is not boundary check when checking the joystick button array. By setting the value to a non-existent joystick button number, the engine reads way past the joystick button array.\\
 \par
@@ -122,7 +122,7 @@ To understand where these values of \cw{29}/\cw{31} lands us, we need to take a 
 \par
 \ccode{joybuttons.c}
 \par
-Where does it read? With \cw{joybuttons initialized at the second entry in \cw{joyarray}, we need to also know how big a \cw{bool} is in DOOM.}\\
+Where does it read? With \cw{joybuttons} initialized at the second entry in \cw{joyarray}, we need to also know how big a \cw{bool} is in DOOM.\\
 \par
 
 \ccode{typedef_bool.c}

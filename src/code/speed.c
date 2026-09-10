@@ -1,2 +1,2 @@
-int speed = speed = gamekeydown[key_speed] || 
-                    joybuttons [joybspeed];
+int speed = gamekeydown[key_speed] || 
+            joybuttons [joybspeed];
